@@ -73,29 +73,49 @@ git config http.postBuffer 524288000
 git config http.version HTTP/1.1
 git config http.lowSpeedLimit 1000
 git config http.lowSpeedTime 60
-echo [3/3] Pushing (auto-retry up to 3 times if the connection drops)...
+rem --- full log so a crash leaves a trace instead of a vanished window ---
+set LOGFILE=push_log.txt
+echo [%DATE% %TIME%] Starting push attempts > %LOGFILE%
+echo [3/3] Pushing (auto-retry up to 5 times if the connection drops)...
+echo         Full log is being written to: push_log.txt
 set TRY=0
 :PUSH_RETRY
 set /a TRY+=1
-git push -u origin main
-if errorlevel 1 (
-  if %TRY% LSS 3 (
-    echo   Attempt %TRY% failed. Retrying in 5 seconds...
-    timeout /t 5 /nobreak >nul
-    goto PUSH_RETRY
-  )
-  echo.
-  echo   PUSH FAILED after 3 attempts. Most likely cause:
-  echo   - Unstable network to GitHub (connection reset on a ~150MB push).
-  echo     Just double-click this file again and paste the same URL -
-  echo     already-uploaded data is cached and the retry will resume fast.
-  echo   - Or: wrong token / wrong repo URL / repo not empty.
-  echo   Also check the repo page on github.com: if the files are already
-  echo   there, the push actually succeeded - just enable Pages.
-  echo.
-  pause
-  exit /b 1
+echo [%DATE% %TIME%] Attempt %TRY% starting... >> %LOGFILE%
+git push -u origin main >> %LOGFILE% 2>&1
+set PE=%errorlevel%
+echo [%DATE% %TIME%] git exit code: %PE% >> %LOGFILE%
+if %PE%==0 goto PUSH_OK
+if %TRY% LSS 5 (
+  echo   Attempt %TRY% failed (code %PE%). Waiting 10s before retry...
+  ping -n 11 127.0.0.1 >nul
+  goto PUSH_RETRY
 )
+echo.
+echo   PUSH FAILED after 5 attempts. See push_log.txt for the full error.
+echo   Last 25 lines of the log:
+powershell -NoProfile -Command "Get-Content push_log.txt -Tail 25"
+echo.
+echo   Most likely cause: unstable network to GitHub on a ~150MB push,
+echo   or a corrupted local object from earlier interrupted pushes.
+echo   - Re-run this file (paste same URL). Uploaded data is cached.
+echo   - ALSO check the repo page on github.com: if files are already
+echo     there, the push actually succeeded - just enable Pages (no re-push).
+goto PUSH_END
+:PUSH_OK
+echo [%DATE% %TIME%] PUSH SUCCESS >> %LOGFILE%
+echo.
+echo ================================================================
+echo   PUSH SUCCESS! One last step on the GitHub website:
+echo   Your repo - Settings - Pages - Branch: select "main" - Save
+echo   After about 1 minute, visit:
+echo     https://YOUR_NAME.github.io/YOUR_REPO/
+echo ================================================================
+:PUSH_END
+echo.
+echo   (Log saved to push_log.txt. Press any key to close.)
+pause
+exit /b 0
 echo.
 echo ================================================================
 echo   PUSH SUCCESS! One last step on the GitHub website:

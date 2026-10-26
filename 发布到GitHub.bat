@@ -68,13 +68,30 @@ if "%REPO_URL%"=="" (
 git remote remove origin >nul 2>nul
 git remote add origin %REPO_URL%
 git branch -M main
+rem --- network stability settings: big push buffer + HTTP/1.1 (more resistant to connection resets) ---
+git config http.postBuffer 524288000
+git config http.version HTTP/1.1
+git config http.lowSpeedLimit 1000
+git config http.lowSpeedTime 60
+echo [3/3] Pushing (auto-retry up to 3 times if the connection drops)...
+set TRY=0
+:PUSH_RETRY
+set /a TRY+=1
 git push -u origin main
 if errorlevel 1 (
+  if %TRY% LSS 3 (
+    echo   Attempt %TRY% failed. Retrying in 5 seconds...
+    timeout /t 5 /nobreak >nul
+    goto PUSH_RETRY
+  )
   echo.
-  echo   PUSH FAILED. Common causes:
-  echo   - Wrong token (expired / did not check "repo")
-  echo   - Wrong username or repo name in the URL
-  echo   - The repo is not empty: delete it on GitHub and re-create empty
+  echo   PUSH FAILED after 3 attempts. Most likely cause:
+  echo   - Unstable network to GitHub (connection reset on a ~150MB push).
+  echo     Just double-click this file again and paste the same URL -
+  echo     already-uploaded data is cached and the retry will resume fast.
+  echo   - Or: wrong token / wrong repo URL / repo not empty.
+  echo   Also check the repo page on github.com: if the files are already
+  echo   there, the push actually succeeded - just enable Pages.
   echo.
   pause
   exit /b 1

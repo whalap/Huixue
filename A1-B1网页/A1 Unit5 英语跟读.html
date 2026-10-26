@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1 英语跟读 · Unit 5 IN MY FREE TIME</title>
+<style>
+  :root{
+    --bg:#0f1424; --panel:#171d33; --panel2:#1f2742; --ink:#eef2ff; --sub:#9aa6c7;
+    --gold:#f5c542; --gold2:#caa12f; --red:#ff5a5f; --green:#5bd6a0; --line:#2a3358;
+    --chip:#243056;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);color:var(--ink);min-height:100vh}
+  header{padding:14px 20px 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{font-size:26px}
+  .title{font-weight:800;font-size:20px}
+  .title small{color:var(--sub);font-weight:500;font-size:13px;display:block;margin-top:2px}
+  .grow{flex:1}
+  .prog{display:flex;align-items:center;gap:8px}
+  .homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);color:var(--gold);
+           border:1px solid var(--gold2);border-radius:20px;padding:7px 14px;font-size:12.5px;
+           font-weight:700;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .homebtn:hover{background:var(--gold);color:#1a1a1a;border-color:var(--gold)}
+  .phxlink{display:inline-block;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+           padding:6px 13px;border-radius:20px;font-size:12.5px;text-decoration:none;font-weight:600}
+  .phxlink:hover{background:var(--gold);color:#1a1a1a}
+  .stars{font-size:20px;letter-spacing:2px}
+  .bar{height:8px;width:160px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .globalbar{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+    background:rgba(15,20,36,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+    padding:8px 20px;margin-bottom:6px}
+  .globalbar label{font-size:13px;color:var(--sub);display:flex;gap:6px;align-items:center}
+  .globalbar select,.globalbar input{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+  .globalbar .recnote{margin-left:auto;font-size:12px;color:var(--gold)}
+  nav{display:flex;gap:8px;padding:6px 20px 0;flex-wrap:wrap}
+  nav button{background:var(--panel);color:var(--sub);border:1px solid var(--line);
+    padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;cursor:pointer;font-weight:600}
+  nav button.on{background:var(--panel2);color:var(--ink);border-bottom:2px solid var(--gold)}
+  main{padding:16px 20px 60px;max-width:1100px;margin:0 auto}
+  .tab{display:none}
+  .tab.on{display:block}
+  .beast{background:linear-gradient(135deg,#1b2b4d,#20294a);border:1px solid var(--line);
+    border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin-bottom:16px}
+  .beast .emoji{font-size:54px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+  .beast h2{margin:0 0 4px;font-size:18px}
+  .beast p{margin:2px 0;color:var(--sub);font-size:13px}
+  .grp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+  .grp-tabs button{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .grp-tabs button.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.2s}
+  .card.done{border-color:var(--green)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .w{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .ipa{color:var(--sub);font-size:13px;font-style:italic}
+  .badges{display:flex;gap:6px;margin:6px 0}
+  .badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--chip);color:var(--sub)}
+  .badge.pos{background:#2b3a6b;color:#bcd0ff}
+  .badge.band{background:#3a2f12;color:var(--gold)}
+  .def{font-size:14px;margin:4px 0;line-height:1.5}
+  .phrase{font-size:13px;color:var(--gold);margin:4px 0}
+  .ex{font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px;margin:6px 0;cursor:pointer}
+  .ex .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .ex .cn.hide{display:none}
+  .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .acts button{flex:1;border:none;border-radius:9px;padding:8px;font-size:13px;cursor:pointer;font-weight:600;min-width:60px}
+  .b-play{background:var(--chip);color:var(--ink)}
+  .b-shadow{background:var(--gold);color:#1a1a1a}
+  .b-master{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
+  .b-master.mastered{background:var(--green);color:#06281c}
+  .b-err{color:var(--gold);border:1px solid var(--gold2);flex:none;min-width:0;padding:8px 10px}
+  .mini{display:inline-flex;gap:4px;align-items:center}
+  .spk{background:none;border:none;color:var(--gold);font-size:18px;cursor:pointer;padding:0 4px}
+  .toggle{cursor:pointer;color:var(--gold)}
+  .sense{border-left:3px solid var(--line);padding:4px 0 4px 10px;margin:6px 0}
+  .sense.hiddenSense{display:none}
+  .defline{font-size:14px;line-height:1.5;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .exbox{display:none;margin-top:6px;font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px}
+  .exbox .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:12px;cursor:pointer;margin-top:6px;font-weight:600}
+  .player{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .player .now{font-size:18px;font-weight:700;margin-bottom:6px}
+  .player .nowcn{color:var(--sub);font-size:14px;margin-bottom:12px}
+  /* 跟读提示条：英文 + 中文译文同一横行，一眼看完 */
+  .nowrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:11px 14px;border:1px solid var(--gold2);border-radius:10px;background:rgba(245,197,66,.06);margin-bottom:12px}
+  .nowrow .now,.nowrow .nowcn{margin-bottom:0}
+  .nowrow .now{font-size:18px;font-weight:700}
+  .nowrow .nowcn{font-size:14px;color:var(--sub)}
+  .recbox{min-height:8px;margin:10px 0}
+  .recbox audio{width:100%}
+  .rec-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .ctr{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ctr button{background:var(--gold);color:#1a1a1a;border:none;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .ctr .ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .ctr button.recording{background:var(--red);color:#fff}
+  .coll{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .cbox .e{font-size:38px}
+  .cbox .n{font-weight:700;margin:6px 0 2px}
+  .cbox .s{color:var(--gold);font-size:14px;letter-spacing:1px}
+  .cbox.lock{opacity:.45;filter:grayscale(1)}
+  .hint{color:var(--sub);font-size:12px;margin-top:10px;line-height:1.6;width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word}
+  .streak{color:var(--gold);font-weight:700}
+  .banner{background:#2a1f12;border:1px solid var(--gold2);color:var(--gold);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:12px;display:none}
+  .subtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .subtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .turn{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}
+  .turn.recording{border-color:var(--red)}
+  .turn .role{font-weight:800;font-size:13px;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;flex:none}
+  .role-A{background:#2b3a6b;color:#bcd0ff}
+  .role-B{background:#3a2f12;color:var(--gold)}
+  .turn-text{flex:1;font-size:15px}
+  .turn-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  .turn-acts{display:flex;gap:6px;flex:none}
+  .turn-acts button{border:none;border-radius:8px;padding:7px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .turn-acts .b-play{background:var(--chip);color:var(--ink)}
+  .turn-acts .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  /* 录音提示/回放整行横向铺满，绝不被 flex 压成竖条 */
+  .turn-rec{display:block;width:100%;min-width:0;margin-top:8px;clear:both}
+  .turn-rec audio{width:100%}
+  .turn-rec .hint{white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.6;margin-top:0}
+  .exchange{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:10px;background:var(--panel2)}
+  .qa{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .qa-text{flex:1;min-width:170px;font-size:15px}
+  /* 中文译文与英文同行，形成横向长条，便于一次性扫读 */
+  .qa-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  /* 回应行：标签 + 句子 + 按钮全部同一横行 */
+  .resp{margin-top:8px;padding:8px 10px;border-left:3px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 8px 8px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .resp-label{font-size:12px;color:var(--gold);font-weight:700;flex:none}
+  .resp .qa-text{flex:1;min-width:180px}
+  .resp-acts{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .resp-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .resp-acts .b-play{background:var(--chip);color:var(--ink)}
+  .resp-acts .b-drill{background:var(--gold);color:#1a1a1a}
+  .q-opt.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  /* 阅读·听力 */
+  .rd-tip{color:var(--sub);font-size:12px;margin-bottom:8px}
+  .rd-playall{margin-bottom:10px}
+  .rd-sents{display:flex;flex-direction:column;gap:8px}
+  .rd-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .rd-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .rd-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .rd-sent .b-play,.rd-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .rd-sent .b-play{background:var(--chip);color:var(--ink)}
+  .rd-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .rd-qtitle{font-weight:700;margin:16px 0 8px;color:var(--gold)}
+  .art-para{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .art-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .art-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .art-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .art-sent .b-play,.art-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .art-sent .b-play{background:var(--chip);color:var(--ink)}
+  .art-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .art-zh{width:100%;color:var(--sub);font-size:13px;line-height:1.6}
+  .rdtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .rdtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .rd-en.ls-masked{color:transparent;background:var(--panel2);border-radius:6px;user-select:none}
+  .listen-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .ls-tip{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:10px}
+  .ghostbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .ghostbtn:hover{border-color:var(--gold)}
+  .q{margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .q-q{font-size:14px;margin-bottom:6px}
+  .q-opts{display:flex;gap:8px;flex-wrap:wrap}
+  .q-opt{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);cursor:pointer;font-size:13px}
+  .q-fb{margin-top:6px;font-size:13px}
+  /* 拼读 */
+  /* 元音手掌握图 */
+  .hand-wrap{display:flex;gap:18px;flex-wrap:wrap;align-items:stretch;margin-bottom:6px}
+  .hand-palm{flex:1;min-width:280px;background:var(--panel);border:1px solid var(--gold2);border-radius:14px;padding:14px}
+  .hand-title{font-weight:800;color:var(--gold);font-size:14px;margin-bottom:4px}
+  .hand-hint{font-size:12px;color:var(--sub);line-height:1.6;margin-bottom:10px}
+  .hand-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0;border-top:1px dashed var(--line)}
+  .hand-row:first-of-type{border-top:none}
+  .finger{flex:1;min-width:52px;text-align:center;background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 4px;cursor:pointer;transition:transform .1s}
+  .finger:hover{transform:translateY(-2px);border-color:var(--gold2)}
+  .finger .fpos{font-size:10px;color:var(--sub)}
+  .finger .fipa{font-size:17px;font-weight:800;color:var(--gold);margin:2px 0}
+  .finger .fsay{font-size:11px;color:var(--ink)}
+  .palm-vowels{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pv{flex:1;min-width:56px;text-align:center;background:rgba(245,197,66,.08);border:1px solid var(--gold2);border-radius:10px;padding:8px 4px;cursor:pointer}
+  .pv:hover{transform:translateY(-2px)}
+  .pv .pipa{font-size:17px;font-weight:800;color:var(--gold)}
+  .pv .psay{font-size:11px;color:var(--sub)}
+  .hand-words{font-size:12px;color:var(--ink);margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .hand-words .cn{color:var(--sub);font-size:11px}
+  .hand-words b{color:var(--gold);font-weight:700}
+  .phx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+  .phx-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .phx-card .ps{font-size:26px;font-weight:800;color:var(--gold)}
+  .phx-card .pn{font-size:14px;font-weight:700;margin:4px 0}
+  .phx-card .ptip{font-size:12px;color:var(--sub);margin:6px 0 8px;line-height:1.5}
+  .phx-words{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  /* 例词做成独立可点击块：学生一眼看出「每个词都能单独点」 */
+  .phx-words span,.hand-words span{display:inline-block;background:var(--chip);border:1px solid var(--line);
+    border-radius:8px;padding:5px 12px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;
+    transition:transform .1s,border-color .15s,background .15s}
+  .phx-words span:hover,.hand-words span:hover{border-color:var(--gold);background:rgba(245,197,66,.12);color:var(--gold)}
+  .phx-words span:active,.hand-words span:active{transform:scale(.94)}
+  .phx-phrase{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(245,197,66,.07);
+    border:1px solid var(--gold2);border-radius:10px;padding:9px 11px;margin:2px 0 8px}
+  .phx-phrase .pl{font-size:11px;color:var(--gold);font-weight:700;flex:none}
+  .phx-phrase .pe{font-size:15px;font-weight:600;flex:1;min-width:150px}
+  .phx-phrase .pc{font-size:12px;color:var(--sub);flex-basis:100%}
+  .phx-tip{color:var(--sub);font-size:12px;line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:9px 12px;margin:0 0 12px}
+  .phx-tip b{color:var(--ink)}
+  /* ---------- 情绪语调卡（intonation）：把「音调走向」画出来 ---------- */
+  .itn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .itn{border:1px solid var(--line);border-radius:12px;padding:13px;background:var(--panel);
+    display:flex;flex-direction:column;gap:8px}
+  .itn-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .itn-arrow{font-size:26px;font-weight:700;line-height:1;min-width:44px;text-align:center;
+    background:var(--panel2);border:1px solid var(--gold2);border-radius:10px;padding:6px 8px;color:var(--gold)}
+  .itn-w{font-size:19px;font-weight:700}
+  .itn-ipa{font-size:13px;color:var(--sub)}
+  .itn-tone{font-size:11px;color:var(--gold);font-weight:700;background:rgba(245,197,66,.12);
+    border-radius:20px;padding:3px 10px}
+  /* 音高曲线：把 ↗ / → / ↘ 画成折线，孩子一眼看懂"往上走/往下掉" */
+  .itn-pitch{width:100%;height:56px;display:block}
+  .itn-pitch .base{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+  .itn-pitch .path{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .itn-pitch .dot{fill:var(--gold)}
+  .itn-sent{font-size:15px;font-weight:600;line-height:1.5}
+  .itn-sentcn{font-size:12px;color:var(--sub)}
+  .itn-tip{font-size:12px;color:var(--sub);line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:8px 10px}
+  .itn-acts{display:flex;gap:8px;flex-wrap:wrap}
+  .itn-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .itn-acts .b-real{background:var(--green);color:#06281c}
+  .itn-acts .b-rec{background:var(--gold);color:#1a1a1a}
+  .rec-slot{margin-top:8px}
+  .rec-slot audio{width:100%;height:36px}
+  .itnp-side .itn-acts button{padding:5px 9px;font-size:11px}
+  .itn-q{border:1px dashed var(--gold2);border-radius:8px;padding:6px 10px;font-size:12px;color:var(--sub)}
+  .itn-q b{color:var(--gold);font-weight:600}
+  /* 同句异调对照 */
+  .itnp{border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:12px;background:var(--panel)}
+  .itnp-vs{display:grid;grid-template-columns:1fr 44px 1fr;gap:10px;align-items:center}
+  .itnp-side{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel2)}
+  .itnp-side .lbl{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:5px}
+  .itnp-side .itn-pitch{height:40px;margin-bottom:6px}
+  .itnp-side .en{font-size:14px;font-weight:600;line-height:1.5}
+  .itnp-side .cn{font-size:11px;color:var(--sub);margin-bottom:6px}
+  .itnp-mid{text-align:center;font-size:11px;color:var(--sub);font-weight:700}
+  .itnp-q{font-size:13px;font-weight:600;margin-top:10px}
+  .itnp-a{font-size:12px;color:var(--sub);line-height:1.7;margin-top:6px;padding:9px 11px;
+    background:rgba(245,197,66,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0}
+  .itnp-a.hide{filter:blur(4px);cursor:pointer;user-select:none}
+  /* 反义情绪对 */
+  .apo{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:10px;background:var(--panel2)}
+  .apo-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .apo-w{font-size:16px;font-weight:700;padding:3px 10px;border-radius:8px;background:var(--chip)}
+  .apo-vs{color:var(--gold);font-weight:700;font-size:13px}
+  .apo-cn{font-size:12px;color:var(--sub)}
+  .pair{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--panel)}
+  .pair .pt{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .pair .pc{flex:1;min-width:140px}
+  .pair .pc .pw{font-size:18px;font-weight:800}
+  .pair .pc .pi{color:var(--sub);font-size:13px;font-style:italic}
+  .pair-acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .pair-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .pair-acts .b-play{background:var(--chip);color:var(--ink)}
+  .pair-acts .b-ok{background:var(--green);color:#06281c}
+  .pair-acts .b-bad{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+  .pair .ptip{font-size:12px;color:var(--gold);margin-top:6px}
+  .quiz-prompt{font-size:16px;margin:6px 0 10px}
+  .quiz-prompt .big{font-size:24px;font-weight:800}
+  .quiz-prompt .tag{display:inline-block;margin-left:8px;font-size:11px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:1px 8px;vertical-align:middle}
+  /* 可点发音的词块：全局统一靠 data-say 绑定 */
+  .wchip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--gold);border-radius:9px;padding:3px 10px;font-weight:800;cursor:pointer;color:var(--ink)}
+  .wchip b{font-size:12px;color:var(--gold);font-weight:700}
+  .wchip:hover{background:var(--chip)}
+  .wchip.big{font-size:24px;padding:6px 14px}
+  .wchip.big b{font-size:15px}
+  /* 预学词：来自后面单元，本单元只练发音不记意思 */
+  [data-pre="1"]{border-style:dashed;border-color:var(--sub);opacity:.95}
+  .pre-tag{font-size:10px;color:var(--sub);font-weight:700;border:1px solid var(--line);border-radius:5px;padding:0 4px;margin-left:2px}
+  .q-prog{height:8px;width:100%;background:var(--panel2);border-radius:6px;overflow:hidden;margin:8px 0}
+  .q-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .q-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:10px 0}
+  .q-opt{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;cursor:pointer;font-weight:600}
+  .q-opt:hover{border-color:var(--gold)}
+  .q-opt.ok{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-opt.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fb{font-size:14px;font-weight:700;min-height:20px;margin:8px 0}
+  /* 2026-10-16 听力填空题：输入框 + 检查按钮（KET 听力有填空题，原来只有单选） */
+  .q-fill{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;font-weight:600;min-width:0;outline:none}
+  .q-fill:focus{border-color:var(--gold)}
+  .q-fill.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-fill.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fillbtn{flex:0 0 auto}
+  .q-fillbtn:disabled{opacity:.5;cursor:default}
+  .err-type{font-weight:800;color:var(--gold);margin:14px 0 8px;font-size:15px}
+  .err-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+  .err-meta{font-size:13px;color:var(--sub);margin-bottom:4px}
+  .err-line{font-size:14px;margin:2px 0}
+  .err-btns{display:flex;gap:8px;margin-top:8px}
+  .err-btns button{border:none;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .err-btns .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line)}
+  .err-btns .err-del{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+
+  /* ---- 本单元语法 tab（联动语法练习页） ---- */
+  .gramwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:4px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+         display:flex;flex-direction:column;gap:7px;transition:.15s}
+  .gcard:hover{border-color:var(--gold2);transform:translateY(-2px)}
+  .gcard .gi{font-size:22px;line-height:1}
+  .gcard .gname{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4}
+  .gcard .gdesc{font-size:12px;color:var(--sub);line-height:1.6}
+  .gcard .ggo{margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+              background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+              border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:700;
+              text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .gcard .ggo:hover{background:var(--gold);color:#1a1a1a}
+  .gcard .gdone{font-size:11px;color:var(--green)}
+  .gramhead{color:var(--sub);font-size:12.5px;line-height:1.75;margin-bottom:12px}
+  .gramhead b{color:var(--gold)}
+  .gramfoot{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .art-hl{color:var(--gold,#c9a227);font-weight:700}
+  .artmark{font-size:12px;margin-left:6px;opacity:.95}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🐉</div>
+  <div class="title">英语跟读学院 · A1
+    <small id="subtitle"></small>
+  </div>
+  <a class="homebtn" href="index.html" title="返回 A1 学习网络主页">🏠 回主页</a>
+  <div class="grow"></div>
+  <div class="prog">
+    <span class="stars" id="starTop">☆☆☆</span>
+    <div class="bar"><i id="barTop"></i></div>
+    <span id="pctTop" style="color:var(--sub);font-size:13px">0%</span>
+  </div>
+</header>
+<div class="globalbar">
+  <label>音色 <select id="voiceSel"><option>默认</option></select></label>
+  <label>语速 <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.95"> <span id="rateVal">0.95×</span></label>
+  <span class="recnote" id="recNote"></span>
+</div>
+<nav>
+  <button data-tab="learn">📘 学习 B</button>
+  <button data-tab="review">🔁 复习 C</button>
+  <button data-tab="shadow">🎤 跟读·对话</button>
+  <button data-tab="reading">📖 阅读·听力</button>
+  <button data-tab="article" class="on">📰 单元文章</button>
+  <button data-tab="grammar">✍️ 本单元语法</button>
+  <button data-tab="phonics">🅰️ 拼读</button>
+  <button data-tab="quiz">📝 小测</button>
+  <button data-tab="errors">🩹 错题</button>
+  <button data-tab="codex">📜 图鉴</button>
+</nav>
+<main>
+  <!-- 学习 B -->
+  <section class="tab" id="learn">
+    <div class="beast">
+      <div class="emoji">🌍</div>
+      <div>
+        <h2 id="beastName"></h2>
+        <p id="beastDesc"></p>
+        <p>打卡进度：<span class="streak" id="beastStreak"></span></p>
+      </div>
+    </div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnLearn">👁 开</span></label>
+    </div>
+    <div class="grp-tabs" id="grpLearn"></div>
+    <div class="grid" id="gridLearn"></div>
+    <div class="hint">双击例句可慢速（0.6×）跟读；点 🔊 听单词。卡片「🎤 跟读打卡」跳到单句跟读页并定位该词，「❌ 记一笔」把没记住的收进错题本。</div>
+  </section>
+
+  <!-- 复习 C -->
+  <section class="tab" id="review">
+    <div class="banner" id="revBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">自测模式 <span class="toggle" id="tgHideCn">🙈 隐藏中文</span></label>
+      <span style="color:var(--sub);font-size:12px">一词义一例句，点「看例句」展开；多义词点「更多 ▾」继续；每句可 🎤 跟读。</span>
+    </div>
+    <div class="grp-tabs" id="grpReview"></div>
+    <div class="grid" id="gridReview"></div>
+    <div class="hint">C 版释义已加厚：含【词性】+ 近义/反义 + 更完整场景。自测时隐藏中文，看英文回想起全部信息即过关。例句下的 🎤 跟读会跳到单句跟读页并定位该句。</div>
+  </section>
+
+  <!-- 跟读·对话 -->
+  <section class="tab" id="shadow">
+    <div class="banner" id="shBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-sh="dialog">💬 对话跟读</button>
+      <button class="subtab" data-sh="single">📝 单句跟读</button>
+      <span style="color:var(--sub);font-size:12px">对话跟读＝听问句→看回应句→录你自己的回答；单句跟读可打卡升星。</span>
+    </div>
+    <div id="shDialog"></div>
+    <div id="shSingle" style="display:none">
+      <div class="player">
+        <div class="nowrow" style="display:none">
+          <div class="now" id="shNow">准备开始…</div>
+          <div class="nowcn" id="shNowCn"></div>
+        </div>
+        <div class="hint" id="shProg" style="margin:0 0 12px">👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这里会出现回放音轨，和原声对比。</div>
+        <div class="recbox" id="shRecBox"></div>
+        <div class="ctr">
+          <button id="shPlay">▶ 听原声</button>
+          <button id="shRec">● 开始录音</button>
+          <button id="shStop" class="ghost">■ 停止</button>
+          <button id="shCheck" class="ghost">✓ 我已跟读打卡</button>
+          <button id="shPrev" class="ghost">⏮ 上一句</button>
+          <button id="shNext" class="ghost">⏭ 下一句</button>
+          <button id="shAuto" class="ghost">🔁 自动连播</button>
+          <label style="color:var(--sub);font-size:13px">跟读留白
+            <select id="shGap">
+              <option value="1500">1.5 秒</option>
+              <option value="2500" selected>2.5 秒</option>
+              <option value="4000">4 秒</option>
+              <option value="-1">手动</option>
+            </select>
+          </label>
+        </div>
+        <div class="hint" id="shHint">跟读流程：▶ 听原声 → ● 开始录音（读完后点 ■ 停止可回放对比）→ ✓ 打卡。连续打卡积累神兽星级。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本单元语法（联动语法练习页） -->
+  <section class="tab" id="grammar">
+    <div class="gramhead" id="gramHead"></div>
+    <div class="gramwrap" id="gramList"></div>
+    <div class="gramfoot">
+      <a class="phxlink" id="gramAll" target="_blank" rel="noopener">✍️ 打开英语语法练习全册 →</a>
+      <span class="hint" style="margin-top:0">点任一关，直接跳到语法练习里<b>这一个点</b>的知识卡（一次只学一个点）。练完回来，跟读这边会自动记一笔。</span>
+    </div>
+  </section>
+
+  <!-- 拼读 -->
+  <!-- 阅读·听力 -->
+  <section class="tab" id="reading">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="rdtab on" data-rd="read">📖 阅读</button>
+      <button class="rdtab" data-rd="listen">🎧 听力</button>
+      <span style="color:var(--sub);font-size:12px">阅读＝看文本做小题；<b style="color:var(--gold)">听力＝先盲听、再答题</b>，听不懂可调慢顶部语速或点「👀 看文本」。<b style="color:var(--gold)">🇨🇳</b> ＝中国主题篇。</span>
+    </div>
+
+    <div id="rdReadWrap">
+      <div class="banner" id="rdBanner"></div>
+      <div class="grp-tabs" id="rdPassages" style="margin-bottom:10px"></div>
+      <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+        <span id="rdHint" style="color:var(--sub);font-size:12px"></span>
+      </div>
+      <div id="rdText"></div>
+      <div id="rdQuiz"></div>
+    </div>
+
+    <div id="rdListenWrap" style="display:none">
+      <div class="banner" id="lsBanner"></div>
+      <div class="grp-tabs" id="lsPassages" style="margin-bottom:10px"></div>
+      <div class="listen-box">
+        <div class="ls-tip">🎧 <b>盲听三步</b>：① 点「▶ 听全篇」（顶部语速可调慢）→ ② 做下面小题 → ③ 不会就点「👀 看文本」对照，再听一遍。每句都可单点 🔊 重听、🎤 跟读。答错自动进错题本。</div>
+        <div class="rd-playall" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="b-play" id="lsPlayAll">▶ 听全篇</button>
+          <button id="lsReplay" class="ghostbtn">🔁 再听一遍</button>
+          <button id="lsReveal" class="ghostbtn">👀 看文本</button>
+        </div>
+        <div class="rd-sents" id="lsSents"></div>
+      </div>
+      <div id="lsQuiz"></div>
+    </div>
+  </section>
+
+  <!-- 单元文章（A1＋A2 例句同源） -->
+  <section class="tab on" id="article">
+    <div class="banner" id="artBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="b-play" id="artPlayAll">🔊 听全篇</button>
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnArt">👁 开</span></label>
+      <label style="font-size:13px;color:var(--sub)">高亮生词 <span class="toggle" id="tgArtHL">👁 开</span></label>
+      <span style="color:var(--sub);font-size:12px">本单元单词卡上的例句，全部出自这篇故事。点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。</span>
+    </div>
+    <div id="artBody"></div>
+  </section>
+
+  <section class="tab" id="phonics">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-phx="cards">🔤 音素卡</button>
+      <button class="subtab" data-phx="pairs">🔁 最小对立对</button>
+      <button class="subtab" data-phx="listen">🎧 听音选词</button>
+      <button class="subtab" data-phx="intonation">🎵 情绪语调</button>
+ <button class="subtab" data-phx="antonym">↔️ 反义情绪对</button>
+      <span style="color:var(--sub);font-size:12px">A1 拼读轨道：建立 letter-sound 对应，否则跟读只是模仿不可迁移。中国学生易错音（θ / sh / ch）已优先纳入。</span>
+      <a class="phxlink" href="../英语音标48音训练.html" target="_blank" title="48 个音标的系统训练：本站 4 个音 + 全 48 音渐进路线（新窗口打开）">🔊 48 音系统训练 ↗</a>
+    </div>
+    <div id="phxHand"></div>
+    <div class="phx-tip">💡 <b>例词块</b>（蓝底方块）可以<b>逐个单独点</b>发音；<b>🔗 短语连读</b>是把含这个音的词连成一句来听——单词里听得清，句子里才知道它怎么和其他音连起来。建议把顶部语速调慢后听两遍。<br>
+      带<b>虚线框 + 「预学」标签</b>的词来自后面单元：本单元<b>只要求读准，不要求记意思</b>，占比控制在 30% 以内。</div>
+    <div id="phxCards"></div>
+    <div id="phxPairs" style="display:none"></div>
+    <div id="phxListen" style="display:none"></div>
+    <div id="phxIntonation" style="display:none"></div>
+    <div id="phxAntonym" style="display:none"></div>
+  </section>
+
+  <!-- 小测 -->
+  <section class="tab" id="quiz">
+    <div class="hint" style="margin-bottom:10px">主动回忆：听音选义 / 看词选义 / 看义选词 三类随机混出，答错自动记入「🩹 错题」。每轮覆盖本单元全部词。</div>
+    <div id="quizBox"></div>
+  </section>
+
+  <!-- 错题 -->
+  <section class="tab" id="errors">
+    <div class="hint" style="margin-bottom:10px">统一错误池（schema：话题/层级/类型/原文/标准答/学生答/时间）。词卡「记一笔」或「小测答错」自动汇总到这里，按类型聚合，可重练或删除。</div>
+    <div id="errList"></div>
+  </section>
+
+  <!-- 神兽图鉴 -->
+  <section class="tab" id="codex">
+    <div class="coll" id="codexGrid"></div>
+    <div class="hint">12 单元 = 12 只神兽。本单元神兽已解锁，掌握度越高星级越多。其余神兽可从 <a href="index.html" style="color:var(--gold)">目录</a> 进入对应单元解锁。</div>
+  </section>
+</main>
+
+<script>
+const DATA = {"unit":5,"title":"IN MY FREE TIME","subtitle":"休闲活动 · 频率副词 · 星期表达","beast_emoji":"🎨","beast_name":"自由之灵","groups":[{"name":"休闲活动","words":[{"word":"play computer games","ipa":"ˌpleɪ kəmˈpjuː.tə ɡeɪmz","pos":"phrase","cef":"A1","band":"高频(1000-2000)","defB":"玩电脑游戏","phrase":"—","phraseDef":"—","ex":"I love computer games, and I play them on my games console.","exCn":"我爱电脑游戏，我在游戏机上玩。","defC":"玩电脑游戏","senses":[{"def":"玩电脑游戏","ex":"I love computer games, and I play them on my games console.","exCn":"我爱电脑游戏，我在游戏机上玩。","syn":"—","ant":"—"}]},{"word":"go shopping","ipa":"ˌgəʊ ˈʃɒp.ɪŋ","pos":"phrase","cef":"A1","band":"高频(1000-2000)","defB":"去购物","phrase":"—","phraseDef":"—","ex":"I often go shopping with my mum.","exCn":"我经常和妈妈去购物。","defC":"去购物","senses":[{"def":"去购物","ex":"I often go shopping with my mum.","exCn":"我经常和妈妈去购物。","syn":"—","ant":"—"}],"inArt":1},{"word":"dance","ipa":"dɑːns","pos":"verb","cef":"A1","band":"高频(1000-2000)","defB":"跳舞","phrase":"dance in the living room","phraseDef":"在客厅跳舞","ex":"I sometimes dance at a concert.","exCn":"我有时在音乐会上跳舞。","defC":"跳舞","senses":[{"def":"跳舞","ex":"I sometimes dance at a concert.","exCn":"我有时在音乐会上跳舞。","syn":"—","ant":"—"}],"inArt":1},{"word":"do homework","ipa":"ˌdu: ˈhəʊm.wɜːk","pos":"phrase","cef":"A1","band":"中高频(2000-3000)","defB":"做作业","phrase":"—","phraseDef":"—","ex":"I do homework on my laptop.","exCn":"我在笔记本电脑上做作业。","defC":"做作业","senses":[{"def":"做作业","ex":"I do homework on my laptop.","exCn":"我在笔记本电脑上做作业。","syn":"—","ant":"—"}],"inArt":1},{"word":"hang out with friends","ipa":"hæŋ ˌaʊt wɪð ˈfrendz","pos":"phrase","cef":"A1","band":"高频(1000-2000)","defB":"和朋友闲逛","phrase":"—","phraseDef":"—","ex":"I hang out with friends on Saturday.","exCn":"我周六和朋友一起玩。","defC":"和朋友闲逛","senses":[{"def":"和朋友闲逛","ex":"I hang out with friends on Saturday.","exCn":"我周六和朋友一起玩。","syn":"—","ant":"—"}],"inArt":1},{"word":"chat to friends online","ipa":"ˌtʃæt tə ˌfrendz ɒnˈlaɪn","pos":"phrase","cef":"A2","band":"中高频(2000-3000)","defB":"网上和朋友聊天","phrase":"—","phraseDef":"—","ex":"I chat to friends online every evening.","exCn":"我每天晚上和朋友在网上聊天。","defC":"网上和朋友聊天","senses":[{"def":"网上和朋友聊天","ex":"I chat to friends online every evening.","exCn":"我每天晚上和朋友在网上聊天。","syn":"—","ant":"—"}],"inArt":1},{"word":"perform","ipa":"pəˈfɔːm","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"表演","phrase":"perform songs","phraseDef":"表演歌曲","ex":"I sing and perform at the school concert.","exCn":"我在学校音乐会上唱歌表演。","defC":"表演","senses":[{"def":"表演","ex":"I sing and perform at the school concert.","exCn":"我在学校音乐会上唱歌表演。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"电子设备","words":[{"word":"smartphone","ipa":"ˈsmɑːt.fəʊn","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"智能手机","phrase":"use my smartphone","phraseDef":"用智能手机","ex":"My smartphone is new, and my tablet is fast.","exCn":"我的智能手机是新的，我的平板很快。","defC":"智能手机","senses":[{"def":"智能手机","ex":"My smartphone is new, and my tablet is fast.","exCn":"我的智能手机是新的，我的平板很快。","syn":"—","ant":"—"}],"inArt":1},{"word":"tablet","ipa":"ˈtæb.lət","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"平板电脑","phrase":"use my tablet","phraseDef":"用平板","ex":"My smartphone is new, and my tablet is fast.","exCn":"我的智能手机是新的，我的平板很快。","defC":"平板电脑","senses":[{"def":"平板电脑","ex":"My smartphone is new, and my tablet is fast.","exCn":"我的智能手机是新的，我的平板很快。","syn":"—","ant":"—"}],"inArt":1},{"word":"laptop","ipa":"ˈlæp.tɒp","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"笔记本电脑","phrase":"use my laptop","phraseDef":"用笔记本","ex":"I do homework on my laptop.","exCn":"我在笔记本电脑上做作业。","defC":"笔记本电脑","senses":[{"def":"笔记本电脑","ex":"I do homework on my laptop.","exCn":"我在笔记本电脑上做作业。","syn":"—","ant":"—"}],"inArt":1},{"word":"games console","ipa":"ˈɡeɪmz ˌkɒnsəʊl","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"游戏机","phrase":"use my games console","phraseDef":"用游戏机","ex":"I love computer games, and I play them on my games console.","exCn":"我爱电脑游戏，我在游戏机上玩。","defC":"游戏机","senses":[{"def":"游戏机","ex":"I love computer games, and I play them on my games console.","exCn":"我爱电脑游戏，我在游戏机上玩。","syn":"—","ant":"—"}],"inArt":1},{"word":"e-reader","ipa":"ˈiː.riː.də","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"电子书阅读器","phrase":"use my e-reader","phraseDef":"用电子书阅读器","ex":"I read books on my e-reader.","exCn":"我在电子阅读器上读书。","defC":"电子书阅读器","senses":[{"def":"电子书阅读器","ex":"I read books on my e-reader.","exCn":"我在电子阅读器上读书。","syn":"—","ant":"—"}],"inArt":1},{"word":"GPS","ipa":"ˌdʒiː.piːˈes","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"导航仪","phrase":"use my GPS","phraseDef":"用导航","ex":"The GPS helps us find the address.","exCn":"GPS 帮我们找到地址。","defC":"导航仪","senses":[{"def":"导航仪","ex":"The GPS helps us find the address.","exCn":"GPS 帮我们找到地址。","syn":"—","ant":"—"}],"inArt":1},{"word":"MP3 player","ipa":"em.piːˈθriː ˌpleɪ.ə","pos":"noun","cef":"A2","band":"中频(3000-5000)","defB":"MP3 播放器","phrase":"use my MP3 player","phraseDef":"用 MP3","ex":"I listen to music on my MP3 player.","exCn":"我用 MP3 播放器听音乐。","defC":"MP3 播放器","senses":[{"def":"MP3 播放器","ex":"I listen to music on my MP3 player.","exCn":"我用 MP3 播放器听音乐。","syn":"—","ant":"—"}],"inArt":1},{"word":"headphones","ipa":"ˈhed.fəʊnz","pos":"plural noun","cef":"A1","band":"中频(3000-5000)","defB":"耳机","phrase":"use my headphones","phraseDef":"用耳机","ex":"I wear headphones and listen to music.","exCn":"我戴耳机听音乐。","defC":"耳机","senses":[{"def":"耳机","ex":"I wear headphones and listen to music.","exCn":"我戴耳机听音乐。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"星期","words":[{"word":"Monday","ipa":"ˈmʌn.deɪ","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"星期一","phrase":"on Monday","phraseDef":"在周一","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","defC":"星期一","senses":[{"def":"星期一","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","syn":"—","ant":"—"}],"inArt":1},{"word":"Tuesday","ipa":"ˈtjuːz.deɪ","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"星期二","phrase":"every Tuesday","phraseDef":"每周二","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","defC":"星期二","senses":[{"def":"星期二","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","syn":"—","ant":"—"}],"inArt":1},{"word":"Wednesday","ipa":"ˈwenz.deɪ","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"星期三","phrase":"on Wednesday","phraseDef":"在周三","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","defC":"星期三","senses":[{"def":"星期三","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","syn":"—","ant":"—"}],"inArt":1},{"word":"Thursday","ipa":"ˈθɜːz.deɪ","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"星期四","phrase":"every Thursday","phraseDef":"每周四","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","defC":"星期四","senses":[{"def":"星期四","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","syn":"—","ant":"—"}],"inArt":1},{"word":"Friday","ipa":"ˈfraɪ.deɪ","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"星期五","phrase":"every Friday","phraseDef":"每周五","ex":"We watch a DVD on Friday.","exCn":"我们周五看 DVD。","defC":"星期五","senses":[{"def":"星期五","ex":"We watch a DVD on Friday.","exCn":"我们周五看 DVD。","syn":"—","ant":"—"}],"inArt":1},{"word":"Saturday","ipa":"ˈsæt.ə.deɪ","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"星期六","phrase":"my favourite day","phraseDef":"我最喜欢的一天","ex":"I listen to a CD on Saturday.","exCn":"我周六听 CD。","defC":"星期六","senses":[{"def":"星期六","ex":"I listen to a CD on Saturday.","exCn":"我周六听 CD。","syn":"—","ant":"—"}],"inArt":1},{"word":"Sunday","ipa":"ˈsʌn.deɪ","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"星期日","phrase":"on Sunday","phraseDef":"在周日","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","defC":"星期日","senses":[{"def":"星期日","ex":"I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","exCn":"我在周一、周二、周三、周四、周五、周六和周日都感到开心。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"频率副词","words":[{"word":"always","ipa":"ˈɔːl.weɪz","pos":"adverb","cef":"A1","band":"极高频(Top1000)","defB":"总是","phrase":"always do","phraseDef":"总做…","ex":"In my free time, I always play sport.","exCn":"在我的空闲时间，我总是做运动。","defC":"总是","senses":[{"def":"总是","ex":"In my free time, I always play sport.","exCn":"在我的空闲时间，我总是做运动。","syn":"—","ant":"—"}],"inArt":1},{"word":"often","ipa":"ˈɒf.ən","pos":"adverb","cef":"A1","band":"极高频(Top1000)","defB":"经常","phrase":"often hang out","phraseDef":"常闲逛","ex":"I often go shopping with my mum.","exCn":"我经常和妈妈去购物。","defC":"经常","senses":[{"def":"经常","ex":"I often go shopping with my mum.","exCn":"我经常和妈妈去购物。","syn":"—","ant":"—"}],"inArt":1},{"word":"sometimes","ipa":"ˈsʌm.taɪmz","pos":"adverb","cef":"A1","band":"极高频(Top1000)","defB":"有时","phrase":"sometimes go","phraseDef":"有时去","ex":"I sometimes dance at a concert.","exCn":"我有时在音乐会上跳舞。","defC":"有时","senses":[{"def":"有时","ex":"I sometimes dance at a concert.","exCn":"我有时在音乐会上跳舞。","syn":"—","ant":"—"}],"inArt":1},{"word":"never","ipa":"ˈnev.ə","pos":"adverb","cef":"A1","band":"极高频(Top1000)","defB":"从不","phrase":"never play","phraseDef":"从不动","ex":"I never watch TV in the morning.","exCn":"我早上从不看电视。","defC":"从不","senses":[{"def":"从不","ex":"I never watch TV in the morning.","exCn":"我早上从不看电视。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"动作与社交","words":[{"word":"play","ipa":"pleɪ","pos":"verb","cef":"A1","band":"极高频(Top1000)","defB":"玩；演奏（乐器）","phrase":"play the piano","phraseDef":"弹钢琴","ex":"In my free time, I always play sport.","exCn":"在我的空闲时间，我总是做运动。","defC":"玩；演奏（乐器）","senses":[{"def":"玩；演奏（乐器）","ex":"In my free time, I always play sport.","exCn":"在我的空闲时间，我总是做运动。","syn":"—","ant":"—"}],"inArt":1},{"word":"listen to music","ipa":"ˌlɪs.ən tə ˈmjuː.zɪk","pos":"phrase","cef":"A1","band":"高频(1000-2000)","defB":"听音乐","phrase":"—","phraseDef":"—","ex":"I listen to music on my MP3 player.","exCn":"我用 MP3 播放器听音乐。","defC":"听音乐","senses":[{"def":"听音乐","ex":"I listen to music on my MP3 player.","exCn":"我用 MP3 播放器听音乐。","syn":"—","ant":"—"}],"inArt":1},{"word":"sing","ipa":"sɪŋ","pos":"verb","cef":"A1","band":"高频(1000-2000)","defB":"唱歌","phrase":"help sb sing","phraseDef":"帮某人唱","ex":"I sing and perform at the school concert.","exCn":"我在学校音乐会上唱歌表演。","defC":"唱歌","senses":[{"def":"唱歌","ex":"I sing and perform at the school concert.","exCn":"我在学校音乐会上唱歌表演。","syn":"—","ant":"—"}],"inArt":1},{"word":"watch TV","ipa":"ˌwɒtʃ tiːˈviː","pos":"phrase","cef":"A1","band":"高频(1000-2000)","defB":"看电视","phrase":"—","phraseDef":"—","ex":"I never watch TV in the morning.","exCn":"我早上从不看电视。","defC":"看电视","senses":[{"def":"看电视","ex":"I never watch TV in the morning.","exCn":"我早上从不看电视。","syn":"—","ant":"—"}],"inArt":1},{"word":"study","ipa":"ˈstʌd.i","pos":"verb","cef":"A1","band":"极高频(Top1000)","defB":"学习","phrase":"study English","phraseDef":"学英语","ex":"I study English every day.","exCn":"我每天学英语。","defC":"学习","senses":[{"def":"学习","ex":"I study English every day.","exCn":"我每天学英语。","syn":"—","ant":"—"}],"inArt":1},{"word":"meet","ipa":"miːt","pos":"verb","cef":"A1","band":"极高频(Top1000)","defB":"见面；碰面","phrase":"meet every Tuesday","phraseDef":"每周二见","ex":"I meet my friends at the weekend.","exCn":"我在周末见朋友。","defC":"见面；碰面","senses":[{"def":"见面；碰面","ex":"I meet my friends at the weekend.","exCn":"我在周末见朋友。","syn":"—","ant":"—"}],"inArt":1},{"word":"help","ipa":"help","pos":"verb","cef":"A1","band":"极高频(Top1000)","defB":"帮助","phrase":"help sb (to) do","phraseDef":"帮某人做","ex":"I help my mum and get the bags.","exCn":"我帮妈妈拿袋子。","defC":"帮助","senses":[{"def":"帮助","ex":"I help my mum and get the bags.","exCn":"我帮妈妈拿袋子。","syn":"—","ant":"—"}],"inArt":1},{"word":"teach","ipa":"tiːtʃ","pos":"verb","cef":"A1","band":"高频(1000-2000)","defB":"教","phrase":"teaches Maths","phraseDef":"教数学","ex":"I teach my mum to use the computer.","exCn":"我教妈妈用电脑。","defC":"教","senses":[{"def":"教","ex":"I teach my mum to use the computer.","exCn":"我教妈妈用电脑。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"🟠 拓展·通讯与科技","words":[{"word":"online","ipa":"/ˌɒnˈlaɪn/","pos":"adjective","cef":"A2","band":"高频(1000-2000)","defB":"在线的","phrase":"shop online","phraseDef":"网购","ex":"I watch a video online after dinner.","exCn":"我晚饭后在线看视频。","defC":"在线的","senses":[{"def":"在线的","ex":"I watch a video online after dinner.","exCn":"我晚饭后在线看视频。","syn":"—","ant":"—"}],"inArt":1},{"word":"chat","ipa":"/tʃæt/","pos":"verb","cef":"A2","band":"中高频(2000-3000)","defB":"聊天","phrase":"chat online","phraseDef":"网上聊天","ex":"I chat to friends online every evening.","exCn":"我每天晚上和朋友在网上聊天。","defC":"聊天","senses":[{"def":"聊天","ex":"I chat to friends online every evening.","exCn":"我每天晚上和朋友在网上聊天。","syn":"—","ant":"—"}],"inArt":1},{"word":"call","ipa":"/kɔːl/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"打电话；称呼","phrase":"call a friend","phraseDef":"给朋友打电话","ex":"I call my grandma on my cell phone.","exCn":"我用手机给奶奶打电话。","defC":"打电话；称呼","senses":[{"def":"打电话；称呼","ex":"I call my grandma on my cell phone.","exCn":"我用手机给奶奶打电话。","syn":"—","ant":"—"}],"inArt":1},{"word":"information","ipa":"/ˌɪnfəˈmeɪʃn/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"信息","phrase":"get information","phraseDef":"获取信息","ex":"I search for information on the web.","exCn":"我在网上搜索信息。","defC":"信息","senses":[{"def":"信息","ex":"I search for information on the web.","exCn":"我在网上搜索信息。","syn":"—","ant":"—"}],"inArt":1},{"word":"talk","ipa":"/tɔːk/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"谈话","phrase":"talk to friends","phraseDef":"和朋友聊天","ex":"I talk to them by phone.","exCn":"我通过电话和他们交谈。","defC":"谈话","senses":[{"def":"谈话","ex":"I talk to them by phone.","exCn":"我通过电话和他们交谈。","syn":"—","ant":"—"}],"inArt":1},{"word":"by post","ipa":"/baɪ pəʊst/","pos":"phrase","cef":"A2","band":"高频(1000-2000)","defB":"通过邮寄","phrase":"send by post","phraseDef":"邮寄","ex":"I send the letter by post, in a big envelope.","exCn":"我把信装进一个大信封寄出去。","defC":"通过邮寄","senses":[{"def":"通过邮寄","ex":"I send the letter by post, in a big envelope.","exCn":"我把信装进一个大信封寄出去。","syn":"—","ant":"—"}],"inArt":1},{"word":"website","ipa":"/ˈwebsaɪt/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"网站","phrase":"a useful website","phraseDef":"有用的网站","ex":"I visit a website and read a web page.","exCn":"我访问一个网站并阅读一个网页。","defC":"网站","senses":[{"def":"网站","ex":"I visit a website and read a web page.","exCn":"我访问一个网站并阅读一个网页。","syn":"—","ant":"—"}],"inArt":1},{"word":"internet","ipa":"/ˈɪntənet/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"互联网","phrase":"on the internet","phraseDef":"在互联网上","ex":"I make new friends on the internet.","exCn":"我在互联网上交新朋友。","defC":"互联网","senses":[{"def":"互联网","ex":"I make new friends on the internet.","exCn":"我在互联网上交新朋友。","syn":"—","ant":"—"}],"inArt":1},{"word":"text","ipa":"/tekst/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"短信；文字","phrase":"send a text","phraseDef":"发短信","ex":"I send a text and an email.","exCn":"我发一条短信和一封邮件。","defC":"短信；文字","senses":[{"def":"短信；文字","ex":"I send a text and an email.","exCn":"我发一条短信和一封邮件。","syn":"—","ant":"—"}],"inArt":1},{"word":"screen","ipa":"/skriːn/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"屏幕","phrase":"a big screen","phraseDef":"大屏幕","ex":"The screen is big and digital.","exCn":"屏幕又大又是数字的。","defC":"屏幕","senses":[{"def":"屏幕","ex":"The screen is big and digital.","exCn":"屏幕又大又是数字的。","syn":"—","ant":"—"}],"inArt":1},{"word":"digital","ipa":"/ˈdɪdʒɪtl/","pos":"adjective","cef":"A2","band":"中高频(2000-3000)","defB":"数字的","phrase":"a digital clock","phraseDef":"数字钟","ex":"The screen is big and digital.","exCn":"屏幕又大又是数字的。","defC":"数字的","senses":[{"def":"数字的","ex":"The screen is big and digital.","exCn":"屏幕又大又是数字的。","syn":"—","ant":"—"}],"inArt":1},{"word":"click","ipa":"/klɪk/","pos":"verb","cef":"A2","band":"中高频(2000-3000)","defB":"点击","phrase":"click the mouse","phraseDef":"点鼠标","ex":"I click on the mouse and open a file.","exCn":"我点击鼠标打开一个文件。","defC":"点击","senses":[{"def":"点击","ex":"I click on the mouse and open a file.","exCn":"我点击鼠标打开一个文件。","syn":"—","ant":"—"}],"inArt":1},{"word":"software","ipa":"/ˈsɒftweə/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"软件","phrase":"new software","phraseDef":"新软件","ex":"The software on my computer is new.","exCn":"我电脑上的软件是新的。","defC":"软件","senses":[{"def":"软件","ex":"The software on my computer is new.","exCn":"我电脑上的软件是新的。","syn":"—","ant":"—"}],"inArt":1},{"word":"net","ipa":"/net/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"网","phrase":"on the net","phraseDef":"在网上","ex":"I read the news on the net.","exCn":"我在网上读新闻。","defC":"网","senses":[{"def":"网","ex":"I read the news on the net.","exCn":"我在网上读新闻。","syn":"—","ant":"—"}],"inArt":1},{"word":"file","ipa":"/faɪl/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"文件","phrase":"a computer file","phraseDef":"电脑文件","ex":"I click on the mouse and open a file.","exCn":"我点击鼠标打开一个文件。","defC":"文件","senses":[{"def":"文件","ex":"I click on the mouse and open a file.","exCn":"我点击鼠标打开一个文件。","syn":"—","ant":"—"}],"inArt":1},{"word":"conversation","ipa":"/ˌkɒnvəˈseɪʃn/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"对话","phrase":"a short conversation","phraseDef":"一小段对话","ex":"The conversation is in English.","exCn":"这段对话是英文的。","defC":"对话","senses":[{"def":"对话","ex":"The conversation is in English.","exCn":"这段对话是英文的。","syn":"—","ant":"—"}],"inArt":1},{"word":"web","ipa":"/web/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"网页；网","phrase":"on the web","phraseDef":"在网上","ex":"I search for information on the web.","exCn":"我在网上搜索信息。","defC":"网页；网","senses":[{"def":"网页；网","ex":"I search for information on the web.","exCn":"我在网上搜索信息。","syn":"—","ant":"—"}],"inArt":1},{"word":"email","ipa":"/ˈiːmeɪl/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"电子邮件","phrase":"send an email","phraseDef":"发邮件","ex":"I send a text and an email.","exCn":"我发一条短信和一封邮件。","defC":"电子邮件","senses":[{"def":"电子邮件","ex":"I send a text and an email.","exCn":"我发一条短信和一封邮件。","syn":"—","ant":"—"}],"inArt":1},{"word":"download","ipa":"/ˌdaʊnˈləʊd/","pos":"verb","cef":"A2","band":"中高频(2000-3000)","defB":"下载","phrase":"download a song","phraseDef":"下载一首歌","ex":"I download music and videos.","exCn":"我下载音乐和视频。","defC":"下载","senses":[{"def":"下载","ex":"I download music and videos.","exCn":"我下载音乐和视频。","syn":"—","ant":"—"}],"inArt":1},{"word":"web page","ipa":"/ˈweb peɪdʒ/","pos":"phrase","cef":"A2","band":"中高频(2000-3000)","defB":"网页","phrase":"open a web page","phraseDef":"打开网页","ex":"I visit a website and read a web page.","exCn":"我访问一个网站并阅读一个网页。","defC":"网页","senses":[{"def":"网页","ex":"I visit a website and read a web page.","exCn":"我访问一个网站并阅读一个网页。","syn":"—","ant":"—"}],"inArt":1},{"word":"photography","ipa":"/fəˈtɒɡrəfi/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"摄影","phrase":"learn photography","phraseDef":"学摄影","ex":"I study photography at school.","exCn":"我在学校学摄影。","defC":"摄影","senses":[{"def":"摄影","ex":"I study photography at school.","exCn":"我在学校学摄影。","syn":"—","ant":"—"}],"inArt":1},{"word":"mouse","ipa":"/maʊs/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"鼠标；老鼠","phrase":"a computer mouse","phraseDef":"电脑鼠标","ex":"I click on the mouse and open a file.","exCn":"我点击鼠标打开一个文件。","defC":"鼠标；老鼠","senses":[{"def":"鼠标；老鼠","ex":"I click on the mouse and open a file.","exCn":"我点击鼠标打开一个文件。","syn":"—","ant":"—"}],"inArt":1},{"word":"keyboard","ipa":"/ˈkiːbɔːd/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"键盘","phrase":"a computer keyboard","phraseDef":"电脑键盘","ex":"I type my password on the keyboard.","exCn":"我在键盘上输入密码。","defC":"键盘","senses":[{"def":"键盘","ex":"I type my password on the keyboard.","exCn":"我在键盘上输入密码。","syn":"—","ant":"—"}],"inArt":1},{"word":"password","ipa":"/ˈpɑːswɜːd/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"密码","phrase":"type your password","phraseDef":"输入你的密码","ex":"I type my password on the keyboard.","exCn":"我在键盘上输入密码。","defC":"密码","senses":[{"def":"密码","ex":"I type my password on the keyboard.","exCn":"我在键盘上输入密码。","syn":"—","ant":"—"}],"inArt":1},{"word":"dot","ipa":"/dɒt/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"点","phrase":"a small dot","phraseDef":"一个小点","ex":"Type a dot and then write com.","exCn":"输入一个点，然后写 com。","defC":"点","senses":[{"def":"点","ex":"Type a dot and then write com.","exCn":"输入一个点，然后写 com。","syn":"—","ant":"—"}],"inArt":1},{"word":"printer","ipa":"/ˈprɪntə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"打印机","phrase":"a new printer","phraseDef":"新打印机","ex":"The printer prints my homework.","exCn":"打印机打印我的作业。","defC":"打印机","senses":[{"def":"打印机","ex":"The printer prints my homework.","exCn":"打印机打印我的作业。","syn":"—","ant":"—"}],"inArt":1},{"word":"envelope","ipa":"/ˈenvələʊp/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"信封","phrase":"write on an envelope","phraseDef":"在信封上写","ex":"I send the letter by post, in a big envelope.","exCn":"我把信装进一个大信封寄出去。","defC":"信封","senses":[{"def":"信封","ex":"I send the letter by post, in a big envelope.","exCn":"我把信装进一个大信封寄出去。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"🟠 拓展·家电","words":[{"word":"video","ipa":"/ˈvɪdiəʊ/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"视频","phrase":"watch a video","phraseDef":"看视频","ex":"I watch a video online after dinner.","exCn":"我晚饭后在线看视频。","defC":"视频","senses":[{"def":"视频","ex":"I watch a video online after dinner.","exCn":"我晚饭后在线看视频。","syn":"—","ant":"—"}],"inArt":1},{"word":"phone","ipa":"/fəʊn/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"电话；手机","phrase":"answer the phone","phraseDef":"接电话","ex":"I talk to them by phone.","exCn":"我通过电话和他们交谈。","defC":"电话；手机","senses":[{"def":"电话；手机","ex":"I talk to them by phone.","exCn":"我通过电话和他们交谈。","syn":"—","ant":"—"}],"inArt":1},{"word":"radio","ipa":"/ˈreɪdiəʊ/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"收音机","phrase":"listen to the radio","phraseDef":"听收音机","ex":"I listen to the radio in the car.","exCn":"我在车里听收音机。","defC":"收音机","senses":[{"def":"收音机","ex":"I listen to the radio in the car.","exCn":"我在车里听收音机。","syn":"—","ant":"—"}],"inArt":1},{"word":"mobile","ipa":"/ˈməʊbaɪl/","pos":"adjective","cef":"A2","band":"中高频(2000-3000)","defB":"手机（英式）","phrase":"mobile phone","phraseDef":"手机","ex":"My telephone is old, but my mobile is new.","exCn":"我的电话旧，但手机是新的。","defC":"手机（英式）","senses":[{"def":"手机（英式）","ex":"My telephone is old, but my mobile is new.","exCn":"我的电话旧，但手机是新的。","syn":"—","ant":"—"}],"inArt":1},{"word":"television","ipa":"/ˈtelɪvɪʒn/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"电视（正式）","phrase":"watch television","phraseDef":"看电视","ex":"The television is in the living room.","exCn":"电视在客厅里。","defC":"电视（正式）","senses":[{"def":"电视（正式）","ex":"The television is in the living room.","exCn":"电视在客厅里。","syn":"—","ant":"—"}],"inArt":1},{"word":"cell phone","ipa":"/ˈsel fəʊn/","pos":"phrase","cef":"A2","band":"中高频(2000-3000)","defB":"手机","phrase":"my cell phone","phraseDef":"我的手机","ex":"I call my grandma on my cell phone.","exCn":"我用手机给奶奶打电话。","defC":"手机","senses":[{"def":"手机","ex":"I call my grandma on my cell phone.","exCn":"我用手机给奶奶打电话。","syn":"—","ant":"—"}],"inArt":1},{"word":"electric","ipa":"/ɪˈlektrɪk/","pos":"adjective","cef":"A2","band":"中高频(2000-3000)","defB":"电动的","phrase":"an electric cooker","phraseDef":"电炊具","ex":"We turn off the electric lights at night.","exCn":"我们晚上关掉电灯。","defC":"电动的","senses":[{"def":"电动的","ex":"We turn off the electric lights at night.","exCn":"我们晚上关掉电灯。","syn":"—","ant":"—"}],"inArt":1},{"word":"lights","ipa":"/laɪts/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"灯（复数）","phrase":"turn off the lights","phraseDef":"关灯","ex":"We turn off the electric lights at night.","exCn":"我们晚上关掉电灯。","defC":"灯（复数）","senses":[{"def":"灯（复数）","ex":"We turn off the electric lights at night.","exCn":"我们晚上关掉电灯。","syn":"—","ant":"—"}],"inArt":1},{"word":"digital camera","ipa":"/ˈdɪdʒɪtl ˌkæmərə/","pos":"phrase","cef":"A2","band":"中高频(2000-3000)","defB":"数码相机","phrase":"a new digital camera","phraseDef":"新数码相机","ex":"I take photographs with my digital camera.","exCn":"我用数码相机拍照。","defC":"数码相机","senses":[{"def":"数码相机","ex":"I take photographs with my digital camera.","exCn":"我用数码相机拍照。","syn":"—","ant":"—"}],"inArt":1},{"word":"pc","ipa":"/ˌpiː ˈsiː/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"个人电脑","phrase":"use a pc","phraseDef":"用个人电脑","ex":"The clock on the PC is wrong.","exCn":"个人电脑上的钟错了。","defC":"个人电脑","senses":[{"def":"个人电脑","ex":"The clock on the PC is wrong.","exCn":"个人电脑上的钟错了。","syn":"—","ant":"—"}],"inArt":1},{"word":"electricity","ipa":"/ɪˌlekˈtrɪsəti/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"电","phrase":"save electricity","phraseDef":"节约用电","ex":"We save electricity at home.","exCn":"我们在家节约用电。","defC":"电","senses":[{"def":"电","ex":"We save electricity at home.","exCn":"我们在家节约用电。","syn":"—","ant":"—"}],"inArt":1},{"word":"telephone","ipa":"/ˈtelɪfəʊn/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"电话","phrase":"answer the telephone","phraseDef":"接电话","ex":"My telephone is old, but my mobile is new.","exCn":"我的电话旧，但手机是新的。","defC":"电话","senses":[{"def":"电话","ex":"My telephone is old, but my mobile is new.","exCn":"我的电话旧，但手机是新的。","syn":"—","ant":"—"}],"inArt":1},{"word":"washing machine","ipa":"/ˈwɒʃɪŋ məˌʃiːn/","pos":"phrase","cef":"A2","band":"中频(3000-4000)","defB":"洗衣机","phrase":"use the washing machine","phraseDef":"用洗衣机","ex":"The washing machine is in the kitchen.","exCn":"洗衣机在厨房里。","defC":"洗衣机","senses":[{"def":"洗衣机","ex":"The washing machine is in the kitchen.","exCn":"洗衣机在厨房里。","syn":"—","ant":"—"}],"inArt":1}]}],"dialogues":[{"title":"① 周六做什么？","turns":[{"role":"A","en":"What do you do on Saturdays?","cn":"你周六做什么？"},{"role":"B","en":"I play computer games.","cn":"我玩电脑游戏。"},{"role":"A","en":"Do you play every Saturday?","cn":"你每个周六都玩吗？"},{"role":"B","en":"No. I sometimes go shopping.","cn":"不，我有时去购物。"},{"role":"A","en":"Do you dance?","cn":"你跳舞吗？"},{"role":"B","en":"Yes, I often dance with my friends.","cn":"是的，我经常和朋友跳舞。"}]},{"title":"② 你玩多久？","turns":[{"role":"A","en":"Do you play computer games?","cn":"你玩电脑游戏吗？"},{"role":"B","en":"Yes, I do. I always play on Fridays.","cn":"玩，我周五总玩。"},{"role":"A","en":"How often do you play?","cn":"你多久玩一次？"},{"role":"B","en":"I often play, but I never play on Mondays.","cn":"经常玩，但周一从不玩。"},{"role":"A","en":"Do you do homework on Fridays?","cn":"你周五做作业吗？"},{"role":"B","en":"No, I do homework on Wednesdays.","cn":"不，我周三做作业。"}]},{"title":"③ 新手机","turns":[{"role":"A","en":"I've got a new smartphone!","cn":"我有一部新智能手机！"},{"role":"B","en":"Cool! What is on it?","cn":"酷！上面有什么？"},{"role":"A","en":"Games, music and a GPS.","cn":"游戏、音乐和定位。"},{"role":"B","en":"Do you listen to music on it?","cn":"你在上面听音乐吗？"},{"role":"A","en":"Yes. I always use my headphones.","cn":"是的，我总是用耳机听。"},{"role":"B","en":"My brother has got a tablet.","cn":"我弟弟有一个平板。"}]},{"title":"④ 一起学习吗？","turns":[{"role":"A","en":"Do you want to study on Sunday?","cn":"周日想学习吗？"},{"role":"B","en":"Sorry, I hang out with friends on Sundays.","cn":"抱歉，周日我和朋友逛。"},{"role":"A","en":"What about Monday?","cn":"周一呢？"},{"role":"B","en":"Monday is OK. We can study together.","cn":"周一可以，我们可以一起学。"},{"role":"A","en":"Great! Do you sing in the concert too?","cn":"太好了！你也去音乐会唱歌吗？"},{"role":"B","en":"Yes, I perform on Tuesday.","cn":"是的，我周二表演。"}]}],"phonics":{"hand_anchor":{"title":"🖐 元音手掌握图（按口型位置记元音）","hint":"把手张开：拇指→小指，对应 5 个长元音的口型位置；掌心是短元音。跟着手指读一遍，就能记住嘴型。","long":[{"pos":"小指","ipa":"/iː/","say":"ee——","words":["see","eat","green"],"cn":"看见 / 吃 / 绿色"},{"pos":"无名指","ipa":"/eɪ/","say":"诶——","words":["name","day","play"],"cn":"名字 / 天 / 玩"},{"pos":"中指","ipa":"/aɪ/","say":"爱——","words":["I","my","time"],"cn":"我 / 我的 / 时间"},{"pos":"食指","ipa":"/ɔː/","say":"哦——","words":["four","sport","door"],"cn":"四 / 运动 / 门"},{"pos":"拇指","ipa":"/uː/","say":"乌——","words":["food","blue","school"],"cn":"食物 / 蓝色 / 学校"}],"short":[{"ipa":"/ɪ/","words":["sit","big","fish"],"cn":"坐 / 大 / 鱼","say":"短促的 i"},{"ipa":"/e/","words":["bed","red","ten"],"cn":"床 / 红 / 十","say":"短促的 e"},{"ipa":"/æ/","words":["bag","cat","hand"],"cn":"包 / 猫 / 手","say":"嘴张大"},{"ipa":"/ɒ/","words":["dog","box","hot"],"cn":"狗 / 盒子 / 热","say":"嘴圆"},{"ipa":"/ʌ/","words":["cup","bus","country"],"cn":"杯 / 巴士 / 国家","say":"松嘴短 u"}]},"sound_cards":[{"sound":"/aɪ/","name":"双元音（Friday / my / like）","words":["friday","my","like","night"],"phrase_en":"My friends and I go home on Friday.","phrase_cn":"我和朋友们周五回家。","tip":"从 /a/ 大嘴滑到 /ɪ/——/aɪ/ 是两个音的滑动，不是短「爱」"},{"sound":"/tʃ/","name":"破擦浊音（chat / watch / teach）","words":["chat","watch","teach","lunch"],"phrase_en":"I chat and watch TV at lunch.","phrase_cn":"我午饭时聊天、看电视。","tip":"/t/ 迅速转 /ʃ/，一股气出来——声带不振动，和 /dʒ/（judge）相对"}],"min_pairs":[{"a":"like","a_ipa":"/laɪk/","b":"lick","b_ipa":"/lɪk/","tip":"/aɪ/ 双元音嘴要从大到小滑动，/ɪ/ 短促嘴不动"},{"a":"watch","a_ipa":"/wɒtʃ/","b":"wash","b_ipa":"/wɒʃ/","tip":"/tʃ/ 有一股冲破的气，/ʃ/ 只是持续送气"},{"a":"sun","a_ipa":"/sʌn/","b":"song","b_ipa":"/sɒŋ/","tip":"/ʌ/ 嘴放松短音，/ɒŋ/ 嘴圆带鼻音"}],"intonation_cards":[{"word":"what","ipa":"/wɒt/","cn":"什么","arrow":"↘","tone":"降调","sent":"What do you do on Saturdays?","sent_cn":"你周六做什么？","tip":"what/how 问具体信息，语气确定句末往下 ↘。","pair":{"en":"Do you dance on Saturdays?","cn":"你周六跳舞吗？"}},{"word":"do","ipa":"/duː/","cn":"助动词 do","arrow":"↗","tone":"升调","sent":"Do you like music?","sent_cn":"你喜欢音乐吗？","tip":"do/does 开头的一般疑问句，尾音上扬 ↗ 等对方回答。","pair":{"en":"I like music.","cn":"我喜欢音乐。"}}],"intonation_pairs":[{"left":{"en":"Do you like music?","cn":"你喜欢音乐吗？","arrow":"↗","tone":"升调"},"right":{"en":"You like music?","cn":"你喜欢音乐？（升调反问）","arrow":"↗","tone":"升调"},"ask":"两句都是升调，情绪差在哪？","answer":"第一句是真心提问；第二句尾音挑得更高，是「真没想到你也喜欢」的惊喜——升调的高度也传递情绪。"}],"antonym_pairs":[{"a":"always","b":"never","cn_a":"总是","cn_b":"从不","sent":"I always dance, but I never sing.","sent_cn":"我总是跳舞，但从不唱歌。"},{"a":"like","b":"hate","cn_a":"喜欢","cn_b":"讨厌","sent":"I like music, but I hate noise.","sent_cn":"我喜欢音乐，但讨厌噪音。"},{"a":"work","b":"play","cn_a":"工作","cn_b":"玩","sent":"We work on Mondays and play on Fridays.","sent_cn":"我们周一工作、周五玩。"}]},"reading":[{"title":"My Free Time","focus":"活动短语 · 频率副词","meta":"A1 受控原创（句长≤8词）","sentences":["I have free time on Saturdays.","I always play computer games.","I sometimes go shopping with Mum.","I often dance to music.","I never do homework on Fridays!","I love my free time.","I have got a new game on my phone.","I sometimes read comics after dinner.","On Saturday afternoon I play in the park.","My mother says I should go outside more.","She is right.","Free time is short, but it is mine."],"questions":[{"q":"What does the writer always do?","opts":["plays computer games","goes shopping","does homework"],"answer":0},{"q":"When does the writer never do homework?","opts":["on Fridays","on Saturdays","on Mondays"],"answer":0},{"q":"What does the writer have?","opts":["free time on Saturdays","her cat","his dog"],"answer":0}]},{"title":"On Sundays","focus":"星期 · 日常活动","meta":"A1 受控原创（句长≤8词）","sentences":["Sunday is my favourite day.","I get up late on Sundays.","I often meet my friends.","We sometimes play sport in the park.","We never do homework on Sundays!","Sundays are fun!","I get up at nine on Sundays.","I have a big breakfast with my family.","In the afternoon I help my father in the garden.","We water the flowers together.","Then I watch a film with my sister.","I never want Sundays to end."],"questions":[{"q":"What is the writer's favourite day?","opts":["Saturday","Sunday","Friday"],"answer":1},{"q":"What do they never do on Sundays?","opts":["play sport","do homework","meet friends"],"answer":1},{"q":"What is Sunday?","opts":["my favourite day","my friend","my home"],"answer":0}]},{"title":"My Smartphone","focus":"电子设备 · have got","meta":"A1 受控原创（句长≤8词）","sentences":["I've got a new smartphone.","It has got games and music.","I listen to music on the bus.","I use my headphones at home.","I sometimes chat to friends online.","I love my smartphone.","It has got a big screen and two cameras.","I use it to take photos of my friends.","I do not play games in bed.","My father charges it on the table.","At night my phone is in my bag.","A smartphone is useful, but not magic."],"questions":[{"q":"What has the writer got?","opts":["a tablet","a smartphone","a laptop"],"answer":1},{"q":"What does the writer love?","opts":["his new smartphone","his laptop","his headphones"],"answer":0},{"q":"What does it have?","opts":["games and music","her cat","his dog"],"answer":0}]},{"title":"How Often?","focus":"频率副词 · 问答","meta":"A1 受控原创（句长≤8词）","sentences":["My friend Lily loves music.","She always sings in the car.","She often goes to concerts.","She sometimes dances on Saturdays.","She never watches TV.","Music is her free time.","My friend Tom plays basketball twice a week.","He often plays after school.","He never plays on rainy days.","He sometimes watches basketball matches on TV.","Sport is his free time too.","How often do you do sport?"],"questions":[{"q":"What does Lily always do?","opts":["sings","dances","studies"],"answer":0},{"q":"What does Lily never do?","opts":["watches TV","sings","dances"],"answer":0},{"q":"What does my friend Lily love?","opts":["music","her cat","his dog"],"answer":0}]},{"title":"A Busy Week","focus":"星期 · 活动安排","meta":"A1 受控原创（句长≤8词）","sentences":["I study on Mondays and Wednesdays.","I dance on Tuesdays.","I play sport on Thursdays.","I hang out with friends on Fridays.","I never study on Saturdays.","My week is full!","On Mondays I have English class after school.","On Wednesdays I go to the swimming pool.","On Thursdays I play badminton with my dad.","On Saturdays I do my homework in the morning.","In the evening I always read for ten minutes.","Then I go to bed early."],"questions":[{"q":"What does the writer do on Tuesdays?","opts":["studies","dances","plays sport"],"answer":1},{"q":"What does the writer never do on Saturdays?","opts":["studies","dances","goes out"],"answer":0},{"q":"Which sentence is in the text?","opts":["I study on Mondays and Wednesdays.","I do not study on Mondays and Wednesdays.","This is not in the text."],"answer":0}]},{"title":"Ping-Pong in the Park","focus":"活动 · have got · 星期","china":1,"meta":"A1 中国主题 · 原创","sentences":["I play ping-pong on Saturdays.","I have got a bat.","My friend has got a bat too.","We play in the park.","We always have fun.","The park is next to my house.","There are four ping-pong tables there.","We play there every Saturday afternoon.","Sometimes it rains, and we play at home.","My friend always wins the first game.","Ping-pong is my favourite sport."],"questions":[{"q":"What does the writer do on Saturdays?","opts":["plays ping-pong","plays computer games","goes shopping"],"answer":0},{"q":"What has the writer got?","opts":["a laptop","a smartphone","a bat"],"answer":2},{"q":"Where do they play?","opts":["in the park","at school","at home"],"answer":0}]},{"title":"Square Dancing","focus":"频率 · 活动 · 家庭","china":1,"meta":"A1 中国主题 · 原创","sentences":["My grandma does square dancing.","She dances in the park every morning.","She dances with her friends.","The music is fast.","She is always happy.","My grandma goes to the park at seven every morning.","The music starts at seven o'clock sharp.","She dances with six other people.","They wear colourful clothes.","People stop and watch them.","My grandma says dancing keeps her young."],"questions":[{"q":"What does grandma do?","opts":["square dancing","homework","shopping"],"answer":0},{"q":"Where does she dance?","opts":["at school","at home","in the park"],"answer":2},{"q":"When does she dance?","opts":["every morning","every evening","on Saturdays"],"answer":0}]},{"title":"My Week on a Calendar","focus":"星期 · 频率副词 · 活动安排","meta":"A1 受控原创（句长≤8词 · 高频≥85% · 生词≤5%）","sentences":["I put my free time on the calendar.","On Monday evening I have a music lesson.","On Wednesday I go to the swimming pool with my dad.","On Thursday I read in the library.","On Saturday I play ping-pong in the park.","On Sunday I do nothing at all.","Every week is different, and I like it.","What do you do on Saturdays?"],"questions":[{"q":"When does the writer have a music lesson?","opts":["Monday evening","Wednesday","Saturday"],"answer":0},{"q":"Who goes to the swimming pool with the writer?","opts":["His dad","His friends","His grandma"],"answer":0},{"q":"Why is Sunday special?","opts":["The writer does nothing","The writer has a class","The writer goes to school"],"answer":0}]},{"title":"Old Games, New Games","focus":"活动 · 电子设备 · 比较 · because","meta":"A1 受控原创（句长≤8词 · 高频≥85% · 生词≤5%）","sentences":["My grandmother plays games on the park every morning.","My brother plays games on his phone every evening.","Her game is slower and quieter.","His game is faster and louder.","She says walking is better for her health.","He says the phone game is more exciting.","I think both are good free time.","But we never play together on Sundays."],"questions":[{"q":"Where does the grandmother play?","opts":["In the park","At home","At school"],"answer":0},{"q":"Why does the grandmother prefer walking?","opts":["It is better for her health","It is more exciting","She has no phone"],"answer":0},{"q":"What do they never do together?","opts":["Play together on Sundays","Play in the park","Play with friends"],"answer":0}]}],"listening":[{"title":"My Smartphone","focus":"设备 · have got · 在线活动","meta":"A1 听力 · 盲听训练","sentences":["I have got a smartphone.","I sometimes play games.","I listen to music on it.","My phone is new.","I use it for music, maps and messages.","I chat to friends online every evening.","I sometimes play games on the bus.","My phone is new, and the screen is big.","But I do not use it in class."],"questions":[{"q":"What has the writer got?","opts":["a smartphone","a tablet","an e-reader"],"answer":0},{"q":"What does the writer do on it?","opts":["watches TV","chats to friends","does homework"],"answer":1},{"q":"How is the phone?","opts":["old","new","cheap"],"answer":1}]},{"title":"Badminton on Sunday","focus":"星期 · 活动 · 频率","china":1,"meta":"A1 听力 · 中国主题","sentences":["I play badminton on Sundays.","My brother plays too.","My brother plays with me.","We play in the garden behind our house.","We often meet our friends there.","We play for two hours.","We never feel bored on Sundays."],"questions":[{"q":"When does the writer play badminton?","opts":["on Sundays","on Mondays","every morning"],"answer":0},{"q":"Who plays too?","opts":["his teacher","his grandma","his brother"],"answer":2},{"q":"Where do they play?","opts":["in the garden","at school","in the park"],"answer":0}]},{"title":"How Often Do You Run?","focus":"频率副词 · 问答","meta":"A1 听力 · 盲听训练","sentences":["How often do you run?","I often run in the park.","I sometimes run with my dad.","I never run at night.","I run three times a week.","Running is fun and cheap!"],"questions":[{"q":"How often does the writer run?","opts":["often","never","sometimes"],"answer":0},{"q":"Where does he run?","opts":["at school","at home","in the park"],"answer":2},{"q":"Who does he run with?","opts":["his dad","his friend","his dog"],"answer":0}]},{"title":"Kung Fu Class","focus":"课程 · 星期 · perform","china":1,"meta":"A1 听力 · 中国主题","sentences":["I have a kung fu class on Fridays.","My class is great fun.","Kung fu is an old sport from China.","Our teacher is a young man from Henan.","I learn to kick, jump and punch slowly.","We perform for our parents every year."],"questions":[{"q":"When is the kung fu class?","opts":["on Fridays","on Sundays","every day"],"answer":0},{"q":"Where is kung fu from?","opts":["Japan","Brazil","China"],"answer":2},{"q":"What does the writer learn?","opts":["to kick and jump","to sing and dance","to cook and clean"],"answer":0}]},{"title":"A Busy Week","focus":"星期 · 活动安排","meta":"A1 听力 · 盲听训练","sentences":["Monday is busy.","I study and do homework.","On Wednesday I dance.","On Friday I go shopping.","Sunday is my favourite day, because I am free.","I study and do homework in the evening.","On Wednesday I go to the dance class.","On Friday I go shopping with my mother.","On Saturday I have a kung fu class."],"questions":[{"q":"What does the writer do on Monday?","opts":["studies and does homework","goes shopping","dances"],"answer":0},{"q":"What does he do on Wednesday?","opts":["goes shopping","plays games","dances"],"answer":2},{"q":"Which day is his favourite?","opts":["Sunday","Monday","Wednesday"],"answer":0}]},{"title":"Too Much Homework","focus":"have to / should · 建议","meta":"A2 听力 · 单选 + 填空","sentences":["I have to finish my homework first.","Then I can play computer games.","My mother says I should read more books.","Reading is more useful than games.","Then I can play computer games for half an hour.","I usually read for half an hour before bed.","Now reading is my quiet free time."],"questions":[{"q":"What does he have to do first?","opts":["finish homework","play games","watch TV"],"answer":0},{"q":"What does Mum say he should do?","opts":["read more books","play more games","go out"],"answer":0},{"q":"He usually reads for half an ___.","type":"fill","answer":"hour","hint":"时间单位"}]},{"title":"A Sunday at Home","focus":"don't have to · 日常","china":1,"meta":"A2 听力 · 中国主题","sentences":["On Sunday I don't have to get up early.","I often help my grandmother in the garden.","We should water the plants before lunch.","In the afternoon I meet my friends.","We usually play basketball in the park.","Sunday evening is quiet and slow."],"questions":[{"q":"What does he do in the afternoon?","opts":["meets his friends","reads books","goes shopping"],"answer":0},{"q":"When do they water the plants?","opts":["before lunch","after dinner","at night"],"answer":0},{"q":"He often helps his ___ in the garden.","type":"fill","answer":"grandmother","hint":"家里的一位长辈"}]},{"title":"My Free Time","focus":"频率副词 · 星期 · 活动","meta":"A1 听力 · 盲听训练","sentences":["I have free time on Saturdays.","I always play computer games in the afternoon.","I sometimes go shopping with my mum.","On Sundays I meet my friends in the park.","I never do homework on Friday evening.","Free time is short, but it is mine."],"questions":[{"q":"What does the writer always do on Saturdays?","opts":["Play computer games","Go shopping","Meet friends"],"answer":0},{"q":"When does the writer meet friends?","opts":["On Sundays","On Fridays","On Mondays"],"answer":0},{"q":"When does the writer never do homework?","opts":["Friday evening","Saturday morning","Sunday morning"],"answer":0}]},{"title":"How Often Do You Read?","focus":"频率副词 · 问答 · 阅读","meta":"A1 听力 · 盲听训练","sentences":["How often do you read books?","I read every night before bed.","How often do you watch TV?","I almost never watch TV.","How often do you go to the library?","Twice a month, on Saturdays."],"questions":[{"q":"How often does the writer read?","opts":["Every night","Twice a month","Once a week"],"answer":0},{"q":"How often does the writer watch TV?","opts":["Almost never","Every day","Every weekend"],"answer":0},{"q":"When does the writer go to the library?","opts":["On Saturdays","On Mondays","On Fridays"],"answer":0}]}],"grammar":[{"pid":"a1-have-pos","name":"have got（有）","desc":"I / you / we / they have got"},{"pid":"a1-have-neg","name":"haven't got / hasn't got","desc":"没有"},{"pid":"a1-have-q","name":"Have you got…? 提问与简答","desc":"把 have 搬到句首"}],"article":{"title":"In My Free Time","paras":[[["In my free time, I always play sport.","在我的空闲时间，我总是做运动。"],["I often go shopping with my mum.","我经常和妈妈去购物。"],["I sometimes dance at a concert.","我有时在音乐会上跳舞。"],["I never watch TV in the morning.","我早上从不看电视。"],["I sing and perform at the school concert.","我在学校音乐会上唱歌表演。"],["I listen to music on my MP3 player.","我用 MP3 播放器听音乐。"],["I wear headphones and listen to music.","我戴耳机听音乐。"],["I love computer games, and I play them on my games console.","我爱电脑游戏，我在游戏机上玩。"],["I do homework on my laptop.","我在笔记本电脑上做作业。"],["I read books on my e-reader.","我在电子阅读器上读书。"],["My smartphone is new, and my tablet is fast.","我的智能手机是新的，我的平板很快。"],["I chat to friends online every evening.","我每天晚上和朋友在网上聊天。"],["I make new friends on the internet.","我在互联网上交新朋友。"],["I talk to them by phone.","我通过电话和他们交谈。"],["I call my grandma on my cell phone.","我用手机给奶奶打电话。"],["I send a text and an email.","我发一条短信和一封邮件。"],["I download music and videos.","我下载音乐和视频。"],["I click on the mouse and open a file.","我点击鼠标打开一个文件。"],["I type my password on the keyboard.","我在键盘上输入密码。"],["The screen is big and digital.","屏幕又大又是数字的。"],["I search for information on the web.","我在网上搜索信息。"],["I visit a website and read a web page.","我访问一个网站并阅读一个网页。"],["My telephone is old, but my mobile is new.","我的电话旧，但手机是新的。"],["I take photographs with my digital camera.","我用数码相机拍照。"],["I study photography at school.","我在学校学摄影。"],["I listen to the radio in the car.","我在车里听收音机。"],["We watch a DVD on Friday.","我们周五看 DVD。"],["I listen to a CD on Saturday.","我周六听 CD。"],["The GPS helps us find the address.","GPS 帮我们找到地址。"],["The printer prints my homework.","打印机打印我的作业。"],["The software on my computer is new.","我电脑上的软件是新的。"],["We turn off the electric lights at night.","我们晚上关掉电灯。"],["The clock on the PC is wrong.","个人电脑上的钟错了。"],["The television is in the living room.","电视在客厅里。"],["What's wrong? I've got an idea!","怎么了？我有个主意！"],["No way! Come on!","不会吧！加油！"],["I feel happy on Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday.","我在周一、周二、周三、周四、周五、周六和周日都感到开心。"],["I meet my friends at the weekend.","我在周末见朋友。"],["I help my mum and get the bags.","我帮妈妈拿袋子。"],["I finish my homework, then I carry my bag and go out.","我完成作业，然后背上包出门。"],["I study English every day.","我每天学英语。"],["The conversation is in English.","这段对话是英文的。"],["I go to school by bus.","我乘巴士上学。"],["I teach my mum to use the computer.","我教妈妈用电脑。"],["I hang out with friends on Saturday.","我周六和朋友一起玩。"],["I watch a video online after dinner.","我晚饭后在线看视频。"],["I send the letter by post, in a big envelope.","我把信装进一个大信封寄出去。"],["I read the news on the net.","我在网上读新闻。"],["We save electricity at home.","我们在家节约用电。"],["The washing machine is in the kitchen.","洗衣机在厨房里。"],["Type a dot and then write com.","输入一个点，然后写 com。"]]]},"artForms":["go shopping","dance","do homework","hang out with friends","chat to friends online","perform","smartphone","tablet","laptop","games console","e-reader","GPS","MP3 player","headphones","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","always","often","sometimes","never","play","listen to music","sing","watch TV","study","meet","help","teach","online","chat","call","information","talk","by post","website","internet","text","screen","digital","click","software","net","file","conversation","web","email","download","web page","photography","mouse","keyboard","password","dot","printer","envelope","video","phone","radio","mobile","television","cell phone","electric","lights","digital camera","pc","electricity","telephone","washing machine","player","helps","videos"]};
+const STORE_KEY = "a1_unit"+DATA.unit+"_state_v4";
+const CHECK_KEY = "a1_checkin_dates_v4";  // 全局共享打卡 streak（跨单元）
+const ERR_KEY = "a1_unit"+DATA.unit+"_errors_v4";
+const BEASTS = [
+  {u:1,e:"🌍",n:"世界之灵",d:"国家·国籍·疑问词·be"},
+  {u:2,e:"😊",n:"欢欣兽",d:"场所·感受·代词"},
+  {u:3,e:"👪",n:"家脉兽",d:"家庭·房间·指示代词"},
+  {u:4,e:"🏙️",n:"城巡兽",d:"城市地点·介词·数字"},
+  {u:5,e:"🎮",n:"闲趣兽",d:"休闲·频率·设备·星期"},
+  {u:6,e:"🤝",n:"挚友兽",d:"身体·外貌·问候"},
+  {u:7,e:"⚽",n:"竞跃兽",d:"运动·can·时间·月份"},
+  {u:8,e:"🎵",n:"律动兽",d:"音乐·衣物·进行时"},
+  {u:9,e:"🍰",n:"飨宴兽",d:"食物·餐饮·must"},
+  {u:10,e:"🚀",n:"凌云兽",d:"成就·天气·过去式"},
+  {u:11,e:"🐾",n:"百兽灵",d:"动物·过去式·形容词"},
+  {u:12,e:"🚆",n:"远行兽",d:"交通·地点·比较级"},
+];
+
+let state = loadState();
+let checkins = loadCheckins();
+let errors = loadErrors();
+let curGroupLearn = 0, curGroupReview = 0;
+let shIdx = 0, shQueue = [], shAuto = false, shTimer = null;
+let rec = {mr:null, recording:false, url:null, stopBtn:null, stopLabel:null, containerEl:null};
+
+function loadState(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}} }
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function loadCheckins(){ try{return JSON.parse(localStorage.getItem(CHECK_KEY))||[]}catch(e){return[]} }
+function loadErrors(){ try{return JSON.parse(localStorage.getItem(ERR_KEY))||[]}catch(e){return[]} }
+function saveErrors(){ localStorage.setItem(ERR_KEY, JSON.stringify(errors)); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ---------- 语音（全局） ---------- */
+let voices=[], voice=null;
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const sel=document.getElementById('voiceSel');
+  const PREF=['en-GB','en-AU','en-IE','en-US'];
+  sel.innerHTML='';
+  voices = voices.slice().sort(function(a,b){function rank(v){if(/en-GB/i.test(v.lang||''))return (/Libby/i.test(v.name)?0:1);if(/en-AU/i.test(v.lang||''))return 2;if(/en-IE/i.test(v.lang||''))return 3;if(/en-US/i.test(v.lang||''))return 4;return 9;}return rank(a)-rank(b);});
+  let prefV=null;
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    o.value=i; o.textContent=v.name+(v.localService?' · 离线':' · 在线');
+    sel.appendChild(o);
+    if((/en-GB/i.test(v.lang||'')&&/Libby/i.test(v.name)&&!prefV)){ prefV=v; o.selected=true; }if(!prefV){ for(const p of PREF){ if(v.lang===p){ prefV=v; o.selected=true; break; } } }
+  });
+  voice = prefV || voices[0] || null;
+  if(prefV){ sel.value = voices.indexOf(prefV); }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function getVoice(){ const i=document.getElementById('voiceSel').value; return voices[i]||null; }
+function rateVal(){ return parseFloat(document.getElementById('rate').value); }
+function speak(text, opt){
+  opt=opt||{};
+  if(!('speechSynthesis' in window)){ if(opt.onend)opt.onend(); return; }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const v=getVoice(); if(v)u.voice=v;
+  u.rate = rateVal()*(opt.slow?0.6:1); u.pitch=1; u.volume=1;
+  u.onend = opt.onend||function(){};
+  u.onerror = opt.onend||function(){};
+  speechSynthesis.speak(u);
+  if(speechSynthesis.paused) speechSynthesis.resume();
+}
+
+/* ---------- 工具 ---------- */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* 可发音词块：任何带 data-say 的元素点一下就朗读（全局事件委托，一次绑定全页生效）
+   suppressSay：作答的那一次点击只算「选择」，不当成「点词发音」，避免中文选英文时
+   点一下选项既答题又泄题听感 */
+let suppressSay=false;
+document.addEventListener('click', function(e){
+  const t=e.target.closest('[data-say]');
+  if(t && !suppressSay && !e.target.closest('[data-nsay]')){ e.preventDefault(); e.stopPropagation(); speak(t.getAttribute('data-say')); }
+});
+function sayChip(text, cls){ return '<span class="wchip '+(cls||'')+'" data-say="'+esc(text)+'">'+esc(text)+'<b>🔊</b></span>'; }
+/* 功能词/专名/缩写：不算「预学新词」（它们不是需要记忆的实义词） */
+const FUNCWORDS=new Set(("a an the is are am was were be been being do does did have has had "+
+"i you he she it we they me him her us them my your his its our their this that these those "+
+"what where who why how when in on at to for from of with and but or so not no yes "+
+"very too also can could will would shall may might must there here my one two three now "+
+"hello hi ok okay oh right thanks thank please let's im it's how's what's who's he's she's "+
+"that's there's we're they're don't doesn't isn't aren't wasn't weren't can't couldn't "+
+"wouldn't shouldn't i've i'll you're you've name fine good").split(/\s+/));
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function allWords(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w.word))); return a; }
+function allWordObjs(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w))); return a; }
+function masteredCount(){ return allWords().filter(w=>(state[w]||{}).mastered).length; }
+function shadowedCount(){ return allWords().filter(w=>(state[w]||{}).shadowed).length; }
+function updateProgress(){
+  const total=allWords().length;
+  const m=masteredCount();
+  const pct=Math.round(m/total*100);
+  document.getElementById('pctTop').textContent=pct+'%';
+  document.getElementById('barTop').style.width=pct+'%';
+  let stars = pct>=80?3:pct>=50?2:pct>=20?1:0;
+  document.getElementById('starTop').textContent = '★'.repeat(stars)+'☆'.repeat(3-stars);
+  document.getElementById('beastStreak').textContent=`已跟读 ${shadowedCount()}/${total} · 已掌握 ${m}/${total} · 错题 ${errors.length}`;
+}
+function flash(msg){ const t=document.createElement('div'); t.textContent=msg;
+  t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--gold);color:#1a1a1a;padding:8px 16px;border-radius:10px;font-weight:700;z-index:99';
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1400); }
+
+/* ---------- 统一录音（单句 & 对话共用） ---------- */
+function noteShadow(msg){ const n=document.getElementById('shBanner'); if(msg){ n.style.display='block'; n.textContent=msg; } else { n.style.display='none'; } }
+function startRec(text, container, stopBtn, stopLabel){
+  if(rec.recording && rec.stopBtn===stopBtn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音；现在可用「听原声」模式。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你的跟读录音，对比原声找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=stopBtn; rec.stopLabel=stopLabel||'● 开始录音';
+    rec.containerEl=container.parentElement; if(rec.containerEl) rec.containerEl.classList.add('recording');
+    stopBtn.textContent='■ 停止';
+    speak(text);
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可改用「听原声」模式。'); });
+}
+function stopRec(){
+  if(rec.recording && rec.mr){ rec.mr.stop(); rec.recording=false;
+    if(rec.stopBtn) rec.stopBtn.textContent = rec.stopLabel||'● 开始录音';
+    if(rec.containerEl) rec.containerEl.classList.remove('recording');
+    rec.stopBtn=null; rec.containerEl=null; }
+}
+/* 只录不放（用于"我来回应"——先看清/听问句，再录自己的回答） */
+function startRecRaw(text, container, btn){
+  if(rec.recording && rec.stopBtn===btn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你回应的录音，对比示范找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=btn; rec.stopLabel=btn.textContent;
+    rec.containerEl = btn.closest('.exchange')||container.parentElement;
+    if(rec.containerEl) rec.containerEl.classList.add('recording');
+    btn.textContent='■ 停止（说完点这）';
+    container.innerHTML='<div class="hint"><span class="rec-dot"></span> 请说出回应：'+esc(text)+'</div>';
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可先点「🔊 听示范回应」模仿。'); });
+}
+function addError(obj){
+  obj.time=Date.now(); obj.unit=DATA.unit;
+  errors.push(obj); saveErrors(); renderErrors(); updateProgress();
+}
+
+/* ---------- 渲染：学习 B ---------- */
+function renderLearn(){
+  const grpTabs=document.getElementById('grpLearn');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupLearn)b.className='on';
+    b.onclick=()=>{curGroupLearn=i; renderLearn();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridLearn'); grid.innerHTML='';
+  DATA.groups[curGroupLearn].words.forEach((w)=>{
+    const st=state[w.word]||{};
+    const card=document.createElement('div'); card.className='card'+(st.mastered?' done':'');
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      <div class="def"><span class="cnLearn">${esc(w.defB)}</span></div>
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <div class="ex" data-ex="${esc(w.ex)}">${esc(w.ex)}<span class="cn cnLearn">${esc(w.exCn||'')}</span></div>
+      <div class="acts">
+        <button class="b-play" data-word="${esc(w.word)}">🔊 单词</button>
+        <button class="b-shadow" data-word="${esc(w.word)}">🎤 跟读打卡</button>
+        <button class="b-master ${st.mastered?'mastered':''}" data-word="${esc(w.word)}">${st.mastered?'✅ 已掌握':'☆ 掌握'}</button>
+        <button class="b-err" data-word="${esc(w.word)}">❌ 记一笔</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.ex').forEach(el=>{
+    el.onclick=()=>speak(el.getAttribute('data-ex'));
+    el.ondblclick=()=>speak(el.getAttribute('data-ex'),{slow:true});
+  });
+  grid.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-shadow').forEach(b=>b.onclick=()=>goShadowWord(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-master').forEach(b=>b.onclick=()=>toggleMaster(b.getAttribute('data-word'),b));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'词卡标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 渲染：复习 C（渐进式） ---------- */
+function renderReview(){
+  const grpTabs=document.getElementById('grpReview');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupReview)b.className='on';
+    b.onclick=()=>{curGroupReview=i; renderReview();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridReview'); grid.innerHTML='';
+  const hide=document.getElementById('tgHideCn').dataset.hide==='1';
+  DATA.groups[curGroupReview].words.forEach(w=>{
+    const card=document.createElement('div'); card.className='card';
+    let sensesHtml='';
+    w.senses.forEach((s,i)=>{
+      const hidden = i>0 ? ' hiddenSense' : '';
+      const synAnt = (s.syn&&s.syn!=='—'?'近义 '+esc(s.syn)+' ':'') + (s.ant&&s.ant!=='—'?'反义 '+esc(s.ant):'');
+      const ex = s.ex||''; const exCn = s.exCn||'';
+      sensesHtml += `
+      <div class="sense${hidden}">
+        <div class="defline">${esc(s.def)}
+          <button class="spk" data-text="${esc(w.word)}">🔊</button>
+          ${synAnt?`<span style="color:var(--sub);font-size:12px">（${synAnt}）</span>`:''}
+        </div>
+        <button class="morebtn act-ex">💡 看例句</button>
+        <div class="exbox" data-ex="${esc(ex)}">${esc(ex)}<span class="cn">${esc(exCn)}</span>
+          ${ex?`<button class="morebtn act-shadow" data-text="${esc(ex)}">🎤 跟读这句</button>`:''}
+        </div>
+      </div>`;
+    });
+    const moreBtn = w.senses.length>1 ? `<button class="morebtn act-more">更多 ▾（还有 ${w.senses.length-1} 个义项）</button>` : '';
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      ${sensesHtml}
+      ${moreBtn}
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <button class="morebtn b-err" data-word="${esc(w.word)}">❌ 记一笔（没记住）</button>`;
+    grid.appendChild(card);
+  });
+  if(hide){ grid.querySelectorAll('.cn').forEach(e=>e.style.display='none'); }
+  grid.querySelectorAll('.act-ex').forEach(b=>b.onclick=()=>{
+    const box=b.parentElement.querySelector('.exbox');
+    const open = box.style.display==='block';
+    box.style.display = open?'none':'block';
+    b.textContent = open?'💡 看例句':'🔼 收起例句';
+    if(!open){ const ex=box.getAttribute('data-ex'); if(ex) speak(ex); }
+  });
+  grid.querySelectorAll('.act-more').forEach(b=>b.onclick=()=>{
+    const card=b.closest('.card');
+    const next=card.querySelector('.sense.hiddenSense');
+    if(next){ next.classList.remove('hiddenSense');
+      const exb=next.querySelector('.exbox'); if(exb.getAttribute('data-ex')) speak(exb.getAttribute('data-ex'));
+    }
+    if(!card.querySelector('.sense.hiddenSense')) b.style.display='none';
+  });
+  grid.querySelectorAll('.spk').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  grid.querySelectorAll('.act-shadow').forEach(b=>b.onclick=()=>goShadowText(b.getAttribute('data-text')));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'复习标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 神兽/图鉴 ---------- */
+function renderCodex(){
+  const grid=document.getElementById('codexGrid'); grid.innerHTML='';
+  BEASTS.forEach(b=>{
+    const box=document.createElement('div');
+    const active = b.u===DATA.unit;
+    box.className='cbox'+(active?'':' lock');
+    let stars=0;
+    if(active){ const pct=Math.round(masteredCount()/allWords().length*100); stars=pct>=80?3:pct>=50?2:pct>=20?1:0; }
+    box.innerHTML=`<div class="e">${b.e}</div><div class="n">${b.n}</div>
+      <div class="s">${active?'★'.repeat(stars)+'☆'.repeat(3-stars):'🔒 未解锁'}</div>
+      <div style="color:var(--sub);font-size:12px;margin-top:4px">${b.d}</div>`;
+    grid.appendChild(box);
+  });
+}
+
+/* ---------- 交互 ---------- */
+function toggleMaster(w, btn){
+  if(!state[w]) state[w]={};
+  state[w].mastered=!state[w].mastered;
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  saveState();
+  btn.classList.toggle('mastered', state[w].mastered);
+  btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
+  updateProgress(); renderCodex();
+}
+function checkIn(w){
+  const d=today();
+  if(!state[w]) state[w]={};
+  state[w].shadowed=d;
+  saveState();
+  if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
+  updateProgress(); renderCodex();
+}
+function switchSub(which){
+  document.querySelectorAll('.subtab').forEach(x=>x.classList.toggle('on', x.dataset.sh===which));
+  document.getElementById('shDialog').style.display = which==='dialog'?'block':'none';
+  document.getElementById('shSingle').style.display = which==='single'?'block':'none';
+}
+function goShadowWord(word){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.word===word);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到「'+word+'」'); }
+}
+function goShadowText(text){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.en===text);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到该句'); }
+}
+function goReviewWord(word){
+  document.querySelector('nav button[data-tab="review"]').click();
+  DATA.groups.forEach((g,i)=>{ if(g.words.some(w=>w.word===word)){ curGroupReview=i; renderReview(); flash('🔁 已定位复习：'+word); } });
+}
+
+/* ---------- 跟读队列（含复习例句） + 单句跟读 ---------- */
+function buildQueue(){
+  shQueue=[]; const seen=new Set();
+  DATA.groups.forEach(g=>g.words.forEach(w=>{
+    if(w.ex && !seen.has(w.ex)){ seen.add(w.ex); shQueue.push({en:w.ex,cn:w.exCn,word:w.word}); }
+    (w.senses||[]).forEach(s=>{ if(s.ex && !seen.has(s.ex)){ seen.add(s.ex); shQueue.push({en:s.ex,cn:s.exCn,word:w.word}); } });
+  }));
+}
+function renderShadowCurrent(){
+  const it=shQueue[shIdx]; if(!it)return;
+  document.getElementById('shProg').textContent='第 '+(shIdx+1)+' / '+shQueue.length+' 句 · 👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这块会出现回放音轨，和原声对比。';
+  document.getElementById('shNow').textContent=(shIdx+1)+'/'+shQueue.length+'  '+it.en;
+  document.getElementById('shNowCn').textContent=it.cn||'';
+}
+function shPlay(){ const it=shQueue[shIdx]; if(it) speak(it.en); }
+function shGo(dir){ shIdx=(shIdx+dir+shQueue.length)%shQueue.length; renderShadowCurrent(); }
+function shCheck(){
+  const it=shQueue[shIdx]; if(!it)return;
+  checkIn(it.word); flash('🎤 已跟读打卡：'+it.word);
+}
+function shAutoPlay(){
+  if(!shQueue.length)return;
+  const it=shQueue[shIdx];
+  const gap=parseInt(document.getElementById('shGap').value,10);
+  speak(it.en,{onend:()=>{
+    if(gap>0){ shTimer=setTimeout(()=>{ if(shAuto){ shIdx=(shIdx+1)%shQueue.length; renderShadowCurrent(); shAutoPlay(); } }, gap); }
+  }});
+}
+function initShadow(){
+  buildQueue(); if(shIdx>=shQueue.length) shIdx=0; renderShadowCurrent();
+  document.getElementById('shPlay').onclick=shPlay;
+  document.getElementById('shNext').onclick=()=>shGo(1);
+  document.getElementById('shPrev').onclick=()=>shGo(-1);
+  document.getElementById('shRec').onclick=function(){
+    if(rec.recording && rec.stopBtn===this){ stopRec(); }
+    else { startRec(shQueue[shIdx].en, document.getElementById('shRecBox'), this); }
+  };
+  document.getElementById('shStop').onclick=stopRec;
+  document.getElementById('shCheck').onclick=shCheck;
+  document.getElementById('shAuto').onclick=function(){ shAuto=!shAuto; this.textContent=shAuto?'⏹ 停止连播':'🔁 自动连播'; if(shAuto)shAutoPlay(); else {clearTimeout(shTimer); speechSynthesis.cancel();} };
+}
+
+/* ---------- 对话跟读（call-response 结构） ---------- */
+function renderDialogues(){
+  const list=document.getElementById('shDialog'); list.innerHTML='';
+  DATA.dialogues.forEach(d=>{
+    const box=document.createElement('div'); box.className='player';
+    let html='';
+    const turns=d.turns;
+    let i=0;
+    while(i<turns.length){
+      const t=turns[i];
+      if(t.role==='A' && i+1<turns.length && turns[i+1].role==='B'){
+        const q=t, r=turns[i+1];
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-A">A</span>
+            <div class="qa-text">${esc(q.en)}<span class="cn">${esc(q.cn)}</span></div>
+            <button class="b-play" data-text="${esc(q.en)}">🔊 听问句</button>
+          </div>
+          <div class="resp">
+            <div class="resp-label">👉 你要回应的句子（B）：先听示范，再录你自己的</div>
+            <div class="qa-text">${esc(r.en)}<span class="cn">${esc(r.cn)}</span></div>
+            <div class="resp-acts">
+              <button class="b-play" data-text="${esc(r.en)}">🔊 听示范回应</button>
+              <button class="b-drill" data-text="${esc(r.en)}">🎤 我来回应</button>
+            </div>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=2;
+      } else {
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-${t.role}">${t.role}</span>
+            <div class="qa-text">${esc(t.en)}<span class="cn">${esc(t.cn)}</span></div>
+            <button class="b-play" data-text="${esc(t.en)}">🔊 原声</button>
+            <button class="b-turn-rec" data-text="${esc(t.en)}">🎤 跟读</button>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=1;
+      }
+    }
+    box.innerHTML=`<div class="now" style="font-size:16px">💬 ${esc(d.title)}</div>
+      <div class="nowcn" style="margin-bottom:10px">蓝字＝A 的问句（点「🔊 听问句」）；黄框＝<b>你要回应的句子，始终显示</b>，先点「🔊 听示范回应」模仿，再点「🎤 我来回应」录下你自己的回答。回放对比原声。</div>${html}`;
+    list.appendChild(box);
+  });
+  list.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  list.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); }
+    else { startRec(b.getAttribute('data-text'), container, b); }
+  });
+  list.querySelectorAll('.b-drill').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    startRecRaw(b.getAttribute('data-text'), container, b);
+  });
+}
+let rdIdx = 0;
+function renderReading(){
+  const list = DATA.reading;
+  const ptabs = document.getElementById('rdPassages'); ptabs.innerHTML='';
+  list.forEach((rd,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(rd.title)+(rd.china?' 🇨🇳':'');
+    if(i===rdIdx) b.className='on';
+    b.onclick=()=>{ rdIdx=i; renderReading(); };
+    ptabs.appendChild(b);
+  });
+  document.getElementById('rdHint').textContent=list.length+' 篇受控短文：读 → 听（TTS）→ 跟读 → 做小题，一文多吃。词汇 / 短语 / 句式在不同情境重复出现，形成螺旋。🇨🇳 ＝中国主题篇。';
+  renderReadingContent();
+}
+function renderReadingContent(){
+  const rd=DATA.reading[rdIdx];
+  const rdb=document.getElementById('rdBanner');
+  rdb.style.display='block';
+  rdb.innerHTML='📖 <b>'+esc(rd.title)+'</b>'+(rd.china?' <span style="font-size:12px">🇨🇳</span>':'')+' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(rd.focus||'')+'</span> · <span style="color:var(--sub);font-size:12px">'+esc(rd.meta||'')+'</span>';
+  const txt=document.getElementById('rdText');
+  txt.innerHTML='<div class="rd-tip">点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。先读一遍，再点「🔊 听整篇」做听力，最后做下面小题。</div>'
+    +'<div class="rd-playall"><button class="b-play" id="rdPlayAll">🔊 听整篇</button></div>'
+    +'<div class="rd-sents"></div>';
+  const sents=txt.querySelector('.rd-sents');
+  rd.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    sents.appendChild(d);
+  });
+  txt.querySelector('#rdPlayAll').onclick=()=>{ speakSeq(rd.sentences, 600); };
+  sents.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  sents.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  sents.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const qz=document.getElementById('rdQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 理解小题（答错自动进错题本）</div>';
+  rd.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'阅读', original:'阅读小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+
+/* ---------- 听力子模式：盲听 → 答题 → 看文本 ---------- */
+let lsIdx = 0, lsRevealed = false;
+function renderListening(){
+  const list = DATA.listening || [];
+  const ptabs = document.getElementById('lsPassages'); ptabs.innerHTML='';
+  list.forEach((ls,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(ls.title)+(ls.china?' 🇨🇳':'');
+    if(i===lsIdx) b.className='on';
+    b.onclick=()=>{ lsIdx=i; renderListening(); };
+    ptabs.appendChild(b);
+  });
+  renderListeningContent();
+}
+function renderListeningContent(){
+  const ls=(DATA.listening||[])[lsIdx]; if(!ls) return;
+  const lsb=document.getElementById('lsBanner');
+  lsb.style.display='block';
+  lsb.innerHTML='🎧 <b>'+esc(ls.title)+'</b>'+(ls.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(ls.focus||'')+'</span>'
+    +' · <span style="color:var(--sub);font-size:12px">'+esc(ls.meta||'')+'</span>';
+  const box=document.getElementById('lsSents'); box.innerHTML=''; lsRevealed=false;
+  ls.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en ls-masked" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    box.appendChild(d);
+  });
+  box.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  box.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  box.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  document.getElementById('lsPlayAll').onclick=()=>speakSeq(ls.sentences,600);
+  document.getElementById('lsReplay').onclick=()=>speakSeq(ls.sentences,600);
+  const revealBtn=document.getElementById('lsReveal');
+  revealBtn.textContent='👀 看文本';
+  revealBtn.onclick=()=>{
+    lsRevealed=!lsRevealed;
+    box.querySelectorAll('.rd-en').forEach(e=>e.classList.toggle('ls-masked', !lsRevealed));
+    revealBtn.textContent = lsRevealed ? '🙈 收起文本' : '👀 看文本';
+  };
+  const qz=document.getElementById('lsQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 听力小题（答错自动进错题本）</div>';
+  ls.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    /* 2026-10-16 新增填空题（type:'fill'）：KET 听力有填空，原来只有单选。
+       answer 是字符串（填空例外，不是 int —— 单选题的 answer 仍是 int，别混）。
+       判题忽略大小写与首尾空格；accept 数组可收多个可接受答案。 */
+    if(q.type==='fill'){
+      const acc=(q.accept && q.accept.length) ? q.accept : [String(q.answer||'')];
+      d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+(q.hint?'　<span style="color:var(--sub);font-size:12px">（'+esc(q.hint)+'）</span>':'')+'</div>'
+        +'<div class="q-opts"><input class="q-fill" type="text" autocomplete="off" spellcheck="false" placeholder="在这里写答案">'
+        +'<button class="q-opt q-fillbtn">检查</button></div><div class="q-fb"></div>';
+      const inp=d.querySelector('.q-fill'), btn=d.querySelector('.q-fillbtn');
+      const check=()=>{
+        if(d.dataset.answered) return;
+        const val=(inp.value||'').trim(); if(!val) return;
+        d.dataset.answered='1';
+        const ok=acc.some(a=>String(a).trim().toLowerCase()===val.toLowerCase());
+        if(ok){ inp.classList.add('good'); inp.disabled=true; btn.disabled=true;
+          d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { inp.classList.add('bad'); inp.disabled=true; btn.disabled=true;
+          d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(acc[0])+'</span>';
+          addError({word:q.q, type:'听力填空', original:'听力填空小题', standard:acc[0], student:val}); }
+      };
+      btn.onclick=check;
+      inp.onkeydown=e=>{ if(e.key==='Enter') check(); };
+      qz.appendChild(d); return;
+    }
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'听力', original:'听力小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+function switchRd(which){
+  document.querySelectorAll('[data-rd]').forEach(x=>x.classList.toggle('on', x.dataset.rd===which));
+  document.getElementById('rdReadWrap').style.display = which==='read' ? '' : 'none';
+  document.getElementById('rdListenWrap').style.display = which==='listen' ? '' : 'none';
+  if(which==='listen') renderListening();
+}
+
+/* ---------- 拼读轨道 ---------- */
+/* TTS 不能直接念音标（/iː/ 去斜杠后会被当单词乱读）→ 「点音素」改为依次朗读该音的例词 */
+function speakSeq(words, gap, onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const arr=(words||[]).filter(Boolean);
+  let i=0;
+  (function next(){
+    if(i>=arr.length){ if(onDone)onDone(); return; }
+    const w=arr[i++];
+    speak(w, {onend:()=>setTimeout(next, gap||550)});
+  })();
+}
+function switchPhx(which){
+  document.querySelectorAll('[data-phx]').forEach(x=>x.classList.toggle('on', x.dataset.phx===which));
+  /* 手掌握图 + 顶部两条提示只属于「音素卡」视图：切到其他子 tab 时一并隐藏，
+     否则用户会看到"切过去了还是音素内容"。
+     注意选择器用 `> .phx-tip`（仅直接子级）——语调/反义区内部的提示是那些视图自己的内容，不能藏。 */
+  document.getElementById('phxHand').style.display = which==='cards'?'block':'none';
+  document.querySelectorAll('#phonics > .phx-tip').forEach(x=>x.style.display = which==='cards'?'block':'none');
+  document.getElementById('phxCards').style.display = which==='cards'?'block':'none';
+  document.getElementById('phxPairs').style.display = which==='pairs'?'block':'none';
+  document.getElementById('phxListen').style.display = which==='listen'?'block':'none';
+  document.getElementById('phxIntonation').style.display = which==='intonation'?'block':'none';
+  document.getElementById('phxAntonym').style.display = which==='antonym'?'block':'none';
+}
+function renderPhonics(){
+  /* ---- 预学词标记 ----
+     音素练习的目的是「练发音」，所以例词允许少量来自后面单元的词（虚线框 + 预学标签），
+     但必须 ≤30%，且本单元词优先。规则：不在本单元词库里的词自动标为「预学」。 */
+  const BANK=new Set(allWordObjs().map(w=>w.word.trim().toLowerCase()));
+  function isPre(w){
+    const s=String(w).toLowerCase().replace(/[.,!?]/g,'').trim();
+    if(BANK.has(s)) return false;                 // 词库以短语整条收录
+    return !s.split(/\s+/).filter(Boolean).every(p=>BANK.has(p)||FUNCWORDS.has(p));
+  }
+  let preTotal=0, allTotal=0;
+  function preWord(w){
+    allTotal++;
+    const pre=isPre(w); if(pre) preTotal++;
+    return `<span data-say-word="${esc(w)}"${pre?' data-pre="1"':''}>${esc(w)}${pre?'<i class="pre-tag">预学</i>':''}</span>`;
+  }
+  function preRatio(){ return allTotal? Math.round(preTotal/allTotal*100):0; }
+  // 元音手掌握图
+  const hand=document.getElementById('phxHand');
+  const ha=DATA.phonics.hand_anchor;
+  const fingerHtml=ha.long.map(f=>
+    `<div class="finger" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+      <div class="fpos">${esc(f.pos)}</div><div class="fipa">${esc(f.ipa)}</div><div class="fsay">${esc(f.say)}</div>
+      <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+    </div>`).join('');
+  const palmHtml=ha.short.map(f=>
+    `<div class="pv" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+      <div class="pipa">${esc(f.ipa)}</div><div class="psay">${esc(f.say)}</div>
+      <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+    </div>`).join('');
+  hand.innerHTML=`<div class="hand-wrap">
+    <div class="hand-palm">
+      <div class="hand-title">${esc(ha.title)}</div>
+      <div class="hand-hint">${esc(ha.hint)}</div>
+      <div class="hand-row">${fingerHtml}</div>
+      <div class="hand-row"><div style="font-size:11px;color:var(--gold);font-weight:700;width:100%;margin-bottom:2px">掌心＝短元音（短促）</div></div>
+      <div class="palm-vowels">${palmHtml}</div>
+      <div class="hand-hint" style="margin-top:10px">👆 <b>每个例词都是独立可点的块</b>，点哪个词就单独读哪个词；点卡片空白处会连读全部例词。</div>
+    </div>
+  </div>`;
+  hand.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  hand.querySelectorAll('.finger,.pv').forEach(c=>c.onclick=()=>speakSeq(c.dataset.words.split(' ')));
+  // 音素卡
+  const cards=document.getElementById('phxCards'); cards.innerHTML='<div class="phx-grid"></div>';
+  const cg=cards.querySelector('.phx-grid');
+  DATA.phonics.sound_cards.forEach(sc=>{
+    const d=document.createElement('div'); d.className='phx-card';
+    d.innerHTML=`<div class="ps">${esc(sc.sound)}</div><div class="pn">${esc(sc.name)}</div>
+      <div class="ptip">${esc(sc.tip)}</div>
+      <div class="phx-words">${sc.words.map(preWord).join('')}</div>
+      ${sc.phrase_en?`<div class="phx-phrase"><span class="pl">🔗 短语连读</span><span class="pe">${esc(sc.phrase_en)}</span>
+        <button class="b-play" data-phrase="${esc(sc.phrase_en)}">🔊 听短语</button>
+        <span class="pc">${esc(sc.phrase_cn||'')}</span></div>`:''}`;
+    cg.appendChild(d);
+  });
+  cards.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  cards.querySelectorAll('[data-phrase]').forEach(b=>b.onclick=e=>{e.stopPropagation();speak(b.dataset.phrase);});
+  cards.querySelectorAll('.phx-card').forEach(c=>c.addEventListener('click',e=>{
+    if(e.target.closest('[data-say-word]')||e.target.closest('button')) return;
+    speakSeq(Array.from(c.querySelectorAll('[data-say-word]')).map(x=>x.dataset.sayWord));
+  }));
+  /* 预学词占比提示：练发音可以带一点外单元新词，但控制在 30% 以内 */
+  const pct=preRatio();
+  const note=document.createElement('div');
+  note.className='phx-tip';
+  note.innerHTML=`📊 本单元拼读例词里 <b>${preTotal}</b> 个是后面单元的词（虚线框「预学」标签），占比 <b>${pct}%</b>。
+    ${pct>30?'<span style="color:var(--red)">⚠️ 超过 30%，需要替换为本单元词。</span>':'✅ 在 30% 以内 —— 这些词<b>只要求你会读出来</b>，不要求现在记住意思。'}`;
+  cards.appendChild(note);
+  /* ---------- 情绪语调（本单元专属维度：教材 U8/U9 语调） ----------
+   浏览器 TTS 无法真正控制语调，这里做两件事：
+   ① 用 SVG 折线把「音高走向」画出来（↗ 上扬/ → 平/ ↘ 下降），让视觉先建立概念
+   ② 用 pitch 参数近似：升调调高 pitch、降调调低 pitch，让学生能听出差别        */
+function pitchSvg(arrow){
+  // 起点(12,44) 终点(228,10)；按箭头决定控制点，画出上扬/平/下降
+  let pts;
+  if(arrow.indexOf('↑')>=0)      pts='12,46 60,40 120,26 180,10 228,4';   // 强升调
+  else if(arrow.indexOf('↗')>=0) pts='12,46 70,40 140,28 228,12';       // 升调
+  else if(arrow.indexOf('↓')>=0) pts='12,12 70,20 140,32 228,44';       // 平后微降
+  else if(arrow.indexOf('↘')>=0) pts='12,12 70,22 140,34 228,46';       // 降调
+  else                            pts='12,29 80,27 150,30 228,28';       // 平调
+  return `<svg class="itn-pitch" viewBox="0 0 240 56" preserveAspectRatio="none">
+    <line class="base" x1="6" y1="28" x2="234" y2="28"></line>
+    <polyline class="path" points="${pts}"></polyline>
+    <circle class="dot" cx="228" cy="${pts.split(' ').pop().split(',')[1]}" r="3.5"></circle>
+  </svg>`;
+}
+function tonePitch(arrow){
+  if(arrow.indexOf('↑')>=0) return 1.5;
+  if(arrow.indexOf('↗')>=0) return 1.25;
+  if(arrow.indexOf('↘')>=0) return 0.72;
+  if(arrow.indexOf('↓')>=0) return 0.85;
+  return 1.0;
+}
+/* ---------- 语调朗读：为什么不能直接调 pitch ----------
+   SpeechSynthesis 的 u.pitch 只是「整句音高缩放」，不改变句内音高走向。
+   所以同一句话设 pitch=1.25（↗）和 pitch=0.72（↘）听起来完全一样 —— 骗不了学生。
+   可行做法：把句子切成 [前半 + 末段] 两段，末段按语调方向给不同音高，
+   这样「句末往上走」还是「句末往下落」在合成音里真的能听出来。
+   仍然要诚实标注：这是电脑合成的近似语调，真语调必须听真人（老师/家长/录音）。 */
+function contourSegs(text, arrow){
+  const s=String(text||'').trim();
+  const toks=s.split(/\s+/).filter(Boolean);
+  if(toks.length<2) return [{t:s, p:tonePitch(arrow)}];
+  const head=toks.slice(0,-1).join(' '), tail=toks[toks.length-1];
+  let end;
+  if(arrow.indexOf('↑')>=0)      end=1.75;   // 强升调：末段明显抬高
+  else if(arrow.indexOf('↗')>=0) end=1.45;   // 升调
+  else if(arrow.indexOf('↘')>=0) end=0.55;   // 降调：末段明显压低
+  else if(arrow.indexOf('↓')>=0) end=0.8;    // 平后微降
+  else                            end=1.0;    // 平调
+  return [{t:head,p:1.0},{t:tail,p:end}];
+}
+function speakTone(text,arrow,rate,onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const segs=contourSegs(text,arrow);
+  let i=0;
+  (function next(){
+    if(i>=segs.length){ if(onDone)onDone(); return; }
+    const s=segs[i++];
+    const u=new SpeechSynthesisUtterance(s.t);
+    const v=getVoice(); if(v)u.voice=v;
+    u.rate=(typeof rateVal==='function'?rateVal():0.9);
+    u.pitch=s.p; u.volume=1; u.lang=(v&&v.lang)||'en-GB';
+    u.onend=()=>setTimeout(next,80);
+    u.onerror=()=>setTimeout(next,80);
+    speechSynthesis.speak(u);
+  })();
+}
+function renderIntonation(){
+  const box=document.getElementById('phxIntonation');
+  const cards=(DATA.phonics.intonation_cards)||[];
+  const pairs =(DATA.phonics.intonation_pairs)||[];
+  if(!cards.length && !pairs.length){ box.innerHTML='<div class="hint">本单元暂无语调卡。</div>'; return; }
+  let html='';
+  if(cards.length){
+    html+=`<div class="phx-tip">🎵 <b>语调 = 句子的情绪体温</b>。同一句话，音调走的方向不同，意思就完全不同：
+<b>↗ 上扬</b>（开心/疑问/惊讶）｜ <b>↘ 下降</b>（难过/肯定/结束）｜ <b>→ 平直</b>（无聊/累/敷衍）。
+折线图告诉你的就是「音高往哪走」。
+<br><br>⚠️ <b>关于「听」的一句实话</b>：电脑合成音<b>做不出真正的语调</b>——它只能把整句话整体调高或调低（像花栗鼠和低音炮），
+<b>走不出「句末往上挑」的旋律线</b>。所以「🔊 音高示意」只是把句末那一段<b>刻意抬高或压低</b>的近似演示，不是真人语调。
+<br>👉 <b>真正能听出语调的，只有你自己的声音。</b>点「🎤 我来念」录一遍，回放对比——那才是真语调。</div>`;
+    html+='<div class="itn-grid"></div>';
+  }
+  box.innerHTML=html;
+  if(cards.length){
+    const cg=box.querySelector('.itn-grid');
+    cards.forEach(ic=>{
+      const d=document.createElement('div'); d.className='itn';
+      d.innerHTML=`<div class="itn-top">
+          <div class="itn-arrow">${esc(ic.arrow)}</div>
+          <div><div class="itn-w">${esc(ic.word)}</div><div class="itn-ipa">${esc(ic.ipa)} · ${esc(ic.cn)}</div></div>
+          <div class="itn-tone">${esc(ic.tone)}</div>
+        </div>
+        ${pitchSvg(ic.arrow)}
+        <div class="itn-sent">${esc(ic.sent)}</div>
+        <div class="itn-sentcn">${esc(ic.sent_cn)}</div>
+        <div class="itn-tip">${esc(ic.tip)}</div>
+        <div class="itn-q">再练一句：<b>${esc(ic.pair.en)}</b> <span style="color:var(--sub)">${esc(ic.pair.cn)}</span></div>
+        <div class="itn-acts">
+          ${ic.audio?'<button class="b-real" data-audio="'+esc(ic.audio)+'">🎧 真人示范</button>':''}
+          <button class="b-play" data-t="${esc(ic.sent)}" data-a="${esc(ic.arrow)}">🔊 音高示意</button>
+          <button class="ghost" data-t="${esc(ic.pair.en)}" data-a="${esc(ic.arrow)}">🔊 再练一句</button>
+          <button class="b-rec" data-rec-t="${esc(ic.sent)}" data-rec-a="${esc(ic.arrow)}">🎤 我来念</button>
+        </div>
+        <div class="rec-slot"></div>`;
+      cg.appendChild(d);
+    });
+    box.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+  // 同句异调：从「听辨」改为「自己念两种，自己比」
+  if(pairs.length){
+    const box2=document.createElement('div');
+    box2.innerHTML=`<div class="phx-tip" style="margin-top:16px">🎤 <b>同句异调 · 自己念、自己比</b>：下面每一组<b>文字完全一样</b>，只有语调不同。
+<b>别指望用合成音听出区别（它听不出来）</b>——正确练法是：<b>照着曲线自己念一遍↗，再自己念一遍↘，录下来回放对比</b>。
+你自己的声音里有真语调，一比就知道差在哪。</div>`;
+    box.appendChild(box2);
+    pairs.forEach((p,i)=>{
+      const d=document.createElement('div'); d.className='itnp';
+      d.innerHTML=`<div class="itnp-vs">
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.left.arrow)} ${esc(p.left.tone)}</div>
+            ${pitchSvg(p.left.arrow)}
+            <div class="en">${esc(p.left.en)}</div><div class="cn">${esc(p.left.cn)}</div>
+            <div class="itn-acts">
+              ${p.left.audio?'<button class="b-real" data-audio="'+esc(p.left.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.left.en)}" data-a="${esc(p.left.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.left.en)}" data-rec-a="${esc(p.left.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+          <div class="itnp-mid">VS</div>
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.right.arrow)} ${esc(p.right.tone)}</div>
+            ${pitchSvg(p.right.arrow)}
+            <div class="en">${esc(p.right.en)}</div><div class="cn">${esc(p.right.cn)}</div>
+            <div class="itn-acts">
+              ${p.right.audio?'<button class="b-real" data-audio="'+esc(p.right.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.right.en)}" data-a="${esc(p.right.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.right.en)}" data-rec-a="${esc(p.right.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+        </div>
+        <div class="itnp-q">Q${i+1}. ${esc(p.ask)}</div>
+        <div class="itnp-a hide" data-a="${esc(p.answer)}">${esc(p.answer)}</div>`;
+      box2.appendChild(d);
+    });
+    box.querySelectorAll('.itnp-a').forEach(x=>x.onclick=()=>x.classList.toggle('hide'));
+    box2.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box2.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box2.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+}
+/* 真人示范音频（老师录制后填 audio 字段即可，没有就只显示合成音） */
+let realAudioEl=null;
+function playAudio(src){
+  try{
+    if(realAudioEl){ realAudioEl.pause(); }
+    realAudioEl=new Audio(src); realAudioEl.play();
+  }catch(e){ speak(src); }
+}
+/* 语调录音：学生自己念 → 回放对比（这才是真语调） */
+function toneRec(btn, text, arrow){
+  const card = btn.closest('.itn') || btn.closest('.itnp-side');
+  const slot = card ? card.querySelector('.rec-slot') : null;
+  if(!slot) return;
+  if(toneRecState.mr){ toneRecState.stop(); return; }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 双击文件打开时无法录音。请用本地服务地址打开本页（见首页说明）。</div>';
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const chunks=[];
+    const mr=new MediaRecorder(stream);
+    mr.ondataavailable=e=>{ if(e.data.size) chunks.push(e.data); };
+    mr.onstop=()=>{
+      const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'});
+      const url=URL.createObjectURL(blob);
+      slot.innerHTML='<audio controls src="'+url+'"></audio>'
+        +'<div class="hint">🎧 上面是<b>你自己的声音</b>——回放听句末是往上还是往下，跟上面的曲线对一下。</div>';
+      stream.getTracks().forEach(t=>t.stop());
+      toneRecState.mr=null; btn.textContent=toneRecState.label;
+    };
+    mr.start();
+    toneRecState.mr=mr; toneRecState.btn=btn; toneRecState.label=btn.textContent;
+    toneRecState.stop=function(){ mr.stop(); };
+    btn.textContent='■ 停止';
+    slot.innerHTML='<div class="hint"><span class="rec-dot"></span> 请念：<b>'+esc(text)+'</b>　'
+      +(arrow.indexOf('↗')>=0||arrow.indexOf('↑')>=0?'（句末<b>往上挑</b>）':(arrow.indexOf('↘')>=0||arrow.indexOf('↓')>=0?'（句末<b>往下落</b>）':'（<b>平平的</b>）'))
+      +'</div>';
+  }).catch(err=>{
+    slot.innerHTML='<div class="hint" style="color:var(--red)">无法录音：'+esc(err.message)+'</div>';
+  });
+}
+let toneRecState={mr:null,btn:null,label:'',stop:function(){}};
+/* ---------- 反义情绪对（本单元专属词，语义对立 + 语调对比） ---------- */
+function renderAntonym(){
+  const box=document.getElementById('phxAntonym');
+  const list=(DATA.phonics.antonym_pairs)||[];
+  if(!list.length){ box.innerHTML='<div class="hint">本单元暂无反义情绪对。</div>'; return; }
+  let html=`<div class="phx-tip">↔️ <b>反义情绪对</b>：两词意思相反，<b>说话时的情绪也相反</b>。
+先各听一次单词，再听整句。<b>注意</b>：这里的句子是<b>平读</b>的——合成音做不出情绪语调，
+真正的情绪语调要靠你自己念（去「🎤 语调」那栏录一遍），或听真人示范。</div>`;
+  list.forEach(p=>{
+    html+=`<div class="apo">
+      <div class="apo-top">
+        <span class="apo-w">${esc(p.a)}</span><span class="apo-vs">↔ 意思相反 →</span><span class="apo-w">${esc(p.b)}</span>
+        <span class="apo-cn">${esc(p.cn_a)} / ${esc(p.cn_b)}</span>
+      </div>
+      <div style="font-size:14px;font-weight:600;line-height:1.6;margin-bottom:7px">${esc(p.sent)}</div>
+      <div class="apo-cn" style="margin-bottom:8px">${esc(p.sent_cn)}</div>
+      <div class="itn-acts">
+        <button class="b-play" data-w2="${esc(p.a)}">🔊 ${esc(p.a)}</button>
+        <button class="b-play" data-w2="${esc(p.b)}">🔊 ${esc(p.b)}</button>
+        <button class="b-play" data-t2="${esc(p.sent)}">🔊 听整句</button>
+      </div>
+    </div>`;
+  });
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w2]').forEach(b=>b.onclick=()=>speak(b.dataset.w2));
+  box.querySelectorAll('[data-t2]').forEach(b=>b.onclick=()=>speak(b.dataset.t2));
+}
+  // 最小对立对
+  const pairs=document.getElementById('phxPairs'); pairs.innerHTML='';
+  DATA.phonics.min_pairs.forEach(mp=>{
+    const d=document.createElement('div'); d.className='pair';
+    d.innerHTML=`<div class="pt">
+        <div class="pc"><div class="pw">${esc(mp.a)}</div><div class="pi">${esc(mp.a_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.a)}">🔊 ${esc(mp.a)}</button></div></div>
+        <div class="pc"><div class="pw">${esc(mp.b)}</div><div class="pi">${esc(mp.b_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.b)}">🔊 ${esc(mp.b)}</button></div></div>
+      </div>
+      <div class="ptip">${esc(mp.tip)}</div>
+      <div class="pair-acts">
+        <button class="b-ok" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">✅ 我能区分</button>
+        <button class="b-bad" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">❌ 我还混</button>
+      </div>`;
+    pairs.appendChild(d);
+  });
+  pairs.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.dataset.text));
+  pairs.querySelectorAll('.b-ok').forEach(b=>b.onclick=()=>flash('👍 已标记：能区分'));
+  pairs.querySelectorAll('.b-bad').forEach(b=>b.onclick=()=>{ addError({word:b.dataset.a+' / '+b.dataset.b,type:'拼读',original:'最小对立对',standard:b.dataset.a+' '+b.dataset.b,student:'未区分'}); flash('🩹 已记入错题'); });
+  // 听音选词（运行时生成）
+  const lis=document.getElementById('phxListen');
+  lis.innerHTML=`<div class="player"><div class="now">🎧 听音选词</div>
+    <div class="nowcn">听发音，从 4 个选项里选出你听到的词。答错自动入错题本。</div>
+    <div id="phxListenBox"></div></div>`;
+  phxListenNext();
+  /* 语调 / 反义情绪对两个视图的内容在这里渲染（否则 div 是空的，用户切过去一片空白） */
+  renderIntonation();
+  renderAntonym();
+}
+function phxListenNext(){
+  const box=document.getElementById('phxListenBox'); if(!box) return;
+  const words=allWordObjs();
+  const correct=words[Math.floor(Math.random()*words.length)];
+  const distract=shuffle(words.filter(w=>w.word!==correct.word)).slice(0,3);
+  const opts=shuffle([correct,...distract]);
+  box.innerHTML=`<div class="ctr"><button id="phxPlay" class="b-play">▶ 播放发音</button></div>
+    <div class="q-opts">${opts.map((o,i)=>`<button class="q-opt" data-word="${esc(o.word)}">${esc(o.word)}</button>`).join('')}</div>
+    <div class="q-fb" id="phxFb"></div>
+    <div class="ctr"><button id="phxNext" class="ghost">⏭ 下一题</button></div>`;
+  let answered=false;
+  document.getElementById('phxPlay').onclick=()=>speak(correct.word);
+  setTimeout(()=>speak(correct.word),300);
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    if(b.dataset.word===correct.word){ b.classList.add('ok'); document.getElementById('phxFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('phxFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：'+esc(correct.word)+'</span>';
+      addError({word:correct.word,type:'拼读',original:'听音选词',standard:correct.word,student:b.dataset.word});
+      box.querySelectorAll('.q-opt').forEach(bb=>{ if(bb.dataset.word===correct.word) bb.classList.add('ok'); }); }
+    document.getElementById('phxNext').onclick=phxListenNext;
+  });
+}
+
+/* ---------- 小测 ---------- */
+let quizQueue=[], quizIdx=0, quizScore=0, quizTotal=0, quizDone=false;
+function cnOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.defB)).slice(0,3);
+  return shuffle([{label:w.defB,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function enOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.word)).slice(0,3);
+  return shuffle([{label:w.word,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function buildQuiz(){
+  const words=shuffle(allWordObjs());
+  quizQueue=[];
+  words.forEach(w=>{
+    const r=Math.random();
+    if(r<0.30){ const opts=cnOpts(w); quizQueue.push({kind:'listen',word:w.word,cn:w.defB,opts}); }
+    else if(r<0.60){ const opts=cnOpts(w); quizQueue.push({kind:'en2cn',word:w.word,cn:w.defB,opts}); }
+    else { const opts=enOpts(w); quizQueue.push({kind:'cn2en',word:w.word,cn:w.defB,opts}); }
+  });
+  quizIdx=0; quizScore=0; quizTotal=quizQueue.length; quizDone=false; renderQuiz();
+}
+function renderQuiz(){
+  const box=document.getElementById('quizBox');
+  if(quizDone){ box.innerHTML=`<div class="player"><div class="now">🎉 本轮完成！</div>
+    <div class="nowcn">答对 ${quizScore} / ${quizTotal}。答错的已自动记入「🩹 错题」，去错题本重练。</div>
+    <div class="ctr"><button id="quizAgain">🔁 再来一轮</button></div></div>`;
+    document.getElementById('quizAgain').onclick=buildQuiz; return; }
+  const q=quizQueue[quizIdx];
+  /* 三种题面都把「英文」做成可点发音块：
+     listen — 不直接露词，只有播放钮
+     en2cn — 题干英文可点（听音不影响作答，帮助记发音）
+     cn2en — 选完后英文选项立刻变成可点发音块；作答前点选项＝选择，不发音 */
+  let promptHtml='';
+  if(q.kind==='listen') promptHtml=`<div class="quiz-prompt">🔊 听发音，选出中文意思
+      <button class="b-play" id="qPlay">▶ 播放</button>
+      <button class="ghost" id="qPeek">👀 看单词</button></div>`;
+  else if(q.kind==='en2cn') promptHtml=`<div class="quiz-prompt">${sayChip(q.word,'big')}
+      <span class="tag">点单词听发音</span><div style="color:var(--sub);font-size:13px">选出中文意思</div></div>`;
+  else promptHtml=`<div class="quiz-prompt"><span class="big">「${esc(q.cn)}」</span>
+      <div style="color:var(--sub);font-size:13px">对应的英文是？<span class="tag">选完后点选项可再听发音</span></div></div>`;
+  let opts='';
+  q.opts.forEach((o,i)=>{ opts+=`<button class="q-opt" data-i="${i}">${esc(o.label)}</button>`; });
+  box.innerHTML=`<div class="player"><div class="now">📝 小测 ${quizIdx+1}/${quizTotal}</div>${promptHtml}
+    <div class="q-prog"><div class="bar"><i style="width:${Math.round(quizIdx/quizTotal*100)}%"></i></div></div>
+    <div class="q-opts">${opts}</div><div class="q-fb" id="qFb"></div>
+    <div class="ctr"><button id="qNext" class="ghost">⏭ 下一题</button></div></div>`;
+  if(q.kind==='listen'){
+    document.getElementById('qPlay').onclick=()=>speak(q.word);
+    document.getElementById('qPeek').onclick=()=>{ speak(q.word); flash('🔊 单词是：'+q.word); };
+    setTimeout(()=>speak(q.word),250);
+  }
+  if(q.kind==='en2cn') setTimeout(()=>speak(q.word),250);   // 题干可点，也可自动听一次
+  /* 作答后：把正确英文自动读一遍 + 给所有英文选项装上发音块（连排多次，强化记忆） */
+  function afterAnswer(){
+    const fb=document.getElementById('qFb');
+    const tail=' <span style="font-weight:600;color:var(--sub)">点单词再听：</span>';
+    if(q.kind==='cn2en') fb.innerHTML += tail+sayChip(q.word)+' '+sayChip(q.word);
+    else fb.innerHTML += tail+sayChip(q.word);
+    box.querySelectorAll('.q-opt').forEach((bb,j)=>{
+      const lab=q.opts[j].label;
+      if(/^[A-Za-z' -]+$/.test(lab)){ bb.setAttribute('data-say',lab); bb.insertAdjacentHTML('beforeend','<span style="font-size:11px;color:var(--gold)"> 🔊</span>'); }
+    });
+    setTimeout(()=>speak(q.word), 260);
+  }
+  let answered=false;
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    suppressSay=true;                       // 本次点击只算作答，不触发词块发音
+    setTimeout(()=>{ suppressSay=false; },0);
+    const o=q.opts[+b.dataset.i];
+    if(o.ok){ quizScore++; b.classList.add('ok'); document.getElementById('qFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('qFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：</span>'+sayChip(q.word);
+      addError({word:q.word,type:'小测',original:'小测题',standard:q.word,student:o.label});
+      box.querySelectorAll('.q-opt').forEach((bb,j)=>{ if(q.opts[j].ok) bb.classList.add('ok'); }); }
+    afterAnswer();
+    document.getElementById('qNext').onclick=()=>{ quizIdx++; if(quizIdx>=quizTotal){quizDone=true;} renderQuiz(); };
+  });
+}
+
+/* ---------- 错题池 ---------- */
+function renderErrors(){
+  const box=document.getElementById('errList');
+  if(!errors.length){ box.innerHTML='<div class="hint">还没有错题。小测答错、或在词卡/复习点「❌ 记一笔」会自动收集到这里，按类型聚合，方便专项重练。</div>'; return; }
+  const byType={};
+  errors.forEach((e,i)=>{ (byType[e.type]=byType[e.type]||[]).push({...e,idx:i}); });
+  const labels={词汇:'📘 词汇没记住',拼读:'🅰️ 拼读没区分',小测:'📝 小测答错'};
+  let html='';
+  for(const t in byType){
+    html+=`<div class="err-type">${labels[t]||t}（${byType[t].length}）</div>`;
+    byType[t].forEach(e=>{
+      html+=`<div class="err-item"><div class="err-meta"><b>${esc(e.word)}</b> · ${new Date(e.time).toLocaleDateString()} ${new Date(e.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</div>
+        <div class="err-line">标准：<span style="color:var(--green)">${esc(e.standard)}</span></div>
+        ${e.student&&e.student!==e.standard?`<div class="err-line">你的：<span style="color:var(--red)">${esc(e.student)}</span></div>`:''}
+        <div class="err-btns"><button class="morebtn" data-w="${esc(e.word)}">🔁 重练</button><button class="err-del" data-i="${e.idx}">🗑 删除</button></div></div>`;
+    });
+  }
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>goReviewWord(b.dataset.w));
+  box.querySelectorAll('.err-del').forEach(b=>b.onclick=()=>{ errors.splice(+b.dataset.i,1); saveErrors(); renderErrors(); updateProgress(); });
+}
+
+/* ---------- 本单元语法：跳到语法练习的具体知识点 ---------- */
+const GRAM_PAGE = "../语法练习_A1-A2-B1-B2.html";
+const GRAM_KEY  = "a1_gram_done_v1";
+function loadGram(){ try{return JSON.parse(localStorage.getItem(GRAM_KEY))||{}}catch(e){return{}} }
+function saveGram(g){ localStorage.setItem(GRAM_KEY, JSON.stringify(g)); }
+/* 只记一笔「点过」，真正的跳转交给 <a href target=_blank> —— 避免 window.open 与新标签重复开两次 */
+function markGrammar(pid){
+  var g=loadGram();
+  var u=DATA.unit;
+  g[u]=g[u]||[]; if(g[u].indexOf(pid)<0){ g[u].push(pid); saveGram(g); }
+  setTimeout(renderGrammar,60);
+}
+function renderGrammar(){
+  var list=(DATA.grammar||[]), box=document.getElementById('gramList'), head=document.getElementById('gramHead');
+  var all=document.getElementById('gramAll');
+  if(all) all.href=GRAM_PAGE;
+  if(!head||!box) return;
+  var done=(loadGram()[DATA.unit]||[]);
+  head.innerHTML='Unit '+DATA.unit+' 学 <b>'+list.length+' 个语法点</b>。'
+    + '跟读是「听进来」，语法是「写出来」—— 本单元的句子会用到这些点，'
+    + '点一下就跳到语法练习里对应的那一关（已完成 '+done.length+' / '+list.length+'）。';
+  if(!list.length){
+    box.innerHTML='<div class="hint">本单元还没配语法点。</div>'; return;
+  }
+  box.innerHTML=list.map(function(it,i){
+    var ok=done.indexOf(it.pid)>=0;
+    return '<div class="gcard">'
+      + '<div class="gi">'+(ok?'✅':'✍️')+'</div>'
+      + '<div class="gname">'+esc(it.name)+'</div>'
+      + '<div class="gdesc">'+esc(it.desc||'')+'<br><span style="opacity:.6">pid: '+esc(it.pid)+'</span></div>'
+      + (ok?'<div class="gdone">已练过</div>':'')
+      + '<a class="ggo" href="'+GRAM_PAGE+'?p='+encodeURIComponent(it.pid)+'&u='+DATA.unit+'"'
+      +   ' target="_blank" rel="noopener" onclick="markGrammar(\'' + it.pid + '\')">去练这一点 →</a>'
+      + '</div>';
+  }).join('');
+}
+
+/* ---------- 单元文章（例句同源：A1＋A2 词的例句都出自本文） ---------- */
+/* ---------- 单元文章：把本单元生词织进一个语境 ---------- */
+function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
+function artHL(text){
+  const fs = DATA.artForms || [];
+  const out = esc(text);
+  if(!fs.length) return out;
+  try{
+    const re = new RegExp('(?<![a-zA-Z])(' + fs.map(f=>f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|') + ')(?![a-zA-Z])','gi');
+    return out.replace(re,'<span class="art-hl">$1</span>');
+  }catch(e){ return out; }
+}
+function renderArticle(){
+  const a=DATA.article;
+  const body=document.getElementById('artBody');
+  const banner=document.getElementById('artBanner');
+  if(!a || !a.paras || !a.paras.length){
+    banner.style.display='none';
+    body.innerHTML='<div class="hint">本单元暂无文章。</div>';
+    return;
+  }
+  const total=a.paras.reduce((s,p)=>s+p.length,0);
+  const hlEl=document.getElementById('tgArtHL');
+  const hl=!hlEl || hlEl.dataset.hide!=='1';
+  let nArt=0, nAll=0;
+  (DATA.groups||[]).forEach(g=>g.words.forEach(w=>{ nAll++; if(w.inArt) nArt++; }));
+  banner.style.display='block';
+  banner.innerHTML='📰 <b>'+esc(a.title)+'</b> · <span style="font-weight:700;font-size:12px">'+total+' 句</span> · <span style="font-size:12px">本单元 '+nArt+'/'+nAll+' 个生词织进这篇短文，金色高亮</span>';
+  body.innerHTML='';
+  let gi=0;
+  const all=[];
+  a.paras.forEach(para=>{
+    const pd=document.createElement('div'); pd.className='art-para';
+    para.forEach(s=>{
+      gi++; all.push(s[0]);
+      const d=document.createElement('div'); d.className='art-sent';
+      d.innerHTML='<span class="art-idx">'+gi+'</span>'
+        +'<span class="art-en" data-text="'+escAttr(s[0])+'">'+(hl?artHL(s[0]):esc(s[0]))+'</span>'
+        +'<button class="b-play" data-text="'+escAttr(s[0])+'">🔊</button>'
+        +'<button class="b-turn-rec" data-text="'+escAttr(s[0])+'">🎤</button>'
+        +'<div class="turn-rec"></div>'
+        +'<div class="art-zh cnArt">'+esc(s[1]||'')+'</div>';
+      pd.appendChild(d);
+    });
+    body.appendChild(pd);
+  });
+  body.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  body.querySelectorAll('.art-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  body.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.art-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const pa=document.getElementById('artPlayAll');
+  if(pa) pa.onclick=()=>{ speakSeq(all, 600); };
+}
+
+
+/* ---------- tab 切换 ---------- */
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.tab).classList.add('on');
+    if(b.dataset.tab==='shadow') initShadow();
+    if(b.dataset.tab==='codex') renderCodex();
+    if(b.dataset.tab==='review') renderReview();
+    if(b.dataset.tab==='phonics') renderPhonics();
+    if(b.dataset.tab==='quiz') buildQuiz();
+    if(b.dataset.tab==='errors') renderErrors();
+    if(b.dataset.tab==='reading') renderReading();
+    if(b.dataset.tab==='grammar') renderGrammar();
+    if(b.dataset.tab==='article') renderArticle();
+  };
+});
+document.querySelectorAll('.subtab').forEach(b=>b.onclick=()=>switchSub(b.dataset.sh));
+document.querySelectorAll('[data-phx]').forEach(b=>b.onclick=()=>switchPhx(b.dataset.phx));
+document.querySelectorAll('[data-rd]').forEach(b=>b.onclick=()=>switchRd(b.dataset.rd));
+(function(){
+  const r=(DATA.reading||[]).length, l=(DATA.listening||[]).length;
+  const rb=document.querySelector('[data-rd="read"]'), lb=document.querySelector('[data-rd="listen"]');
+  if(rb) rb.innerHTML='📖 阅读 '+r+' 篇';
+  if(lb){ if(!l){ lb.style.display='none'; } else lb.innerHTML='🎧 听力 '+l+' 篇'; }
+})();
+document.getElementById('tgCnLearn').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnLearn').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgHideCn').onclick=function(){
+  const hide=this.dataset.hide!=='1'; this.dataset.hide=hide?'1':'';
+  this.textContent=hide?'👁 显示中文':'🙈 隐藏中文'; renderReview();
+};
+document.getElementById('tgCnArt').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnArt').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgArtHL').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  renderArticle();
+};
+document.getElementById('rate').oninput=function(){ document.getElementById('rateVal').textContent=this.value+'×'; };
+document.getElementById('voiceSel').onchange=function(){ voice=getVoice(); };
+
+/* ---------- 初始化 ---------- */
+document.getElementById('subtitle').textContent='Unit '+DATA.unit+' · '+DATA.title+' — '+DATA.subtitle;
+document.getElementById('beastName').textContent=(DATA.beast_emoji||'🐾')+' '+(DATA.beast_name||'英语跟读')+'（Unit '+DATA.unit+' '+DATA.title+'）';
+document.getElementById('beastDesc').textContent=DATA.subtitle;
+buildQueue(); renderDialogues();
+renderLearn(); renderReview(); updateProgress(); renderCodex();
+</script>
+</body>
+</html>

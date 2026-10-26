@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B1 英语跟读 · Unit 7 Our City</title>
+<style>
+  :root{
+    --bg:#0f1424; --panel:#171d33; --panel2:#1f2742; --ink:#eef2ff; --sub:#9aa6c7;
+    --gold:#f5c542; --gold2:#caa12f; --red:#ff5a5f; --green:#5bd6a0; --line:#2a3358;
+    --chip:#243056;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);color:var(--ink);min-height:100vh}
+  header{padding:14px 20px 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{font-size:26px}
+  .title{font-weight:800;font-size:20px}
+  .title small{color:var(--sub);font-weight:500;font-size:13px;display:block;margin-top:2px}
+  .grow{flex:1}
+  .prog{display:flex;align-items:center;gap:8px}
+  .homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);color:var(--gold);
+           border:1px solid var(--gold2);border-radius:20px;padding:7px 14px;font-size:12.5px;
+           font-weight:700;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .homebtn:hover{background:var(--gold);color:#1a1a1a;border-color:var(--gold)}
+  .lvlsw{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+  .lvlsw .lv{font-size:11px;padding:5px 10px;border-radius:14px;background:var(--chip);color:var(--sub);
+           border:1px solid var(--line);text-decoration:none;font-weight:600;white-space:nowrap;transition:.12s}
+  .lvlsw .lv:hover{border-color:var(--gold2);color:var(--gold)}
+  .lvlsw .lv.cur{background:var(--gold);color:#1a1a1a;border-color:var(--gold);font-weight:800}
+  .phxlink{display:inline-block;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+           padding:6px 13px;border-radius:20px;font-size:12.5px;text-decoration:none;font-weight:600}
+  .phxlink:hover{background:var(--gold);color:#1a1a1a}
+  .stars{font-size:20px;letter-spacing:2px}
+  .bar{height:8px;width:160px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .globalbar{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+    background:rgba(15,20,36,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+    padding:8px 20px;margin-bottom:6px}
+  .globalbar label{font-size:13px;color:var(--sub);display:flex;gap:6px;align-items:center}
+  .globalbar select,.globalbar input{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+  .globalbar .recnote{margin-left:auto;font-size:12px;color:var(--gold)}
+  nav{display:flex;gap:8px;padding:6px 20px 0;flex-wrap:wrap}
+  nav button{background:var(--panel);color:var(--sub);border:1px solid var(--line);
+    padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;cursor:pointer;font-weight:600}
+  nav button.on{background:var(--panel2);color:var(--ink);border-bottom:2px solid var(--gold)}
+  nav a.navgram{display:inline-flex;align-items:center;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;font-weight:700;text-decoration:none;margin-left:auto}
+  main{padding:16px 20px 60px;max-width:1100px;margin:0 auto}
+  .tab{display:none}
+  .tab.on{display:block}
+  .beast{background:linear-gradient(135deg,#1b2b4d,#20294a);border:1px solid var(--line);
+    border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin-bottom:16px}
+  .beast .emoji{font-size:54px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+  .beast h2{margin:0 0 4px;font-size:18px}
+  .beast p{margin:2px 0;color:var(--sub);font-size:13px}
+  .grp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+  .grp-tabs button{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .grp-tabs button.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.2s}
+  .card.done{border-color:var(--green)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .w{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .ipa{color:var(--sub);font-size:13px;font-style:italic}
+  .badges{display:flex;gap:6px;margin:6px 0}
+  .badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--chip);color:var(--sub)}
+  .badge.pos{background:#2b3a6b;color:#bcd0ff}
+  .badge.band{background:#3a2f12;color:var(--gold)}
+  .badge.awl{background:#0d3b2e;color:#7ef0c0}
+  .badge.reg{background:#3a2440;color:#e6b8ff}
+  .def{font-size:14px;margin:4px 0;line-height:1.5}
+  .phrase{font-size:13px;color:var(--gold);margin:4px 0}
+  .usage{font-size:12.5px;color:var(--sub);line-height:1.65;margin:6px 0 2px;padding:6px 9px;border-left:2px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 6px 6px 0}
+  .ex{font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px;margin:6px 0;cursor:pointer}
+  .ex .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .ex .cn.hide{display:none}
+  .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .acts button{flex:1;border:none;border-radius:9px;padding:8px;font-size:13px;cursor:pointer;font-weight:600;min-width:60px}
+  .b-play{background:var(--chip);color:var(--ink)}
+  .b-shadow{background:var(--gold);color:#1a1a1a}
+  .b-master{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
+  .b-master.mastered{background:var(--green);color:#06281c}
+  .b-err{color:var(--gold);border:1px solid var(--gold2);flex:none;min-width:0;padding:8px 10px}
+  .mini{display:inline-flex;gap:4px;align-items:center}
+  .spk{background:none;border:none;color:var(--gold);font-size:18px;cursor:pointer;padding:0 4px}
+  .toggle{cursor:pointer;color:var(--gold)}
+  .sense{border-left:3px solid var(--line);padding:4px 0 4px 10px;margin:6px 0}
+  .sense.hiddenSense{display:none}
+  .defline{font-size:14px;line-height:1.5;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .exbox{display:none;margin-top:6px;font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px}
+  .exbox .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:12px;cursor:pointer;margin-top:6px;font-weight:600}
+  .player{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .player .now{font-size:18px;font-weight:700;margin-bottom:6px}
+  .player .nowcn{color:var(--sub);font-size:14px;margin-bottom:12px}
+  /* 跟读提示条：英文 + 中文译文同一横行，一眼看完 */
+  .nowrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:11px 14px;border:1px solid var(--gold2);border-radius:10px;background:rgba(245,197,66,.06);margin-bottom:12px}
+  .nowrow .now,.nowrow .nowcn{margin-bottom:0}
+  .nowrow .now{font-size:18px;font-weight:700}
+  .nowrow .nowcn{font-size:14px;color:var(--sub)}
+  .recbox{min-height:8px;margin:10px 0}
+  .recbox audio{width:100%}
+  .rec-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .ctr{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ctr button{background:var(--gold);color:#1a1a1a;border:none;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .ctr .ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .ctr button.recording{background:var(--red);color:#fff}
+  .coll{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .cbox .e{font-size:38px}
+  .cbox .n{font-weight:700;margin:6px 0 2px}
+  .cbox .s{color:var(--gold);font-size:14px;letter-spacing:1px}
+  .cbox.lock{opacity:.45;filter:grayscale(1)}
+  .hint{color:var(--sub);font-size:12px;margin-top:10px;line-height:1.6;width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word}
+  /* 通用提示框（原 .phx-tip，拼读移除后改名；句模页等仍在用） */
+  .tip{color:var(--sub);font-size:12px;line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:9px 12px;margin:0 0 12px}
+  .tip b{color:var(--ink)}
+  .streak{color:var(--gold);font-weight:700}
+  .banner{background:#2a1f12;border:1px solid var(--gold2);color:var(--gold);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:12px;display:none}
+  .subtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .subtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .turn{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}
+  .turn.recording{border-color:var(--red)}
+  .turn .role{font-weight:800;font-size:13px;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;flex:none}
+  .role-A{background:#2b3a6b;color:#bcd0ff}
+  .role-B{background:#3a2f12;color:var(--gold)}
+  .turn-text{flex:1;font-size:15px}
+  .turn-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  .turn-acts{display:flex;gap:6px;flex:none}
+  .turn-acts button{border:none;border-radius:8px;padding:7px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .turn-acts .b-play{background:var(--chip);color:var(--ink)}
+  .turn-acts .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  /* 录音提示/回放整行横向铺满，绝不被 flex 压成竖条 */
+  .turn-rec{display:block;width:100%;min-width:0;margin-top:8px;clear:both}
+  .turn-rec audio{width:100%}
+  .turn-rec .hint{white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.6;margin-top:0}
+  .exchange{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:10px;background:var(--panel2)}
+  .qa{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .qa-text{flex:1;min-width:170px;font-size:15px}
+  /* 中文译文与英文同行，形成横向长条，便于一次性扫读 */
+  .qa-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  /* 回应行：标签 + 句子 + 按钮全部同一横行 */
+  .resp{margin-top:8px;padding:8px 10px;border-left:3px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 8px 8px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .resp-label{font-size:12px;color:var(--gold);font-weight:700;flex:none}
+  .resp .qa-text{flex:1;min-width:180px}
+  .resp-acts{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .resp-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .resp-acts .b-play{background:var(--chip);color:var(--ink)}
+  .resp-acts .b-drill{background:var(--gold);color:#1a1a1a}
+  .q-opt.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  /* 阅读·听力 */
+  .rd-tip{color:var(--sub);font-size:12px;margin-bottom:8px}
+  .rd-playall{margin-bottom:10px}
+  .rd-sents{display:flex;flex-direction:column;gap:8px}
+  .rd-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .rd-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .rd-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .rd-sent .b-play,.rd-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .rd-sent .b-play{background:var(--chip);color:var(--ink)}
+  .rd-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .rd-qtitle{font-weight:700;margin:16px 0 8px;color:var(--gold)}
+  .rdtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .rdtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .rd-en.ls-masked{color:transparent;background:var(--panel2);border-radius:6px;user-select:none}
+  .listen-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .ls-tip{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:10px}
+  .ghostbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .ghostbtn:hover{border-color:var(--gold)}
+  .q{margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .q-q{font-size:14px;margin-bottom:6px}
+  .q-opts{display:flex;gap:8px;flex-wrap:wrap}
+  .q-opt{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);cursor:pointer;font-size:13px}
+  .q-fb{margin-top:6px;font-size:13px}
+  .q-opt.sel{border-color:var(--gold);background:#3a2f12;color:var(--gold)}
+  .q-input{width:100%;box-sizing:border-box;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);font-size:14px}
+  .quiz-prompt{font-size:16px;margin:6px 0 10px}
+  .quiz-prompt .big{font-size:24px;font-weight:800}
+  .quiz-prompt .tag{display:inline-block;margin-left:8px;font-size:11px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:1px 8px;vertical-align:middle}
+  /* 可点发音的词块：全局统一靠 data-say 绑定 */
+  .wchip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--gold);border-radius:9px;padding:3px 10px;font-weight:800;cursor:pointer;color:var(--ink)}
+  .wchip b{font-size:12px;color:var(--gold);font-weight:700}
+  .wchip:hover{background:var(--chip)}
+  .wchip.big{font-size:24px;padding:6px 14px}
+  .wchip.big b{font-size:15px}
+  .q-prog{height:8px;width:100%;background:var(--panel2);border-radius:6px;overflow:hidden;margin:8px 0}
+  .q-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .q-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:10px 0}
+  .q-opt{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;cursor:pointer;font-weight:600}
+  .q-opt:hover{border-color:var(--gold)}
+  .q-opt.ok{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-opt.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fb{font-size:14px;font-weight:700;min-height:20px;margin:8px 0}
+  .err-type{font-weight:800;color:var(--gold);margin:14px 0 8px;font-size:15px}
+  .err-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+  .err-meta{font-size:13px;color:var(--sub);margin-bottom:4px}
+  .err-line{font-size:14px;margin:2px 0}
+  .err-btns{display:flex;gap:8px;margin-top:8px}
+  .err-btns button{border:none;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .err-btns .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line)}
+  .err-btns .err-del{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+
+  /* ---- 本单元语法 tab（联动语法练习页） ---- */
+  .gramwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:4px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+         display:flex;flex-direction:column;gap:7px;transition:.15s}
+  .gcard:hover{border-color:var(--gold2);transform:translateY(-2px)}
+  .gcard .gi{font-size:22px;line-height:1}
+  .gcard .gname{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4}
+  .gcard .gdesc{font-size:12px;color:var(--sub);line-height:1.6}
+  .gcard .ggo{margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+              background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+              border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:700;
+              text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .gcard .ggo:hover{background:var(--gold);color:#1a1a1a}
+  .gcard .gdone{font-size:11px;color:var(--green)}
+  .gramhead{color:var(--sub);font-size:12.5px;line-height:1.75;margin-bottom:12px}
+  .gramhead b{color:var(--gold)}
+  .gramfoot{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+  .fr-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:14px}
+  .fr-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .fr-cn-head{font-size:13px;color:var(--sub);font-family:var(--mono);margin-bottom:10px}
+  .fr-slots{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .fr-slot{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--sub)}
+  .fr-slot select{min-width:130px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);
+                  background:var(--bg);color:var(--fg);font-size:13px}
+  .fr-sent{font-size:19px;line-height:1.5;color:var(--gold);font-weight:500;margin-bottom:6px}
+  .fr-cn{font-size:13px;color:var(--sub);margin-bottom:10px}
+  .fr-acts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .fr-tip{font-size:12px;color:var(--sub);line-height:1.65;border-top:1px dashed var(--line);padding-top:8px}
+
+  /* ---------- 单元文章 ---------- */
+  .art-para{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .art-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .art-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .art-en{flex:1;min-width:160px;font-size:15px;cursor:pointer;line-height:1.65}
+  .art-sent .b-play,.art-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .art-sent .b-play{background:var(--chip);color:var(--ink)}
+  .art-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .art-zh{width:100%;color:var(--sub);font-size:13px;line-height:1.6}
+  .art-hl{color:var(--gold);font-weight:700;border-bottom:1px dashed var(--gold2)}
+  .artmark{font-size:12px;margin-left:6px;opacity:.95}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🐉</div>
+  <div class="title">英语跟读学院 · B1
+    <small id="subtitle"></small>
+  </div>
+  <nav class="lvlsw" title="切换学习级别"><a class="lv hub" href="index.html" title="返回四级总站">🏛️ 总站</a><a class="lv" href="A1 启程线/index.html">🌱 A1</a><a class="lv" href="A2 主页.html">📗 A2</a><a class="lv cur" href="B1 主页.html">🌉 B1</a><a class="lv" href="B2 主页.html">🎓 B2</a></nav>
+  <a class="homebtn" href="B1 主页.html" title="返回 B1 过渡线主页英语学习网络主页">🏠 回主页</a>
+  <div class="grow"></div>
+  <div class="prog">
+    <span class="stars" id="starTop">☆☆☆</span>
+    <div class="bar"><i id="barTop"></i></div>
+    <span id="pctTop" style="color:var(--sub);font-size:13px">0%</span>
+  </div>
+</header>
+<div class="globalbar">
+  <label>🇬🇧 音色(英式优先) <select id="voiceSel"><option>默认(英式)</option></select></label>
+  <label>语速 <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.9"> <span id="rateVal">0.9×</span></label>
+  <span class="recnote" id="recNote"></span>
+</div>
+<nav>
+  <button data-tab="learn">📘 学习 B</button>
+  <button data-tab="frames">🧩 句模</button>
+  <button data-tab="review">🔁 复习 C</button>
+  <button data-tab="shadow">🎤 跟读·对话</button>
+  <button data-tab="reading">📖 阅读·听力</button>
+  <button data-tab="article" class="on">📰 单元文章</button>
+  <button data-tab="grammar">✍️ 本单元语法</button>
+  <button data-tab="quiz">📝 小测</button>
+  <button data-tab="errors">🩹 错题</button>
+  <button data-tab="codex">📜 图鉴</button>
+  <a class="navgram" href="语法练习_A1-A2-B1-B2.html" target="_blank" title="语法练习 A1→B2：U0/U1 一般现在时在「一般现在时」三组；like+doing 在「动词搭配」；频率副词在「副词」">🧩 语法 ↗</a>
+</nav>
+<main>
+  <!-- 句模：词 → 句 -->
+  <section class="tab" id="frames">
+    <div class="beast" style="padding:14px 18px">
+      <div class="emoji">🧩</div>
+      <div>
+        <h2>句模工坊 · 把词拼成自己的话</h2>
+        <p>词表是零件，句模是模具。换一个词、句子就变成你的 —— 先从这里张嘴，再回去记词。</p>
+      </div>
+    </div>
+    <div id="frWrap"></div>
+  </section>
+  <!-- 学习 B -->
+  <section class="tab" id="learn">
+    <div class="beast">
+      <div class="emoji" id="beastEmoji"></div>
+      <div>
+        <h2 id="beastName"></h2>
+        <p id="beastDesc"></p>
+        <p>打卡进度：<span class="streak" id="beastStreak"></span></p>
+      </div>
+    </div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnLearn">👁 开</span></label>
+    </div>
+    <div class="grp-tabs" id="grpLearn"></div>
+    <div class="grid" id="gridLearn"></div>
+    <div class="hint">双击例句可慢速（0.6×）跟读；点 🔊 听单词。卡片「🎤 跟读打卡」跳到单句跟读页并定位该词，「❌ 记一笔」把没记住的收进错题本。</div>
+  </section>
+
+  <!-- 复习 C -->
+  <section class="tab" id="review">
+    <div class="banner" id="revBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">自测模式 <span class="toggle" id="tgHideCn">🙈 隐藏中文</span></label>
+      <span style="color:var(--sub);font-size:12px">一词义一例句，点「看例句」展开；多义词点「更多 ▾」继续；每句可 🎤 跟读。</span>
+    </div>
+    <div class="grp-tabs" id="grpReview"></div>
+    <div class="grid" id="gridReview"></div>
+    <div class="hint">C 版释义已加厚：含【词性】+ 近义/反义 + 更完整场景。自测时隐藏中文，看英文回想起全部信息即过关。例句下的 🎤 跟读会跳到单句跟读页并定位该句。</div>
+  </section>
+
+  <!-- 跟读·对话 -->
+  <section class="tab" id="shadow">
+    <div class="banner" id="shBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-sh="dialog">💬 对话跟读</button>
+      <button class="subtab" data-sh="single">📝 单句跟读</button>
+      <span style="color:var(--sub);font-size:12px">对话跟读＝听问句→看回应句→录你自己的回答；单句跟读可打卡升星。</span>
+    </div>
+    <div id="shDialog"></div>
+    <div id="shSingle" style="display:none">
+      <div class="player">
+        <div class="nowrow" style="display:none">
+          <div class="now" id="shNow">准备开始…</div>
+          <div class="nowcn" id="shNowCn"></div>
+        </div>
+        <div class="hint" id="shProg" style="margin:0 0 12px">👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这里会出现回放音轨，和原声对比。</div>
+        <div class="recbox" id="shRecBox"></div>
+        <div class="ctr">
+          <button id="shPlay">▶ 听原声</button>
+          <button id="shRec">● 开始录音</button>
+          <button id="shStop" class="ghost">■ 停止</button>
+          <button id="shCheck" class="ghost">✓ 我已跟读打卡</button>
+          <button id="shPrev" class="ghost">⏮ 上一句</button>
+          <button id="shNext" class="ghost">⏭ 下一句</button>
+          <button id="shAuto" class="ghost">🔁 自动连播</button>
+          <label style="color:var(--sub);font-size:13px">跟读留白
+            <select id="shGap">
+              <option value="1500">1.5 秒</option>
+              <option value="2500" selected>2.5 秒</option>
+              <option value="4000">4 秒</option>
+              <option value="-1">手动</option>
+            </select>
+          </label>
+        </div>
+        <div class="hint" id="shHint">跟读流程：▶ 听原声 → ● 开始录音（读完后点 ■ 停止可回放对比）→ ✓ 打卡。连续打卡积累神兽星级。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本单元语法（联动语法练习页） -->
+    <!-- 单元文章：本单元生词的语境容器 -->
+  <section class="tab on" id="article">
+    <div class="banner" id="artBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="b-play" id="artPlayAll">🔊 听全篇</button>
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnArt">👁 开</span></label>
+      <label style="font-size:13px;color:var(--sub)">高亮生词 <span class="toggle" id="tgArtHL">👁 开</span></label>
+      <span style="color:var(--sub);font-size:12px">本单元生词已织进这篇短文，命中处标金色。点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。</span>
+    </div>
+    <div id="artBody"></div>
+  </section>
+
+  <section class="tab" id="grammar">
+    <div class="gramhead" id="gramHead"></div>
+    <div class="gramwrap" id="gramList"></div>
+    <div class="gramfoot">
+      <a class="phxlink" id="gramAll" target="_blank" rel="noopener">✍️ 打开英语语法练习全册 →</a>
+      <span class="hint" style="margin-top:0">点任一关，直接跳到语法练习里<b>这一个点</b>的知识卡（一次只学一个点）。练完回来，跟读这边会自动记一笔。</span>
+    </div>
+  </section>
+
+  <!-- 阅读·听力 -->
+  <section class="tab" id="reading">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="rdtab on" data-rd="read">📖 阅读</button>
+      <button class="rdtab" data-rd="listen">🎧 听力</button>
+      <span style="color:var(--sub);font-size:12px">阅读＝看文本做小题；<b style="color:var(--gold)">听力＝先盲听、再答题</b>，听不懂可调慢顶部语速或点「👀 看文本」。<b style="color:var(--gold)">🇨🇳</b> ＝中国主题篇。</span>
+    </div>
+
+    <div id="rdReadWrap">
+      <div class="banner" id="rdBanner"></div>
+      <div class="grp-tabs" id="rdPassages" style="margin-bottom:10px"></div>
+      <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+        <span id="rdHint" style="color:var(--sub);font-size:12px"></span>
+      </div>
+      <div id="rdText"></div>
+      <div id="rdQuiz"></div>
+    </div>
+
+    <div id="rdListenWrap" style="display:none">
+      <div class="banner" id="lsBanner"></div>
+      <div class="grp-tabs" id="lsPassages" style="margin-bottom:10px"></div>
+      <div class="listen-box">
+        <div class="ls-tip">🎧 <b>盲听三步</b>：① 点「▶ 听全篇」（顶部语速可调慢）→ ② 做下面小题 → ③ 不会就点「👀 看文本」对照，再听一遍。每句都可单点 🔊 重听、🎤 跟读。答错自动进错题本。</div>
+        <div class="rd-playall" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="b-play" id="lsPlayAll">▶ 听全篇</button>
+          <button id="lsReplay" class="ghostbtn">🔁 再听一遍</button>
+          <button id="lsReveal" class="ghostbtn">👀 看文本</button>
+        </div>
+        <div class="rd-sents" id="lsSents"></div>
+      </div>
+      <div id="lsQuiz"></div>
+    </div>
+  </section>
+
+  <!-- 小测 -->
+  <section class="tab" id="quiz">
+    <div class="hint" style="margin-bottom:10px">主动回忆：听音选义 / 看词选义 / 看义选词 三类随机混出，答错自动记入「🩹 错题」。每轮覆盖本单元全部词。</div>
+    <div id="quizBox"></div>
+  </section>
+
+  <!-- 错题 -->
+  <section class="tab" id="errors">
+    <div class="hint" style="margin-bottom:10px">统一错误池（schema：话题/层级/类型/原文/标准答/学生答/时间）。词卡「记一笔」或「小测答错」自动汇总到这里，按类型聚合，可重练或删除。</div>
+    <div id="errList"></div>
+  </section>
+
+  <!-- 神兽图鉴 -->
+  <section class="tab" id="codex">
+    <div class="coll" id="codexGrid"></div>
+    <div class="hint">13 个板块 = 13 只神兽。本单元神兽已解锁，掌握度越高星级越多。其余神兽可从 <a href="B1 主页.html" style="color:var(--gold)">B1 目录</a> 进入对应单元解锁。</div>
+  </section>
+</main>
+
+<script>
+const DATA = {"unit":7,"title":"Our City","subtitle":"交通公共 · 城市服务（政府线 1/3）","beast_emoji":"🏙️","beast_name":"治巷之灵","groups":[{"name":"城市名词","words":[{"word":"traffic","ipa":"/ˈtræfɪk/","pos":"n.","cef":"B1","band":"zipf 4.3 · 高频","defB":"交通；车流","phrase":"heavy traffic","phraseDef":"拥挤的车流","ex":"The traffic is heavy at eight in the morning.","exCn":"早上八点交通很拥挤。","defC":"交通；车流","awl":"—","register":"daily","senses":[{"def":"交通；车流","ex":"The traffic is heavy at eight in the morning.","exCn":"早上八点交通很拥挤。","syn":"transport","ant":"—"}],"inArt":1},{"word":"park","ipa":"/pɑːk/","pos":"n.","cef":"A2","band":"zipf 4.6 · 高频","defB":"公园","phrase":"a community park","phraseDef":"社区公园","ex":"The park near my home is free for everyone.","exCn":"我家附近的公园对所有人免费。","defC":"公园","awl":"—","register":"daily","senses":[{"def":"公园","ex":"The park near my home is free for everyone.","exCn":"我家附近的公园对所有人免费。","syn":"garden","ant":"—"}],"inArt":1},{"word":"bus","ipa":"/bʌs/","pos":"n.","cef":"A2","band":"zipf 5.0 · 高频","defB":"公交车","phrase":"take the bus","phraseDef":"乘坐公交","ex":"I take the bus to school every day.","exCn":"我每天坐公交上学。","defC":"公交车","awl":"—","register":"daily","senses":[{"def":"公交车","ex":"I take the bus to school every day.","exCn":"我每天坐公交上学。","syn":"coach","ant":"—"}],"inArt":1},{"word":"hospital","ipa":"/ˈhɒspɪtl/","pos":"n.","cef":"A2","band":"zipf 4.2 · 高频","defB":"医院","phrase":"a city hospital","phraseDef":"市立医院","ex":"The new hospital opened near our station.","exCn":"新医院在我们地铁站附近开了。","defC":"医院","awl":"—","register":"daily","senses":[{"def":"医院","ex":"The new hospital opened near our station.","exCn":"新医院在我们地铁站附近开了。","syn":"clinic","ant":"—"}],"inArt":1},{"word":"library","ipa":"/ˈlaɪbrəri/","pos":"n.","cef":"A2","band":"zipf 4.1 · 高频","defB":"图书馆","phrase":"a public library","phraseDef":"公共图书馆","ex":"The library opens at nine and closes at eight.","exCn":"图书馆九点开门，八点关门。","defC":"图书馆","awl":"—","register":"daily","senses":[{"def":"图书馆","ex":"The library opens at nine and closes at eight.","exCn":"图书馆九点开门，八点关门。","syn":"—","ant":"—"}],"inArt":1},{"word":"station","ipa":"/ˈsteɪʃn/","pos":"n.","cef":"A2","band":"zipf 4.8 · 高频","defB":"车站","phrase":"a metro station","phraseDef":"地铁站","ex":"Our metro station has four exits.","exCn":"我们地铁站有四个出口。","defC":"车站","awl":"—","register":"daily","senses":[{"def":"车站","ex":"Our metro station has four exits.","exCn":"我们地铁站有四个出口。","syn":"stop","ant":"—"}],"inArt":1}]},{"name":"公共动词","words":[{"word":"build","ipa":"/bɪld/","pos":"v.","cef":"A2","band":"zipf 4.4 · 高频","defB":"建造","phrase":"build a park","phraseDef":"建公园","ex":"The city will build two new parks this year.","exCn":"这座城市今年将建两个新公园。","defC":"建造","awl":"—","register":"daily","senses":[{"def":"建造","ex":"The city will build two new parks this year.","exCn":"这座城市今年将建两个新公园。","syn":"construct","ant":"destroy"}],"inArt":1},{"word":"repair","ipa":"/rɪˈpeə/","pos":"v.","cef":"B1","band":"zipf 4.0 · 高频","defB":"修理；修缮","phrase":"repair the road","phraseDef":"修路","ex":"Workers repair the road every summer.","exCn":"工人每年夏天修这条路。","defC":"修理；修缮","awl":"—","register":"daily","senses":[{"def":"修理；修缮","ex":"Workers repair the road every summer.","exCn":"工人每年夏天修这条路。","syn":"fix","ant":"break"}],"inArt":1},{"word":"clean","ipa":"/kliːn/","pos":"v.","cef":"A2","band":"zipf 4.5 · 高频","defB":"清洁","phrase":"clean the street","phraseDef":"清扫街道","ex":"Students clean the park on weekends.","exCn":"学生们周末打扫公园。","defC":"清洁","awl":"—","register":"daily","senses":[{"def":"清洁","ex":"Students clean the park on weekends.","exCn":"学生们周末打扫公园。","syn":"wash","ant":"pollute"}],"inArt":1},{"word":"provide","ipa":"/prəˈvaɪd/","pos":"v.","cef":"B1","band":"zipf 4.3 · 高频","defB":"提供","phrase":"provide a service","phraseDef":"提供服务","ex":"The city provides free buses for students.","exCn":"这座城市为学生提供免费公交。","defC":"提供","awl":"—","register":"daily","senses":[{"def":"提供","ex":"The city provides free buses for students.","exCn":"这座城市为学生提供免费公交。","syn":"supply","ant":"—"}],"inArt":1},{"word":"improve","ipa":"/ɪmˈpruːv/","pos":"v.","cef":"B1","band":"zipf 4.2 · 高频","defB":"改善","phrase":"improve safety","phraseDef":"提升安全","ex":"The new lights improve safety at night.","exCn":"新路灯改善了夜间安全。","defC":"改善","awl":"—","register":"daily","senses":[{"def":"改善","ex":"The new lights improve safety at night.","exCn":"新路灯改善了夜间安全。","syn":"better","ant":"worsen"}],"inArt":1},{"word":"protect","ipa":"/prəˈtekt/","pos":"v.","cef":"B1","band":"zipf 4.1 · 高频","defB":"保护","phrase":"protect the environment","phraseDef":"保护环境","ex":"Trees protect the street from the hot sun.","exCn":"树木为街道遮挡烈日。","defC":"保护","awl":"—","register":"daily","senses":[{"def":"保护","ex":"Trees protect the street from the hot sun.","exCn":"树木为街道遮挡烈日。","syn":"guard","ant":"damage"}],"inArt":1}]},{"name":"便利形容词","words":[{"word":"convenient","ipa":"/kənˈviːniənt/","pos":"adj.","cef":"B1","band":"zipf 4.0 · 高频","defB":"便利的","phrase":"a convenient location","phraseDef":"位置便利","ex":"The metro is convenient for going downtown.","exCn":"坐地铁去市中心很方便。","defC":"便利的","awl":"—","register":"daily","senses":[{"def":"便利的","ex":"The metro is convenient for going downtown.","exCn":"坐地铁去市中心很方便。","syn":"handy","ant":"inconvenient"}],"inArt":1},{"word":"clean","ipa":"/kliːn/","pos":"adj.","cef":"A2","band":"zipf 4.8 · 高频","defB":"干净的","phrase":"clean and quiet","phraseDef":"干净安静","ex":"The new buses are clean and quiet.","exCn":"新公交干净又安静。","defC":"干净的","awl":"—","register":"daily","senses":[{"def":"干净的","ex":"The new buses are clean and quiet.","exCn":"新公交干净又安静。","syn":"tidy","ant":"dirty"}],"inArt":1},{"word":"safe","ipa":"/seɪf/","pos":"adj.","cef":"A2","band":"zipf 4.9 · 高频","defB":"安全的","phrase":"feel safe","phraseDef":"感到安全","ex":"The street feels safe after the new lights.","exCn":"新路灯让这条街感觉安全了。","defC":"安全的","awl":"—","register":"daily","senses":[{"def":"安全的","ex":"The street feels safe after the new lights.","exCn":"新路灯让这条街感觉安全了。","syn":"secure","ant":"dangerous"}],"inArt":1},{"word":"crowded","ipa":"/ˈkraʊdɪd/","pos":"adj.","cef":"B1","band":"zipf 4.0 · 高频","defB":"拥挤的","phrase":"a crowded bus","phraseDef":"拥挤的公交","ex":"The bus is crowded at seven o'clock.","exCn":"七点钟公交很挤。","defC":"拥挤的","awl":"—","register":"daily","senses":[{"def":"拥挤的","ex":"The bus is crowded at seven o'clock.","exCn":"七点钟公交很挤。","syn":"packed","ant":"empty"}],"inArt":1},{"word":"modern","ipa":"/ˈmɒdn/","pos":"adj.","cef":"A2","band":"zipf 4.3 · 高频","defB":"现代的","phrase":"a modern building","phraseDef":"现代建筑","ex":"The modern library has a quiet reading room.","exCn":"这座现代图书馆有安静的阅览室。","defC":"现代的","awl":"—","register":"daily","senses":[{"def":"现代的","ex":"The modern library has a quiet reading room.","exCn":"这座现代图书馆有安静的阅览室。","syn":"new","ant":"old"}],"inArt":1},{"word":"quiet","ipa":"/ˈkwaɪət/","pos":"adj.","cef":"A2","band":"zipf 4.6 · 高频","defB":"安静的","phrase":"a quiet street","phraseDef":"安静的街道","ex":"The park is quiet early in the morning.","exCn":"清晨的公园很安静。","defC":"安静的","awl":"—","register":"daily","senses":[{"def":"安静的","ex":"The park is quiet early in the morning.","exCn":"清晨的公园很安静。","syn":"silent","ant":"noisy"}],"inArt":1}]},{"name":"因果与转折衔接","words":[{"word":"because","ipa":"/bɪˈkɒz/","pos":"conj.","cef":"A2","band":"zipf 5.6 · 高频","defB":"因为（后接句子）","phrase":"because of the rain","phraseDef":"因为下雨","ex":"I walk to school because the bus is full.","exCn":"我走路上学，因为公交太满了。","defC":"因为（后接句子）","awl":"—","register":"daily","senses":[{"def":"因为（后接句子）","ex":"I walk to school because the bus is full.","exCn":"我走路上学，因为公交太满了。","syn":"since","ant":"—"}],"inArt":1,"usage":"because 后面必须跟完整句子：because it rained。只跟名词时用 because of：because of the rain。口语常用 now / and，书面用 therefore。"},{"word":"so","ipa":"/səʊ/","pos":"conj.","cef":"A2","band":"zipf 5.8 · 高频","defB":"所以","phrase":"so we took the metro","phraseDef":"所以我们坐了地铁","ex":"It was raining, so we took the metro.","exCn":"下雨了，所以我们坐了地铁。","defC":"所以","awl":"—","register":"daily","senses":[{"def":"所以","ex":"It was raining, so we took the metro.","exCn":"下雨了，所以我们坐了地铁。","syn":"therefore","ant":"—"}],"inArt":1},{"word":"therefore","ipa":"/ˈðeəfɔː/","pos":"adv.","cef":"B1","band":"B1 · 必会","defB":"因此；所以（书面，正式）","phrase":"therefore, ride a bike","phraseDef":"因此骑车吧","ex":"The roads are busy; therefore, ride a bike.","exCn":"路很堵；因此，骑车吧。","defC":"因此；所以（书面，正式）","awl":"—","register":"daily","senses":[{"def":"因此；所以（书面，正式）","ex":"The roads are busy; therefore, ride a bike.","exCn":"路很堵；因此，骑车吧。","syn":"thus","ant":"—"}],"inArt":1,"usage":"therefore 是书面正式词，后面常跟逗号：..., therefore, ...。口语里说 so：It rained, so we stayed in."},{"word":"however","ipa":"/haʊˈevə/","pos":"adv.","cef":"B1","band":"B1 · 必会","defB":"然而；不过","phrase":"however, …","phraseDef":"然而……","ex":"The park is old; however, children love it.","exCn":"公园旧了；然而，孩子们喜欢它。","defC":"然而；不过","awl":"—","register":"daily","senses":[{"def":"然而；不过","ex":"The park is old; however, children love it.","exCn":"公园旧了；然而，孩子们喜欢它。","syn":"but","ant":"—"}],"inArt":1,"usage":"however 后要有逗号，前后都可以放，但句子重心不变。注意它不接句子（不能写 however it rained）。"},{"word":"although","ipa":"/ɔːlˈðəʊ/","pos":"conj.","cef":"B1","band":"B1 · 必会","defB":"尽管；虽然","phrase":"although it is late","phraseDef":"尽管很晚了","ex":"Although it is late, the metro is still full.","exCn":"尽管很晚了，地铁还是满的。","defC":"尽管；虽然","awl":"—","register":"daily","senses":[{"def":"尽管；虽然","ex":"Although it is late, the metro is still full.","exCn":"尽管很晚了，地铁还是满的。","syn":"though","ant":"—"}],"inArt":1,"usage":"引导让步状语从句，不能单独成句：Although it is expensive, it works.though 意思相同但更常放在句尾（It is expensive, though.）。"},{"word":"if","ipa":"/ɪf/","pos":"conj.","cef":"A2","band":"zipf 5.7 · 高频","defB":"如果","phrase":"if it rains","phraseDef":"如果下雨","ex":"If it rains, the streets get busier.","exCn":"如果下雨，街道会更堵。","defC":"如果","awl":"—","register":"daily","senses":[{"def":"如果","ex":"If it rains, the streets get busier.","exCn":"如果下雨，街道会更堵。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"城市服务与学术词","words":[{"word":"area","ipa":"/ˈeəriə/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"地区；区域","phrase":"a residential area","phraseDef":"居民区","ex":"This area has three parks and two libraries.","exCn":"这个区域有三座公园和两座图书馆。","defC":"地区；区域","awl":"1","register":"academic","senses":[{"def":"地区；区域","ex":"This area has three parks and two libraries.","exCn":"这个区域有三座公园和两座图书馆。","syn":"district","ant":"—"}],"inArt":1},{"word":"policy","ipa":"/ˈpɒləsi/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"政策","phrase":"a parking policy","phraseDef":"停车政策","ex":"The city has a new parking policy.","exCn":"这座城市有新的停车政策。","defC":"政策","awl":"1","register":"academic","senses":[{"def":"政策","ex":"The city has a new parking policy.","exCn":"这座城市有新的停车政策。","syn":"rule","ant":"—"}],"inArt":1},{"word":"benefit","ipa":"/ˈbenɪfɪt/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"好处","phrase":"a clear benefit","phraseDef":"明显的好处","ex":"One benefit of the metro is its speed.","exCn":"地铁的一个好处是速度快。","defC":"好处","awl":"1","register":"academic","senses":[{"def":"好处","ex":"One benefit of the metro is its speed.","exCn":"地铁的一个好处是速度快。","syn":"advantage","ant":"drawback"}],"inArt":1},{"word":"issue","ipa":"/ˈɪʃuː/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"问题","phrase":"a big issue","phraseDef":"大问题","ex":"Traffic is a big issue in our city.","exCn":"交通是我们城市的大问题。","defC":"问题","awl":"1","register":"academic","senses":[{"def":"问题","ex":"Traffic is a big issue in our city.","exCn":"交通是我们城市的大问题。","syn":"problem","ant":"—"}],"inArt":1},{"word":"require","ipa":"/rɪˈkwaɪə/","pos":"v.","cef":"B1","band":"AWL 4 · 学术","defB":"需要；要求","phrase":"require riders to park","phraseDef":"要求骑行者停车","ex":"Riders require a phone to unlock a shared bike.","exCn":"骑行者需要手机来解锁共享单车。","defC":"需要；要求","awl":"4","register":"academic","senses":[{"def":"需要；要求","ex":"Riders require a phone to unlock a shared bike.","exCn":"骑行者需要手机来解锁共享单车。","syn":"need","ant":"—"}],"inArt":1},{"word":"service","ipa":"/ˈsɜːvɪs/","pos":"n.","cef":"B1","band":"zipf 4.4 · 高频","defB":"服务","phrase":"public services","phraseDef":"公共服务","ex":"The bus service here is quick and cheap.","exCn":"这里的公交服务又快又便宜。","defC":"服务","awl":"—","register":"daily","senses":[{"def":"服务","ex":"The bus service here is quick and cheap.","exCn":"这里的公交服务又快又便宜。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"出行场景词","words":[{"word":"metro","ipa":"/ˈmetrəʊ/","pos":"n.","cef":"B1","band":"zipf 4.2 · 高频","defB":"地铁","phrase":"take the metro","phraseDef":"坐地铁","ex":"The metro runs every five minutes.","exCn":"地铁每五分钟一趟。","defC":"地铁","awl":"—","register":"daily","senses":[{"def":"地铁","ex":"The metro runs every five minutes.","exCn":"地铁每五分钟一趟。","syn":"underground","ant":"—"}],"inArt":1},{"word":"bike","ipa":"/baɪk/","pos":"n.","cef":"A2","band":"zipf 4.7 · 高频","defB":"自行车","phrase":"ride a bike","phraseDef":"骑车","ex":"I ride my bike to the park on Sundays.","exCn":"周日我骑车去公园。","defC":"自行车","awl":"—","register":"daily","senses":[{"def":"自行车","ex":"I ride my bike to the park on Sundays.","exCn":"周日我骑车去公园。","syn":"bicycle","ant":"—"}],"inArt":1},{"word":"taxi","ipa":"/ˈtæksi/","pos":"n.","cef":"A2","band":"zipf 4.0 · 高频","defB":"出租车","phrase":"take a taxi","phraseDef":"打车","ex":"A taxi is fast but often expensive.","exCn":"出租车快，但常常贵。","defC":"出租车","awl":"—","register":"daily","senses":[{"def":"出租车","ex":"A taxi is fast but often expensive.","exCn":"出租车快，但常常贵。","syn":"cab","ant":"—"}],"inArt":1},{"word":"crossing","ipa":"/ˈkrɒsɪŋ/","pos":"n.","cef":"B1","band":"zipf 3.9 · 高频","defB":"人行横道；路口","phrase":"at the crossing","phraseDef":"在路口","ex":"Wait for the green light at the crossing.","exCn":"在路口等绿灯。","defC":"人行横道；路口","awl":"—","register":"daily","senses":[{"def":"人行横道；路口","ex":"Wait for the green light at the crossing.","exCn":"在路口等绿灯。","syn":"intersection","ant":"—"}],"inArt":1},{"word":"exit","ipa":"/ˈeksɪt/","pos":"n.","cef":"A2","band":"zipf 4.1 · 高频","defB":"出口","phrase":"Exit B","phraseDef":"B 出口","ex":"Take Exit B to reach the hospital.","exCn":"从 B 出口出去就能到医院。","defC":"出口","awl":"—","register":"daily","senses":[{"def":"出口","ex":"Take Exit B to reach the hospital.","exCn":"从 B 出口出去就能到医院。","syn":"way out","ant":"entrance"}],"inArt":1},{"word":"subway","ipa":"/ˈsʌbweɪ/","pos":"n.","cef":"A2","band":"zipf 3.8 · 高频","defB":"地铁（美式说法）","phrase":"the subway line","phraseDef":"地铁线路","ex":"The subway stops under the city square.","exCn":"地铁停在城市广场下面。","defC":"地铁（美式说法）","awl":"—","register":"daily","senses":[{"def":"地铁（美式说法）","ex":"The subway stops under the city square.","exCn":"地铁停在城市广场下面。","syn":"metro","ant":"—"}],"inArt":1}]}],"dialogues":[{"title":"哪路车去医院","focus":"bus · hospital · crossing","turns":[{"role":"A","en":"Excuse me, does this bus go to the City Hospital?","cn":"请问，这路车去市医院吗？"},{"role":"B","en":"No, this one goes to the library. You need Bus 12.","cn":"不去，这路去图书馆。你得坐12路。"},{"role":"A","en":"Where can I catch Bus 12?","cn":"我在哪儿坐12路？"},{"role":"B","en":"At the next crossing. The stop is right outside the park.","cn":"在下一个路口，站台就在公园外面。"},{"role":"A","en":"How long does it take?","cn":"要多久？"},{"role":"B","en":"About twenty minutes, because the traffic is heavy today.","cn":"大概二十分钟，因为今天路上很堵。"},{"role":"A","en":"Is there a faster way?","cn":"有更快的方式吗？"},{"role":"B","en":"The metro is faster, but the station is two blocks away.","cn":"地铁更快，但车站在两个街区外。"},{"role":"A","en":"Then I will take the metro. Thanks for your help!","cn":"那我去坐地铁。谢谢你的帮忙！"}]},{"title":"公园里全是垃圾","focus":"clean · repair · improve","turns":[{"role":"A","en":"Look at this park. There is litter everywhere.","cn":"看看这个公园，到处都是垃圾。"},{"role":"B","en":"Yes, and the swings are broken. Nobody repairs them.","cn":"是啊，秋千也坏了，没人修。"},{"role":"A","en":"My grandmother used to exercise here every morning.","cn":"我奶奶以前每天早上在这里锻炼。"},{"role":"B","en":"The benches are old, so elderly people sit at home instead.","cn":"长椅旧了，所以老人家都改坐在家里。"},{"role":"A","en":"Should we tell someone?","cn":"我们要不要告诉谁？"},{"role":"B","en":"Yes, our community office takes reports like this.","cn":"要，社区办公室受理这类反映。"},{"role":"A","en":"Let us write a short note with photos.","cn":"我们写个简短的说明，配上照片。"},{"role":"B","en":"Good idea. We can also ask classmates to help clean it.","cn":"好主意。我们还可以叫同学帮忙打扫。"},{"role":"A","en":"A clean park is safer and more fun for children.","cn":"干净的公园对孩子更安全、更好玩。"},{"role":"B","en":"Exactly. Small actions improve our neighbourhood.","cn":"没错。小小的行动能改善我们的社区。"}]},{"title":"地铁为什么这么挤","focus":"metro · crowded · policy","turns":[{"role":"Teacher","en":"You asked why the metro is so crowded in the morning.","cn":"你问为什么早上地铁这么挤。"},{"role":"Student","en":"Yes. It is hard to get on the train at eight.","cn":"是的，八点钟很难挤上车。"},{"role":"Teacher","en":"Many people take the metro because it is fast and cheap.","cn":"很多人坐地铁，因为它又快又便宜。"},{"role":"Student","en":"So the city should add more trains?","cn":"那城市应该加开列车吗？"},{"role":"Teacher","en":"That helps, but new lines take years to build.","cn":"那有用，但新线路要很多年才能建成。"},{"role":"Student","en":"What about buses?","cn":"公交呢？"},{"role":"Teacher","en":"More buses can share the traffic, but they get stuck in jams.","cn":"更多公交可以分担客流，但它们也会堵在路上。"},{"role":"Student","en":"I read that some cities use a parking policy to reduce cars.","cn":"我读到有些城市用停车政策来减少私家车。"},{"role":"Teacher","en":"Right. If driving becomes expensive, more people choose the metro.","cn":"对。如果开车变贵，更多人就会选地铁。"},{"role":"Student","en":"Then the streets and the trains both improve.","cn":"那样街道和地铁就都改善了。"}]}],"reading":[{"title":"The Day the Bus Came to Our Street（公交开进老街那天）","focus":"bus · repair · community","meta":"记叙文 · 194词 · 衔接4处 · 中国主题 · 日常语域","genre":"记叙文","china":true,"sentences":["For twenty years, my grandmother walked to the market with heavy bags.","The nearest bus stop was far from our old neighborhood.","Every morning she left at six and returned home before the hot sun.","In winter, the long walk was slow and the bags felt even heavier.","Then, last spring, the city announced a new bus line for our area.","Bus 27 would stop right in front of our community gate.","At first, nobody believed the notice on the old red wall.","Some people said the narrow street was too small for a big bus.","However, the city sent workers to repair the road and build a shelter.","They also painted a safe crossing so children could reach the stop.","On the first morning, my grandmother stood waiting at the community gate.","The bus arrived at seven, and the friendly driver waved hello.","Now the ride to the market takes only ten short minutes.","The same bus also reaches the hospital, so family trips are much easier.","Young people can ride it to the metro station beside the park.","One new bus line changed daily life for hundreds of families in our street."],"questions":[{"type":"fb","q":"At first, nobody believed the ___ on the old red wall.","answer":"notice","accept":["notice","sign"]},{"type":"fb","q":"They also painted a safe ___ so children could reach the stop.","answer":"crossing","accept":["crossing"]},{"type":"mc","q":"How did the grandmother go to the market for twenty years?","opts":["She walked with heavy bags","She took Bus 27 every day","She rode a bike in winter"],"answer":0},{"type":"mc","q":"What did the city do before the new bus started?","opts":["It built a new hospital","It repaired the road and built a shelter","It closed the market"],"answer":1},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["The bus stop used to be far from the neighborhood","Workers painted a safe crossing","The bus also reaches the hospital","The street was wide enough for many buses"],"answers":[0,1,2]},{"type":"tf","q":"The ride to the market now takes about an hour.","answer":1}]},{"title":"The Swing That Came Back（秋千回来了）","focus":"repair · community · protect","meta":"记叙文 · 191词 · 衔接5处 · 日常语域","genre":"记叙文","china":false,"sentences":["Anna walked through the park near her home every day after school.","Her favourite place was the old wooden swing near the entrance.","One cold Monday, she saw that one seat was broken.","A sharp chain hung down, and smaller children could get hurt.","She told her teacher, and the whole class decided to do something about it.","First, they took clear photos of the swing and the broken chain.","Then they wrote a short polite letter to the city park office.","In the letter, they explained the danger and asked for a quick repair.","Two long weeks passed, and nothing at all seemed to happen.","However, the students did not give up so easily.","They put the photos on the school website and asked families for help.","A local newspaper read the story and wrote about the class.","The next month, workers arrived with new chains and a fresh seat.","They also repaired the small gate and cleaned the sand pit.","Now children play there safely, and the old swing is busy every single afternoon.","Anna learned that one small letter from one class can really change a whole street."],"questions":[{"type":"fb","q":"Then they wrote a short polite letter to the city park ___.","answer":"office","accept":["office"]},{"type":"fb","q":"A sharp ___ hung down, and smaller children could get hurt.","answer":"chain","accept":["chain"]},{"type":"mc","q":"What was wrong with the swing?","opts":["One seat was broken","It was too small","It was painted badly"],"answer":0},{"type":"mc","q":"What did the workers do when they finally arrived?","opts":["They removed the swing","They brought new chains and a fresh seat","They closed the park"],"answer":1},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["The class took photos of the broken swing","A newspaper wrote about the class","Workers cleaned the sand pit","The city never repaired the swing"],"answers":[0,1,2]},{"type":"tf","q":"Anna's class received money from the city for the photos.","answer":2}]},{"title":"How the Metro Keeps a City Moving（地铁怎样让城市运转）","focus":"metro · station · service","meta":"说明文 · 193词 · 衔接6处 · 中国主题 · 日常语域","genre":"说明文","china":true,"sentences":["The metro is the busiest way to travel in many big cities today.","In China, several huge metro networks carry millions of people every single day.","A metro train can move as many people as ten busy bus lines.","That is why big cities keep building new lines and stations.","The whole system has three simple but important parts: tracks, trains and stations.","Tracks carry the trains, and stations are the doors into the network.","Most stations have several exits, so passengers can reach different streets.","Inside a station, bright signs show the direction of every single line.","Passengers change lines at transfer stations like the big one downtown.","A transfer can feel confusing, but colour maps make it much easier.","Trains come very often, usually every two to five minutes.","However, the morning and evening peak hours are extremely crowded.","The city asks people to give up their seats to elderly passengers and parents with babies.","Engineers check the tracks and signals at night, after the last train.","For a student, the metro turns a two-hour trip into forty minutes.","When the metro runs well, streets have fewer cars and cleaner air."],"questions":[{"type":"fb","q":"Most stations have several ___, so passengers can reach different streets.","answer":"exits","accept":["exits"]},{"type":"fb","q":"A metro train can move as many people as ten busy ___ lines.","answer":"bus","accept":["bus"]},{"type":"mc","q":"What are the three simple parts of the metro system?","opts":["Tracks, trains and stations","Buses, taxis and bikes","Signs, maps and tickets"],"answer":0},{"type":"mc","q":"Why do big cities keep building new metro lines?","opts":["Because the metro moves a huge number of people","Because trains are cheap to build","Because buses are too fast"],"answer":0},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["Several Chinese metro networks carry millions of people daily","Passengers change lines at transfer stations","Trains usually come every two to five minutes","The metro makes streets have more cars"],"answers":[0,1,2]},{"type":"tf","q":"For a student, the metro turns a two-hour trip into forty minutes.","answer":0}]},{"title":"Why Cities Need Parks（城市为什么需要公园）","focus":"park · benefit · protect","meta":"说明文 · 198词 · 衔接7处 · 日常语域","genre":"说明文","china":false,"sentences":["A park is much more than a pretty place for a Sunday walk.","Parks do real and important work for a city, and that work is easy to miss.","First, trees cool the air, so a park can be several degrees cooler.","On a very hot day, that cool air offers a rest from hot streets.","Second, parks clean the air because green leaves catch dust and pollution.","A city with many trees and parks often has fewer breathing problems.","Third, parks give people a free place to walk, run and play.","Children can exercise there happily without paying for a gym.","Parks also bring neighbours together at weekend markets, concerts and festivals.","A bench under an old tree is a quiet meeting place for friends.","In addition, park grass drinks rain like a soft green sponge.","That helps the streets flood much less after a heavy summer storm.","However, a park needs regular care: cleaning, watering and safe equipment.","When a city protects its parks, everyone living in the area benefits.","Good parks are not a luxury; they are a real part of city services.","The next time you visit one, remember the quiet work around you."],"questions":[{"type":"fb","q":"Second, parks clean the air because green leaves catch dust and ___.","answer":"pollution","accept":["pollution"]},{"type":"fb","q":"In addition, park grass drinks rain like a soft green ___.","answer":"sponge","accept":["sponge"]},{"type":"mc","q":"What is the first work of parks mentioned in the passage?","opts":["Cooling the air","Cleaning the air","Bringing neighbours together"],"answer":0},{"type":"mc","q":"Why does the writer mention gyms?","opts":["To show parks give a free place to exercise","To say gyms are dangerous","To advise people to buy gym cards"],"answer":0},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["A park can be several degrees cooler than the streets","Parks help streets flood less after storms","Parks need regular care","Parks are a luxury cities can ignore"],"answers":[0,1,2]},{"type":"tf","q":"The writer says parks are a real part of city services.","answer":0}]},{"title":"It Can Be Argued That Shared Bikes Help Our City（共享单车让城市更好）","focus":"bike · require · policy","meta":"论说文 · 206词 · 衔接8处 · 中国主题 · 学术语域","genre":"论说文","china":true,"sentences":["Some people think shared bikes are just a fashion that will soon pass.","They say the bikes block pavements and look messy in front of shops.","However, in many Chinese cities, shared bikes have become part of daily life.","It can be argued that they help the city in three clear ways.","First, a bike solves the last kilometre between a station and home.","Without it, many people would take a taxi or drive instead.","Second, short bike trips replace short car trips, so streets carry less traffic.","For example, a two-kilometre ride to the market needs no parking space.","Third, riding a bike is gentle exercise for busy students and workers.","On the other hand, the problems are real, and the city should not ignore them.","Badly parked bikes can block elderly people and even cause small accidents.","Therefore, many cities now require riders to park in marked bays.","Apps also add a small fee when a bike is left in the wrong place.","Some companies repair old bikes quickly and remove broken ones from streets.","It can be argued that good rules turn a messy problem into a useful service.","In conclusion, shared bikes help our city when riders and companies follow the rules."],"questions":[{"type":"fb","q":"First, a bike solves the last ___ between a station and home.","answer":"kilometre","accept":["kilometre","kilometer"]},{"type":"fb","q":"Therefore, many cities now require riders to park in marked ___.","answer":"bays","accept":["bays"]},{"type":"mc","q":"What do some people think about shared bikes?","opts":["They are a fashion that will soon pass","They are the only transport","They are free for everyone"],"answer":0},{"type":"mc","q":"What happens when a bike is left in the wrong place?","opts":["The app adds a small fee","The rider wins a prize","Nothing happens at all"],"answer":0},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["Shared bikes solve the last kilometre problem","Short bike trips can reduce street traffic","Riding is gentle exercise for busy people","All companies repair old bikes quickly"],"answers":[0,1,2]},{"type":"tf","q":"Many cities now require riders to park shared bikes in marked bays.","answer":0}]},{"title":"It Can Be Argued That Cities Should Limit Cars in Centres（市中心该限车）","focus":"traffic · policy · benefit","meta":"论说文 · 212词 · 衔接7处 · 学术语域","genre":"论说文","china":false,"sentences":["Some people believe driving into the city centre should stay free and easy.","They say cars are comfortable, and drivers already pay for fuel and parking.","However, every car takes street space that a bus full of passengers could use.","It can be argued that limiting cars in the centre helps everyone, even drivers.","One busy road lane can carry ten times more people by bus than by car.","Therefore, fewer cars mean faster buses and shorter waiting times.","Cleaner air is a second benefit, because traffic is a major source of pollution.","For example, one city found fewer breathing problems after its low-emission zone.","On the other hand, limits can feel unfair to shop owners and delivery drivers.","They worry that customers will drive to malls outside the centre instead.","This concern is fair, and cities should listen to shop owners carefully.","A good plan gives free parking outside and cheap, frequent buses inside.","It can also be argued that limits work best when people see the benefits early.","Free bus tickets for one month can persuade drivers to try the change.","In conclusion, limiting cars is not a punishment; it is a trade for cleaner streets.","A city centre built for people welcomes more visitors than one built for cars."],"questions":[{"type":"fb","q":"One busy road lane can carry ten times more people by ___ than by car.","answer":"bus","accept":["bus"]},{"type":"fb","q":"A good plan gives free parking outside and cheap, frequent ___ inside.","answer":"buses","accept":["buses"]},{"type":"mc","q":"What is the second benefit of limiting cars mentioned?","opts":["Cleaner air","Cheaper fuel","Faster cars"],"answer":0},{"type":"mc","q":"What do shop owners worry about?","opts":["Customers will drive to malls outside the centre","Buses will become free","Roads will become wider"],"answer":0},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["Fewer cars mean faster buses","Traffic is a major source of pollution","Free bus tickets can persuade drivers to try the change","Limiting cars is described as a punishment for drivers"],"answers":[0,1,2]},{"type":"tf","q":"The writer says cities should ignore shop owners' concerns.","answer":1}]},{"title":"Our City Should Build More Libraries（城市应该多建图书馆）","focus":"library · provide · issue","meta":"议论文 · 209词 · 衔接6处 · 中国主题 · 学术语域","genre":"议论文","china":true,"sentences":["I truly believe our city should build more libraries in every neighbourhood.","A library is a public service that gives everyone free access to knowledge.","A family can borrow twenty books a month without spending a single yuan.","For students, the library is a quiet place to read and finish homework.","Some people say that nobody reads paper books anymore.","On the other hand, modern libraries offer much more than paper books.","They provide free internet, study rooms, lectures and a safe place to meet.","In our city, a small library also helps elderly people learn to use phones.","Critics argue that online shops sell books very cheaply, so libraries are not needed.","However, a screen cannot replace the quiet help of a friendly librarian.","Furthermore, not every family has enough space or money for hundreds of books.","A shared library is therefore fairer than a hundred private bookshelves.","The city should also open libraries in new areas, not only in the centre.","A library near home saves bus money and gives children a safe, quiet afternoon.","In conclusion, libraries are not old-fashioned buildings; they are useful public services.","A city that reads together grows together.","Building them is not a cost; it is an investment in every child."],"questions":[{"type":"fb","q":"They provide free internet, study rooms, lectures and a safe place to ___.","answer":"meet","accept":["meet"]},{"type":"fb","q":"However, a screen cannot replace the quiet help of a friendly ___.","answer":"librarian","accept":["librarian"]},{"type":"mc","q":"What is the writer's main opinion?","opts":["Cities should build more libraries","Libraries are too expensive","Nobody needs libraries now"],"answer":0},{"type":"mc","q":"What do critics say in the passage?","opts":["Online shops sell books cheaply, so libraries are not needed","Libraries are always too noisy","Librarians are unfriendly"],"answer":0},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["Libraries give everyone free access to knowledge","Modern libraries offer more than paper books","The writer thinks libraries should be only in the centre","A library near home saves bus money"],"answers":[0,1,3]},{"type":"tf","q":"The writer believes libraries are old-fashioned buildings that cities do not need.","answer":1}]},{"title":"Should Public Transport Be Free for Students?（公交该对学生免费吗）","focus":"bus · safe · issue","meta":"议论文 · 201词 · 衔接5处 · 学术语域","genre":"议论文","china":false,"sentences":["Many cities around the world are now asking an interesting question.","Should buses and the metro be completely free for students?","I believe they should be free, and my reasons are practical rather than romantic.","First, students often travel long distances every morning to reach good schools.","A free pass removes the daily money worry for families with low incomes.","Second, free transport encourages more students to leave the family car at home.","Fewer cars mean safer and quieter streets around schools in the morning.","On the other hand, some people worry about the cost to the city.","Transport companies still need money to repair buses and pay careful drivers.","However, a student pass is cheaper than building new roads and car parks.","A city can also save on fuel and cleaning when fewer cars enter the centre.","Critics say free passes may be wasted by a few careless students.","This problem can be solved easily with a simple card and a photo.","The card can simply stop working if a student breaks the travel rules.","In conclusion, free student transport is a fair, smart and genuinely useful investment.","It helps families, protects the environment and makes mornings calmer for everyone."],"questions":[{"type":"fb","q":"This problem can be solved easily with a simple ___ and a photo.","answer":"card","accept":["card"]},{"type":"fb","q":"The card can simply stop working if a student breaks the travel ___.","answer":"rules","accept":["rules"]},{"type":"mc","q":"What is the writer's opinion?","opts":["Buses and the metro should be free for students","Students should pay double","Only rich students should travel"],"answer":0},{"type":"mc","q":"What do critics worry about?","opts":["Free passes may be wasted by careless students","Buses are too slow","Students hate cards"],"answer":0},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["A free pass helps families with low incomes","Fewer cars make streets around schools safer","A student pass is cheaper than new roads","All students waste free passes"],"answers":[0,1,2]},{"type":"tf","q":"The writer says transport companies do not need any money.","answer":1}]}],"listening":[{"title":"Taking the Metro to School（坐地铁上学）","focus":"metro · station · crowded","meta":"独白 · 77词 · 日常语域 · 中国主题","kind":"独白","reg":"daily","china":true,"sentences":["Every morning I leave home at half past six.","Our metro station is five minutes from my flat.","The ride to school takes fifteen minutes on a good day.","I change lines once at the big station downtown.","The train comes every three minutes, so I never wait long.","However, the eight o'clock train is extremely crowded.","I hold the rail and review English words on my phone.","When I reach school, I feel awake and ready."],"questions":[{"type":"fb","q":"The ride to school takes ___ minutes on a good day.","answer":"fifteen","accept":["fifteen","15"]},{"type":"mc","q":"What does the speaker do on the crowded train?","opts":["Reviews English words on the phone","Sleeps on a seat","Eats breakfast"],"answer":0},{"type":"tf","q":"The speaker never waits long for a train.","answer":0}]},{"title":"The Library in My Neighborhood（社区图书馆）","focus":"library · quiet · clean","meta":"独白 · 76词 · 日常语域","kind":"独白","reg":"daily","china":false,"sentences":["A small library sits two streets from my home.","It opens at nine and closes at eight every day.","The building is small but clean and very quiet.","I go there after school because my house is noisy.","The librarian knows my name and helps me find books.","The reading room has big windows and soft chairs.","Old people read the newspapers there every morning.","I love this place because it feels like a second home."],"questions":[{"type":"fb","q":"I love this place because it feels like a second ___.","answer":"home","accept":["home"]},{"type":"mc","q":"Why does the speaker go to the library after school?","opts":["Because the house is noisy","Because the library is closed in the morning","Because the librarian calls the police"],"answer":0},{"type":"tf","q":"The library closes at nine in the evening.","answer":1}]},{"title":"A Mini-Lecture: Why Public Transport Matters（微讲座：公交为何重要）","focus":"bus · traffic · benefit","meta":"独白 · 78词 · 学术语域","kind":"独白","reg":"academic","china":false,"sentences":["Today we compare two ways to cross a city.","A single bus can carry forty passengers in the space of two cars.","Therefore, buses and trains use road space far more efficiently.","Public transport also produces less pollution per passenger.","A full metro train can replace hundreds of short car trips.","A monthly pass costs far less than fuel.","Critics argue that buses are slow and often delayed.","The answer is dedicated bus lanes, not simply more roads."],"questions":[{"type":"fb","q":"A single bus can carry ___ passengers in the space of two cars.","answer":"forty","accept":["forty","40"]},{"type":"mc","q":"What do critics argue about buses?","opts":["They are slow and often delayed","They are too expensive","Nobody uses them"],"answer":0},{"type":"tf","q":"The lecturer says the answer to slow buses is more roads.","answer":1}]},{"title":"A Mini-Lecture: The Fifteen-Minute City（微讲座：十五分钟生活圈）","focus":"area · service · policy","meta":"独白 · 79词 · 学术语域 · 中国主题","kind":"独白","reg":"academic","china":true,"sentences":["Today we look at a simple idea from city planners.","It is called the fifteen-minute city.","Daily needs should sit within a short walk or bike ride.","In China, planners call it the fifteen-minute life circle.","Residents can walk to a market, a clinic and a small park.","The design reduces long trips and helps elderly people stay independent.","It also supports small shops because more people pass by.","Critics worry that mixing uses brings noise and parking problems."],"questions":[{"type":"fb","q":"In China, planners call it the fifteen-minute life ___.","answer":"circle","accept":["circle"]},{"type":"mc","q":"What is the main idea of the fifteen-minute city?","opts":["Daily needs should be within a short walk or bike ride","Everyone should drive to the city centre","Cities should build bigger roads"],"answer":0},{"type":"tf","q":"Critics worry that mixing uses brings noise and parking problems.","answer":0}]},{"title":"Which Bus to the Library?（哪路车去图书馆）","focus":"bus · crossing · clean","meta":"对话 · 94词 · 日常语域 · 中国主题","kind":"对话","reg":"daily","china":true,"sentences":["A: Excuse me, does this bus go to the library?","B: No, this one goes to the hospital. You need Bus 8.","A: Where is the Bus 8 stop?","B: It is outside the park, next to the big crossing.","A: How many stops?","B: Five stops, and it takes about ten minutes.","A: Is the bus clean? It looks a bit old.","B: The new buses arrived last month, so it is clean and quiet.","A: Great. I want to return some books before five.","B: Then hurry. The library closes at five."],"questions":[{"type":"fb","q":"The Bus 8 stop is outside the park, next to the big ___.","answer":"crossing","accept":["crossing"]},{"type":"mc","q":"Which bus goes to the City Library?","opts":["Bus 8","This bus","Bus 5"],"answer":0},{"type":"tf","q":"The speaker wants to borrow some books before five.","answer":1}]},{"title":"At the Bike-Share Station（共享单车站点）","focus":"bike · require · clean","meta":"对话 · 92词 · 日常语域","kind":"对话","reg":"daily","china":false,"sentences":["A: Have you tried the shared bikes near the station?","B: Not yet. How do they work?","A: Scan the code on the bike, and the lock opens.","B: What does the ride cost?","A: Very little, much cheaper than a taxi.","B: Nice. It solves the last kilometre.","B: What if the bike is broken?","A: Report it in the app, and the company repairs it.","B: Where should I park it?","A: Only in the marked bays, or the app adds a fee.","B: Fair. Bad parking spoils the service."],"questions":[{"type":"fb","q":"Riders should park only in the marked bays, or the app adds a ___.","answer":"fee","accept":["fee"]},{"type":"mc","q":"How do you unlock a shared bike?","opts":["Scan the code with your phone","Ask the driver","Use a paper ticket"],"answer":0},{"type":"tf","q":"Riders can leave the bike anywhere with no extra fee.","answer":1}]},{"title":"Teacher and Student: Why Cities Build Parks（师生谈城市公园）","focus":"park · benefit · protect","meta":"对话 · 95词 · 学术语域","kind":"对话","reg":"academic","china":false,"sentences":["Teacher: Why do you think cities spend money on parks?","Student: To give people a place to relax.","Teacher: That is one reason. Parks also cool the air.","Student: Because of the trees?","Teacher: Yes. Leaves give shade, and grass drinks the rain.","Student: So parks help during hot summers and heavy storms?","Teacher: Exactly. A park is several degrees cooler than a street.","Student: Do parks help the air too?","Teacher: They catch dust and give people a free place to exercise.","Student: So a park is a public service, not just a decoration."],"questions":[{"type":"fb","q":"A park is several degrees cooler than a ___.","answer":"street","accept":["street"]},{"type":"mc","q":"What does grass do during heavy rain?","opts":["Drinks the rain like a sponge","Freezes the water","Makes floods worse"],"answer":0},{"type":"tf","q":"The student concludes that a park is a public service, not just a decoration.","answer":0}]},{"title":"Debate: Should the City Limit Cars Downtown?（辩论：市区该不该限车）","focus":"traffic · policy · benefit","meta":"对话 · 95词 · 学术语域 · 中国主题","kind":"对话","reg":"academic","china":true,"sentences":["Li: Our topic is whether the city should limit cars downtown.","Zhou: I support the limits. The centre is too crowded.","Li: On the other hand, shop owners worry about losing customers.","Zhou: That is fair, but buses bring people to shops too.","Li: Evidence shows fewer cars mean faster buses and cleaner air.","Li: Still, some drivers cannot change their route.","Zhou: The city can offer cheap car parks outside the centre.","Li: Then drivers leave the car and take the metro inside.","Zhou: Exactly. A good plan helps everyone, not only bus passengers."],"questions":[{"type":"fb","q":"The city can offer cheap car ___ outside the centre.","answer":"parks","accept":["parks"]},{"type":"mc","q":"Which side does Zhou take in the debate?","opts":["Supports limiting cars downtown","Opposes all limits","Has no opinion"],"answer":0},{"type":"tf","q":"Zhou says buses bring people to shops too.","answer":0}]}],"frames":[{"en":"The city plans to ___ a new ___ near our school.","cn":"这座城市计划在我们学校附近{1}一座新的{0}。","slots":[{"label":"动词：建设/修缮","opts":[["build","建造"],["repair","修缮"],["clean","清洁"]]},{"label":"名词：城市设施","opts":[["park","公园"],["library","图书馆"],["hospital","医院"]]}],"tip":"plan to + 动词原形；build 与 repair 是城市服务类作文最常用的两个动词。"},{"en":"The metro is ___ and ___ than the bus.","cn":"地铁比公交更{0}、更{1}。","slots":[{"label":"形容词：干净/安全","opts":[["clean","干净的"],["safe","安全的"],["quiet","安静的"]]},{"label":"形容词：快/便宜","opts":[["fast","快的"],["cheap","便宜的"],["convenient","便利的"]]}],"tip":"比较级 + than；两个并列形容词共用 than the bus，注意 and 连接。"},{"en":"The library provides free ___ for everyone in the ___.","cn":"图书馆为这个{1}里的每个人提供免费的{0}。","slots":[{"label":"名词：服务/帮助","opts":[["service","服务"],["help","帮助"],["books","书籍"]]},{"label":"名词：社区/区域","opts":[["community","社区"],["area","区域"],["neighbourhood","街区"]]}],"tip":"provide sth. for sb.；area / community 都是描述服务范围的高频名词。"},{"en":"Because the park is very ___, many families go there to ___.","cn":"因为这个公园很{0}，许多家庭去那里{1}。","slots":[{"label":"形容词：干净/安全","opts":[["clean","干净的"],["safe","安全的"],["quiet","安静的"]]},{"label":"动词：活动","opts":[["relax","放松"],["exercise","锻炼"],["play","玩耍"]]}],"tip":"because 从句放句首表原因；go there to + 动词原形表目的。"},{"en":"If more people take the ___, the streets will be less ___.","cn":"如果更多人乘坐{0}，街道会不那么{1}。","slots":[{"label":"交通工具","opts":[["metro","地铁"],["bus","公交"],["train","火车"]]},{"label":"形容词：拥挤/吵闹","opts":[["crowded","拥挤的"],["noisy","吵闹的"],["busy","繁忙的"]]}],"tip":"if 条件句用现在时，主句用 will 表结果；less + 形容词表“不那么……”。"}],"grammar":[{"pid":"comparative","name":"比较级（Comparatives）","desc":"The metro is faster than the bus. / Parks make the air cleaner. 短形容词加 -er，长形容词前加 more；两者比较用 than。"},{"pid":"cause","name":"因果衔接（Because / So / Therefore）","desc":"I take the metro because it is fast. / The streets are busy, so I ride a bike. because 从句可前可后，so / therefore 连接两个完整分句。"},{"pid":"passive","name":"被动语态（Passive Voice）","desc":"The road was repaired last month. / More bike lanes should be built near schools. 城市服务话题里“谁做的”不重要，用被动突出“被做的”设施。"}],"thread":"Our city works best when its services are close to daily life. A clean bus, a safe park and a quiet library make a neighbourhood feel like home. Because these services cost money, the city must repair old things before it builds new ones. However, services alone are not enough: riders, drivers and visitors also need to follow simple rules. If everyone protects the streets they share, the whole city benefits. In short, a good city is built by the people who use it every day.","article":{"title":"Our Growing City","paras":[[["Our city is growing, and traffic is a big issue.","我们的城市在发展，交通是个大问题。"],["The bus and the metro are convenient, but the subway is crowded.","公交和地铁方便，但地铁很挤。"],["I ride my bike to the station every day.","我每天骑自行车去车站。"],["Many people take a taxi when it rains.","下雨时许多人打车。"],["The new park is quiet, clean and safe.","新公园安静、干净又安全。"],["The library provides free books and wifi.","图书馆提供免费书籍和无线网络。"],["The hospital needs more nurses and modern equipment.","医院需要更多护士和现代设备。"]],[["The city will build two new bridges next year.","市政府明年将建两座新桥。"],["Workers repair the roads every summer.","工人每年夏天修路。"],["Clean streets improve life for everyone.","干净的街道改善每个人的生活。"],["We must protect old trees and rivers.","我们必须保护古树和河流。"],["A good policy can benefit the whole area.","好政策能让整个地区受益。"],["Better services require more money.","更好的服务需要更多资金。"]],[["Because traffic is heavy, I leave home early.","因为交通拥堵，我很早就出门。"],["The metro is fast, so I use it after school.","地铁快，所以我放学后坐地铁。"],["Therefore, the city plans more bus lanes.","因此，城市规划更多公交专用道。"],["However, not everyone agrees with the plan.","然而不是所有人都同意这个计划。"],["Although the work is noisy, the result is better.","虽然施工吵，但结果更好。"],["If you find a problem, report it to the city.","如果你发现问题，向市政报告。"],["Use the crossing and the exit carefully.","小心使用斑马线和出口。"]]]},"artForms":["convenient","therefore","hospital","although","crossing","traffic","library","station","provide","improve","protect","crowded","because","however","benefit","require","service","repair","modern","policy","subway","build","clean","quiet","issue","metro","park","safe","area","bike","taxi","exit","bus","so","if"]};
+const STORE_KEY = "b1_unit"+DATA.unit+"_state_v4";
+const CHECK_KEY = "b1_checkin_dates_v4";  // 全局共享打卡 streak（跨单元）
+const ERR_KEY = "b1_unit"+DATA.unit+"_errors_v4";
+const BEASTS = [
+  {u:0,e:"🧭",n:"启程之灵",d:"胶水词·语料最高频30词"},
+  {u:1,e:"🎉",n:"欢乐之灵",d:"爱好·like+-ing·频率副词"},
+  {u:2,e:"🛍️",n:"精算之灵",d:"购物·现在进行时"},
+  {u:3,e:"🍜",n:"滋味之灵",d:"食物·可数不可数"},
+  {u:4,e:"👨‍👩‍👧",n:"牵挂之灵",d:"家人·所有格·was/were"},
+  {u:5,e:"🏠",n:"归属之灵",d:"家·过去时·-ed/-ing"},
+  {u:6,e:"🤝",n:"知己之灵",d:"朋友·过去时不规则"},
+  {u:7,e:"🛋️",n:"逍遥之灵",d:"建议·have to·should"},
+  {u:8,e:"🏀",n:"燃动之灵",d:"运动·过去进行时"},
+  {u:9,e:"🗿",n:"奇观之灵",d:"世界·比较级最高级"},
+  {u:10,e:"🏙️",n:"漫游之灵",d:"城镇·be going to"},
+  {u:11,e:"🦾",n:"进化之灵",d:"身体·will·条件句"},
+  {u:12,e:"✈️",n:"远行之灵",d:"旅行·现在完成时"},
+];
+
+let state = loadState();
+let checkins = loadCheckins();
+let errors = loadErrors();
+let curGroupLearn = 0, curGroupReview = 0;
+let shIdx = 0, shQueue = [], shAuto = false, shTimer = null;
+let rec = {mr:null, recording:false, url:null, stopBtn:null, stopLabel:null, containerEl:null};
+
+function loadState(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}} }
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function loadCheckins(){ try{return JSON.parse(localStorage.getItem(CHECK_KEY))||[]}catch(e){return[]} }
+function loadErrors(){ try{return JSON.parse(localStorage.getItem(ERR_KEY))||[]}catch(e){return[]} }
+function saveErrors(){ localStorage.setItem(ERR_KEY, JSON.stringify(errors)); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ---------- 语音（全局） ---------- */
+let voices=[], voice=null;
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const sel=document.getElementById('voiceSel');
+  const PREF=['en-GB','en-AU','en-IE','en-US'];
+  sel.innerHTML='';
+  voices = voices.slice().sort(function(a,b){function rank(v){if(/en-GB/i.test(v.lang||''))return (/Libby/i.test(v.name)?0:1);if(/en-AU/i.test(v.lang||''))return 2;if(/en-IE/i.test(v.lang||''))return 3;if(/en-US/i.test(v.lang||''))return 4;return 9;}return rank(a)-rank(b);});
+  let prefV=null;
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    const isGB=(v.lang||'').indexOf('en-GB')===0;
+    o.value=i; o.textContent=(isGB?'🇬🇧 ':'')+v.name+(v.localService?' · 离线':' · 在线');
+    sel.appendChild(o);
+    if((/en-GB/i.test(v.lang||'')&&/Libby/i.test(v.name)&&!prefV)){ prefV=v; o.selected=true; }if(!prefV){ for(const p of PREF){ if(v.lang===p){ prefV=v; o.selected=true; break; } } }
+  });
+  voice = prefV || voices[0] || null;
+  if(prefV){ sel.value = voices.indexOf(prefV); }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function getVoice(){ const i=document.getElementById('voiceSel').value; return voices[i]||null; }
+function rateVal(){ return parseFloat(document.getElementById('rate').value); }
+function speak(text, opt){
+  opt=opt||{};
+  if(!('speechSynthesis' in window)){ if(opt.onend)opt.onend(); return; }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const v=getVoice(); if(v)u.voice=v;
+  u.lang = (v && v.lang) || 'en-GB';   // 默认英式发音；用户若手动选了其他口音则尊重其选择
+  u.rate = rateVal()*(opt.slow?0.6:1); u.pitch=1; u.volume=1;
+  u.onend = opt.onend||function(){};
+  u.onerror = opt.onend||function(){};
+  speechSynthesis.speak(u);
+  if(speechSynthesis.paused) speechSynthesis.resume();
+}
+
+/* ---------- 工具 ---------- */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* 可发音词块：任何带 data-say 的元素点一下就朗读（全局事件委托，一次绑定全页生效）
+   suppressSay：作答的那一次点击只算「选择」，不当成「点词发音」，避免中文选英文时
+   点一下选项既答题又泄题听感 */
+let suppressSay=false;
+document.addEventListener('click', function(e){
+  const t=e.target.closest('[data-say]');
+  if(t && !suppressSay && !e.target.closest('[data-nsay]')){ e.preventDefault(); e.stopPropagation(); speak(t.getAttribute('data-say')); }
+});
+function sayChip(text, cls){ return '<span class="wchip '+(cls||'')+'" data-say="'+esc(text)+'">'+esc(text)+'<b>🔊</b></span>'; }
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function allWords(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w.word))); return a; }
+function allWordObjs(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w))); return a; }
+function masteredCount(){ return allWords().filter(w=>(state[w]||{}).mastered).length; }
+function shadowedCount(){ return allWords().filter(w=>(state[w]||{}).shadowed).length; }
+function updateProgress(){
+  const total=allWords().length;
+  const m=masteredCount();
+  const pct=Math.round(m/total*100);
+  document.getElementById('pctTop').textContent=pct+'%';
+  document.getElementById('barTop').style.width=pct+'%';
+  let stars = pct>=80?3:pct>=50?2:pct>=20?1:0;
+  document.getElementById('starTop').textContent = '★'.repeat(stars)+'☆'.repeat(3-stars);
+  document.getElementById('beastStreak').textContent=`已跟读 ${shadowedCount()}/${total} · 已掌握 ${m}/${total} · 错题 ${errors.length}`;
+}
+function flash(msg){ const t=document.createElement('div'); t.textContent=msg;
+  t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--gold);color:#1a1a1a;padding:8px 16px;border-radius:10px;font-weight:700;z-index:99';
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1400); }
+
+/* ---------- 统一录音（单句 & 对话共用） ---------- */
+function noteShadow(msg){ const n=document.getElementById('shBanner'); if(msg){ n.style.display='block'; n.textContent=msg; } else { n.style.display='none'; } }
+function startRec(text, container, stopBtn, stopLabel){
+  if(rec.recording && rec.stopBtn===stopBtn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音；现在可用「听原声」模式。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你的跟读录音，对比原声找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=stopBtn; rec.stopLabel=stopLabel||'● 开始录音';
+    rec.containerEl=container.parentElement; if(rec.containerEl) rec.containerEl.classList.add('recording');
+    stopBtn.textContent='■ 停止';
+    speak(text);
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可改用「听原声」模式。'); });
+}
+function stopRec(){
+  if(rec.recording && rec.mr){ rec.mr.stop(); rec.recording=false;
+    if(rec.stopBtn) rec.stopBtn.textContent = rec.stopLabel||'● 开始录音';
+    if(rec.containerEl) rec.containerEl.classList.remove('recording');
+    rec.stopBtn=null; rec.containerEl=null; }
+}
+/* 只录不放（用于"我来回应"——先看清/听问句，再录自己的回答） */
+function startRecRaw(text, container, btn){
+  if(rec.recording && rec.stopBtn===btn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你回应的录音，对比示范找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=btn; rec.stopLabel=btn.textContent;
+    rec.containerEl = btn.closest('.exchange')||container.parentElement;
+    if(rec.containerEl) rec.containerEl.classList.add('recording');
+    btn.textContent='■ 停止（说完点这）';
+    container.innerHTML='<div class="hint"><span class="rec-dot"></span> 请说出回应：'+esc(text)+'</div>';
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可先点「🔊 听示范回应」模仿。'); });
+}
+function addError(obj){
+  obj.time=Date.now(); obj.unit=DATA.unit;
+  errors.push(obj); saveErrors(); renderErrors(); updateProgress();
+}
+
+/* ---------- 渲染：学习 B ---------- */
+function renderLearn(){
+  const grpTabs=document.getElementById('grpLearn');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupLearn)b.className='on';
+    b.onclick=()=>{curGroupLearn=i; renderLearn();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridLearn'); grid.innerHTML='';
+  DATA.groups[curGroupLearn].words.forEach((w)=>{
+    const st=state[w.word]||{};
+    const card=document.createElement('div'); card.className='card'+(st.mastered?' done':'');
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span>${(w.awl&&w.awl!=='—')?`<span class="badge awl">AWL ${esc(w.awl)}</span>`:''}${(w.register&&w.register!=='—')?`<span class="badge reg">${esc(w.register)}</span>`:''}</div>
+      <div class="def"><span class="cnLearn">${esc(w.defB)}</span></div>
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}${w.usage?`<div class="usage">💡 ${esc(w.usage)}</div>`:''}
+      <div class="ex" data-ex="${esc(w.ex)}">${esc(w.ex)}<span class="cn cnLearn">${esc(w.exCn||'')}</span></div>
+      <div class="acts">
+        <button class="b-play" data-word="${esc(w.word)}">🔊 单词</button>
+        <button class="b-shadow" data-word="${esc(w.word)}">🎤 跟读打卡</button>
+        <button class="b-master ${st.mastered?'mastered':''}" data-word="${esc(w.word)}">${st.mastered?'✅ 已掌握':'☆ 掌握'}</button>
+        <button class="b-err" data-word="${esc(w.word)}">❌ 记一笔</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.ex').forEach(el=>{
+    el.onclick=()=>speak(el.getAttribute('data-ex'));
+    el.ondblclick=()=>speak(el.getAttribute('data-ex'),{slow:true});
+  });
+  grid.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-shadow').forEach(b=>b.onclick=()=>goShadowWord(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-master').forEach(b=>b.onclick=()=>toggleMaster(b.getAttribute('data-word'),b));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'词卡标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 渲染：复习 C（渐进式） ---------- */
+function renderReview(){
+  const grpTabs=document.getElementById('grpReview');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupReview)b.className='on';
+    b.onclick=()=>{curGroupReview=i; renderReview();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridReview'); grid.innerHTML='';
+  const hide=document.getElementById('tgHideCn').dataset.hide==='1';
+  DATA.groups[curGroupReview].words.forEach(w=>{
+    const card=document.createElement('div'); card.className='card';
+    let sensesHtml='';
+    w.senses.forEach((s,i)=>{
+      const hidden = i>0 ? ' hiddenSense' : '';
+      const synAnt = (s.syn&&s.syn!=='—'?'近义 '+esc(s.syn)+' ':'') + (s.ant&&s.ant!=='—'?'反义 '+esc(s.ant):'');
+      const ex = s.ex||''; const exCn = s.exCn||'';
+      sensesHtml += `
+      <div class="sense${hidden}">
+        <div class="defline">${esc(s.def)}
+          <button class="spk" data-text="${esc(w.word)}">🔊</button>
+          ${synAnt?`<span style="color:var(--sub);font-size:12px">（${synAnt}）</span>`:''}
+        </div>
+        <button class="morebtn act-ex">💡 看例句</button>
+        <div class="exbox" data-ex="${esc(ex)}">${esc(ex)}<span class="cn">${esc(exCn)}</span>
+          ${ex?`<button class="morebtn act-shadow" data-text="${esc(ex)}">🎤 跟读这句</button>`:''}
+        </div>
+      </div>`;
+    });
+    const moreBtn = w.senses.length>1 ? `<button class="morebtn act-more">更多 ▾（还有 ${w.senses.length-1} 个义项）</button>` : '';
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span>${(w.awl&&w.awl!=='—')?`<span class="badge awl">AWL ${esc(w.awl)}</span>`:''}${(w.register&&w.register!=='—')?`<span class="badge reg">${esc(w.register)}</span>`:''}</div>
+      ${sensesHtml}
+      ${moreBtn}
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}${w.usage?`<div class="usage">💡 ${esc(w.usage)}</div>`:''}
+      <button class="morebtn b-err" data-word="${esc(w.word)}">❌ 记一笔（没记住）</button>`;
+    grid.appendChild(card);
+  });
+  if(hide){ grid.querySelectorAll('.cn').forEach(e=>e.style.display='none'); }
+  grid.querySelectorAll('.act-ex').forEach(b=>b.onclick=()=>{
+    const box=b.parentElement.querySelector('.exbox');
+    const open = box.style.display==='block';
+    box.style.display = open?'none':'block';
+    b.textContent = open?'💡 看例句':'🔼 收起例句';
+    if(!open){ const ex=box.getAttribute('data-ex'); if(ex) speak(ex); }
+  });
+  grid.querySelectorAll('.act-more').forEach(b=>b.onclick=()=>{
+    const card=b.closest('.card');
+    const next=card.querySelector('.sense.hiddenSense');
+    if(next){ next.classList.remove('hiddenSense');
+      const exb=next.querySelector('.exbox'); if(exb.getAttribute('data-ex')) speak(exb.getAttribute('data-ex'));
+    }
+    if(!card.querySelector('.sense.hiddenSense')) b.style.display='none';
+  });
+  grid.querySelectorAll('.spk').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  grid.querySelectorAll('.act-shadow').forEach(b=>b.onclick=()=>goShadowText(b.getAttribute('data-text')));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'复习标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 神兽/图鉴 ---------- */
+function renderCodex(){
+  const grid=document.getElementById('codexGrid'); grid.innerHTML='';
+  BEASTS.forEach(b=>{
+    const box=document.createElement('div');
+    const active = b.u===DATA.unit;
+    box.className='cbox'+(active?'':' lock');
+    let stars=0;
+    if(active){ const pct=Math.round(masteredCount()/allWords().length*100); stars=pct>=80?3:pct>=50?2:pct>=20?1:0; }
+    box.innerHTML=`<div class="e">${b.e}</div><div class="n">${b.n}</div>
+      <div class="s">${active?'★'.repeat(stars)+'☆'.repeat(3-stars):'🔒 未解锁'}</div>
+      <div style="color:var(--sub);font-size:12px;margin-top:4px">${b.d}</div>`;
+    grid.appendChild(box);
+  });
+}
+
+/* ---------- 交互 ---------- */
+function toggleMaster(w, btn){
+  if(!state[w]) state[w]={};
+  state[w].mastered=!state[w].mastered;
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  saveState();
+  btn.classList.toggle('mastered', state[w].mastered);
+  btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
+  updateProgress(); renderCodex();
+}
+function checkIn(w){
+  const d=today();
+  if(!state[w]) state[w]={};
+  state[w].shadowed=d;
+  saveState();
+  if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
+  updateProgress(); renderCodex();
+}
+function switchSub(which){
+  document.querySelectorAll('.subtab').forEach(x=>x.classList.toggle('on', x.dataset.sh===which));
+  document.getElementById('shDialog').style.display = which==='dialog'?'block':'none';
+  document.getElementById('shSingle').style.display = which==='single'?'block':'none';
+}
+function goShadowWord(word){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.word===word);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到「'+word+'」'); }
+}
+function goShadowText(text){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.en===text);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到该句'); }
+}
+function goReviewWord(word){
+  document.querySelector('nav button[data-tab="review"]').click();
+  DATA.groups.forEach((g,i)=>{ if(g.words.some(w=>w.word===word)){ curGroupReview=i; renderReview(); flash('🔁 已定位复习：'+word); } });
+}
+
+/* ---------- 跟读队列（含复习例句） + 单句跟读 ---------- */
+function buildQueue(){
+  shQueue=[]; const seen=new Set();
+  DATA.groups.forEach(g=>g.words.forEach(w=>{
+    if(w.ex && !seen.has(w.ex)){ seen.add(w.ex); shQueue.push({en:w.ex,cn:w.exCn,word:w.word}); }
+    (w.senses||[]).forEach(s=>{ if(s.ex && !seen.has(s.ex)){ seen.add(s.ex); shQueue.push({en:s.ex,cn:s.exCn,word:w.word}); } });
+  }));
+}
+function renderShadowCurrent(){
+  const it=shQueue[shIdx]; if(!it)return;
+  document.getElementById('shProg').textContent='第 '+(shIdx+1)+' / '+shQueue.length+' 句 · 👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这块会出现回放音轨，和原声对比。';
+  document.getElementById('shNow').textContent=(shIdx+1)+'/'+shQueue.length+'  '+it.en;
+  document.getElementById('shNowCn').textContent=it.cn||'';
+}
+function shPlay(){ const it=shQueue[shIdx]; if(it) speak(it.en); }
+function shGo(dir){ shIdx=(shIdx+dir+shQueue.length)%shQueue.length; renderShadowCurrent(); }
+function shCheck(){
+  const it=shQueue[shIdx]; if(!it)return;
+  checkIn(it.word); flash('🎤 已跟读打卡：'+it.word);
+}
+function shAutoPlay(){
+  if(!shQueue.length)return;
+  const it=shQueue[shIdx];
+  const gap=parseInt(document.getElementById('shGap').value,10);
+  speak(it.en,{onend:()=>{
+    if(gap>0){ shTimer=setTimeout(()=>{ if(shAuto){ shIdx=(shIdx+1)%shQueue.length; renderShadowCurrent(); shAutoPlay(); } }, gap); }
+  }});
+}
+function initShadow(){
+  buildQueue(); if(shIdx>=shQueue.length) shIdx=0; renderShadowCurrent();
+  document.getElementById('shPlay').onclick=shPlay;
+  document.getElementById('shNext').onclick=()=>shGo(1);
+  document.getElementById('shPrev').onclick=()=>shGo(-1);
+  document.getElementById('shRec').onclick=function(){
+    if(rec.recording && rec.stopBtn===this){ stopRec(); }
+    else { startRec(shQueue[shIdx].en, document.getElementById('shRecBox'), this); }
+  };
+  document.getElementById('shStop').onclick=stopRec;
+  document.getElementById('shCheck').onclick=shCheck;
+  document.getElementById('shAuto').onclick=function(){ shAuto=!shAuto; this.textContent=shAuto?'⏹ 停止连播':'🔁 自动连播'; if(shAuto)shAutoPlay(); else {clearTimeout(shTimer); speechSynthesis.cancel();} };
+}
+
+/* ---------- 对话跟读（call-response 结构） ---------- */
+function renderDialogues(){
+  const list=document.getElementById('shDialog'); list.innerHTML='';
+  DATA.dialogues.forEach(d=>{
+    const box=document.createElement('div'); box.className='player';
+    let html='';
+    const turns = d.turns ? d.turns : (Array.isArray(d.lines) ? d.lines.map(function(t){ return {role:t[0], en:t[1], cn:(t[2]||'')}; }) : []);
+    let i=0;
+    while(i<turns.length){
+      const t=turns[i];
+      if(t.role==='A' && i+1<turns.length && turns[i+1].role==='B'){
+        const q=t, r=turns[i+1];
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-A">A</span>
+            <div class="qa-text">${esc(q.en)}<span class="cn">${esc(q.cn)}</span></div>
+            <button class="b-play" data-text="${esc(q.en)}">🔊 听问句</button>
+          </div>
+          <div class="resp">
+            <div class="resp-label">👉 你要回应的句子（B）：先听示范，再录你自己的</div>
+            <div class="qa-text">${esc(r.en)}<span class="cn">${esc(r.cn)}</span></div>
+            <div class="resp-acts">
+              <button class="b-play" data-text="${esc(r.en)}">🔊 听示范回应</button>
+              <button class="b-drill" data-text="${esc(r.en)}">🎤 我来回应</button>
+            </div>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=2;
+      } else {
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-${t.role}">${t.role}</span>
+            <div class="qa-text">${esc(t.en)}<span class="cn">${esc(t.cn)}</span></div>
+            <button class="b-play" data-text="${esc(t.en)}">🔊 原声</button>
+            <button class="b-turn-rec" data-text="${esc(t.en)}">🎤 跟读</button>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=1;
+      }
+    }
+    box.innerHTML=`<div class="now" style="font-size:16px">💬 ${esc(d.title)}</div>
+      <div class="nowcn" style="margin-bottom:10px">蓝字＝A 的问句（点「🔊 听问句」）；黄框＝<b>你要回应的句子，始终显示</b>，先点「🔊 听示范回应」模仿，再点「🎤 我来回应」录下你自己的回答。回放对比原声。</div>${html}`;
+    list.appendChild(box);
+  });
+  list.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  list.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); }
+    else { startRec(b.getAttribute('data-text'), container, b); }
+  });
+  list.querySelectorAll('.b-drill').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    startRecRaw(b.getAttribute('data-text'), container, b);
+  });
+}
+let rdIdx = 0;
+function frBuild(f, sel){
+  const parts = f.en.split('___');
+  let s = parts[0];
+  for(let i=0;i<(f.slots||[]).length;i++){
+    const idx = sel[i]||0;
+    const opt = f.slots[i].opts[idx];
+    s += (opt?opt[0]:'___') + (parts[i+1]||'');
+  }
+  return s.replace(/\s+([.,!?])/g,'$1').trim();
+}
+function frCn(f, sel){
+  let s = f.cn||'';
+  for(let i=0;i<(f.slots||[]).length;i++){
+    const opt = f.slots[i].opts[sel[i]||0];
+    const val = opt&&opt[1] ? opt[1] : '';
+    s = s.split('{'+i+'}').join(val);
+    s = s.replace('……', val || '……', 1);
+  }
+  return s;
+}
+function renderFrames(){
+  const box = document.getElementById('frWrap');
+  const fs = DATA.frames || [];
+  if(!fs.length){ box.innerHTML='<div class="hint">本单元暂无句模。</div>'; return; }
+  const thread = DATA.thread || '';
+  box.innerHTML = ''
+   + '<div class="tip">🧩 <b>句模 = 把散装单词拼成自己句子的模具</b>。下拉框里换一个词，整句立刻变成你的话；每个句模本身就是一个可以随时套用的回答公式。'
+   + '<br><b>它和「学习」tab 里的单词是同一批</b>：句模的每个选项都来自本单元词卡。同一个词，从词卡 → 句模 → 对话 → 阅读，只是换了场合出现，从不零散。</div>'
+   + '<div class="ladder" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0 14px;font-size:12px">'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>① 词卡</b><br><span style="color:var(--sub)">「学习」里学</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>② 短语</b><br><span style="color:var(--sub)">词卡自带</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--gold2);border:1px solid var(--gold);border-radius:10px;padding:7px 10px"><b>③ 句模</b><br><span style="color:var(--ink)">本页·下拉造句</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>④ 对话</b><br><span style="color:var(--sub)">「跟读」里用</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>⑤ 阅读听力</b><br><span style="color:var(--sub)">「阅读」里读懂</span></div>'
+   + '</div>'
+   + (thread ? '<div style="background:var(--panel2);border:1px dashed var(--gold2);border-radius:12px;padding:12px 14px;margin-bottom:14px"><div style="color:var(--gold);font-weight:700;font-size:13px;margin-bottom:6px">🧵 本单元词汇串烧 · 先看这些词怎么串成一段话</div>'
+        + '<div style="line-height:1.9">'+esc(thread)+'</div>'
+        + '<div style="color:var(--sub);font-size:11px;margin-top:6px">这就是「单词 → 句子」一体化的样子：散装词，被时间和场景串成了一条线。</div></div>' : '')
+   + '<div class="fr-grid"></div>';
+  const g = box.querySelector('.fr-grid');
+  fs.forEach((f,fi)=>{
+    const sel = (f.slots||[]).map(()=>0);
+    const d = document.createElement('div'); d.className='fr-card';
+    d.innerHTML = '<div class="fr-cn-head">' + esc(f.en) + '</div>'
+      + '<div class="fr-slots"></div>'
+      + '<div class="fr-sent"></div>'
+      + '<div class="fr-cn"></div>'
+      + '<div class="fr-acts">'
+      +   '<button class="p">🔊 朗读整句</button>'
+      +   '<button class="ghost fr-rec">🎤 我来念</button>'
+      +   '<button class="ghost fr-reset">↺ 换回第一个</button>'
+      + '</div>'
+      + '<div class="fr-tip">💡 ' + esc(f.tip||'') + '</div>'
+      + '<div class="rec-slot"></div>';
+    const sd = d.querySelector('.fr-slots');
+    (f.slots||[]).forEach((sl,i)=>{
+      const wrap = document.createElement('label'); wrap.className='fr-slot';
+      wrap.innerHTML = '<span>' + esc(sl.label) + '</span>';
+      const s = document.createElement('select');
+      sl.opts.forEach((o,oi)=>{
+        const op=document.createElement('option'); op.value=oi;
+        op.textContent = o[0] + (o[1] ? '（' + o[1] + '）' : '');
+        s.appendChild(op);
+      });
+      wrap.appendChild(s); sd.appendChild(wrap);
+    });
+    const upd = ()=>{
+      const cur = [...d.querySelectorAll('select')].map(s=>+s.value);
+      d.querySelector('.fr-sent').textContent = frBuild(f, cur);
+      d.querySelector('.fr-cn').textContent = frCn(f, cur);
+    };
+    d.querySelectorAll('select').forEach(s=>s.onchange=upd);
+    d.querySelector('.fr-reset').onclick=()=>{ d.querySelectorAll('select').forEach(s=>s.value=0); upd(); };
+    d.querySelector('.p').onclick=()=>speak(d.querySelector('.fr-sent').textContent);
+    d.querySelector('.fr-rec').onclick=()=>frRec(d, f);
+    upd();
+    g.appendChild(d);
+  });
+}
+function frRec(card, f){
+  const slot = card.querySelector('.rec-slot');
+  if(!slot) return;
+  const txt = card.querySelector('.fr-sent').textContent;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 双击文件打开时无法录音，请用本地服务地址打开本页。</div>'; return;
+  }
+  if(slot.dataset.on==='1'){ slot.innerHTML=''; slot.dataset.on='0'; return; }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const chunks=[]; const mr=new MediaRecorder(stream);
+    mr.ondataavailable=e=>chunks.push(e.data);
+    mr.onstop=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      const url=URL.createObjectURL(new Blob(chunks,{type:'audio/webm'}));
+      slot.innerHTML='<div class="hint">🎧 你的：<audio src="'+url+'" controls></audio></div>';
+    };
+    mr.start();
+    slot.dataset.on='1';
+    slot.innerHTML='<div class="hint" style="color:var(--gold)">● 正在录……念：<b>'+esc(txt)+'</b>（再点一次停止）</div>';
+    card._mr=mr;
+  }).catch(()=>{ slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 浏览器拒绝了麦克风权限。</div>'; });
+}
+
+/* ---------- 阅读/听力小题：支持 mc 单选 / mm 多选 / fb 填空 ---------- */
+function normAns(s){ return (s==null?'':String(s)).toLowerCase().trim().replace(/[.,!?;:'"()]/g,'').replace(/\s+/g,' '); }
+function renderQ(d, q, qi, tag){
+  d.className='q'; d.dataset.answered='';
+  d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)
+    +(q.type==='mm'?' <span style="color:var(--gold);font-size:12px">（多选：选出所有正确项）</span>':'')
+    +(q.type==='fb'?' <span style="color:var(--gold);font-size:12px">（填空：用文中原词作答）</span>':'')
+    +(q.type==='tf'?' <span style="color:var(--gold);font-size:12px">（判断：选 True / False / Not Given）</span>':'')
+    +'</div><div class="q-opts"></div><div class="q-fb"></div>';
+  const optsBox=d.querySelector('.q-opts'), fbBox=d.querySelector('.q-fb');
+  const good=function(std,student){ d.dataset.answered='1'; fbBox.innerHTML='<span style="color:var(--green)">✅ 正确</span>'; };
+  const bad=function(std,student){ d.dataset.answered='1';
+    fbBox.innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(std)+'</span>';
+    addError({word:q.q, type:tag, original:(tag==='阅读'?'阅读':'听力')+'小题', standard:std, student:student||''}); };
+  if(q.type==='fb'){
+    const inp=document.createElement('input'); inp.className='q-input'; inp.placeholder=q.hint||'输入答案…';
+    const btn=document.createElement('button'); btn.className='q-opt'; btn.textContent='检查';
+    btn.onclick=function(){
+      if(d.dataset.answered) return;
+      const acc=(q.accept||[]).concat([q.answer]).map(normAns);
+      if(acc.indexOf(normAns(inp.value))>=0){ good(); } else { bad(q.answer, inp.value); }
+    };
+    inp.onkeydown=function(e){ if(e.key==='Enter') btn.click(); };
+    optsBox.appendChild(inp); optsBox.appendChild(btn);
+  } else if(q.type==='mm'){
+    const sel=[]; const ans=(q.answers||[]).map(Number);
+    q.opts.forEach(function(o,oi){
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=function(){ if(d.dataset.answered) return;
+        if(sel.indexOf(oi)>=0){ sel.splice(sel.indexOf(oi),1); b.classList.remove('sel'); }
+        else { sel.push(oi); b.classList.add('sel'); } };
+      optsBox.appendChild(b);
+    });
+    const btn=document.createElement('button'); btn.className='q-opt'; btn.textContent='检查（多选）';
+    btn.onclick=function(){
+      if(d.dataset.answered) return;
+      const std=q.opts.filter(function(o,oi){ return ans.indexOf(oi)>=0; }).join('；');
+      const stu=q.opts.filter(function(o,oi){ return sel.indexOf(oi)>=0; }).join('；');
+      const ok=ans.length===sel.length && ans.every(function(x){ return sel.indexOf(x)>=0; });
+      if(ok){ good(); q.opts.forEach(function(o,oi){ if(ans.indexOf(oi)>=0) optsBox.children[oi].classList.add('good'); }); }
+      else { bad(std, stu); q.opts.forEach(function(o,oi){ optsBox.children[oi].classList.add(ans.indexOf(oi)>=0?'good':'bad'); }); }
+    };
+    optsBox.appendChild(btn);
+  } else if(q.type==='tf'){
+    const opts = (q.opts && q.opts.length) ? q.opts : ['True','False','Not Given'];
+    const ans = Number(q.answer);
+    opts.forEach(function(o,oi){
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=function(){
+        if(d.dataset.answered) return;
+        if(oi===ans){ b.classList.add('good'); good(); }
+        else { b.classList.add('bad'); bad(opts[ans], o); }
+      };
+      optsBox.appendChild(b);
+    });
+  } else {
+    q.opts.forEach(function(o,oi){
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=function(){
+        if(d.dataset.answered) return;
+        if(oi===Number(q.answer)){ b.classList.add('good'); good(); }
+        else { b.classList.add('bad'); bad(q.opts[Number(q.answer)], o); }
+      };
+      optsBox.appendChild(b);
+    });
+  }
+}
+
+function renderReading(){
+  const list = DATA.reading;
+  const ptabs = document.getElementById('rdPassages'); ptabs.innerHTML='';
+  list.forEach((rd,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(rd.title)+(rd.genre?' <span style="font-size:11px;color:var(--sub)">['+esc(rd.genre)+']</span>':'')+(rd.china?' 🇨🇳':'');
+    if(i===rdIdx) b.className='on';
+    b.onclick=()=>{ rdIdx=i; renderReading(); };
+    ptabs.appendChild(b);
+  });
+  document.getElementById('rdHint').textContent=list.length+' 篇受控短文：读 → 听（TTS）→ 跟读 → 做小题，一文多吃。词汇 / 短语 / 句式在不同情境重复出现，形成螺旋。🇨🇳 ＝中国主题篇。';
+  renderReadingContent();
+}
+function renderReadingContent(){
+  const rd=DATA.reading[rdIdx];
+  const rdb=document.getElementById('rdBanner');
+  rdb.style.display='block';
+  rdb.innerHTML='📖 <b>'+esc(rd.title)+'</b>'+(rd.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +(rd.genre?' <span style="background:#22325f;color:#cfe0ff;font-size:11px;padding:1px 7px;border-radius:9px">'+esc(rd.genre)+'</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(rd.focus||'')+'</span> · <span style="color:var(--sub);font-size:12px">'+esc(rd.meta||'')+'</span>';
+  const txt=document.getElementById('rdText');
+  txt.innerHTML='<div class="rd-tip">点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。先读一遍，再点「🔊 听整篇」做听力，最后做下面小题。</div>'
+    +'<div class="rd-playall"><button class="b-play" id="rdPlayAll">🔊 听整篇</button></div>'
+    +'<div class="rd-sents"></div>';
+  const sents=txt.querySelector('.rd-sents');
+  rd.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    sents.appendChild(d);
+  });
+  txt.querySelector('#rdPlayAll').onclick=()=>{ speakSeq(rd.sentences, 600); };
+  sents.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  sents.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  sents.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const qz=document.getElementById('rdQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 理解小题（答错自动进错题本）</div>';
+  rd.questions.forEach((q,qi)=>{
+    const d=document.createElement('div');
+    renderQ(d, q, qi, '阅读');
+    qz.appendChild(d);
+  });
+}
+
+/* ---------- 听力子模式：盲听 → 答题 → 看文本 ---------- */
+let lsIdx = 0, lsRevealed = false;
+function renderListening(){
+  const list = DATA.listening || [];
+  const ptabs = document.getElementById('lsPassages'); ptabs.innerHTML='';
+  list.forEach((ls,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(ls.title)+(ls.kind?' <span style="font-size:11px;color:var(--sub)">['+esc(ls.kind)+(ls.reg?('·'+(ls.reg==='academic'?'学术':'日常')):'')+']</span>':'')+(ls.china?' 🇨🇳':'');
+    if(i===lsIdx) b.className='on';
+    b.onclick=()=>{ lsIdx=i; renderListening(); };
+    ptabs.appendChild(b);
+  });
+  renderListeningContent();
+}
+function renderListeningContent(){
+  const ls=(DATA.listening||[])[lsIdx]; if(!ls) return;
+  const lsb=document.getElementById('lsBanner');
+  lsb.style.display='block';
+  lsb.innerHTML='🎧 <b>'+esc(ls.title)+'</b>'+(ls.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +(ls.kind?' <span style="background:#22325f;color:#cfe0ff;font-size:11px;padding:1px 7px;border-radius:9px">'+esc(ls.kind)+(ls.reg?('·'+(ls.reg==='academic'?'学术':'日常')):'')+'</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(ls.focus||'')+'</span>'
+    +' · <span style="color:var(--sub);font-size:12px">'+esc(ls.meta||'')+'</span>';
+  const box=document.getElementById('lsSents'); box.innerHTML=''; lsRevealed=false;
+  ls.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en ls-masked" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    box.appendChild(d);
+  });
+  box.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  box.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  box.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  document.getElementById('lsPlayAll').onclick=()=>speakSeq(ls.sentences,600);
+  document.getElementById('lsReplay').onclick=()=>speakSeq(ls.sentences,600);
+  const revealBtn=document.getElementById('lsReveal');
+  revealBtn.textContent='👀 看文本';
+  revealBtn.onclick=()=>{
+    lsRevealed=!lsRevealed;
+    box.querySelectorAll('.rd-en').forEach(e=>e.classList.toggle('ls-masked', !lsRevealed));
+    revealBtn.textContent = lsRevealed ? '🙈 收起文本' : '👀 看文本';
+  };
+  const qz=document.getElementById('lsQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 听力小题（答错自动进错题本）</div>';
+  ls.questions.forEach((q,qi)=>{
+    const d=document.createElement('div');
+    renderQ(d, q, qi, '听力');
+    qz.appendChild(d);
+  });
+}
+function switchRd(which){
+  document.querySelectorAll('[data-rd]').forEach(x=>x.classList.toggle('on', x.dataset.rd===which));
+  document.getElementById('rdReadWrap').style.display = which==='read' ? '' : 'none';
+  document.getElementById('rdListenWrap').style.display = which==='listen' ? '' : 'none';
+  if(which==='listen') renderListening();
+}
+
+/* 依次朗读一组词：文章连读 / 跟读连播共用（TTS 不能直接念音标，故按词逐个读） */
+function speakSeq(words, gap, onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const arr=(words||[]).filter(Boolean);
+  let i=0;
+  (function next(){
+    if(i>=arr.length){ if(onDone)onDone(); return; }
+    const w=arr[i++];
+    speak(w, {onend:()=>setTimeout(next, gap||550)});
+  })();
+}
+
+/* ---------- 小测 ---------- */
+let quizQueue=[], quizIdx=0, quizScore=0, quizTotal=0, quizDone=false;
+function cnOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.defB)).slice(0,3);
+  return shuffle([{label:w.defB,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function enOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.word)).slice(0,3);
+  return shuffle([{label:w.word,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function buildQuiz(){
+  const words=shuffle(allWordObjs());
+  quizQueue=[];
+  words.forEach(w=>{
+    const r=Math.random();
+    if(r<0.30){ const opts=cnOpts(w); quizQueue.push({kind:'listen',word:w.word,cn:w.defB,opts}); }
+    else if(r<0.60){ const opts=cnOpts(w); quizQueue.push({kind:'en2cn',word:w.word,cn:w.defB,opts}); }
+    else { const opts=enOpts(w); quizQueue.push({kind:'cn2en',word:w.word,cn:w.defB,opts}); }
+  });
+  quizIdx=0; quizScore=0; quizTotal=quizQueue.length; quizDone=false; renderQuiz();
+}
+function renderQuiz(){
+  const box=document.getElementById('quizBox');
+  if(quizDone){ box.innerHTML=`<div class="player"><div class="now">🎉 本轮完成！</div>
+    <div class="nowcn">答对 ${quizScore} / ${quizTotal}。答错的已自动记入「🩹 错题」，去错题本重练。</div>
+    <div class="ctr"><button id="quizAgain">🔁 再来一轮</button></div></div>`;
+    document.getElementById('quizAgain').onclick=buildQuiz; return; }
+  const q=quizQueue[quizIdx];
+  /* 三种题面都把「英文」做成可点发音块：
+     listen — 不直接露词，只有播放钮
+     en2cn — 题干英文可点（听音不影响作答，帮助记发音）
+     cn2en — 选完后英文选项立刻变成可点发音块；作答前点选项＝选择，不发音 */
+  let promptHtml='';
+  if(q.kind==='listen') promptHtml=`<div class="quiz-prompt">🔊 听发音，选出中文意思
+      <button class="b-play" id="qPlay">▶ 播放</button>
+      <button class="ghost" id="qPeek">👀 看单词</button></div>`;
+  else if(q.kind==='en2cn') promptHtml=`<div class="quiz-prompt">${sayChip(q.word,'big')}
+      <span class="tag">点单词听发音</span><div style="color:var(--sub);font-size:13px">选出中文意思</div></div>`;
+  else promptHtml=`<div class="quiz-prompt"><span class="big">「${esc(q.cn)}」</span>
+      <div style="color:var(--sub);font-size:13px">对应的英文是？<span class="tag">选完后点选项可再听发音</span></div></div>`;
+  let opts='';
+  q.opts.forEach((o,i)=>{ opts+=`<button class="q-opt" data-i="${i}">${esc(o.label)}</button>`; });
+  box.innerHTML=`<div class="player"><div class="now">📝 小测 ${quizIdx+1}/${quizTotal}</div>${promptHtml}
+    <div class="q-prog"><div class="bar"><i style="width:${Math.round(quizIdx/quizTotal*100)}%"></i></div></div>
+    <div class="q-opts">${opts}</div><div class="q-fb" id="qFb"></div>
+    <div class="ctr"><button id="qNext" class="ghost">⏭ 下一题</button></div></div>`;
+  if(q.kind==='listen'){
+    document.getElementById('qPlay').onclick=()=>speak(q.word);
+    document.getElementById('qPeek').onclick=()=>{ speak(q.word); flash('🔊 单词是：'+q.word); };
+    setTimeout(()=>speak(q.word),250);
+  }
+  if(q.kind==='en2cn') setTimeout(()=>speak(q.word),250);   // 题干可点，也可自动听一次
+  /* 作答后：把正确英文自动读一遍 + 给所有英文选项装上发音块（连排多次，强化记忆） */
+  function afterAnswer(){
+    const fb=document.getElementById('qFb');
+    const tail=' <span style="font-weight:600;color:var(--sub)">点单词再听：</span>';
+    if(q.kind==='cn2en') fb.innerHTML += tail+sayChip(q.word)+' '+sayChip(q.word);
+    else fb.innerHTML += tail+sayChip(q.word);
+    box.querySelectorAll('.q-opt').forEach((bb,j)=>{
+      const lab=q.opts[j].label;
+      if(/^[A-Za-z' -]+$/.test(lab)){ bb.setAttribute('data-say',lab); bb.insertAdjacentHTML('beforeend','<span style="font-size:11px;color:var(--gold)"> 🔊</span>'); }
+    });
+    setTimeout(()=>speak(q.word), 260);
+  }
+  let answered=false;
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    suppressSay=true;                       // 本次点击只算作答，不触发词块发音
+    setTimeout(()=>{ suppressSay=false; },0);
+    const o=q.opts[+b.dataset.i];
+    if(o.ok){ quizScore++; b.classList.add('ok'); document.getElementById('qFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('qFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：</span>'+sayChip(q.word);
+      addError({word:q.word,type:'小测',original:'小测题',standard:q.word,student:o.label});
+      box.querySelectorAll('.q-opt').forEach((bb,j)=>{ if(q.opts[j].ok) bb.classList.add('ok'); }); }
+    afterAnswer();
+    document.getElementById('qNext').onclick=()=>{ quizIdx++; if(quizIdx>=quizTotal){quizDone=true;} renderQuiz(); };
+  });
+}
+
+/* ---------- 错题池 ---------- */
+function renderErrors(){
+  const box=document.getElementById('errList');
+  if(!errors.length){ box.innerHTML='<div class="hint">还没有错题。小测答错、或在词卡/复习点「❌ 记一笔」会自动收集到这里，按类型聚合，方便专项重练。</div>'; return; }
+  const byType={};
+  errors.forEach((e,i)=>{ (byType[e.type]=byType[e.type]||[]).push({...e,idx:i}); });
+  const labels={词汇:'📘 词汇没记住',小测:'📝 小测答错'};
+  let html='';
+  for(const t in byType){
+    html+=`<div class="err-type">${labels[t]||t}（${byType[t].length}）</div>`;
+    byType[t].forEach(e=>{
+      html+=`<div class="err-item"><div class="err-meta"><b>${esc(e.word)}</b> · ${new Date(e.time).toLocaleDateString()} ${new Date(e.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</div>
+        <div class="err-line">标准：<span style="color:var(--green)">${esc(e.standard)}</span></div>
+        ${e.student&&e.student!==e.standard?`<div class="err-line">你的：<span style="color:var(--red)">${esc(e.student)}</span></div>`:''}
+        <div class="err-btns"><button class="morebtn" data-w="${esc(e.word)}">🔁 重练</button><button class="err-del" data-i="${e.idx}">🗑 删除</button></div></div>`;
+    });
+  }
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>goReviewWord(b.dataset.w));
+  box.querySelectorAll('.err-del').forEach(b=>b.onclick=()=>{ errors.splice(+b.dataset.i,1); saveErrors(); renderErrors(); updateProgress(); });
+}
+
+/* ---------- 本单元语法：跳到语法练习的具体知识点 ---------- */
+const GRAM_PAGE = "语法练习_A1-A2-B1-B2.html";
+const GRAM_KEY  = "a1_gram_done_v1";
+function loadGram(){ try{return JSON.parse(localStorage.getItem(GRAM_KEY))||{}}catch(e){return{}} }
+function saveGram(g){ localStorage.setItem(GRAM_KEY, JSON.stringify(g)); }
+/* 只记一笔「点过」，真正的跳转交给 <a href target=_blank> —— 避免 window.open 与新标签重复开两次 */
+function markGrammar(pid){
+  var g=loadGram();
+  var u=DATA.unit;
+  g[u]=g[u]||[]; if(g[u].indexOf(pid)<0){ g[u].push(pid); saveGram(g); }
+  setTimeout(renderGrammar,60);
+}
+function renderGrammar(){
+  var list=(DATA.grammar||[]), box=document.getElementById('gramList'), head=document.getElementById('gramHead');
+  var all=document.getElementById('gramAll');
+  if(all) all.href=GRAM_PAGE;
+  if(!head||!box) return;
+  var done=(loadGram()[DATA.unit]||[]);
+  head.innerHTML='Unit '+DATA.unit+' 学 <b>'+list.length+' 个语法点</b>。'
+    + '跟读是「听进来」，语法是「写出来」—— 本单元的句子会用到这些点，'
+    + '点一下就跳到语法练习里对应的那一关（已完成 '+done.length+' / '+list.length+'）。';
+  if(!list.length){
+    box.innerHTML='<div class="hint">本单元还没配语法点。</div>'; return;
+  }
+  box.innerHTML=list.map(function(it,i){
+    var pid = (typeof it==='string')? it : it.pid;
+    var nm  = (typeof it==='string')? it : (it.name||it.pid);
+    var ds  = (typeof it==='string')? '' : (it.desc||'');
+    var ok=done.indexOf(pid)>=0;
+    return '<div class="gcard">'
+      + '<div class="gi">'+(ok?'✅':'✍️')+'</div>'
+      + '<div class="gname">'+esc(nm)+'</div>'
+      + '<div class="gdesc">'+esc(ds||'')+'<br><span style="opacity:.6">pid: '+esc(pid)+'</span></div>'
+      + (ok?'<div class="gdone">已练过</div>':'')
+      + '<a class="ggo" href="'+GRAM_PAGE+'?p='+encodeURIComponent(pid)+'&u='+DATA.unit+'"'
+      +   ' target="_blank" rel="noopener" onclick="markGrammar(\'' + pid + '\')">去练这一点 →</a>'
+      + '</div>';
+  }).join('');
+}
+
+/* ---------- 单元文章：把本单元生词织进一个语境 ---------- */
+function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
+function artHL(text){
+  const fs = DATA.artForms || [];
+  const out = esc(text);
+  if(!fs.length) return out;
+  try{
+    const re = new RegExp('(?<![a-zA-Z])(' + fs.map(f=>f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|') + ')(?![a-zA-Z])','gi');
+    return out.replace(re,'<span class="art-hl">$1</span>');
+  }catch(e){ return out; }
+}
+function renderArticle(){
+  const a=DATA.article;
+  const body=document.getElementById('artBody');
+  const banner=document.getElementById('artBanner');
+  if(!a || !a.paras || !a.paras.length){
+    banner.style.display='none';
+    body.innerHTML='<div class="hint">本单元暂无文章。</div>';
+    return;
+  }
+  const total=a.paras.reduce((s,p)=>s+p.length,0);
+  const hlEl=document.getElementById('tgArtHL');
+  const hl=!hlEl || hlEl.dataset.hide!=='1';
+  let nArt=0, nAll=0;
+  (DATA.groups||[]).forEach(g=>g.words.forEach(w=>{ nAll++; if(w.inArt) nArt++; }));
+  banner.style.display='block';
+  banner.innerHTML='📰 <b>'+esc(a.title)+'</b> · <span style="font-weight:700;font-size:12px">'+total+' 句</span> · <span style="font-size:12px">本单元生词全部织进这篇短文</span>';
+  body.innerHTML='';
+  let gi=0; const all=[];
+  a.paras.forEach(para=>{
+    const pd=document.createElement('div'); pd.className='art-para';
+    para.forEach(s=>{
+      gi++; all.push(s[0]);
+      const d=document.createElement('div'); d.className='art-sent';
+      d.innerHTML='<span class="art-idx">'+gi+'</span>'
+        +'<span class="art-en" data-text="'+escAttr(s[0])+'">'+(hl?artHL(s[0]):esc(s[0]))+'</span>'
+        +'<button class="b-play" data-text="'+escAttr(s[0])+'">🔊</button>'
+        +'<button class="b-turn-rec" data-text="'+escAttr(s[0])+'">🎤</button>'
+        +'<div class="turn-rec"></div>'
+        +'<div class="art-zh cnArt">'+esc(s[1]||'')+'</div>';
+      pd.appendChild(d);
+    });
+    body.appendChild(pd);
+  });
+  body.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  body.querySelectorAll('.art-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),{slow:true}));
+  body.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.art-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const pa=document.getElementById('artPlayAll');
+  if(pa) pa.onclick=()=>{ speakSeq(all, 600); };
+}
+
+/* ---------- tab 切换 ---------- */
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.tab).classList.add('on');
+    if(b.dataset.tab==='shadow') initShadow();
+    if(b.dataset.tab==='codex') renderCodex();
+    if(b.dataset.tab==='review') renderReview();
+    if(b.dataset.tab==='quiz') buildQuiz();
+    if(b.dataset.tab==='errors') renderErrors();
+    if(b.dataset.tab==='reading') renderReading();
+    if(b.dataset.tab==='article') renderArticle();
+    if(b.dataset.tab==='frames') renderFrames();
+    if(b.dataset.tab==='grammar') renderGrammar();
+  };
+});
+document.querySelectorAll('.subtab').forEach(b=>b.onclick=()=>switchSub(b.dataset.sh));
+document.querySelectorAll('[data-rd]').forEach(b=>b.onclick=()=>switchRd(b.dataset.rd));
+(function(){
+  const r=(DATA.reading||[]).length, l=(DATA.listening||[]).length;
+  const rb=document.querySelector('[data-rd="read"]'), lb=document.querySelector('[data-rd="listen"]');
+  if(rb) rb.innerHTML='📖 阅读 '+r+' 篇';
+  if(lb){ if(!l){ lb.style.display='none'; } else lb.innerHTML='🎧 听力 '+l+' 篇'; }
+})();
+document.getElementById('tgCnLearn').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnLearn').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgHideCn').onclick=function(){
+  const hide=this.dataset.hide!=='1'; this.dataset.hide=hide?'1':'';
+  this.textContent=hide?'👁 显示中文':'🙈 隐藏中文'; renderReview();
+};
+document.getElementById('tgCnArt').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnArt').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgArtHL').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  renderArticle();
+};
+document.getElementById('rate').oninput=function(){ document.getElementById('rateVal').textContent=this.value+'×'; };
+document.getElementById('voiceSel').onchange=function(){ voice=getVoice(); };
+
+/* ---------- 初始化 ---------- */
+document.getElementById('subtitle').textContent='Unit '+DATA.unit+' · '+DATA.title+' — '+DATA.subtitle;
+function beastBadge(beast, emoji, size){
+  size=size||78; var uid='bb'+Math.random().toString(36).slice(2,7);
+  var ticks='';
+  for(var i=0;i<12;i++){
+    var a=i*30*Math.PI/180, major=(i%3===0);
+    var r1=48, r2=major?40:44;
+    ticks+='<line x1="'+(60+r1*Math.cos(a)).toFixed(1)+'" y1="'+(60+r1*Math.sin(a)).toFixed(1)+'" x2="'+(60+r2*Math.cos(a)).toFixed(1)+'" y2="'+(60+r2*Math.sin(a)).toFixed(1)+'" stroke="#f5c542" stroke-width="'+(major?1.7:0.8)+'" opacity="'+(major?0.95:0.5)+'"/>';
+  }
+  return '<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" role="img" aria-label="'+beast+'" style="display:block">'
+   +'<defs>'
+   +'<radialGradient id="disc'+uid+'" cx="50%" cy="34%" r="74%"><stop offset="0" stop-color="#3a3550"/><stop offset="0.5" stop-color="#201d30"/><stop offset="1" stop-color="#0e0c16"/></radialGradient>'
+   +'<linearGradient id="ring'+uid+'" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#ffeeb8"/><stop offset="0.45" stop-color="#f5c542"/><stop offset="1" stop-color="#9c7115"/></linearGradient>'
+   +'<radialGradient id="halo'+uid+'" cx="50%" cy="46%" r="50%"><stop offset="0" stop-color="#f5c542" stop-opacity="0.30"/><stop offset="1" stop-color="#f5c542" stop-opacity="0"/></radialGradient>'
+   +'</defs>'
+   +'<circle cx="60" cy="60" r="58" fill="none" stroke="url(#ring'+uid+')" stroke-width="1" opacity="0.30"/>'
+   +'<circle cx="60" cy="60" r="52" fill="url(#disc'+uid+')"/>'
+   +'<circle cx="60" cy="60" r="52" fill="none" stroke="url(#ring'+uid+')" stroke-width="3"/>'
+   +'<circle cx="60" cy="60" r="45.5" fill="none" stroke="#f5c542" stroke-width="0.7" opacity="0.30"/>'
+   + ticks
+   +'<circle cx="60" cy="60" r="41" fill="url(#halo'+uid+')"/>'
+   +'<text x="60" y="64" font-size="44" text-anchor="middle" dominant-baseline="central">'+emoji+'</text>'
+   +'<text x="60" y="101" font-size="11" text-anchor="middle" fill="#f5c542" font-weight="700" letter-spacing="1.5">'+beast+'</text>'
+   +'<circle cx="60" cy="9" r="2.6" fill="#e05a4f"/>'
+   +'</svg>';
+}
+document.getElementById('beastName').textContent=(DATA.beast_name||'英语跟读')+'（Unit '+DATA.unit+' '+DATA.title+'）';
+document.getElementById('beastEmoji').innerHTML=beastBadge(DATA.beast_name||'英语跟读', DATA.beast_emoji||'🐾', 78);
+document.getElementById('beastDesc').textContent=DATA.subtitle;
+buildQueue(); renderDialogues();
+renderLearn(); renderReview(); updateProgress(); renderCodex();
+</script>
+</body>
+</html>

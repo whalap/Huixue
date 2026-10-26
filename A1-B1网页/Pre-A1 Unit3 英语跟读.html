@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 3 · 课堂用语 Classroom English</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.unit({
+  n: 3,
+  emo: '🗣️',
+  beast: '课堂精灵',
+  en: 'Classroom English',
+  cn: '课堂用语',
+  goal: '12 个课堂指令 + 8 句礼貌用语：听得懂老师说什么，也知道怎么开口求助。',
+  tip: '这一单元最有用的一句话是 <b>I don\'t understand.</b>（我没听懂）和 ' +
+       '<b>Can you say that again?</b>（能再说一遍吗）。' +
+       '零基础最怕的是听不懂还不敢说 —— 把这两句背下来，课堂就活了一半。',
+  vocab: [
+    {g:'课堂指令', w:'Stand up.', ipa:'/stænd ʌp/', cn:'起立', ex:'Stand up, please.', excn:'请起立。'},
+    {g:'课堂指令', w:'Sit down.', ipa:'/sɪt daʊn/', cn:'坐下', ex:'Sit down, please.', excn:'请坐下。'},
+    {g:'课堂指令', w:'Listen.', ipa:'/ˈlɪsn/', cn:'听', ex:'Listen to me.', excn:'听我说。'},
+    {g:'课堂指令', w:'Look.', ipa:'/lʊk/', cn:'看', ex:'Look at the board.', excn:'看黑板。'},
+    {g:'课堂指令', w:'Read.', ipa:'/riːd/', cn:'读', ex:'Read after me.', excn:'跟我读。'},
+    {g:'课堂指令', w:'Write.', ipa:'/raɪt/', cn:'写', ex:'Write it down.', excn:'把它写下来。'},
+    {g:'课堂指令', w:'Repeat.', ipa:'/rɪˈpiːt/', cn:'重复', ex:'Repeat, please.', excn:'请重复一遍。'},
+    {g:'课堂指令', w:'Open your book.', ipa:'/ˈəʊpən/', cn:'打开书', ex:'Open your book, page ten.', excn:'打开书，第 10 页。'},
+    {g:'课堂指令', w:'Close your book.', ipa:'/kləʊz/', cn:'合上书', ex:'Close your book, please.', excn:'请把书合上。'},
+    {g:'课堂指令', w:'Put up your hand.', ipa:'/pʊt ʌp/', cn:'举手', ex:'Put up your hand.', excn:'请举手。'},
+    {g:'课堂指令', w:'Be quiet.', ipa:'/ˈkwaɪət/', cn:'安静', ex:'Be quiet, please.', excn:'请安静。'},
+    {g:'课堂指令', w:'Come here.', ipa:'/kʌm hɪə/', cn:'过来', ex:'Come here, please.', excn:'请过来一下。'},
+
+    {g:'礼貌与日常', w:'Hello.', ipa:'/həˈləʊ/', cn:'你好', ex:'Hello, Miss Li.', excn:'你好，李老师。'},
+    {g:'礼貌与日常', w:'Good morning.', ipa:'/gʊd ˈmɔːnɪŋ/', cn:'早上好', ex:'Good morning, everyone.', excn:'大家早上好。'},
+    {g:'礼貌与日常', w:'Goodbye.', ipa:'/ˌgʊdˈbaɪ/', cn:'再见', ex:'Goodbye! See you tomorrow.', excn:'再见！明天见。'},
+    {g:'礼貌与日常', w:'Thank you.', ipa:'/θæŋk juː/', cn:'谢谢', ex:'Thank you very much.', excn:'非常感谢。'},
+    {g:'礼貌与日常', w:'Sorry.', ipa:'/ˈsɒri/', cn:'对不起', ex:"I'm sorry I'm late.", excn:'对不起，我迟到了。'},
+    {g:'礼貌与日常', w:'Please.', ipa:'/pliːz/', cn:'请', ex:'Please help me.', excn:'请帮帮我。'},
+    {g:'礼貌与日常', w:'Excuse me.', ipa:'/ɪkˈskjuːz miː/', cn:'打扰一下 / 借过', ex:'Excuse me, Miss.', excn:'打扰一下，老师。'},
+    {g:'礼貌与日常', w:'May I come in?', ipa:'/meɪ aɪ kʌm ɪn/', cn:'我可以进来吗？', ex:'May I come in?', excn:'我可以进来吗？'}
+  ],
+  sents: [
+    {en:'Good morning, Miss Li.', cn:'早上好，李老师。'},
+    {en:'May I come in?', cn:'我可以进来吗？'},
+    {en:'Yes, come in, please.', cn:'可以，请进。'},
+    {en:'Open your book, page ten.', cn:'打开书，第 10 页。'},
+    {en:"Sorry, I'm late.", cn:'对不起，我迟到了。'},
+    {en:'Can you say that again?', cn:'你能再说一遍吗？'},
+    {en:"I don't understand.", cn:'我没听懂。'},
+    {en:'Thank you very much.', cn:'非常感谢。'}
+  ],
+  drill: {
+    h: '听指令，选出中文意思（这些都是老师每天会说的话）',
+    items: [
+      {say:'Stand up.', opts:['起立','坐下','举手','安静'], a:0},
+      {say:'Sit down.', opts:['坐下','起立','过来','听'], a:0},
+      {say:'Put up your hand.', opts:['举手','合上书','打开书','写字'], a:0},
+      {say:'Be quiet.', opts:['安静','重复','跟读','看黑板'], a:0},
+      {say:'Open your book.', opts:['打开书','合上书','把书放下','翻到第十页'], a:0},
+      {say:'Close your book.', opts:['合上书','打开书','读书','写下来'], a:0},
+      {say:'Repeat, please.', opts:['请重复一遍','请坐','请安静','请过来'], a:0},
+      {say:'Excuse me.', opts:['打扰一下','谢谢你','对不起','再见'], a:0, tip:'Excuse me 用来「引起注意 / 借过」；Sorry 才是「道歉」。'},
+      {say:'May I come in?', opts:['我可以进来吗？','我可以出去吗？','我可以坐下吗？','我可以喝水吗？'], a:0},
+      {say:'Thank you very much.', opts:['非常感谢','非常抱歉','不客气','没关系'], a:0}
+    ]
+  },
+  quiz: [
+    {q:'老师说 “Open your book.”，你该做什么？', opts:['打开书','合上书','把书举起','把书放下'], a:0},
+    {q:'上课迟到了，站在门口应该说什么？', opts:['May I come in?','Come here.','Stand up.','Thank you.'], a:0},
+    {q:'“I don\'t understand.” 是什么意思？', opts:['我没听懂。','我不同意。','我不知道。','我不会写。'], a:0},
+    {q:'想请对方再说一遍，最礼貌的说法是？', opts:['Can you say that again?','Say it again!','You say it.','Again!'], a:0},
+    {q:'“Be quiet, please.” 是在要求大家？', opts:['安静','大声一点','站起来','出去'], a:0},
+    {q:'别人帮了你，你应该说？', opts:['Thank you.','Sorry.','Excuse me.','Please.'], a:0},
+    {q:'想从座位中间挤过去，应该说什么？', opts:['Excuse me.','Sorry, I am late.','Thank you.','Good morning.'], a:0, tip:'借过用 Excuse me，道歉才用 Sorry。'},
+    {q:'早上第一节课见到老师，第一句说什么？', opts:['Good morning.','Good night.','Goodbye.','Sorry.'], a:0}
+  ],
+  proj: 'Pre-A1 Unit3 课堂指令卡项目.html',
+  projName: '课堂指令卡',
+  prev: 'Pre-A1 Unit2 英语跟读.html',
+  next: 'Pre-A1 Unit4 英语跟读.html'
+});
+</script>
+</body>
+</html>

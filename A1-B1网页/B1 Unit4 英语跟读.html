@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B1 英语跟读 · Unit 4 Digital Life</title>
+<style>
+  :root{
+    --bg:#0f1424; --panel:#171d33; --panel2:#1f2742; --ink:#eef2ff; --sub:#9aa6c7;
+    --gold:#f5c542; --gold2:#caa12f; --red:#ff5a5f; --green:#5bd6a0; --line:#2a3358;
+    --chip:#243056;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);color:var(--ink);min-height:100vh}
+  header{padding:14px 20px 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{font-size:26px}
+  .title{font-weight:800;font-size:20px}
+  .title small{color:var(--sub);font-weight:500;font-size:13px;display:block;margin-top:2px}
+  .grow{flex:1}
+  .prog{display:flex;align-items:center;gap:8px}
+  .homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);color:var(--gold);
+           border:1px solid var(--gold2);border-radius:20px;padding:7px 14px;font-size:12.5px;
+           font-weight:700;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .homebtn:hover{background:var(--gold);color:#1a1a1a;border-color:var(--gold)}
+  .lvlsw{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+  .lvlsw .lv{font-size:11px;padding:5px 10px;border-radius:14px;background:var(--chip);color:var(--sub);
+           border:1px solid var(--line);text-decoration:none;font-weight:600;white-space:nowrap;transition:.12s}
+  .lvlsw .lv:hover{border-color:var(--gold2);color:var(--gold)}
+  .lvlsw .lv.cur{background:var(--gold);color:#1a1a1a;border-color:var(--gold);font-weight:800}
+  .phxlink{display:inline-block;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+           padding:6px 13px;border-radius:20px;font-size:12.5px;text-decoration:none;font-weight:600}
+  .phxlink:hover{background:var(--gold);color:#1a1a1a}
+  .stars{font-size:20px;letter-spacing:2px}
+  .bar{height:8px;width:160px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .globalbar{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+    background:rgba(15,20,36,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+    padding:8px 20px;margin-bottom:6px}
+  .globalbar label{font-size:13px;color:var(--sub);display:flex;gap:6px;align-items:center}
+  .globalbar select,.globalbar input{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+  .globalbar .recnote{margin-left:auto;font-size:12px;color:var(--gold)}
+  nav{display:flex;gap:8px;padding:6px 20px 0;flex-wrap:wrap}
+  nav button{background:var(--panel);color:var(--sub);border:1px solid var(--line);
+    padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;cursor:pointer;font-weight:600}
+  nav button.on{background:var(--panel2);color:var(--ink);border-bottom:2px solid var(--gold)}
+  nav a.navgram{display:inline-flex;align-items:center;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;font-weight:700;text-decoration:none;margin-left:auto}
+  main{padding:16px 20px 60px;max-width:1100px;margin:0 auto}
+  .tab{display:none}
+  .tab.on{display:block}
+  .beast{background:linear-gradient(135deg,#1b2b4d,#20294a);border:1px solid var(--line);
+    border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin-bottom:16px}
+  .beast .emoji{font-size:54px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+  .beast h2{margin:0 0 4px;font-size:18px}
+  .beast p{margin:2px 0;color:var(--sub);font-size:13px}
+  .grp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+  .grp-tabs button{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .grp-tabs button.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.2s}
+  .card.done{border-color:var(--green)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .w{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .ipa{color:var(--sub);font-size:13px;font-style:italic}
+  .badges{display:flex;gap:6px;margin:6px 0}
+  .badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--chip);color:var(--sub)}
+  .badge.pos{background:#2b3a6b;color:#bcd0ff}
+  .badge.band{background:#3a2f12;color:var(--gold)}
+  .badge.awl{background:#0d3b2e;color:#7ef0c0}
+  .badge.reg{background:#3a2440;color:#e6b8ff}
+  .def{font-size:14px;margin:4px 0;line-height:1.5}
+  .phrase{font-size:13px;color:var(--gold);margin:4px 0}
+  .usage{font-size:12.5px;color:var(--sub);line-height:1.65;margin:6px 0 2px;padding:6px 9px;border-left:2px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 6px 6px 0}
+  .ex{font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px;margin:6px 0;cursor:pointer}
+  .ex .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .ex .cn.hide{display:none}
+  .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .acts button{flex:1;border:none;border-radius:9px;padding:8px;font-size:13px;cursor:pointer;font-weight:600;min-width:60px}
+  .b-play{background:var(--chip);color:var(--ink)}
+  .b-shadow{background:var(--gold);color:#1a1a1a}
+  .b-master{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
+  .b-master.mastered{background:var(--green);color:#06281c}
+  .b-err{color:var(--gold);border:1px solid var(--gold2);flex:none;min-width:0;padding:8px 10px}
+  .mini{display:inline-flex;gap:4px;align-items:center}
+  .spk{background:none;border:none;color:var(--gold);font-size:18px;cursor:pointer;padding:0 4px}
+  .toggle{cursor:pointer;color:var(--gold)}
+  .sense{border-left:3px solid var(--line);padding:4px 0 4px 10px;margin:6px 0}
+  .sense.hiddenSense{display:none}
+  .defline{font-size:14px;line-height:1.5;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .exbox{display:none;margin-top:6px;font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px}
+  .exbox .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:12px;cursor:pointer;margin-top:6px;font-weight:600}
+  .player{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .player .now{font-size:18px;font-weight:700;margin-bottom:6px}
+  .player .nowcn{color:var(--sub);font-size:14px;margin-bottom:12px}
+  /* 跟读提示条：英文 + 中文译文同一横行，一眼看完 */
+  .nowrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:11px 14px;border:1px solid var(--gold2);border-radius:10px;background:rgba(245,197,66,.06);margin-bottom:12px}
+  .nowrow .now,.nowrow .nowcn{margin-bottom:0}
+  .nowrow .now{font-size:18px;font-weight:700}
+  .nowrow .nowcn{font-size:14px;color:var(--sub)}
+  .recbox{min-height:8px;margin:10px 0}
+  .recbox audio{width:100%}
+  .rec-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .ctr{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ctr button{background:var(--gold);color:#1a1a1a;border:none;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .ctr .ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .ctr button.recording{background:var(--red);color:#fff}
+  .coll{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .cbox .e{font-size:38px}
+  .cbox .n{font-weight:700;margin:6px 0 2px}
+  .cbox .s{color:var(--gold);font-size:14px;letter-spacing:1px}
+  .cbox.lock{opacity:.45;filter:grayscale(1)}
+  .hint{color:var(--sub);font-size:12px;margin-top:10px;line-height:1.6;width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word}
+  /* 通用提示框（原 .phx-tip，拼读移除后改名；句模页等仍在用） */
+  .tip{color:var(--sub);font-size:12px;line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:9px 12px;margin:0 0 12px}
+  .tip b{color:var(--ink)}
+  .streak{color:var(--gold);font-weight:700}
+  .banner{background:#2a1f12;border:1px solid var(--gold2);color:var(--gold);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:12px;display:none}
+  .subtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .subtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .turn{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}
+  .turn.recording{border-color:var(--red)}
+  .turn .role{font-weight:800;font-size:13px;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;flex:none}
+  .role-A{background:#2b3a6b;color:#bcd0ff}
+  .role-B{background:#3a2f12;color:var(--gold)}
+  .turn-text{flex:1;font-size:15px}
+  .turn-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  .turn-acts{display:flex;gap:6px;flex:none}
+  .turn-acts button{border:none;border-radius:8px;padding:7px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .turn-acts .b-play{background:var(--chip);color:var(--ink)}
+  .turn-acts .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  /* 录音提示/回放整行横向铺满，绝不被 flex 压成竖条 */
+  .turn-rec{display:block;width:100%;min-width:0;margin-top:8px;clear:both}
+  .turn-rec audio{width:100%}
+  .turn-rec .hint{white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.6;margin-top:0}
+  .exchange{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:10px;background:var(--panel2)}
+  .qa{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .qa-text{flex:1;min-width:170px;font-size:15px}
+  /* 中文译文与英文同行，形成横向长条，便于一次性扫读 */
+  .qa-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  /* 回应行：标签 + 句子 + 按钮全部同一横行 */
+  .resp{margin-top:8px;padding:8px 10px;border-left:3px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 8px 8px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .resp-label{font-size:12px;color:var(--gold);font-weight:700;flex:none}
+  .resp .qa-text{flex:1;min-width:180px}
+  .resp-acts{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .resp-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .resp-acts .b-play{background:var(--chip);color:var(--ink)}
+  .resp-acts .b-drill{background:var(--gold);color:#1a1a1a}
+  .q-opt.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  /* 阅读·听力 */
+  .rd-tip{color:var(--sub);font-size:12px;margin-bottom:8px}
+  .rd-playall{margin-bottom:10px}
+  .rd-sents{display:flex;flex-direction:column;gap:8px}
+  .rd-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .rd-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .rd-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .rd-sent .b-play,.rd-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .rd-sent .b-play{background:var(--chip);color:var(--ink)}
+  .rd-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .rd-qtitle{font-weight:700;margin:16px 0 8px;color:var(--gold)}
+  .rdtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .rdtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .rd-en.ls-masked{color:transparent;background:var(--panel2);border-radius:6px;user-select:none}
+  .listen-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .ls-tip{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:10px}
+  .ghostbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .ghostbtn:hover{border-color:var(--gold)}
+  .q{margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .q-q{font-size:14px;margin-bottom:6px}
+  .q-opts{display:flex;gap:8px;flex-wrap:wrap}
+  .q-opt{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);cursor:pointer;font-size:13px}
+  .q-fb{margin-top:6px;font-size:13px}
+  .q-opt.sel{border-color:var(--gold);background:#3a2f12;color:var(--gold)}
+  .q-input{width:100%;box-sizing:border-box;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);font-size:14px}
+  .quiz-prompt{font-size:16px;margin:6px 0 10px}
+  .quiz-prompt .big{font-size:24px;font-weight:800}
+  .quiz-prompt .tag{display:inline-block;margin-left:8px;font-size:11px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:1px 8px;vertical-align:middle}
+  /* 可点发音的词块：全局统一靠 data-say 绑定 */
+  .wchip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--gold);border-radius:9px;padding:3px 10px;font-weight:800;cursor:pointer;color:var(--ink)}
+  .wchip b{font-size:12px;color:var(--gold);font-weight:700}
+  .wchip:hover{background:var(--chip)}
+  .wchip.big{font-size:24px;padding:6px 14px}
+  .wchip.big b{font-size:15px}
+  .q-prog{height:8px;width:100%;background:var(--panel2);border-radius:6px;overflow:hidden;margin:8px 0}
+  .q-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .q-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:10px 0}
+  .q-opt{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;cursor:pointer;font-weight:600}
+  .q-opt:hover{border-color:var(--gold)}
+  .q-opt.ok{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-opt.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fb{font-size:14px;font-weight:700;min-height:20px;margin:8px 0}
+  .err-type{font-weight:800;color:var(--gold);margin:14px 0 8px;font-size:15px}
+  .err-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+  .err-meta{font-size:13px;color:var(--sub);margin-bottom:4px}
+  .err-line{font-size:14px;margin:2px 0}
+  .err-btns{display:flex;gap:8px;margin-top:8px}
+  .err-btns button{border:none;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .err-btns .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line)}
+  .err-btns .err-del{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+
+  /* ---- 本单元语法 tab（联动语法练习页） ---- */
+  .gramwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:4px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+         display:flex;flex-direction:column;gap:7px;transition:.15s}
+  .gcard:hover{border-color:var(--gold2);transform:translateY(-2px)}
+  .gcard .gi{font-size:22px;line-height:1}
+  .gcard .gname{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4}
+  .gcard .gdesc{font-size:12px;color:var(--sub);line-height:1.6}
+  .gcard .ggo{margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+              background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+              border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:700;
+              text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .gcard .ggo:hover{background:var(--gold);color:#1a1a1a}
+  .gcard .gdone{font-size:11px;color:var(--green)}
+  .gramhead{color:var(--sub);font-size:12.5px;line-height:1.75;margin-bottom:12px}
+  .gramhead b{color:var(--gold)}
+  .gramfoot{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+  .fr-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:14px}
+  .fr-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .fr-cn-head{font-size:13px;color:var(--sub);font-family:var(--mono);margin-bottom:10px}
+  .fr-slots{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .fr-slot{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--sub)}
+  .fr-slot select{min-width:130px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);
+                  background:var(--bg);color:var(--fg);font-size:13px}
+  .fr-sent{font-size:19px;line-height:1.5;color:var(--gold);font-weight:500;margin-bottom:6px}
+  .fr-cn{font-size:13px;color:var(--sub);margin-bottom:10px}
+  .fr-acts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .fr-tip{font-size:12px;color:var(--sub);line-height:1.65;border-top:1px dashed var(--line);padding-top:8px}
+
+  /* ---------- 单元文章 ---------- */
+  .art-para{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .art-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .art-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .art-en{flex:1;min-width:160px;font-size:15px;cursor:pointer;line-height:1.65}
+  .art-sent .b-play,.art-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .art-sent .b-play{background:var(--chip);color:var(--ink)}
+  .art-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .art-zh{width:100%;color:var(--sub);font-size:13px;line-height:1.6}
+  .art-hl{color:var(--gold);font-weight:700;border-bottom:1px dashed var(--gold2)}
+  .artmark{font-size:12px;margin-left:6px;opacity:.95}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🐉</div>
+  <div class="title">英语跟读学院 · B1
+    <small id="subtitle"></small>
+  </div>
+  <nav class="lvlsw" title="切换学习级别"><a class="lv hub" href="index.html" title="返回四级总站">🏛️ 总站</a><a class="lv" href="A1 启程线/index.html">🌱 A1</a><a class="lv" href="A2 主页.html">📗 A2</a><a class="lv cur" href="B1 主页.html">🌉 B1</a><a class="lv" href="B2 主页.html">🎓 B2</a></nav>
+  <a class="homebtn" href="B1 主页.html" title="返回 B1 过渡线主页英语学习网络主页">🏠 回主页</a>
+  <div class="grow"></div>
+  <div class="prog">
+    <span class="stars" id="starTop">☆☆☆</span>
+    <div class="bar"><i id="barTop"></i></div>
+    <span id="pctTop" style="color:var(--sub);font-size:13px">0%</span>
+  </div>
+</header>
+<div class="globalbar">
+  <label>🇬🇧 音色(英式优先) <select id="voiceSel"><option>默认(英式)</option></select></label>
+  <label>语速 <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.9"> <span id="rateVal">0.9×</span></label>
+  <span class="recnote" id="recNote"></span>
+</div>
+<nav>
+  <button data-tab="learn">📘 学习 B</button>
+  <button data-tab="frames">🧩 句模</button>
+  <button data-tab="review">🔁 复习 C</button>
+  <button data-tab="shadow">🎤 跟读·对话</button>
+  <button data-tab="reading">📖 阅读·听力</button>
+  <button data-tab="article" class="on">📰 单元文章</button>
+  <button data-tab="grammar">✍️ 本单元语法</button>
+  <button data-tab="quiz">📝 小测</button>
+  <button data-tab="errors">🩹 错题</button>
+  <button data-tab="codex">📜 图鉴</button>
+  <a class="navgram" href="语法练习_A1-A2-B1-B2.html" target="_blank" title="语法练习 A1→B2：U0/U1 一般现在时在「一般现在时」三组；like+doing 在「动词搭配」；频率副词在「副词」">🧩 语法 ↗</a>
+</nav>
+<main>
+  <!-- 句模：词 → 句 -->
+  <section class="tab" id="frames">
+    <div class="beast" style="padding:14px 18px">
+      <div class="emoji">🧩</div>
+      <div>
+        <h2>句模工坊 · 把词拼成自己的话</h2>
+        <p>词表是零件，句模是模具。换一个词、句子就变成你的 —— 先从这里张嘴，再回去记词。</p>
+      </div>
+    </div>
+    <div id="frWrap"></div>
+  </section>
+  <!-- 学习 B -->
+  <section class="tab" id="learn">
+    <div class="beast">
+      <div class="emoji" id="beastEmoji"></div>
+      <div>
+        <h2 id="beastName"></h2>
+        <p id="beastDesc"></p>
+        <p>打卡进度：<span class="streak" id="beastStreak"></span></p>
+      </div>
+    </div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnLearn">👁 开</span></label>
+    </div>
+    <div class="grp-tabs" id="grpLearn"></div>
+    <div class="grid" id="gridLearn"></div>
+    <div class="hint">双击例句可慢速（0.6×）跟读；点 🔊 听单词。卡片「🎤 跟读打卡」跳到单句跟读页并定位该词，「❌ 记一笔」把没记住的收进错题本。</div>
+  </section>
+
+  <!-- 复习 C -->
+  <section class="tab" id="review">
+    <div class="banner" id="revBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">自测模式 <span class="toggle" id="tgHideCn">🙈 隐藏中文</span></label>
+      <span style="color:var(--sub);font-size:12px">一词义一例句，点「看例句」展开；多义词点「更多 ▾」继续；每句可 🎤 跟读。</span>
+    </div>
+    <div class="grp-tabs" id="grpReview"></div>
+    <div class="grid" id="gridReview"></div>
+    <div class="hint">C 版释义已加厚：含【词性】+ 近义/反义 + 更完整场景。自测时隐藏中文，看英文回想起全部信息即过关。例句下的 🎤 跟读会跳到单句跟读页并定位该句。</div>
+  </section>
+
+  <!-- 跟读·对话 -->
+  <section class="tab" id="shadow">
+    <div class="banner" id="shBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-sh="dialog">💬 对话跟读</button>
+      <button class="subtab" data-sh="single">📝 单句跟读</button>
+      <span style="color:var(--sub);font-size:12px">对话跟读＝听问句→看回应句→录你自己的回答；单句跟读可打卡升星。</span>
+    </div>
+    <div id="shDialog"></div>
+    <div id="shSingle" style="display:none">
+      <div class="player">
+        <div class="nowrow" style="display:none">
+          <div class="now" id="shNow">准备开始…</div>
+          <div class="nowcn" id="shNowCn"></div>
+        </div>
+        <div class="hint" id="shProg" style="margin:0 0 12px">👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这里会出现回放音轨，和原声对比。</div>
+        <div class="recbox" id="shRecBox"></div>
+        <div class="ctr">
+          <button id="shPlay">▶ 听原声</button>
+          <button id="shRec">● 开始录音</button>
+          <button id="shStop" class="ghost">■ 停止</button>
+          <button id="shCheck" class="ghost">✓ 我已跟读打卡</button>
+          <button id="shPrev" class="ghost">⏮ 上一句</button>
+          <button id="shNext" class="ghost">⏭ 下一句</button>
+          <button id="shAuto" class="ghost">🔁 自动连播</button>
+          <label style="color:var(--sub);font-size:13px">跟读留白
+            <select id="shGap">
+              <option value="1500">1.5 秒</option>
+              <option value="2500" selected>2.5 秒</option>
+              <option value="4000">4 秒</option>
+              <option value="-1">手动</option>
+            </select>
+          </label>
+        </div>
+        <div class="hint" id="shHint">跟读流程：▶ 听原声 → ● 开始录音（读完后点 ■ 停止可回放对比）→ ✓ 打卡。连续打卡积累神兽星级。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本单元语法（联动语法练习页） -->
+    <!-- 单元文章：本单元生词的语境容器 -->
+  <section class="tab on" id="article">
+    <div class="banner" id="artBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="b-play" id="artPlayAll">🔊 听全篇</button>
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnArt">👁 开</span></label>
+      <label style="font-size:13px;color:var(--sub)">高亮生词 <span class="toggle" id="tgArtHL">👁 开</span></label>
+      <span style="color:var(--sub);font-size:12px">本单元生词已织进这篇短文，命中处标金色。点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。</span>
+    </div>
+    <div id="artBody"></div>
+  </section>
+
+  <section class="tab" id="grammar">
+    <div class="gramhead" id="gramHead"></div>
+    <div class="gramwrap" id="gramList"></div>
+    <div class="gramfoot">
+      <a class="phxlink" id="gramAll" target="_blank" rel="noopener">✍️ 打开英语语法练习全册 →</a>
+      <span class="hint" style="margin-top:0">点任一关，直接跳到语法练习里<b>这一个点</b>的知识卡（一次只学一个点）。练完回来，跟读这边会自动记一笔。</span>
+    </div>
+  </section>
+
+  <!-- 阅读·听力 -->
+  <section class="tab" id="reading">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="rdtab on" data-rd="read">📖 阅读</button>
+      <button class="rdtab" data-rd="listen">🎧 听力</button>
+      <span style="color:var(--sub);font-size:12px">阅读＝看文本做小题；<b style="color:var(--gold)">听力＝先盲听、再答题</b>，听不懂可调慢顶部语速或点「👀 看文本」。<b style="color:var(--gold)">🇨🇳</b> ＝中国主题篇。</span>
+    </div>
+
+    <div id="rdReadWrap">
+      <div class="banner" id="rdBanner"></div>
+      <div class="grp-tabs" id="rdPassages" style="margin-bottom:10px"></div>
+      <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+        <span id="rdHint" style="color:var(--sub);font-size:12px"></span>
+      </div>
+      <div id="rdText"></div>
+      <div id="rdQuiz"></div>
+    </div>
+
+    <div id="rdListenWrap" style="display:none">
+      <div class="banner" id="lsBanner"></div>
+      <div class="grp-tabs" id="lsPassages" style="margin-bottom:10px"></div>
+      <div class="listen-box">
+        <div class="ls-tip">🎧 <b>盲听三步</b>：① 点「▶ 听全篇」（顶部语速可调慢）→ ② 做下面小题 → ③ 不会就点「👀 看文本」对照，再听一遍。每句都可单点 🔊 重听、🎤 跟读。答错自动进错题本。</div>
+        <div class="rd-playall" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="b-play" id="lsPlayAll">▶ 听全篇</button>
+          <button id="lsReplay" class="ghostbtn">🔁 再听一遍</button>
+          <button id="lsReveal" class="ghostbtn">👀 看文本</button>
+        </div>
+        <div class="rd-sents" id="lsSents"></div>
+      </div>
+      <div id="lsQuiz"></div>
+    </div>
+  </section>
+
+  <!-- 小测 -->
+  <section class="tab" id="quiz">
+    <div class="hint" style="margin-bottom:10px">主动回忆：听音选义 / 看词选义 / 看义选词 三类随机混出，答错自动记入「🩹 错题」。每轮覆盖本单元全部词。</div>
+    <div id="quizBox"></div>
+  </section>
+
+  <!-- 错题 -->
+  <section class="tab" id="errors">
+    <div class="hint" style="margin-bottom:10px">统一错误池（schema：话题/层级/类型/原文/标准答/学生答/时间）。词卡「记一笔」或「小测答错」自动汇总到这里，按类型聚合，可重练或删除。</div>
+    <div id="errList"></div>
+  </section>
+
+  <!-- 神兽图鉴 -->
+  <section class="tab" id="codex">
+    <div class="coll" id="codexGrid"></div>
+    <div class="hint">13 个板块 = 13 只神兽。本单元神兽已解锁，掌握度越高星级越多。其余神兽可从 <a href="B1 主页.html" style="color:var(--gold)">B1 目录</a> 进入对应单元解锁。</div>
+  </section>
+</main>
+
+<script>
+const DATA = {"unit":4,"title":"Digital Life","subtitle":"手机应用 · 线上学习（科技线 1/3）","beast_emoji":"🌐","beast_name":"触网之灵","groups":[{"name":"数字名词","words":[{"word":"app","ipa":"/æp/","pos":"n.","cef":"B1","band":"zipf 4.9 · 高频","defB":"应用（application 的简称）","phrase":"open an app","phraseDef":"打开一个应用","ex":"This app helps me learn ten new words every day.","exCn":"这个应用每天帮我学十个新词。","defC":"应用（application 的简称）","awl":"—","register":"daily","senses":[{"def":"应用（application 的简称）","ex":"This app helps me learn ten new words every day.","exCn":"这个应用每天帮我学十个新词。","syn":"application","ant":"—"}],"inArt":1},{"word":"screen","ipa":"/skriːn/","pos":"n.","cef":"B1","band":"zipf 4.5 · 高频","defB":"屏幕","phrase":"a small screen","phraseDef":"小屏幕","ex":"Do not read in bed with a bright phone screen.","exCn":"别开着明亮的手机屏幕在床上看书。","defC":"屏幕","awl":"—","register":"daily","senses":[{"def":"屏幕","ex":"Do not read in bed with a bright phone screen.","exCn":"别开着明亮的手机屏幕在床上看书。","syn":"display","ant":"—"}],"inArt":1},{"word":"message","ipa":"/ˈmesɪdʒ/","pos":"n.","cef":"B1","band":"zipf 4.8 · 高频","defB":"消息","phrase":"a short message","phraseDef":"一条短消息","ex":"I sent my teacher a short message after class.","exCn":"下课后我给老师发了一条短消息。","defC":"消息","awl":"—","register":"daily","senses":[{"def":"消息","ex":"I sent my teacher a short message after class.","exCn":"下课后我给老师发了一条短消息。","syn":"text","ant":"—"}],"inArt":1},{"word":"wifi","ipa":"/ˈwaɪfaɪ/","pos":"n.","cef":"B1","band":"B1 · 必会","defB":"无线网络","phrase":"free wifi","phraseDef":"免费无线网","ex":"The free wifi in this cafe is very slow.","exCn":"这家咖啡馆的免费无线网很慢。","defC":"无线网络","awl":"—","register":"daily","senses":[{"def":"无线网络","ex":"The free wifi in this cafe is very slow.","exCn":"这家咖啡馆的免费无线网很慢。","syn":"wireless","ant":"—"}],"inArt":1},{"word":"password","ipa":"/ˈpɑːswɜːd/","pos":"n.","cef":"B1","band":"B1 · 必会","defB":"密码","phrase":"a strong password","phraseDef":"强密码","ex":"Choose a strong password for your school account.","exCn":"给学校账户选一个强密码。","defC":"密码","awl":"—","register":"daily","senses":[{"def":"密码","ex":"Choose a strong password for your school account.","exCn":"给学校账户选一个强密码。","syn":"code","ant":"—"}],"inArt":1},{"word":"link","ipa":"/lɪŋk/","pos":"n.","cef":"B1","band":"zipf 4.7 · 高频","defB":"链接","phrase":"click a link","phraseDef":"点击链接","ex":"The teacher sent the class link in the group.","exCn":"老师把课堂链接发在了群里。","defC":"链接","awl":"—","register":"daily","senses":[{"def":"链接","ex":"The teacher sent the class link in the group.","exCn":"老师把课堂链接发在了群里。","syn":"URL","ant":"—"}],"inArt":1}]},{"name":"线上动词","words":[{"word":"download","ipa":"/ˌdaʊnˈləʊd/","pos":"v.","cef":"B1","band":"B1 · 必会","defB":"下载","phrase":"download an app","phraseDef":"下载一个应用","ex":"I download my notes before every online class.","exCn":"每次上网课前我都下载好笔记。","defC":"下载","awl":"—","register":"daily","senses":[{"def":"下载","ex":"I download my notes before every online class.","exCn":"每次上网课前我都下载好笔记。","syn":"save","ant":"upload"}],"inArt":1},{"word":"search","ipa":"/sɜːtʃ/","pos":"v.","cef":"B1","band":"zipf 4.6 · 高频","defB":"搜索","phrase":"search for a word","phraseDef":"查一个词","ex":"I search for new words on my phone.","exCn":"我在手机上搜索新单词。","defC":"搜索","awl":"—","register":"daily","senses":[{"def":"搜索","ex":"I search for new words on my phone.","exCn":"我在手机上搜索新单词。","syn":"look up","ant":"—"}],"inArt":1},{"word":"click","ipa":"/klɪk/","pos":"v.","cef":"B1","band":"zipf 4.7 · 高频","defB":"点击","phrase":"click a button","phraseDef":"点击按钮","ex":"Click the blue button to start the class.","exCn":"点蓝色按钮开始上课。","defC":"点击","awl":"—","register":"daily","senses":[{"def":"点击","ex":"Click the blue button to start the class.","exCn":"点蓝色按钮开始上课。","syn":"tap","ant":"—"}],"inArt":1},{"word":"share","ipa":"/ʃeə/","pos":"v.","cef":"B1","band":"zipf 4.6 · 高频","defB":"分享","phrase":"share a link","phraseDef":"分享链接","ex":"Can you share this link with your group?","exCn":"你能把这个链接分享到群里吗？","defC":"分享","awl":"—","register":"daily","senses":[{"def":"分享","ex":"Can you share this link with your group?","exCn":"你能把这个链接分享到群里吗？","syn":"post","ant":"—"}],"inArt":1},{"word":"upload","ipa":"/ˌʌpˈləʊd/","pos":"v.","cef":"B1","band":"B1 · 必会","defB":"上传","phrase":"upload homework","phraseDef":"上传作业","ex":"Please upload your homework before nine tonight.","exCn":"请在今晚九点前上传作业。","defC":"上传","awl":"—","register":"daily","senses":[{"def":"上传","ex":"Please upload your homework before nine tonight.","exCn":"请在今晚九点前上传作业。","syn":"post","ant":"download"}],"inArt":1},{"word":"charge","ipa":"/tʃɑːdʒ/","pos":"v.","cef":"B1","band":"zipf 4.4 · 高频","defB":"充电","phrase":"charge a phone","phraseDef":"给手机充电","ex":"I charge my phone in the kitchen every night.","exCn":"我每晚在厨房给手机充电。","defC":"充电","awl":"—","register":"daily","senses":[{"def":"充电","ex":"I charge my phone in the kitchen every night.","exCn":"我每晚在厨房给手机充电。","syn":"recharge","ant":"—"}],"inArt":1}]},{"name":"便利形容词","words":[{"word":"convenient","ipa":"/kənˈviːniənt/","pos":"adj.","cef":"B1","band":"B1 · 必会","defB":"方便的","phrase":"very convenient","phraseDef":"很方便","ex":"Paying by phone is quick and very convenient.","exCn":"用手机支付又快又方便。","defC":"方便的","awl":"—","register":"daily","senses":[{"def":"方便的","ex":"Paying by phone is quick and very convenient.","exCn":"用手机支付又快又方便。","syn":"handy","ant":"inconvenient"}],"inArt":1},{"word":"useful","ipa":"/ˈjuːsfl/","pos":"adj.","cef":"B1","band":"zipf 4.6 · 高频","defB":"有用的","phrase":"a useful tool","phraseDef":"有用的工具","ex":"This dictionary app is really useful for me.","exCn":"这个词典应用对我真有用。","defC":"有用的","awl":"—","register":"daily","senses":[{"def":"有用的","ex":"This dictionary app is really useful for me.","exCn":"这个词典应用对我真有用。","syn":"helpful","ant":"useless"}],"inArt":1},{"word":"quick","ipa":"/kwɪk/","pos":"adj.","cef":"B1","band":"zipf 4.5 · 高频","defB":"快的","phrase":"a quick answer","phraseDef":"很快的回答","ex":"A scan payment is quick, but counting coins is slow.","exCn":"扫码支付很快，数硬币很慢。","defC":"快的","awl":"—","register":"daily","senses":[{"def":"快的","ex":"A scan payment is quick, but counting coins is slow.","exCn":"扫码支付很快，数硬币很慢。","syn":"fast","ant":"slow"}],"inArt":1},{"word":"easy","ipa":"/ˈiːzi/","pos":"adj.","cef":"A2","band":"zipf 5.0 · 高频","defB":"容易的","phrase":"easy to use","phraseDef":"容易使用","ex":"The new learning app is easy to use.","exCn":"这个新学习应用很容易用。","defC":"容易的","awl":"—","register":"daily","senses":[{"def":"容易的","ex":"The new learning app is easy to use.","exCn":"这个新学习应用很容易用。","syn":"simple","ant":"difficult"}],"inArt":1},{"word":"smart","ipa":"/smɑːt/","pos":"adj.","cef":"B1","band":"zipf 4.4 · 高频","defB":"智能的","phrase":"a smart watch","phraseDef":"智能手表","ex":"My smart watch counts my steps every day.","exCn":"我的智能手表每天计步。","defC":"智能的","awl":"—","register":"daily","senses":[{"def":"智能的","ex":"My smart watch counts my steps every day.","exCn":"我的智能手表每天计步。","syn":"clever","ant":"—"}],"inArt":1},{"word":"helpful","ipa":"/ˈhelpfl/","pos":"adj.","cef":"B1","band":"B1 · 必会","defB":"有帮助的","phrase":"very helpful","phraseDef":"很有帮助","ex":"Online videos are helpful for my English study.","exCn":"在线视频对我的英语学习有帮助。","defC":"有帮助的","awl":"—","register":"daily","senses":[{"def":"有帮助的","ex":"Online videos are helpful for my English study.","exCn":"在线视频对我的英语学习有帮助。","syn":"useful","ant":"—"}],"inArt":1}]},{"name":"因果衔接","words":[{"word":"because","ipa":"/bɪˈkɒz/","pos":"conj.","cef":"B1","band":"B1 · 必会","defB":"因为（后接句子）","phrase":"because the wifi…","phraseDef":"因为网络……","ex":"The video stopped because the wifi was slow.","exCn":"视频卡住了，因为网络很慢。","defC":"因为（后接句子）","awl":"—","register":"daily","senses":[{"def":"因为（后接句子）","ex":"The video stopped because the wifi was slow.","exCn":"视频卡住了，因为网络很慢。","syn":"since","ant":"—"}],"inArt":1,"usage":"because 后面必须跟完整句子：because it rained。只跟名词时用 because of：because of the rain。口语常用 now / and，书面用 therefore。"},{"word":"so","ipa":"/səʊ/","pos":"conj.","cef":"A2","band":"zipf 5.1 · 高频","defB":"所以","phrase":"so I…","phraseDef":"所以我……","ex":"The app was free, so I downloaded it.","exCn":"这个应用免费，所以我下载了。","defC":"所以","awl":"—","register":"daily","senses":[{"def":"所以","ex":"The app was free, so I downloaded it.","exCn":"这个应用免费，所以我下载了。","syn":"therefore","ant":"—"}],"inArt":1},{"word":"therefore","ipa":"/ˈðeəfɔː/","pos":"adv.","cef":"B1","band":"B1 · 必会","defB":"因此；所以（书面，正式）","phrase":"therefore, we…","phraseDef":"因此，我们……","ex":"The phone was old; therefore, it ran very slowly.","exCn":"手机旧了，因此跑得很慢。","defC":"因此；所以（书面，正式）","awl":"—","register":"daily","senses":[{"def":"因此；所以（书面，正式）","ex":"The phone was old; therefore, it ran very slowly.","exCn":"手机旧了，因此跑得很慢。","syn":"so","ant":"—"}],"inArt":1,"usage":"therefore 是书面正式词，后面常跟逗号：..., therefore, ...。口语里说 so：It rained, so we stayed in."},{"word":"as a result","ipa":"/æz ə rɪˈzʌlt/","pos":"phrase","cef":"B1","band":"B1 · 必会","defB":"结果","phrase":"as a result, …","phraseDef":"结果，……","ex":"He forgot his password; as a result, he could not log in.","exCn":"他忘了密码，结果登不进去了。","defC":"结果","awl":"—","register":"daily","senses":[{"def":"结果","ex":"He forgot his password; as a result, he could not log in.","exCn":"他忘了密码，结果登不进去了。","syn":"consequently","ant":"—"}],"inArt":1},{"word":"because of","ipa":"/bɪˈkɒz əv/","pos":"phrase","cef":"B1","band":"B1 · 必会","defB":"因为（后接名词）","phrase":"because of the snow","phraseDef":"因为大雪","ex":"The class ended early because of the heavy snow.","exCn":"因为大雪，课提前结束了。","defC":"因为（后接名词）","awl":"—","register":"daily","senses":[{"def":"因为（后接名词）","ex":"The class ended early because of the heavy snow.","exCn":"因为大雪，课提前结束了。","syn":"due to","ant":"—"}],"inArt":1},{"word":"that is why","ipa":"/ðæt ɪz waɪ/","pos":"phrase","cef":"B1","band":"B1 · 必会","defB":"那就是为什么","phrase":"that is why…","phraseDef":"那就是为什么……","ex":"The screen is small; that is why my eyes hurt.","exCn":"屏幕很小，那就是为什么我眼睛疼。","defC":"那就是为什么","awl":"—","register":"daily","senses":[{"def":"那就是为什么","ex":"The screen is small; that is why my eyes hurt.","exCn":"屏幕很小，那就是为什么我眼睛疼。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"数据与学术词","words":[{"word":"data","ipa":"/ˈdeɪtə/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"数据","phrase":"collect data","phraseDef":"收集数据","ex":"The app collects data about how long you study.","exCn":"这个应用收集你学习时长的数据。","defC":"数据","awl":"1","register":"academic","senses":[{"def":"数据","ex":"The app collects data about how long you study.","exCn":"这个应用收集你学习时长的数据。","syn":"figures","ant":"—"}],"inArt":1},{"word":"information","ipa":"/ˌɪnfəˈmeɪʃn/","pos":"n.","cef":"A2","band":"zipf 5.0 · 高频","defB":"信息","phrase":"find information","phraseDef":"查找信息","ex":"You can find a lot of information online.","exCn":"你可以在网上找到很多信息。","defC":"信息","awl":"—","register":"daily","senses":[{"def":"信息","ex":"You can find a lot of information online.","exCn":"你可以在网上找到很多信息。","syn":"facts","ant":"—"}],"inArt":1},{"word":"benefit","ipa":"/ˈbenɪfɪt/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"好处；益处","phrase":"a real benefit","phraseDef":"实实在在的好处","ex":"One benefit of online class is learning at home.","exCn":"网课的一个好处是在家学习。","defC":"好处；益处","awl":"1","register":"academic","senses":[{"def":"好处；益处","ex":"One benefit of online class is learning at home.","exCn":"网课的一个好处是在家学习。","syn":"advantage","ant":"drawback"}],"inArt":1},{"word":"factor","ipa":"/ˈfæktə/","pos":"n.","cef":"B1","band":"AWL 2 · 学术","defB":"因素","phrase":"a key factor","phraseDef":"关键因素","ex":"Sleep is a key factor in good study.","exCn":"睡眠是学习好的关键因素。","defC":"因素","awl":"2","register":"academic","senses":[{"def":"因素","ex":"Sleep is a key factor in good study.","exCn":"睡眠是学习好的关键因素。","syn":"element","ant":"—"}],"inArt":1},{"word":"access","ipa":"/ˈækses/","pos":"n.","cef":"B1","band":"AWL 3 · 学术","defB":"使用权；接触机会","phrase":"have access to…","phraseDef":"有使用……的机会","ex":"Students in cities have fast access to the internet.","exCn":"城市里的学生能快速用上互联网。","defC":"使用权；接触机会","awl":"3","register":"academic","senses":[{"def":"使用权；接触机会","ex":"Students in cities have fast access to the internet.","exCn":"城市里的学生能快速用上互联网。","syn":"entry","ant":"—"}],"inArt":1},{"word":"process","ipa":"/ˈprəʊses/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"过程","phrase":"a slow process","phraseDef":"缓慢的过程","ex":"Learning a language is a slow but useful process.","exCn":"学语言是个缓慢但有用的过程。","defC":"过程","awl":"1","register":"academic","senses":[{"def":"过程","ex":"Learning a language is a slow but useful process.","exCn":"学语言是个缓慢但有用的过程。","syn":"procedure","ant":"—"}],"inArt":1}]},{"name":"网课场景词","words":[{"word":"online class","ipa":"/ˌɒnlaɪn ˈklɑːs/","pos":"n.","cef":"B1","band":"B1 · 必会","defB":"网课；在线课堂","phrase":"have an online class","phraseDef":"上網课","ex":"We had an online class at home this morning.","exCn":"今天早上我们在家上了网课。","defC":"网课；在线课堂","awl":"—","register":"daily","senses":[{"def":"网课；在线课堂","ex":"We had an online class at home this morning.","exCn":"今天早上我们在家上了网课。","syn":"e-class","ant":"—"}],"inArt":1},{"word":"camera","ipa":"/ˈkæmərə/","pos":"n.","cef":"B1","band":"zipf 4.5 · 高频","defB":"摄像头","phrase":"turn on the camera","phraseDef":"打开摄像头","ex":"Please turn on your camera for the online class.","exCn":"上網课请打开摄像头。","defC":"摄像头","awl":"—","register":"daily","senses":[{"def":"摄像头","ex":"Please turn on your camera for the online class.","exCn":"上網课请打开摄像头。","syn":"webcam","ant":"—"}],"inArt":1},{"word":"microphone","ipa":"/ˈmaɪkrəfəʊn/","pos":"n.","cef":"B1","band":"B1 · 必会","defB":"麦克风","phrase":"check the microphone","phraseDef":"检查麦克风","ex":"My microphone was off during the whole lesson.","exCn":"整节课我的麦克风都是关着的。","defC":"麦克风","awl":"—","register":"daily","senses":[{"def":"麦克风","ex":"My microphone was off during the whole lesson.","exCn":"整节课我的麦克风都是关着的。","syn":"mic","ant":"—"}],"inArt":1},{"word":"mute","ipa":"/mjuːt/","pos":"v.","cef":"B1","band":"B1 · 必会","defB":"静音","phrase":"mute your mic","phraseDef":"把麦克风静音","ex":"Remember to mute your mic when you eat.","exCn":"吃东西时记得把麦克风静音。","defC":"静音","awl":"—","register":"daily","senses":[{"def":"静音","ex":"Remember to mute your mic when you eat.","exCn":"吃东西时记得把麦克风静音。","syn":"silence","ant":"—"}],"inArt":1},{"word":"screen time","ipa":"/skriːn taɪm/","pos":"n.","cef":"B1","band":"B1 · 必会","defB":"屏幕时间","phrase":"weekly screen time","phraseDef":"每周屏幕时间","ex":"My weekly screen time report surprised my mother.","exCn":"每周屏幕时间报告让我妈妈吃惊。","defC":"屏幕时间","awl":"—","register":"daily","senses":[{"def":"屏幕时间","ex":"My weekly screen time report surprised my mother.","exCn":"每周屏幕时间报告让我妈妈吃惊。","syn":"—","ant":"—"}],"inArt":1},{"word":"class group","ipa":"/klɑːs ɡruːp/","pos":"n.","cef":"B1","band":"B1 · 必会","defB":"班级群","phrase":"in the class group","phraseDef":"在班级群里","ex":"Our teacher posts homework in the class group.","exCn":"老师把作业发在班级群里。","defC":"班级群","awl":"—","register":"daily","senses":[{"def":"班级群","ex":"Our teacher posts homework in the class group.","exCn":"老师把作业发在班级群里。","syn":"group chat","ant":"—"}],"inArt":1}]}],"dialogues":[{"title":"网课前五分钟","focus":"online class · camera · microphone · wifi","turns":[{"role":"Mum","en":"Your online class starts in five minutes. Is the laptop ready?","cn":"你的网课五分钟后开始。笔记本准备好了吗？"},{"role":"Li Hua","en":"Almost. The battery is at ten percent.","cn":"差不多了。电量只剩百分之十。"},{"role":"Mum","en":"Plug it in. Also, check the camera and the microphone.","cn":"插上电源。还有，检查一下摄像头和麦克风。"},{"role":"Li Hua","en":"Camera is fine. The mic was off yesterday, and the teacher could not hear me.","cn":"摄像头没问题。昨天麦克风关着，老师听不到我。"},{"role":"Mum","en":"Did you find the class link in the group?","cn":"你在群里找到课堂链接了吗？"},{"role":"Li Hua","en":"Yes, it is there. I also downloaded the homework app last night.","cn":"找到了。我昨晚还下载了作业应用。"},{"role":"Mum","en":"Good. Sit where the wifi is strong, not next to the window.","cn":"很好。坐在网络信号强的地方，别靠窗。"},{"role":"Li Hua","en":"The kitchen table? The signal is best there.","cn":"厨房桌子？那边信号最好。"},{"role":"Mum","en":"Exactly. And mute your mic when you are not speaking.","cn":"对了。不说话的时候把麦克风静音。"},{"role":"Li Hua","en":"Got it. Thanks, Mum. Five minutes to go.","cn":"明白。谢谢妈妈。还有五分钟。"}]},{"title":"扫码还是现金","focus":"scan · app · convenient · message","turns":[{"role":"Grandma","en":"The shop only showed a code. Can you pay with my phone?","cn":"店里只出示了一个码。你能用我的手机付款吗？"},{"role":"Xiao Yu","en":"Sure, Grandma. Open the payment app and click scan.","cn":"好的，奶奶。打开支付应用，点“扫码”。"},{"role":"Grandma","en":"Then what? I forget every time.","cn":"然后呢？我每次都忘。"},{"role":"Xiao Yu","en":"The camera reads the code. Type the amount. Press confirm. Done.","cn":"摄像头读取二维码，输入金额，按确认。就好了。"},{"role":"Grandma","en":"That fast? No coins, no change?","cn":"这么快？不用硬币、不用找零？"},{"role":"Xiao Yu","en":"No change, no worry. The money leaves my account in seconds.","cn":"不用找零，不用操心。钱几秒钟就出去了。"},{"role":"Grandma","en":"And the shop gets a message too?","cn":"店家也会收到消息吗？"},{"role":"Xiao Yu","en":"Yes. Both sides get one. That is why nobody argues about money.","cn":"会，两边都收到。那就是为什么没人计较钱。"},{"role":"Grandma","en":"Very convenient. But my old eyes cannot see the small screen.","cn":"真方便。可我这老眼睛看不清小屏幕。"},{"role":"Xiao Yu","en":"I will set the words bigger tonight. Then you can pay by yourself.","cn":"我今晚把字调大。然后您就能自己付了。"}]},{"title":"班级群的消息","focus":"message · screen time · share","turns":[{"role":"A","en":"Our class group had two hundred messages last night.","cn":"咱们班级群昨晚有两百条消息。"},{"role":"B","en":"The teacher shared a video link, and everyone said thank you.","cn":"老师分享了一个视频链接，大家都说谢谢。"},{"role":"A","en":"I turned off the sounds, or the phone buzzes all evening.","cn":"我把提示音关了，不然手机一晚上都在震。"},{"role":"B","en":"Smart. My mum said my screen time was five hours yesterday.","cn":"聪明。我妈说我昨天的屏幕时间是五小时。"},{"role":"A","en":"Five hours? What did you do?","cn":"五小时？你都干什么了？"},{"role":"B","en":"Two hours of homework videos, and three hours of short videos.","cn":"两小时作业视频，三小时短视频。"},{"role":"A","en":"Those little clips eat time like quiet mice.","cn":"那些小视频像安静的老鼠一样吃掉时间。"},{"role":"B","en":"Exactly. This week I will check the phone only after homework.","cn":"没错。这周我只在写完作业后才看手机。"}]}],"reading":[{"title":"My First Online Class（第一节网课）","focus":"online class · microphone · wifi · download","meta":"记叙文 · 219词 · 衔接9处 · 日常语域","genre":"记叙文","china":true,"sentences":["Last Monday, Li Hua had her first online class at home.","Her school moved all lessons to the internet because of the heavy snow.","She woke up early, washed her face, and opened her laptop on the kitchen table.","The class link was in the class group, and she clicked it at eight o'clock.","Her English teacher appeared on the screen and smiled at the small camera.","At first Li Hua forgot to turn on her microphone, so nobody could hear her.","The teacher waited patiently and then sent her a short message in the chat.","Li Hua read the message, pressed the right button, and said hello to the class.","The wifi was slow that morning, and the video stopped twice during the lesson.","She moved closer to the router, and the picture became clear again.","For homework, her teacher asked the class to download a reading app.","Li Hua searched for the app, installed it, and opened the first story.","The app read the words aloud, and she repeated them softly in her room.","That evening she told her mother that online learning felt strange but useful.","Her mother smiled and said, 'A new tool always feels strange on day one.'","By Friday, Li Hua could join a class, share her screen, and answer questions without help."],"questions":[{"type":"fb","q":"Li Hua forgot to turn on her ___, so nobody could hear her.","answer":"microphone","accept":["microphone","mic"]},{"type":"fb","q":"For homework, the teacher asked the class to ___ a reading app.","answer":"download","accept":["download"]},{"type":"mc","q":"Why did Li Hua's school move lessons to the internet?","opts":["Because of the heavy snow","Because of a long holiday","Because her teacher was ill"],"answer":0},{"type":"mc","q":"What did Li Hua do when the video stopped?","opts":["She moved closer to the router","She closed the laptop","She called her teacher"],"answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["The class link was in the class group","The teacher could hear Li Hua at once","The wifi was slow that morning","Li Hua told her mother online learning felt strange but useful"],"answers":[0,2,3]},{"type":"tf","q":"The wifi was fast and the video never stopped.","answer":1}]},{"title":"The Day the Wifi Died（断网那天）","focus":"wifi · download · message · screen","meta":"记叙文 · 200词 · 衔接8处 · 日常语域","genre":"记叙文","china":false,"sentences":["One Saturday morning, twelve-year-old Mia ran downstairs with her tablet.","She wanted to search for a video her friend had shared the night before.","But the screen stayed white, and a small message said 'no connection'.","Her father checked the router and said the wifi had died in the night.","Mia felt angry, because her online class notes were saved in the cloud.","Her younger brother cried, since his favourite cartoon would not load.","The family sat in the quiet living room and looked at each other.","Then their mother pulled out an old board game from a cupboard.","At first nobody moved, but Mia set up the board and taught her brother the rules.","They played for two hours, laughed loudly, and forgot about the white screen.","In the afternoon, the internet came back, and everyone cheered.","Mia quickly downloaded her notes and checked her class messages.","However, she did not open the video app again that day.","At dinner, her father joked that the broken wifi had saved their Saturday.","Mia disagreed and said it had only shown them what else they could do.","She promised to keep the board game on the table, not in the cupboard."],"questions":[{"type":"fb","q":"Her father checked the router and said the wifi had ___ in the night.","answer":"died","accept":["died"]},{"type":"fb","q":"Mia quickly ___ her notes and checked her class messages.","answer":"downloaded","accept":["downloaded"]},{"type":"mc","q":"Why was Mia angry at first?","opts":["Her online class notes were saved in the cloud","Her brother broke the tablet","Her mother hid the router"],"answer":0},{"type":"mc","q":"What did the family do while the internet was down?","opts":["They played an old board game","They went to a cinema","They visited their neighbours"],"answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["The wifi died during the night","Mia's brother cried because his cartoon would not load","The family watched films all day","Mia opened the video app again that evening"],"answers":[0,1]},{"type":"tf","q":"Mia agreed that the broken wifi had saved their Saturday.","answer":1}]},{"title":"How Scan Payment Works（扫码支付怎么用）","focus":"scan · app · message · convenient","meta":"说明文 · 202词 · 衔接8处 · 日常语域","genre":"说明文","china":true,"sentences":["In many Chinese cities, people pay with a phone instead of cash.","This kind of payment is called scan payment, and it is very simple.","First, the shop shows a QR code on a small sign or screen.","The buyer opens a payment app on the phone and chooses 'scan'.","The camera reads the code, and the shop's name appears on the screen.","Next, the buyer types the amount and presses 'confirm'.","The money then leaves the buyer's account and reaches the shop within seconds.","Both sides get a short message, so the payment is easy to check.","Because every payment leaves a digital record, people rarely argue about change.","Buyers do not need to carry coins, and shops do not need to count notes.","For example, a student can buy breakfast and pay the bus with the same app.","Scan payment is also quick, because the whole step takes less than ten seconds.","However, the phone needs power and wifi or mobile data to work.","That is why some people still keep a little cash in their bag.","Even small street sellers use it, from fruit stalls to bookshops.","In short, scan payment is a convenient tool for daily city life."],"questions":[{"type":"fb","q":"The buyer opens a payment app and chooses '___'.","answer":"scan","accept":["scan"]},{"type":"fb","q":"The money reaches the shop within ___.","answer":"seconds","accept":["seconds"]},{"type":"mc","q":"What does the camera do in this payment?","opts":["It reads the QR code","It takes photos of the shop","It counts the money"],"answer":0},{"type":"mc","q":"Why do people rarely argue about change?","opts":["Every payment leaves a digital record","Shops give free gifts","Coins are expensive"],"answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["The buyer types the amount and presses confirm","Both sides get a short message","Buyers still need to count notes at home","Small street sellers also use scan payment"],"answers":[0,1,3]},{"type":"tf","q":"Some people still keep a little cash because the phone needs power and network.","answer":0}]},{"title":"How Apps Learn Your Taste（应用怎么懂你）","focus":"search · share · screen · data","meta":"说明文 · 197词 · 衔接8处 · 日常语域","genre":"说明文","china":false,"sentences":["Many students wonder why a video app shows such interesting clips.","The answer is simple: the app learns from what you do.","The app first records what you watch, like, and share.","For example, when you watch a cooking video to the end, the app takes note.","It then searches for similar videos and puts them on your screen.","If you close a clip after two seconds, the app shows fewer videos like it.","In this way, the feed slowly becomes a mirror of your taste.","The learning is fast, so two friends can see very different pages.","Data from taps and pauses helps the app guess what you want next.","Because the app learns quickly, people often say it knows them well.","However, the app only sees a small part of you, not the whole person.","It does not know that you also love football or painting.","That is why experts advise users to search for new topics on purpose.","A simple way is to follow two new accounts every week.","The next morning, your screen is full of new ideas.","In short, an app is a helpful tool, but you should still choose the road."],"questions":[{"type":"fb","q":"The app first records what you watch, like, and ___.","answer":"share","accept":["share"]},{"type":"fb","q":"Data from taps and ___ helps the app guess what you want next.","answer":"pauses","accept":["pauses"]},{"type":"mc","q":"What does the app do when you watch a video to the end?","opts":["It searches for similar videos","It closes the app","It asks your friend"],"answer":0},{"type":"mc","q":"Why can two friends see very different pages?","opts":["The app learns quickly from each person","They use different phones","The app often makes mistakes"],"answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["Closing a clip quickly means fewer similar videos","The feed becomes a mirror of your taste","The app knows everything about you","Experts advise users to search for new topics"],"answers":[0,1,3]},{"type":"tf","q":"The app knows that you also love football or painting.","answer":1}]},{"title":"Online Classes: Helpful but Not Perfect（网课：有用但不完美）","focus":"online class · screen time · wifi · benefit","meta":"论说文 · 207词 · 衔接9处 · 学术语域","genre":"论说文","china":true,"sentences":["Since 2020, online classes have become a normal part of school life in China.","Some students think they are a real benefit, and the reasons are clear.","A shy student can type a question in the chat instead of speaking in class.","A student who is ill can still watch the lesson and download the notes.","In addition, recorded lessons help slow writers, because they can press pause.","However, online learning is not perfect, and many students feel the same way.","Li Mei, a Grade 8 student in Chengdu, gets tired after three screen hours.","She says her eyes hurt, and she cannot concentrate on maths problems.","Her classmate Wang Tao has a different problem: the wifi in his village is weak.","His video freezes, so he misses half of what the teacher says.","On the other hand, some students learn faster online than in a noisy classroom.","They can search for extra examples and share useful links in the class group.","Therefore, online classes are helpful, but they need clear rules and short breaks.","Schools now ask teachers to end every fifty minutes of screen time with a rest.","In short, digital tools open a new door, and students still need to walk through it carefully."],"questions":[{"type":"fb","q":"A student who is ill can still watch the lesson and ___ the notes.","answer":"download","accept":["download"]},{"type":"fb","q":"Wang Tao has a problem: the ___ in his village is weak.","answer":"wifi","accept":["wifi"]},{"type":"mc","q":"Why does Li Mei get tired?","opts":["After three hours of screen time","She walks a long way to school","She plays football all day"],"answer":0},{"type":"mc","q":"What do schools now ask teachers to do?","opts":["End fifty minutes of screen time with a rest","Give much more homework","Cancel all online classes"],"answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["A shy student can type questions in the chat","Recorded lessons help slow writers","Wang Tao's video never freezes","Some students learn faster online than in a noisy classroom"],"answers":[0,1,3]},{"type":"tf","q":"Online classes have become a normal part of school life in China since 2020.","answer":0}]},{"title":"Phones: Tools or Time Thieves?（手机：工具还是时间小偷）","focus":"message · screen · search · quick","meta":"论说文 · 206词 · 衔接8处 · 学术语域","genre":"论说文","china":false,"sentences":["It can be said that the smartphone is the most useful tool of modern daily life.","With one small device, a person can call a friend, check the weather, and pay a bill.","Some people argue that phones save time, and this is clearly true in many cases.","For example, a scan payment takes seconds, and a map app finds the fastest bus.","However, the same phone can also steal time, and most users do not notice.","A student opens the phone to check one message, then scrolls for forty minutes.","Studies show that people touch their phones more than one hundred times a day.","Therefore, many experts advise simple habits, such as turning off sounds at night.","On the other hand, it is unfair to blame the phone alone.","A tool has no plan of its own; it simply waits for the hand that holds it.","The same device that wastes an hour can also teach a language in that hour.","A worker uses it to answer emails; a child uses it to learn drawing online.","The difference lies in who decides when to put the screen down.","In conclusion, the phone is neither a hero nor a thief, but a mirror of our choices."],"questions":[{"type":"fb","q":"A student opens the phone to check one ___, then scrolls for forty minutes.","answer":"message","accept":["message"]},{"type":"fb","q":"Experts advise simple habits, such as turning off ___ at night.","answer":"sounds","accept":["sounds"]},{"type":"mc","q":"What does the writer compare the phone to at the end?","opts":["A mirror of our choices","A wild animal","A busy road"],"answer":0},{"type":"mc","q":"How often do people touch their phones, according to studies?","opts":["More than one hundred times a day","About ten times a day","Twice a week"],"answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["A scan payment takes seconds","Most users notice when the phone steals time","Experts advise turning off sounds at night","A tool waits for the hand that holds it"],"answers":[0,2,3]},{"type":"tf","q":"The writer says the first smartphone was invented in the 1990s.","answer":2}]},{"title":"Should Students Use Phones for Study?（学生该用手机学习吗）","focus":"search · download · screen time · charge","meta":"议论文 · 204词 · 衔接9处 · 学术语域","genre":"议论文","china":true,"sentences":["I believe that students should use phones for study, but only with clear family rules.","A phone is a powerful learning tool, and the facts are easy to see.","Students can search for any word, download a science video, and share notes in seconds.","During online classes, the phone becomes a classroom in the student's own pocket.","In my class, Wang Fang uses a dictionary app and her English marks rose quickly.","On the other hand, the phone also brings real dangers to young learners.","Short videos and games are designed to be interesting, so study time disappears quietly.","Some students stay up late and feel sleepy in morning lessons.","Therefore, I argue that the answer is not a ban but a set of simple rules.","First, phones should stay outside the bedroom during school nights.","Second, homework apps should be the only apps open during study hours.","Third, parents can check the weekly screen time report together with the child.","These rules are easy to follow, and they keep the tool useful.","A phone in the right hands can open a library; in the wrong hours it closes one.","In short, we should teach students to rule the phone, not to fear it."],"questions":[{"type":"fb","q":"Wang Fang uses a dictionary app and her English ___ rose quickly.","answer":"marks","accept":["marks"]},{"type":"fb","q":"Phones should stay outside the ___ during school nights.","answer":"bedroom","accept":["bedroom"]},{"type":"mc","q":"What is the writer's opinion?","opts":["Students may use phones for study with clear rules","Students should never touch a phone","Phones should replace all teachers"],"answer":0},{"type":"mc","q":"What does the writer suggest parents do?","opts":["Check the weekly screen time report with the child","Buy the newest phone every year","Delete all the apps at home"],"answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["Students can search for any word in seconds","Short videos can make study time disappear","The writer wants a total ban on phones","Phones should stay outside the bedroom on school nights"],"answers":[0,1,3]},{"type":"tf","q":"The writer believes students should fear the phone and never use it.","answer":1}]},{"title":"Should We Limit Children's Screen Time?（该限制孩子的屏幕时间吗）","focus":"screen time · screen · quick · easy","meta":"议论文 · 200词 · 衔接9处 · 学术语域","genre":"议论文","china":false,"sentences":["Many parents ask the same question: should we limit a child's screen time?","I strongly believe that we should, and my reasons are practical.","First, young eyes grow quickly, and long screen hours can make them tired.","Second, children need sleep, and bright screens make bedtime later.","Third, real play teaches skills that a screen cannot teach, such as sharing and waiting.","On the other hand, screens are not the enemy, and this point must be fair.","A good science video can explain a star better than many school books.","Video calls with grandparents keep family love warm across long distance.","Therefore, the best plan is not to remove screens but to plan their use.","One hour on school days and two hours at weekends is a common family rule.","Screens should also stay out of the bedroom, because sleep comes first.","Parents can watch some programmes with children and talk about them afterwards.","This turns passive watching into a shared learning moment.","Rules made with love are not punishment but preparation.","A child who learns to stop will use screens better as an adult.","In conclusion, limits protect a child's health and still keep the door to knowledge open."],"questions":[{"type":"fb","q":"Screens should stay out of the ___, because sleep comes first.","answer":"bedroom","accept":["bedroom"]},{"type":"fb","q":"One hour on school days and two hours at ___ is a common rule.","answer":"weekends","accept":["weekends"]},{"type":"mc","q":"What time rule does the writer mention?","opts":["One hour on school days and two at weekends","No screens until the age of twelve","Five hours every single day"],"answer":0},{"type":"mc","q":"Why should parents watch some programmes with children?","opts":["It turns watching into shared learning","It saves a lot of money","Children cannot use the remote control"],"answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["Long screen hours can make young eyes tired","A science video can explain a star better than many books","The writer wants to remove all screens from home","Screens should stay out of the bedroom"],"answers":[0,1,3]},{"type":"tf","q":"Video calls with grandparents keep family love warm across long distance.","answer":0}]}],"listening":[{"title":"My Morning with Apps（我的应用早晨）","focus":"app · click · link · download","meta":"独白 · 76词 · 日常语域","kind":"独白","reg":"daily","china":true,"sentences":["Every morning, my phone is the first thing I touch.","I check the weather app before I choose my clothes.","Then I open the class group and read the teacher's messages.","Today there was a link for an online maths class at nine.","I clicked the link, and my teacher's face appeared on the screen.","We talked about homework for forty minutes, and then the class ended.","Before breakfast, I downloaded a new English word app."],"questions":[{"type":"fb","q":"I clicked the ___, and my teacher's face appeared on the screen.","answer":"link","accept":["link"]},{"type":"mc","q":"What online class did the speaker have?","opts":["Maths","English","History"],"answer":0},{"type":"tf","q":"The speaker downloaded the English word app before breakfast.","answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["The phone is the first thing the speaker touches","The online class was about homework","The new app is for English words","The class started at seven o'clock"],"answers":[0,1,2]}]},{"title":"Why I Turned Off My Notifications（我为什么关掉通知）","focus":"notification · screen · charge · read","meta":"独白 · 80词 · 日常语域","kind":"独白","reg":"daily","china":false,"sentences":["Last month my phone buzzed two hundred times a day.","Every buzz pulled my eyes away from my book.","So I opened the settings and turned off most notifications.","I kept messages from my family and alarms from my clock.","The first two days felt strange, like missing a friend.","By the third day, I finished a whole chapter without looking up.","Now I check my apps three times a day.","My head feels quieter, and my reading is faster."],"questions":[{"type":"fb","q":"I opened the settings and turned off most ___.","answer":"notifications","accept":["notifications"]},{"type":"mc","q":"What did the speaker keep on the phone?","opts":["Messages from family and alarms","All the game alerts","News about famous people"],"answer":0},{"type":"tf","q":"The first two days felt strange, like missing a friend.","answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["The phone buzzed two hundred times a day","The speaker turned off most notifications","The first day felt completely normal","Reading became faster again"],"answers":[0,1,3]}]},{"title":"What Is Screen Time?（什么是屏幕时间）","focus":"screen time · screen · quick · easy","meta":"独白 · 72词 · 学术语域","kind":"独白","reg":"academic","china":false,"sentences":["Today we look at one simple idea: screen time.","Screen time means the hours a person spends looking at a screen.","This includes phones, tablets, computers and televisions.","Phones can measure it because they record every app you open.","Studies show that long screen hours can affect sleep and eye health.","Therefore, experts advise short breaks every twenty minutes.","In short, screen time is not an enemy, but it needs a limit."],"questions":[{"type":"fb","q":"Screen time means the hours a person spends looking at a ___.","answer":"screen","accept":["screen"]},{"type":"mc","q":"What can long screen hours affect, according to the talk?","opts":["Sleep and eye health","A person's height","Only a person's hearing"],"answer":0},{"type":"tf","q":"Screen time only means watching television.","answer":1},{"type":"mm","q":"Which statements are TRUE?","opts":["Screen time includes phones and computers","Phones record every app you open","Screen time only means television","Experts advise breaks during long screen use"],"answers":[0,1,3]}]},{"title":"How Learning Apps Help Chinese Students（学习应用如何帮助中国学生）","focus":"download · data · useful · helpful","meta":"独白 · 80词 · 学术语域","kind":"独白","reg":"academic","china":true,"sentences":["This podcast looks at how learning apps changed study habits in China.","Millions of students download apps to practise English every day.","The apps use short lessons, so students can study on the bus.","Data shows that ten minutes a day beats two hours once a week.","Many apps read words aloud, which helps listening and pronunciation.","However, some students play games inside the apps and lose time.","Therefore, teachers advise students to choose one app and use it daily."],"questions":[{"type":"fb","q":"Many apps read words aloud, which helps listening and ___.","answer":"pronunciation","accept":["pronunciation"]},{"type":"mc","q":"What does the data show in the podcast?","opts":["Ten minutes a day beats two hours once a week","Two hours once a week is the best way","Learning apps do not help at all"],"answer":0},{"type":"tf","q":"Teachers advise students to choose one app and use it daily.","answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["Students download apps to practise English","The apps use short lessons","All students only play games inside the apps","Many apps can read words aloud"],"answers":[0,1,3]}]},{"title":"Camera Problems（摄像头出故障）","focus":"online class · microphone · camera · wifi","meta":"对话 · 78词 · 日常语域","kind":"对话","reg":"daily","china":true,"sentences":["A: Our online class was a disaster this morning.","B: My camera refused to open, and my wifi is so slow.","A: I forgot to check my microphone, so the teacher could not hear me.","B: Move closer to the router. That trick worked for me last week.","A: Good idea. Also, remember to mute your mic when you eat.","B: Noted. Did you download the new homework app from the class group?","A: Yes, but the link did not work at first.","B: The teacher sent a new link later. It works now."],"questions":[{"type":"fb","q":"I forgot to check my ___, so the teacher could not hear me.","answer":"microphone","accept":["microphone","mic"]},{"type":"mc","q":"What was wrong with B's setup?","opts":["The camera refused to open","The speaker was broken","The screen went black"],"answer":0},{"type":"tf","q":"The link in the class group worked the first time.","answer":1},{"type":"mm","q":"Which statements are TRUE?","opts":["A forgot to check the microphone","B's camera refused to open","The teacher sent a new link","The homework app was never downloaded"],"answers":[0,1,2]}]},{"title":"Two Friends, One Habit（两个朋友一个习惯）","focus":"screen time · app · charge · sleep","meta":"对话 · 79词 · 日常语域","kind":"对话","reg":"daily","china":false,"sentences":["A: You look tired today. Did you sleep late again?","B: Yes. I watched short videos until one in the morning.","A: That is three hours of screen time before bed.","B: I know. The app keeps showing me one more funny clip.","A: My brother had the same problem, so he charges his phone in the hall.","B: Does it help? My alarm is on my phone.","A: He bought a cheap clock. Now his bedroom is only for sleep.","B: Smart. I will try it tonight.","A: Good. Your morning self will say thank you."],"questions":[{"type":"fb","q":"He bought a cheap ___, so the phone can sleep in the hall.","answer":"clock","accept":["clock"]},{"type":"mc","q":"What does A suggest B do?","opts":["Charge the phone in the hall","Delete all the apps","Watch videos earlier in the day"],"answer":0},{"type":"tf","q":"B went to bed before midnight last night.","answer":1},{"type":"mm","q":"Which statements are TRUE?","opts":["B watched short videos until one o'clock","The app keeps showing one more clip","A's brother charges his phone in the hall","B has already bought a cheap clock"],"answers":[0,1,2]}]},{"title":"A Project About Apps（关于应用的项目）","focus":"data · information · process · useful","meta":"对话 · 85词 · 学术语域","kind":"对话","reg":"academic","china":false,"sentences":["Student: Mr. Lee, our group is doing a project about learning apps. Can I ask one question?","Teacher: Of course. What would you like to know?","Student: We want to compare two English apps. What should we measure?","Teacher: Measure time, not feelings. For example, record how many words a student learns each week.","Student: So we should collect data from twenty students over two weeks?","Teacher: Exactly. Two weeks gives you enough data to see a small pattern.","Student: And how do we show the results?","Teacher: A simple table and one clear chart are enough for a school project."],"questions":[{"type":"fb","q":"Two weeks gives you enough ___ to see a small pattern.","answer":"data","accept":["data"]},{"type":"mc","q":"What does the teacher advise them to measure?","opts":["Time and numbers, not feelings","How pretty the app looks","The price of the app"],"answer":0},{"type":"tf","q":"The teacher says a simple table and one chart are enough.","answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["The project compares two English apps","They will collect data from twenty students","The project lasts two weeks","The teacher asks for a report of ten pages"],"answers":[0,1,2]}]},{"title":"Preparing the Debate（准备辩论）","focus":"screen time · data · benefit · because","meta":"对话 · 87词 · 学术语域","kind":"对话","reg":"academic","china":true,"sentences":["Lena: Our debate is next week. Should schools limit students' screen time?","Tom: I will argue yes. Long screen hours clearly affect sleep and eyes.","Lena: I will argue no. Screens also bring real benefits to learning.","Tom: True, but we need evidence, not opinions. Do you have any numbers?","Lena: Our class survey says sixty percent of students study with apps daily.","Tom: Good data. I found a study about short breaks every twenty minutes.","Lena: That supports my side. We can say limits should come with good tools.","Tom: Agreed. Both sides agree on one thing: a plan beats no plan."],"questions":[{"type":"fb","q":"Our class survey says sixty ___ of students study with apps daily.","answer":"percent","accept":["percent","per cent"]},{"type":"mc","q":"What does Tom argue in the debate?","opts":["Schools should limit students' screen time","Schools should give students more phones","Learning apps should be banned"],"answer":0},{"type":"tf","q":"Lena argues that schools should limit students' screen time.","answer":1},{"type":"mm","q":"Which statements are TRUE?","opts":["Long screen hours affect sleep and eyes","Sixty percent of students study with apps daily","Lena argues for limiting screen time","Both sides agree that a plan beats no plan"],"answers":[0,1,3]}]}],"frames":[{"en":"I ___ the app yesterday, and now it is on my phone.","cn":"我昨天{0}了这个应用，现在它在我的手机里。","slots":[{"label":"动词：下载安装","opts":[["download","下载"],["upload","上传"],["share","分享"]]}],"tip":"download 是从网络到手机；upload 方向相反；share 是转给他人。"},{"en":"Because the ___ was slow, the video stopped twice.","cn":"因为{0}很慢，视频卡了两次。","slots":[{"label":"名词：网络","opts":[["wifi","无线网"],["password","密码"],["screen","屏幕"]]}],"tip":"网络慢用 slow；密码常用 weak/strong 来形容。"},{"en":"___ I was tired, I still finished the online class.","cn":"{0}很累，我还是上完了网课。","slots":[{"label":"连词：让步","opts":[["although","虽然"],["because","因为"],["so","所以"]]}],"tip":"although 表让步，because 表原因，so 表结果；只有 although 能让“累”和“上完课”不矛盾。"},{"en":"My teacher asked us to ___ the homework link in the class ___.","cn":"老师让我们把作业链接{0}到班级{1}里。","slots":[{"label":"动词：分享","opts":[["share","分享"],["search","搜索"],["charge","充电"]]},{"label":"名词：群","opts":[["group","群"],["screen","屏幕"],["camera","摄像头"]]}],"tip":"share the link 分享链接；class group 班级群；两个槽位一动一名。"},{"en":"A phone is ___, but we still need to put it down.","cn":"手机很{0}，但我们仍然需要放下它。","slots":[{"label":"形容词：褒义","opts":[["convenient","方便的"],["boring","无聊的"],["useful","有用的"]]}],"tip":"but 转折后接负面动作，空格需填褒义形容词；boring 会让转折失去张力。"}],"grammar":[{"pid":"because","name":"原因从句（because / because of）","desc":"because 后接句子：Because the wifi was slow, the video stopped.；because of 后接名词：Because of the slow wifi, the video stopped."},{"pid":"although","name":"让步从句（although / but）","desc":"Although the app is useful, we still need breaks. 注意 although 与 but 不能同时出现在一个句子里。"},{"pid":"imperative","name":"祈使句与指令（Imperatives）","desc":"Download the app. / Mute your microphone. 网课与 App 说明里最常见的句型，省略主语 you。"}],"thread":"Our digital life starts with a small screen and a password. Every morning we download notes, search for words, and share links in the class group, because these steps are quick and convenient. However, the same apps can eat hours if we forget to look up. Therefore, good users set simple rules: charge the phone outside the bedroom, and turn off sounds at night. In short, the phone is a useful tool, and the hand that holds it should stay the decision-maker.","article":{"title":"My Online Class","paras":[[["I take an online class every Tuesday evening.","我每周二晚上上网课。"],["First, I check the wifi and open the class app.","首先，我检查无线网络并打开上课应用。"],["I enter my password and click the link.","我输入密码并点击链接。"],["My camera and microphone are on, but I mute them.","我的摄像头和麦克风开着，但我把它们静音。"],["The teacher sends a message in our class group.","老师在班级群里发消息。"],["I download the worksheet and read it on screen.","我下载练习纸并在屏幕上阅读。"]],[["I can search for information quickly.","我能快速搜索信息。"],["Then I upload my homework before nine.","然后在九点前上传作业。"],["I charge my tablet every night.","我每天晚上给平板充电。"],["Online learning is convenient and useful.","在线学习方便又有用。"],["Smart tools make study easy and helpful.","智能工具让学习轻松又有帮助。"],["Because of good wifi, the class is clear.","因为网络好，课程画面清晰。"],["I like online classes because they save time.","我喜欢网课，因为它们节省时间。"]],[["Too much screen time hurts my eyes, so I take breaks.","看屏幕太久伤眼睛，所以我会休息。"],["Therefore, I limit my phone use on school days.","因此，上学日我限制手机使用。"],["As a result, my eyes feel better.","结果，我的眼睛感觉好多了。"],["That is why I follow the twenty-minute rule.","这就是我遵守二十分钟法则的原因。"],["Sharing notes with classmates is a big benefit.","与同学分享笔记是大益处。"],["Data use is one factor to check.","流量使用是一个要检查的因素。"],["Everyone needs fair access to online classes.","每个人都需要公平使用网课的机会。"],["The process is simple: open, join, learn.","过程很简单：打开、加入、学习。"]]]},"artForms":["as a result","that is why","information","convenient","because of","microphone","therefore","password","download","message","helpful","because","benefit","process","screen","search","upload","charge","useful","factor","access","online","camera","click","share","quick","smart","class","group","wifi","link","easy","data","mute","time","app","so"]};
+const STORE_KEY = "b1_unit"+DATA.unit+"_state_v4";
+const CHECK_KEY = "b1_checkin_dates_v4";  // 全局共享打卡 streak（跨单元）
+const ERR_KEY = "b1_unit"+DATA.unit+"_errors_v4";
+const BEASTS = [
+  {u:0,e:"🧭",n:"启程之灵",d:"胶水词·语料最高频30词"},
+  {u:1,e:"🎉",n:"欢乐之灵",d:"爱好·like+-ing·频率副词"},
+  {u:2,e:"🛍️",n:"精算之灵",d:"购物·现在进行时"},
+  {u:3,e:"🍜",n:"滋味之灵",d:"食物·可数不可数"},
+  {u:4,e:"👨‍👩‍👧",n:"牵挂之灵",d:"家人·所有格·was/were"},
+  {u:5,e:"🏠",n:"归属之灵",d:"家·过去时·-ed/-ing"},
+  {u:6,e:"🤝",n:"知己之灵",d:"朋友·过去时不规则"},
+  {u:7,e:"🛋️",n:"逍遥之灵",d:"建议·have to·should"},
+  {u:8,e:"🏀",n:"燃动之灵",d:"运动·过去进行时"},
+  {u:9,e:"🗿",n:"奇观之灵",d:"世界·比较级最高级"},
+  {u:10,e:"🏙️",n:"漫游之灵",d:"城镇·be going to"},
+  {u:11,e:"🦾",n:"进化之灵",d:"身体·will·条件句"},
+  {u:12,e:"✈️",n:"远行之灵",d:"旅行·现在完成时"},
+];
+
+let state = loadState();
+let checkins = loadCheckins();
+let errors = loadErrors();
+let curGroupLearn = 0, curGroupReview = 0;
+let shIdx = 0, shQueue = [], shAuto = false, shTimer = null;
+let rec = {mr:null, recording:false, url:null, stopBtn:null, stopLabel:null, containerEl:null};
+
+function loadState(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}} }
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function loadCheckins(){ try{return JSON.parse(localStorage.getItem(CHECK_KEY))||[]}catch(e){return[]} }
+function loadErrors(){ try{return JSON.parse(localStorage.getItem(ERR_KEY))||[]}catch(e){return[]} }
+function saveErrors(){ localStorage.setItem(ERR_KEY, JSON.stringify(errors)); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ---------- 语音（全局） ---------- */
+let voices=[], voice=null;
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const sel=document.getElementById('voiceSel');
+  const PREF=['en-GB','en-AU','en-IE','en-US'];
+  sel.innerHTML='';
+  voices = voices.slice().sort(function(a,b){function rank(v){if(/en-GB/i.test(v.lang||''))return (/Libby/i.test(v.name)?0:1);if(/en-AU/i.test(v.lang||''))return 2;if(/en-IE/i.test(v.lang||''))return 3;if(/en-US/i.test(v.lang||''))return 4;return 9;}return rank(a)-rank(b);});
+  let prefV=null;
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    const isGB=(v.lang||'').indexOf('en-GB')===0;
+    o.value=i; o.textContent=(isGB?'🇬🇧 ':'')+v.name+(v.localService?' · 离线':' · 在线');
+    sel.appendChild(o);
+    if((/en-GB/i.test(v.lang||'')&&/Libby/i.test(v.name)&&!prefV)){ prefV=v; o.selected=true; }if(!prefV){ for(const p of PREF){ if(v.lang===p){ prefV=v; o.selected=true; break; } } }
+  });
+  voice = prefV || voices[0] || null;
+  if(prefV){ sel.value = voices.indexOf(prefV); }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function getVoice(){ const i=document.getElementById('voiceSel').value; return voices[i]||null; }
+function rateVal(){ return parseFloat(document.getElementById('rate').value); }
+function speak(text, opt){
+  opt=opt||{};
+  if(!('speechSynthesis' in window)){ if(opt.onend)opt.onend(); return; }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const v=getVoice(); if(v)u.voice=v;
+  u.lang = (v && v.lang) || 'en-GB';   // 默认英式发音；用户若手动选了其他口音则尊重其选择
+  u.rate = rateVal()*(opt.slow?0.6:1); u.pitch=1; u.volume=1;
+  u.onend = opt.onend||function(){};
+  u.onerror = opt.onend||function(){};
+  speechSynthesis.speak(u);
+  if(speechSynthesis.paused) speechSynthesis.resume();
+}
+
+/* ---------- 工具 ---------- */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* 可发音词块：任何带 data-say 的元素点一下就朗读（全局事件委托，一次绑定全页生效）
+   suppressSay：作答的那一次点击只算「选择」，不当成「点词发音」，避免中文选英文时
+   点一下选项既答题又泄题听感 */
+let suppressSay=false;
+document.addEventListener('click', function(e){
+  const t=e.target.closest('[data-say]');
+  if(t && !suppressSay && !e.target.closest('[data-nsay]')){ e.preventDefault(); e.stopPropagation(); speak(t.getAttribute('data-say')); }
+});
+function sayChip(text, cls){ return '<span class="wchip '+(cls||'')+'" data-say="'+esc(text)+'">'+esc(text)+'<b>🔊</b></span>'; }
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function allWords(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w.word))); return a; }
+function allWordObjs(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w))); return a; }
+function masteredCount(){ return allWords().filter(w=>(state[w]||{}).mastered).length; }
+function shadowedCount(){ return allWords().filter(w=>(state[w]||{}).shadowed).length; }
+function updateProgress(){
+  const total=allWords().length;
+  const m=masteredCount();
+  const pct=Math.round(m/total*100);
+  document.getElementById('pctTop').textContent=pct+'%';
+  document.getElementById('barTop').style.width=pct+'%';
+  let stars = pct>=80?3:pct>=50?2:pct>=20?1:0;
+  document.getElementById('starTop').textContent = '★'.repeat(stars)+'☆'.repeat(3-stars);
+  document.getElementById('beastStreak').textContent=`已跟读 ${shadowedCount()}/${total} · 已掌握 ${m}/${total} · 错题 ${errors.length}`;
+}
+function flash(msg){ const t=document.createElement('div'); t.textContent=msg;
+  t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--gold);color:#1a1a1a;padding:8px 16px;border-radius:10px;font-weight:700;z-index:99';
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1400); }
+
+/* ---------- 统一录音（单句 & 对话共用） ---------- */
+function noteShadow(msg){ const n=document.getElementById('shBanner'); if(msg){ n.style.display='block'; n.textContent=msg; } else { n.style.display='none'; } }
+function startRec(text, container, stopBtn, stopLabel){
+  if(rec.recording && rec.stopBtn===stopBtn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音；现在可用「听原声」模式。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你的跟读录音，对比原声找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=stopBtn; rec.stopLabel=stopLabel||'● 开始录音';
+    rec.containerEl=container.parentElement; if(rec.containerEl) rec.containerEl.classList.add('recording');
+    stopBtn.textContent='■ 停止';
+    speak(text);
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可改用「听原声」模式。'); });
+}
+function stopRec(){
+  if(rec.recording && rec.mr){ rec.mr.stop(); rec.recording=false;
+    if(rec.stopBtn) rec.stopBtn.textContent = rec.stopLabel||'● 开始录音';
+    if(rec.containerEl) rec.containerEl.classList.remove('recording');
+    rec.stopBtn=null; rec.containerEl=null; }
+}
+/* 只录不放（用于"我来回应"——先看清/听问句，再录自己的回答） */
+function startRecRaw(text, container, btn){
+  if(rec.recording && rec.stopBtn===btn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你回应的录音，对比示范找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=btn; rec.stopLabel=btn.textContent;
+    rec.containerEl = btn.closest('.exchange')||container.parentElement;
+    if(rec.containerEl) rec.containerEl.classList.add('recording');
+    btn.textContent='■ 停止（说完点这）';
+    container.innerHTML='<div class="hint"><span class="rec-dot"></span> 请说出回应：'+esc(text)+'</div>';
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可先点「🔊 听示范回应」模仿。'); });
+}
+function addError(obj){
+  obj.time=Date.now(); obj.unit=DATA.unit;
+  errors.push(obj); saveErrors(); renderErrors(); updateProgress();
+}
+
+/* ---------- 渲染：学习 B ---------- */
+function renderLearn(){
+  const grpTabs=document.getElementById('grpLearn');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupLearn)b.className='on';
+    b.onclick=()=>{curGroupLearn=i; renderLearn();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridLearn'); grid.innerHTML='';
+  DATA.groups[curGroupLearn].words.forEach((w)=>{
+    const st=state[w.word]||{};
+    const card=document.createElement('div'); card.className='card'+(st.mastered?' done':'');
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span>${(w.awl&&w.awl!=='—')?`<span class="badge awl">AWL ${esc(w.awl)}</span>`:''}${(w.register&&w.register!=='—')?`<span class="badge reg">${esc(w.register)}</span>`:''}</div>
+      <div class="def"><span class="cnLearn">${esc(w.defB)}</span></div>
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}${w.usage?`<div class="usage">💡 ${esc(w.usage)}</div>`:''}
+      <div class="ex" data-ex="${esc(w.ex)}">${esc(w.ex)}<span class="cn cnLearn">${esc(w.exCn||'')}</span></div>
+      <div class="acts">
+        <button class="b-play" data-word="${esc(w.word)}">🔊 单词</button>
+        <button class="b-shadow" data-word="${esc(w.word)}">🎤 跟读打卡</button>
+        <button class="b-master ${st.mastered?'mastered':''}" data-word="${esc(w.word)}">${st.mastered?'✅ 已掌握':'☆ 掌握'}</button>
+        <button class="b-err" data-word="${esc(w.word)}">❌ 记一笔</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.ex').forEach(el=>{
+    el.onclick=()=>speak(el.getAttribute('data-ex'));
+    el.ondblclick=()=>speak(el.getAttribute('data-ex'),{slow:true});
+  });
+  grid.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-shadow').forEach(b=>b.onclick=()=>goShadowWord(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-master').forEach(b=>b.onclick=()=>toggleMaster(b.getAttribute('data-word'),b));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'词卡标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 渲染：复习 C（渐进式） ---------- */
+function renderReview(){
+  const grpTabs=document.getElementById('grpReview');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupReview)b.className='on';
+    b.onclick=()=>{curGroupReview=i; renderReview();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridReview'); grid.innerHTML='';
+  const hide=document.getElementById('tgHideCn').dataset.hide==='1';
+  DATA.groups[curGroupReview].words.forEach(w=>{
+    const card=document.createElement('div'); card.className='card';
+    let sensesHtml='';
+    w.senses.forEach((s,i)=>{
+      const hidden = i>0 ? ' hiddenSense' : '';
+      const synAnt = (s.syn&&s.syn!=='—'?'近义 '+esc(s.syn)+' ':'') + (s.ant&&s.ant!=='—'?'反义 '+esc(s.ant):'');
+      const ex = s.ex||''; const exCn = s.exCn||'';
+      sensesHtml += `
+      <div class="sense${hidden}">
+        <div class="defline">${esc(s.def)}
+          <button class="spk" data-text="${esc(w.word)}">🔊</button>
+          ${synAnt?`<span style="color:var(--sub);font-size:12px">（${synAnt}）</span>`:''}
+        </div>
+        <button class="morebtn act-ex">💡 看例句</button>
+        <div class="exbox" data-ex="${esc(ex)}">${esc(ex)}<span class="cn">${esc(exCn)}</span>
+          ${ex?`<button class="morebtn act-shadow" data-text="${esc(ex)}">🎤 跟读这句</button>`:''}
+        </div>
+      </div>`;
+    });
+    const moreBtn = w.senses.length>1 ? `<button class="morebtn act-more">更多 ▾（还有 ${w.senses.length-1} 个义项）</button>` : '';
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span>${(w.awl&&w.awl!=='—')?`<span class="badge awl">AWL ${esc(w.awl)}</span>`:''}${(w.register&&w.register!=='—')?`<span class="badge reg">${esc(w.register)}</span>`:''}</div>
+      ${sensesHtml}
+      ${moreBtn}
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}${w.usage?`<div class="usage">💡 ${esc(w.usage)}</div>`:''}
+      <button class="morebtn b-err" data-word="${esc(w.word)}">❌ 记一笔（没记住）</button>`;
+    grid.appendChild(card);
+  });
+  if(hide){ grid.querySelectorAll('.cn').forEach(e=>e.style.display='none'); }
+  grid.querySelectorAll('.act-ex').forEach(b=>b.onclick=()=>{
+    const box=b.parentElement.querySelector('.exbox');
+    const open = box.style.display==='block';
+    box.style.display = open?'none':'block';
+    b.textContent = open?'💡 看例句':'🔼 收起例句';
+    if(!open){ const ex=box.getAttribute('data-ex'); if(ex) speak(ex); }
+  });
+  grid.querySelectorAll('.act-more').forEach(b=>b.onclick=()=>{
+    const card=b.closest('.card');
+    const next=card.querySelector('.sense.hiddenSense');
+    if(next){ next.classList.remove('hiddenSense');
+      const exb=next.querySelector('.exbox'); if(exb.getAttribute('data-ex')) speak(exb.getAttribute('data-ex'));
+    }
+    if(!card.querySelector('.sense.hiddenSense')) b.style.display='none';
+  });
+  grid.querySelectorAll('.spk').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  grid.querySelectorAll('.act-shadow').forEach(b=>b.onclick=()=>goShadowText(b.getAttribute('data-text')));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'复习标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 神兽/图鉴 ---------- */
+function renderCodex(){
+  const grid=document.getElementById('codexGrid'); grid.innerHTML='';
+  BEASTS.forEach(b=>{
+    const box=document.createElement('div');
+    const active = b.u===DATA.unit;
+    box.className='cbox'+(active?'':' lock');
+    let stars=0;
+    if(active){ const pct=Math.round(masteredCount()/allWords().length*100); stars=pct>=80?3:pct>=50?2:pct>=20?1:0; }
+    box.innerHTML=`<div class="e">${b.e}</div><div class="n">${b.n}</div>
+      <div class="s">${active?'★'.repeat(stars)+'☆'.repeat(3-stars):'🔒 未解锁'}</div>
+      <div style="color:var(--sub);font-size:12px;margin-top:4px">${b.d}</div>`;
+    grid.appendChild(box);
+  });
+}
+
+/* ---------- 交互 ---------- */
+function toggleMaster(w, btn){
+  if(!state[w]) state[w]={};
+  state[w].mastered=!state[w].mastered;
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  saveState();
+  btn.classList.toggle('mastered', state[w].mastered);
+  btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
+  updateProgress(); renderCodex();
+}
+function checkIn(w){
+  const d=today();
+  if(!state[w]) state[w]={};
+  state[w].shadowed=d;
+  saveState();
+  if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
+  updateProgress(); renderCodex();
+}
+function switchSub(which){
+  document.querySelectorAll('.subtab').forEach(x=>x.classList.toggle('on', x.dataset.sh===which));
+  document.getElementById('shDialog').style.display = which==='dialog'?'block':'none';
+  document.getElementById('shSingle').style.display = which==='single'?'block':'none';
+}
+function goShadowWord(word){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.word===word);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到「'+word+'」'); }
+}
+function goShadowText(text){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.en===text);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到该句'); }
+}
+function goReviewWord(word){
+  document.querySelector('nav button[data-tab="review"]').click();
+  DATA.groups.forEach((g,i)=>{ if(g.words.some(w=>w.word===word)){ curGroupReview=i; renderReview(); flash('🔁 已定位复习：'+word); } });
+}
+
+/* ---------- 跟读队列（含复习例句） + 单句跟读 ---------- */
+function buildQueue(){
+  shQueue=[]; const seen=new Set();
+  DATA.groups.forEach(g=>g.words.forEach(w=>{
+    if(w.ex && !seen.has(w.ex)){ seen.add(w.ex); shQueue.push({en:w.ex,cn:w.exCn,word:w.word}); }
+    (w.senses||[]).forEach(s=>{ if(s.ex && !seen.has(s.ex)){ seen.add(s.ex); shQueue.push({en:s.ex,cn:s.exCn,word:w.word}); } });
+  }));
+}
+function renderShadowCurrent(){
+  const it=shQueue[shIdx]; if(!it)return;
+  document.getElementById('shProg').textContent='第 '+(shIdx+1)+' / '+shQueue.length+' 句 · 👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这块会出现回放音轨，和原声对比。';
+  document.getElementById('shNow').textContent=(shIdx+1)+'/'+shQueue.length+'  '+it.en;
+  document.getElementById('shNowCn').textContent=it.cn||'';
+}
+function shPlay(){ const it=shQueue[shIdx]; if(it) speak(it.en); }
+function shGo(dir){ shIdx=(shIdx+dir+shQueue.length)%shQueue.length; renderShadowCurrent(); }
+function shCheck(){
+  const it=shQueue[shIdx]; if(!it)return;
+  checkIn(it.word); flash('🎤 已跟读打卡：'+it.word);
+}
+function shAutoPlay(){
+  if(!shQueue.length)return;
+  const it=shQueue[shIdx];
+  const gap=parseInt(document.getElementById('shGap').value,10);
+  speak(it.en,{onend:()=>{
+    if(gap>0){ shTimer=setTimeout(()=>{ if(shAuto){ shIdx=(shIdx+1)%shQueue.length; renderShadowCurrent(); shAutoPlay(); } }, gap); }
+  }});
+}
+function initShadow(){
+  buildQueue(); if(shIdx>=shQueue.length) shIdx=0; renderShadowCurrent();
+  document.getElementById('shPlay').onclick=shPlay;
+  document.getElementById('shNext').onclick=()=>shGo(1);
+  document.getElementById('shPrev').onclick=()=>shGo(-1);
+  document.getElementById('shRec').onclick=function(){
+    if(rec.recording && rec.stopBtn===this){ stopRec(); }
+    else { startRec(shQueue[shIdx].en, document.getElementById('shRecBox'), this); }
+  };
+  document.getElementById('shStop').onclick=stopRec;
+  document.getElementById('shCheck').onclick=shCheck;
+  document.getElementById('shAuto').onclick=function(){ shAuto=!shAuto; this.textContent=shAuto?'⏹ 停止连播':'🔁 自动连播'; if(shAuto)shAutoPlay(); else {clearTimeout(shTimer); speechSynthesis.cancel();} };
+}
+
+/* ---------- 对话跟读（call-response 结构） ---------- */
+function renderDialogues(){
+  const list=document.getElementById('shDialog'); list.innerHTML='';
+  DATA.dialogues.forEach(d=>{
+    const box=document.createElement('div'); box.className='player';
+    let html='';
+    const turns = d.turns ? d.turns : (Array.isArray(d.lines) ? d.lines.map(function(t){ return {role:t[0], en:t[1], cn:(t[2]||'')}; }) : []);
+    let i=0;
+    while(i<turns.length){
+      const t=turns[i];
+      if(t.role==='A' && i+1<turns.length && turns[i+1].role==='B'){
+        const q=t, r=turns[i+1];
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-A">A</span>
+            <div class="qa-text">${esc(q.en)}<span class="cn">${esc(q.cn)}</span></div>
+            <button class="b-play" data-text="${esc(q.en)}">🔊 听问句</button>
+          </div>
+          <div class="resp">
+            <div class="resp-label">👉 你要回应的句子（B）：先听示范，再录你自己的</div>
+            <div class="qa-text">${esc(r.en)}<span class="cn">${esc(r.cn)}</span></div>
+            <div class="resp-acts">
+              <button class="b-play" data-text="${esc(r.en)}">🔊 听示范回应</button>
+              <button class="b-drill" data-text="${esc(r.en)}">🎤 我来回应</button>
+            </div>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=2;
+      } else {
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-${t.role}">${t.role}</span>
+            <div class="qa-text">${esc(t.en)}<span class="cn">${esc(t.cn)}</span></div>
+            <button class="b-play" data-text="${esc(t.en)}">🔊 原声</button>
+            <button class="b-turn-rec" data-text="${esc(t.en)}">🎤 跟读</button>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=1;
+      }
+    }
+    box.innerHTML=`<div class="now" style="font-size:16px">💬 ${esc(d.title)}</div>
+      <div class="nowcn" style="margin-bottom:10px">蓝字＝A 的问句（点「🔊 听问句」）；黄框＝<b>你要回应的句子，始终显示</b>，先点「🔊 听示范回应」模仿，再点「🎤 我来回应」录下你自己的回答。回放对比原声。</div>${html}`;
+    list.appendChild(box);
+  });
+  list.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  list.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); }
+    else { startRec(b.getAttribute('data-text'), container, b); }
+  });
+  list.querySelectorAll('.b-drill').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    startRecRaw(b.getAttribute('data-text'), container, b);
+  });
+}
+let rdIdx = 0;
+function frBuild(f, sel){
+  const parts = f.en.split('___');
+  let s = parts[0];
+  for(let i=0;i<(f.slots||[]).length;i++){
+    const idx = sel[i]||0;
+    const opt = f.slots[i].opts[idx];
+    s += (opt?opt[0]:'___') + (parts[i+1]||'');
+  }
+  return s.replace(/\s+([.,!?])/g,'$1').trim();
+}
+function frCn(f, sel){
+  let s = f.cn||'';
+  for(let i=0;i<(f.slots||[]).length;i++){
+    const opt = f.slots[i].opts[sel[i]||0];
+    const val = opt&&opt[1] ? opt[1] : '';
+    s = s.split('{'+i+'}').join(val);
+    s = s.replace('……', val || '……', 1);
+  }
+  return s;
+}
+function renderFrames(){
+  const box = document.getElementById('frWrap');
+  const fs = DATA.frames || [];
+  if(!fs.length){ box.innerHTML='<div class="hint">本单元暂无句模。</div>'; return; }
+  const thread = DATA.thread || '';
+  box.innerHTML = ''
+   + '<div class="tip">🧩 <b>句模 = 把散装单词拼成自己句子的模具</b>。下拉框里换一个词，整句立刻变成你的话；每个句模本身就是一个可以随时套用的回答公式。'
+   + '<br><b>它和「学习」tab 里的单词是同一批</b>：句模的每个选项都来自本单元词卡。同一个词，从词卡 → 句模 → 对话 → 阅读，只是换了场合出现，从不零散。</div>'
+   + '<div class="ladder" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0 14px;font-size:12px">'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>① 词卡</b><br><span style="color:var(--sub)">「学习」里学</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>② 短语</b><br><span style="color:var(--sub)">词卡自带</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--gold2);border:1px solid var(--gold);border-radius:10px;padding:7px 10px"><b>③ 句模</b><br><span style="color:var(--ink)">本页·下拉造句</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>④ 对话</b><br><span style="color:var(--sub)">「跟读」里用</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>⑤ 阅读听力</b><br><span style="color:var(--sub)">「阅读」里读懂</span></div>'
+   + '</div>'
+   + (thread ? '<div style="background:var(--panel2);border:1px dashed var(--gold2);border-radius:12px;padding:12px 14px;margin-bottom:14px"><div style="color:var(--gold);font-weight:700;font-size:13px;margin-bottom:6px">🧵 本单元词汇串烧 · 先看这些词怎么串成一段话</div>'
+        + '<div style="line-height:1.9">'+esc(thread)+'</div>'
+        + '<div style="color:var(--sub);font-size:11px;margin-top:6px">这就是「单词 → 句子」一体化的样子：散装词，被时间和场景串成了一条线。</div></div>' : '')
+   + '<div class="fr-grid"></div>';
+  const g = box.querySelector('.fr-grid');
+  fs.forEach((f,fi)=>{
+    const sel = (f.slots||[]).map(()=>0);
+    const d = document.createElement('div'); d.className='fr-card';
+    d.innerHTML = '<div class="fr-cn-head">' + esc(f.en) + '</div>'
+      + '<div class="fr-slots"></div>'
+      + '<div class="fr-sent"></div>'
+      + '<div class="fr-cn"></div>'
+      + '<div class="fr-acts">'
+      +   '<button class="p">🔊 朗读整句</button>'
+      +   '<button class="ghost fr-rec">🎤 我来念</button>'
+      +   '<button class="ghost fr-reset">↺ 换回第一个</button>'
+      + '</div>'
+      + '<div class="fr-tip">💡 ' + esc(f.tip||'') + '</div>'
+      + '<div class="rec-slot"></div>';
+    const sd = d.querySelector('.fr-slots');
+    (f.slots||[]).forEach((sl,i)=>{
+      const wrap = document.createElement('label'); wrap.className='fr-slot';
+      wrap.innerHTML = '<span>' + esc(sl.label) + '</span>';
+      const s = document.createElement('select');
+      sl.opts.forEach((o,oi)=>{
+        const op=document.createElement('option'); op.value=oi;
+        op.textContent = o[0] + (o[1] ? '（' + o[1] + '）' : '');
+        s.appendChild(op);
+      });
+      wrap.appendChild(s); sd.appendChild(wrap);
+    });
+    const upd = ()=>{
+      const cur = [...d.querySelectorAll('select')].map(s=>+s.value);
+      d.querySelector('.fr-sent').textContent = frBuild(f, cur);
+      d.querySelector('.fr-cn').textContent = frCn(f, cur);
+    };
+    d.querySelectorAll('select').forEach(s=>s.onchange=upd);
+    d.querySelector('.fr-reset').onclick=()=>{ d.querySelectorAll('select').forEach(s=>s.value=0); upd(); };
+    d.querySelector('.p').onclick=()=>speak(d.querySelector('.fr-sent').textContent);
+    d.querySelector('.fr-rec').onclick=()=>frRec(d, f);
+    upd();
+    g.appendChild(d);
+  });
+}
+function frRec(card, f){
+  const slot = card.querySelector('.rec-slot');
+  if(!slot) return;
+  const txt = card.querySelector('.fr-sent').textContent;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 双击文件打开时无法录音，请用本地服务地址打开本页。</div>'; return;
+  }
+  if(slot.dataset.on==='1'){ slot.innerHTML=''; slot.dataset.on='0'; return; }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const chunks=[]; const mr=new MediaRecorder(stream);
+    mr.ondataavailable=e=>chunks.push(e.data);
+    mr.onstop=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      const url=URL.createObjectURL(new Blob(chunks,{type:'audio/webm'}));
+      slot.innerHTML='<div class="hint">🎧 你的：<audio src="'+url+'" controls></audio></div>';
+    };
+    mr.start();
+    slot.dataset.on='1';
+    slot.innerHTML='<div class="hint" style="color:var(--gold)">● 正在录……念：<b>'+esc(txt)+'</b>（再点一次停止）</div>';
+    card._mr=mr;
+  }).catch(()=>{ slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 浏览器拒绝了麦克风权限。</div>'; });
+}
+
+/* ---------- 阅读/听力小题：支持 mc 单选 / mm 多选 / fb 填空 ---------- */
+function normAns(s){ return (s==null?'':String(s)).toLowerCase().trim().replace(/[.,!?;:'"()]/g,'').replace(/\s+/g,' '); }
+function renderQ(d, q, qi, tag){
+  d.className='q'; d.dataset.answered='';
+  d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)
+    +(q.type==='mm'?' <span style="color:var(--gold);font-size:12px">（多选：选出所有正确项）</span>':'')
+    +(q.type==='fb'?' <span style="color:var(--gold);font-size:12px">（填空：用文中原词作答）</span>':'')
+    +(q.type==='tf'?' <span style="color:var(--gold);font-size:12px">（判断：选 True / False / Not Given）</span>':'')
+    +'</div><div class="q-opts"></div><div class="q-fb"></div>';
+  const optsBox=d.querySelector('.q-opts'), fbBox=d.querySelector('.q-fb');
+  const good=function(std,student){ d.dataset.answered='1'; fbBox.innerHTML='<span style="color:var(--green)">✅ 正确</span>'; };
+  const bad=function(std,student){ d.dataset.answered='1';
+    fbBox.innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(std)+'</span>';
+    addError({word:q.q, type:tag, original:(tag==='阅读'?'阅读':'听力')+'小题', standard:std, student:student||''}); };
+  if(q.type==='fb'){
+    const inp=document.createElement('input'); inp.className='q-input'; inp.placeholder=q.hint||'输入答案…';
+    const btn=document.createElement('button'); btn.className='q-opt'; btn.textContent='检查';
+    btn.onclick=function(){
+      if(d.dataset.answered) return;
+      const acc=(q.accept||[]).concat([q.answer]).map(normAns);
+      if(acc.indexOf(normAns(inp.value))>=0){ good(); } else { bad(q.answer, inp.value); }
+    };
+    inp.onkeydown=function(e){ if(e.key==='Enter') btn.click(); };
+    optsBox.appendChild(inp); optsBox.appendChild(btn);
+  } else if(q.type==='mm'){
+    const sel=[]; const ans=(q.answers||[]).map(Number);
+    q.opts.forEach(function(o,oi){
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=function(){ if(d.dataset.answered) return;
+        if(sel.indexOf(oi)>=0){ sel.splice(sel.indexOf(oi),1); b.classList.remove('sel'); }
+        else { sel.push(oi); b.classList.add('sel'); } };
+      optsBox.appendChild(b);
+    });
+    const btn=document.createElement('button'); btn.className='q-opt'; btn.textContent='检查（多选）';
+    btn.onclick=function(){
+      if(d.dataset.answered) return;
+      const std=q.opts.filter(function(o,oi){ return ans.indexOf(oi)>=0; }).join('；');
+      const stu=q.opts.filter(function(o,oi){ return sel.indexOf(oi)>=0; }).join('；');
+      const ok=ans.length===sel.length && ans.every(function(x){ return sel.indexOf(x)>=0; });
+      if(ok){ good(); q.opts.forEach(function(o,oi){ if(ans.indexOf(oi)>=0) optsBox.children[oi].classList.add('good'); }); }
+      else { bad(std, stu); q.opts.forEach(function(o,oi){ optsBox.children[oi].classList.add(ans.indexOf(oi)>=0?'good':'bad'); }); }
+    };
+    optsBox.appendChild(btn);
+  } else if(q.type==='tf'){
+    const opts = (q.opts && q.opts.length) ? q.opts : ['True','False','Not Given'];
+    const ans = Number(q.answer);
+    opts.forEach(function(o,oi){
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=function(){
+        if(d.dataset.answered) return;
+        if(oi===ans){ b.classList.add('good'); good(); }
+        else { b.classList.add('bad'); bad(opts[ans], o); }
+      };
+      optsBox.appendChild(b);
+    });
+  } else {
+    q.opts.forEach(function(o,oi){
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=function(){
+        if(d.dataset.answered) return;
+        if(oi===Number(q.answer)){ b.classList.add('good'); good(); }
+        else { b.classList.add('bad'); bad(q.opts[Number(q.answer)], o); }
+      };
+      optsBox.appendChild(b);
+    });
+  }
+}
+
+function renderReading(){
+  const list = DATA.reading;
+  const ptabs = document.getElementById('rdPassages'); ptabs.innerHTML='';
+  list.forEach((rd,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(rd.title)+(rd.genre?' <span style="font-size:11px;color:var(--sub)">['+esc(rd.genre)+']</span>':'')+(rd.china?' 🇨🇳':'');
+    if(i===rdIdx) b.className='on';
+    b.onclick=()=>{ rdIdx=i; renderReading(); };
+    ptabs.appendChild(b);
+  });
+  document.getElementById('rdHint').textContent=list.length+' 篇受控短文：读 → 听（TTS）→ 跟读 → 做小题，一文多吃。词汇 / 短语 / 句式在不同情境重复出现，形成螺旋。🇨🇳 ＝中国主题篇。';
+  renderReadingContent();
+}
+function renderReadingContent(){
+  const rd=DATA.reading[rdIdx];
+  const rdb=document.getElementById('rdBanner');
+  rdb.style.display='block';
+  rdb.innerHTML='📖 <b>'+esc(rd.title)+'</b>'+(rd.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +(rd.genre?' <span style="background:#22325f;color:#cfe0ff;font-size:11px;padding:1px 7px;border-radius:9px">'+esc(rd.genre)+'</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(rd.focus||'')+'</span> · <span style="color:var(--sub);font-size:12px">'+esc(rd.meta||'')+'</span>';
+  const txt=document.getElementById('rdText');
+  txt.innerHTML='<div class="rd-tip">点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。先读一遍，再点「🔊 听整篇」做听力，最后做下面小题。</div>'
+    +'<div class="rd-playall"><button class="b-play" id="rdPlayAll">🔊 听整篇</button></div>'
+    +'<div class="rd-sents"></div>';
+  const sents=txt.querySelector('.rd-sents');
+  rd.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    sents.appendChild(d);
+  });
+  txt.querySelector('#rdPlayAll').onclick=()=>{ speakSeq(rd.sentences, 600); };
+  sents.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  sents.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  sents.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const qz=document.getElementById('rdQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 理解小题（答错自动进错题本）</div>';
+  rd.questions.forEach((q,qi)=>{
+    const d=document.createElement('div');
+    renderQ(d, q, qi, '阅读');
+    qz.appendChild(d);
+  });
+}
+
+/* ---------- 听力子模式：盲听 → 答题 → 看文本 ---------- */
+let lsIdx = 0, lsRevealed = false;
+function renderListening(){
+  const list = DATA.listening || [];
+  const ptabs = document.getElementById('lsPassages'); ptabs.innerHTML='';
+  list.forEach((ls,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(ls.title)+(ls.kind?' <span style="font-size:11px;color:var(--sub)">['+esc(ls.kind)+(ls.reg?('·'+(ls.reg==='academic'?'学术':'日常')):'')+']</span>':'')+(ls.china?' 🇨🇳':'');
+    if(i===lsIdx) b.className='on';
+    b.onclick=()=>{ lsIdx=i; renderListening(); };
+    ptabs.appendChild(b);
+  });
+  renderListeningContent();
+}
+function renderListeningContent(){
+  const ls=(DATA.listening||[])[lsIdx]; if(!ls) return;
+  const lsb=document.getElementById('lsBanner');
+  lsb.style.display='block';
+  lsb.innerHTML='🎧 <b>'+esc(ls.title)+'</b>'+(ls.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +(ls.kind?' <span style="background:#22325f;color:#cfe0ff;font-size:11px;padding:1px 7px;border-radius:9px">'+esc(ls.kind)+(ls.reg?('·'+(ls.reg==='academic'?'学术':'日常')):'')+'</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(ls.focus||'')+'</span>'
+    +' · <span style="color:var(--sub);font-size:12px">'+esc(ls.meta||'')+'</span>';
+  const box=document.getElementById('lsSents'); box.innerHTML=''; lsRevealed=false;
+  ls.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en ls-masked" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    box.appendChild(d);
+  });
+  box.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  box.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  box.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  document.getElementById('lsPlayAll').onclick=()=>speakSeq(ls.sentences,600);
+  document.getElementById('lsReplay').onclick=()=>speakSeq(ls.sentences,600);
+  const revealBtn=document.getElementById('lsReveal');
+  revealBtn.textContent='👀 看文本';
+  revealBtn.onclick=()=>{
+    lsRevealed=!lsRevealed;
+    box.querySelectorAll('.rd-en').forEach(e=>e.classList.toggle('ls-masked', !lsRevealed));
+    revealBtn.textContent = lsRevealed ? '🙈 收起文本' : '👀 看文本';
+  };
+  const qz=document.getElementById('lsQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 听力小题（答错自动进错题本）</div>';
+  ls.questions.forEach((q,qi)=>{
+    const d=document.createElement('div');
+    renderQ(d, q, qi, '听力');
+    qz.appendChild(d);
+  });
+}
+function switchRd(which){
+  document.querySelectorAll('[data-rd]').forEach(x=>x.classList.toggle('on', x.dataset.rd===which));
+  document.getElementById('rdReadWrap').style.display = which==='read' ? '' : 'none';
+  document.getElementById('rdListenWrap').style.display = which==='listen' ? '' : 'none';
+  if(which==='listen') renderListening();
+}
+
+/* 依次朗读一组词：文章连读 / 跟读连播共用（TTS 不能直接念音标，故按词逐个读） */
+function speakSeq(words, gap, onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const arr=(words||[]).filter(Boolean);
+  let i=0;
+  (function next(){
+    if(i>=arr.length){ if(onDone)onDone(); return; }
+    const w=arr[i++];
+    speak(w, {onend:()=>setTimeout(next, gap||550)});
+  })();
+}
+
+/* ---------- 小测 ---------- */
+let quizQueue=[], quizIdx=0, quizScore=0, quizTotal=0, quizDone=false;
+function cnOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.defB)).slice(0,3);
+  return shuffle([{label:w.defB,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function enOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.word)).slice(0,3);
+  return shuffle([{label:w.word,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function buildQuiz(){
+  const words=shuffle(allWordObjs());
+  quizQueue=[];
+  words.forEach(w=>{
+    const r=Math.random();
+    if(r<0.30){ const opts=cnOpts(w); quizQueue.push({kind:'listen',word:w.word,cn:w.defB,opts}); }
+    else if(r<0.60){ const opts=cnOpts(w); quizQueue.push({kind:'en2cn',word:w.word,cn:w.defB,opts}); }
+    else { const opts=enOpts(w); quizQueue.push({kind:'cn2en',word:w.word,cn:w.defB,opts}); }
+  });
+  quizIdx=0; quizScore=0; quizTotal=quizQueue.length; quizDone=false; renderQuiz();
+}
+function renderQuiz(){
+  const box=document.getElementById('quizBox');
+  if(quizDone){ box.innerHTML=`<div class="player"><div class="now">🎉 本轮完成！</div>
+    <div class="nowcn">答对 ${quizScore} / ${quizTotal}。答错的已自动记入「🩹 错题」，去错题本重练。</div>
+    <div class="ctr"><button id="quizAgain">🔁 再来一轮</button></div></div>`;
+    document.getElementById('quizAgain').onclick=buildQuiz; return; }
+  const q=quizQueue[quizIdx];
+  /* 三种题面都把「英文」做成可点发音块：
+     listen — 不直接露词，只有播放钮
+     en2cn — 题干英文可点（听音不影响作答，帮助记发音）
+     cn2en — 选完后英文选项立刻变成可点发音块；作答前点选项＝选择，不发音 */
+  let promptHtml='';
+  if(q.kind==='listen') promptHtml=`<div class="quiz-prompt">🔊 听发音，选出中文意思
+      <button class="b-play" id="qPlay">▶ 播放</button>
+      <button class="ghost" id="qPeek">👀 看单词</button></div>`;
+  else if(q.kind==='en2cn') promptHtml=`<div class="quiz-prompt">${sayChip(q.word,'big')}
+      <span class="tag">点单词听发音</span><div style="color:var(--sub);font-size:13px">选出中文意思</div></div>`;
+  else promptHtml=`<div class="quiz-prompt"><span class="big">「${esc(q.cn)}」</span>
+      <div style="color:var(--sub);font-size:13px">对应的英文是？<span class="tag">选完后点选项可再听发音</span></div></div>`;
+  let opts='';
+  q.opts.forEach((o,i)=>{ opts+=`<button class="q-opt" data-i="${i}">${esc(o.label)}</button>`; });
+  box.innerHTML=`<div class="player"><div class="now">📝 小测 ${quizIdx+1}/${quizTotal}</div>${promptHtml}
+    <div class="q-prog"><div class="bar"><i style="width:${Math.round(quizIdx/quizTotal*100)}%"></i></div></div>
+    <div class="q-opts">${opts}</div><div class="q-fb" id="qFb"></div>
+    <div class="ctr"><button id="qNext" class="ghost">⏭ 下一题</button></div></div>`;
+  if(q.kind==='listen'){
+    document.getElementById('qPlay').onclick=()=>speak(q.word);
+    document.getElementById('qPeek').onclick=()=>{ speak(q.word); flash('🔊 单词是：'+q.word); };
+    setTimeout(()=>speak(q.word),250);
+  }
+  if(q.kind==='en2cn') setTimeout(()=>speak(q.word),250);   // 题干可点，也可自动听一次
+  /* 作答后：把正确英文自动读一遍 + 给所有英文选项装上发音块（连排多次，强化记忆） */
+  function afterAnswer(){
+    const fb=document.getElementById('qFb');
+    const tail=' <span style="font-weight:600;color:var(--sub)">点单词再听：</span>';
+    if(q.kind==='cn2en') fb.innerHTML += tail+sayChip(q.word)+' '+sayChip(q.word);
+    else fb.innerHTML += tail+sayChip(q.word);
+    box.querySelectorAll('.q-opt').forEach((bb,j)=>{
+      const lab=q.opts[j].label;
+      if(/^[A-Za-z' -]+$/.test(lab)){ bb.setAttribute('data-say',lab); bb.insertAdjacentHTML('beforeend','<span style="font-size:11px;color:var(--gold)"> 🔊</span>'); }
+    });
+    setTimeout(()=>speak(q.word), 260);
+  }
+  let answered=false;
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    suppressSay=true;                       // 本次点击只算作答，不触发词块发音
+    setTimeout(()=>{ suppressSay=false; },0);
+    const o=q.opts[+b.dataset.i];
+    if(o.ok){ quizScore++; b.classList.add('ok'); document.getElementById('qFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('qFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：</span>'+sayChip(q.word);
+      addError({word:q.word,type:'小测',original:'小测题',standard:q.word,student:o.label});
+      box.querySelectorAll('.q-opt').forEach((bb,j)=>{ if(q.opts[j].ok) bb.classList.add('ok'); }); }
+    afterAnswer();
+    document.getElementById('qNext').onclick=()=>{ quizIdx++; if(quizIdx>=quizTotal){quizDone=true;} renderQuiz(); };
+  });
+}
+
+/* ---------- 错题池 ---------- */
+function renderErrors(){
+  const box=document.getElementById('errList');
+  if(!errors.length){ box.innerHTML='<div class="hint">还没有错题。小测答错、或在词卡/复习点「❌ 记一笔」会自动收集到这里，按类型聚合，方便专项重练。</div>'; return; }
+  const byType={};
+  errors.forEach((e,i)=>{ (byType[e.type]=byType[e.type]||[]).push({...e,idx:i}); });
+  const labels={词汇:'📘 词汇没记住',小测:'📝 小测答错'};
+  let html='';
+  for(const t in byType){
+    html+=`<div class="err-type">${labels[t]||t}（${byType[t].length}）</div>`;
+    byType[t].forEach(e=>{
+      html+=`<div class="err-item"><div class="err-meta"><b>${esc(e.word)}</b> · ${new Date(e.time).toLocaleDateString()} ${new Date(e.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</div>
+        <div class="err-line">标准：<span style="color:var(--green)">${esc(e.standard)}</span></div>
+        ${e.student&&e.student!==e.standard?`<div class="err-line">你的：<span style="color:var(--red)">${esc(e.student)}</span></div>`:''}
+        <div class="err-btns"><button class="morebtn" data-w="${esc(e.word)}">🔁 重练</button><button class="err-del" data-i="${e.idx}">🗑 删除</button></div></div>`;
+    });
+  }
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>goReviewWord(b.dataset.w));
+  box.querySelectorAll('.err-del').forEach(b=>b.onclick=()=>{ errors.splice(+b.dataset.i,1); saveErrors(); renderErrors(); updateProgress(); });
+}
+
+/* ---------- 本单元语法：跳到语法练习的具体知识点 ---------- */
+const GRAM_PAGE = "语法练习_A1-A2-B1-B2.html";
+const GRAM_KEY  = "a1_gram_done_v1";
+function loadGram(){ try{return JSON.parse(localStorage.getItem(GRAM_KEY))||{}}catch(e){return{}} }
+function saveGram(g){ localStorage.setItem(GRAM_KEY, JSON.stringify(g)); }
+/* 只记一笔「点过」，真正的跳转交给 <a href target=_blank> —— 避免 window.open 与新标签重复开两次 */
+function markGrammar(pid){
+  var g=loadGram();
+  var u=DATA.unit;
+  g[u]=g[u]||[]; if(g[u].indexOf(pid)<0){ g[u].push(pid); saveGram(g); }
+  setTimeout(renderGrammar,60);
+}
+function renderGrammar(){
+  var list=(DATA.grammar||[]), box=document.getElementById('gramList'), head=document.getElementById('gramHead');
+  var all=document.getElementById('gramAll');
+  if(all) all.href=GRAM_PAGE;
+  if(!head||!box) return;
+  var done=(loadGram()[DATA.unit]||[]);
+  head.innerHTML='Unit '+DATA.unit+' 学 <b>'+list.length+' 个语法点</b>。'
+    + '跟读是「听进来」，语法是「写出来」—— 本单元的句子会用到这些点，'
+    + '点一下就跳到语法练习里对应的那一关（已完成 '+done.length+' / '+list.length+'）。';
+  if(!list.length){
+    box.innerHTML='<div class="hint">本单元还没配语法点。</div>'; return;
+  }
+  box.innerHTML=list.map(function(it,i){
+    var pid = (typeof it==='string')? it : it.pid;
+    var nm  = (typeof it==='string')? it : (it.name||it.pid);
+    var ds  = (typeof it==='string')? '' : (it.desc||'');
+    var ok=done.indexOf(pid)>=0;
+    return '<div class="gcard">'
+      + '<div class="gi">'+(ok?'✅':'✍️')+'</div>'
+      + '<div class="gname">'+esc(nm)+'</div>'
+      + '<div class="gdesc">'+esc(ds||'')+'<br><span style="opacity:.6">pid: '+esc(pid)+'</span></div>'
+      + (ok?'<div class="gdone">已练过</div>':'')
+      + '<a class="ggo" href="'+GRAM_PAGE+'?p='+encodeURIComponent(pid)+'&u='+DATA.unit+'"'
+      +   ' target="_blank" rel="noopener" onclick="markGrammar(\'' + pid + '\')">去练这一点 →</a>'
+      + '</div>';
+  }).join('');
+}
+
+/* ---------- 单元文章：把本单元生词织进一个语境 ---------- */
+function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
+function artHL(text){
+  const fs = DATA.artForms || [];
+  const out = esc(text);
+  if(!fs.length) return out;
+  try{
+    const re = new RegExp('(?<![a-zA-Z])(' + fs.map(f=>f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|') + ')(?![a-zA-Z])','gi');
+    return out.replace(re,'<span class="art-hl">$1</span>');
+  }catch(e){ return out; }
+}
+function renderArticle(){
+  const a=DATA.article;
+  const body=document.getElementById('artBody');
+  const banner=document.getElementById('artBanner');
+  if(!a || !a.paras || !a.paras.length){
+    banner.style.display='none';
+    body.innerHTML='<div class="hint">本单元暂无文章。</div>';
+    return;
+  }
+  const total=a.paras.reduce((s,p)=>s+p.length,0);
+  const hlEl=document.getElementById('tgArtHL');
+  const hl=!hlEl || hlEl.dataset.hide!=='1';
+  let nArt=0, nAll=0;
+  (DATA.groups||[]).forEach(g=>g.words.forEach(w=>{ nAll++; if(w.inArt) nArt++; }));
+  banner.style.display='block';
+  banner.innerHTML='📰 <b>'+esc(a.title)+'</b> · <span style="font-weight:700;font-size:12px">'+total+' 句</span> · <span style="font-size:12px">本单元生词全部织进这篇短文</span>';
+  body.innerHTML='';
+  let gi=0; const all=[];
+  a.paras.forEach(para=>{
+    const pd=document.createElement('div'); pd.className='art-para';
+    para.forEach(s=>{
+      gi++; all.push(s[0]);
+      const d=document.createElement('div'); d.className='art-sent';
+      d.innerHTML='<span class="art-idx">'+gi+'</span>'
+        +'<span class="art-en" data-text="'+escAttr(s[0])+'">'+(hl?artHL(s[0]):esc(s[0]))+'</span>'
+        +'<button class="b-play" data-text="'+escAttr(s[0])+'">🔊</button>'
+        +'<button class="b-turn-rec" data-text="'+escAttr(s[0])+'">🎤</button>'
+        +'<div class="turn-rec"></div>'
+        +'<div class="art-zh cnArt">'+esc(s[1]||'')+'</div>';
+      pd.appendChild(d);
+    });
+    body.appendChild(pd);
+  });
+  body.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  body.querySelectorAll('.art-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),{slow:true}));
+  body.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.art-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const pa=document.getElementById('artPlayAll');
+  if(pa) pa.onclick=()=>{ speakSeq(all, 600); };
+}
+
+/* ---------- tab 切换 ---------- */
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.tab).classList.add('on');
+    if(b.dataset.tab==='shadow') initShadow();
+    if(b.dataset.tab==='codex') renderCodex();
+    if(b.dataset.tab==='review') renderReview();
+    if(b.dataset.tab==='quiz') buildQuiz();
+    if(b.dataset.tab==='errors') renderErrors();
+    if(b.dataset.tab==='reading') renderReading();
+    if(b.dataset.tab==='article') renderArticle();
+    if(b.dataset.tab==='frames') renderFrames();
+    if(b.dataset.tab==='grammar') renderGrammar();
+  };
+});
+document.querySelectorAll('.subtab').forEach(b=>b.onclick=()=>switchSub(b.dataset.sh));
+document.querySelectorAll('[data-rd]').forEach(b=>b.onclick=()=>switchRd(b.dataset.rd));
+(function(){
+  const r=(DATA.reading||[]).length, l=(DATA.listening||[]).length;
+  const rb=document.querySelector('[data-rd="read"]'), lb=document.querySelector('[data-rd="listen"]');
+  if(rb) rb.innerHTML='📖 阅读 '+r+' 篇';
+  if(lb){ if(!l){ lb.style.display='none'; } else lb.innerHTML='🎧 听力 '+l+' 篇'; }
+})();
+document.getElementById('tgCnLearn').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnLearn').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgHideCn').onclick=function(){
+  const hide=this.dataset.hide!=='1'; this.dataset.hide=hide?'1':'';
+  this.textContent=hide?'👁 显示中文':'🙈 隐藏中文'; renderReview();
+};
+document.getElementById('tgCnArt').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnArt').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgArtHL').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  renderArticle();
+};
+document.getElementById('rate').oninput=function(){ document.getElementById('rateVal').textContent=this.value+'×'; };
+document.getElementById('voiceSel').onchange=function(){ voice=getVoice(); };
+
+/* ---------- 初始化 ---------- */
+document.getElementById('subtitle').textContent='Unit '+DATA.unit+' · '+DATA.title+' — '+DATA.subtitle;
+function beastBadge(beast, emoji, size){
+  size=size||78; var uid='bb'+Math.random().toString(36).slice(2,7);
+  var ticks='';
+  for(var i=0;i<12;i++){
+    var a=i*30*Math.PI/180, major=(i%3===0);
+    var r1=48, r2=major?40:44;
+    ticks+='<line x1="'+(60+r1*Math.cos(a)).toFixed(1)+'" y1="'+(60+r1*Math.sin(a)).toFixed(1)+'" x2="'+(60+r2*Math.cos(a)).toFixed(1)+'" y2="'+(60+r2*Math.sin(a)).toFixed(1)+'" stroke="#f5c542" stroke-width="'+(major?1.7:0.8)+'" opacity="'+(major?0.95:0.5)+'"/>';
+  }
+  return '<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" role="img" aria-label="'+beast+'" style="display:block">'
+   +'<defs>'
+   +'<radialGradient id="disc'+uid+'" cx="50%" cy="34%" r="74%"><stop offset="0" stop-color="#3a3550"/><stop offset="0.5" stop-color="#201d30"/><stop offset="1" stop-color="#0e0c16"/></radialGradient>'
+   +'<linearGradient id="ring'+uid+'" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#ffeeb8"/><stop offset="0.45" stop-color="#f5c542"/><stop offset="1" stop-color="#9c7115"/></linearGradient>'
+   +'<radialGradient id="halo'+uid+'" cx="50%" cy="46%" r="50%"><stop offset="0" stop-color="#f5c542" stop-opacity="0.30"/><stop offset="1" stop-color="#f5c542" stop-opacity="0"/></radialGradient>'
+   +'</defs>'
+   +'<circle cx="60" cy="60" r="58" fill="none" stroke="url(#ring'+uid+')" stroke-width="1" opacity="0.30"/>'
+   +'<circle cx="60" cy="60" r="52" fill="url(#disc'+uid+')"/>'
+   +'<circle cx="60" cy="60" r="52" fill="none" stroke="url(#ring'+uid+')" stroke-width="3"/>'
+   +'<circle cx="60" cy="60" r="45.5" fill="none" stroke="#f5c542" stroke-width="0.7" opacity="0.30"/>'
+   + ticks
+   +'<circle cx="60" cy="60" r="41" fill="url(#halo'+uid+')"/>'
+   +'<text x="60" y="64" font-size="44" text-anchor="middle" dominant-baseline="central">'+emoji+'</text>'
+   +'<text x="60" y="101" font-size="11" text-anchor="middle" fill="#f5c542" font-weight="700" letter-spacing="1.5">'+beast+'</text>'
+   +'<circle cx="60" cy="9" r="2.6" fill="#e05a4f"/>'
+   +'</svg>';
+}
+document.getElementById('beastName').textContent=(DATA.beast_name||'英语跟读')+'（Unit '+DATA.unit+' '+DATA.title+'）';
+document.getElementById('beastEmoji').innerHTML=beastBadge(DATA.beast_name||'英语跟读', DATA.beast_emoji||'🐾', 78);
+document.getElementById('beastDesc').textContent=DATA.subtitle;
+buildQueue(); renderDialogues();
+renderLearn(); renderReview(); updateProgress(); renderCodex();
+</script>
+</body>
+</html>

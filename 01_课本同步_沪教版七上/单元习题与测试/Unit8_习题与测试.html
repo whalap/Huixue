@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 8 Collecting as a Hobby · 习题与测试（沪教版七上）</title>
+<style>
+:root{
+  --ink:#2b2118; --ink2:#5c4f42; --muted:#8a7c6b;
+  --paper:#faf6ee; --card:#ffffff; --line:#e6dcc8;
+  --gold:#b8860b; --gold-soft:#d4a933; --red:#c0392b; --ok:#1e8449;
+  --brand:#1a1410;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:var(--paper); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.75; font-size:15px}
+.wrap{max-width:860px; margin:0 auto; padding:0 18px 90px}
+
+/* ---------- 顶部 ---------- */
+.hero{background:linear-gradient(135deg,#1a1410 0%,#2b2118 60%,#3a2c1c 100%); color:#f5ecd7; padding:34px 20px 26px; text-align:center; border-bottom:3px solid var(--gold)}
+.hero .kicker{color:var(--gold-soft); font-size:13px; letter-spacing:3px; margin-bottom:8px}
+.hero h1{font-size:26px; margin-bottom:8px}
+.hero .sub{color:#cbbd9d; font-size:13.5px}
+.hero .meta{margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.hero .meta span{border:1px solid rgba(212,169,51,.45); color:#e8d9ac; border-radius:99px; padding:3px 14px; font-size:12.5px}
+
+/* ---------- 卷子切换 ---------- */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:22px 0 26px; position:sticky; top:0; z-index:20; background:var(--paper); padding:12px 0; border-bottom:1px dashed var(--line)}
+.tabs button{border:1.5px solid var(--line); background:var(--card); color:var(--ink2); border-radius:10px; padding:8px 16px; font-size:14px; cursor:pointer; font-weight:600; transition:.15s}
+.tabs button:hover{border-color:var(--gold-soft)}
+.tabs button.on{background:var(--brand); color:#f0e2b8; border-color:var(--brand)}
+.tabs button .tag{display:block; font-size:11px; font-weight:400; opacity:.75; margin-top:1px}
+
+/* ---------- 卷子主体 ---------- */
+.paper{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:30px 34px; box-shadow:0 2px 14px rgba(43,33,24,.06)}
+.p-head{border-bottom:2px solid var(--brand); padding-bottom:14px; margin-bottom:8px}
+.p-head .pt{font-size:20px; font-weight:800}
+.p-head .ps{font-size:13px; color:var(--muted); margin-top:4px}
+.p-info{display:flex; gap:18px; font-size:13px; color:var(--ink2); margin:10px 0 22px; flex-wrap:wrap}
+.p-info b{color:var(--gold)}
+.sec{margin-bottom:30px}
+.sec>h3{font-size:16px; font-weight:800; color:var(--brand); border-left:4px solid var(--gold); padding-left:10px; margin-bottom:6px}
+.sec .sn{font-size:12.5px; color:var(--muted); margin-bottom:12px}
+.q{padding:12px 14px; border:1px solid var(--line); border-radius:10px; margin-bottom:10px; background:#fffdf8}
+.q .qt{font-weight:600; margin-bottom:8px}
+.q .qt .qn{color:var(--gold); font-weight:800; margin-right:6px}
+.q .qt u{ text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:3px; font-weight:700 }
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.opts.one{grid-template-columns:1fr}
+.opt{border:1px solid var(--line); border-radius:8px; padding:7px 12px; cursor:pointer; font-size:14px; background:#fff; transition:.12s; display:flex; gap:8px; align-items:baseline}
+.opt .lb{font-weight:800; color:var(--muted)}
+.opt:hover{border-color:var(--gold-soft); background:#fffaf0}
+.opt.sel{border-color:var(--gold); background:#fdf3d8}
+.opt.ok{border-color:var(--ok); background:#eafaf0}
+.opt.bad{border-color:var(--red); background:#fdecea}
+.opt .mk{margin-left:auto; font-weight:800}
+.opt.ok .mk{color:var(--ok)} .opt.bad .mk{color:var(--red)}
+.ans-in{border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:14px; width:100%; max-width:340px; background:#fff; font-family:inherit}
+.ans-in:focus{outline:none; border-color:var(--gold)}
+.ans-in.ok{border-color:var(--ok); background:#f2fbf6}
+.ans-in.bad{border-color:var(--red); background:#fdf0ee}
+.tfrow{display:flex; gap:10px}
+.tfrow .opt{min-width:88px; justify-content:center}
+.hint{font-size:12.5px; color:var(--muted); margin-top:4px}
+.wordbank{font-size:13.5px; background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-bottom:12px; color:var(--ink2)}
+.wordbank b{color:var(--gold)}
+textarea.essay{width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:12px; font-size:14px; font-family:inherit; resize:vertical; background:#fff}
+textarea.essay:focus{outline:none; border-color:var(--gold)}
+.checklist{background:#f4f8f4; border:1px solid #cfe3d2; border-radius:10px; padding:12px 16px; margin-top:12px; font-size:13.5px}
+.checklist b{color:var(--ok)}
+.checklist li{margin-left:20px; margin-top:3px}
+details.sample{margin-top:12px; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fffdf6}
+details.sample summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13.5px}
+details.sample .body{margin-top:10px; font-size:14px; line-height:1.9; border-top:1px dashed var(--line); padding-top:10px}
+details.sample .body .en{color:var(--ink)}
+details.sample .body .zh{color:var(--muted); font-size:12.5px}
+
+/* ---------- 阅读原文框 ---------- */
+.rdbox{background:#fffdf6; border:1.5px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px}
+.rdbox .rd-title{font-size:16px; font-weight:800; color:var(--brand); margin-bottom:10px}
+.rdbox .rd-title span{font-size:12px; font-weight:400; color:var(--muted); margin-left:8px}
+.rdbox .rd-body p{font-size:14.5px; line-height:2.05; margin:0 0 4px}
+.rdbox .rd-body p b{color:var(--brand)}
+.rdbox .rdn{display:inline-block; min-width:18px; color:var(--gold); font-weight:800; font-size:12.5px; margin-right:4px}
+.rdbox .kw{background:#fdf0d5; border-bottom:2px solid var(--gold-soft); border-radius:3px; padding:0 2px; font-weight:600}
+.rdbox .rd-note{font-size:12.5px; color:var(--ink2); background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-top:12px}
+details.rdtr{margin-top:12px; border:1px dashed var(--line); border-radius:8px; padding:8px 12px; background:#fff}
+details.rdtr summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13px}
+details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-height:2}
+
+/* ---------- 操作区 ---------- */
+.acts{display:flex; gap:12px; margin:26px 0 10px; flex-wrap:wrap; position:sticky; bottom:0; background:linear-gradient(180deg,transparent, var(--paper) 30%); padding:14px 0}
+.btn{border:none; border-radius:10px; padding:12px 26px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit}
+.btn-go{background:var(--brand); color:#f0e2b8}
+.btn-go:hover{background:#3a2c1c}
+.btn-ghost{background:#fff; color:var(--ink2); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-reset{background:#fff; color:var(--red); border:1.5px solid #ecc9c3}
+.score{display:none; border-radius:12px; padding:18px 22px; margin-top:16px; font-size:15px}
+.score.show{display:block}
+.score.pass{background:#eafaf0; border:1px solid #bfe6cc}
+.score.fail{background:#fdf0ee; border:1px solid #ecc9c3}
+.score .big{font-size:26px; font-weight:800}
+.score.pass .big{color:var(--ok)} .score.fail .big{color:var(--red)}
+.score .adv{font-size:13.5px; color:var(--ink2); margin-top:6px}
+.backhome{display:block; text-align:center; margin:26px auto 0; color:var(--muted); font-size:13px; text-decoration:none}
+.backhome:hover{color:var(--gold)}
+@media (max-width:640px){ .opts{grid-template-columns:1fr} .paper{padding:20px 16px} }
+@media print{
+  .hero,.tabs,.acts,.backhome{display:none!important}
+  body{background:#fff} .paper{border:none; box-shadow:none; padding:0}
+  .opt.sel{border-color:#999; background:#fff}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">沪教版 · 英语七年级上册</div>
+  <h1>Unit 8 Collecting as a Hobby</h1>
+  <div class="sub">习题与单元测试 · 每单元 5 份练习 + 3 套测试卷（在线作答 · 即时批改 · 可打印）</div>
+  <div class="meta">
+    <span>覆盖：本单元词汇 / 短语 / 人称代词与物主代词 / 课文《Stamps have stories to tell》/ 中国收藏文化</span>
+    <span>依据：上海教育出版社 英语 七年级上册（2024 广州新版）</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div id="paperHost"></div>
+  <div id="scoreHost"></div>
+  <a class="backhome" href="../点读学习包/Unit0_总目录_点读学习中心.html">← 返回七上点读学习中心</a>
+</div>
+
+<script>
+const PAPERS = [
+  {
+    "id": "p1",
+    "title": "练习一 · 词汇与短语",
+    "time": "20 分钟",
+    "sub": "本单元核心词汇 30 个 + 拓展词 18 个 + 短语 17 个，先认词，再会用。",
+    "sections": [
+    {
+      "name": "一、词汇匹配（选出正确中文意思）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "collection", "type": "choice", "a": 0, "opts": ["收集物；收藏品", "收集；收藏", "明信片", "感兴趣的"]},
+        {"stem": "valuable", "type": "choice", "a": 1, "opts": ["照料；小心", "贵重的；宝贵的", "钉子", "钥匙扣"]},
+        {"stem": "story", "type": "choice", "a": 2, "opts": ["课；教训", "国家", "故事", "邮票"]},
+        {"stem": "explain", "type": "choice", "a": 3, "opts": ["少量；一点", "包装纸", "手套", "解释；说明"]},
+        {"stem": "treasure", "type": "choice", "a": 0, "opts": ["珍宝；宝物", "贝壳", "一千", "最喜欢的"]}
+      ]
+    },
+    {
+      "name": "二、看中文，写英文",
+      "note": "每题 1 分，共 5 分。注意拼写。",
+      "items": [
+        {"stem": "爱好", "type": "text", "a": "hobby", "ph": "拼写注意大小写"},
+        {"stem": "保护", "type": "text", "a": "protect", "ph": "拼写注意大小写"},
+        {"stem": "绝对地；完全地", "type": "text", "a": "absolutely", "ph": "拼写注意大小写"},
+        {"stem": "宫殿", "type": "text", "a": "palace", "ph": "拼写注意大小写"},
+        {"stem": "硬币", "type": "text", "a": "coin", "ph": "拼写注意大小写"}
+      ]
+    },
+    {
+      "name": "三、短语填空（选词填空，注意形式）",
+      "note": "每题 1 分，共 5 分。",
+      "bank": "<b>短语库：</b>stamp collection · all over the world · pocket money · take care of · with great care",
+      "items": [
+        {"stem": "My hobby is collecting stamps. I call it my ____.", "type": "choice", "a": 0, "opts": ["stamp collection", "pocket money", "paper money", "key ring"], "explain": "stamp collection 集邮。"},
+        {"stem": "He has friends who collect coins from ____.", "type": "choice", "a": 0, "opts": ["all over the world", "the Palace Museum", "hundreds of years ago", "more and more"], "explain": "all over the world 世界各地。"},
+        {"stem": "I buy new stamps with my ____ every week.", "type": "choice", "a": 0, "opts": ["pocket money", "sweet memories", "a history lesson", "chocolate wrappers"], "explain": "pocket money 零花钱。"},
+        {"stem": "Grandpa teaches me to ____ my stamps well.", "type": "choice", "a": 0, "opts": ["take care of", "add ... to ...", "become interested in", "take ... from ..."], "explain": "take care of 照顾、保管。"},
+        {"stem": "He always handles the old stamps ____.", "type": "choice", "a": 0, "opts": ["with great care", "absolutely", "impossible", "similar"], "explain": "with great care 非常小心地。"}
+      ]
+    },
+    {
+      "name": "四、单项选择",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A ____ is a small piece of paper you put on a letter to mail it.", "type": "choice", "a": 0, "opts": ["stamp", "coin", "shell", "glove"], "explain": "stamp 邮票。"},
+        {"stem": "The number 1,000 is a ____.", "type": "choice", "a": 0, "opts": ["thousand", "hundred", "million", "bit"], "explain": "thousand 一千。"},
+        {"stem": "Something expensive and special is ____.", "type": "choice", "a": 0, "opts": ["valuable", "similar", "impossible", "interested"], "explain": "valuable 贵重的、宝贵的。"},
+        {"stem": "You put a letter inside an ____ before you mail it.", "type": "choice", "a": 0, "opts": ["envelope", "postcard", "story", "lesson"], "explain": "envelope 信封。"},
+        {"stem": "A card with a picture that you send by post is a ____.", "type": "choice", "a": 0, "opts": ["postcard", "envelope", "coin", "shell"], "explain": "postcard 明信片。"}
+      ]
+    },
+    {
+      "name": "五、对划线部分提问",
+      "note": "每题 1 分，共 5 分。用 Wh-word + 一般疑问句语序；动词为实义动词时用 do/does。",
+      "items": [
+        {"stem": "My grandpa collects <u>stamps</u>.（对划线部分提问）", "type": "text", "a": "What does your grandpa collect?", "a2": ["What does your grandpa collect?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "The white gloves are <u>his</u>.（对划线部分提问）", "type": "text", "a": "Whose are the white gloves?", "a2": ["Whose are the white gloves?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "He became interested in Chinese buildings <u>thanks to this stamp</u>.（对划线部分提问）", "type": "text", "a": "Why did he become interested in Chinese buildings?", "a2": ["Why did he become interested in Chinese buildings?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "My hobby is collecting stamps <u>because they are beautiful</u>.（对划线部分提问）", "type": "text", "a": "Why is your hobby collecting stamps?", "a2": ["Why is your hobby collecting stamps?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "I have <u>over a hundred</u> stamps now.（对划线部分提问）", "type": "text", "a": "How many stamps do you have now?", "a2": ["How many stamps do you have now?"], "ph": "写完整问句，句末加 ?"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p2",
+    "title": "练习二 · 语法与句型",
+    "time": "20 分钟",
+    "sub": "本单元语法重点：Personal pronouns & possessives（人称代词与物主代词：主格 I/you/he/she/we/they/it，宾格 me/you/him/her/us/them/it，形容词性物主代词 my/your/his/her/our/their/its，名词性物主代词 mine/yours/his/hers/ours/theirs；指示代词 this/that → these/those）。",
+    "sections": [
+    {
+      "name": "一、语法选择（单选）",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "I have a stamp. ____ stamp is very old.", "type": "choice", "a": 0, "opts": ["My", "Me", "I", "Mine"], "explain": "名词前用形容词性物主代词 my。"},
+        {"stem": "This is ____ postcard. It is very old.", "type": "choice", "a": 0, "opts": ["her", "she", "hers", "she's"], "explain": "名词前用形容词性物主代词 her。"},
+        {"stem": "He loves stamps and ____ collection is big.", "type": "choice", "a": 0, "opts": ["his", "he", "him", "he's"], "explain": "名词前用形容词性物主代词 his。"},
+        {"stem": "We are students and ____ teacher is kind.", "type": "choice", "a": 0, "opts": ["our", "we", "us", "ours"], "explain": "名词前用形容词性物主代词 our。"},
+        {"stem": "They collect coins and ____ coins are old.", "type": "choice", "a": 0, "opts": ["their", "them", "they", "theirs"], "explain": "名词前用形容词性物主代词 their。"},
+        {"stem": "The cat is small. ____ tail is white.", "type": "choice", "a": 0, "opts": ["Its", "It", "it's", "Itself"], "explain": "名词前用形容词性物主代词 its。"},
+        {"stem": "Grandpa gave the stamp to ____. It is mine now.", "type": "choice", "a": 0, "opts": ["me", "I", "my", "mine"], "explain": "动词后作宾语用宾格 me。"},
+        {"stem": "She teaches ____ to collect shells.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "动词后作宾语用宾格 us。"},
+        {"stem": "These stamps are nice. I like ____ very much.", "type": "choice", "a": 0, "opts": ["them", "they", "their", "theirs"], "explain": "动词后作宾语用宾格 them。"},
+        {"stem": "—Whose gloves are these? —They are ____.", "type": "choice", "a": 0, "opts": ["ours", "our", "we", "us"], "explain": "名词性物主代词 ours 相当于 our gloves。"}
+      ]
+    },
+    {
+      "name": "二、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "you（主格 you 变为形容词性物主代词 your）", "type": "text", "a": "your", "ph": "形物代 your"},
+        {"stem": "we（主格 we 变为形容词性物主代词 our）", "type": "text", "a": "our", "ph": "形物代 our"},
+        {"stem": "I（主格 I 变为宾格 me）", "type": "text", "a": "me", "ph": "宾格 me"},
+        {"stem": "we（主格 we 变为宾格 us）", "type": "text", "a": "us", "ph": "宾格 us"},
+        {"stem": "that（单数指示代词 that 变复数 those）", "type": "text", "a": "those", "ph": "that→those"}
+      ]
+    },
+    {
+      "name": "三、完成句子（每空一词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "我有一个集邮册。____ (I) stamp album is very old.", "type": "text", "a": "My", "a2": ["My"]},
+        {"stem": "爷爷把邮票给了我。Grandpa gave the stamp to ____ (I).", "type": "text", "a": "me", "a2": ["me"]},
+        {"stem": "这是她的明信片。This is ____ (she) postcard.", "type": "text", "a": "her", "a2": ["her"]},
+        {"stem": "他们收集硬币，____ (they) coins are old.", "type": "text", "a": "their", "a2": ["their"]},
+        {"stem": "这些贝壳是我们的。These shells are ____ (we).", "type": "text", "a": "ours", "a2": ["ours"]}
+      ]
+    },
+    {
+      "name": "四、句型转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "I have a hobby. → ____ hobby is collecting stamps.（改为同义句，用物主代词）", "type": "text", "a": "My", "a2": ["My"]},
+        {"stem": "He has a big collection. → ____ collection is big.（改为同义表达）", "type": "text", "a": "His", "a2": ["His"]},
+        {"stem": "This is a stamp. → ____ are stamps.（改为复数句）", "type": "text", "a": "These", "a2": ["These"]},
+        {"stem": "That is a coin. → ____ are coins.（改为复数句）", "type": "text", "a": "Those", "a2": ["Those"]},
+        {"stem": "The stamp is mine. → It is ____ stamp.（改为同义句）", "type": "text", "a": "my", "a2": ["my"]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p3",
+    "title": "练习三 · 课文与阅读",
+    "time": "25 分钟",
+    "sub": "围绕单元阅读语篇《Stamps have stories to tell》——先读原文，再会答。",
+    "sections": [
+    {
+      "name": "一、课文原文《Stamps have stories to tell》",
+      "note": "沪教版英语七上 Unit 8 阅读语篇。先读原文，再做后面四道大题；答案都能在原文里找到。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">Stamps have stories to tell <span>阅读语篇 · 沪教版 英语 七年级上册 Unit 8</span></div><div class=\"rd-body\"><p><span class=\"rdn\">1</span>Today, I'm going to talk about my hobby.</p><p><span class=\"rdn\">2</span>Some people play sports and others build models, but my hobby is collecting stamps.</p><p><span class=\"rdn\">3</span>I love stamps because they are very beautiful.</p><p><span class=\"rdn\">4</span>They can also teach me about the history and cul" +
+      "ture of different countries.</p><p><span class=\"rdn\">5</span>I developed this hobby thanks to my grandpa.</p><p><span class=\"rdn\">6</span>He is a stamp collector, and he owns thousands of stamps.</p><p><span class=\"rdn\">7</span>Some of them are valuable, so he always handles them with great care.</p><p><span class=\"rdn\">8</span>He even wears white gloves to protect his stamps!</p><p><span class=\"rdn\">9</span>Every Sunday my grandpa adds new ones to his collection, and I somet" +
+      "imes help him take old stamps from envelopes and postcards.</p><p><span class=\"rdn\">10</span>It is almost like a history lesson.</p><p><span class=\"rdn\">11</span>Let me show you an absolutely wonderful stamp of the Palace Museum.</p><p><span class=\"rdn\">12</span>It is my favourite because it was my first one.</p><p><span class=\"rdn\">13</span>\"They built these buildings hundreds of years ago. It may seem impossible, but they built them without using a single nail!\" he explaine" +
+      "d.</p><p><span class=\"rdn\">14</span>My grandpa also shared many other interesting bits of history about the old palace.</p><p><span class=\"rdn\">15</span>Thanks to this stamp, I became interested in traditional Chinese buildings.</p><p><span class=\"rdn\">16</span>I started to collect similar stamps. Now I have over a hundred of them.</p><p><span class=\"rdn\">17</span>I am learning more and more about Chinese history and culture.</p></div><details class=\"rdtr\"><summary>中文翻译（点开对照，" +
+      "先自己做题再看）</summary><div class=\"rdzh\"><p>1. 今天，我要讲讲我的爱好。</p><p>2. 有些人做运动，有些人做模型，但我的爱好是集邮。</p><p>3. 我喜欢邮票，因为它们非常漂亮。</p><p>4. 它们还能让我了解不同国家的历史和文化。</p><p>5. 多亏我爷爷，我培养起了这个爱好。</p><p>6. 他是个集邮爱好者，拥有成千上万张邮票。</p><p>7. 其中一些很贵重，所以他总是非常小心地拿放它们。</p><p>8. 他甚至戴上白手套来保护他的邮票！</p><p>9. 每个星期天爷爷往他的收藏里添新邮票，我有时帮他从信封和明信片上取下旧邮票。</p><p>10. 这几乎像是一堂历史课。</p><p>11. 让我给你看一张绝对精美的故宫博物院邮票。</p><p>12. 这是我最喜欢的，因为它是我的第一张。</p><p>13. “这些建筑是几百年前建成的。这似乎不可能，但他们建的时候一颗钉子都没用！”他解释道。</p><p>14. 爷爷还分享了许多关于这座古老宫殿的其他有趣的历史片段。</p><" +
+      "p>15. 多亏这张邮票，我对中国传统建筑产生了兴趣。</p><p>16. 我开始收集类似的邮票。现在我有一百多张了。</p><p>17. 我对中国历史和文化了解得越来越多。</p></div></details><div class=\"rd-note\"><b>阅读策略：</b>读的时候试着找出每个 he / him / us / they 分别指谁，再圈出本单元学过的词汇和短语。</div></div>",
+      "items": [
+        {"stem": "这篇课文主要讲什么？", "type": "choice", "a": 0, "opts": ["作者受爷爷影响喜欢集邮，以及爷爷的邮票收藏", "如何赚钱", "怎样做明信片", "一个邮局"], "explain": "课文讲作者因爷爷而爱上集邮，并介绍爷爷的邮票收藏。"}
+      ]
+    },
+    {
+      "name": "二、课文选词填空",
+      "note": "每题 1 分，共 5 分。均出自课文原句。",
+      "items": [
+        {"stem": "My hobby is ____ stamps.", "type": "choice", "a": 0, "opts": ["collecting", "collect", "collection", "collected"]},
+        {"stem": "Some of them are ____, so he is careful with them.", "type": "choice", "a": 0, "opts": ["valuable", "various", "violent", "visual"]},
+        {"stem": "He takes old stamps from ____ and postcards.", "type": "choice", "a": 0, "opts": ["envelopes", "eggs", "engines", "entries"]},
+        {"stem": "They built it hundreds of years ____.", "type": "choice", "a": 0, "opts": ["ago", "after", "again", "away"]},
+        {"stem": "My grandpa ____ the old stories to me.", "type": "choice", "a": 0, "opts": ["explains", "expects", "expresses", "exchanges"]}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据课文《Stamps have stories to tell》判断。",
+      "items": [
+        {"stem": "The writer's hobby is collecting stamps.", "type": "tf", "a": "T"},
+        {"stem": "The writer's grandpa owns only a few stamps.", "type": "tf", "a": "F", "explain": "爷爷拥有成千上万张邮票，不是几张。"},
+        {"stem": "The grandpa wears white gloves to protect his stamps.", "type": "tf", "a": "T"},
+        {"stem": "The stamp of the Palace Museum was the writer's last one.", "type": "tf", "a": "F", "explain": "这是作者的第一张，不是最后一张。"},
+        {"stem": "The old buildings were built with many nails.", "type": "tf", "a": "F", "explain": "文中说建的时候一颗钉子都没用。"}
+      ]
+    },
+    {
+      "name": "四、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "Why did the writer develop the hobby of collecting stamps?", "type": "choice", "a": 0, "opts": ["Thanks to his grandpa.", "Because of his teacher.", "Because of a book.", "Because of his friend."]},
+        {"stem": "What does the grandpa wear to protect his stamps?", "type": "choice", "a": 0, "opts": ["White gloves.", "A hat.", "Glasses.", "A mask."]},
+        {"stem": "What is the writer's favourite stamp about?", "type": "choice", "a": 0, "opts": ["The Palace Museum.", "A coin.", "A shell.", "A postcard."]},
+        {"stem": "What did the writer become interested in thanks to the stamp?", "type": "choice", "a": 0, "opts": ["Traditional Chinese buildings.", "Modern art.", "Sports.", "Music."]}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 4 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "How many stamps does the grandpa own?", "type": "text", "a": "Thousands of stamps", "a2": ["Thousands of stamps.", "He owns thousands of stamps."]},
+        {"stem": "Why does the grandpa handle his stamps with great care?", "type": "text", "a": "Because some of them are valuable", "a2": ["Because some of them are valuable.", "Because they are old."]},
+        {"stem": "What did the writer learn about the old buildings?", "type": "text", "a": "They were built without using a single nail", "a2": ["They were built without using a single nail.", "They used no nails."]},
+        {"stem": "How many stamps does the writer have now?", "type": "text", "a": "Over a hundred", "a2": ["Over a hundred.", "More than a hundred."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p4",
+    "title": "练习四 · 阅读新篇章",
+    "time": "25 分钟",
+    "sub": "用本单元词汇、短语和句型新写的一篇文章。不翻课本，看看你是否真的理解和掌握了它们。",
+    "sections": [
+    {
+      "name": "一、阅读原文",
+      "note": "先通读全文，再完成下面的题。金色底纹的是本单元词汇短语，读的时候留意它们。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">A Young Collector · 小收藏家 <span>用 Unit 8 词汇与表达新写</span></div><div class=\"rd-body\"><p>I have a <span class=\"kw\">hobby</span>: I <span class=\"kw\">collect</span> <span class=\"kw\">key rings</span> and <span class=\"kw\">shells</span>. My <span class=\"kw\">collection</span> is not big, but it is <span class=\"kw\">valuable</span> to me. I <span class=\"kw\">own</span> about a hundred key rings from <span class=\"kw\">all over the world</span>. Some o" +
+      "f them are very <span class=\"kw\">similar</span>, but each one has a <span class=\"kw\">story</span>.</p><p>I <span class=\"kw\">take care of</span> my things <span class=\"kw\">with great care</span>. Every week I <span class=\"kw\">add</span> new ones <span class=\"kw\">to</span> my box, and I sometimes <span class=\"kw\">take</span> old shells <span class=\"kw\">from</span> my drawer. I keep them in an album. My friend Li Na <span class=\"kw\">collects</span> <span class=\"kw\">coins</span> " +
+      "and <span class=\"kw\">postcards</span>; we often share our <span class=\"kw\">sweet memories</span>.</p><p><span class=\"kw\">Thanks to</span> my grandpa, I <span class=\"kw\">became interested in</span> collecting. He <span class=\"kw\">explains</span> the <span class=\"kw\">history</span> of every <span class=\"kw\">treasure</span>. Now I am learning <span class=\"kw\">more and more</span> about different <span class=\"kw\">countries</span> and their <span class=\"kw\">culture</span>. Collect" +
+      "ing is a small <span class=\"kw\">bit</span> of joy in my life, and it is <span class=\"kw\">absolutely</span> wonderful.</p></div><div class=\"rd-note\"><b>阅读小任务：</b>读的时候圈出金色底纹的词汇和短语，看看你是不是每个都认识、都会用（注意句子里的人称代词和物主代词分别指谁）。</div></div>",
+      "items": [
+        {"stem": "这篇文章主要讲什么？", "type": "choice", "a": 0, "opts": ["一个学生收藏钥匙扣和贝壳的爱好", "如何赚钱", "怎样建宫殿", "一份工作"], "explain": "文章讲作者收藏钥匙扣和贝壳的爱好。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据上文判断。",
+      "items": [
+        {"stem": "The writer collects key rings and shells.", "type": "tf", "a": "T"},
+        {"stem": "The writer has thousands of key rings.", "type": "tf", "a": "F", "explain": "文中说大约一百个，不是上千。"},
+        {"stem": "The writer takes care of the collection with great care.", "type": "tf", "a": "T"},
+        {"stem": "The writer's friend collects coins and postcards.", "type": "tf", "a": "T"},
+        {"stem": "Collecting makes the writer unhappy.", "type": "tf", "a": "F", "explain": "收藏给作者带来快乐，不是不开心。"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "What does the writer collect?", "type": "choice", "a": 0, "opts": ["Key rings and shells.", "Stamps and coins.", "Books and pens.", "Cards and dolls."]},
+        {"stem": "Where are the writer's key rings from?", "type": "choice", "a": 0, "opts": ["All over the world.", "Only China.", "A shop.", "The school."]},
+        {"stem": "What does the writer do every week?", "type": "choice", "a": 0, "opts": ["Add new ones to the box.", "Sell them.", "Throw them away.", "Buy a house."]},
+        {"stem": "Who made the writer interested in collecting?", "type": "choice", "a": 0, "opts": ["His grandpa.", "His teacher.", "His friend.", "A book."]},
+        {"stem": "How does the writer feel about collecting?", "type": "choice", "a": 0, "opts": ["Absolutely wonderful.", "Boring.", "Tired.", "Angry."]}
+      ]
+    },
+    {
+      "name": "四、词汇与表达 · 语境理解",
+      "note": "每题 1 分，共 5 分。结合文章语境，判断词汇和短语的意思与用法。",
+      "items": [
+        {"stem": "\"collection\" 的意思是：", "type": "choice", "a": 0, "opts": ["收藏品；收集物", "爱好", "故事", "硬币"], "explain": "collection 收藏品。"},
+        {"stem": "\"valuable\" 的意思是：", "type": "choice", "a": 0, "opts": ["贵重的；宝贵的", "便宜的", "普通的", "大的"], "explain": "valuable 贵重的。"},
+        {"stem": "\"protect\" 的意思是：", "type": "choice", "a": 0, "opts": ["保护", "伤害", "清洗", "出售"], "explain": "protect 保护。"},
+        {"stem": "\"treasure\" 的意思是：", "type": "choice", "a": 0, "opts": ["珍宝；宝物", "垃圾", "礼物", "工具"], "explain": "treasure 珍宝。"},
+        {"stem": "\"interested\" 的意思是：", "type": "choice", "a": 0, "opts": ["感兴趣的", "无聊的", "兴奋的", "惊讶的"], "explain": "interested 感兴趣的。"}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "How many key rings does the writer own?", "type": "text", "a": "About a hundred", "a2": ["About a hundred.", "He owns about a hundred."]},
+        {"stem": "What does the writer keep the shells in?", "type": "text", "a": "An album", "a2": ["An album.", "He keeps them in an album."]},
+        {"stem": "Who does the writer share sweet memories with?", "type": "text", "a": "His friend Li Na", "a2": ["His friend Li Na.", "Li Na."]},
+        {"stem": "What does the grandpa explain?", "type": "text", "a": "The history of every treasure", "a2": ["The history of every treasure.", "He explains the history."]},
+        {"stem": "What is collecting to the writer?", "type": "text", "a": "A small bit of joy", "a2": ["A small bit of joy.", "It is a bit of joy."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p5",
+    "title": "练习五 · 中国收藏文化",
+    "time": "20 分钟",
+    "sub": "从邮票到瓷器，从钱币到更多宝藏——用英语带你逛中国的收藏文化，边学边看。",
+    "sections": [
+    {
+      "name": "一、文化读本（原文）",
+      "note": "三段都围绕本单元主题与中国文化。先通读，再做后面的题。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">中国收藏文化 · Chinese Collecting Culture <span>结合 Unit 8 Collecting as a Hobby</span></div><div class=\"rd-body\"><p><b>A. 邮票 · Stamps</b><br>Many Chinese people <span class=\"kw\">collect</span> <span class=\"kw\">stamps</span> as a <span class=\"kw\">hobby</span>. A <span class=\"kw\">stamp collection</span> can show the <span class=\"kw\">history</span> and <span class=\"kw\">culture</span> of China and other <span class=\"kw\">countries</span>. The <sp" +
+      "an class=\"kw\">Palace Museum</span> often appears on beautiful stamps. Some old stamps are very <span class=\"kw\">valuable</span>, so collectors <span class=\"kw\">take care of</span> them <span class=\"kw\">with great care</span> and <span class=\"kw\">protect</span> them in <span class=\"kw\">albums</span>.</p><p><b>B. 瓷器 · Porcelain</b><br>Chinese porcelain is famous <span class=\"kw\">all over the world</span>. Some families <span class=\"kw\">own</span> old cups and plates from <span " +
+      "class=\"kw\">hundreds of years ago</span>. They are real <span class=\"kw\">treasures</span>. Grandparents often <span class=\"kw\">explain</span> the <span class=\"kw\">story</span> behind each piece. Young people become <span class=\"kw\">interested</span> in these old things and <span class=\"kw\">add</span> small copies <span class=\"kw\">to</span> their own <span class=\"kw\">collection</span>.</p><p><b>C. 钱币 · Coins and Paper Money</b><br>Collecting old <span class=\"kw\">coins</span> an" +
+      "d <span class=\"kw\">paper money</span> is also popular in China. A single old <span class=\"kw\">coin</span> may teach us a <span class=\"kw\">lesson</span> about money long ago. Some coins look <span class=\"kw\">similar</span> but have different <span class=\"kw\">stories</span>. <span class=\"kw\">Thanks to</span> these collections, we learn <span class=\"kw\">more and more</span> about Chinese history. Collecting keeps our <span class=\"kw\">sweet memories</span> and helps us love our c" +
+      "ulture.</p></div><div class=\"rd-note\"><b>文化小知识：</b>邮票、瓷器、钱币都是中国人喜欢的收藏。它们既是爱好，也承载着中华优秀传统文化。</div></div>",
+      "items": [
+        {"stem": "这三段文字共同讲的是什么？", "type": "choice", "a": 0, "opts": ["中国的三种收藏文化：邮票、瓷器、钱币", "中国的美食", "中国的节日", "中国的运动"], "explain": "三段分别介绍邮票、瓷器、钱币三种中国收藏文化。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 A · 判断正误（T / F）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "Many Chinese people collect stamps as a hobby.", "type": "tf", "a": "T"},
+        {"stem": "Chinese porcelain is only famous in China.", "type": "tf", "a": "F", "explain": "中国瓷器在全世界都有名。"},
+        {"stem": "Collecting old coins can teach a lesson about money.", "type": "tf", "a": "T"},
+        {"stem": "Collecting has nothing to do with Chinese culture.", "type": "tf", "a": "F", "explain": "收藏承载着中华优秀传统文化。"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 B · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "What often appears on beautiful Chinese stamps?", "type": "choice", "a": 0, "opts": ["The Palace Museum.", "A coin.", "A shell.", "A key ring."]},
+        {"stem": "Why do collectors take care of old stamps with great care?", "type": "choice", "a": 0, "opts": ["Because some are valuable.", "Because they are new.", "Because they are cheap.", "Because they are big."]},
+        {"stem": "What do young people add to their collection?", "type": "choice", "a": 0, "opts": ["Small copies of porcelain.", "Real palaces.", "Old coins only.", "Stamps only."]},
+        {"stem": "What do collections help us do?", "type": "choice", "a": 0, "opts": ["Learn more about Chinese history and culture.", "Make money only.", "Forget the past.", "Play games."]}
+      ]
+    },
+    {
+      "name": "四、文化表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What can a stamp collection show?", "type": "text", "a": "The history and culture of China and other countries", "a2": ["The history and culture.", "It shows history and culture."]},
+        {"stem": "How old may some Chinese porcelain be?", "type": "text", "a": "Hundreds of years old", "a2": ["Hundreds of years old.", "From hundreds of years ago."]},
+        {"stem": "What may a single old coin teach us?", "type": "text", "a": "A lesson about money long ago", "a2": ["A lesson about money long ago.", "It teaches a lesson about money."]},
+        {"stem": "Why do people love collecting?", "type": "text", "a": "Because it keeps sweet memories and helps love culture", "a2": ["It keeps sweet memories.", "It helps us love our culture."]},
+        {"stem": "Name one kind of Chinese collection from the text.", "type": "text", "a": "Stamps / porcelain / coins and paper money", "a2": ["Stamps.", "Porcelain.", "Coins and paper money."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t1",
+    "title": "测试卷一 · Unit 8 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型参照本地单元卷：辨音 + 单选 + 语法选择 + 完形 + 阅读 + 回答问题 + 拼写 + 词形转换 + 写作。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>o</u>wn&nbsp;&nbsp;B. <u>o</u>ld&nbsp;&nbsp;C. <u>o</u>ver&nbsp;&nbsp;D. n<u>ow</u>", "type": "choice", "a": 3, "opts": ["own", "old", "over", "now"], "explain": "own / old / over 中 o 发 /əʊ/，now 中 ow 发 /aʊ/。"},
+        {"stem": "A. <u>w</u>rite&nbsp;&nbsp;B. <u>w</u>rong&nbsp;&nbsp;C. <u>w</u>rap&nbsp;&nbsp;D. <u>wh</u>ite", "type": "choice", "a": 3, "opts": ["write", "wrong", "wrap", "white"], "explain": "write / wrong / wrap 中 w 不发音，white 中 wh 发 /w/。"},
+        {"stem": "A. <u>y</u>ou&nbsp;&nbsp;B. <u>y</u>our&nbsp;&nbsp;C. <u>y</u>es&nbsp;&nbsp;D. m<u>y</u>", "type": "choice", "a": 3, "opts": ["you", "your", "yes", "my"], "explain": "you / your / yes 中 y 发 /j/，my 中 y 发 /aɪ/。"},
+        {"stem": "A. <u>th</u>ousand&nbsp;&nbsp;B. <u>th</u>ink&nbsp;&nbsp;C. <u>th</u>umb&nbsp;&nbsp;D. <u>s</u>ing", "type": "choice", "a": 3, "opts": ["thousand", "think", "thumb", "sing"], "explain": "thousand / think / thumb 中 th 发 /θ/，sing 中 s 发 /s/。"},
+        {"stem": "A. <u>sh</u>ell&nbsp;&nbsp;B. <u>sh</u>ow&nbsp;&nbsp;C. <u>sh</u>oe&nbsp;&nbsp;D. <u>s</u>mile", "type": "choice", "a": 3, "opts": ["shell", "show", "shoe", "smile"], "explain": "shell / show / shoe 中 sh 发 /ʃ/，smile 中 s 发 /s/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "I have a stamp. ____ stamp is from China.", "type": "choice", "a": 0, "opts": ["My", "Me", "I", "Mine"], "explain": "名词前用形容词性物主代词 my。"},
+        {"stem": "This is ____ postcard. It is very old.", "type": "choice", "a": 0, "opts": ["her", "she", "hers", "she's"], "explain": "名词前用形容词性物主代词 her。"},
+        {"stem": "He loves shells and ____ collection is big.", "type": "choice", "a": 0, "opts": ["his", "he", "him", "he's"], "explain": "名词前用形容词性物主代词 his。"},
+        {"stem": "We are collectors and ____ teacher helps us.", "type": "choice", "a": 0, "opts": ["our", "we", "us", "ours"], "explain": "名词前用形容词性物主代词 our。"},
+        {"stem": "They have coins and ____ coins are old.", "type": "choice", "a": 0, "opts": ["their", "them", "they", "theirs"], "explain": "名词前用形容词性物主代词 their。"},
+        {"stem": "The cat is cute. ____ tail is white.", "type": "choice", "a": 0, "opts": ["Its", "It", "it's", "Itself"], "explain": "名词前用形容词性物主代词 its。"},
+        {"stem": "Grandpa gave the stamp to ____.", "type": "choice", "a": 0, "opts": ["me", "I", "my", "mine"], "explain": "动词后宾格 me。"},
+        {"stem": "She teaches ____ to make an album.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "动词后宾格 us。"},
+        {"stem": "These stamps are nice. I like ____ a lot.", "type": "choice", "a": 0, "opts": ["them", "they", "their", "theirs"], "explain": "动词后宾格 them。"},
+        {"stem": "—Whose gloves are these? —They are ____.", "type": "choice", "a": 0, "opts": ["ours", "our", "we", "us"], "explain": "名词性物主代词 ours 相当于 our gloves。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "My name is Lucy. (1)____ hobby is collecting stamps.", "type": "choice", "a": 0, "opts": ["My", "Me", "I", "Mine"], "explain": "名词前用形容词性物主代词 my。"},
+        {"stem": "I have a big album and (2)____ pages are colourful.", "type": "choice", "a": 0, "opts": ["its", "it", "it's", "they"], "explain": "album 单数，形物代 its。"},
+        {"stem": "My friend Tom has one too, and (3)____ collection is about coins.", "type": "choice", "a": 0, "opts": ["his", "he", "him", "he's"], "explain": "Tom 的收藏，形物代 his。"},
+        {"stem": "We often show (4)____ our stamps.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "show 后宾格 us。"},
+        {"stem": "\"This stamp is (5)____,\" says Tom, pointing to a red one.", "type": "choice", "a": 0, "opts": ["mine", "my", "me", "I"], "explain": "名词性物主代词 mine 相当于 my stamp。"},
+        {"stem": "\"And that blue one is (6)____,\" I say.", "type": "choice", "a": 0, "opts": ["his", "he", "him", "hers"], "explain": "指 Tom 的，名物代 his。"},
+        {"stem": "Our teacher loves (7)____ collections.", "type": "choice", "a": 0, "opts": ["our", "us", "we", "ours"], "explain": "名词前用形容词性物主代词 our。"},
+        {"stem": "She gives (8)____ a book about the Palace Museum.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "gives 后宾格 us。"},
+        {"stem": "We learn a (9)____ from it.", "type": "choice", "a": 0, "opts": ["lesson", "lessons", "story", "class"], "explain": "learn a lesson 学到一课 / 吸取教训。"},
+        {"stem": "Collecting makes (10)____ happy.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "makes 后宾格 us。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Last week, our school had a collection (1)____.", "type": "choice", "a": 0, "opts": ["show", "club", "day", "meeting"], "explain": "collection show 收藏展。"},
+        {"stem": "Many students brought their (2)____.", "type": "choice", "a": 0, "opts": ["collections", "collection", "collects", "collecting"], "explain": "复数 collections。"},
+        {"stem": "Lucy showed her stamp (3)____.", "type": "choice", "a": 0, "opts": ["album", "book", "box", "card"], "explain": "album 集邮册。"},
+        {"stem": "Tom brought his (4)____ of coins.", "type": "choice", "a": 0, "opts": ["collection", "coin", "coins", "key"], "explain": "a collection of 一套……收藏。"},
+        {"stem": "'This is (5)____ favourite,' Lucy said.", "type": "choice", "a": 0, "opts": ["my", "me", "I", "mine"], "explain": "名词前用形容词性物主代词 my。"},
+        {"stem": "A teacher (6)____ us the history of the stamps.", "type": "choice", "a": 0, "opts": ["explained", "explains", "said", "told"], "explain": "explain 的过去式 explained。"},
+        {"stem": "He gave (7)____ a book about China.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "动词后宾格 us。"},
+        {"stem": "We (8)____ a lot about different countries.", "type": "choice", "a": 0, "opts": ["learned", "learn", "know", "knew"], "explain": "learn 的过去式 learned。"},
+        {"stem": "It was (9)____ wonderful!", "type": "choice", "a": 0, "opts": ["absolutely", "impossible", "similar", "valuable"], "explain": "absolutely wonderful 完全精彩。"},
+        {"stem": "We want to (10)____ more.", "type": "choice", "a": 0, "opts": ["collect", "collecting", "collected", "collection"], "explain": "want to + 动词原形 collect。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>STAMP SHOW AT SCHOOL. When: Saturday, October 18th, 2:00 p.m. Where: School Hall. What: Students will show their stamp collections. Lucy will show stamps of the Palace Museum. Tom will show old coins. Please bring your album. Tickets: free for students.<br>Where will the stamp show be?", "type": "choice", "a": 0, "opts": ["In the school hall.", "In the library.", "At the museum.", "On the playground."]},
+        {"stem": "<b>通知：</b>STAMP SHOW AT SCHOOL. When: Saturday, October 18th, 2:00 p.m. Where: School Hall. What: Students will show their stamp collections. Lucy will show stamps of the Palace Museum. Tom will show old coins. Please bring your album. Tickets: free for students.<br>What will Lucy show?", "type": "choice", "a": 0, "opts": ["Stamps of the Palace Museum.", "Old coins.", "Key rings.", "Shells."]},
+        {"stem": "<b>通知：</b>STAMP SHOW AT SCHOOL. When: Saturday, October 18th, 2:00 p.m. Where: School Hall. What: Students will show their stamp collections. Lucy will show stamps of the Palace Museum. Tom will show old coins. Please bring your album. Tickets: free for students.<br>What will Tom show?", "type": "choice", "a": 0, "opts": ["Old coins.", "Stamps.", "Postcards.", "Models."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Last month, Amy started to collect key rings. She has about a hundred key rings from all over the world. Her grandpa gave her the first one. Amy takes care of them with great care. She keeps them in an album. \"They are my treasures,\" she says.<br>What does Amy collect?", "type": "choice", "a": 0, "opts": ["Key rings.", "Stamps.", "Coins.", "Shells."]},
+        {"stem": "<b>故事：</b>Last month, Amy started to collect key rings. She has about a hundred key rings from all over the world. Her grandpa gave her the first one. Amy takes care of them with great care. She keeps them in an album. \"They are my treasures,\" she says.<br>Who gave her the first key ring?", "type": "choice", "a": 0, "opts": ["Her grandpa.", "Her friend.", "Her teacher.", "Her sister."]},
+        {"stem": "<b>故事：</b>Last month, Amy started to collect key rings. She has about a hundred key rings from all over the world. Her grandpa gave her the first one. Amy takes care of them with great care. She keeps them in an album. \"They are my treasures,\" she says.<br>Where does Amy keep them?", "type": "choice", "a": 0, "opts": ["In an album.", "In a box.", "On a shelf.", "In a drawer."]},
+        {"stem": "<b>故事：</b>Last month, Amy started to collect key rings. She has about a hundred key rings from all over the world. Her grandpa gave her the first one. Amy takes care of them with great care. She keeps them in an album. \"They are my treasures,\" she says.<br>How does Amy feel about them?", "type": "choice", "a": 0, "opts": ["They are her treasures.", "They are boring.", "They are new.", "They are cheap."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Lin, I collect old coins. My grandpa owns thousands of coins. Some are from hundreds of years ago. He explains the story of each coin. Thanks to him, I became interested in history. Do you collect anything? Write back! Yours, Ben<br>What does Ben collect?", "type": "choice", "a": 0, "opts": ["Old coins.", "Stamps.", "Shells.", "Key rings."]},
+        {"stem": "<b>邮件：</b>Dear Lin, I collect old coins. My grandpa owns thousands of coins. Some are from hundreds of years ago. He explains the story of each coin. Thanks to him, I became interested in history. Do you collect anything? Write back! Yours, Ben<br>Who owns thousands of coins?", "type": "choice", "a": 0, "opts": ["Ben's grandpa.", "Ben's teacher.", "A museum.", "A shop."]},
+        {"stem": "<b>邮件：</b>Dear Lin, I collect old coins. My grandpa owns thousands of coins. Some are from hundreds of years ago. He explains the story of each coin. Thanks to him, I became interested in history. Do you collect anything? Write back! Yours, Ben<br>How old are some of the coins?", "type": "choice", "a": 0, "opts": ["From hundreds of years ago.", "New.", "One year old.", "Ten years old."]},
+        {"stem": "<b>邮件：</b>Dear Lin, I collect old coins. My grandpa owns thousands of coins. Some are from hundreds of years ago. He explains the story of each coin. Thanks to him, I became interested in history. Do you collect anything? Write back! Yours, Ben<br>Why did Ben become interested in history?", "type": "choice", "a": 0, "opts": ["Thanks to his grandpa.", "Because of a book.", "Because of school.", "Because of TV."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>My Stamp Collection. I collect stamps as a hobby. My grandpa gave me the first one. It is a stamp of the Palace Museum. Now I have over a hundred stamps from all over the world. I take care of them with great care. They are my sweet memories.<br>What is the writer's hobby?", "type": "text", "a": "Collecting stamps", "a2": ["Collecting stamps.", "He collects stamps."]},
+        {"stem": "<b>短文：</b>My Stamp Collection. I collect stamps as a hobby. My grandpa gave me the first one. It is a stamp of the Palace Museum. Now I have over a hundred stamps from all over the world. I take care of them with great care. They are my sweet memories.<br>Who gave the writer the first stamp?", "type": "text", "a": "His grandpa", "a2": ["His grandpa.", "The writer's grandpa."]},
+        {"stem": "<b>短文：</b>My Stamp Collection. I collect stamps as a hobby. My grandpa gave me the first one. It is a stamp of the Palace Museum. Now I have over a hundred stamps from all over the world. I take care of them with great care. They are my sweet memories.<br>How many stamps does the writer have now?", "type": "text", "a": "Over a hundred", "a2": ["Over a hundred.", "More than a hundred."]},
+        {"stem": "<b>短文：</b>My Stamp Collection. I collect stamps as a hobby. My grandpa gave me the first one. It is a stamp of the Palace Museum. Now I have over a hundred stamps from all over the world. I take care of them with great care. They are my sweet memories.<br>Where are the stamps from?", "type": "text", "a": "All over the world", "a2": ["All over the world.", "From many countries."]},
+        {"stem": "<b>短文：</b>My Stamp Collection. I collect stamps as a hobby. My grandpa gave me the first one. It is a stamp of the Palace Museum. Now I have over a hundred stamps from all over the world. I take care of them with great care. They are my sweet memories.<br>What are the stamps to the writer?", "type": "text", "a": "Sweet memories", "a2": ["Sweet memories.", "They are sweet memories."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "c____（收集物；收藏品）", "type": "text", "a": "collection"},
+        {"stem": "v____（贵重的；宝贵的）", "type": "text", "a": "valuable"},
+        {"stem": "s____（故事）", "type": "text", "a": "story"},
+        {"stem": "e____（解释；说明）", "type": "text", "a": "explain"},
+        {"stem": "t____（珍宝；宝物）", "type": "text", "a": "treasure"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "you（主格 you 变为形容词性物主代词 your）", "type": "text", "a": "your", "ph": "你的（形物代）"},
+        {"stem": "we（主格 we 变为形容词性物主代词 our）", "type": "text", "a": "our", "ph": "我们的（形物代）"},
+        {"stem": "I（主格 I 变为宾格 me）", "type": "text", "a": "me", "ph": "我（宾格）"},
+        {"stem": "we（主格 we 变为宾格 us）", "type": "text", "a": "us", "ph": "我们（宾格）"},
+        {"stem": "that（单数指示代词 that 变复数 those）", "type": "text", "a": "those", "ph": "那些（复数指示代词）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Collection（我的收藏）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 collect, collection, stamp, coin, shell, key ring, hobby, take care of, with great care, valuable, treasure, album, all over the world, become interested in, more and more）；③ 用正确的人称代词和物主代词（my / your / his / her / our / their / me / him / her / us / them）；④ 句首大写、句末标点。", "type": "essay", "score": 10, "ph": "My Collection\n\nI like collecting...", "check": ["有没有写清你收藏什么（collect / collection）？", "有没有用 take care of / with great care 表达保管？", "有没有用对人称代词和物主代词（my / his / her / our / them 等）？", "有没有用 valuable / treasure / album 等词汇？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">My Collection<br><br>I like collecting stamps as a hobby. My grandpa gave me my first stamp, and it is my favourite. Now I have over a hundred stamps from all over the world. They are very valuable, so I take care of them with great care. I keep them in an album. Thanks to my grandpa, I became interested in Chinese history and culture. I am learning more and more about the world. Collecting is my treasure and my sweet memory.</div><div class=\"zh\">（参考范文：写了收藏邮票，用了 collect / collection / hobby / stamp / favourite / all over the world / valuable / take care of / with great care / album / became interested in / more and more / treasure / sweet memories 等本单元词汇，并正确使用了 my / me / them / I 等代词，注意了句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t2",
+    "title": "测试卷二 · Unit 8 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与测试卷一相同，题目全部更换（词汇、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>o</u>wn&nbsp;&nbsp;B. <u>o</u>ver&nbsp;&nbsp;C. <u>o</u>ld&nbsp;&nbsp;D. cl<u>ou</u>d", "type": "choice", "a": 3, "opts": ["own", "over", "old", "cloud"], "explain": "own / over / old 中 o 发 /əʊ/，cloud 中 ou 发 /aʊ/。"},
+        {"stem": "A. <u>th</u>ey&nbsp;&nbsp;B. <u>th</u>em&nbsp;&nbsp;C. <u>th</u>ose&nbsp;&nbsp;D. <u>th</u>ree", "type": "choice", "a": 3, "opts": ["they", "them", "those", "three"], "explain": "they / them / those 中 th 发 /ð/，three 中 th 发 /θ/。"},
+        {"stem": "A. <u>y</u>oung&nbsp;&nbsp;B. <u>y</u>ellow&nbsp;&nbsp;C. <u>y</u>es&nbsp;&nbsp;D. v<u>e</u>ry", "type": "choice", "a": 3, "opts": ["young", "yellow", "yes", "very"], "explain": "young / yellow / yes 中 y 发 /j/，very 中 v 发 /v/。"},
+        {"stem": "A. <u>c</u>oin&nbsp;&nbsp;B. <u>c</u>up&nbsp;&nbsp;C. <u>c</u>at&nbsp;&nbsp;D. <u>c</u>ity", "type": "choice", "a": 3, "opts": ["coin", "cup", "cat", "city"], "explain": "coin / cup / cat 中 c 发 /k/，city 中 c 发 /s/。"},
+        {"stem": "A. <u>tr</u>easure&nbsp;&nbsp;B. <u>tr</u>ain&nbsp;&nbsp;C. <u>tr</u>ee&nbsp;&nbsp;D. <u>tr</u>ip", "type": "choice", "a": 0, "opts": ["treasure", "train", "tree", "trip"], "explain": "train / tree / trip 中 tr 发 /tr/，treasure 中 tr 发 /dr/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "My hobby is collecting ____.", "type": "choice", "a": 0, "opts": ["stamps", "stamp", "a stamp", "stampes"], "explain": "stamp 复数 stamps。"},
+        {"stem": "A ____ is a person who collects things.", "type": "choice", "a": 0, "opts": ["collector", "collection", "collect", "coin"], "explain": "collector 收藏家。"},
+        {"stem": "He ____ thousands of stamps.", "type": "choice", "a": 0, "opts": ["owns", "own", "open", "order"], "explain": "own 第三人称 owns。"},
+        {"stem": "Some stamps are ____, so he is careful.", "type": "choice", "a": 0, "opts": ["valuable", "various", "violent", "visual"], "explain": "valuable 贵重的。"},
+        {"stem": "He wears white ____ to protect them.", "type": "choice", "a": 0, "opts": ["gloves", "boots", "hats", "shoes"], "explain": "gloves 手套。"},
+        {"stem": "This is ____ envelope. Please open it.", "type": "choice", "a": 0, "opts": ["my", "me", "I", "mine"], "explain": "名词前用形容词性物主代词 my。"},
+        {"stem": "She showed ____ the old coin.", "type": "choice", "a": 0, "opts": ["me", "I", "my", "mine"], "explain": "动词后宾格 me。"},
+        {"stem": "The Palace ____ has old buildings.", "type": "choice", "a": 0, "opts": ["Museum", "Message", "Monument", "Market"], "explain": "the Palace Museum 故宫博物院。"},
+        {"stem": "They built it hundreds of years ____.", "type": "choice", "a": 0, "opts": ["ago", "after", "again", "away"], "explain": "hundreds of years ago 几百年前。"},
+        {"stem": "This hobby teaches me about Chinese ____.", "type": "choice", "a": 0, "opts": ["culture", "country", "treasure", "colour"], "explain": "culture 文化。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "My grandpa loves stamps. (1)____ collects them every day.", "type": "choice", "a": 0, "opts": ["He", "Him", "His", "He's"], "explain": "主语用主格 He。"},
+        {"stem": "(2)____ collection has thousands of stamps.", "type": "choice", "a": 0, "opts": ["His", "He", "Him", "He's"], "explain": "名词前用形容词性物主代词 his。"},
+        {"stem": "Some are (3)____, so he wears white gloves to protect them.", "type": "choice", "a": 0, "opts": ["valuable", "various", "violent", "visual"], "explain": "valuable 贵重的。"},
+        {"stem": "He wears white (4)____ to protect them.", "type": "choice", "a": 0, "opts": ["gloves", "boots", "hats", "shoes"], "explain": "gloves 手套。"},
+        {"stem": "He takes old stamps from (5)____ and postcards.", "type": "choice", "a": 0, "opts": ["envelopes", "eggs", "engines", "entries"], "explain": "envelopes 信封。"},
+        {"stem": "The Palace (6)____ is on a favourite stamp.", "type": "choice", "a": 0, "opts": ["Museum", "Message", "Monument", "Market"], "explain": "the Palace Museum 故宫博物院。"},
+        {"stem": "They built it hundreds of years (7)____.", "type": "choice", "a": 0, "opts": ["ago", "after", "again", "away"], "explain": "hundreds of years ago 几百年前。"},
+        {"stem": "It seems (8)____ without a single nail.", "type": "choice", "a": 0, "opts": ["impossible", "important", "interesting", "international"], "explain": "impossible 不可能的。"},
+        {"stem": "Grandpa (9)____ the stories to me.", "type": "choice", "a": 0, "opts": ["explains", "expects", "expresses", "exchanges"], "explain": "explain 第三人称 explains 解释。"},
+        {"stem": "I became (10)____ in old buildings.", "type": "choice", "a": 0, "opts": ["interested", "interesting", "independent", "international"], "explain": "become interested in 对……产生兴趣。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "My grandpa has a treasure (1)____.", "type": "choice", "a": 0, "opts": ["box", "boxes", "book", "bag"], "explain": "box 盒子。"},
+        {"stem": "In it, (2)____ keeps old stamps and coins.", "type": "choice", "a": 0, "opts": ["he", "him", "his", "he's"], "explain": "主语用主格 he。"},
+        {"stem": "Some of (3)____ are from hundreds of years ago.", "type": "choice", "a": 0, "opts": ["them", "they", "their", "theirs"], "explain": "of 后宾格 them。"},
+        {"stem": "\"These are (4)____,\" he says.", "type": "choice", "a": 0, "opts": ["his", "he", "him", "hers"], "explain": "名词性物主代词 his 相当于 his stamps。"},
+        {"stem": "I help (5)____ take stamps from envelopes.", "type": "choice", "a": 0, "opts": ["him", "he", "his", "he's"], "explain": "help 后宾格 him。"},
+        {"stem": "(6)____ hobby is collecting stamps.", "type": "choice", "a": 0, "opts": ["His", "He", "Him", "He's"], "explain": "名词前用形容词性物主代词 his。"},
+        {"stem": "The Palace Museum stamp is (7)____ favourite.", "type": "choice", "a": 0, "opts": ["his", "he", "him", "her"], "explain": "名词前用形容词性物主代词 his。"},
+        {"stem": "He (8)____ white gloves to protect them.", "type": "choice", "a": 0, "opts": ["wears", "wear", "put", "takes"], "explain": "wear 第三人称 wears。"},
+        {"stem": "We learn a (9)____ about history.", "type": "choice", "a": 0, "opts": ["lesson", "lessons", "story", "class"], "explain": "learn a lesson 学到一课。"},
+        {"stem": "(10)____ stamps are wonderful!", "type": "choice", "a": 0, "opts": ["These", "This", "Those", "That"], "explain": "复数近指用 these。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（海报）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>海报：</b>JOIN THE COLLECTORS' CLUB! Do you like collecting? We meet every Friday. Bring your stamps, coins or shells. A member will show you how to make an album. Last month, we had a show at school. It was wonderful! Sign up in Room 208.<br>What club is this?", "type": "choice", "a": 0, "opts": ["The Collectors' Club.", "The Music Club.", "The Art Club.", "The Sports Club."]},
+        {"stem": "<b>海报：</b>JOIN THE COLLECTORS' CLUB! Do you like collecting? We meet every Friday. Bring your stamps, coins or shells. A member will show you how to make an album. Last month, we had a show at school. It was wonderful! Sign up in Room 208.<br>When does the club meet?", "type": "choice", "a": 0, "opts": ["Every Friday.", "Every Monday.", "On Sunday.", "Every day."]},
+        {"stem": "<b>海报：</b>JOIN THE COLLECTORS' CLUB! Do you like collecting? We meet every Friday. Bring your stamps, coins or shells. A member will show you how to make an album. Last month, we had a show at school. It was wonderful! Sign up in Room 208.<br>Where can students sign up?", "type": "choice", "a": 0, "opts": ["In Room 208.", "In the library.", "At the museum.", "On the playground."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Wang Lei loves collecting shells. He has shells from many countries. His sister collects postcards. Every Sunday, they add new ones to their collections. Their mother takes care of the boxes with great care. \"Our collections are sweet memories,\" says Wang Lei.<br>What does Wang Lei collect?", "type": "choice", "a": 0, "opts": ["Shells.", "Postcards.", "Stamps.", "Coins."]},
+        {"stem": "<b>故事：</b>Wang Lei loves collecting shells. He has shells from many countries. His sister collects postcards. Every Sunday, they add new ones to their collections. Their mother takes care of the boxes with great care. \"Our collections are sweet memories,\" says Wang Lei.<br>What does his sister collect?", "type": "choice", "a": 0, "opts": ["Postcards.", "Shells.", "Dolls.", "Models."]},
+        {"stem": "<b>故事：</b>Wang Lei loves collecting shells. He has shells from many countries. His sister collects postcards. Every Sunday, they add new ones to their collections. Their mother takes care of the boxes with great care. \"Our collections are sweet memories,\" says Wang Lei.<br>When do they add new ones?", "type": "choice", "a": 0, "opts": ["Every Sunday.", "Every Monday.", "On Friday.", "Every day."]},
+        {"stem": "<b>故事：</b>Wang Lei loves collecting shells. He has shells from many countries. His sister collects postcards. Every Sunday, they add new ones to their collections. Their mother takes care of the boxes with great care. \"Our collections are sweet memories,\" says Wang Lei.<br>What are the collections to them?", "type": "choice", "a": 0, "opts": ["Sweet memories.", "Old boxes.", "New toys.", "School work."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Amy, Guess what! I started a stamp collection. My first stamp is of the Palace Museum. It is my favourite. My grandpa explains its history. He wears white gloves to protect his stamps. I am learning more and more about China. Write soon! Yours, Chen<br>What did Chen start?", "type": "choice", "a": 0, "opts": ["A stamp collection.", "A coin collection.", "A shell collection.", "A doll collection."]},
+        {"stem": "<b>邮件：</b>Dear Amy, Guess what! I started a stamp collection. My first stamp is of the Palace Museum. It is my favourite. My grandpa explains its history. He wears white gloves to protect his stamps. I am learning more and more about China. Write soon! Yours, Chen<br>What is Chen's favourite stamp?", "type": "choice", "a": 0, "opts": ["The one of the Palace Museum.", "A coin.", "A shell.", "A key ring."]},
+        {"stem": "<b>邮件：</b>Dear Amy, Guess what! I started a stamp collection. My first stamp is of the Palace Museum. It is my favourite. My grandpa explains its history. He wears white gloves to protect his stamps. I am learning more and more about China. Write soon! Yours, Chen<br>Why does the grandpa wear white gloves?", "type": "choice", "a": 0, "opts": ["To protect his stamps.", "To look nice.", "To keep warm.", "To show off."]},
+        {"stem": "<b>邮件：</b>Dear Amy, Guess what! I started a stamp collection. My first stamp is of the Palace Museum. It is my favourite. My grandpa explains its history. He wears white gloves to protect his stamps. I am learning more and more about China. Write soon! Yours, Chen<br>What is Chen learning more about?", "type": "choice", "a": 0, "opts": ["China (history and culture).", "Music.", "Sports.", "Food."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Our Shell Collection. My sister and I collect shells. We have shells from many countries. Our grandpa explains their stories. We keep them in an album and take care of them. Collecting is fun and full of sweet memories.<br>What do they collect?", "type": "text", "a": "Shells", "a2": ["Shells.", "They collect shells."]},
+        {"stem": "<b>短文：</b>Our Shell Collection. My sister and I collect shells. We have shells from many countries. Our grandpa explains their stories. We keep them in an album and take care of them. Collecting is fun and full of sweet memories.<br>Where are the shells from?", "type": "text", "a": "Many countries", "a2": ["Many countries.", "From many countries."]},
+        {"stem": "<b>短文：</b>Our Shell Collection. My sister and I collect shells. We have shells from many countries. Our grandpa explains their stories. We keep them in an album and take care of them. Collecting is fun and full of sweet memories.<br>Who explains their stories?", "type": "text", "a": "Their grandpa", "a2": ["Their grandpa.", "Our grandpa."]},
+        {"stem": "<b>短文：</b>Our Shell Collection. My sister and I collect shells. We have shells from many countries. Our grandpa explains their stories. We keep them in an album and take care of them. Collecting is fun and full of sweet memories.<br>Where do they keep them?", "type": "text", "a": "In an album", "a2": ["In an album.", "They keep them in an album."]},
+        {"stem": "<b>短文：</b>Our Shell Collection. My sister and I collect shells. We have shells from many countries. Our grandpa explains their stories. We keep them in an album and take care of them. Collecting is fun and full of sweet memories.<br>How do they feel about collecting?", "type": "text", "a": "Fun and full of sweet memories", "a2": ["Fun and full of sweet memories.", "It is fun."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "c____（收集；收藏）", "type": "text", "a": "collect"},
+        {"stem": "（照料；小心）", "type": "text", "a": "care"},
+        {"stem": "l____（课；教训）", "type": "text", "a": "lesson"},
+        {"stem": "（少量；一点）", "type": "text", "a": "bit"},
+        {"stem": "s____（贝壳）", "type": "text", "a": "shell"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "he（主格 he 变为形容词性物主代词 his）", "type": "text", "a": "his", "ph": "他的（形物代）"},
+        {"stem": "they（主格 they 变为形容词性物主代词 their）", "type": "text", "a": "their", "ph": "他们的（形物代）"},
+        {"stem": "he（主格 he 变为宾格 him）", "type": "text", "a": "him", "ph": "他（宾格）"},
+        {"stem": "they（主格 they 变为宾格 them）", "type": "text", "a": "them", "ph": "他们（宾格）"},
+        {"stem": "stamp（直接加 -s 变复数（对照名词））", "type": "text", "a": "stamps", "ph": "邮票（复数）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：A Collector in My Family（我家的收藏家）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 collector, own, thousands of, stamp, coin, shell, valuable, protect, glove, envelope, postcard, the Palace Museum, hundreds of years ago, explain, interested, treasure）；③ 用正确的人称代词和物主代词（he / him / his / she / her / hers / they / them 等）；④ 句首大写、句末标点。", "type": "essay", "score": 10, "ph": "A Collector in My Family\n\nMy grandpa...", "check": ["有没有写清家里谁收藏、收藏什么？", "有没有用 own / thousands of / valuable 等词汇？", "有没有用对 he / him / his 或 she / her 等代词？", "有没有用 protect / explain / treasure 等词汇？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">A Collector in My Family<br><br>My grandpa is a stamp collector. He owns thousands of stamps. Some of them are very valuable, so he wears white gloves to protect them. Every Sunday he adds new ones to his collection. He takes old stamps from envelopes and postcards. He explains the history of the Palace Museum to me. Thanks to him, I became interested in traditional Chinese buildings. His collection is a real treasure to our family.</div><div class=\"zh\">（参考范文：写了爷爷集邮，用了 collector / own / thousands of / valuable / protect / glove / envelope / postcard / the Palace Museum / explain / interested / treasure 等本单元词汇，并正确使用了 he / him / his / me / them 等代词，注意了句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t3",
+    "title": "测试卷三 · Unit 8 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与前两套相同，题目全部更换（辨音组合、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>ou</u>t&nbsp;&nbsp;B. <u>ow</u>n&nbsp;&nbsp;C. h<u>ou</u>se&nbsp;&nbsp;D. d<u>ow</u>n", "type": "choice", "a": 1, "opts": ["out", "own", "house", "down"], "explain": "out / house / down 中 ou/ow 发 /aʊ/，own 中 ow 发 /əʊ/。"},
+        {"stem": "A. <u>th</u>is&nbsp;&nbsp;B. <u>th</u>at&nbsp;&nbsp;C. <u>th</u>ese&nbsp;&nbsp;D. <u>th</u>ank", "type": "choice", "a": 3, "opts": ["this", "that", "these", "thank"], "explain": "this / that / these 中 th 发 /ð/，thank 中 th 发 /θ/。"},
+        {"stem": "A. <u>sh</u>ip&nbsp;&nbsp;B. <u>sh</u>e&nbsp;&nbsp;C. <u>sh</u>ort&nbsp;&nbsp;D. <u>s</u>it", "type": "choice", "a": 3, "opts": ["ship", "she", "short", "sit"], "explain": "ship / she / short 中 sh 发 /ʃ/，sit 中 s 发 /s/。"},
+        {"stem": "A. <u>y</u>ou&nbsp;&nbsp;B. <u>y</u>ear&nbsp;&nbsp;C. <u>y</u>es&nbsp;&nbsp;D. b<u>e</u>d", "type": "choice", "a": 3, "opts": ["you", "year", "yes", "bed"], "explain": "you / year / yes 中 y 发 /j/，bed 中 b 发 /b/。"},
+        {"stem": "A. <u>c</u>oat&nbsp;&nbsp;B. <u>c</u>old&nbsp;&nbsp;C. <u>c</u>ome&nbsp;&nbsp;D. <u>c</u>ity", "type": "choice", "a": 3, "opts": ["coat", "cold", "come", "city"], "explain": "coat / cold / come 中 c 发 /k/，city 中 c 发 /s/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "My sister and I collect ____.", "type": "choice", "a": 0, "opts": ["shells", "shell", "a shell", "shels"], "explain": "shell 复数 shells。"},
+        {"stem": "—Is this ____ stamp? —Yes, it is mine.", "type": "choice", "a": 0, "opts": ["your", "you", "yours", "me"], "explain": "名词前用形容词性物主代词 your。"},
+        {"stem": "He gave the key ring to ____.", "type": "choice", "a": 0, "opts": ["her", "she", "hers", "she's"], "explain": "动词后宾格 her。"},
+        {"stem": "We love the album and ____ pages are colourful.", "type": "choice", "a": 0, "opts": ["its", "it", "it's", "they"], "explain": "album 单数，形容词性物主代词 its。"},
+        {"stem": "They shared the story with ____.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "动词后宾格 us。"},
+        {"stem": "The coins are old but ____ are interesting.", "type": "choice", "a": 0, "opts": ["they", "them", "their", "theirs"], "explain": "作主语用主格 they。"},
+        {"stem": "This stamp is ____ favourite.", "type": "choice", "a": 0, "opts": ["my", "me", "I", "mine"], "explain": "名词前用形容词性物主代词 my。"},
+        {"stem": "Grandpa ____ the old stories to me.", "type": "choice", "a": 0, "opts": ["explains", "expects", "expresses", "exchanges"], "explain": "explain 第三人称 explains 解释。"},
+        {"stem": "I became ____ in Chinese buildings.", "type": "choice", "a": 0, "opts": ["interested", "interesting", "independent", "international"], "explain": "become interested in 对……产生兴趣。"},
+        {"stem": "Now I have over a ____ of them.", "type": "choice", "a": 0, "opts": ["hundred", "thousand", "million", "dozen"], "explain": "over a hundred 一百多。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "I am Ben. (1)____ brother and I collect coins.", "type": "choice", "a": 0, "opts": ["My", "Me", "I", "Mine"], "explain": "名词前用形容词性物主代词 my。"},
+        {"stem": "(2)____ coins come from many countries.", "type": "choice", "a": 0, "opts": ["Our", "We", "Us", "Ours"], "explain": "名词前用形容词性物主代词 our。"},
+        {"stem": "We keep (3)____ in a box.", "type": "choice", "a": 0, "opts": ["them", "they", "their", "theirs"], "explain": "keep 后宾格 them。"},
+        {"stem": "\"This coin is (4)____,\" my brother says.", "type": "choice", "a": 0, "opts": ["mine", "my", "me", "I"], "explain": "名词性物主代词 mine 相当于 my coin。"},
+        {"stem": "\"And that shell is (5)____,\" I say.", "type": "choice", "a": 0, "opts": ["mine", "yours", "his", "hers"], "explain": "名词性物主代词 mine 相当于 my shell。"},
+        {"stem": "Our mother loves (6)____ hobby.", "type": "choice", "a": 0, "opts": ["our", "us", "we", "ours"], "explain": "名词前用形容词性物主代词 our。"},
+        {"stem": "She gives (7)____ a book about China.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "gives 后宾格 us。"},
+        {"stem": "It teaches (8)____ about Chinese culture.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "teaches 后宾格 us。"},
+        {"stem": "Now we have (9)____ and more stamps too.", "type": "choice", "a": 0, "opts": ["more", "much", "many", "most"], "explain": "more and more 越来越多。"},
+        {"stem": "Collecting brings (10)____ joy.", "type": "choice", "a": 0, "opts": ["us", "we", "our", "ours"], "explain": "brings 后宾格 us。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "We have a collecting (1)____ at school.", "type": "choice", "a": 0, "opts": ["club", "clubs", "group", "class"], "explain": "club 社团。"},
+        {"stem": "(2)____ members bring shells and stamps.", "type": "choice", "a": 0, "opts": ["Our", "We", "Us", "Ours"], "explain": "名词前用形容词性物主代词 our。"},
+        {"stem": "I (3)____ key rings as a hobby.", "type": "choice", "a": 0, "opts": ["collect", "collects", "collected", "collecting"], "explain": "一般现在时 I collect。"},
+        {"stem": "\"This ring is (4)____,\" says Lin.", "type": "choice", "a": 0, "opts": ["mine", "my", "me", "I"], "explain": "名词性物主代词 mine。"},
+        {"stem": "\"(5)____ collection is big,\" I say.", "type": "choice", "a": 0, "opts": ["Your", "You", "Yours", "My"], "explain": "名词前用形容词性物主代词 your。"},
+        {"stem": "She gives (6)____ a shell.", "type": "choice", "a": 0, "opts": ["me", "I", "my", "mine"], "explain": "gives 后宾格 me。"},
+        {"stem": "We (7)____ them in an album.", "type": "choice", "a": 0, "opts": ["keep", "keeps", "kept", "keeping"], "explain": "一般现在时 we keep。"},
+        {"stem": "Our teacher (8)____ the stories of old things.", "type": "choice", "a": 0, "opts": ["explains", "explain", "tells", "said"], "explain": "第三人称 explains。"},
+        {"stem": "We are (9)____ in old things.", "type": "choice", "a": 0, "opts": ["interested", "interesting", "interest", "interests"], "explain": "become interested in 产生兴趣。"},
+        {"stem": "It is (10)____ fun!", "type": "choice", "a": 0, "opts": ["absolutely", "impossible", "similar", "valuable"], "explain": "absolutely fun 完全有趣。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>SCHOOL COLLECTION DAY. Date: Sunday, November 9th. Place: School Library. Activity: Bring your collection and share its story. You can show stamps, coins, key rings or models. A teacher will explain how to protect them. Free for all students.<br>When is the School Collection Day?", "type": "choice", "a": 0, "opts": ["Sunday, November 9th.", "Monday.", "On Friday.", "Next month."]},
+        {"stem": "<b>通知：</b>SCHOOL COLLECTION DAY. Date: Sunday, November 9th. Place: School Library. Activity: Bring your collection and share its story. You can show stamps, coins, key rings or models. A teacher will explain how to protect them. Free for all students.<br>Where is it?", "type": "choice", "a": 0, "opts": ["In the school library.", "In the hall.", "At the museum.", "On the playground."]},
+        {"stem": "<b>通知：</b>SCHOOL COLLECTION DAY. Date: Sunday, November 9th. Place: School Library. Activity: Bring your collection and share its story. You can show stamps, coins, key rings or models. A teacher will explain how to protect them. Free for all students.<br>What can students bring?", "type": "choice", "a": 0, "opts": ["Stamps, coins, key rings or models.", "Only books.", "Only food.", "Only toys."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Lucy and Lily are twins. Lucy collects stickers and Lily collects dolls. They share a big box. Their grandpa gave them a key ring from his trip. \"This is a treasure,\" he said. The twins take care of it with great care. They want to collect more things from all over the world.<br>What does Lucy collect?", "type": "choice", "a": 0, "opts": ["Stickers.", "Dolls.", "Stamps.", "Shells."]},
+        {"stem": "<b>故事：</b>Lucy and Lily are twins. Lucy collects stickers and Lily collects dolls. They share a big box. Their grandpa gave them a key ring from his trip. \"This is a treasure,\" he said. The twins take care of it with great care. They want to collect more things from all over the world.<br>What does Lily collect?", "type": "choice", "a": 0, "opts": ["Dolls.", "Stickers.", "Coins.", "Models."]},
+        {"stem": "<b>故事：</b>Lucy and Lily are twins. Lucy collects stickers and Lily collects dolls. They share a big box. Their grandpa gave them a key ring from his trip. \"This is a treasure,\" he said. The twins take care of it with great care. They want to collect more things from all over the world.<br>Who gave them the key ring?", "type": "choice", "a": 0, "opts": ["Their grandpa.", "Their teacher.", "A friend.", "A shop."]},
+        {"stem": "<b>故事：</b>Lucy and Lily are twins. Lucy collects stickers and Lily collects dolls. They share a big box. Their grandpa gave them a key ring from his trip. \"This is a treasure,\" he said. The twins take care of it with great care. They want to collect more things from all over the world.<br>Where do they want to collect from?", "type": "choice", "a": 0, "opts": ["All over the world.", "Only China.", "A shop.", "School."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（日记）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>日记：</b>Sunday, October 12th, Sunny. Today I visited the Palace Museum with my grandpa. He showed me old coins and porcelain. They are hundreds of years old. A single coin taught me a lesson about money long ago. I became interested in Chinese treasure. I want to start my own collection. It was a wonderful day.<br>Where did the writer go today?", "type": "choice", "a": 0, "opts": ["To the Palace Museum.", "To a library.", "To a park.", "To a shop."]},
+        {"stem": "<b>日记：</b>Sunday, October 12th, Sunny. Today I visited the Palace Museum with my grandpa. He showed me old coins and porcelain. They are hundreds of years old. A single coin taught me a lesson about money long ago. I became interested in Chinese treasure. I want to start my own collection. It was a wonderful day.<br>What did the grandpa show?", "type": "choice", "a": 0, "opts": ["Old coins and porcelain.", "Stamps.", "Shells.", "Key rings."]},
+        {"stem": "<b>日记：</b>Sunday, October 12th, Sunny. Today I visited the Palace Museum with my grandpa. He showed me old coins and porcelain. They are hundreds of years old. A single coin taught me a lesson about money long ago. I became interested in Chinese treasure. I want to start my own collection. It was a wonderful day.<br>What taught a lesson about money?", "type": "choice", "a": 0, "opts": ["A single old coin.", "A stamp.", "A shell.", "A key ring."]},
+        {"stem": "<b>日记：</b>Sunday, October 12th, Sunny. Today I visited the Palace Museum with my grandpa. He showed me old coins and porcelain. They are hundreds of years old. A single coin taught me a lesson about money long ago. I became interested in Chinese treasure. I want to start my own collection. It was a wonderful day.<br>How was the day?", "type": "choice", "a": 0, "opts": ["Wonderful.", "Boring.", "Tired.", "Cold."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>A School Collection Day. Last Sunday, our school had a collection day. Students brought stamps, coins and key rings. Lucy showed her stamp album. Tom showed old coins. A teacher explained how to protect them. We learned a lot about Chinese culture.<br>When was the collection day?", "type": "text", "a": "Last Sunday", "a2": ["Last Sunday.", "It was last Sunday."]},
+        {"stem": "<b>短文：</b>A School Collection Day. Last Sunday, our school had a collection day. Students brought stamps, coins and key rings. Lucy showed her stamp album. Tom showed old coins. A teacher explained how to protect them. We learned a lot about Chinese culture.<br>What did students bring?", "type": "text", "a": "Stamps, coins and key rings", "a2": ["Stamps, coins and key rings.", "They brought stamps, coins and key rings."]},
+        {"stem": "<b>短文：</b>A School Collection Day. Last Sunday, our school had a collection day. Students brought stamps, coins and key rings. Lucy showed her stamp album. Tom showed old coins. A teacher explained how to protect them. We learned a lot about Chinese culture.<br>What did Lucy show?", "type": "text", "a": "Her stamp album", "a2": ["Her stamp album.", "She showed her stamp album."]},
+        {"stem": "<b>短文：</b>A School Collection Day. Last Sunday, our school had a collection day. Students brought stamps, coins and key rings. Lucy showed her stamp album. Tom showed old coins. A teacher explained how to protect them. We learned a lot about Chinese culture.<br>What did Tom show?", "type": "text", "a": "Old coins", "a2": ["Old coins.", "He showed old coins."]},
+        {"stem": "<b>短文：</b>A School Collection Day. Last Sunday, our school had a collection day. Students brought stamps, coins and key rings. Lucy showed her stamp album. Tom showed old coins. A teacher explained how to protect them. We learned a lot about Chinese culture.<br>What did the teacher explain?", "type": "text", "a": "How to protect the collections", "a2": ["How to protect the collections.", "He explained how to protect them."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "h____（爱好）", "type": "text", "a": "hobby"},
+        {"stem": "p____（保护）", "type": "text", "a": "protect"},
+        {"stem": "a____（绝对地；完全地）", "type": "text", "a": "absolutely"},
+        {"stem": "p____（宫殿）", "type": "text", "a": "palace"},
+        {"stem": "（硬币）", "type": "text", "a": "coin"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "she（主格 she 变为形容词性物主代词 her）", "type": "text", "a": "her", "ph": "她的（形物代）"},
+        {"stem": "it（主格 it 变为形容词性物主代词 its）", "type": "text", "a": "its", "ph": "它的（形物代）"},
+        {"stem": "she（主格 she 变为宾格 her）", "type": "text", "a": "her", "ph": "她（宾格）"},
+        {"stem": "this（单数指示代词 this 变复数 these）", "type": "text", "a": "these", "ph": "这些（复数指示代词）"},
+        {"stem": "I（主格 I 变为形容词性物主代词 my）", "type": "text", "a": "my", "ph": "我的（形容词性物主代词）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Favourite Hobby（我最喜欢的爱好）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 hobby, collect, collection, stamp, shell, coin, key ring, model, pocket money, add ... to ..., become interested in, similar, more and more, sweet memories）；③ 用正确的人称代词和物主代词；④ 句首大写、句末标点。", "type": "essay", "score": 10, "ph": "My Favourite Hobby\n\nMy hobby is...", "check": ["有没有写清爱好是什么（hobby / collect）？", "有没有用 add ... to ... / become interested in / more and more？", "有没有用对人称代词和物主代词？", "有没有用 sweet memories / similar 等词汇？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">My Favourite Hobby<br><br>My hobby is collecting key rings and shells. I buy them with my pocket money. Every week I add new ones to my box. Some of them look similar, but each has a story. Thanks to my friend, I became interested in collecting. Now I have more and more of them. They are my sweet memories and I love my hobby.</div><div class=\"zh\">（参考范文：写了收藏钥匙扣和贝壳，用了 hobby / collect / collection / key ring / shell / pocket money / add ... to ... / become interested in / more and more / sweet memories / similar 等本单元词汇，并正确使用了 my / them / I 等代词，注意了句首大写。）</div>"}
+      ]
+    }
+  ]
+  }
+];
+
+const $ = s => document.querySelector(s);
+const host = $('#paperHost'), tabsEl = $('#tabs'), scoreHost = $('#scoreHost');
+let curPaper = null, answers = {};
+
+const store = {
+  key(id){ return 'hx_quiz_' + 'u8' + '_' + id; },
+  save(id, data){ try{ localStorage.setItem(this.key(id), JSON.stringify(data)); }catch(e){} },
+  load(id){ try{ return JSON.parse(localStorage.getItem(this.key(id)) || 'null'); }catch(e){ return null; } },
+  clear(id){ try{ localStorage.removeItem(this.key(id)); }catch(e){} }
+};
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buildTabs(){
+  tabsEl.innerHTML = '';
+  PAPERS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.innerHTML = esc(p.title.split(' · ')[0]) + '<span class="tag">' + esc(p.title.split(' · ')[1] || '') + '</span>';
+    b.onclick = () => selectPaper(i);
+    b.dataset.idx = i;
+    tabsEl.appendChild(b);
+  });
+}
+
+function selectPaper(i){
+  const p = PAPERS[i];
+  curPaper = p;
+  [...tabsEl.children].forEach((b, j) => b.classList.toggle('on', j === i));
+  scoreHost.innerHTML = '';
+  const saved = store.load(p.id);
+  answers = (saved && saved.answers) || {};
+  renderPaper(p, saved && saved.submitted);
+}
+
+function qid(si, qi){ return 'q' + si + '_' + qi; }
+
+function renderPaper(p, submitted){
+  let total = 0;
+  let html = `<div class="paper">
+    <div class="p-head">
+      <div class="pt">${esc(p.title)}</div>
+      <div class="ps">${esc(p.sub || '')}</div>
+    </div>
+    <div class="p-info"><span>建议用时：<b>${esc(p.time || '20 分钟')}</b></span><span>满分：<b id="fullMark">100</b> 分</span><span>范围：<b>Unit 8</b></span></div>`;
+
+  p.sections.forEach((s, si) => {
+    html += `<div class="sec"><h3>${esc(s.name)}</h3>`;
+    if (s.note) html += `<div class="sn">${s.note}</div>`;
+    if (s.bank) html += `<div class="wordbank">${s.bank}</div>`;
+    if (s.passage) html += s.passage;
+    s.items.forEach((it, qi) => {
+      const qq = qid(si, qi);
+      total += (it.score || 1);
+      const ans = answers[qq];
+      const st = submitted && it.type !== 'essay'
+        ? (isRight(it, ans) ? 'ok' : 'bad') : '';
+      html += `<div class="q" id="${qq}"><div class="qt"><span class="qn">${qi + 1}.</span>${it.stem}</div>`;
+      if (it.type === 'choice' || it.type === 'tf'){
+        const opts = it.type === 'choice' ? it.opts : ['T（正确）', 'F（错误）'];
+        const cols = (it.opts && it.opts.length > 4) ? 'one' : '';
+        html += `<div class="opts ${cols}">`;
+        opts.forEach((o, oi) => {
+          const tv = it.type === 'tf' ? (oi === 0 ? 'T' : 'F') : String(oi);
+          const key = it.type === 'tf' ? tv : String.fromCharCode(65 + oi);
+          let cls = 'opt';
+          if (submitted && it.type === 'choice'){
+            if (String(oi) === String(it.a)) cls += ' ok'; else if (tv === String(ans) && String(oi) !== String(it.a)) cls += ' bad';
+          } else if (submitted && it.type === 'tf'){
+            if (tv === it.a) cls += ' ok'; else if (tv === String(ans) && tv !== it.a) cls += ' bad';
+          }
+          if (!submitted && ans !== undefined && String(ans) === tv) cls += ' sel';
+          const mk = (submitted && ((it.type === 'choice' && String(oi) === String(it.a)) || (it.type === 'tf' && tv === it.a))) ? '<span class="mk">✓</span>' : '';
+          html += `<div class="${cls}" data-q="${qq}" data-v="${tv}"><span class="lb">${key}.</span><span>${esc(o)}</span>${mk}</div>`;
+        });
+        html += `</div>`;
+        if (submitted && !isRight(it, ans) && it.explain) html += `<div class="hint">💡 ${it.explain}</div>`;
+      } else if (it.type === 'text'){
+        const cls = submitted ? (st === 'ok' ? 'ok' : 'bad') : '';
+        html += `<input class="ans-in ${cls}" data-q="${qq}" value="${esc(ans || '')}" placeholder="${esc(it.ph || '输入答案')}" ${submitted ? 'disabled' : ''}>`;
+        if (submitted && st !== 'ok') html += `<div class="hint">💡 参考答案：<b>${esc((it.a2 || it.a).join ? (it.a2||it.a).join(' / ') : it.a)}</b></div>`;
+      } else if (it.type === 'essay'){
+        html += `<textarea class="essay" data-q="${qq}" placeholder="${esc(it.ph || '')}">${esc(ans || '')}</textarea>`;
+        html += `<div class="checklist"><b>自查清单：</b><ul>${(it.check||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>`;
+        html += `<details class="sample"><summary>📖 参考范文（写完后展开对照）</summary><div class="body">${it.sample}</div></details>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `</div>
+    <div class="acts">
+      <button class="btn btn-go" id="btnSubmit">${submitted ? '重新作答' : '提交批改'}</button>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 打印 / 存 PDF</button>
+      <button class="btn btn-reset" id="btnReset">清空重做</button>
+    </div>`;
+  host.innerHTML = html;
+  $('#fullMark').textContent = total;
+
+  host.querySelectorAll('.opt').forEach(o => o.onclick = () => {
+    if (submitted) return;
+    answers[o.dataset.q] = o.dataset.v;
+    host.querySelectorAll(`.opt[data-q="${o.dataset.q}"]`).forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+  });
+  host.querySelectorAll('.ans-in').forEach(i => i.oninput = () => { answers[i.dataset.q] = i.value; });
+  host.querySelectorAll('textarea.essay').forEach(t => t.oninput = () => { answers[t.dataset.q] = t.value; });
+  $('#btnSubmit').onclick = () => grade();
+  $('#btnReset').onclick = () => { store.clear(p.id); answers = {}; renderPaper(p, false); };
+  if (submitted) grade(true);
+}
+
+function norm(s){ return String(s||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+function isRight(it, ans){
+  if (ans === undefined || ans === '' || ans === null) return false;
+  if (it.type === 'choice') return String(ans) === String(it.a);
+  if (it.type === 'tf') return String(ans) === it.a;
+  if (it.type === 'text'){
+    const ok = (it.a2 && it.a2.length ? it.a2 : [it.a]).some(a => norm(a) === norm(ans));
+    return ok;
+  }
+  return false;
+}
+
+function grade(resubmit){
+  const p = curPaper; if (!p) return;
+  const submitted = !resubmit;
+  let got = 0, full = 0, wrong = [];
+  p.sections.forEach((s, si) => s.items.forEach((it, qi) => {
+    const v = it.score || 1; full += v;
+    const a = answers[qid(si, qi)];
+    if (it.type === 'essay') return;
+    if (isRight(it, a)) got += v;
+    else wrong.push(si + '-' + qi);
+  }));
+  const pct = Math.round(got / full * 100);
+  const pass = pct >= 60;
+  const advice = wrong.length === 0 ? '全部正确，太棒了！可以进入下一单元。'
+    : wrong.length <= 3 ? '只错 ' + wrong.length + ' 题，把错题的解析看一遍就能全对。'
+    : '错题偏多，建议回到点读页把本单元词汇和课文再过一遍，第二天重做这份卷子。';
+  scoreHost.innerHTML = `<div class="score ${pass ? 'pass' : 'fail'}">
+    <div class="big">${got} / ${full} 分（${pct}%）</div>
+    <div class="adv">${advice}${wrong.length ? ' · 错题已在卷面标红' : ''}</div>
+  </div>`;
+  if (resubmit) return;
+  store.save(p.id, { answers, submitted: true, got, full, pct });
+  renderPaper(p, true);
+}
+
+buildTabs();
+selectPaper(0);
+
+</script>
+<style>
+.pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
+.pgnav .pg-h{margin:0 0 8px;font-size:12.5px;color:#6B6359;letter-spacing:.6px;}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.pgnav a{text-decoration:none;font-size:13px;color:#2B2620;background:#fff;border:1px solid #EFE6DA;border-radius:999px;padding:6px 13px;}
+.pgnav a:hover{border-color:#E8552D;color:#E8552D;}
+.pgnav a.up{background:#E8552D;border-color:#E8552D;color:#fff;}
+.pgnav a.up:hover{background:#D64520;color:#fff;}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff;}
+.pgnav a.gr:hover{background:#0B7369;color:#fff;}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff;}
+.pgnav a.bl:hover{background:#245A94;color:#fff;}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">继续学习</p>
+    <div class="pg-row">
+      <a class="up" href="../点读学习包/Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
+      <a href="Unit7_习题与测试.html">← Unit7 习题</a>
+      <a href="../点读学习包/Unit8_Collecting_as_a_Hobby_点读学习页.html">📖 Unit8 点读学习页</a>
+      <a href="../点读学习包/Unit8_Collecting_as_a_Hobby_精简练习页.html">✏️ Unit8 精简练习</a>
+      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="../点读学习包/全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
+    </div>
+    <p class="pg-h">其他三条线 · 全站跳转</p>
+    <div class="pg-row">
+      <a class="gr" href="../../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+      <a class="bl" href="../../E听说练习/index.html">🎤 中考 E 听说</a>
+      <a class="up" href="../../index.html">🏠 返回慧学首页</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

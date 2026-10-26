@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 5 Off to space · 点读学习页（沪教版 七上）</title>
+<style>
+  :root{
+    --bg:#FFF8F0; --card:#FFFFFF; --ink:#2B2620; --sub:#6B6359;
+    --line:#EFE6DA; --coral:#E8552D; --teal:#0F8A7D; --amber:#B57A00;
+    --coral-soft:#FDEBE3; --teal-soft:#E2F3F0; --amber-soft:#FBF0DC;
+    --blue:#2E6FB7; --blue-soft:#E8F1FA; --green:#2E8B57; --red:#D64545;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif;
+       background:var(--bg); color:var(--ink); line-height:1.6;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 16px;}
+
+  /* ===== Hero ===== */
+  .hero{background:linear-gradient(135deg,#FF7A45 0%,#FFA63D 55%,#FFC14D 100%);
+        color:#fff; padding:34px 0 30px;}
+  .hero .badge{display:inline-block; background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.45);
+        border-radius:999px; padding:4px 14px; font-size:13px; letter-spacing:.5px;}
+  .hero h1{font-size:34px; margin:14px 0 4px; line-height:1.2;}
+  .hero h1 em{font-style:normal; border-bottom:3px solid rgba(255,255,255,.85);}
+  .hero .kq{margin:6px 0 0; font-size:15px; opacity:.96;}
+  .hero .kq small{display:block; font-size:13px; opacity:.85; margin-top:2px;}
+
+  /* ===== 学习地图 ===== */
+  .map-card{background:var(--card); border:1px solid var(--line); border-radius:16px;
+            margin:20px 0 6px; padding:16px 12px 10px; box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  .map-card h3{margin:0 0 8px; font-size:15px; color:var(--sub); font-weight:600;}
+  .map-card svg{width:100%; height:auto; display:block;}
+
+  /* ===== 使用说明 ===== */
+  .tips{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0;}
+  .tip{background:var(--teal-soft); border:1px solid #B7DED6; color:#0B5F55;
+       border-radius:10px; padding:6px 12px; font-size:13px;}
+
+  /* ===== 工具栏 ===== */
+  .toolbar{position:sticky; top:0; z-index:50; background:rgba(255,248,240,.94);
+       backdrop-filter:blur(6px); border-bottom:1px solid var(--line); padding:10px 0;}
+  .toolbar .row{display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; font-size:13px; color:var(--sub);}
+  .toolbar select{font-size:14px; padding:6px 8px; border:1px solid #D8CDBF; border-radius:8px; background:#fff; color:var(--ink);}
+  .toolbar label{display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--ink);}
+  .toolbar input[type=checkbox]{width:17px; height:17px; accent-color:var(--teal);}
+  .toolbar button{border:none; background:var(--coral); color:#fff; font-size:14px;
+       padding:7px 16px; border-radius:999px; cursor:pointer;}
+  .toolbar button:hover{background:#D64520;}
+
+  /* ===== 导航 ===== */
+  nav.secnav{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 4px;}
+  nav.secnav a{text-decoration:none; font-size:14px; color:var(--ink); background:#fff;
+       border:1px solid var(--line); padding:7px 14px; border-radius:999px;}
+  nav.secnav a:hover{border-color:var(--coral); color:var(--coral);}
+
+  /* ===== 区块 ===== */
+  section.block{margin:26px 0;}
+  .sec-head{display:flex; align-items:center; gap:10px; margin:0 0 14px;}
+  .sec-head .no{background:var(--coral); color:#fff; border-radius:10px; width:34px; height:34px;
+       display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; flex:0 0 34px;}
+  .sec-head h2{margin:0; font-size:21px;}
+  .sec-head p{margin:0; font-size:13px; color:var(--sub);}
+  .count-badge{margin-left:auto; background:var(--teal-soft); color:#0B5F55; font-size:13px;
+       border-radius:999px; padding:4px 12px; white-space:nowrap;}
+
+  /* ===== 单词卡片 ===== */
+  .word-grid{display:flex; flex-wrap:wrap; gap:12px;}
+  .wcard{flex:1 1 215px; min-width:0; background:var(--card); border:1px solid var(--line);
+       border-radius:14px; padding:14px 14px 10px; cursor:pointer; position:relative;
+       transition:transform .12s, box-shadow .12s;}
+  .wcard:hover{transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.08);}
+  .wcard.speaking{border-color:var(--teal); box-shadow:0 0 0 2px var(--teal-soft);}
+  .wcard .wd{font-size:23px; font-weight:700; letter-spacing:.3px; color:var(--ink); display:flex; flex-wrap:wrap; align-items:baseline;}
+  .wcard .wd .syl{cursor:pointer; border-radius:6px; padding:0 1px;}
+  .wcard .wd .syl:hover{background:var(--amber-soft);}
+  .wcard .wd .sep{color:#C9BBA8; font-weight:400; margin:0 1px;}
+  .wcard .wd .stress{font-size:15px; color:var(--coral); font-weight:600; margin-right:1px;}
+  .wcard .ipa{color:var(--sub); font-size:14px; margin-top:3px; font-family:'Segoe UI',Arial,sans-serif;}
+  .wcard .meta{display:flex; align-items:center; margin-top:6px; gap:8px;}
+  .wcard .pos{background:var(--blue-soft); color:var(--blue); border-radius:6px; font-size:12px; padding:1px 7px;}
+  .wcard .zh{font-size:14px; color:var(--ink);}
+  .wcard .play{margin-left:auto; border:none; background:var(--coral-soft); color:var(--coral);
+       border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; flex:0 0 34px;}
+  .wcard .play:hover{background:var(--coral); color:#fff;}
+  .wcard .play svg{width:16px; height:16px; fill:currentColor;}
+  .wcard .lbl{position:absolute; top:8px; right:10px; font-size:11px; color:#C0B3A0;}
+
+  /* ===== 短语 ===== */
+  .phrase-list{display:flex; flex-wrap:wrap; gap:10px;}
+  .pchip{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 14px;
+       cursor:pointer; display:inline-flex; align-items:center; gap:8px; flex:1 1 250px; min-width:0;}
+  .pchip:hover{border-color:var(--teal);}
+  .pchip.speaking{border-color:var(--teal); background:var(--teal-soft);}
+  .pchip .pt{font-weight:600; font-size:16px;}
+  .pchip .pz{color:var(--sub); font-size:13px; margin-left:auto; text-align:right;}
+
+  /* ===== 课文 ===== */
+  .passage-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 20px 12px;}
+  .post-head{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .avatar{width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,#8FD3B9,#4AAE96);
+       color:#fff; font-weight:700; font-size:18px; display:flex; align-items:center; justify-content:center;}
+  .post-head .nm{font-weight:700;}
+  .post-head .dt{font-size:12px; color:var(--sub);}
+  .read-all{margin-left:auto; border:none; background:var(--teal); color:#fff; font-size:14px;
+       padding:8px 16px; border-radius:999px; cursor:pointer;}
+  .read-all:hover{background:#0B6B5F;}
+  .sent{position:relative; margin:0 0 14px; padding:8px 52px 8px 14px; border-left:4px solid transparent;
+       border-radius:8px; font-size:17.5px; line-height:1.9;}
+  .sent.active{background:var(--amber-soft); border-left-color:var(--amber);}
+  .sent .w{cursor:pointer; border-radius:5px; padding:0 1px; transition:background .1s;}
+  .sent .w:hover{background:var(--teal-soft); color:#0B5F55;}
+  .sent .w.speaking{background:var(--amber); color:#fff;}
+  .sent-btn{position:absolute; right:6px; top:50%; transform:translateY(-50%); border:none;
+       background:var(--coral-soft); color:var(--coral); width:38px; height:38px; border-radius:50%;
+       cursor:pointer; display:flex; align-items:center; justify-content:center;}
+  .sent-btn:hover{background:var(--coral); color:#fff;}
+  .sent-btn svg{width:16px; height:16px; fill:currentColor;}
+  .reading-note{margin-top:16px; background:var(--teal-soft); border-radius:12px; padding:12px 16px; font-size:14px; color:#0B5F55;}
+  .reading-note b{color:#08493F;}
+
+  /* ===== 语音 ===== */
+  .phon-grid{display:flex; flex-wrap:wrap; gap:12px;}
+  .phon{flex:1 1 300px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px;}
+  .phon .ph{font-size:26px; font-weight:700; color:var(--coral); font-family:'Segoe UI',Arial,sans-serif;}
+  .phon .pw{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+  .phon .pw span{background:var(--amber-soft); border-radius:8px; padding:4px 12px; font-size:16px; cursor:pointer;}
+  .phon .pw span:hover{background:var(--amber); color:#fff;}
+  .phon .ps{margin-top:8px; font-size:14px; color:var(--sub); cursor:pointer;}
+
+  /* ===== 语法 ===== */
+  .grammar-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .wh-list{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
+  .wh-chip{background:var(--blue-soft); border:1px solid #C6DCF2; border-radius:10px; padding:8px 14px;
+       cursor:pointer; font-size:15px; color:var(--blue);}
+  .wh-chip:hover{background:var(--blue); color:#fff;}
+  .rule{margin-top:14px; background:var(--amber-soft); border-radius:12px; padding:12px 16px; font-size:14px; color:#7A5200;}
+
+  /* ===== 小测 ===== */
+  .quiz-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .q-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .q-play{border:none; background:var(--teal); color:#fff; width:52px; height:52px; border-radius:50%;
+       cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 52px;}
+  .q-play:hover{background:#0B6B5F;}
+  .q-play svg{width:22px; height:22px; fill:currentColor;}
+  .q-word{font-size:22px; font-weight:700; color:var(--sub); letter-spacing:.5px;}
+  .q-hint{font-size:13px; color:var(--sub);}
+  .q-opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-top:16px;}
+  .q-opt{border:1.5px solid var(--line); background:#fff; border-radius:12px; padding:14px 16px;
+       font-size:16px; cursor:pointer; text-align:left; color:var(--ink); min-height:48px;}
+  .q-opt:hover{border-color:var(--teal);}
+  .q-opt.correct{border-color:var(--green); background:#EAF6EF; color:var(--green); font-weight:600;}
+  .q-opt.wrong{border-color:var(--red); background:#FCEBEB; color:var(--red);}
+  .q-feedback{margin-top:14px; min-height:24px; font-size:15px;}
+  .q-score{font-size:15px; font-weight:600; color:var(--teal);}
+  .q-next{margin-top:12px; border:none; background:var(--coral); color:#fff; font-size:15px;
+       padding:9px 22px; border-radius:999px; cursor:pointer; display:none;}
+  .q-done{margin-top:12px; display:none; background:var(--teal-soft); border-radius:12px; padding:14px 18px; font-size:16px; color:#0B5F55;}
+
+  /* ===== 小测分组与课文填空 ===== */
+  .q-tabs{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;}
+  .q-tab{border:1.5px solid var(--line); background:#fff; color:var(--sub); font-size:14px;
+       padding:8px 16px; border-radius:999px; cursor:pointer;}
+  .q-tab:hover{border-color:var(--teal); color:var(--teal);}
+  .q-tab.active{background:var(--teal); border-color:var(--teal); color:#fff; font-weight:600;}
+  .q-modes{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;}
+  .q-modes .q-tab.active{background:var(--coral); border-color:var(--coral); color:#fff; font-weight:600;}
+  .cloze-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .clz-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:6px;}
+  .clz-progress{font-size:14px; color:var(--sub);}
+  .clz-sent{font-size:19px; line-height:1.9; margin:14px 0; min-height:46px;}
+  .clz-blank{background:var(--amber-soft); color:var(--amber); border-bottom:2px solid var(--amber);
+       border-radius:6px; padding:0 10px; font-weight:700; letter-spacing:3px;}
+  .clz-fill{color:var(--green); font-weight:800; border-bottom:2px solid var(--green);}
+  .clz-w{cursor:pointer; border-bottom:1px dotted #C9BFAF; border-radius:4px; padding:0 2px;}
+  .clz-w:hover{background:var(--amber-soft); color:#7A5200;}
+  .clz-w.fill{color:var(--green); font-weight:800; border-bottom:2px solid var(--green); background:transparent;}
+  .clz-w.fill:hover{background:var(--amber-soft); color:#7A5200;}
+  .clz-opts{display:flex; flex-wrap:wrap; gap:10px;}
+  .clz-opts .q-opt{flex:1 1 130px;}
+  .clz-line{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+  .clz-listen{border:none; background:var(--teal-soft); color:var(--teal); width:40px; height:40px;
+       border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 40px;}
+  .clz-listen:hover{background:var(--teal); color:#fff;}
+  .clz-listen svg{width:17px; height:17px; fill:currentColor;}
+
+  /* ===== 语法 · 对话匹配 ===== */
+  .gm-box{background:#FDF9F3; border:1px dashed #E2D5C4; border-radius:12px; padding:16px; margin-top:16px;}
+  .gm-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:10px;}
+  .gm-q{display:flex; align-items:center; gap:12px; background:var(--blue-soft); border-radius:14px; padding:12px 16px; margin-bottom:12px;}
+  .gm-play{border:none; background:var(--blue); color:#fff; width:44px; height:44px; border-radius:50%;
+       cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 44px;}
+  .gm-play:hover{background:#245C9C;}
+  .gm-play svg{width:19px; height:19px; fill:currentColor;}
+  .gm-qtext{font-size:19px; font-weight:700; color:var(--blue); cursor:pointer; line-height:1.5;}
+  .gm-qtext:hover{text-decoration:underline;}
+  .gm-label{font-size:13px; color:var(--sub); margin-bottom:10px;}
+  .gm-opts{display:flex; flex-direction:column; gap:10px;}
+  .gm-opt{display:flex; align-items:center; gap:10px; border:1.5px solid var(--line); background:#fff;
+       border-radius:12px; padding:12px 14px; cursor:pointer; font-size:16px; color:var(--ink); text-align:left;}
+  .gm-opt:hover{border-color:var(--teal);}
+  .gm-opt .txt{flex:1;}
+  .gm-opt .lstn{border:none; background:var(--teal-soft); color:var(--teal); width:38px; height:38px;
+       border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 38px;}
+  .gm-opt .lstn:hover{background:var(--teal); color:#fff;}
+  .gm-opt .lstn svg{width:16px; height:16px; fill:currentColor;}
+  .gm-opt.correct{border-color:var(--green); background:#EAF6EF;}
+  .gm-opt.wrong{border-color:var(--red); background:#FCEBEB;}
+  .gm-pair{display:none; margin-top:12px;}
+  .gm-pair.show{display:block;}
+  .gm-bubbles{display:flex; flex-direction:column; gap:8px; margin-bottom:10px;}
+  .gm-bub{max-width:88%; border-radius:14px; padding:10px 14px; font-size:16px; line-height:1.6;}
+  .gm-bub.q{background:var(--blue-soft); color:var(--blue); align-self:flex-start;}
+  .gm-bub.a{background:var(--teal-soft); color:#0B5F55; align-self:flex-end;}
+  .gm-repeat{border:none; background:var(--amber); color:#fff; font-size:14px; padding:9px 18px;
+       border-radius:999px; cursor:pointer;}
+  .gm-repeat:hover{background:#9A6A00;}
+
+  footer{margin:36px 0 20px; text-align:center; font-size:13px; color:var(--sub);}
+    @media (max-width:600px){
+    .hero h1{font-size:27px;}
+    .sent{font-size:16.5px;}
+    .wcard{flex:1 1 160px;}
+    /* 触控目标加大（>=44px，适配手机/iPad） */
+    .wcard .play{width:44px;height:44px;flex-basis:44px;}
+    .sent-btn{width:44px;height:44px;}
+    .gm-play{width:48px;height:48px;flex-basis:48px;}
+    .gm-opt .lstn,.clz-listen{width:44px;height:44px;flex-basis:44px;}
+    .q-play{width:56px;height:56px;flex-basis:56px;}
+    .q-opt{padding:16px 18px;min-height:52px;font-size:16.5px;}
+    .toolbar select{font-size:16px;padding:8px 10px;min-height:42px;}
+    .toolbar button{padding:9px 18px;font-size:15px;}
+    .toolbar input[type=checkbox]{width:20px;height:20px;}
+    nav.secnav a{padding:9px 16px;font-size:15px;}
+    .q-tab{padding:10px 18px;font-size:15px;}
+    .sec-head h2{font-size:19px;}
+    .tip{padding:8px 12px;font-size:13.5px;}
+    .phon .pw span{padding:7px 14px;font-size:16.5px;}
+  }
+
+  /* ===== 移动端优化 ===== */
+  .mob-note{max-width:700px;margin:22px auto 0;background:var(--blue-soft);border:1px solid #C6DCF2;
+       border-radius:12px;padding:10px 16px;font-size:13.5px;color:var(--blue);text-align:left;line-height:1.7;}
+  .to-top{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;
+       background:var(--coral);color:#fff;border:none;font-size:20px;line-height:1;cursor:pointer;
+       box-shadow:0 3px 10px rgba(0,0,0,.18);z-index:60;display:none;align-items:center;justify-content:center;}
+  .to-top:hover{background:#D64520;}
+</style>
+</head>
+<body>
+
+<!-- ================= Hero ================= -->
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">上海教育出版社 · 义务教育教科书 英语 · 七年级上册（2024 广州新版）</span>
+    <h1>Unit 5 <em>Off to space</em> · 遨游太空</h1>
+    <p class="kq">Key question: What is it like to travel in space?
+      <small>关键问题：在太空旅行是什么感觉？</small></p>
+
+    <!-- 单元学习地图（信息图） -->
+    <div class="map-card">
+      <h3>本单元学习地图</h3>
+      <svg viewBox="0 0 760 190" role="img" aria-label="Unit 5 Off to space 学习地图">
+        <g font-family="Segoe UI, PingFang SC, Microsoft YaHei, Arial, sans-serif">
+          <rect x="300" y="64" width="160" height="52" rx="26" fill="#E8552D"/>
+          <text x="380" y="89" text-anchor="middle" fill="#fff" font-size="17" font-weight="700">Unit 5 Off to space</text>
+          <text x="380" y="106" text-anchor="middle" fill="#FFE9DC" font-size="11">单元主题 · 太空</text>
+
+          <g stroke="#E0C9A8" stroke-width="1.6" fill="none">
+            <path d="M300 90 H216"/>
+            <path d="M460 90 H544"/>
+            <path d="M380 64 V44 H108 V70"/>
+            <path d="M380 64 V44 H652 V70"/>
+            <path d="M380 116 V140 H73 V118"/>
+            <path d="M380 116 V140 H196 V118"/>
+            <path d="M380 116 V140 H326 V118"/>
+            <path d="M380 116 V140 H456 V118"/>
+            <path d="M380 116 V140 H586 V118"/>
+            <path d="M380 116 V140 H704 V118"/>
+          </g>
+
+          <rect x="18" y="70" width="198" height="48" rx="14" fill="#E2F3F0" stroke="#B7DED6"/>
+          <text x="117" y="91" text-anchor="middle" fill="#0B5F55" font-size="14" font-weight="600">核心单词 ×30</text>
+          <text x="117" y="107" text-anchor="middle" fill="#0B5F55" font-size="10.5">音节划分 · 点读 · 音标</text>
+
+          <rect x="544" y="70" width="198" height="48" rx="14" fill="#FDEBE3" stroke="#F5C9B6"/>
+          <text x="643" y="91" text-anchor="middle" fill="#B03E1C" font-size="14" font-weight="600">重点短语 ×17</text>
+          <text x="643" y="107" text-anchor="middle" fill="#B03E1C" font-size="10.5">点读跟读</text>
+
+          <rect x="18" y="118" width="110" height="52" rx="12" fill="#FBF0DC" stroke="#EAD9AC"/>
+          <text x="73" y="140" text-anchor="middle" fill="#7A5200" font-size="12.5" font-weight="600">课文朗读</text>
+          <text x="73" y="157" text-anchor="middle" fill="#7A5200" font-size="10">逐句点读</text>
+
+          <rect x="134" y="118" width="124" height="52" rx="12" fill="#E8F1FA" stroke="#C6DCF2"/>
+          <text x="196" y="140" text-anchor="middle" fill="#2E6FB7" font-size="12.5" font-weight="600">语音训练</text>
+          <text x="196" y="157" text-anchor="middle" fill="#2E6FB7" font-size="10">/ɜː/ /h/ /r/ /ə/ /iː/ /l/</text>
+
+          <rect x="264" y="118" width="124" height="52" rx="12" fill="#EAF6EF" stroke="#BCE0CD"/>
+          <text x="326" y="140" text-anchor="middle" fill="#2E8B57" font-size="12.5" font-weight="600">语法 · 将来时</text>
+          <text x="326" y="157" text-anchor="middle" fill="#2E8B57" font-size="10">对话匹配练习</text>
+
+          <rect x="394" y="118" width="124" height="52" rx="12" fill="#F3EBFA" stroke="#DCC8EE"/>
+          <text x="456" y="140" text-anchor="middle" fill="#7A3FB5" font-size="12.5" font-weight="600">听音选词小测</text>
+          <text x="456" y="157" text-anchor="middle" fill="#7A3FB5" font-size="10">单词+短语 65 题</text>
+
+          <rect x="524" y="118" width="124" height="52" rx="12" fill="#FDEDED" stroke="#F0CDCD"/>
+          <text x="586" y="140" text-anchor="middle" fill="#B04545" font-size="12.5" font-weight="600">课文选词填空</text>
+          <text x="586" y="157" text-anchor="middle" fill="#B04545" font-size="10">原句练词汇</text>
+
+          <rect x="654" y="118" width="100" height="52" rx="12" fill="#FFF4CC" stroke="#E8D48C"/>
+          <text x="704" y="140" text-anchor="middle" fill="#8A6A00" font-size="12.5" font-weight="600">词缀拓展</text>
+          <text x="704" y="157" text-anchor="middle" fill="#8A6A00" font-size="10">复合词</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="tips">
+      <span class="tip">点击任意单词 / 音节，即可听到标准发音</span>
+      <span class="tip">课文可逐句点读，也可整篇连读</span>
+      <span class="tip">支持切换语速与发音人</span>
+      <span class="tip">听音选词 + 课文填空双练习</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 工具栏 ================= -->
+<div class="toolbar">
+  <div class="wrap row">
+    <label>语速
+      <select id="rateSel">
+        <option value="0.6">慢速 0.6×</option>
+        <option value="0.8">较慢 0.8×</option>
+        <option value="1" selected>正常 1×</option>
+      </select>
+    </label>
+    <label>发音人 <select id="voiceSel"></select></label>
+    <label><input type="checkbox" id="sylMode"> 逐音节跟读</label>
+    <label><input type="checkbox" id="stressShow" checked> 显示重音 ˈ</label>
+    <button id="stopBtn" type="button">■ 停止朗读</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="secnav">
+    <a href="#words">① 单词卡</a>
+    <a href="#phrases">② 短语</a>
+    <a href="#reading">③ 课文</a>
+    <a href="#phon">④ 语音</a>
+    <a href="#grammar">⑤ 语法</a>
+    <a href="#quiz">⑥ 小测</a>
+    <a href="#cloze">⑦ 填空</a>
+  </nav>
+
+  <!-- ================= 单词 ================= -->
+  <section class="block" id="words">
+    <div class="sec-head">
+      <div class="no">1</div>
+      <h2>核心单词</h2>
+      <p>点击卡片朗读整词，点击分色音节逐音节跟读</p>
+      <span class="count-badge">本单元词汇表 · 30 词</span>
+    </div>
+    <div class="word-grid" id="wordGrid"></div>
+
+    <div class="sec-head" style="margin-top:26px;">
+      <div class="no" style="background:var(--teal);">+</div>
+      <h2>单元补充词汇</h2>
+      <p>太空 · 旅行 · 探索（课文与听说活动）</p>
+      <span class="count-badge">18 词</span>
+    </div>
+    <div class="word-grid" id="extraGrid"></div>
+  </section>
+
+  <!-- ================= 短语 ================= -->
+  <section class="block" id="phrases">
+    <div class="sec-head">
+      <div class="no">2</div>
+      <h2>重点短语</h2>
+      <p>来自单元词汇表，点击即可点读</p>
+      <span class="count-badge">17 个</span>
+    </div>
+    <div class="phrase-list" id="phraseList"></div>
+  </section>
+
+  <!-- ================= 课文 ================= -->
+  <section class="block" id="reading">
+    <div class="sec-head">
+      <div class="no">3</div>
+      <h2>课文点读</h2>
+      <p>Flying to the Moon · 点击任意单词听发音</p>
+      <span class="count-badge">阅读语篇</span>
+    </div>
+    <div class="passage-box">
+      <div class="post-head">
+        <div class="avatar">空</div>
+        <div>
+          <div class="nm">Flying to the Moon</div>
+          <div class="dt">日记 · 月球之旅</div>
+        </div>
+        <button class="read-all" id="readAllBtn" type="button">▶ 朗读全文</button>
+      </div>
+      <div id="passage"></div>
+      <div class="reading-note">
+        <b>Reading tip · 阅读提示：</b>这是一篇<b>日记（diary entry）</b>，用第一人称记录未来太空旅行的安排。注意日记里大量使用 <b>will / be going to</b> 表达将来发生的事。读课文时，找出所有带 <b>will</b> 或 <b>going to</b> 的句子，看看作者在月球上会做什么、需要克服哪些困难。
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 语音 ================= -->
+  <section class="block" id="phon">
+    <div class="sec-head">
+      <div class="no">4</div>
+      <h2>语音训练</h2>
+      <p>本单元重点音标 · 点击音标词 / 例句跟读</p>
+      <span class="count-badge">/ɜː/ /h/ /r/ /ə/ /iː/ /l/</span>
+    </div>
+    <div class="phon-grid" id="phonGrid"></div>
+  </section>
+
+  <!-- ================= 语法 ================= -->
+  <section class="block" id="grammar">
+    <div class="sec-head">
+      <div class="no">5</div>
+      <h2>语法 · The simple future 对话匹配</h2>
+      <p>听问句选答句 · 每个选项都可点读试听</p>
+      <span class="count-badge" id="gmBadge">8 组对话</span>
+    </div>
+    <div class="grammar-box">
+      <div class="wh-list" id="whList"></div>
+      <div class="rule">
+        <b>规则（The simple future）：</b>我们用 <b>will + 动词原形</b> 谈论将来的事（I will visit the Moon.），否定用 <b>won't</b>，疑问句把 <b>will</b> 提前（Will you ...?）。也常用 <b>be going to + 动词原形</b> 表达打算（I'm going to walk on the Moon.）。如 Tomorrow I'll be one of the first students to travel into space.
+      </div>
+      <div class="ps" style="margin:12px 2px 4px;font-size:12.5px;color:var(--ink);">
+        <b>will / be going to 句型：</b>点击短语或单词可点读</div>
+      <div class="phon-grid" style="margin-top:6px;" id="vfGrid"></div>
+      <div class="gm-box">
+        <div class="gm-top">
+          <div class="clz-progress" id="gmHint">第 1 / 8 题 · 先听问句，再选出正确答句</div>
+          <div class="q-score" id="gmScore">得分：0</div>
+        </div>
+        <div class="gm-q">
+          <button class="gm-play" id="gmPlay" type="button" aria-label="播放问句"></button>
+          <div class="gm-qtext" id="gmQ"></div>
+        </div>
+        <div class="gm-label">选出最合适的答句（可先点选项右侧喇叭试听）</div>
+        <div class="gm-opts" id="gmOpts"></div>
+        <div class="q-feedback" id="gmFb"></div>
+        <div class="gm-pair" id="gmPair"></div>
+        <button class="q-next" id="gmNext" type="button">下一组 →</button>
+        <div class="q-done" id="gmDone"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 小测 ================= -->
+  <section class="block" id="quiz">
+    <div class="sec-head">
+      <div class="no">6</div>
+      <h2>听音选词 · 听力小测</h2>
+      <p>三组词汇 · 听音选义 + 听音选英语双题型</p>
+      <span class="count-badge" id="quizBadge"></span>
+    </div>
+    <div class="quiz-box">
+      <div class="q-tabs" id="qTabs"></div>
+      <div class="q-modes" id="qModes">
+        <button class="q-tab active" id="modeZhBtn" type="button">听音选义（中文）</button>
+        <button class="q-tab" id="modeEnBtn" type="button">听音选英语</button>
+      </div>
+      <div class="q-top">
+        <button class="q-play" id="qPlay" type="button" aria-label="播放单词">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div>
+          <div class="q-word" id="qWord">—</div>
+          <div class="q-hint" id="qHint">第 1 / 8 题 · 点击左侧播放按钮听单词</div>
+        </div>
+        <div class="q-score" id="qScore">得分：0</div>
+      </div>
+      <div class="q-opts" id="qOpts"></div>
+      <div class="q-feedback" id="qFb"></div>
+      <button class="q-next" id="qNext" type="button">下一题 →</button>
+      <div class="q-done" id="qDone"></div>
+    </div>
+  </section>
+
+  <!-- ================= 选词填空 ================= -->
+  <section class="block" id="cloze">
+    <div class="sec-head">
+      <div class="no" style="background:var(--teal);">7</div>
+      <h2>选词填空 · 课文 + 语法原句</h2>
+      <p>课文《Flying to the Moon》与语法原句练词汇 · 点选即可，无需手写</p>
+      <span class="count-badge" id="clzBadge">课文原句 · 12 题</span>
+    </div>
+    <div class="cloze-box">
+      <div class="q-tabs" id="clzTabs"></div>
+      <div class="clz-top">
+        <div class="clz-progress" id="clzHint">第 1 / 12 题</div>
+        <div class="q-score" id="clzScore">得分：0</div>
+      </div>
+      <div class="clz-sent" id="clzSent"></div>
+      <div class="clz-opts" id="clzOpts"></div>
+      <div class="q-feedback" id="clzFb"></div>
+      <button class="q-next" id="clzNext" type="button">下一题 →</button>
+      <div class="q-done" id="clzDone"></div>
+    </div>
+  </section>
+
+  <!-- ================= 词缀拓展 ================= -->
+  <section class="block" id="wordbuilding">
+    <div class="sec-head">
+      <div class="no" style="background:var(--amber);">*</div>
+      <h2>词缀拓展 · 复合名词</h2>
+      <p>space + ship → spaceship（点击任意词可点读）</p>
+    </div><div class="phon-grid">
+      <div class="phon" style="flex:1 1 220px;">
+        <div class="ph" data-w="spaceship">space + ship → space·ship</div>
+        <div class="pw"><span data-w="space">space</span><span data-w="spaceship">spaceship</span></div>
+        <div class="ps">太空 + 船 → 宇宙飞船</div>
+      </div>
+      <div class="phon" style="flex:1 1 220px;">
+        <div class="ph" data-w="spacesuit">space + suit → space·suit</div>
+        <div class="pw"><span data-w="space">space</span><span data-w="spacesuit">spacesuit</span></div>
+        <div class="ps">太空 + 服装 → 航天服</div>
+      </div>
+      <div class="phon" style="flex:1 1 220px;">
+        <div class="ph" data-w="space station">space + station → space sta·tion</div>
+        <div class="pw"><span data-w="space">space</span><span data-w="space station">space station</span></div>
+        <div class="ps">太空 + 站 → 空间站</div>
+      </div>
+      <div class="phon" style="flex:1 1 220px;">
+        <div class="ph" data-w="moonlight">moon + light → moon·light</div>
+        <div class="pw"><span data-w="moon">moon</span><span data-w="moonlight">moonlight</span></div>
+        <div class="ps">月亮 + 光 → 月光</div>
+      </div>
+      <div class="phon" style="flex:1 1 220px;">
+        <div class="ph" data-w="starfish">star + fish → star·fish</div>
+        <div class="pw"><span data-w="star">star</span><span data-w="starfish">starfish</span></div>
+        <div class="ps">星星 + 鱼 → 海星</div>
+      </div>
+      <div class="phon" style="flex:1 1 220px;">
+        <div class="ph" data-w="airport">air + port → air·port</div>
+        <div class="pw"><span data-w="air">air</span><span data-w="airport">airport</span></div>
+        <div class="ps">空气 + 港口 → 机场</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>内容依据：上海教育出版社《义务教育教科书 英语 七年级上册》Unit 5 Off to space（2024 广州新版）</p>
+    <p>点读功能基于浏览器语音合成（Web Speech API），建议使用 Chrome / Edge 浏览器打开体验最佳</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var SPK = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
+
+  /* ========== 数据 ========== */
+  var WORDS = [
+    {w:'spaceship', syl:['space','ship'], st:0, ipa:'/ˈspeɪsʃɪp/', pos:'n.', zh:'宇宙飞船'},
+    {w:'space', syl:['space'], st:0, ipa:'/speɪs/', pos:'n.', zh:'太空'},
+    {w:'spacesuit', syl:['space','suit'], st:0, ipa:'/ˈspeɪssuːt/', pos:'n.', zh:'航天服；宇航服'},
+    {w:'travel', syl:['trav','el'], st:0, ipa:'/ˈtrævl/', pos:'v.', zh:'旅行；行进'},
+    {w:'leave', syl:['leave'], st:0, ipa:'/liːv/', pos:'v.', zh:'离开；出发'},
+    {w:'kilometre', syl:['ki','lo','me','tre'], st:0, ipa:'/ˈkɪləmiːtə(r)/', pos:'n.', zh:'千米；公里'},
+    {w:'gravity', syl:['grav','i','ty'], st:0, ipa:'/ˈɡrævəti/', pos:'n.', zh:'重力；引力'},
+    {w:'weak', syl:['weak'], st:0, ipa:'/wiːk/', pos:'adj.', zh:'弱的；无力的'},
+    {w:'float', syl:['float'], st:0, ipa:'/fləʊt/', pos:'v.', zh:'漂浮；浮动'},
+    {w:'sleep', syl:['sleep'], st:0, ipa:'/sliːp/', pos:'v.', zh:'睡觉'},
+    {w:'tie', syl:['tie'], st:0, ipa:'/taɪ/', pos:'v.', zh:'（用线、绳等）拴'},
+    {w:'away', syl:['a','way'], st:1, ipa:'/əˈweɪ/', pos:'adv.', zh:'离开；不在'},
+    {w:'body', syl:['bod','y'], st:0, ipa:'/ˈbɒdi/', pos:'n.', zh:'身体'},
+    {w:'exercise', syl:['ex','er','cise'], st:0, ipa:'/ˈeksəsaɪz/', pos:'n.', zh:'锻炼；运动'},
+    {w:'arrive', syl:['ar','rive'], st:1, ipa:'/əˈraɪv/', pos:'v.', zh:'到达'},
+    {w:'weigh', syl:['weigh'], st:0, ipa:'/weɪ/', pos:'v.', zh:'有……重；重'},
+    {w:'jump', syl:['jump'], st:0, ipa:'/dʒʌmp/', pos:'v.', zh:'跳；跳跃'},
+    {w:'wear', syl:['wear'], st:0, ipa:'/weə(r)/', pos:'v.', zh:'穿；戴'},
+    {w:'breathe', syl:['breathe'], st:0, ipa:'/briːð/', pos:'v.', zh:'呼吸'},
+    {w:'sound', syl:['sound'], st:0, ipa:'/saʊnd/', pos:'n.', zh:'声音'},
+    {w:'strange', syl:['strange'], st:0, ipa:'/streɪndʒ/', pos:'adj.', zh:'奇怪的；陌生的'},
+    {w:'mysterious', syl:['mys','te','ri','ous'], st:1, ipa:'/mɪˈstɪəriəs/', pos:'adj.', zh:'神秘的'},
+    {w:'photo', syl:['pho','to'], st:0, ipa:'/ˈfəʊtəʊ/', pos:'n.', zh:'照片'},
+    {w:'wonderful', syl:['won','der','ful'], st:0, ipa:'/ˈwʌndəfl/', pos:'adj.', zh:'精彩的；绝妙的'},
+    {w:'future', syl:['fu','ture'], st:0, ipa:'/ˈfjuːtʃə(r)/', pos:'n.', zh:'未来；将来'},
+    {w:'plan', syl:['plan'], st:0, ipa:'/plæn/', pos:'n.', zh:'计划'},
+    {w:'trip', syl:['trip'], st:0, ipa:'/trɪp/', pos:'n.', zh:'旅行'},
+    {w:'astronaut', syl:['as','tro','naut'], st:0, ipa:'/ˈæstrənɔːt/', pos:'n.', zh:'宇航员'},
+    {w:'mission', syl:['mis','sion'], st:0, ipa:'/ˈmɪʃn/', pos:'n.', zh:'任务；使命'},
+    {w:'land', syl:['land'], st:0, ipa:'/lænd/', pos:'v.', zh:'着陆；降落'}
+  ];
+  var EXTRAS = [
+    {w:'orbit', syl:['or','bit'], st:0, ipa:'/ˈɔːbɪt/', pos:'n.', zh:'轨道'},
+    {w:'satellite', syl:['sat','el','lite'], st:0, ipa:'/ˈsætəlaɪt/', pos:'n.', zh:'卫星'},
+    {w:'rocket', syl:['rock','et'], st:0, ipa:'/ˈrɒkɪt/', pos:'n.', zh:'火箭'},
+    {w:'lander', syl:['land','er'], st:0, ipa:'/ˈlændə/', pos:'n.', zh:'着陆器'},
+    {w:'universe', syl:['u','ni','verse'], st:0, ipa:'/ˈjuːnɪvɜːs/', pos:'n.', zh:'宇宙'},
+    {w:'kilogram', syl:['ki','lo','gram'], st:0, ipa:'/ˈkɪləɡræm/', pos:'n.', zh:'千克；公斤'},
+    {w:'pass', syl:['pass'], st:0, ipa:'/pɑːs/', pos:'v.', zh:'沿某方向前进'},
+    {w:'low', syl:['low'], st:0, ipa:'/ləʊ/', pos:'adj.', zh:'低于通常的'},
+    {w:'weightless', syl:['weight','less'], st:0, ipa:'/ˈweɪtləs/', pos:'adj.', zh:'失重的'},
+    {w:'dream', syl:['dream'], st:0, ipa:'/driːm/', pos:'n.', zh:'梦想'},
+    {w:'test', syl:['test'], st:0, ipa:'/test/', pos:'n.', zh:'试验；测试'},
+    {w:'station', syl:['sta','tion'], st:0, ipa:'/ˈsteɪʃn/', pos:'n.', zh:'站；台'},
+    {w:'view', syl:['view'], st:0, ipa:'/vjuː/', pos:'n.', zh:'景色；视野'},
+    {w:'surface', syl:['sur','face'], st:0, ipa:'/ˈsɜːfɪs/', pos:'n.', zh:'表面；表层'},
+    {w:'rock', syl:['rock'], st:0, ipa:'/rɒk/', pos:'n.', zh:'岩石'},
+    {w:'star', syl:['star'], st:0, ipa:'/stɑː(r)/', pos:'n.', zh:'恒星；星星'},
+    {w:'journey', syl:['jour','ney'], st:0, ipa:'/ˈdʒɜːni/', pos:'n.', zh:'旅程；旅行'},
+    {w:'return', syl:['re','turn'], st:1, ipa:'/rɪˈtɜːn/', pos:'v.', zh:'返回；回来'}
+  ];
+  var PHRASES = [
+    {p:'space station', zh:'空间站'},
+    {p:'get into orbit', zh:'进入轨道'},
+    {p:'travel into space', zh:'进入太空旅行'},
+    {p:'one of the first students', zh:'首批学生之一'},
+    {p:'can\'t wait', zh:'迫不及待'},
+    {p:'in space', zh:'在太空'},
+    {p:'sleeping bag', zh:'睡袋'},
+    {p:'float away', zh:'飘走'},
+    {p:'do exercise', zh:'做锻炼'},
+    {p:'walk on the Moon', zh:'在月球上行走'},
+    {p:'wear a spacesuit', zh:'穿航天服'},
+    {p:'take photos', zh:'拍照'},
+    {p:'as many as', zh:'尽可能多的'},
+    {p:'look forward to', zh:'期待'},
+    {p:'in the future', zh:'在未来'},
+    {p:'travel back to', zh:'返回……'},
+    {p:'a wonderful trip', zh:'一次精彩的旅行'}
+  ];
+  var PASSAGE = [
+    'I\'m so happy! Tomorrow I\'ll be one of the first students to travel into space.',
+    'The spaceship will leave the Earth at 9:00 a.m.',
+    'It\'ll take us to the Moon. I can\'t wait!',
+    'The Moon is around 380,000 kilometres from the Earth, so it\'ll take us about three days to get there.',
+    'The gravity in space is very weak, so we\'ll all be floating around in the spaceship.',
+    'And we won\'t sleep in beds—we\'ll sleep in sleeping bags.',
+    'We need to tie the sleeping bag to the wall so that we won\'t float away in our sleep!',
+    'Because of the low gravity, our bodies may get weak, so we\'ll have to do exercise every day.',
+    'When we arrive, I\'m going to walk on the Moon.',
+    'The Moon has much weaker gravity than the Earth.',
+    'A person weighs much less on the Moon, so we can jump very high.',
+    'I\'ll have to wear a spacesuit to help me breathe because there\'s no air on the Moon.',
+    'That also means there is no sound there.',
+    'We can only hear the sounds inside our spacesuits.',
+    'The Moon is a strange and mysterious place.',
+    'I\'m going to take as many photos as I can.',
+    'I\'m sure that it\'ll be a wonderful trip!'
+  ];
+  var PHON = [
+    {ph:'/ɜː/', words:['earth','turn','first','work'], sent:'Tomorrow I\'ll be one of the first students to travel into space.'},
+    {ph:'/h/', words:['happy','help','have','hope'], sent:'We can only hear the sounds inside our spacesuits.'},
+    {ph:'/r/', words:['breathe','return','gravity','wrong'], sent:'A person weighs much less on the Moon, so we can jump very high.'},
+    {ph:'/ə/', words:['camera','tomorrow','gravity','weaker'], sent:'The Moon has much weaker gravity than the Earth.'},
+    {ph:'/iː/', words:['three','sea','breathe','weak'], sent:'It\'ll take us about three days to get there.'},
+    {ph:'/l/', words:['leave','level','low','sleep'], sent:'The spaceship will leave the Earth at 9:00 a.m.'}
+  ];
+  var ADJ = [
+    {ph:'I will visit the Moon someday.', w1:'will', w2:'visit', zh:'我将来某天会去参观月球'},
+    {ph:'She will be happy to travel into space.', w1:'will be', w2:'happy', zh:'她会很高兴去太空旅行'},
+    {ph:'We won\'t sleep in beds.', w1:'won\'t', w2:'sleep', zh:'我们不会睡在床上'},
+    {ph:'I\'m going to walk on the Moon.', w1:'am going to', w2:'walk', zh:'我打算在月球上行走'},
+    {ph:'They are going to take photos.', w1:'are going to', w2:'take photos', zh:'他们打算拍照'},
+    {ph:'Is he going to wear a spacesuit?', w1:'Is ... going to', w2:'wear', zh:'他打算穿航天服吗？'},
+    {ph:'Will you be hungry in space?', w1:'Will', w2:'be hungry', zh:'你在太空会饿吗？'},
+    {ph:'Are they going to land on Mars?', w1:'Are ... going to', w2:'land', zh:'他们打算登陆火星吗？'}
+  ];
+  var WH = [
+    {q:'Tomorrow I\'ll be one of the first students to travel into space.', zh:'明天我将成为首批进入太空的学生之一'},
+    {q:'The spaceship will leave the Earth at 9:00 a.m.', zh:'宇宙飞船将于上午 9 点离开地球'},
+    {q:'I\'m going to walk on the Moon.', zh:'我打算在月球上行走'},
+    {q:'Will we sleep in beds? No, we won\'t.', zh:'我们会睡在床上吗？不，不会'},
+    {q:'Are they going to take us to space as well?', zh:'他们也会带我们去太空吗？'}
+  ];
+  var QUIZ = [
+    {w:'spaceship', zh:'宇宙飞船', opts:['航天服','空间站','火箭']},
+    {w:'space', zh:'太空', opts:['天空','海洋','宇宙']},
+    {w:'spacesuit', zh:'航天服；宇航服', opts:['宇宙飞船','睡袋','安全带']},
+    {w:'travel', zh:'旅行；行进', opts:['到达','返回','停留']},
+    {w:'leave', zh:'离开；出发', opts:['到达','着陆','漂浮']},
+    {w:'kilometre', zh:'千米；公里', opts:['千克；公斤','米','英里']},
+    {w:'gravity', zh:'重力；引力', opts:['能量','轨道','速度']},
+    {w:'weak', zh:'弱的；无力的', opts:['强的','快的','重的']},
+    {w:'float', zh:'漂浮；浮动', opts:['下沉','飞行','降落']},
+    {w:'sleep', zh:'睡觉', opts:['醒来','锻炼','休息']},
+    {w:'tie', zh:'（用线、绳等）拴', opts:['松开','打结','剪断']},
+    {w:'away', zh:'离开；不在', opts:['附近','里面','上面']},
+    {w:'body', zh:'身体', opts:['头脑','影子','衣服']},
+    {w:'exercise', zh:'锻炼；运动', opts:['休息','睡觉','吃饭']},
+    {w:'arrive', zh:'到达', opts:['离开','出发','返回']},
+    {w:'weigh', zh:'有……重；重', opts:['称重量','测量','跳跃']},
+    {w:'jump', zh:'跳；跳跃', opts:['走','跑','爬']},
+    {w:'wear', zh:'穿；戴', opts:['洗','买','拿']},
+    {w:'breathe', zh:'呼吸', opts:['说话','吃饭','喝水']},
+    {w:'sound', zh:'声音', opts:['光','空气','图像']},
+    {w:'strange', zh:'奇怪的；陌生的', opts:['熟悉的','常见的','神秘的']},
+    {w:'mysterious', zh:'神秘的', opts:['奇怪的','有趣的','美丽的']},
+    {w:'photo', zh:'照片', opts:['画笔','地图','明信片']},
+    {w:'wonderful', zh:'精彩的；绝妙的', opts:['普通的','糟糕的','无聊的']},
+    {w:'future', zh:'未来；将来', opts:['过去','现在','昨天']},
+    {w:'plan', zh:'计划', opts:['梦想','任务','习惯']},
+    {w:'trip', zh:'旅行', opts:['散步','跑步','工作']},
+    {w:'astronaut', zh:'宇航员', opts:['科学家','飞行员','老师']},
+    {w:'mission', zh:'任务；使命', opts:['梦想','旅行','冒险']},
+    {w:'land', zh:'着陆；降落', opts:['起飞','漂浮','坠落']}
+  ];
+  var QUIZ_EXTRA = [
+    {w:'orbit', zh:'轨道', opts:['卫星','火箭','着陆器']},
+    {w:'satellite', zh:'卫星', opts:['轨道','火箭','探测器']},
+    {w:'rocket', zh:'火箭', opts:['卫星','飞机','气球']},
+    {w:'lander', zh:'着陆器', opts:['轨道','卫星','探测器']},
+    {w:'universe', zh:'宇宙', opts:['太空','银河','天空']},
+    {w:'kilogram', zh:'千克；公斤', opts:['千米；公里','克','米']},
+    {w:'pass', zh:'沿某方向前进', opts:['停止','返回','停留']},
+    {w:'low', zh:'低于通常的', opts:['高的','强的','快的']},
+    {w:'weightless', zh:'失重的', opts:['超重的','轻的','漂浮的']},
+    {w:'dream', zh:'梦想', opts:['计划','任务','目标']},
+    {w:'test', zh:'试验；测试', opts:['比赛','表演','旅行']},
+    {w:'station', zh:'站；台', opts:['港口','机场','车站']},
+    {w:'view', zh:'景色；视野', opts:['照片','地图','声音']},
+    {w:'surface', zh:'表面；表层', opts:['内部','中心','边缘']},
+    {w:'rock', zh:'岩石', opts:['沙子','泥土','金属']},
+    {w:'star', zh:'恒星；星星', opts:['月亮','太阳','行星']},
+    {w:'journey', zh:'旅程；旅行', opts:['梦想','计划','任务']},
+    {w:'return', zh:'返回；回来', opts:['离开','出发','到达']}
+  ];
+  var QUIZ_PHRASE = [
+    {w:'space station', zh:'空间站', opts:['航天服','宇宙飞船','太空旅行']},
+    {w:'get into orbit', zh:'进入轨道', opts:['进入太空','离开地球','着陆']},
+    {w:'travel into space', zh:'进入太空旅行', opts:['回到地球','飞向月球','太空漫步']},
+    {w:'one of the first students', zh:'首批学生之一', opts:['唯一的学生','优秀的学生','最后的学生']},
+    {w:'can\'t wait', zh:'迫不及待', opts:['等不及要走','不能等待太久','不着急']},
+    {w:'in space', zh:'在太空', opts:['在天空','在轨道','在月球']},
+    {w:'sleeping bag', zh:'睡袋', opts:['床垫','枕头','毯子']},
+    {w:'float away', zh:'飘走', opts:['飞走','飘落','下沉']},
+    {w:'do exercise', zh:'做锻炼', opts:['做实验','做作业','玩游戏']},
+    {w:'walk on the Moon', zh:'在月球上行走', opts:['在月球上睡觉','绕月球飞行','登月']},
+    {w:'wear a spacesuit', zh:'穿航天服', opts:['戴头盔','穿外套','系安全带']},
+    {w:'take photos', zh:'拍照', opts:['录像','画画','写信']},
+    {w:'as many as', zh:'尽可能多的', opts:['和……一样多','尽可能少的','多于']},
+    {w:'look forward to', zh:'期待', opts:['回头看','向前看','放弃']},
+    {w:'in the future', zh:'在未来', opts:['在过去','在现在','在昨天']},
+    {w:'travel back to', zh:'返回……', opts:['飞往……','离开……','经过……']},
+    {w:'a wonderful trip', zh:'一次精彩的旅行', opts:['一次危险的旅行','一次无聊的旅行','一次长途旅行']}
+  ];
+
+  /* 音节发音小词典（个别音节按自然拼读读法处理） */
+  var SYL_SPEAK = {
+    'tion':'shun','tient':'shent','tive':'tiv','ture':'cher','sure':'zher',
+    'cious':'shus','ge':'j','gi':'ji','ce':'s','ci':'si','ea':'ee','eau':'oh',
+    'ight':'ite','ough':'uff','augh':'aw','tion':'shun','ph':'f','wh':'w'
+  };
+  function sylSpeak(syl){
+    var k = syl.toLowerCase();
+    return SYL_SPEAK[k] || syl;
+  }
+
+  /* ========== 语音引擎 ========== */
+  var synth = window.speechSynthesis;
+  var voices = [];
+  var voiceSel = document.getElementById('voiceSel');
+  var rateSel = document.getElementById('rateSel');
+
+  function loadVoices(){
+    if (!synth) return;
+    voices = synth.getVoices();
+    var en = voices.filter(function(v){ return /^en/i.test(v.lang); });
+    voiceSel.innerHTML = '';
+    if (en.length === 0) { voiceSel.innerHTML = '<option value="">使用默认发音</option>'; return; }
+    en.forEach(function(v){
+      var o = document.createElement('option');
+      o.value = v.name;
+      o.textContent = v.name + ' (' + v.lang + ')';
+      voiceSel.appendChild(o);
+    });
+    /* 优先英式发音（教材以英式英语为标准） */
+    var prefer = en.filter(function(v){ return /^en-GB/i.test(v.lang); });
+    var pick = (prefer.length ? prefer : en)[0];
+    voiceSel.value = pick.name;
+  }
+  if (synth) {
+    loadVoices();
+    if (typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = loadVoices;
+  }
+
+  function getVoice(){
+    if (!synth) return null;
+    var name = voiceSel.value;
+    for (var i = 0; i < voices.length; i++) if (voices[i].name === name) return voices[i];
+    var en = voices.filter(function(v){ return /^en/i.test(v.lang); });
+    return en.length ? en[0] : null;
+  }
+
+  function speak(text, rate, onend){
+    if (!synth) { alert('当前浏览器不支持语音合成（Web Speech API），建议使用 Chrome 或 Edge。'); return; }
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    var v = getVoice();
+    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-GB'; }
+    u.rate = rate || parseFloat(rateSel.value) || 1;
+    u.pitch = 1;
+    u.onend = onend || null;
+    synth.speak(u);
+  }
+
+  function stopSpeak(){
+    if (synth) synth.cancel();
+    var els = document.querySelectorAll('.speaking');
+    for (var i = 0; i < els.length; i++) els[i].classList.remove('speaking');
+  }
+
+  function sylModeOn(){
+    var c = document.getElementById('sylMode');
+    return c && c.checked;
+  }
+  function stressShowOn(){
+    var c = document.getElementById('stressShow');
+    return !c || c.checked;
+  }
+  document.getElementById('stopBtn').addEventListener('click', stopSpeak);
+
+  /* ========== 单词卡片 ========== */
+  function renderWords(arr, containerId){
+    var box = document.getElementById(containerId);
+    arr.forEach(function(item, idx){
+      var card = document.createElement('div');
+      card.className = 'wcard';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', item.w + '，' + item.zh);
+
+      var wd = document.createElement('div');
+      wd.className = 'wd';
+      item.syl.forEach(function(s, i){
+        if (stressShowOn() && i === item.st && item.syl.length > 1) {
+          var st = document.createElement('span');
+          st.className = 'stress';
+          st.textContent = 'ˈ';
+          wd.appendChild(st);
+        }
+        var sp = document.createElement('span');
+        sp.className = 'syl';
+        sp.textContent = s;
+        if (i === item.st) sp.style.fontWeight = '800';
+        sp.style.color = ['#E8552D','#0F8A7D','#B57A00'][i % 3];
+        sp.title = '点击跟读音节 ' + s;
+        sp.addEventListener('click', function(e){
+          e.stopPropagation();
+          speak(sylSpeak(s), undefined);
+        });
+        wd.appendChild(sp);
+        if (i < item.syl.length - 1) {
+          var sep = document.createElement('span');
+          sep.className = 'sep';
+          sep.textContent = '·';
+          wd.appendChild(sep);
+        }
+      });
+      card.appendChild(wd);
+
+      var ipa = document.createElement('div');
+      ipa.className = 'ipa';
+      ipa.textContent = item.ipa;
+      card.appendChild(ipa);
+
+      var meta = document.createElement('div');
+      meta.className = 'meta';
+      var pos = document.createElement('span');
+      pos.className = 'pos';
+      pos.textContent = item.pos;
+      var zh = document.createElement('span');
+      zh.className = 'zh';
+      zh.textContent = item.zh;
+      var play = document.createElement('button');
+      play.className = 'play';
+      play.type = 'button';
+      play.setAttribute('aria-label', '朗读 ' + item.w);
+      play.innerHTML = SPK;
+      play.addEventListener('click', function(e){
+        e.stopPropagation();
+        speak(item.w);
+      });
+      meta.appendChild(pos);
+      meta.appendChild(zh);
+      meta.appendChild(play);
+      card.appendChild(meta);
+
+      var lbl = document.createElement('span');
+      lbl.className = 'lbl';
+      lbl.textContent = String(idx + 1).padStart(2, '0');
+      card.appendChild(lbl);
+
+      function playWord(){
+        if (sylModeOn()) {
+          /* 逐音节连读 */
+          if (!synth) return;
+          synth.cancel();
+          var syls = item.syl.slice();
+          var i = 0;
+          function next(){
+            if (i >= syls.length) { card.classList.remove('speaking'); return; }
+            card.classList.add('speaking');
+            var u = new SpeechSynthesisUtterance(sylSpeak(syls[i]));
+            var v = getVoice();
+            if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-GB'; }
+            u.rate = parseFloat(rateSel.value) || 1;
+            u.onend = function(){ i++; setTimeout(next, 140); };
+            synth.speak(u);
+          }
+          next();
+        } else {
+          card.classList.add('speaking');
+          speak(item.w, undefined, function(){ card.classList.remove('speaking'); });
+        }
+      }
+      card.addEventListener('click', playWord);
+      card.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playWord(); }
+      });
+      box.appendChild(card);
+    });
+  }
+  renderWords(WORDS, 'wordGrid');
+  renderWords(EXTRAS, 'extraGrid');
+
+  /* ========== 短语 ========== */
+  var phraseList = document.getElementById('phraseList');
+  PHRASES.forEach(function(item){
+    var chip = document.createElement('div');
+    chip.className = 'pchip';
+    chip.setAttribute('role', 'button');
+    chip.setAttribute('tabindex', '0');
+    chip.setAttribute('aria-label', item.p + '，' + item.zh);
+    var pt = document.createElement('span');
+    pt.className = 'pt';
+    pt.textContent = item.p;
+    var pz = document.createElement('span');
+    pz.className = 'pz';
+    pz.textContent = item.zh;
+    chip.appendChild(pt);
+    chip.appendChild(pz);
+    function play(){
+      chip.classList.add('speaking');
+      speak(item.p, undefined, function(){ chip.classList.remove('speaking'); });
+    }
+    chip.addEventListener('click', play);
+    chip.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+    });
+    phraseList.appendChild(chip);
+  });
+
+  /* ========== 课文 ========== */
+  var passage = document.getElementById('passage');
+  PASSAGE.forEach(function(text, i){
+    var p = document.createElement('p');
+    p.className = 'sent';
+    p.id = 'sent' + i;
+    var clean = text.replace(/["“”]/g, '');
+    var tokens = text.split(/(\s+)/);
+    tokens.forEach(function(tok){
+      if (/^\s+$/.test(tok)) {
+        p.appendChild(document.createTextNode(tok));
+      } else if (tok) {
+        var sp = document.createElement('span');
+        sp.className = 'w';
+        sp.textContent = tok;
+        sp.setAttribute('role', 'button');
+        sp.setAttribute('tabindex', '0');
+        sp.setAttribute('aria-label', '朗读 ' + tok.replace(/[^A-Za-z']/g, ''));
+        var speakWord = tok.replace(/[^A-Za-z'’\- ]/g, '');
+        function playWord(ev, t){
+          ev.stopPropagation();
+          var ws = p.querySelectorAll('.w');
+          for (var k = 0; k < ws.length; k++) ws[k].classList.remove('speaking');
+          sp.classList.add('speaking');
+          speak(t, undefined, function(){ sp.classList.remove('speaking'); });
+        }
+        sp.addEventListener('click', function(ev){ playWord(ev, speakWord); });
+        sp.addEventListener('keydown', function(ev){
+          if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); playWord(ev, speakWord); }
+        });
+        p.appendChild(sp);
+      }
+    });
+    var btn = document.createElement('button');
+    btn.className = 'sent-btn';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', '朗读本句');
+    btn.title = '朗读本句';
+    btn.innerHTML = SPK;
+    btn.addEventListener('click', function(){
+      var sents = passage.querySelectorAll('.sent');
+      for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+      p.classList.add('active');
+      speak(clean, undefined);
+    });
+    p.appendChild(btn);
+    passage.appendChild(p);
+  });
+
+  document.getElementById('readAllBtn').addEventListener('click', function(){
+    if (!synth) return;
+    synth.cancel();
+    var sents = passage.querySelectorAll('.sent');
+    var i = 0;
+    function next(){
+      if (i >= PASSAGE.length) return;
+      for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+      sents[i].classList.add('active');
+      if (i > 0 && sents[i].scrollIntoView) sents[i].scrollIntoView({behavior:'smooth', block:'center'});
+      var u = new SpeechSynthesisUtterance(PASSAGE[i].replace(/["“”]/g, ''));
+      var v = getVoice();
+      if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-GB'; }
+      u.rate = parseFloat(rateSel.value) || 1;
+      u.onend = function(){ i++; setTimeout(next, 220); };
+      synth.speak(u);
+    }
+    next();
+  });
+
+  /* ========== 语音训练 ========== */
+  var phonGrid = document.getElementById('phonGrid');
+  PHON.forEach(function(g){
+    var box = document.createElement('div');
+    box.className = 'phon';
+    var ph = document.createElement('div');
+    ph.className = 'ph';
+    ph.textContent = g.ph;
+    box.appendChild(ph);
+    var pw = document.createElement('div');
+    pw.className = 'pw';
+    g.words.forEach(function(w){
+      var sp = document.createElement('span');
+      sp.textContent = w;
+      sp.addEventListener('click', function(){ speak(w); });
+      pw.appendChild(sp);
+    });
+    box.appendChild(pw);
+    if (g.sent) {
+      var ps = document.createElement('div');
+      ps.className = 'ps';
+      ps.textContent = '例句：' + g.sent;
+      ps.addEventListener('click', function(){ speak(g.sent); });
+      box.appendChild(ps);
+    }
+    phonGrid.appendChild(box);
+  });
+
+  /* ========== 语法 · 形容词 + 名词 短语卡 ========== */
+  var vfGrid = document.getElementById('vfGrid');
+  ADJ.forEach(function(g){
+    var box = document.createElement('div');
+    box.className = 'phon';
+    var ph = document.createElement('div');
+    ph.className = 'ph';
+    ph.setAttribute('data-w', g.ph);
+    ph.textContent = g.ph;
+    box.appendChild(ph);
+    var pw = document.createElement('div');
+    pw.className = 'pw';
+    [g.w1, g.w2].forEach(function(w){
+      var sp = document.createElement('span');
+      sp.setAttribute('data-w', w);
+      sp.textContent = w;
+      pw.appendChild(sp);
+    });
+    box.appendChild(pw);
+    var ps = document.createElement('div');
+    ps.className = 'ps';
+    ps.textContent = g.zh;
+    box.appendChild(ps);
+    vfGrid.appendChild(box);
+  });
+
+  /* ========== 词缀拓展 / 动词变化 · 点读绑定 ========== */
+  var wb = document.querySelectorAll('#wordbuilding .phon .ph, #wordbuilding .phon .pw span, #grammar .phon .ph, #grammar .phon .pw span');
+  for (var wi = 0; wi < wb.length; wi++) {
+    (function(el){
+      el.addEventListener('click', function(){ speak(el.getAttribute('data-w')); });
+    })(wb[wi]);
+  }
+
+  /* ========== 语法 ========== */
+  var whList = document.getElementById('whList');
+  WH.forEach(function(item){
+    var chip = document.createElement('div');
+    chip.className = 'wh-chip';
+    chip.setAttribute('role', 'button');
+    chip.setAttribute('tabindex', '0');
+    chip.setAttribute('title', item.zh);
+    chip.textContent = item.q;
+    function play(){ speak(item.q); }
+    chip.addEventListener('click', play);
+    chip.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+    });
+    whList.appendChild(chip);
+  });
+
+  /* ========== 听音选词小测（三组 × 双题型） ========== */
+  var qi = 0, score = 0, answered = false, setIdx = 0;
+  var quizMode = 0; /* 0 = 听音选义（中文），1 = 听音选英语 */
+  var current = null;
+  var qPlay = document.getElementById('qPlay');
+  var qWord = document.getElementById('qWord');
+  var qHint = document.getElementById('qHint');
+  var qScore = document.getElementById('qScore');
+  var qOpts = document.getElementById('qOpts');
+  var qFb = document.getElementById('qFb');
+  var qNext = document.getElementById('qNext');
+  var qDone = document.getElementById('qDone');
+  var qTabs = document.getElementById('qTabs');
+  var qBadge = document.getElementById('quizBadge');
+  var modeZhBtn = document.getElementById('modeZhBtn');
+  var modeEnBtn = document.getElementById('modeEnBtn');
+  var QUIZ_SETS = [
+    {name:'核心单词', data:QUIZ},
+    {name:'补充词汇', data:QUIZ_EXTRA},
+    {name:'重点短语', data:QUIZ_PHRASE}
+  ];
+  function curQuiz(){ return QUIZ_SETS[setIdx].data; }
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function setQuizMode(m){
+    if (quizMode === m) return;
+    quizMode = m;
+    qi = 0; score = 0; answered = false;
+    qScore.textContent = '得分：0';
+    qDone.style.display = 'none';
+    qDone.textContent = '';
+    qFb.textContent = '';
+    modeZhBtn.classList.toggle('active', m === 0);
+    modeEnBtn.classList.toggle('active', m === 1);
+    loadQuestion();
+  }
+  modeZhBtn.addEventListener('click', function(){ setQuizMode(0); });
+  modeEnBtn.addEventListener('click', function(){ setQuizMode(1); });
+
+  function engOpts(w){
+    var pool = curQuiz().filter(function(it){ return it.w !== w; });
+    return shuffle(pool).slice(0, 3).map(function(it){ return it.w; }).concat([w]);
+  }
+
+  function loadQuestion(){
+    answered = false;
+    current = curQuiz()[qi];
+    var isPhrase = (setIdx === 2);
+    qWord.textContent = isPhrase ? '听一听：这是哪个短语？' : '听一听：这是哪个单词？';
+    qHint.textContent = '第 ' + (qi + 1) + ' / ' + curQuiz().length + ' 题 · ' +
+      (quizMode === 0 ? '点击左侧播放按钮听发音' : '听发音，选出对应的' + (isPhrase ? '英语短语' : '英语单词'));
+    qFb.textContent = '';
+    qNext.style.display = 'none';
+    qNext.textContent = '下一题 →';
+    qOpts.innerHTML = '';
+    var opts = (quizMode === 0) ? shuffle(current.opts.concat([current.zh])) : shuffle(engOpts(current.w));
+    var target = (quizMode === 0) ? current.zh : current.w;
+    opts.forEach(function(o){
+      var b = document.createElement('button');
+      b.className = 'q-opt';
+      b.type = 'button';
+      b.textContent = o;
+      b.addEventListener('click', function(){
+        if (answered) return;
+        answered = true;
+        var correct = (o === target);
+        if (correct) {
+          score++;
+          b.classList.add('correct');
+          qFb.innerHTML = (quizMode === 0)
+            ? '答对啦！<b>' + current.w + '</b> 的意思是「' + current.zh + '」'
+            : '答对啦！「' + current.zh + '」的英语是 <b>' + current.w + '</b>';
+          qFb.style.color = 'var(--green)';
+        } else {
+          b.classList.add('wrong');
+          var okBtn = null;
+          var bs = qOpts.querySelectorAll('.q-opt');
+          for (var k = 0; k < bs.length; k++) {
+            if (bs[k].textContent === target) { okBtn = bs[k]; break; }
+          }
+          if (okBtn) okBtn.classList.add('correct');
+          qFb.innerHTML = (quizMode === 0)
+            ? '再听一遍！<b>' + current.w + '</b> 的意思是「' + current.zh + '」'
+            : '再听一遍！「' + current.zh + '」的英语是 <b>' + current.w + '</b>';
+          qFb.style.color = 'var(--red)';
+        }
+        qScore.textContent = '得分：' + score;
+        /* 自动播放正确答案，增加听力输入 */
+        setTimeout(function(){ speak(target, 0.8); }, 400);
+        if (qi < curQuiz().length - 1) {
+          qNext.style.display = 'inline-block';
+        } else {
+          qNext.style.display = 'inline-block';
+          qNext.textContent = '再来一轮';
+          qDone.style.display = 'block';
+          qDone.textContent = '完成！共 ' + curQuiz().length + ' 题，答对 ' + score + ' 题。' +
+            (score === curQuiz().length ? ' 太棒了，全部正确！' : (score >= curQuiz().length * 0.6 ? ' 很好，继续加油！' : ' 建议回到单词卡再多听几遍。'));
+        }
+      });
+      qOpts.appendChild(b);
+    });
+  }
+  qPlay.addEventListener('click', function(){
+    if (!current) return;
+    speak(current.w, 0.75);
+  });
+  qNext.addEventListener('click', function(){
+    if (qi >= curQuiz().length - 1) {
+      qi = 0;
+      score = 0;
+      qScore.textContent = '得分：0';
+      qDone.style.display = 'none';
+      qDone.textContent = '';
+    } else {
+      qi++;
+    }
+    loadQuestion();
+  });
+  QUIZ_SETS.forEach(function(s, idx){
+    var tb = document.createElement('button');
+    tb.type = 'button';
+    tb.className = 'q-tab' + (idx === 0 ? ' active' : '');
+    tb.textContent = s.name + '（' + s.data.length + ' 题）';
+    tb.addEventListener('click', function(){
+      if (setIdx === idx) return;
+      setIdx = idx;
+      qi = 0; score = 0; answered = false;
+      qScore.textContent = '得分：0';
+      qDone.style.display = 'none';
+      qDone.textContent = '';
+      qFb.textContent = '';
+      var tabs = qTabs.querySelectorAll('.q-tab');
+      for (var k = 0; k < tabs.length; k++) tabs[k].classList.remove('active');
+      tb.classList.add('active');
+      qBadge.textContent = s.name + ' · ' + s.data.length + ' 题';
+      loadQuestion();
+    });
+    qTabs.appendChild(tb);
+  });
+  qBadge.textContent = QUIZ_SETS[0].name + ' · ' + QUIZ_SETS[0].data.length + ' 题';
+  loadQuestion();
+
+  /* ========== 选词填空（课文原句 + 语法原句） ========== */
+  var CLOZE_PASSAGE = [
+    {s:'Tomorrow I\'ll be one of the first students to travel into ____.', ans:'space', opts:['space','orbit','station']},
+    {s:'The spaceship will ____ the Earth at 9:00 a.m.', ans:'leave', opts:['leave','arrive','land']},
+    {s:'The Moon is around 380,000 kilometres from the Earth, so it\'ll take us about three ____ to get there.', ans:'days', opts:['days','hours','weeks']},
+    {s:'The ____ in space is very weak, so we\'ll all be floating around in the spaceship.', ans:'gravity', opts:['gravity','energy','sound']},
+    {s:'We need to ____ the sleeping bag to the wall so that we won\'t float away in our sleep!', ans:'tie', opts:['tie','cut','wash']},
+    {s:'Because of the low gravity, our bodies may get ____, so we\'ll have to do exercise every day.', ans:'weak', opts:['weak','strong','tired']},
+    {s:'A person ____ much less on the Moon, so we can jump very high.', ans:'weighs', opts:['weighs','weigh','weight']},
+    {s:'I\'ll have to wear a ____ to help me breathe because there\'s no air on the Moon.', ans:'spacesuit', opts:['spacesuit','spaceship','helmet']},
+    {s:'That also means there is no ____ there.', ans:'sound', opts:['sound','air','light']},
+    {s:'The Moon is a strange and ____ place.', ans:'mysterious', opts:['mysterious','wonderful','dangerous']},
+    {s:'I\'m going to take as many ____ as I can.', ans:'photos', opts:['photos','rocks','notes']},
+    {s:'I\'m sure that it\'ll be a ____ trip!', ans:'wonderful', opts:['wonderful','terrible','boring']}
+  ];
+  var CLOZE_GRAMMAR = [
+    {s:'Professor Lin thinks the world population (1) ____ be a lot bigger in the future.', ans:'will', opts:['will','is','has']},
+    {s:'In the year 2100, there (2) ____ going to be cities in the sea.', ans:'is', opts:['is','are','will']},
+    {s:'He also says that we (3) ____ go on trips to the Moon or even Mars.', ans:'will', opts:['will','are','do']},
+    {s:'But will it (4) ____ to cost a lot to travel to space?', ans:'have', opts:['have','has','had']},
+    {s:'"Will you stay at the Starlight Hotel?" "No, we (5) ____, but I\'m sure there will be wonderful views."', ans:'won\'t', opts:['won\'t','will','are']},
+    {s:'Tim: (6) ____ (Aunt Alice / look after) them when we are away?', ans:'Will Aunt Alice look after', opts:['Will Aunt Alice look after','Is Aunt Alice look after','Does Aunt Alice look after']},
+    {s:'I (7) ____ going to plan our trip to the Starlight Hotel.', ans:'am', opts:['am','is','are']},
+    {s:'We know you (8) ____ enjoy your stay.', ans:'will', opts:['will','won\'t','are']}
+  ];
+  var CLOZE_SETS = [
+    {name:'课文原句', data:CLOZE_PASSAGE},
+    {name:'语法原句', data:CLOZE_GRAMMAR}
+  ];
+  function curCloze(){ return CLOZE_SETS[clzSet].data; }
+  var ci = 0, cscore = 0, cans = false, ccurrent = null, clzSet = 0;
+  var clzSent = document.getElementById('clzSent');
+  var clzOpts = document.getElementById('clzOpts');
+  var clzFb = document.getElementById('clzFb');
+  var clzNext = document.getElementById('clzNext');
+  var clzDone = document.getElementById('clzDone');
+  var clzHint = document.getElementById('clzHint');
+  var clzScore = document.getElementById('clzScore');
+
+  function wordify(t){
+    var html = '';
+    var re = /([A-Za-z']+)([^A-Za-z']*)/g;
+    var last = 0, m;
+    while ((m = re.exec(t)) !== null) {
+      html += t.slice(last, m.index);
+      html += '<span class="clz-w" role="button" tabindex="0">' + m[1] + '</span>' + m[2];
+      last = m.index + m[0].length;
+    }
+    html += t.slice(last);
+    return html;
+  }
+  function clzSentenceHtml(s, fill){
+    var parts = s.split('____');
+    var html = '';
+    for (var i = 0; i < parts.length; i++) {
+      html += wordify(parts[i]);
+      if (i < parts.length - 1) {
+        html += fill
+          ? '<span class="clz-w fill" role="button" tabindex="0">' + fill + '</span>'
+          : '<span class="clz-blank">______</span>';
+      }
+    }
+    return html;
+  }
+  /* 点击句子中的单词发音 */
+  clzSent.addEventListener('click', function(e){
+    var t = e.target;
+    if (t && t.classList && t.classList.contains('clz-w')) speak(t.textContent, 0.8);
+  });
+
+  function loadCloze(){
+    cans = false;
+    ccurrent = curCloze()[ci];
+    clzHint.textContent = '第 ' + (ci + 1) + ' / ' + curCloze().length + ' 题 · 点选单词填空（点击单词可听发音）';
+    clzFb.textContent = '';
+    clzNext.style.display = 'none';
+    clzNext.textContent = '下一题 →';
+    clzDone.style.display = 'none';
+    clzSent.innerHTML = clzSentenceHtml(ccurrent.s, '');
+    clzOpts.innerHTML = '';
+    var opts = shuffle(ccurrent.opts);
+    opts.forEach(function(o){
+      var b = document.createElement('button');
+      b.className = 'q-opt';
+      b.type = 'button';
+      b.textContent = o;
+      b.addEventListener('click', function(){
+        if (cans) return;
+        cans = true;
+        speak(o, 0.8);
+        var correct = (o === ccurrent.ans);
+        if (correct) {
+          cscore++;
+          b.classList.add('correct');
+          clzFb.innerHTML = '答对啦！正确答案是 <b>' + ccurrent.ans + '</b>';
+          clzFb.style.color = 'var(--green)';
+        } else {
+          b.classList.add('wrong');
+          var bs2 = clzOpts.querySelectorAll('.q-opt');
+          for (var k = 0; k < bs2.length; k++) {
+            if (bs2[k].textContent === ccurrent.ans) { bs2[k].classList.add('correct'); break; }
+          }
+          clzFb.innerHTML = '再想想！正确答案是 <b>' + ccurrent.ans + '</b>';
+          clzFb.style.color = 'var(--red)';
+        }
+        /* 显示完整句子（每个单词可点读）+ 整句朗读按钮 */
+        clzSent.innerHTML = '';
+        var line = document.createElement('div');
+        line.className = 'clz-line';
+        line.innerHTML = clzSentenceHtml(ccurrent.s, ccurrent.ans);
+        var lb = document.createElement('button');
+        lb.className = 'clz-listen';
+        lb.type = 'button';
+        lb.setAttribute('aria-label', '朗读本句');
+        lb.title = '朗读本句';
+        lb.innerHTML = SPK;
+        lb.addEventListener('click', function(){
+          speak(ccurrent.s.replace('____', ccurrent.ans));
+        });
+        line.appendChild(lb);
+        clzSent.appendChild(line);
+        clzScore.textContent = '得分：' + cscore;
+        setTimeout(function(){ speak(ccurrent.ans, 0.8); }, 700);
+        if (ci < curCloze().length - 1) {
+          clzNext.style.display = 'inline-block';
+        } else {
+          clzNext.style.display = 'inline-block';
+          clzNext.textContent = '再来一轮';
+          clzDone.style.display = 'block';
+          clzDone.textContent = '完成！共 ' + curCloze().length + ' 题，答对 ' + cscore + ' 题。' +
+            (cscore === curCloze().length ? ' 太棒了，全部正确！' : (cscore >= curCloze().length * 0.6 ? ' 很好，继续加油！' : ' 建议回到课文部分再读一读。'));
+        }
+      });
+      clzOpts.appendChild(b);
+    });
+  }
+  clzNext.addEventListener('click', function(){
+    if (ci >= curCloze().length - 1) {
+      ci = 0;
+      cscore = 0;
+      clzScore.textContent = '得分：0';
+      clzDone.style.display = 'none';
+      clzDone.textContent = '';
+    } else {
+      ci++;
+    }
+    loadCloze();
+  });
+  /* 填空 tab（课文原句 / 语法原句） */
+  var clzTabs = document.getElementById('clzTabs');
+  var clzBadge = document.getElementById('clzBadge');
+  CLOZE_SETS.forEach(function(s, idx){
+    var tb = document.createElement('button');
+    tb.type = 'button';
+    tb.className = 'q-tab' + (idx === 0 ? ' active' : '');
+    tb.textContent = s.name + '（' + s.data.length + ' 题）';
+    tb.addEventListener('click', function(){
+      if (clzSet === idx) return;
+      clzSet = idx;
+      ci = 0; cscore = 0; cans = false;
+      clzScore.textContent = '得分：0';
+      clzDone.style.display = 'none';
+      clzDone.textContent = '';
+      clzFb.textContent = '';
+      var tabs = clzTabs.querySelectorAll('.q-tab');
+      for (var k = 0; k < tabs.length; k++) tabs[k].classList.remove('active');
+      tb.classList.add('active');
+      clzBadge.textContent = s.name + ' · ' + s.data.length + ' 题';
+      loadCloze();
+    });
+    clzTabs.appendChild(tb);
+  });
+  clzBadge.textContent = CLOZE_SETS[0].name + ' · ' + CLOZE_SETS[0].data.length + ' 题';
+  loadCloze();
+
+  /* ========== 语法 · Using there is / are 对话匹配 ========== */
+  var GM = [
+    {q:'Will the spaceship leave the Earth at 9:00 a.m.?', a:'Yes, it will. It\'ll take us to the Moon.', opts:['Yes, it will. It\'ll take us to the Moon.','No, it won\'t. It will leave at noon.','Yes, it will. It\'ll take us to the Mars.']},
+    {q:'Will you sleep in beds in space?', a:'No, we won\'t. We\'ll sleep in sleeping bags.', opts:['No, we won\'t. We\'ll sleep in sleeping bags.','Yes, we will. We love our beds.','No, we won\'t. We\'ll stand all night.']},
+    {q:'What are you going to do when you arrive?', a:'I\'m going to walk on the Moon.', opts:['I\'m going to walk on the Moon.','I\'m going to sleep in a bed.','I\'m going to drive a car.']},
+    {q:'Why will you wear a spacesuit?', a:'Because there is no air on the Moon. I need it to breathe.', opts:['Because there is no air on the Moon. I need it to breathe.','Because it is very hot on the Moon.','Because I want to look cool.']},
+    {q:'Can we jump very high on the Moon?', a:'Yes, we can. The Moon has much weaker gravity.', opts:['Yes, we can. The Moon has much weaker gravity.','No, we can\'t. It is too heavy.','Yes, we can. There is a lot of air.']},
+    {q:'What will you take photos of?', a:'I\'m going to take as many photos of the Moon as I can.', opts:['I\'m going to take as many photos of the Moon as I can.','I\'m going to take photos of my bedroom.','I\'m going to take photos of the sea.']},
+    {q:'Will you do exercise in the spaceship?', a:'Yes, we will. We\'ll have to exercise every day.', opts:['Yes, we will. We\'ll have to exercise every day.','No, we won\'t. We don\'t need it.','Yes, we will. We\'ll play football.']},
+    {q:'Are you going to travel back to the Earth?', a:'Yes, we are. We\'ll travel back next week.', opts:['Yes, we are. We\'ll travel back next week.','No, we aren\'t. We\'ll live on the Moon.','Yes, we are. We\'ll fly to Mars.']}
+  ];
+  var gi = 0, gscore = 0, gans = false, gcurrent = null;
+  var gmHint = document.getElementById('gmHint');
+  var gmScore = document.getElementById('gmScore');
+  var gmQ = document.getElementById('gmQ');
+  var gmPlay = document.getElementById('gmPlay');
+  var gmOpts = document.getElementById('gmOpts');
+  var gmFb = document.getElementById('gmFb');
+  var gmPair = document.getElementById('gmPair');
+  var gmNext = document.getElementById('gmNext');
+  var gmDone = document.getElementById('gmDone');
+
+  function loadGM(){
+    gans = false;
+    gcurrent = GM[gi];
+    gmHint.textContent = '第 ' + (gi + 1) + ' / ' + GM.length + ' 题 · 先听问句，再选出正确答句';
+    gmFb.textContent = '';
+    gmPair.className = 'gm-pair';
+    gmPair.innerHTML = '';
+    gmNext.style.display = 'none';
+    gmNext.textContent = '下一组 →';
+    gmDone.style.display = 'none';
+    gmQ.textContent = gcurrent.q;
+    gmPlay.innerHTML = SPK;
+    gmOpts.innerHTML = '';
+    var opts = shuffle(gcurrent.opts);
+    opts.forEach(function(o){
+      var row = document.createElement('div');
+      row.className = 'gm-opt';
+      row.setAttribute('role', 'button');
+      row.setAttribute('tabindex', '0');
+      var txt = document.createElement('span');
+      txt.className = 'txt';
+      txt.textContent = o;
+      var lstn = document.createElement('button');
+      lstn.className = 'lstn';
+      lstn.type = 'button';
+      lstn.setAttribute('aria-label', '试听选项');
+      lstn.innerHTML = SPK;
+      lstn.addEventListener('click', function(e){ e.stopPropagation(); speak(o); });
+      row.appendChild(txt);
+      row.appendChild(lstn);
+      function pick(){
+        if (gans) return;
+        gans = true;
+        var correct = (o === gcurrent.a);
+        if (correct) {
+          gscore++;
+          row.classList.add('correct');
+          gmFb.innerHTML = '答对啦！';
+          gmFb.style.color = 'var(--green)';
+        } else {
+          row.classList.add('wrong');
+          var rows = gmOpts.querySelectorAll('.gm-opt');
+          for (var k = 0; k < rows.length; k++) {
+            if (rows[k].querySelector('.txt').textContent === gcurrent.a) { rows[k].classList.add('correct'); break; }
+          }
+          gmFb.innerHTML = '再听听！正确答句是：';
+          gmFb.style.color = 'var(--red)';
+        }
+        gmScore.textContent = '得分：' + gscore;
+        /* 展示完整问答 + 跟读按钮 */
+        gmPair.className = 'gm-pair show';
+        gmPair.innerHTML = '<div class="gm-bubbles"><div class="gm-bub q">' + gcurrent.q +
+          '</div><div class="gm-bub a">' + gcurrent.a +
+          '</div></div><button class="gm-repeat" type="button" id="gmRepeatBtn">跟读 · 听完整问答</button>';
+        document.getElementById('gmRepeatBtn').addEventListener('click', function(){
+          if (!synth) return;
+          synth.cancel();
+          var seq = [gcurrent.q, gcurrent.a];
+          var ii = 0;
+          function nx(){
+            if (ii >= seq.length) return;
+            var u = new SpeechSynthesisUtterance(seq[ii]);
+            var v = getVoice();
+            if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-GB'; }
+            u.rate = parseFloat(rateSel.value) || 1;
+            u.onend = function(){ ii++; setTimeout(nx, 320); };
+            synth.speak(u);
+          }
+          nx();
+        });
+        /* 自动播放正确答句，增加听力输入 */
+        setTimeout(function(){ speak(gcurrent.a, 0.8); }, 450);
+        if (gi < GM.length - 1) {
+          gmNext.style.display = 'inline-block';
+        } else {
+          gmNext.style.display = 'inline-block';
+          gmNext.textContent = '再来一轮';
+          gmDone.style.display = 'block';
+          gmDone.textContent = '完成！共 ' + GM.length + ' 组对话，答对 ' + gscore + ' 题。' +
+            (gscore === GM.length ? ' 太棒了，全部正确！' : (gscore >= GM.length * 0.6 ? ' 很好，继续加油！' : ' 建议回到语法规则再多听几遍。'));
+        }
+      }
+      row.addEventListener('click', pick);
+      row.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
+      });
+      gmOpts.appendChild(row);
+    });
+  }
+  gmPlay.addEventListener('click', function(){ if (gcurrent) speak(gcurrent.q); });
+  gmQ.addEventListener('click', function(){ if (gcurrent) speak(gcurrent.q); });
+  gmNext.addEventListener('click', function(){
+    if (gi >= GM.length - 1) {
+      gi = 0;
+      gscore = 0;
+      gmScore.textContent = '得分：0';
+      gmDone.style.display = 'none';
+      gmDone.textContent = '';
+    } else {
+      gi++;
+    }
+    loadGM();
+  });
+  loadGM();
+})();
+</script>
+
+<button id="toTop" class="to-top" type="button" aria-label="回到顶部" title="回到顶部">↑</button>
+<div class="wrap"><div class="mob-note"><b>手机 / iPad 提示：</b>请用 <b>Safari 或 Chrome</b> 打开本文件以获得完整点读功能（"文件"App 里的预览不能交互）。如点击发音没有声音：① 检查设备侧边的<b>静音键</b>与音量；② 在「<b>设置 → 辅助功能 → 朗读内容 → 声音</b>」中下载 English 语音（如 Samantha）。</div></div>
+<script>
+(function(){
+  try{
+    var b=document.getElementById('toTop'); if(!b) return;
+    var show=function(){ b.style.display = (window.scrollY>600) ? 'flex' : 'none'; };
+    window.addEventListener('scroll',show,{passive:true}); show();
+    b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

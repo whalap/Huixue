@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>语法练习 A1–B1 · 跳转</title>
+<meta http-equiv="refresh" content="0;url=A1-B1网页/语法练习_A1-A2-B1-B2.html">
+<style>
+body{margin:0;font-family:"PingFang SC","Microsoft YaHei",sans-serif;background:#12100d;color:#f0ece4;
+display:flex;align-items:center;justify-content:center;min-height:100vh}
+.card{background:#1c1913;border:1px solid #3a352c;border-radius:16px;padding:28px 32px;text-align:center;max-width:440px}
+h1{font-size:17px;margin:0 0 8px;color:#f5c542}
+p{font-size:13px;color:#a49c8e;margin:0 0 16px;line-height:1.8}
+a{display:inline-block;background:#f5c542;color:#1a1408;text-decoration:none;font-weight:700;
+font-size:13.5px;border-radius:10px;padding:9px 18px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>✍️ 语法练习</h1>
+  <p>这个地址是旧链接的兼容入口，正在跳到语法练习页（知识点定位参数会一起带过去）。</p>
+  <a id="go" href="A1-B1网页/语法练习_A1-A2-B1-B2.html">继续前往 →</a>
+</div>
+<script>
+var u = 'A1-B1网页/语法练习_A1-A2-B1-B2.html' + (location.search || '') + (location.hash || '');
+document.getElementById('go').href = u;
+location.replace(u);
+</script>
+</body>
+</html>

@@ -1,0 +1,2832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>广州中考E听说 · 分级听说训练（A1→B1）</title>
+<meta name="theme-color" content="#14110c">
+<link rel="apple-touch-icon" href="icon-512.png">
+<link rel="icon" href="icon-192.png">
+<style>
+  :root{
+    --bg:#0d0f14; --panel:#161a22; --panel2:#1d2230; --line:#2a3140;
+    --gold:#d4af37; --gold-soft:#e8c969; --red:#e63946; --txt:#eef1f6;
+    --muted:#9aa3b2; --ok:#3fb27f; --warn:#e9a23b;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:"PingFang SC","Microsoft YaHei",-apple-system,Segoe UI,Roboto,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:22px 18px 60px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--gold),#9c7d1f);display:flex;align-items:center;justify-content:center;font-weight:800;color:#1a1408;font-size:18px}
+  h1{font-size:20px;margin:0;letter-spacing:.5px}
+  .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+  .pill{font-size:11px;border:1px solid var(--line);color:var(--muted);padding:3px 9px;border-radius:999px;white-space:nowrap}
+
+  .levels{display:flex;gap:8px;margin:16px 0 6px;flex-wrap:wrap}
+  .lvl{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;transition:.18s}
+  .lvl:hover{border-color:var(--gold-soft)}
+  .lvl.active{border-color:var(--gold);background:linear-gradient(180deg,#1c2230,#161a22)}
+  .lvl .k{font-weight:800;font-size:15px}
+  .lvl .d{color:var(--muted);font-size:11.5px;margin-top:3px}
+  .lvl.active .k{color:var(--gold)}
+
+  .sec-title{font-size:13px;color:var(--gold-soft);letter-spacing:1px;margin:22px 0 10px;text-transform:uppercase}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;cursor:pointer;transition:.18s;position:relative;overflow:hidden}
+  .card:hover{border-color:var(--gold-soft);transform:translateY(-2px)}
+  .card .tag{position:absolute;top:12px;right:12px;font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+  .card h3{margin:0 0 6px;font-size:16px}
+  .card p{margin:0;color:var(--muted);font-size:12.5px}
+  .card .meta{margin-top:10px;font-size:11.5px;color:var(--gold-soft)}
+  .done{color:var(--ok)}
+
+  /* practice overlay */
+  .overlay{position:fixed;inset:0;background:#0a0c11;z-index:50;display:none;flex-direction:column;backdrop-filter:blur(6px)}
+  .overlay.show{display:flex}
+  .ov-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);background:#0d1016;flex:0 0 auto;position:sticky;top:0;z-index:2}
+  .ov-body{flex:1;overflow:auto;padding:22px 20px;max-width:880px;margin:0 auto;width:100%}
+  .btn{background:var(--panel2);border:1px solid var(--line);color:var(--txt);padding:9px 16px;border-radius:10px;cursor:pointer;font-size:14px;transition:.15s}
+  .btn:hover{border-color:var(--gold-soft)}
+  .btn.gold{background:linear-gradient(135deg,var(--gold),#b8932b);color:#1a1408;font-weight:700;border:none}
+  .btn.gold:hover{filter:brightness(1.06)}
+  .btn.ghost{background:transparent}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+
+  .timer{display:flex;align-items:center;gap:16px;margin:18px 0}
+  .tnum{font-size:46px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:1px}
+  .tnum.warn{color:var(--red)}
+  .tbar{height:8px;flex:1;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .tbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-soft));width:100%}
+  .stage{color:var(--gold-soft);font-size:13px;letter-spacing:1px}
+
+  .textbox{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:18px;font-size:19px;line-height:1.9;margin:14px 0}
+  .textbox .word{cursor:pointer;border-radius:4px;padding:0 2px}
+  .textbox .word:hover{background:#2c3346}
+  .textbox .end{color:var(--red);font-weight:700}
+  .textbox .end-ok{color:var(--ok);font-weight:700}
+  .textbox .end-bad{color:var(--red);font-weight:800;text-decoration:underline}
+  /* —— 断句与语调标记 —— */
+  .chunkbox{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0;
+            font-size:18.5px;line-height:2.15}
+  .chunkbox .ck{color:var(--txt)}
+  .chunkbox .slash{color:var(--gold);font-weight:800;padding:0 3px}
+  .chunkbox .tn{font-weight:800;font-size:15px;padding:0 1px}
+  .chunkbox .tn.up{color:#4A90D9}
+  .chunkbox .tn.down{color:var(--red)}
+  .chunkbox .sentno{color:var(--muted);font-size:12px;font-weight:700;margin-right:6px}
+  .guidebox{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:12px 0;overflow:hidden}
+  .guidebox>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14.5px;color:var(--gold);
+            list-style:none;display:flex;align-items:center;gap:8px;user-select:none}
+  .guidebox>summary::-webkit-details-marker{display:none}
+  .guidebox>summary::after{content:'▾';margin-left:auto;color:var(--muted);font-size:12px}
+  .guidebox[open]>summary::after{content:'▴'}
+  .guidebox .gbody{padding:2px 16px 14px;border-top:1px solid var(--line)}
+  .guidebox h5{margin:13px 0 6px;font-size:13.5px;color:var(--gold)}
+  .guidebox p, .guidebox li{font-size:13.2px;line-height:1.85;color:var(--txt)}
+  .guidebox ul,.guidebox ol{margin:4px 0 4px 19px}
+  .guidebox li{margin:3px 0}
+  .guidebox .ex{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:9px 12px;
+            font-size:14px;margin:7px 0;line-height:1.9}
+  .guidebox .ex b{color:var(--gold)}
+  .guidebox .ex .u,.guidebox .exline .u{color:#4A90D9;font-weight:800}
+  .guidebox .ex .d,.guidebox .exline .d{color:var(--red);font-weight:800}
+  .guidebox .exline{display:block;background:var(--panel2);border:1px solid var(--line);border-radius:8px;
+                     padding:5px 10px;margin:4px 0 2px;font-size:13.8px;line-height:1.8}
+  .guidebox .exline b{color:var(--gold)}
+  .guidebox .exno{display:block;color:var(--muted);font-size:12.2px;margin:1px 0 4px;line-height:1.7}
+  .guidebox .ndemo{background:var(--panel2);border:1px dashed var(--gold-soft);border-radius:8px;
+                   padding:9px 12px;margin:6px 0;font-family:Consolas,'Courier New',monospace;
+                   font-size:12.8px;line-height:1.8;white-space:pre-wrap;color:#e8d9a8}
+  .guidebox .tip{background:#2a2415;border:1px solid #4a3f1c;border-radius:9px;padding:9px 12px;font-size:12.8px;margin:8px 0;color:#e8d9a8}
+  .guidebox .tone-row{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+  .guidebox .tone{flex:1 1 150px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:9px 11px;text-align:center}
+  .guidebox .tone .m{font-size:24px;font-weight:800;line-height:1.3}
+  .guidebox .tone .u{color:#4A90D9} .guidebox .tone .d{color:var(--red)} .guidebox .tone .f{color:var(--ok)}
+  .guidebox .tone .n{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .scoreBox{font-size:18px;font-weight:700;margin:10px 0}
+  .scoreBox .big{color:var(--gold);font-size:30px;font-weight:800}
+  .endRow{display:flex;gap:12px;align-items:center;padding:5px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+  .endRow .w{font-weight:700;min-width:96px;color:var(--txt)}
+  .endRow label{cursor:pointer}
+  .scoreMsg{margin:8px 0;font-weight:700;font-size:14px}
+  .scoreMsg.bad{color:var(--red)} .scoreMsg.ok{color:var(--ok)}
+  .hint{color:var(--muted);font-size:12px;margin-top:6px}
+  .cn{color:var(--muted);font-size:14px}
+
+  .q{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0}
+  .q .qt{font-weight:700;margin-bottom:8px}
+  .opt{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:9px;margin:7px 0;background:var(--panel)}
+  .opt .mk{color:var(--gold);font-weight:800}
+  .opt.correct{border-color:var(--ok)}
+  .opt .ans{color:var(--ok);font-size:12px;margin-left:auto}
+
+  .notes{width:100%;min-height:120px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;color:var(--txt);padding:12px;font-size:15px;font-family:inherit;resize:vertical}
+  .audio-row{display:flex;align-items:center;gap:12px;margin:12px 0;flex-wrap:wrap}
+  audio{width:100%;max-width:430px}
+  .rec-dot{width:12px;height:12px;border-radius:50%;background:var(--red);display:inline-block;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+  .checklist{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0}
+  .checklist h4{margin:0 0 10px;color:var(--gold-soft);font-size:14px}
+  .chk{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px dashed var(--line)}
+  .chk:last-child{border-bottom:none}
+  .chk input{margin-top:5px;accent-color:var(--gold)}
+  .chk label{cursor:pointer;font-size:13.5px}
+  /* 规则/说明文字行：必须是块级，不能复用 .chk（flex 会把加粗片段拆成独立flex项导致错行） */
+  .exrule{display:block;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.85}
+  .exrule:last-child{border-bottom:none}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--gold);color:var(--txt);padding:11px 18px;border-radius:10px;z-index:99;opacity:0;transition:.25s;font-size:13.5px}
+  .toast.show{opacity:1}
+
+  .notice{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:18px}
+  .notice h4{margin:0 0 8px;color:var(--gold-soft);font-size:14px}
+  .notice ol{margin:6px 0;padding-left:20px;color:var(--muted);font-size:13px}
+  .notice li{margin:5px 0}
+  details summary{cursor:pointer;color:var(--gold-soft);font-size:13px}
+  .warnbox{background:#2a1b1b;border:1px solid var(--red);color:#f3c9c9;border-radius:10px;padding:12px 14px;font-size:13px;margin:10px 0}
+  .voicebar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0;font-size:13px;color:var(--muted)}
+  select,input[type=range]{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-family:inherit}
+  .progress-mini{font-size:12px;color:var(--muted);margin-left:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="logo">E</div>
+      <div>
+        <h1>广州中考 E听说 · 分级听说训练</h1>
+        <div class="sub">满分30分 · 机考同源训练 · 从 A1 起步循序渐进到 B1（考试基准）</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <span class="pill" id="voicePill">音色：加载中…</span>
+      <span class="pill">进度自动保存本地</span>
+    </div>
+  </header>
+
+  <div class="levels" id="levels"></div>
+
+  <div class="voicebar">
+    <span>范读语速：</span>
+    <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.95">
+    <span id="rateV" style="color:var(--gold-soft)">0.95×</span>
+    <span style="margin-left:8px">音色：</span>
+    <select id="voiceSel"></select>
+    <button class="btn" id="testSound" style="margin-left:8px;padding:6px 12px;font-size:13px">🔊 测试声音</button>
+    <span id="soundDiag" style="font-size:12px;color:var(--gold-soft);margin-left:6px"></span>
+    <span class="progress-mini" id="progressMini"></span>
+  </div>
+
+  <div class="btn-row" style="margin:16px 0 4px">
+    <button class="btn gold" id="examBtn" style="font-size:15px;padding:12px 20px">🎯 进入全真模考（四题连做 · 严格计时，贴近真实机考）</button>
+  </div>
+  <div class="hint" style="margin-bottom:6px">模考流程：① 模仿朗读 → ② 听选信息 → ③ 回答问题 → ④ 信息转述及询问（转述+询问），四环节连做，严格按官方计时，考完出汇总。</div>
+
+  <div class="notice" style="margin:14px 0 6px">
+    <h4>📊 官方题型与分值分布（满分 30 分）</h4>
+    <div id="scoreTable" style="margin-top:8px"></div>
+  </div>
+
+  <div class="notice" style="margin:14px 0 6px">
+    <h4>📈 我的成绩单（做完练习自动记录）</h4>
+    <div class="hint">每个题型做完都会给分并记录在这里。看「薄弱项排行」就知道接下来该练什么。</div>
+    <div id="myReport" style="margin-top:10px"></div>
+  </div>
+
+  <div class="notice" style="margin:14px 0 6px">
+    <h4>🏅 我的徽章墙</h4>
+    <div class="hint">徽章奖励"练好"，不只是"点过"——分四类：<b>完成数量/通关 · 连续打卡 · 质量达标 · 补强弱项</b>。点亮徽章就是看得见的成长证据。</div>
+    <div id="badgeWall" style="margin-top:10px"></div>
+  </div>
+
+  <div class="sec-title">五大题型 · 选择关卡开始练习</div>
+  <div class="grid" id="cards"></div>
+
+  <div class="notice" style="margin:18px 0 6px">
+    <h4>🏛️ 全真模考 · 每级十二套 A–L 卷（共 36 套）</h4>
+    <div class="hint">五大题型练完，回到这里做<b>整卷模考</b>：<b>A1 / A2 / B1 各 12 套</b>（A–L 卷，共 36 套），每套由该级别五大题型各一题组成，按官方流程四环节连做、严格计时。真题卷长度 = 官方标准（50 秒准备 + 60 秒作答），做完可对照<b>听力原文</b>与<b>官方分层次答案</b>。下方随上方级别切换只显示<b>当前级别</b>的卷。</div>
+    <div id="officialBox" style="margin-top:10px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px"></div>
+  </div>
+
+  <div class="notice">
+    <h4>考场黄金法则（考前必读）</h4>
+    <details>
+      <summary>展开 / 收起 注意事项</summary>
+      <ol>
+        <li><b>麦克风</b>：嘴距约 2cm，平行，不喷麦不远离；耳罩盖住耳朵，勿掀开。</li>
+        <li><b>禁止抢答！</b>听到提示音、看到进度条后，停顿 1–2 秒再开口，保证设备启动。</li>
+        <li>读错不要回头重念，直接继续；不要发出"呃…"等语气词。</li>
+        <li>每题作答时限卡死，超时系统自动停止录音，答案不完整直接丢分。</li>
+        <li>不会的词不卡壳，<b>同义替换</b>（library → a place with many books）。</li>
+        <li>不确定也要开口，不要留白——留白直接零分。</li>
+        <li>考前设备测试必做，故障立刻举手找监考老师。</li>
+      </ol>
+    </details>
+  </div>
+</div>
+
+<!-- practice overlay -->
+<div class="overlay" id="overlay">
+  <div class="ov-head">
+    <div>
+      <div id="ovTitle" style="font-weight:800"></div>
+      <div id="ovSub" style="color:var(--muted);font-size:12.5px"></div>
+    </div>
+    <button class="btn ghost" id="closeOv">✕ 退出本关</button>
+  </div>
+  <div class="ov-body" id="ovBody"></div>
+</div>
+
+<style>
+.pgnav{background:#11151d;border-top:1px solid #2a3140;margin-top:34px;padding:18px 0 24px}
+.pgnav .pg-h{margin:0 0 9px;font-size:12.5px;color:#9aa3b2;letter-spacing:.6px}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:9px}
+.pgnav a{text-decoration:none;font-size:13px;color:#eef1f6;background:#161a22;border:1px solid #2a3140;border-radius:999px;padding:7px 14px}
+.pgnav a:hover{border-color:#d4af37;color:#e8c969}
+.pgnav a.up{background:linear-gradient(135deg,#d4af37,#9c7d1f);border-color:#d4af37;color:#1a1408;font-weight:700}
+.pgnav a.up:hover{background:#e8c969;color:#1a1408}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">练完了？换一条线继续</p>
+    <div class="pg-row">
+      <a class="up" href="../index.html">🏠 返回慧学学习网络首页</a>
+      <a class="gr" href="../A1-B1网页/index.html">🏛️ 跟读四级总站</a>
+      <a class="gr" href="../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+    </div>
+    <div class="pg-row">
+      <a class="bl" href="../01_课本同步_沪教版七上/点读学习包/Unit0_总目录_点读学习中心.html">📚 七上课本同步</a>
+      <a class="bl" href="../01_课本同步_沪教版七上/原声课文跟读.html">🎧 原声课文跟读</a>
+      <a class="bl" href="../01_课本同步_沪教版七上/单元习题与测试/Unit1_习题与测试.html">📝 单元习题与测试</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+
+<script>
+
+
+/* ============================================================
+   引擎：TTS / 录音 / 计时 / 提示音
+   ============================================================ */
+const cfg={rate:0.95, voice:null, gap:900};
+/* 音色：强制锁定英式（en-GB），并提供男/女两个英式声用于对白区分 */
+let voices=[], gbVoices=[], gbMale=null, gbFemale=null;
+function isGB(v){ return v && /^en[-_]GB/i.test(v.lang); }
+/* 注意：英文单词 "female" 内含 "male"，判断男声必须先排除 female */
+function isFemaleName(n){ return /female|woman|zira|samantha|serena|kate|libby|sonia|emma|hazel|karen|moira|tessa|fiona/i.test(n); }
+function isMaleName(n){ return !isFemaleName(n) && /male|\bman\b|david|daniel|george|arthur|oliver|ryan|thomas|mark|michael/i.test(n); }
+function pickGBFemale(vs){
+  return vs.find(v=>isFemaleName(v.name)) || vs[0] || null;
+}
+function pickGBMale(vs){
+  return vs.find(v=>isMaleName(v.name)) || null;
+}
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const sel=document.getElementById('voiceSel');
+  if(!voices.length){ sel.innerHTML='<option>浏览器无可用英文音色</option>'; document.getElementById('voicePill').textContent='音色：无（请检查系统语音包）'; return; }
+  // ① 英式优先池：只收 en-GB
+  gbVoices = voices.filter(isGB);
+  gbFemale = pickGBFemale(gbVoices);
+  gbMale   = pickGBMale(gbVoices);
+  // ② 排序：英式(0) → 其他英语(1) → 非英语(2)；同类中离线(localService)优先
+  const rank=v=> isGB(v)?0 : (/^en([-_]|$)/i.test(v.lang||'')?1:2);
+  const sorted=[...voices].sort((a,b)=>{
+    const ra=rank(a), rb=rank(b);
+    if(ra!==rb) return ra-rb;
+    return (b.localService?1:0)-(a.localService?1:0);
+  });
+  sel.innerHTML='';
+  sorted.forEach((v,i)=>{
+    const o=document.createElement('option');
+    o.value=i; o.textContent=`${v.name} · ${v.lang}${v.localService?' · 离线':' · 在线'}${isGB(v)?' · 英式':''}`;
+    sel.appendChild(o);
+  });
+  // ③ 默认音色：离线优先（在线语音依赖网络，无网会静默失败 → 没声音）
+  //    顺序：英式女声 → 离线英式 → 离线英语 → 任意英式 → 离线任意 → 任意英语 → 任意
+  const enVoices = voices.filter(v=>/^en([-_]|$)/i.test(v.lang||''));
+  const enLocal  = enVoices.filter(v=>v.localService);
+  const anyLocal = voices.filter(v=>v.localService);
+  const def = gbFemale
+    || gbVoices.find(v=>v.localService)
+    || gbVoices[0]
+    || enLocal[0]
+    || enVoices[0]
+    || anyLocal[0]
+    || voices[0]
+    || null;
+  cfg.voice = def;
+  sel.value = String(sorted.indexOf(def));
+  sel.onchange=()=>{ cfg.voice=sorted[+sel.value]; updateVoicePill(); };
+  updateVoicePill();
+}
+function updateVoicePill(){
+  const p=document.getElementById('voicePill');
+  if(!cfg.voice){ p.textContent='音色：无'; return; }
+  const gb=isGB(cfg.voice);
+  p.innerHTML = `音色：${gb?'英式 ':''}${cfg.voice.name} · ${cfg.voice.lang}`
+    + (gbVoices.length?'':' <span style="color:#ff9a6b">（未检测到英式语音包，请安装后刷新）</span>');
+}
+/* 对白双声：必须同为英式；缺男声时用同一英式音色+音高区分，绝不混用美式 */
+function getLineVoices(){
+  const g = gbVoices;
+  if(!g.length) return {a:cfg.voice, b:cfg.voice, same:true, gb:false};
+  const female = gbFemale || g[0];
+  const male   = gbMale || null;
+  if(male && male!==female) return {a:female, b:male, same:false, gb:true};
+  const other = g.find(v=>v!==female);
+  if(other) return {a:female, b:other, same:false, gb:true};
+  return {a:female, b:female, same:true, gb:true};
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged=loadVoices;
+}else{
+  document.getElementById('voicePill').textContent='本浏览器不支持语音合成';
+}
+
+/* 声音自检：一键确认本机 TTS 是否真的能发声（区分"没声音"是代码问题还是环境问题） */
+(function(){
+  const btn=document.getElementById('testSound');
+  const diag=document.getElementById('soundDiag');
+  if(!btn) return;
+  const setDiag=(html,ok)=>{ if(diag){ diag.innerHTML=html; diag.style.color= ok?'var(--ok)':'var(--red)'; } };
+  btn.onclick=async()=>{
+    if(!('speechSynthesis' in window)){ setDiag('❌ 本浏览器不支持语音合成，请换最新版 Chrome / Edge。',false); return; }
+    const en=voices.filter(v=>/^en/i.test(v.lang||''));
+    const enLocal=en.filter(v=>v.localService);
+    setDiag(`本机共 ${voices.length} 个语音 · 英文 ${en.length} 个（离线 ${enLocal.length} 个）· 正在朗读测试句…`,true);
+    btn.disabled=true;
+    const ok=await speak('Hello, can you hear my voice? This is a sound test.', {voice:cfg.voice});
+    btn.disabled=false;
+    if(ok){
+      setDiag('✅ 能听到测试句 = 语音正常。若某个题型仍无声，多半是麦克风权限或该题逻辑问题。',true);
+    }else{
+      const cur=cfg.voice?`当前选中「${cfg.voice.name}」`:'当前无可用音色';
+      const tip = enLocal.length===0
+        ? '本机没有「离线英文语音」，多半是环境问题。请到 Windows「设置 → 时间与语言 → 语言 → 添加英语(英国)」勾选「语音」安装离线语音后刷新；或换 Edge/Chrome 并保持联网（在线语音需要网络）。'
+        : `已选在线语音但当前无网络，或该语音不可用。请在上方「音色」下拉里改选带「离线」标记的英文音色再测。${cur}`;
+      setDiag('⚠ 未发出声音。'+tip,false);
+    }
+  };
+})();
+
+/* TTS：长文本分段朗读 + 超时兜底，避免 Chrome 截断/卡死不 resolve */
+function splitForTTS(text, maxLen){
+  const t=(text||'').trim();
+  if(t.length<=maxLen) return [t];
+  const parts=[]; let buf='';
+  // 优先按句号/问号/感叹号断句
+  const sents=t.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[t];
+  for(const s of sents){
+    if(buf && (buf+s).length>maxLen){ parts.push(buf.trim()); buf=s; }
+    else buf+=s;
+    // 单句仍超长 → 按逗号再切
+    if(buf.length>maxLen){
+      const sub=buf.split(/(?<=,|;|—)/);
+      buf='';
+      for(const x of sub){ if(x.trim()) parts.push(x.trim()); }
+    }
+  }
+  if(buf.trim()) parts.push(buf.trim());
+  return parts.length?parts:[t];
+}
+function speakOnce(text, opt){
+  return new Promise((resolve)=>{
+    if(!('speechSynthesis' in window)){ resolve(false); return; }
+    const u=new SpeechSynthesisUtterance(text);
+    const v = (opt && opt.voice) || cfg.voice;
+    if(v) u.voice=v;
+    u.rate=(cfg.rate||1)*((opt&&opt.slow)?0.6:1);
+    u.pitch=(opt&&opt.pitch)||1; u.volume=(opt&&opt.vol)||1;
+    let done=false, started=false, guard=null, startGuard=null;
+    const fin=(spoken)=>{
+      if(done) return; done=true; started=started||!!spoken;
+      if(guard) clearTimeout(guard);
+      if(startGuard) clearTimeout(startGuard);
+      resolve(started);            // 返回「本次是否真正发出声音」
+    };
+    u.onstart=()=>{ started=true; if(startGuard){ clearTimeout(startGuard); startGuard=null; } };
+    u.onend=()=>fin(true);
+    u.onerror=()=>fin(started);
+    // 关键修复：3 秒内没真正开始发音 → 判定本机/该语音未发声，立即结束本段（不再干等几十秒）
+    startGuard=setTimeout(()=>{ if(!started) fin(false); }, 3000);
+    // 总兜底：按字数估算最长时长，超时强制结束（防止 Chrome 卡死不回调）
+    const est=Math.max(5000,(text.length/5)*1000+5000);
+    guard=setTimeout(fin, est);
+    try{ speechSynthesis.speak(u); }catch(e){ fin(false); return; }
+    if(speechSynthesis.paused) speechSynthesis.resume();
+  });
+}
+async function speak(text, opt){
+  opt=opt||{};
+  if(!('speechSynthesis' in window)) return false;
+  try{ speechSynthesis.cancel(); }catch(e){}
+  const maxLen = opt.maxLen || 180;
+  const parts = splitForTTS(text, maxLen);
+  let anySpoken=false;
+  for(let i=0;i<parts.length;i++){
+    const s=await speakOnce(parts[i], opt);
+    if(s) anySpoken=true;
+    if(i<parts.length-1) await new Promise(r=>setTimeout(r,120));
+  }
+}
+function beep(freq,dur){
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.value=freq||880; o.type='sine';
+    g.gain.setValueAtTime(0.001,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.25,ctx.currentTime+0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+(dur||0.18));
+    o.start(); o.stop(ctx.currentTime+(dur||0.18)+0.02);
+  }catch(e){}
+}
+
+/* 计时器 */
+let timerObj=null;
+function runTimer(seconds, el, barEl, onDone){
+  stopTimer();   // 互斥：启动新计时器前先清掉旧的
+  let rem=seconds;
+  const total=seconds;
+  const tick=()=>{
+    el.textContent=String(rem).padStart(2,'0');
+    el.classList.toggle('warn', rem<=5);
+    if(barEl) barEl.style.width=(rem/total*100)+'%';
+    if(rem<=0){ clearInterval(timerObj); timerObj=null; onDone&&onDone(); return; }
+    rem--;
+  };
+  tick();
+  timerObj=setInterval(tick,1000);
+}
+function stopTimer(){ if(timerObj){ clearInterval(timerObj); timerObj=null; } }
+
+/* 录音 */
+let mediaRecorder=null, recChunks=[], recUrl=null, recStream=null;
+let recSupported = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+async function startRecording(){
+  if(!recSupported) throw new Error('unsupported');
+  recStream=await navigator.mediaDevices.getUserMedia({audio:true});
+  recChunks=[];
+  mediaRecorder=new MediaRecorder(recStream);
+  mediaRecorder.ondataavailable=e=>{ if(e.data.size>0) recChunks.push(e.data); };
+  mediaRecorder.start();
+}
+function stopRecording(){
+  return new Promise((resolve)=>{
+    if(!mediaRecorder || mediaRecorder.state==='inactive'){ resolve(null); return; }
+    mediaRecorder.onstop=()=>{
+      const blob=new Blob(recChunks,{type:'audio/webm'});
+      if(recUrl) URL.revokeObjectURL(recUrl);
+      recUrl=URL.createObjectURL(blob);
+      if(recStream) recStream.getTracks().forEach(t=>t.stop());
+      resolve(recUrl);
+    };
+    mediaRecorder.stop();
+  });
+}
+
+/* 进度 */
+function progKey(){ return 'eet_prog_'+currentLevel; }
+function getProg(){ try{return JSON.parse(localStorage.getItem(progKey())||'{}');}catch(e){return {};} }
+function markDone(modId,taskId){
+  const p=getProg(); const key=(taskId.indexOf('of_')===0)?'official':modId;
+  p[key]=p[key]||{}; p[key][taskId]=true;
+  localStorage.setItem(progKey(),JSON.stringify(p));
+  checkIn(); checkBadges();
+  refreshProgress();
+}
+function refreshProgress(){
+  const p=getProg(); let done=0,total=0;
+  SITE_DATA.modules.forEach(m=>{ const ts=m.tasks[currentLevel]||[]; total+=ts.length; done+=(ts.filter(t=>p[m.id]&&p[m.id][t.id]).length); });
+  document.getElementById('progressMini').textContent=`本级别完成 ${done}/${total}`;
+  try{ renderBadgeWall(); }catch(e){}
+}
+
+/* 工具 */
+let currentLevel='A1';
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1900); }
+/* el(): 单根元素。传入多根节点时会自动包裹一层 div，避免静默丢弃后续节点（历史 bug 根因） */
+function el(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); const kids=[...d.children]; if(kids.length===1) return kids[0]; const w=document.createElement('div'); kids.forEach(k=>w.appendChild(k)); return w; }
+/* 多根节点片段：返回 DocumentFragment */
+function elAll(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); const f=document.createDocumentFragment(); while(d.firstChild) f.appendChild(d.firstChild); return f; }
+/* 词尾吞音高频段识别：返回需要标红的尾缀（-ed / -ts / -ds / -s / -t / -d）。
+   注意只返回"真正的尾音那一段"，正文照常显示，避免把尾音又重写一遍造成误导。 */
+function endingSuffix(w){
+  const low=w.toLowerCase();
+  if(/ed$/i.test(w) && w.length>3) return 'ed';   // 规则动词过去式 -ed
+  if(/ts$/i.test(w)) return 'ts';                 // cats 等复数/三单 + t
+  if(/ds$/i.test(w)) return 'ds';                 // beds 等复数/三单 + d
+  if(/s$/i.test(w) && w.length>2) return 's';     // 复数/三单 -s
+  if(/[td]$/i.test(low) && w.length>3) return low.slice(-1); // 长词尾 -t/-d
+  return '';
+}
+function isEndingWord(w){ return endingSuffix(w)!==''; }
+/* 取单词词身：剥离末尾的缩写/所有格（'s / 't / 're …），尾音只判定词身，避免把所有格 's 误判为尾音 */
+function wordBase(w){ return w.replace(/'[a-z]+$/i,''); }
+function highlightEndings(text){
+  // 只把词尾那段标红，正文不重复显示尾音
+  return text.replace(/([A-Za-z]+)((?:'[a-z]+)?)(\s|$)/g,(m,w,ap,sp)=>{
+    const suf=endingSuffix(w);
+    if(suf){
+      const head=w.slice(0, w.length-suf.length);
+      return `<span class="word">${head}<span class="end">${suf}</span></span>${ap}${sp}`;
+    }
+    return `<span class="word">${w}</span>${ap}${sp}`;
+  });
+}
+
+/* ============================================================
+   断句与语调指引（模仿朗读专用）
+   ------------------------------------------------------------
+   记法（对中文母语者最好用）：
+     升调 ↗ = 拼音第二声 á，声音往上挑
+     降调 ↘ = 拼音第四声 à，声音往下砸
+     平调 → = 拼音第一声 ā，声音保持
+   规则要点（已按教学准确性修正）：
+     · 意群之间停顿，停顿前用 ↗ 或平调，表示"话没说完"
+     · 陈述句 / 特殊疑问句 / 感叹句句末用 ↘
+     · 一般疑问句（Do you…? Is it…? Can you…?）句末用 ↗
+     · 句首介词短语"之后"停顿；紧跟动词的介词短语不停
+     · 句首状语从句读"完之后"停顿，引导词前不停
+     · 非限制性定语从句（前后有逗号）前后都停；限制性定语从句 that/which 前不停
+     · 宾语从句短则连读、长则引导词前换气；绝不在引导词前后都停（I know / that / he is right 是错读）
+     · 指引面板每条规则必须配分级例句（✓ 正确读法 + ✗ 错读对照），新增规则同步补例句
+   ============================================================ */
+function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* 一般疑问句 → 句末升调 */
+function isYesNoQuestion(s){
+  const t=s.trim();
+  if(!/\?$/.test(t)) return false;
+  // 反意疑问句：附加问句单独存在时按真疑问处理 → 升调
+  if(/,\s*(?:is|are|was|were|do|does|did|can|could|will|would|have|has|had|should|shall|may|might|must)\s*(?:n't|not)?\s*[a-z]+\s*\?$/i.test(t)) return true;
+  // 助动词 / be / 情态动词开头
+  if(/^(do|does|did|is|are|was|were|am|can|could|will|would|shall|should|may|might|must|have|has|had)\b/i.test(t)) return true;
+  return false;
+}
+
+/* 意群切分：以标点为主（教材作者已标出的意群边界），
+   再叠加一条保守的句法规则 —— 无标点但较长的句子，且 that/whether/if 前接的是
+   「说/想/知道」类动词（宾语从句）时，在引导词前切一刀换气。
+   这样既能切开 "She said that she would come…"，又不会误切
+   "The book that I bought…"（限制性定语从句，that 前是名词，不该停）。 */
+const REPORT_VERBS=/^(said|says|say|think|thinks|thought|know|knows|knew|believe|believes|believed|hope|hopes|hoped|feel|feels|felt|find|finds|found|explain|explains|explained|agree|agrees|agreed|understand|understands|understood|remember|remembers|forget|forgets|forgot|suggest|suggests|suggested|show|shows|showed|tell|tells|told|write|writes|wrote|report|reports|reported|announce|announced|promise|promised|decide|decided|discover|discovered|realize|realized|admit|admitted|argue|argued|claim|claimed|warn|warned|notice|noticed|hear|heard|see|saw|learn|learned|mean|meant|wonder|wonders|wondered|ask|asks|asked)$/i;
+/* —— 增强意群切分（模仿朗读断句标记）：无标点句内按句法补刀 ——
+   只在三处切，全部与指引面板的红线一致：
+     ① 句末时间状语前（We play in the park ／ every day）
+     ② 从句连词前（I stayed at home ／ because it rained）
+     ③ 并列分句连词前（I sweep the floor ／ and my sister dusts the shelves）
+   教学红线：不切动词尾巴（I go ／ to school ✗）、不在限制性定语从句引导词前切、
+   主段 ≥3 词、时间状语可 2 词、每句最多 5 片，防止越切越碎。 */
+const COMMON_VERBS=/^(is|are|was|were|am|be|been|being|have|has|had|do|does|did|can|could|will|would|shall|should|may|might|must|like|likes|liked|love|loves|loved|play|plays|played|go|goes|went|eat|eats|ate|run|runs|ran|make|makes|made|take|takes|took|see|sees|saw|come|comes|came|get|gets|got|give|gives|gave|find|finds|found|know|knows|knew|think|thinks|thought|say|says|said|tell|tells|told|talk|talks|talked|walk|walks|walked|swim|swims|swam|sing|sings|sang|draw|draws|drew|read|reads|cook|cooks|cooked|help|helps|helped|work|works|worked|live|lives|lived|study|studies|studied|watch|watches|watched|listen|listens|listened|open|opens|opened|clean|cleans|cleaned|look|looks|looked|want|wants|wanted|need|needs|needed|put|puts|sit|sits|sat|stand|stands|sleep|sleeps|slept|wake|wakes|woke|drink|drinks|drank|buy|buys|bought|bring|brings|brought|teach|teaches|taught|learn|learns|learned|learnt|write|writes|wrote|speak|speaks|spoke|visit|visits|visited|start|starts|started|finish|finishes|finished|try|tries|tried|use|uses|used|feel|feels|felt|become|becomes|became|begin|begins|began|grow|grows|grew|turn|turns|turned|keep|keeps|kept|leave|leaves|left|hold|holds|held|fly|flies|flew|jump|jumps|jumped|smile|smiles|smiled|laugh|laughs|laughed|cry|cries|cried|call|calls|called|ask|asks|asked|answer|answers|answered|wait|waits|waited|carry|carries|carried|show|shows|showed|wear|wears|wore|ride|rides|rode|drive|drives|drove|feed|feeds|fed|hide|hides|hid|climb|climbs|climbed|collect|collects|collected|follow|follows|followed|sell|sells|sold|send|sends|sent|build|builds|built|plant|plants|planted|water|waters|watered|pick|picks|picked|share|shares|shared|enjoy|enjoys|enjoyed|miss|misses|missed|hope|hopes|hoped|meet|meets|met|spend|spends|spent|catch|catches|caught|choose|chose|hear|hears|heard|arrive|arrives|arrived|believe|believes|believed|remember|remembers|remembered|forget|forgets|forgot|hurts|hurt|lets|let|cut|cuts|hit|hits|rains?|rained|snows?|snowed|sweeps?|swept|dusts?|dusted|mops?|mopped|folds?|folded|irons?|ironed|knits?|knitted|paints?|painted|practis(?:e|es|ed)|practic(?:e|es|ed)|exercis(?:e|es|ed)|crows?|crowed|lays?|laid|falls?|fell|rises?|rose|breaks?|broke|rings?|rang|shines?|shone|blows?|blew|counts?|counted|adds?|added|returns?|returned|changes?|changed|moves?|moved|claps?|clapped|waves?|waved|points?|pointed|shouts?|shouted|whispers?|whispered|hurries|hurried|copies|copied|replies|replied|reaches?|reached|touches?|touched|pushes?|pushed|pulls?|pulled|kicks?|kicked|throws?|threw|wins?|won|loses?|lost|lends?|lent|borrows?|borrowed|pays?|paid|wishes?|wished|plans?|planned|seems?|seemed|sounds?|sounded|tastes?|tasted|smells?|smelled|stays?|stayed|stops?|stopped|ends?|ended|happens?|happened|continues?|continued)$/i;
+/* 连词后跟着「主语位」的词，才可能是新分句（排除 laugh together / apples and bananas） */
+const SUBJ_START=/^(i|you|he|she|it|we|they|there|my|your|his|her|its|our|their|this|that|these|those|many|most|some|all|both|each|tom|ben|sam|jack|joe|leo|dan|peter|lucy|lily|amy|may|ann|rose|cathy|kim|coco|max|lucky|bella|rex|toby|daisy|mimi)$/i;
+/* 句末时间状语（可带 the；句末标点用前瞻放过） */
+const TIME_TAIL=/\s+((?:the\s+)?(?:every|all|last|this|next)\s+(?:day|morning|afternoon|evening|night|week|month|year|summer|autumn|winter|spring|sunday|monday|tuesday|wednesday|thursday|friday|saturday)|one\s+day|on\s+(?:sundays|mondays|tuesdays|wednesdays|thursdays|fridays|saturdays|weekends|my\s+birthday|that\s+day)|in\s+(?:spring|summer|autumn|winter)|at\s+(?:noon|sunrise|sunset|night|weekends|the\s+weekend)|twice\s+a\s+week|a\s+day|yesterday|today|tonight|tomorrow)(?=[.!?…]*$)/i;
+function hasVerb(seg){
+  return String(seg).split(/\s+/).some(w=>COMMON_VERBS.test(w.replace(/[^A-Za-z']/g,'')));
+}
+function cutUnpunctuated(seg){
+  let parts=[seg];
+  const cut=(test,minTail)=>{
+    if(parts.length>=5) return;                    // 碎片上限，防过度切分
+    const out=[];
+    parts.forEach(p=>{
+      const m=test(p);
+      if(m && m.index>0){
+        const head=p.slice(0,m.index).trim();
+        const tail=p.slice(m.index).trim();
+        if(head.split(/\s+/).length>=3 && tail.split(/\s+/).length>=minTail){
+          out.push(head, tail); return;
+        }
+      }
+      out.push(p);
+    });
+    parts=out;
+  };
+  // ① 句末时间状语前（every day / all morning 这类 2 词状语是合法意群）
+  cut(p=>p.match(TIME_TAIL), 2);
+  // ② 从句连词前：连词后须像「主语＋动词」的从句（after lunch 这种介词短语不切）
+  cut(p=>{
+    const m=p.match(/\s+(because|since|when|while|although|though|if|until|before|after)\s+/i);
+    if(!m) return null;
+    const words=p.slice(m.index).trim().split(/\s+/);
+    return (words.length>=3 && SUBJ_START.test(words[1]||'') &&
+            hasVerb(p.slice(m.index+1+m[1].length))) ? m : null;
+  }, 3);
+  // ③ 并列分句连词前：两侧都得是完整分句（各有动词），且连词后是主语位
+  cut(p=>{
+    const m=p.match(/\s+(and|but|so)\s+/i);
+    if(!m) return null;
+    const head=p.slice(0,m.index).trim();
+    if(!hasVerb(head) || !hasVerb(p.slice(m.index))) return null;
+    const words=p.slice(m.index).trim().split(/\s+/);
+    return SUBJ_START.test(words[1]||'') ? m : null;
+  }, 3);
+  return parts;
+}
+
+function splitChunks(s, enhance){
+  const s0=String(s).trim().replace(/\s+/g,' ');
+  const out=[]; let buf='';
+  for(let i=0;i<s0.length;i++){
+    const ch=s0[i];
+    buf+=ch;
+    if(ch===','||ch===';'||ch===':'||ch==='—'||ch==='–'){ out.push(buf); buf=''; }
+  }
+  if(buf.trim()) out.push(buf);
+  let parts=out.map(x=>x.trim()).filter(Boolean);
+  // 保守兜底：切不开时，仅在「动词 + that/whether/if + 较长从句」处切
+  if(parts.length===1){
+    const m=parts[0].match(/\b(that|whether|if)\b/i);
+    if(m && m.index>0){
+      const head=parts[0].slice(0,m.index).trim();
+      const tail=parts[0].slice(m.index).trim();
+      const lastWord=(head.split(/\s+/).pop()||'');
+      if(REPORT_VERBS.test(lastWord) && tail.split(/\s+/).length>=6){
+        parts=[head, tail];
+      }
+    }
+  }
+  // 增强意群切分：无标点句内按句法补刀（时间状语／从句连词／并列分句）
+  if(enhance){ parts=parts.flatMap(cutUnpunctuated); }
+  return parts;
+}
+
+/* 按句切分（保留句末标点） */
+function splitSentences(text){
+  return (String(text).match(/[^.!?]+[.!?]*/g)||[String(text)]).map(s=>s.trim()).filter(Boolean);
+}
+
+/* 渲染带断句/语调标记的文本（enhance=true 时启用无标点句的句法切分） */
+function renderChunked(text, enhance){
+  const sents=splitSentences(text);
+  let html='';
+  sents.forEach((s,si)=>{
+    const chunks=splitChunks(s, enhance);
+    const yN=isYesNoQuestion(s);
+    chunks.forEach((c,ci)=>{
+      const last=(ci===chunks.length-1);
+      html+=`<span class="ck">${escHtml(c)}</span>`;
+      if(last){
+        html+= yN ? `<span class="tn up">↗</span>` : `<span class="tn down">↘</span>`;
+      }else{
+        html+=`<span class="tn up">↗</span><span class="slash">/</span> `;
+      }
+    });
+    if(si<sents.length-1) html+=' ';
+  });
+  return html;
+}
+
+/* 断句与语调指引面板（按级别给内容：A2/B1 才出从句规则） */
+function intonationGuide(level){
+  const clause = (level!=='A1') ? `
+    <h5>五、有从句了（${level}）：从句引导词处怎么停</h5>
+    <p>四种从句，四种停法。每条都按 <b>✓ 的正确读法</b>记，别自己在引导词前后乱停：</p>
+    <ul>
+      <li><b>句首状语从句</b>（When / If / Because / Although / After / Before / While / Since 开头）：
+          <b>从句读完之后停顿，引导词前不停</b>。引导词在句首，前面没有词，停它没意义。
+        <span class="exline">✓ When I got home <span class="u">↗</span> <b>／</b> I had dinner with my family <span class="d">↘</span></span>
+        <span class="exno">✗ 不要读成 When <b>／</b> I got home <b>／</b> I had dinner —— 引导词前停会很别扭</span>
+      </li>
+      <li><b>非限制性定语从句</b>（前后带逗号的 who / which 从句）：<b>前后都停</b>，它是插进来的补充说明。
+        <span class="exline">✓ My brother <span class="u">↗</span> <b>／</b> who lives in Beijing <span class="u">↗</span> <b>／</b> is a doctor <span class="d">↘</span></span>
+      </li>
+      <li><b>限制性定语从句</b>（不带逗号）：<b>that / which 前不停</b>，和先行词连着读，一停就变成两个句子了；
+          实在太长要换气，就等<b>从句读完</b>再停。
+        <span class="exline">✓ The book that I bought yesterday <span class="u">↗</span> <b>／</b> is very interesting <span class="d">↘</span></span>
+        <span class="exno">✗ 不要读成 The book <b>／</b> that I bought… —— that 前停，一个名词短语就断成两句了</span>
+      </li>
+      <li><b>宾语从句</b>（that / if / whether 引导）：短的时候<b>连着读</b>；较长时引导词前<b>可略停</b>换气。
+        <span class="exline">✓ 短：I know that he is right <span class="d">↘</span></span>
+        <span class="exline">✓ 长：She said <span class="u">↗</span> <b>／</b> that she would come to the party <span class="u">↗</span> <b>／</b> the next day <span class="d">↘</span></span>
+        <span class="exno">✗ 不要读成 I know <b>／</b> that <b>／</b> he is right —— 引导词前后都停，非常别扭</span>
+      </li>
+    </ul>` : `
+    <h5>五、本级先掌握这些就够</h5>
+    <p>A1 阶段把「句子读成意群、句末定升降」做稳即可。等学到带从句的单元（A2 起），
+       再加两条：<b>状语从句读完之后再停</b>（引导词前不停）、<b>带逗号的定语从句前后停</b>（不带逗号的连着读）。</p>`;
+
+  return `
+  <details class="guidebox" id="intonGuide">
+    <summary>🎵 断句与语调指引（点开看：在哪里停、什么时候往上挑）</summary>
+    <div class="gbody">
+      <div class="tone-row">
+        <div class="tone"><div class="m u">↗</div><div class="n">升调 ≈ 拼音二声 á<br>声音往上挑</div></div>
+        <div class="tone"><div class="m d">↘</div><div class="n">降调 ≈ 拼音四声 à<br>声音往下砸</div></div>
+        <div class="tone"><div class="m f">→</div><div class="n">平调 ≈ 拼音一声 ā<br>声音保持</div></div>
+      </div>
+
+      <h5>一、把升降调想成拼音的声调</h5>
+      <p>英文的升降调，音高走势和普通话四声几乎一样，直接套：</p>
+      <ul>
+        <li><b>升调 ↗ = 第二声 á</b>：声音从低往高走，「挑起来」。</li>
+        <li><b>降调 ↘ = 第四声 à</b>：声音从高往下落，「砸下去」。</li>
+        <li><b>平调 → = 第一声 ā</b>：声音保持不动，长词中间、列举事物时常这样。</li>
+      </ul>
+
+      <h5>二、句子中间的停顿：用二声，意思是「我还没说完」</h5>
+      <p>意群与意群之间要停顿，停顿前的音高<b>微微上扬或保持</b>（不要大起伏），
+         就是告诉听者「后面还有」。朗读者一停，听的人就知道这话没完。</p>
+      <div class="ex">
+        In the morning <span class="u">↗</span> <b>/</b> I get up at seven <span class="d">↘</span><br>
+        <span style="color:var(--muted);font-size:12.5px">第一段停的时候往上挑一下，表示「早上……（我还要说干什么）」；说完 seven 往下砸，句子结束。</span>
+      </div>
+
+      <h5>三、句末怎么走（这一句的「语气」全看这里）</h5>
+      <ul>
+        <li><b>陈述句</b> → 降调 <span class="d">↘</span>（四声）：I like reading <span class="d">↘</span></li>
+        <li><b>特殊疑问句</b>（What / Where / When / Who / Why / How 开头）→ 降调 <span class="d">↘</span>：Where are you going <span class="d">↘</span></li>
+        <li><b>一般疑问句</b>（Do you…? Is it…? Can you…? Are they…?）→ <b>升调 <span class="u">↗</span></b>（二声）：Do you like music <span class="u">↗</span></li>
+        <li><b>感叹句</b> → 降调 <span class="d">↘</span>：What a beautiful day <span class="d">↘</span></li>
+        <li><b>反意疑问句</b>：真心求确认用升调 <span class="u">↗</span>；只是想让人同意用降调 <span class="d">↘</span>。
+            You like it <span class="d">↘</span>, don't you <span class="d">↘</span>（我确定你喜欢）／
+            You like it <span class="d">↘</span>, don't you <span class="u">↗</span>（我真不确定）</li>
+      </ul>
+      <div class="tip">最容易混的一点：<b>一般疑问句升、特殊疑问句降</b>。记法 —— 能用 yes / no 回答的往上挑，问信息的往下砸。</div>
+
+      <h5>四、在哪里停顿（意群边界）</h5>
+      <p>每条规则都配一个<b>本级别的例句</b>，先照 ✓ 的读法练（<span class="u">↗</span>＝往上挑，<span class="d">↘</span>＝往下砸，<b>／</b>＝停顿）：</p>
+      <ul>
+        <li><b>逗号处</b>：基本都可以停，这是教材作者替你标好的意群边界。
+          <span class="exline">✓ My name is Li Hua <span class="u">↗</span> <b>／</b> and I am twelve <span class="d">↘</span></span>
+        </li>
+        <li><b>句首的介词短语</b>（In the morning / At school / On weekends / In my free time）：
+            <b>短语之后停顿</b>。
+          <span class="exline">✓ In the morning <span class="u">↗</span> <b>／</b> I get up at seven <span class="d">↘</span></span>
+        </li>
+        <li><b>紧跟动词的介词短语一般不停</b>（它只是动词的「尾巴」，拆开就不像一句话）。
+          <span class="exline">✓ I go to school <span class="d">↘</span>　✓ I get up at seven <span class="d">↘</span></span>
+          <span class="exno">✗ 不要读成 I go <b>／</b> to school —— 读碎了，不像说话</span>
+        </li>
+        <li><b>人名／呼语前后可停</b>：
+          <span class="exline">✓ Li Hua <span class="u">↗</span> <b>／</b> come here <span class="d">↘</span></span>
+        </li>
+        <li><b>列举时的逗号</b>：停一下就行，音高保持或微微上扬。
+          <span class="exline">✓ I like apples <span class="u">↗</span> <b>／</b> oranges and bananas <span class="d">↘</span></span>
+        </li>
+        <li><b>没有标点的长句</b>：本页已在意群边界替你标好 <b>／</b>，常出现在三处 ——
+            句末时间状语前（We play in the park <b>／</b> every day <span class="d">↘</span>）、
+            从句连词前（I stayed at home <b>／</b> because it rained <span class="d">↘</span>）、
+            并列分句连词前（I sweep the floor <b>／</b> and my sister dusts the shelves <span class="d">↘</span>）。
+            没标的地方（如动词后的介词短语）就连着读，别自己加碎。</li>
+      </ul>
+      <div class="tip"><b>介词短语不是「前后都停」。</b>放在句首、或特别长的时候才停；跟在动词后面就连着读。</div>
+      ${clause}
+      <h5>六、三个最常见错误（每个都附正确读法）</h5>
+      <ol>
+        <li><b>从头读到尾不停</b> —— 听着累，还容易漏词、咬字不清。
+          <span class="exno">✗ In the morning, I get up at seven, and then I go to school by bus.<span class="d">↘</span>　（一个停顿都没有，一口气憋完）</span>
+          <span class="exline">✓ In the morning <span class="u">↗</span> <b>／</b> I get up at seven <span class="u">↗</span> <b>／</b> and then I go to school by bus <span class="d">↘</span></span>
+        </li>
+        <li><b>每个介词短语都停</b> —— 读得碎，像机器人，不像在说话。
+          <span class="exno">✗ I go <b>／</b> to school <b>／</b> by bus <b>／</b> with my friend.<span class="d">↘</span></span>
+          <span class="exline">✓ I go to school by bus with my friend <span class="d">↘</span>　（跟在动词后面的介词短语连着读）</span>
+        </li>
+        <li>${level==='A1'
+          ? `<b>陈述句、一般疑问句一个调</b> —— 听不出这话是陈述还是问问题。
+             <span class="exno">✗ Do you like music <span class="d">↘</span>　（用降调问话，像不耐烦）</span>
+             <span class="exline">✓ I like music <span class="d">↘</span>　✓ Do you like music <span class="u">↗</span></span>`
+          : `<b>从句引导词前后都停</b> —— I know <b>／</b> that <b>／</b> he is right，非常别扭。
+             <span class="exline">✓ 短的连着读：I know that he is right <span class="d">↘</span></span>
+             <span class="exline">✓ 长的才在引导词前换气：She said <span class="u">↗</span> <b>／</b> that she would come to the party <span class="d">↘</span></span>`}
+        </li>
+      </ol>
+    </div>
+  </details>`;
+}
+
+/* ============================================================
+   笔记方法指引（听选信息 / 回答问题 / 信息转述 / 询问信息）
+   ------------------------------------------------------------
+   考场规则：这四种题型都发草稿纸、允许打草稿；本面板教"那张纸怎么用"。
+   总原则：记关键词不记整句；记区别点不记全部；缩写+符号+分行。
+   ============================================================ */
+function noteSymbolLegend(){
+  return `
+    <h5>📖 记号大全（四个题型通用，忘了再翻）</h5>
+    <ul>
+      <li><b>缩写取头</b>：人名只写首字母（Tom→T、Mary→M）；地点写前 2–3 个字母（library→LIB、park→PK、school→SC）。</li>
+      <li><b>数字原样</b>：听到 15 就写 15，别拼 fifteen；3:30 就写 3:30，顺手标 am / pm。</li>
+      <li><b>会写的写英文，不会写的写中文</b>：笔记是给自己看的，写中文不扣分；但常用词要逼自己写英文。</li>
+      <li><b>符号表关系</b>：→ 结果／顺序，∵ 原因，√ 确认，× 排除，? 没听清（第 2 遍重点听它）。</li>
+      <li><b>一条一行</b>：一个要点一行，行间留空，方便第 2 遍补写；不要挤成一团。</li>
+    </ul>`;
+}
+function noteGuide(kind){
+  const legend=noteSymbolLegend();
+  if(kind==='listenchoose'){
+    return `
+  <details class="guidebox" id="noteGuide">
+    <summary>📝 笔记方法（听选信息：草稿纸怎么用）</summary>
+    <div class="gbody">
+      <p>听选信息是<b>看着选项听</b>的题：三个选项提前印在卷子上，耳朵听对话，手上给选项记证据 —— 听到的打 √，不对的打 ×，最后数钩答题。</p>
+
+      <h5>🖊 开工前，先认这几个记号（10 秒）</h5>
+      <ul>
+        <li><b>缩写取头</b>：地点只写前 2–3 个字母 —— library→<b>LIB</b>、park→<b>PK</b>、school→<b>SC</b>；人名只写首字母 —— Tom→T、Mary→M。</li>
+        <li><b>√ ＝ 听到了，它是对的</b>；<b>× ＝ 明确不对</b>；<b>? ＝ 没听清</b>（先标上，第 2 遍重点听它）。</li>
+        <li><b>一条一行</b>：一个选项一行，行间留空，第 2 遍好补写；别挤成一团。</li>
+      </ul>
+
+      <h5>第一步 · 读题时（10 秒）：竖着比选项，找不同</h5>
+      <ul>
+        <li>考试的选项是<b>竖着排</b>的（A 上、B 中、C 下）。眼睛<b>从上往下扫一遍</b>，找出那个<b>不一样的词</b>。</li>
+        <li>三个选项往往只差一个词。把它抄到纸上、后面留空位 —— 纸上也<b>竖着抄</b>，跟试卷一个方向，回头好对照：</li>
+      </ul>
+      <div class="ndemo">Q1 他们约在哪里见面？
+A. in the park
+B. in the library   ← 三个选项只差"地点"
+C. at school
+
+纸上（竖着抄）：
+PK ___
+LIB ___
+SC ___</div>
+      <ul><li>只差地点 → 听的时候<b>只听地点词</b>，别的不用记。</li></ul>
+
+      <h5>第二步 · 听的时候：听到就打钩</h5>
+      <ul>
+        <li>听到哪个选项的内容，就在它后面打 <b>√</b>，旁边<b>补一个依据词</b>（提醒自己为什么选它）。</li>
+        <li>某个选项被否定、被改口 → 打 <b>×</b>。</li>
+        <li>没听清 → <b>?</b>，第 2 遍重点听。</li>
+        <li>两个说话人意见不一致（A 说 park，B 说 library）→ <b>分两行记</b>：A: PK ／ B: LIB，别混成一行。</li>
+      </ul>
+      <div class="ndemo">纸上：
+PK ×      （第1遍：A 先说 park，马上改口）
+LIB √ 书
+SC ?
+
+→ 第2遍重点听 SC，确认答案是 B. library</div>
+
+      <h5>第三步 · 作答时：看钩答题</h5>
+      <ul>
+        <li>√ 的那行就是答案。<b>读完整选项</b>：B. library. —— 不要只读字母 B。</li>
+      </ul>
+
+      <h5>最容易犯的错</h5>
+      <ul>
+        <li><b>把对话整句抄下来</b> → 只抄和选项有关的词；抄整句一定来不及。</li>
+        <li><b>只打 √ 不写依据</b> → √ 旁边补一个关键词，第 2 遍才想得起为什么。</li>
+        <li><b>第 1 遍就定答案</b> → 第 1 遍只记听到的，定答案等第 2 遍听完。</li>
+      </ul>
+      ${legend}
+    </div>
+  </details>`;
+  }
+  if(kind==='listenanswer'){
+    return `
+  <details class="guidebox" id="noteGuide">
+    <summary>📝 笔记方法（回答问题：4 个问题各记一行）</summary>
+    <div class="gbody">
+      <p>回答题的笔记是<b>带着问题听</b>：读题时先把 4 个问题抄成 4 行"表格"，听的时候只往行里填答案。</p>
+      <h5>🖊 开工前，先认这几个记号</h5>
+      <ul>
+        <li><b>缩写</b>：T / M＝人名首字母（Tom / Mary）；LIB / PK / SC＝地点（library / park / school）。</li>
+        <li><b>符号</b>：√ 确认、× 排除、? 没听清、∵ 因为、→ 然后；数字拿不准就两个都写（15／50 ?）。</li>
+      </ul>
+      <h5>第一步 · 读题时（15 秒）</h5>
+      <ul>
+        <li>把 4 个问题竖着抄成 4 行，每行只留<b>疑问词＋关键词</b>：</li>
+      </ul>
+      <div class="ndemo">1 T 昨天去哪？    ______
+2 和谁一起去？  ______
+3 几点出发？    ______
+4 为什么去？    ______</div>
+      <ul>
+        <li>顺手<b>预判答案类型</b>：问时间→留写数字的空；问地点→写缩写；问原因→留长一点（because…）。</li>
+      </ul>
+      <h5>第二步 · 听的时候</h5>
+      <ul>
+        <li>听到某题答案，<b>立刻填进对应行</b>，别管顺序——独白不会按问题顺序讲。</li>
+        <li>听到<b>过去式</b>，答案旁标一个 <b>过去</b>：提醒自己回答时也要用过去式。</li>
+        <li>数字拿不准（15／50）时两个都写：<b>15／50 ?</b>，第 2 遍定夺。</li>
+      </ul>
+      <div class="ndemo">1 T 昨天去哪？    LIB（过去）
+2 和谁一起去？  M（Mary）
+3 几点出发？    3:30 pm
+4 为什么去？    ∵ buy bks</div>
+      <h5>答题时怎么看笔记</h5>
+      <ul>
+        <li>看着第 1 行的 <b>LIB（过去）</b>，说出完整短句：<i>Tom went to the library yesterday.</i></li>
+        <li>笔记只给关键词，<b>说的时候要还原成句</b>——这就是笔记和回答的区别。</li>
+      </ul>
+      ${legend}
+    </div>
+  </details>`;
+  }
+  if(kind==='retell'){
+    return `
+  <details class="guidebox" id="noteGuide">
+    <summary>📝 笔记方法（信息转述：笔记就是你的提词器）</summary>
+    <div class="gbody">
+      <p>信息转述<b>最依赖笔记</b>：听完要把短文口头转述出来，没有笔记全靠记忆，漏要点是必然的。</p>
+      <h5>🖊 开工前，先认这几个记号</h5>
+      <ul>
+        <li><b>六行架子</b>：Who 谁 ／ What 发生了什么 ／ When 什么时候 ／ Where 在哪里 ／ Why 为什么 ／ How 怎么样。</li>
+        <li><b>符号</b>：→ 然后、∵ 因为、? 没听清；连接词缩写 F＝First、T＝Then、A＝After that、Fin＝Finally。</li>
+      </ul>
+      <h5>第 1 遍 · 搭架子</h5>
+      <ul>
+        <li>按 <b>Who — What — When — Where — Why — How</b> 分六行记，听到什么填什么。</li>
+        <li>只记<b>关键词</b>（动词、名词、数字），<b>不写整句</b>；每条竖着排，行间留空。</li>
+      </ul>
+      <div class="ndemo">Who:  T（Tom）
+What: lost his dog
+When: Sunday morning
+Where: in the park
+How:  put up posters → neighbour found it
+Feel: happy, thankful</div>
+      <h5>第 2 遍 · 补洞＋排序号</h5>
+      <ul>
+        <li>专看标了 <b>?</b> 和空格的行，补齐数字、时间、因果。</li>
+        <li>给要点<b>编号 1. 2. 3.</b>，顺手把连接词的位置标上（First／Then／After that／Finally）。</li>
+      </ul>
+      <h5>复述时 · 照笔记造句</h5>
+      <ul>
+        <li>看着编号从上往下说：<i>First, Tom lost his dog in the park on Sunday morning. Then, he put up posters. Finally, a neighbour found the dog. Tom was very happy.</i></li>
+        <li>某个词不会说，<b>当场换简单词</b>（posters → pieces of paper with words），不要停。</li>
+      </ul>
+      <h5>最容易犯的错</h5>
+      <ul>
+        <li><b>试图记整句</b> —— 一定记不全，复述时变成"背课文"，一断就全忘。关键词才可靠。</li>
+        <li><b>不分行全挤在一起</b> —— 找不着、补不齐，复述时必然漏。</li>
+        <li><b>不标连接词位置</b> —— 要点都记到了，说出来的却是单词堆砌。编号旁顺手写 F／T／A／Fin。</li>
+      </ul>
+      ${legend}
+    </div>
+  </details>`;
+  }
+  if(kind==='ask'){
+    return `
+  <details class="guidebox" id="noteGuide">
+    <summary>📝 笔记方法（询问信息：15 秒准备，笔记写骨架）</summary>
+    <div class="gbody">
+      <p>询问信息是<b>中文→英文问句</b>的转换，15 秒准备只够做一件事：在纸上把<b>句型骨架</b>搭好，开口时照骨架填词。</p>
+      <h5>🖊 开工前，先认这几个记号</h5>
+      <ul>
+        <li><b>骨架四格</b>：Wh（疑问词）＋ 助动词（do / does / did）＋ 主语 ＋ 动词原形。</li>
+        <li><b>符号</b>：＋＝拼接；<b>↑</b> 句尾升调（一般疑问句）；<b>↘</b> 句尾降调（特殊疑问句）。</li>
+      </ul>
+      <h5>骨架只有三样</h5>
+      <ul>
+        <li><b>疑问词</b>：What／Where／When／Who／How／Why（特殊疑问句）；Is／Are／Do／Does／Did（一般疑问句）。</li>
+        <li><b>助动词</b>：跟着主语和时间走 —— 他／她用 does，过去用 did。</li>
+        <li><b>动词原形</b>：助动词后面一定回原形（does he <b>go</b>、did he <b>go</b>）。</li>
+      </ul>
+      <div class="ndemo">中文：他昨天什么时候回家的？
+纸上：When + did + he + go home?
+     （"昨天"→did；did 后面 go 回原形）
+
+中文：你喜欢游泳吗？
+纸上：Do you like + swimming?  ↑
+     （一般疑问句，句尾标升调）</div>
+      <h5>15 秒怎么分配</h5>
+      <ul>
+        <li><b>前 5 秒</b>：圈出中文里的<b>疑问点</b>（什么时候／哪里／谁／多久／吗）。</li>
+        <li><b>中间 7 秒</b>：写下骨架「Wh＋助动词＋主语＋动词原形」；助动词不确定就写两种备选。</li>
+        <li><b>最后 3 秒</b>：默念一遍骨架，想清楚句尾是 <b>↑ 升调</b>（一般疑问）还是 <b>↘ 降调</b>（特殊疑问）。</li>
+      </ul>
+      <h5>最容易犯的错</h5>
+      <ul>
+        <li><b>把中文整句翻成英文写下来</b> —— 15 秒根本不够。只写骨架，不写整句。</li>
+        <li><b>助动词和时态脱节</b> —— "昨天"却写了 does。圈出的时间词旁边直接标 did／does。</li>
+        <li><b>忘记句尾标语调</b> —— 一般疑问句结尾在纸上标个 <b>↑</b>，开口前提醒自己挑上去。</li>
+      </ul>
+      ${legend}
+    </div>
+  </details>`;
+  }
+  return '';
+}
+
+/* 带断句标记的原文展示块（所有级别启用句法断句：A1/A2 短句、B1 前 20 关最受益） */
+function renderChunkBox(text, level){
+  return `<div class="chunkbox" id="chunkBox">${renderChunked(text, true)}</div>
+    <div class="hint">蓝色 ↗＝升调（≈拼音二声，意群未完 / 一般疑问句句末）· 红色 ↘＝降调（≈拼音四声，句末结束）·
+      金色 <b style="color:var(--gold)">/</b>＝建议停顿处。停顿前的音高微微上扬或保持即可，不要大起伏。</div>`;
+}
+
+/* ============================================================
+   关卡列表渲染
+   ============================================================ */
+function renderLevels(){
+  const box=document.getElementById('levels'); box.innerHTML='';
+  SITE_DATA.levels.forEach(l=>{
+    const d=el(`<div class="lvl ${l.k===currentLevel?'active':''}"><div class="k">${l.k}</div><div class="d">${l.d}</div></div>`);
+    d.onclick=()=>{ currentLevel=l.k; renderLevels(); renderCards(); refreshProgress(); renderOfficial(); };
+    box.appendChild(d);
+  });
+}
+function renderCards(){
+  const box=document.getElementById('cards'); box.innerHTML='';
+  const p=getProg();
+  SITE_DATA.modules.forEach(m=>{
+    const ts=m.tasks[currentLevel]||[];
+    const done=ts.filter(t=>p[m.id]&&p[m.id][t.id]).length;
+    const c=el(`<div class="card"><span class="tag">${m.score}</span><h3>${m.name}</h3><p>${m.desc}</p><div class="meta">${ts.length} 关 · <span class="${done===ts.length?'done':''}">已完成 ${done}/${ts.length}</span></div></div>`);
+    c.onclick=()=>openModule(m);
+    box.appendChild(c);
+  });
+}
+
+/* ============================================================
+   统一评分内核（五大题型共用）
+   设计原则：
+     1) 每个题型都出分，且用官方分值口径（模仿朗读6/听选9/回答6/转述6/询问3）
+     2) 分维度给分 —— 让学生看见"哪一块丢了分"，而不是只有一个总分
+     3) 每个维度都能落到一条具体的改进建议
+     4) 成绩写入本地档案，首页可看"我的成绩单"与薄弱项排行
+   ============================================================ */
+const SCORE_DIMS={
+  readaloud:[
+    {id:'pron',  name:'发音准确',    full:2.5, tip:'尾音 -s/-ed/-t/-d 必须发出来；不要加原文没有的冠词；生词按录音里的读法念。'},
+    {id:'fluent', name:'流畅完整',    full:1.5, tip:'读完全篇不漏句；读错不回头、不重读；句与句之间自然停顿。'},
+    {id:'inton',  name:'语调与节奏',  full:1.0, tip:'陈述句降调、一般疑问句升调；按意群断句，不要一口气念到底。'},
+    {id:'speed',  name:'语速与音量',  full:1.0, tip:'不快不慢，音量适中、吐字清晰；超时说明要精简修饰语。'},
+  ],
+  listenchoose:[
+    {id:'acc',   name:'选择准确率',  full:6.0, tip:'三段对话都要听满 2 遍；不确定也要开口猜一个，留白＝零分。'},
+    {id:'clear', name:'表达清晰',    full:1.5, tip:'直接读出完整选项（如 Near the park.），不要只说字母 A。'},
+    {id:'ctrl',  name:'节奏控制',    full:1.5, tip:'每题 8 秒内说完，听到提示音后停 1 秒再开口，不要抢答。'},
+  ],
+  listenanswer:[
+    {id:'acc',   name:'信息准确',    full:3.0, tip:'抓 who/what/when/where；数字要听准（15 还是 50？）。'},
+    {id:'comp',  name:'回答完整',    full:1.5, tip:'用完整短语或短句，至少说 At 3 o\'clock，别只说 Three。'},
+    {id:'gram',  name:'语法时态',    full:1.0, tip:'听到过去用过去式；注意名词单复数与助动词搭配。'},
+    {id:'ctrl',  name:'节奏控制',    full:0.5, tip:'每题 8 秒，超时即停；不要卡壳，果断跳到下一题。'},
+  ],
+  retell:[
+    {id:'cover', name:'要点齐全',    full:4.5, tip:'漏一个要点比一个语法错误更致命；先用笔记列全要点。'},
+    {id:'struct',name:'结构串联',    full:1.0, tip:'用 First / Then / After that / Finally 把要点串成一条线。'},
+    {id:'detail',name:'细节具体',    full:0.5, tip:'记到人名、地点、名物，别只记动作。'},
+  ],
+  ask:[
+    {id:'qw',    name:'疑问词正确',  full:1.0, tip:'中文"是否/吗"用 Is/Are/Do/Does/Did；具体事物用 What/Where/When/Who/How/Why。'},
+    {id:'aux',   name:'助动词搭配',  full:1.0, tip:'助动词跟主语走：I do / he does / 昨天 did；助动词后动词用原形。'},
+    {id:'tone',  name:'句尾升调',    full:1.0, tip:'一般疑问句句尾必须上扬；只提问，不加 Please 等客套话。'},
+  ],
+};
+/* 成绩档案：按关卡记录各维度得分，供"我的成绩单"汇总 */
+function recKey(){ return 'eet_scores_'+currentLevel; }
+function getScores(){ try{return JSON.parse(localStorage.getItem(recKey())||'{}');}catch(e){return {};} }
+function saveScores(o){ try{ localStorage.setItem(recKey(), JSON.stringify(o)); }catch(e){} }
+function recordScore(modId, taskId, dims, total, full){
+  const all=getScores();
+  all[taskId]=all[taskId]||{};
+  all[taskId][modId]={dims:dims, total:Math.round(total*10)/10, full:full, at:Date.now()};
+  saveScores(all);
+}
+
+/* ============================================================
+   徽章打卡系统：①完成数量/通关 ②连续打卡 ③质量达标 ④补强弱项
+   设计原则：奖励"练好"而非"点过"，与"精准才是高效"一致
+   ============================================================ */
+function badgeKey(){ return 'eet_badges'; }
+function getBadges(){ try{ return Object.assign({earned:{}, streak:{count:0,last:''}, modPassed:{}}, JSON.parse(localStorage.getItem(badgeKey())||'{}')); }catch(e){ return {earned:{},streak:{count:0,last:''},modPassed:{}}; } }
+function saveBadges(b){ try{ localStorage.setItem(badgeKey(), JSON.stringify(b)); }catch(e){} }
+function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function dateStr(offset){ const d=new Date(Date.now()+(offset||0)*86400000); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+/* 打卡：完成一关记一次。昨天打过 → 连续天数+1，否则重置为 1 */
+function checkIn(){
+  const b=getBadges(); const t=todayStr();
+  if(b.streak.last===t) return b.streak.count;
+  b.streak.count = (b.streak.last===dateStr(-1)) ? b.streak.count+1 : 1;
+  b.streak.last=t; saveBadges(b);
+  return b.streak.count;
+}
+/* 汇总当前级别的完成数、各题型得分率，供徽章判定 */
+function badgeStats(){
+  const p=getProg(), sc=getScores();
+  let doneTotal=0; const modDone={}, modRate={};
+  SITE_DATA.modules.forEach(m=>{
+    const ts=m.tasks[currentLevel]||[];
+    const done=ts.filter(t=>p[m.id]&&p[m.id][t.id]).length;
+    modDone[m.id]=done; doneTotal+=done;
+    let sum=0,cnt=0;
+    ts.forEach(t=>{ if(sc[t.id]&&sc[t.id][m.id]){ sum+=sc[t.id][m.id].total; cnt++; } });
+    modRate[m.id]=cnt? sum/(cnt*(OFFICIAL_SCORE[m.id]||6)) : 0;
+  });
+  const clearedAny=SITE_DATA.modules.some(m=>{ const ts=m.tasks[currentLevel]||[]; return ts.length>0 && (modDone[m.id]===ts.length); });
+  return {doneTotal, modDone, modRate, clearedAny, streak:getBadges().streak.count};
+}
+/* 徽章定义：check(stats) 为真且未获得时点亮 */
+const BADGES=[
+  // ① 完成数量 / 通关
+  {id:'first',   icon:'🌱', name:'初试锋芒', desc:'完成第 1 关',             check:s=>s.doneTotal>=1},
+  {id:'done10',  icon:'⭐', name:'小有所成', desc:'累计完成 10 关',           check:s=>s.doneTotal>=10},
+  {id:'done50',  icon:'🌟', name:'勤学不辍', desc:'累计完成 50 关',           check:s=>s.doneTotal>=50},
+  {id:'done100', icon:'🏆', name:'百关斩将', desc:'累计完成 100 关',          check:s=>s.doneTotal>=100},
+  {id:'clear',   icon:'🎓', name:'题型通关', desc:'任一题型当前级别全部完成', check:s=>s.clearedAny},
+  // ② 连续打卡
+  {id:'streak3', icon:'📅', name:'三日打卡', desc:'连续练习 3 天',            check:s=>s.streak>=3},
+  {id:'streak7', icon:'🔥', name:'一周坚持', desc:'连续练习 7 天',            check:s=>s.streak>=7},
+  {id:'streak30',icon:'👑', name:'月度达人', desc:'连续练习 30 天',           check:s=>s.streak>=30},
+  // ③ 质量达标：五大题型各自平均得分率≥80%
+  {id:'q_readaloud',   icon:'🎙️', name:'朗读高手', desc:'模仿朗读平均得分率≥80%', check:s=>(s.modRate.readaloud||0)>=0.8},
+  {id:'q_listenchoose',icon:'👂', name:'辨音达人', desc:'听选信息平均得分率≥80%', check:s=>(s.modRate.listenchoose||0)>=0.8},
+  {id:'q_listenanswer',icon:'🧠', name:'理解能手', desc:'回答问题平均得分率≥80%', check:s=>(s.modRate.listenanswer||0)>=0.8},
+  {id:'q_retell',      icon:'🗣️', name:'复述达人', desc:'信息转述平均得分率≥80%', check:s=>(s.modRate.retell||0)>=0.8},
+  {id:'q_ask',         icon:'❓', name:'提问高手', desc:'询问信息平均得分率≥80%', check:s=>(s.modRate.ask||0)>=0.8},
+  // ④ 补强弱项：五大题型全部到达标线（全能）
+  {id:'allround', icon:'💎', name:'五项全能', desc:'五大题型平均得分率都≥80%', check:s=>OFFICIAL_ORDER.every(id=>(s.modRate[id]||0)>=0.8)},
+];
+/* 补强（逆袭）徽章：某题型本次达标、上次未达标 —— 按题型动态生成 */
+function boostBadges(){
+  return SITE_DATA.modules.map(m=>({id:'boost_'+m.id, icon:'🚀', name:m.name+'逆袭', desc:`把${m.name}从达标线以下练到≥80%`}));
+}
+function checkBadges(){
+  const b=getBadges(); const s=badgeStats(); let changed=false;
+  BADGES.forEach(bd=>{ if(!b.earned[bd.id] && bd.check(s)){ b.earned[bd.id]=Date.now(); changed=true; toast(`🏅 获得徽章「${bd.icon} ${bd.name}」${bd.desc}`); } });
+  boostBadges().forEach(bd=>{
+    if(b.earned[bd.id]) return;
+    const rate=s.modRate[bd.id.replace('boost_','')]||0;
+    if(rate>=0.8 && b.modPassed[bd.id]===false){ b.earned[bd.id]=Date.now(); changed=true; toast(`🏅 获得徽章「${bd.icon} ${bd.name}」${bd.desc}`); }
+  });
+  SITE_DATA.modules.forEach(m=>{ b.modPassed[m.id]=(s.modRate[m.id]||0)>=0.8; });
+  if(changed) saveBadges(b);
+}
+function renderBadgeWall(){
+  const box=document.getElementById('badgeWall'); if(!box) return;
+  const b=getBadges(); const s=badgeStats();
+  const all=[...BADGES, ...boostBadges()];
+  box.innerHTML='';
+  box.appendChild(el(`<div class="hint" style="margin-bottom:10px">连续打卡：<b style="color:var(--gold)">${s.streak}</b> 天 · 本级别已完成 <b>${s.doneTotal}</b> 关 · 已点亮 <b style="color:var(--gold)">${Object.keys(b.earned).length}</b> / ${all.length} 枚徽章</div>`));
+  const grid=el(`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px"></div>`);
+  grid.id='badgeGrid';
+  all.forEach(bd=>{
+    const got=b.earned[bd.id];
+    grid.appendChild(el(`<div style="border:1px solid ${got?'var(--gold)':'var(--line)'};border-radius:12px;padding:10px;text-align:center;opacity:${got?1:.45};background:${got?'rgba(255,215,0,.06)':'transparent'}">
+      <div style="font-size:26px">${got?bd.icon:'🔒'}</div>
+      <div style="font-weight:700;font-size:13px;margin:4px 0 2px;color:${got?'var(--gold-soft)':'var(--muted)'}">${bd.name}</div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.35">${bd.desc}</div>
+    </div>`));
+  });
+  box.appendChild(grid);
+}
+
+/* 通用评分面板
+   items: [{label, dims:{dimId:earned}, max, note}]  每个题目/维度的得分明细
+   dims:  维度总表 {dimId: earned}
+   full:  满分 */
+function buildScorePanel(opts){
+  const {modId,taskId,modName,full,dimList,dimEarned,items,onRedo,exam,extraNote}=opts;
+  const dims=SCORE_DIMS[modId]||[];
+  const container=opts.container;
+  container.innerHTML='';
+  const box=el(`<div class="checklist">
+    <h4>📊 评分结果 · ${modName}（满分 ${full} 分）</h4>
+    <div class="hint">${extraNote||'逐项核对后自动给分。分数只是参考，官方还会算发音清晰度与流利度。'}</div>
+    <div style="margin:12px 0 6px;font-weight:700;color:var(--gold-soft)">① 分维度得分</div>
+    <div id="dimRows"></div>
+    <div class="scoreBox">本题得分：<span class="big" id="scNum">0</span> / ${full}</div>
+    <div class="scoreMsg bad" id="scMsg">完成核对后自动计算</div>
+    <div id="scAdvice"></div>
+    <div id="scItems"></div>
+    <div class="btn-row">
+      <button class="btn" id="redoBtn">🔁 再练一次</button>
+      <button class="btn gold" id="saveBtn" disabled>✓ 保存成绩并继续</button>
+    </div>
+  </div>`);
+  container.appendChild(box);
+  const dr=box.querySelector('#dimRows');
+  dims.forEach(d=>{
+    const row=el(`<div class="endRow" style="align-items:flex-start">
+      <span style="flex:1">${d.name}<span class="hint" style="display:block;margin:2px 0 0">${d.tip}</span></span>
+      <b style="color:var(--gold);white-space:nowrap">${(dimEarned[d.id]||0).toFixed(1)} / ${d.full}</b>
+    </div>`);
+    dr.appendChild(row);
+  });
+  if(items&&items.length){
+    box.appendChild(el(`<div style="margin:12px 0 6px;font-weight:700;color:var(--gold-soft)">② 逐题明细</div>`));
+    const ir=box.querySelector('#scItems');
+    items.forEach(it=>ir.appendChild(el(`<div class="endRow" style="align-items:flex-start">
+      <span style="flex:1">${it.label}${it.note?`<span class="hint" style="display:block;margin:2px 0 0">${it.note}</span>`:''}</span>
+      <b style="color:${it.earned>=it.max?'var(--ok)':'var(--red)'};white-space:nowrap">${it.earned} / ${it.max}</b>
+    </div>`)));
+  }
+  function recalc(){
+    const total=dims.reduce((a,d)=>a+(dimEarned[d.id]||0),0);
+    const t=Math.round(total*10)/10;
+    box.querySelector('#scNum').textContent=t;
+    const msg=box.querySelector('#scMsg');
+    const pass=full*0.8;
+    if(t>=full*0.95){ msg.textContent=`${t} 分 ✅ 优秀 —— 达到满分线附近，可挑战下一关`; msg.className='scoreMsg ok'; }
+    else if(t>=pass){ msg.textContent=`${t} 分 —— 达标（≥${pass}），但还有提升空间，看下面建议`; msg.className='scoreMsg ok'; }
+    else { msg.textContent=`${t} 分 —— 未达标（需 ≥${pass}），先按建议补最弱的一项`; msg.className='scoreMsg bad'; }
+    // 改进建议：按失分最多的维度排序
+    const adv=box.querySelector('#scAdvice');
+    const weak=dims.map(d=>({d,loss:d.full-(dimEarned[d.id]||0)})).filter(x=>x.loss>0.01).sort((a,b)=>b.loss-a.loss);
+    if(!weak.length){
+      adv.innerHTML='<div class="hint" style="margin-top:10px;color:var(--ok)">🎉 五个维度全满 —— 这一关没有可改进项了，去挑战更难的级别吧。</div>';
+    }else{
+      adv.innerHTML='<div style="margin:12px 0 6px;font-weight:700;color:var(--red)">③ 你需要改进的地方（按失分多少排序）</div>';
+      weak.forEach((w,i)=>{
+        adv.appendChild(el(`<div class="endRow" style="align-items:flex-start">
+          <span style="flex:1"><b style="color:var(--red)">第 ${i+1} 优先：${w.d.name}</b>（失 ${w.loss.toFixed(1)} 分）
+          <span class="hint" style="display:block;margin:2px 0 0">${w.d.tip}</span></span>
+          <b style="color:var(--red);white-space:nowrap">${w.d.full} → ${(dimEarned[w.d.id]||0).toFixed(1)}</b>
+        </div>`));
+      });
+    }
+    const sb=box.querySelector('#saveBtn');
+    if(exam){ sb.textContent='进入下一题 →'; sb.disabled=false; }
+    else { sb.disabled=false; sb.textContent='✓ 保存成绩并继续'; }
+    recordScore(modId, taskId, dimEarned, t, full);
+    try{ renderMyReport(); }catch(e){}
+  }
+  recalc();
+  box.querySelector('#redoBtn').onclick=()=>onRedo&&onRedo();
+  box.querySelector('#saveBtn').onclick=()=>{
+    if(examMode){ examAdvance(); }
+    else { markDone(modId,taskId); toast('已保存成绩与进度'); }
+  };
+  return {recalc};
+}
+
+/* ============================================================
+   练习视图
+   ============================================================ */
+const overlay=document.getElementById('overlay');
+const ovBody=document.getElementById('ovBody');
+/* 官方分值（2025 广州中考 E听说 口径）：合计 30 分 */
+const OFFICIAL_SCORE={readaloud:6, listenchoose:9, listenanswer:6, retell:6, ask:3};
+/* 准备/作答时长：官方标准 50s 准备 + 60s 作答只适用于 B1 与真题。
+   A1/A2 文本短，长等待只会让学生不耐烦；时长随水平递增，
+   本身就是读稿速度的渐进训练，让学生逐步适应中考真题长度。
+   task 可用 t.prep/t.rec（朗读）或 t.retPrep/t.retRec（转述）覆盖，真题按官方 50/60。 */
+const PREP_TIME={A1:20, A2:30, B1:50};
+const REC_TIME ={A1:15, A2:25, B1:60};
+const RET_PREP={A1:25, A2:35, B1:50};
+const RET_REC ={A1:30, A2:45, B1:60};
+const OFFICIAL_ORDER=['readaloud','listenchoose','listenanswer','retell','ask'];
+function renderScoreTable(){
+  const box=document.getElementById('scoreTable');
+  if(!box) return;
+  box.innerHTML=OFFICIAL_ORDER.map((id,i)=>{
+    const m=SITE_DATA.modules.find(x=>x.id===id); if(!m) return '';
+    const sc=OFFICIAL_SCORE[id];
+    return `<div class="chk" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.07)">
+      <span style="color:var(--gold);font-weight:800;min-width:74px">${m.name}</span>
+      <span style="color:var(--muted);flex:1">${m.desc}</span>
+      <span style="font-weight:800;color:var(--gold-soft)">${sc} 分</span>
+    </div>`;
+  }).join('')+`<div style="display:flex;justify-content:flex-end;gap:12px;padding-top:10px;font-weight:800">
+      <span style="color:var(--muted)">合计</span><span style="color:var(--gold);font-size:18px">30 分</span></div>`;
+}
+/* 关卡列表：每页 N 关 + 翻页（记住每个题型翻到第几页） */
+const PAGE_SIZE=10;
+const taskPageState={};   // modId -> {page, size}
+function renderTaskList(wrap, m, ts){
+  const st=taskPageState[m.id]||(taskPageState[m.id]={page:1,size:PAGE_SIZE});
+  const total=ts.length;
+  const pages=Math.max(1,Math.ceil(total/st.size));
+  if(st.page>pages) st.page=pages;
+  if(st.page<1) st.page=1;
+  const start=(st.page-1)*st.size;
+  const slice=ts.slice(start,start+st.size);
+  const p=getProg();
+  const doneCount=ts.filter(t=>p[m.id]&&p[m.id][t.id]).length;
+  wrap.innerHTML='';
+  wrap.appendChild(el(`<div class="btn-row" style="justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+    <span class="hint" style="margin:0">共 <b>${total}</b> 关 · 已完成 <b>${doneCount}</b> · 第 ${st.page}/${pages} 页</span>
+    <span style="font-size:13px">每页 <select id="pgSize">${[10,20,50].map(n=>`<option value="${n}" ${n===st.size?'selected':''}>${n}</option>`).join('')}</select> 关</span>
+  </div>`));
+  const listBox=el(`<div id="taskListBox"></div>`);
+  wrap.appendChild(listBox);
+  slice.forEach((t,i)=>{
+    const done=p[m.id]&&p[m.id][t.id];
+    const row=el(`<div class="q"><div class="qt">第 ${start+i+1} 关 ${done?'<span class="done">✓ 已完成</span>':''}</div><div class="btn-row"><button class="btn gold">开始练习</button></div></div>`);
+    row.querySelector('button').onclick=()=>launchTask(m,t);
+    listBox.appendChild(row);
+  });
+  if(pages>1){
+    const nav=el(`<div class="btn-row" style="justify-content:center;margin-top:16px;flex-wrap:wrap;gap:6px">
+      <button class="btn" id="pgFirst" ${st.page===1?'disabled':''}>⏮ 首页</button>
+      <button class="btn" id="pgPrev" ${st.page===1?'disabled':''}>← 上一页</button>
+      <span class="hint" style="margin:0;align-self:center">第 ${st.page} / ${pages} 页</span>
+      <button class="btn" id="pgNext" ${st.page===pages?'disabled':''}>下一页 →</button>
+      <button class="btn" id="pgLast" ${st.page===pages?'disabled':''}>末页 ⏭</button>
+    </div>`);
+    wrap.appendChild(nav);
+    nav.querySelector('#pgFirst').onclick=()=>{ st.page=1; renderTaskList(wrap,m,ts); };
+    nav.querySelector('#pgPrev').onclick=()=>{ if(st.page>1){ st.page--; renderTaskList(wrap,m,ts);} };
+    nav.querySelector('#pgNext').onclick=()=>{ if(st.page<pages){ st.page++; renderTaskList(wrap,m,ts);} };
+    nav.querySelector('#pgLast').onclick=()=>{ st.page=pages; renderTaskList(wrap,m,ts); };
+  }
+  wrap.querySelector('#pgSize').onchange=(e)=>{ st.size=+e.target.value; st.page=1; renderTaskList(wrap,m,ts); };
+}
+function openModule(m){
+  // 切换页面：停掉一切在途媒体 + 换导航令牌，避免旧异步回调污染本页
+  stopAllMedia(); navGuard();
+  document.getElementById('ovTitle').textContent=m.name+' · '+currentLevel;
+  document.getElementById('ovSub').textContent=m.score+' · '+m.desc;
+  ovBody.innerHTML='';
+  const wrap=el(`<div id="taskListWrap"></div>`);
+  ovBody.appendChild(wrap);
+  const ts=m.tasks[currentLevel]||[];
+  renderTaskList(wrap, m, ts);
+  overlay.classList.add('show');
+  ovBody.scrollTop=0;
+}
+/* ========== 统一关闭（鲁棒） ==========
+   要点：1) 先关 UI 再做清理，任一步抛异常都不影响关闭
+        2) 停语音/录音/计时器/模考态
+        3) 支持 Esc 键
+        4) 提供练习内「← 返回关卡列表」 */
+let navSeq=0;                 // 导航令牌：每次切换页面 +1，异步回调据此判断是否已离开本页
+function navGuard(){ return ++navSeq; }
+function navAlive(tok){ return tok===navSeq; }
+function stopAllMedia(){
+  try{ stopTimer(); }catch(e){}
+  try{ if(window.speechSynthesis) speechSynthesis.cancel(); }catch(e){}
+  try{ if(mediaRecorder && mediaRecorder.state!=='inactive') mediaRecorder.stop(); }catch(e){}
+  try{ if(recStream) recStream.getTracks().forEach(t=>t.stop()); }catch(e){}
+}
+function closeOverlay(){
+  navGuard();                 // 令所有在途异步回调失效
+  try{ overlay.classList.remove('show'); }catch(e){}   // 先无条件隐藏 UI
+  try{ stopAllMedia(); }catch(e){}
+  try{ examMode=null; }catch(e){}
+  try{ renderCards(); }catch(e){}
+}
+document.getElementById('closeOv').onclick=()=>closeOverlay();
+// Esc 关闭（模考中也可退出，但二次确认）
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && overlay.classList.contains('show')){
+    if(examMode){ if(confirm('模考进行中，确认退出本次模考？已作答的环节不会保留。')) closeOverlay(); }
+    else closeOverlay();
+  }
+});
+/* 练习内返回关卡列表：先停一切在途媒体再跳回，杜绝旧回调把内容又写回本页 */
+function addBackBar(m, onBack){
+  const info = m ? (m.official ? (m.name+' · '+m.score) : (m.name+' · '+m.score+' · '+currentLevel)) : '';
+  const bar=el(`<div class="btn-row" style="margin-bottom:14px">
+    <button class="btn ghost" id="backList">← 返回关卡列表</button>
+    <span class="hint" style="margin:0">${info}</span>
+  </div>`);
+  bar.querySelector('#backList').onclick=()=>{
+    try{ stopAllMedia(); }catch(e){}
+    try{ navGuard(); }catch(e){}
+    if(onBack) onBack(); else closeOverlay();
+  };
+  return bar;
+}
+
+function stageLabel(txt){ return el(`<div class="stage">${txt}</div>`); }
+
+/* ============================================================
+   全真模考板块（四题连做 · 严格计时）
+   ============================================================ */
+let examMode=null; // {steps:[{type,label,task}], idx, results:{}}
+function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function runMockExam(){
+  const L=currentLevel;
+  const get=(id)=>pickRandom((SITE_DATA.modules.find(m=>m.id===id).tasks[L]||[]));
+  const steps=[
+    {type:'readaloud',    label:'① 模仿朗读'},
+    {type:'listenchoose', label:'② 听选信息'},
+    {type:'listenanswer', label:'③ 回答问题'},
+    {type:'retell',       label:'④-1 信息转述'},
+    {type:'ask',          label:'④-2 询问信息'},
+  ].map(s=>({...s, task:get(s.type)}));
+  examMode={steps, idx:0, results:{}};
+  document.getElementById('ovTitle').textContent='全真模考 · '+L;
+  document.getElementById('ovSub').textContent='四题连做（含信息转述及询问），严格按官方计时';
+  overlay.classList.add('show');
+  renderExamStep();
+}
+function renderExamStep(){
+  const step=examMode.steps[examMode.idx];
+  ovBody.innerHTML='';
+  ovBody.appendChild(stageLabel(`模考进度 ${examMode.idx+1}/${examMode.steps.length} · ${step.label}`));
+  // 设备故障兜底：麦克风不可用时提供跳过出口，避免模考卡死无法继续
+  if(!recSupported){
+    const warn=el(`<div class="warnbox">⚠ 当前环境无法使用麦克风（需通过 <b>http://localhost</b> 或 <b>https</b> 打开本页面，并在浏览器中允许麦克风权限）。为避免模考卡住，可先跳过本环节，设备就绪后再重考。</div>
+      <div class="btn-row"><button class="btn gold" id="skipStep">跳过本环节，进入下一题 →</button></div>`);
+    ovBody.appendChild(warn);
+    warn.querySelector('#skipStep').onclick=()=>examAdvance();
+  }
+  const m=SITE_DATA.modules.find(x=>x.id===step.type);
+  if(step.type==='readaloud') taskReadAloud(m,step.task,true);
+  else if(step.type==='listenchoose') taskListenChoose(m,step.task,true);
+  else if(step.type==='listenanswer') taskListenAnswer(m,step.task,true);
+  else if(step.type==='retell') taskRetell(m,step.task,true);
+  else if(step.type==='ask') taskAsk(m,step.task,true);
+}
+function examAdvance(){
+  const step=examMode.steps[examMode.idx];
+  examMode.results[step.type]=(examMode.results[step.type]||0)+1;
+  examMode.idx++;
+  if(examMode.idx>=examMode.steps.length) renderExamSummary();
+  else renderExamStep();
+}
+function renderExamSummary(){
+  ovBody.innerHTML='';
+  ovBody.appendChild(stageLabel('模考完成 · 汇总'));
+  const box=el(`<div class="checklist"><h4>🎯 全真模考汇总（${currentLevel}）</h4>
+    <div class="hint">已完成 4 大环节（信息转述及询问合并为第④环节）。每环节的得分与失分点请在该环节的自评/打分清单中确认；建议错题回练习模式重做。</div>
+    <div class="exam-summary"></div>
+    <div class="btn-row">
+      <button class="btn gold" id="redoExam">🔁 再考一次（换题）</button>
+      <button class="btn" id="backHome">返回首页</button>
+    </div></div>`);
+  ovBody.appendChild(box);
+  const sum=box.querySelector('.exam-summary');
+  let total=0;
+  examMode.steps.forEach(s=>{
+    const mod=SITE_DATA.modules.find(x=>x.id===s.type);
+    const sc=OFFICIAL_SCORE[s.type]||0;
+    if(s.type!=='ask') total+=sc; else total+=sc;
+    sum.appendChild(el(`<div class="chk"><input type="checkbox" checked disabled><label>${s.label} · ${mod.name}（${sc} 分） — 已完成 ✓</label></div>`));
+  });
+  sum.appendChild(el(`<div style="margin-top:10px;padding:10px;background:rgba(255,214,102,.08);border:1px solid rgba(255,214,102,.3);border-radius:10px;display:flex;justify-content:space-between;font-weight:800">
+    <span style="color:var(--muted)">本次模考满分合计</span><span style="color:var(--gold);font-size:18px">${total} 分</span></div>`));
+  box.querySelector('#redoExam').onclick=()=>runMockExam();
+  box.querySelector('#backHome').onclick=()=>{ stopTimer(); speechSynthesis.cancel(); examMode=null; overlay.classList.remove('show'); renderCards(); };
+}
+
+/* —— 模仿朗读 —— */
+async function launchTask(m,t){
+  ovBody.innerHTML='';
+  if(m.id==='readaloud') return taskReadAloud(m,t);
+  if(m.id==='listenchoose') return taskListenChoose(m,t);
+  if(m.id==='listenanswer') return taskListenAnswer(m,t);
+  if(m.id==='retell') return taskRetell(m,t);
+  if(m.id==='ask') return taskAsk(m,t);
+}
+
+function taskReadAloud(m,t,exam){
+  if(!examMode){ ovBody.innerHTML=''; ovBody.appendChild(addBackBar(m, m.backAction||(()=>openModule(m)))); }
+  if(exam){ const holder=el(`<div id="modeHolder"></div>`); ovBody.appendChild(holder); renderExamMode(holder,m,t,true); return; }
+  const backBar = examMode ? null : ovBody.querySelector('#backList') ? ovBody.querySelector('#backList').parentElement : null;
+  const tabs=el(`<div class="btn-row" id="modeTabs">
+      <button class="btn gold" data-m="exam">① 模考模式（听→准备→录，贴近考试）</button>
+      <button class="btn" data-m="shadow">② 影子跟读（边听边跟，每日训练）</button>
+    </div>
+    <div class="hint" id="modeHint"></div>`);
+  ovBody.appendChild(tabs);
+  const holder=el(`<div id="modeHolder"></div>`);
+  ovBody.appendChild(holder);
+  let curMode=null;
+  function setMode(mode){
+    if(curMode===mode) return;
+    // 切换模式前停掉上一模式的录音/播放，并让其在途异步回调失效
+    try{ stopAllMedia(); }catch(e){}
+    navGuard();
+    curMode=mode;
+    tabs.querySelectorAll('button').forEach(b=>{ b.classList.toggle('gold', b.dataset.m===mode); });
+    tabs.querySelector('#modeHint').textContent = mode==='shadow'
+      ? '影子跟读：范读播放的同时开始录音，你延迟约0.5秒同步跟读，专练吞音、连读、意群停顿。可循环、可慢速。'
+      : '模考模式：听范读1遍 → '+PREP_TIME[currentLevel]+'秒准备 → '+REC_TIME[currentLevel]+'秒录音朗读，完全模拟考试流程。尾音要读完整，不能吞。';
+    holder.innerHTML='';
+    // 返回栏始终保持在最上方，切换模式后依然可见可用
+    if(backBar) ovBody.insertBefore(backBar, ovBody.firstChild);
+    if(mode==='exam') renderExamMode(holder,m,t);
+    else renderShadowMode(holder,m,t);
+  }
+  tabs.querySelector('[data-m=exam]').onclick=()=>setMode('exam');
+  tabs.querySelector('[data-m=shadow]').onclick=()=>setMode('shadow');
+  setMode('exam');
+}
+/* 异步安全：节点已从文档移除（切页/返回/切模式）时，放弃后续写入 */
+function alive(node){ return !!node && node.isConnected; }
+
+function getEndingWords(text){
+  const words=(text.match(/[A-Za-z]+(?:'[a-z]+)?/g)||[]);
+  const seen=new Set(); const res=[];
+  words.forEach(w=>{
+    const base=wordBase(w); const low=base.toLowerCase();
+    // 只把"词身"的尾音段计入（所有格 's 如 Amy's 不算尾音）
+    if(isEndingWord(low) && !seen.has(low)){ seen.add(low); res.push(w); }
+  });
+  return res;
+}
+function renderCompare(text, missed){
+  // 词身照常显示、仅词身尾音段染红；所有格/缩写（'s 't）整体保留，不被误判为尾音
+  return text.replace(/([A-Za-z]+)((?:'[a-z]+)?)([.,?!]?)/g,(m,w,ap,p)=>{
+    const suf=endingSuffix(w);
+    if(suf){
+      const head=w.slice(0, w.length-suf.length);
+      if(missed.has(w.toLowerCase())) return `<span class="word">${head}<span class="end-bad">${suf}</span></span>${ap}${p}✗`;
+      return `<span class="word">${head}<span class="end-ok">${suf}</span></span>${ap}${p}`;
+    }
+    return `<span class="word">${w}</span>${ap}${p}`;
+  });
+}
+/* 打分环节：尾音红标 + 重做循环（离线"规则自评"；接API后可自动生成红标） */
+function buildScoring(container, m, t, audioUrl, onRedo, exam){
+  container.innerHTML='';
+  const endings=getEndingWords(t.text);
+  const missed=new Set();
+  /* 上半部分：尾音逐词核对（保留红标机制，这是本练习的教学核心） */
+  const top=el(`<div class="checklist"><h4>🎯 尾音逐词核对</h4>
+    <div class="hint">回放录音，逐个核对尾音。标记「没读对」的词会在下方原文中标红 ✗。</div>
+    <div class="audio-row"><span>我的录音：</span>${audioUrl?`<audio controls src="${audioUrl}"></audio>`:'<span class="hint">（无录音）</span>'}</div>
+    <div id="endList"></div>
+    <div class="textbox" id="compareBox" style="font-size:17px"></div>
+  </div>`);
+  container.appendChild(top);
+  const endList=top.querySelector('#endList');
+  endings.forEach((w,i)=>{
+    endList.appendChild(el(`<div class="endRow"><span class="w">${w}</span>
+      <label><input type="radio" name="end_${i}" value="ok"> 读对了</label>
+      <label><input type="radio" name="end_${i}" value="bad"> 没读对(吞了)</label></div>`));
+  });
+  if(endings.length===0){ endList.appendChild(el(`<div class="hint">本句无明显尾音词，可直接按整体表现打分。</div>`)); }
+  const cmpBox=top.querySelector('#compareBox');
+  cmpBox.innerHTML=renderCompare(t.text,missed);
+
+  /* 下半部分：统一评分面板（官方 6 分制，四维度） */
+  const scoreArea=el(`<div></div>`);
+  container.appendChild(scoreArea);
+  const dimEarned={pron:0, fluent:0, inton:0, speed:0};
+  let panel=null;
+
+  function recalc(){
+    let correct=0;
+    endings.forEach((w,i)=>{ const v=top.querySelector(`input[name=end_${i}]:checked`); if(v&&v.value==='ok') correct++; });
+    // ① 发音准确 2.5 分：由尾音正确率折算（尾音是发音最易失分处）
+    dimEarned.pron = endings.length ? Math.round((correct/endings.length)*2.5*10)/10 : 2.5;
+    missed.clear();
+    endings.forEach((w,i)=>{ const v=top.querySelector(`input[name=end_${i}]:checked`); if(v&&v.value==='bad') missed.add(w.toLowerCase()); });
+    cmpBox.innerHTML=renderCompare(t.text,missed);
+    if(panel){
+      // 更新逐题明细（尾音词逐个列出）
+      const inner=scoreArea.querySelector('#scItems');
+      if(inner){
+        const rows=inner.querySelectorAll('#scItems .endRow');
+        endings.forEach((w,i)=>{
+          const r=rows[i]; if(!r) return;
+          const v=top.querySelector(`input[name=end_${i}]:checked`);
+          const st=v?(v.value==='ok'?'读对了 ✔':'没读对 ✘（已标红）'):'未核对';
+          r.innerHTML=`<span style="flex:1">${w}<span class="hint" style="display:block;margin:2px 0 0">${st}</span></span>
+            <b style="color:${v&&v.value==='ok'?'var(--ok)':'var(--red)'};white-space:nowrap">${v&&v.value==='ok'?1:0} / 1</b>`;
+        });
+        panel.recalc();
+      }
+    }
+  }
+
+  /* 自评三项（对应维度 2/3/4） */
+  const selfBox=el(`<div class="checklist" style="margin-top:12px">
+    <h4>📊 自我核对（官方 6 分制）</h4>
+    <div class="chk"><input type="checkbox" id="ra_fluent"><label for="ra_fluent">完整流畅：读完全篇不漏句、没倒回去重读（+1.5）</label></div>
+    <div class="chk"><input type="checkbox" id="ra_chunk"><label for="ra_chunk"><b>断句</b>：按上方金色 <b style="color:var(--gold)">/</b> 处停顿，意群之间不拖长、也不一路读到底（+0.5）</label></div>
+    <div class="chk"><input type="checkbox" id="ra_tone"><label for="ra_tone"><b>语调</b>：意群未完用升调（≈拼音二声）示意「没说完」；句末陈述句/特殊疑问句降调（≈四声）、一般疑问句升调（+0.5）</label></div>
+    <div class="chk"><input type="checkbox" id="ra_speed"><label for="ra_speed">语速音量：不快不慢，吐字清晰（+1.0）</label></div>
+    <div id="scPanelHolder"></div>
+    <div class="hint">说明：这是离线"规则自评"。要获得官方级逐音素自动打分（精确标出哪个尾音被吞），需接入语音评测 API（讯飞/腾讯云/微软Azure），届时红标由 API 自动生成。</div>
+  </div>`);
+  scoreArea.appendChild(selfBox);
+  const holder=selfBox.querySelector('#scPanelHolder');
+  panel=buildScorePanel({
+    container:holder, modId:'readaloud', taskId:t.id, modName:'模仿朗读', full:6,
+    dimEarned:dimEarned,
+    items:endings.map(w=>({label:w, note:'未核对', earned:0, max:1})),
+    extraNote:'发音准确由尾音核对自动折算（尾音是发音最易失分处）；完整度、语调、语速由你自评。',
+    onRedo:onRedo, exam:exam
+  });
+  selfBox.querySelector('#ra_fluent').addEventListener('change',e=>{ dimEarned.fluent=e.target.checked?1.5:0; panel.recalc(); });
+  const syncInton=()=>{
+    dimEarned.inton = (selfBox.querySelector('#ra_chunk').checked?0.5:0) + (selfBox.querySelector('#ra_tone').checked?0.5:0);
+    panel.recalc();
+  };
+  selfBox.querySelector('#ra_chunk').addEventListener('change', syncInton);
+  selfBox.querySelector('#ra_tone').addEventListener('change', syncInton);
+  selfBox.querySelector('#ra_speed').addEventListener('change',e=>{ dimEarned.speed=e.target.checked?1.0:0; panel.recalc(); });
+  top.querySelectorAll('input').forEach(inp=>inp.addEventListener('change',recalc));
+  recalc();
+}
+
+function renderExamMode(holder,m,t,exam){
+  const prepS=(t.prep!=null?t.prep:PREP_TIME[currentLevel]);
+  const recS=(t.rec!=null?t.rec:REC_TIME[currentLevel]);
+  const gradNote=(t.prep!=null)?'（本段为中考真题长度，按官方 50 秒标准执行）'
+    :(currentLevel==='B1'?'（本级已到官方 50 秒标准）'
+    :'（官方考试为 50 秒；本级文本短，训练时缩短等待，随关卡变长逐步适应真题长度）');
+  holder.appendChild(el(`<div class="checklist" style="margin-bottom:14px">
+    <h4>📋 模仿朗读规则（考场就是这样，请照着做）</h4>
+    <div class="exrule">① <b>先听 1 遍</b>（<b>不重复播放</b>）：屏幕上显示短文，播放前先快速扫读全文，圈出生词、标记长句。</div>
+    <div class="exrule">② 听的时候<b>在心里默读</b>，重点捕捉三件事：录音在哪停顿、哪些词连读、哪个词读得重。</div>
+    <div class="exrule">③ <b>${prepS} 秒准备</b>：优先练长句和生词，<b>从头到尾完整读一遍</b>，确认不漏句。${gradNote}</div>
+    <div class="exrule">④ <b>${recS} 秒录音朗读</b>：听到提示音后<b>停 1–2 秒</b>再开口，让设备完全启动。</div>
+    <div class="exrule">⑤ 词尾 <b>-s / -ed / -t / -d / -k 必须发出，不能吞音</b>；按下方金色 <b style="color:var(--gold)">/</b> 处断句 —— 意群未完用升调（≈拼音二声）表示没说完，句末陈述句/特殊疑问句降调（≈四声）、一般疑问句升调。</div>
+    <div class="exrule">⑥ <b>读错不回头、不重读</b>，直接往下读，不发"呃…"等语气词。</div>
+  </div>`));
+  holder.appendChild(stageLabel('STEP 1 · 听范读（1遍，不重复播放）'));
+  const tb=el(`<div class="textbox">${highlightEndings(t.text)}</div>`);
+  holder.appendChild(tb);
+  holder.appendChild(el(`<div class="hint">红色词尾为吞音高频区（-s / -ed / -t / -d），朗读时注意发出；尾音要读完整，不能吞掉。</div>`));
+  holder.appendChild(el(renderChunkBox(t.text, currentLevel)));
+  holder.appendChild(el(intonationGuide(currentLevel)));
+  const row=el(`<div class="btn-row"><button class="btn gold" id="b1">🔊 听范读</button><button class="btn" id="b1s">🔊 慢速 0.6×</button></div>`);
+  holder.appendChild(row);
+  row.querySelector('#b1').onclick=()=>speak(t.text);
+  row.querySelector('#b1s').onclick=()=>speak(t.text,{slow:true});
+
+  holder.appendChild(stageLabel(`STEP 2 · 准备（${prepS}秒）`));
+  const prep=el(`<div><div class="timer"><div class="tnum" id="tp">--</div><div class="tbar"><i id="bp"></i></div></div><div class="btn-row"><button class="btn gold" id="sp">⏱ 开始 ${prepS} 秒准备</button><button class="btn" id="spSkip">⏩ 已准备好，提前录音</button></div><div class="hint">准备好了不用干等 —— 点「⏩ 提前录音」直接进入下一步。</div></div>`);
+  holder.appendChild(prep);
+  const stageArea=el(`<div id="stageArea"></div>`);
+  holder.appendChild(stageArea);
+  prep.querySelector('#sp').onclick=()=>{
+    beep(660,0.12);
+    runTimer(prepS, prep.querySelector('#tp'), prep.querySelector('#bp'), ()=>{
+      beep(880,0.18); toast('准备结束，即将开始录音'); buildRecStage();
+    });
+  };
+  prep.querySelector('#spSkip').onclick=()=>{ try{ stopTimer(); }catch(e){} buildRecStage(); };
+
+  function buildRecStage(){
+    stageArea.innerHTML='';
+    stageArea.appendChild(stageLabel(`STEP 3 · 录音朗读（${recS}秒）`));
+    const rec=el(`<div><div class="timer"><span class="rec-dot"></span><div class="tnum" id="tr">--</div><div class="tbar"><i id="br"></i></div></div><div class="btn-row"><button class="btn gold" id="sr">开始录音</button><button class="btn" id="er" disabled>停止并回放</button></div><div id="aud"></div></div>`);
+    stageArea.appendChild(rec);
+    const errBox=el(`<div></div>`); stageArea.appendChild(errBox);
+    rec.querySelector('#sr').onclick=async()=>{
+      if(!recSupported){ errBox.innerHTML='<div class="warnbox">当前环境不支持麦克风录音（需通过 http://localhost 或 https 打开，并允许麦克风权限）。本关可继续用"听范读+自评"模式练习。</div>'; return; }
+      if(recBusy){ toast('已有录音在进行，请先停止'); return; }
+      recBusy=true;
+      try{
+        await startRecording();
+        if(!alive(stageArea)){ try{ await stopRecording(); }catch(e){} recBusy=false; return; }
+        beep(880,0.18); toast('开始录音，请朗读');
+        rec.querySelector('#sr').disabled=true; rec.querySelector('#er').disabled=false;
+        runTimer(recS, rec.querySelector('#tr'), rec.querySelector('#br'), ()=>doStop(true));
+      }catch(e){ recBusy=false; rec.querySelector('#sr').disabled=false; if(alive(stageArea)) errBox.innerHTML='<div class="warnbox">无法访问麦克风：'+e.message+'。请检查浏览器权限，并通过 localhost/https 打开。</div>'; }
+    };
+    async function doStop(auto){
+      try{ stopTimer(); }catch(e){}
+      const u=await stopRecording();
+      recBusy=false;
+      if(!alive(stageArea)) return;          // 已返回/切页：不再写 DOM
+      beep(520,0.22);
+      showAudio(u); goScore(u);
+    }
+    rec.querySelector('#er').onclick=()=>doStop(false);
+    function showAudio(u){ if(!u) return; rec.querySelector('#aud').innerHTML=''; rec.querySelector('#aud').appendChild(el(`<div class="audio-row"><span>我的录音：</span><audio controls src="${u}"></audio></div>`)); }
+    function goScore(u){ buildScoring(stageArea, m, t, u, buildRecStage, exam); }
+  }
+}
+
+/* —— 影子跟读：严格分两步，先听清 → 再同步跟读 ——
+   官方逻辑：先听范读（捕捉停顿/连读/重音），再开口。跟读是"边听边说"。 */
+function renderShadowMode(holder,m,t){
+  let listenCount=0;
+  const showRef=()=>{ listenCount++; renderGate(); };
+
+  /* ===== STEP 1 · 先听清（不录音） ===== */
+  holder.appendChild(stageLabel('STEP 1 · 先听清（不开口，只听）'));
+  holder.appendChild(el(`<div class="hint"><b>这一步不要开口。</b>范读里藏着你要模仿的三件事：① 它在哪里停顿（就是你朗读时的断句位置）② 哪些词连读了 ③ 哪个词读得重。听够了再解锁下一步。</div>`));
+  holder.appendChild(el(`<div class="textbox">${highlightEndings(t.text)}</div>`));
+  holder.appendChild(el(renderChunkBox(t.text, currentLevel)));
+  holder.appendChild(el(intonationGuide(currentLevel)));
+
+  let playing=false;
+  const st=el(`<div class="hint" style="margin:6px 0 0">已听 <b style="color:var(--gold)">0</b> 遍。</div>`);
+  const stopBtn=el(`<button class="btn" id="shLStop">⏹ 停止播放</button>`);
+  stopBtn.style.display='none';
+  const l1=el(`<button class="btn gold" id="shL1">🔊 第1遍 · 正常语速</button>`);
+  const l2=el(`<button class="btn" id="shL2">🔊 第2遍 · 正常语速</button>`);
+  const ls=el(`<button class="btn" id="shLS">🔊 慢速 0.6× · 抠细节</button>`);
+  const row1=el(`<div><div class="btn-row"></div></div>`);
+  [l1,l2,ls,stopBtn].forEach(b=>row1.querySelector('.btn-row').appendChild(b));
+  const block1=el(`<div></div>`);
+  block1.appendChild(row1); block1.appendChild(st);
+  // ps：播放状态/诊断专用，避免被 renderGate 的"已听 N 遍"覆盖
+  const ps=el(`<div class="hint" id="shPlayStatus" style="margin:2px 0 0;min-height:18px"></div>`);
+  block1.appendChild(ps);
+  holder.appendChild(block1);
+
+  let manualStop=false;   // 用户点了「停止」→ 本次不计入遍数
+  async function playOnce(slow){
+    if(playing){ return; }
+    playing=true; stopBtn.style.display='';
+    [l1,l2,ls].forEach(b=>b.disabled=true);
+    const before=listenCount;
+    manualStop=false;
+    ps.innerHTML = slow? '慢速播放中…（注意连读与重音）' : '播放中…（在心里跟着默读）';
+    let spoken=false;
+    try{ spoken=await speak(t.text,{slow:slow}); }
+    catch(e){ if(alive(ps)) ps.textContent='播放出错：'+e.message; }
+    finally{
+      playing=false;
+      if(alive(block1)){ stopBtn.style.display='none'; [l1,l2,ls].forEach(b=>b.disabled=false); }
+    }
+    if(manualStop){
+      if(alive(ps)) ps.innerHTML=`已停止（停止不计入遍数）。要重听请再点一次。`;
+      renderGate();
+      return;
+    }
+    if(!spoken){
+      // 本机/该语音没真正发声 → 明确诊断，不计遍数
+      if(alive(ps)) ps.innerHTML='⚠ <b>没有听到声音。</b>常见原因：① 本机未安装英文语音包；② 选中的是"在线语音"但当前无网络。请点首页顶部「🔊 测试声音」自检，或在 Windows「设置 → 时间与语言 → 语言 → 英语(英国)」安装语音包后刷新。';
+      renderGate();
+      return;
+    }
+    listenCount=before+1;
+    renderGate();
+  }
+  function play(slow){ playOnce(slow); }
+  l1.onclick=()=>play(false);
+  l2.onclick=()=>play(false);
+  ls.onclick=()=>play(true);
+  stopBtn.onclick=()=>{ try{ speechSynthesis.cancel(); }catch(e){} playing=false; manualStop=true; };
+
+  /* ===== 门禁：听满 2 遍才解锁 STEP 2 ===== */
+  const gate=el(`<div class="hint" style="border:1px solid var(--line);border-radius:12px;padding:14px;margin:16px 0">
+      <div style="font-size:15px;font-weight:800;color:var(--gold);margin-bottom:6px">🔒 STEP 2 · 影子跟读（边听边说）尚未解锁</div>
+      <div>规则：<b>先听清，再开口</b>。范读至少听 <b>2 遍</b>，才进入跟读 —— 这是考场上的真实顺序（听录音 → 心里跟读 → 再开口）。</div>
+      <div class="btn-row" style="margin-top:12px"><button class="btn ghost" id="shGo" disabled>🔓 我听清楚了，开始影子跟读</button></div>
+      <div class="hint" style="margin-top:6px" id="shGateHint">进度：已听 0 / 2 遍。</div>
+    </div>`);
+  holder.appendChild(gate);
+  const goBtn=gate.querySelector('#shGo');
+  const gateHint=gate.querySelector('#shGateHint');
+
+  /* ===== STEP 3 · 同步跟读（默认隐藏，解锁后显示） ===== */
+  const ctrl=el(`<div><div class="btn-row">
+      <button class="btn gold" id="shPlay">▶ 播放并同步跟读</button>
+      <button class="btn" id="shSlow">▶ 慢速 0.6× 跟读</button>
+      <button class="btn" id="shStop" disabled>⏹ 提前结束</button>
+      <button class="btn ghost" id="shReplay">🔊 再听一遍范读</button>
+    </div>
+    <div class="audio-row" id="shAud"></div>
+    <div id="shStatus" class="hint"></div></div>`);
+  const stageArea=el(`<div></div>`);
+  holder.appendChild(ctrl);
+  holder.appendChild(stageArea);
+  ctrl.style.display='none';
+  stageArea.style.display='none';
+
+  function renderGate(){
+    if(!alive(st)) return;
+    st.innerHTML = `已听 <b style="color:var(--gold)">${listenCount}</b> 遍。` +
+      (listenCount>=2 ? ' ✅ 已达标' : (listenCount===1 ? ' 再听一遍，重点捕捉停顿位置。' : ' 点上面按钮开始。'));
+    if(listenCount>=2){
+      gate.querySelector('div').innerHTML='<div style="font-size:15px;font-weight:800;color:var(--gold);margin-bottom:6px">✅ STEP 2 · 影子跟读（边听边说）已解锁</div><div>点下面的按钮：系统会<b>同时</b>播放范读并开始录音，你在听到声音后延迟约 <b>0.5 秒</b>同步开口。读错不回头、不重读，直接继续。</div>';
+      goBtn.disabled=false;
+      gateHint.textContent='进度：已听 '+listenCount+' / 2 遍 ✅';
+      ctrl.style.display='';
+      stageArea.style.display='';
+    }else{
+      goBtn.disabled=true;
+      gateHint.textContent=`进度：已听 ${listenCount} / 2 遍。`;
+      ctrl.style.display='none';
+      stageArea.style.display='none';
+    }
+  }
+  renderGate();
+
+  let shadowing=false;
+  async function doShadow(slow){
+    if(!recSupported){ if(alive(ctrl)) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">当前环境不支持麦克风（需通过 http://localhost 或 https 打开，并允许麦克风权限）。仍可用 STEP 1 反复听范读做听读训练。</span>'; return; }
+    if(listenCount<2){ toast('请先完成 STEP 1：至少听 2 遍范读'); return; }
+    if(shadowing) return;
+    shadowing=true;
+    ctrl.querySelector('#shPlay').disabled=true; ctrl.querySelector('#shSlow').disabled=true;
+    ctrl.querySelector('#shStop').disabled=false;
+    const tok=navSeq;
+    try{
+      await startRecording();
+      if(!alive(ctrl) || tok!==navSeq){ try{ await stopRecording(); }catch(e){} return; }
+      ctrl.querySelector('#shStatus').innerHTML='<b style="color:var(--red)">● 录音中</b> —— 听到声音后延迟约 0.5 秒开口，读错不回头。';
+      beep(880,0.15);
+      await speak(t.text,{slow:slow});
+      await new Promise(r=>setTimeout(r, slow?1400:900));
+      const u=await stopRecording();
+      if(!alive(ctrl) || tok!==navSeq) return;
+      ctrl.querySelector('#shAud').innerHTML='';
+      if(u){ ctrl.querySelector('#shAud').appendChild(el(`<div class="audio-row"><span>我的跟读：</span><audio controls src="${u}"></audio></div>`)); buildScoring(stageArea, m, t, u, ()=>doShadow(slow)); }
+      ctrl.querySelector('#shStatus').innerHTML='✓ 跟读完成。回放对比范读，重点查三件事：<b>尾音</b>（-s/-ed/-t/-d 有没有发出来）、<b>连读</b>、<b>意群停顿</b>。';
+    }catch(e){
+      if(alive(ctrl) && tok===navSeq) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">麦克风错误：'+e.message+'</span>';
+    }finally{
+      shadowing=false;
+      if(alive(ctrl)){ ctrl.querySelector('#shPlay').disabled=false; ctrl.querySelector('#shSlow').disabled=false; ctrl.querySelector('#shStop').disabled=true; }
+    }
+  }
+  goBtn.onclick=()=>{ ctrl.style.display=''; stageArea.style.display=''; toast('开始跟读：听到声音后延迟约 0.5 秒开口'); doShadow(false); };
+  ctrl.querySelector('#shPlay').onclick=()=>doShadow(false);
+  ctrl.querySelector('#shSlow').onclick=()=>doShadow(true);
+  ctrl.querySelector('#shStop').onclick=()=>{ try{ curRecStop&&curRecStop(); }catch(e){} };
+  ctrl.querySelector('#shReplay').onclick=()=>play(false);
+}
+
+/* —— 听选信息（官方流程严格版）——
+   官方规则：听 3 段对话/独白，每段播放 2 遍；每段播放前有 10 秒读题时间；
+             每段播放后有 2 个问题，每题 8 秒作答，从三个备选答案中口头选出正确答案。
+   流程门控：10秒读题 → 听满2遍 → 才解锁作答区（与考场一致，防"只听一遍就抢答"） */
+async function taskListenChoose(m,t,exam){
+  if(!examMode){ ovBody.innerHTML=''; ovBody.appendChild(addBackBar(m, m.backAction||(()=>openModule(m)))); }
+  const LV=getLineVoices();
+
+  /* ===== 规则卡：先明确规则，让学生照着做 ===== */
+  ovBody.appendChild(el(`<div class="checklist" style="margin-bottom:14px">
+    <h4>📋 本题规则（考场就是这样，请照着做）</h4>
+    <div class="exrule">① <b>10 秒读题</b>：快速扫读题目和三个选项，锁定疑问词（who/what/when/where/why）。</div>
+    <div class="exrule">② <b>对话播放 2 遍</b>：<b>必须听满 2 遍</b>才开放作答。第 1 遍抓大意，第 2 遍核实细节。</div>
+    <div class="exrule">③ <b>每题 8 秒作答</b>：听到提示音后<b>停 1 秒</b>再开口，直接读出你选的答案（念完整句，如 Near the park.）。</div>
+    <div class="exrule">④ <b>绝不抢答、绝不回读</b>：听到提示音才能开口；不确定也必须说出答案，留白＝零分。</div>
+    <div class="exrule" style="color:var(--gold-soft)">📝 草稿纸不会用？展开下方「笔记方法」面板：人名写首字母、数字原样抄、地点写缩写，给每个选项记证据。</div>
+  </div>`));
+  ovBody.appendChild(el(noteGuide('listenchoose')));
+
+  /* ===== STEP 0 · 10 秒读题 ===== */
+  ovBody.appendChild(stageLabel('STEP 0 · 读题（10 秒）'));
+  ovBody.appendChild(el(`<div class="hint">这段时间不出声，只看题。先圈出疑问词，再看三个选项的区别点（例如 park / library / school），心里预判答案。</div>`));
+  t.questions.forEach((qq,i)=>{
+    ovBody.appendChild(el(`<div class="q"><div class="qt">第 ${i+1} 题：${qq.q}</div>` +
+      qq.opts.map((o,j)=>`<div class="opt"><span class="mk">${String.fromCharCode(65+j)}</span><span>${o}</span></div>`).join('') +
+      `</div>`));
+  });
+  const readT=el(`<div><div class="timer"><div class="tnum" id="rdT">--</div><div class="tbar"><i id="rdB"></i></div></div><div class="btn-row"><button class="btn gold" id="rdGo">⏱ 开始 10 秒读题</button></div><div class="hint" id="rdHint">也可以跳过读题直接听，但强烈建议按流程来。</div></div>`);
+  ovBody.appendChild(readT);
+  readT.querySelector('#rdGo').onclick=()=>{
+    beep(660,0.12);
+    runTimer(10, readT.querySelector('#rdT'), readT.querySelector('#rdB'), ()=>{
+      beep(880,0.18); readT.querySelector('#rdHint').textContent='读题时间结束 ✅ 下面开始听对话。';
+    });
+  };
+
+  /* ===== STEP 1 · 听对话（2 遍，必须听满才解锁） ===== */
+  ovBody.appendChild(stageLabel('STEP 1 · 听对话（必须听满 2 遍）'));
+  ovBody.appendChild(el(`<div class="hint" id="lcRole">对话角色：<b style="color:var(--gold-soft)">A</b> = ${LV.a?LV.a.name:'默认音色'}　|　<b style="color:var(--gold-soft)">B</b> = ${LV.b?LV.b.name:'默认音色'}${LV.same?'（无英式男女双声，用同一音色+音高区分）':''}</div>`));
+  if(!LV.gb) ovBody.appendChild(el(`<div class="warnbox">⚠ 当前设备未检测到英式（en-GB）语音包，对话将使用系统默认英语音色。Windows 可在「设置 → 时间和语言 → 语言 → 英语(英国)」中安装语音包后刷新本页。</div>`));
+
+  let played=0, dialogueRunning=false;
+  const lcStatus=el(`<div class="hint" style="margin:6px 0 0">已听 <b style="color:var(--gold)">0</b> / 2 遍。</div>`);
+  const btnPlay2=el(`<button class="btn gold" id="pd">🔊 播放对话（听第1遍）</button>`);
+  const btnPlay1=el(`<button class="btn" id="pd1">🔊 只听第1遍</button>`);
+  const btnPlayMore=el(`<button class="btn" id="pdMore" disabled>🔊 听第2遍</button>`);
+  const btnStop=el(`<button class="btn" id="pdStop">⏹ 停止播放</button>`);
+  btnStop.style.display='none';
+  const row=el(`<div><div class="btn-row"></div><div class="hint">听时只用简写速记：人名首字母、数字、地点，不要写完整句。第 1 遍抓大意，第 2 遍核实细节。</div></div>`);
+  [btnPlay2,btnPlay1,btnPlayMore,btnStop].forEach(b=>row.querySelector('.btn-row').appendChild(b));
+  const block1=el(`<div></div>`);
+  block1.appendChild(row); block1.appendChild(lcStatus);
+  ovBody.appendChild(block1);
+
+  if(t.script){
+    const scWrap=el(`<div style="margin-top:8px"><button class="btn ghost" id="lcScriptBtn">📖 看听力原文（做完再核对，别提前看）</button><div class="textbox" id="lcScriptBox" style="display:none;font-size:13.5px;line-height:1.8;margin-top:8px;white-space:pre-wrap"></div></div>`);
+    ovBody.appendChild(scWrap);
+    scWrap.querySelector('#lcScriptBtn').onclick=()=>{
+      const bx=scWrap.querySelector('#lcScriptBox');
+      const btn=scWrap.querySelector('#lcScriptBtn');
+      if(bx.style.display==='none'){ bx.textContent=t.script; bx.style.display=''; btn.textContent='📖 收起听力原文'; }
+      else { bx.style.display='none'; btn.textContent='📖 看听力原文（做完再核对，别提前看）'; }
+    };
+  }
+
+  async function playDialogue(){
+    if(dialogueRunning) return;
+    dialogueRunning=true;
+    btnStop.style.display='';
+    [btnPlay2,btnPlay1,btnPlayMore].forEach(b=>b.disabled=true);
+    const before=played;
+    lcStatus.textContent='● 正在播放，请听……';
+    try{
+      for(const line of t.dialogue){
+        if(!alive(lcStatus)) return;
+        const isA=line.s==='A';
+        await speakOnce(line.t, {voice:isA?LV.a:LV.b, pitch:LV.same?(isA?1.1:0.92):1});
+        await new Promise(r=>setTimeout(r,320));
+      }
+    }finally{
+      dialogueRunning=false;
+      if(alive(block1)){ btnStop.style.display='none'; [btnPlay2,btnPlay1,btnPlayMore].forEach(b=>b.disabled=false); }
+      // 完整播完才计数
+      if(alive(lcStatus)){
+        played++;
+        lcStatus.innerHTML = `已听 <b style="color:var(--gold)">${played}</b> / 2 遍。` +
+          (played>=2? ' ✅ 已听满 2 遍，下面的作答区已解锁。' : ' 再听第 2 遍，核实细节后即可作答。');
+        btnPlayMore.disabled = played>=2;
+        if(played>=2) unlockAnswer();
+      }
+    }
+  }
+  btnPlay2.onclick=()=>{ beep(660,0.1); playDialogue(); };
+  btnPlay1.onclick=()=>{ beep(660,0.1); played=0; playDialogue(); };
+  btnPlayMore.onclick=()=>{ beep(660,0.1); playDialogue(); };
+  btnStop.onclick=()=>{ try{ speechSynthesis.cancel(); }catch(e){} dialogueRunning=false; };
+
+  /* ===== STEP 2 · 作答区（听满 2 遍才解锁） ===== */
+  const answerArea=el(`<div></div>`);
+  answerArea.style.filter='blur(3px)';
+  answerArea.style.opacity='0.4';
+  answerArea.style.pointerEvents='none';
+  ovBody.appendChild(stageLabel('STEP 2 · 逐题口头作答（每题 8 秒）'));
+  ovBody.appendChild(answerArea);
+  const lockTip=el(`<div class="warnbox" style="margin:8px 0 12px">🔒 作答区已锁定 —— 请先完成 STEP 1，<b>听满 2 遍对话</b>后自动解锁。（考场里也是听完 2 遍才能答）</div>`);
+  ovBody.insertBefore(lockTip, answerArea);
+
+  t.questions.forEach((qq,i)=>{
+    const q=el(`<div class="q"><div class="qt">第 ${i+1} 题：${qq.q}</div></div>`);
+    qq.opts.forEach((o,j)=>{
+      q.appendChild(el(`<div class="opt"><span class="mk">${String.fromCharCode(65+j)}</span><span>${o}</span></div>`));
+    });
+    const ctl=el(`<div><div class="btn-row"><button class="btn" id="replay${i}">🔊 重听本题题干</button><button class="btn gold" id="rec${i}">🎤 开始录音(8秒)</button><button class="btn" id="show${i}">看正确答案</button><button class="btn ghost" id="ref${i}">🔊 听正确选项</button></div><div id="aud${i}"></div><div id="pick${i}"></div></div>`);
+    q.appendChild(ctl);
+    ctl.querySelector('#replay'+i).onclick=()=>speak(qq.q);
+    ctl.querySelector('#rec'+i).onclick=()=>recordShort(8, ctl.querySelector('#aud'+i), ()=>{ revealAnswer(q,qq); showPicker(i,qq); }, ctl.querySelector('#rec'+i));
+    ctl.querySelector('#show'+i).onclick=()=>{ revealAnswer(q,qq); showPicker(i,qq); };
+    ctl.querySelector('#ref'+i).onclick=()=>{ beep(660,0.1); speak(qq.opts[qq.ans]); };
+    answerArea.appendChild(q);
+  });
+  /* 录音后选"我答的是哪个" → 系统自动判对错并计入评分 */
+  const picks=new Array(t.questions.length).fill(-1);
+  function showPicker(i,qq){
+    const host=answerArea.querySelector('#pick'+i);
+    if(!host || host.dataset.on) return;
+    host.dataset.on='1';
+    host.appendChild(el(`<div class="hint" style="margin-top:8px;color:var(--gold-soft)">我口头读出的是哪一个？</div>`));
+    const row=el(`<div class="btn-row"></div>`);
+    qq.opts.forEach((o,j)=>{
+      const b=el(`<button class="btn" id="pk${i}_${j}">${String.fromCharCode(65+j)}. ${o}</button>`);
+      row.appendChild(b);
+    });
+    host.appendChild(row);
+    row.querySelectorAll('button').forEach((b,j)=>{
+      b.onclick=()=>{
+        picks[i]=j;
+        row.querySelectorAll('button').forEach((x,k)=>{ x.classList.toggle('gold', k===j); x.disabled=true; });
+        const ok=j===qq.ans;
+        row.appendChild(el(`<div class="hint" style="margin-top:6px;color:${ok?'var(--ok)':'var(--red)'}">${ok?'✔ 答对了':'✘ 答错了 —— 正确答案是 '+String.fromCharCode(65+qq.ans)+'. '+qq.opts[qq.ans]}</div>`));
+        refreshScore();
+      };
+    });
+  }
+  const scoreWrap=el(`<div></div>`);
+  answerArea.appendChild(scoreWrap);
+  const scoreBox=el(`<div></div>`);
+  scoreWrap.appendChild(scoreBox);
+
+  const dimEarned={acc:0, clear:0, ctrl:0};
+  let scorePanel=null;
+  function buildItems(){
+    const n=t.questions.length;
+    return t.questions.map((qq,i)=>({
+      label:`第 ${i+1} 题：${qq.q}`,
+      note: picks[i]<0 ? '未作答 —— 留白＝零分，考场里也要硬着头皮猜一个' :
+             (picks[i]===qq.ans ? '答对了 ✔' : `答错了 ✘（你选 ${String.fromCharCode(65+picks[i])}，正确是 ${String.fromCharCode(65+qq.ans)}. ${qq.opts[qq.ans]}）`),
+      earned: picks[i]<0?0:(picks[i]===qq.ans?1:0), max:1
+    }));
+  }
+  function refreshScore(){
+    const n=t.questions.length;
+    const answered=picks.filter(x=>x>=0).length;
+    const correct=picks.filter((x,i)=>x>=0 && x===t.questions[i].ans).length;
+    dimEarned.acc=Math.round((n?correct/n:0)*6*10)/10;
+    if(!scorePanel){
+      scoreBox.innerHTML='';
+      const panel=el(`<div class="checklist" style="margin-top:14px">
+        <h4>📊 听选信息评分（满分 9 分）</h4>
+        <div class="hint" id="lcStat">做完每题后点「我口头读出的是哪一个」，系统自动判对错。</div>
+        <div class="chk"><input type="checkbox" id="lcClear"><label for="lcClear">表达清晰：我读出了完整选项，而不是只说字母（+1.5）</label></div>
+        <div class="chk"><input type="checkbox" id="lcCtrl"><label for="lcCtrl">节奏控制：每题 8 秒内说完，听到提示音才开口（+1.5）</label></div>
+        <div id="lcPanel"></div>
+      </div>`);
+      scoreBox.appendChild(panel);
+      const inner=el(`<div></div>`);
+      panel.appendChild(inner);
+      scorePanel=buildScorePanel({
+        container:inner, modId:'listenchoose', taskId:t.id, modName:'听选信息', full:9,
+        dimEarned:dimEarned, items:buildItems(),
+        extraNote:'选择准确率由系统自动判定；表达与节奏由你自己核对。',
+        onRedo:()=>{ picks.fill(-1); refreshScore(); },
+        exam:examMode
+      });
+      panel.querySelector('#lcClear').addEventListener('change',()=>{ dimEarned.clear=panel.querySelector('#lcClear').checked?1.5:0; scorePanel.recalc(); });
+      panel.querySelector('#lcCtrl').addEventListener('change',()=>{ dimEarned.ctrl=panel.querySelector('#lcCtrl').checked?1.5:0; scorePanel.recalc(); });
+    }else{
+      // 更新逐题明细（不重建面板，保留勾选状态）
+      const inner=scoreBox.querySelector('#lcPanel');
+      if(inner){
+        const items=buildItems();
+        const rows=inner.querySelectorAll('#scItems .endRow');
+        items.forEach((it,i)=>{
+          const r=rows[i]; if(!r) return;
+          r.innerHTML=`<span style="flex:1">${it.label}${it.note?`<span class="hint" style="display:block;margin:2px 0 0">${it.note}</span>`:''}</span>
+            <b style="color:${it.earned>=it.max?'var(--ok)':'var(--red)'};white-space:nowrap">${it.earned} / ${it.max}</b>`;
+        });
+        scorePanel.recalc();
+      }
+    }
+    const stat=scoreBox.querySelector('#lcStat');
+    if(stat) stat.innerHTML=`做完每题后点「我口头读出的是哪一个」，系统自动判对错。<b>已答 ${answered}/${n} 题，答对 ${correct} 题。</b>`;
+  }
+  refreshScore();
+
+  function unlockAnswer(){
+    answerArea.style.filter='';
+    answerArea.style.opacity='';
+    answerArea.style.pointerEvents='';
+    if(alive(lockTip)) lockTip.remove();
+    toast('✅ 已听满 2 遍，作答区开放');
+  }
+  if(examMode) unlockAnswer();   // 模考态不设门控，避免卡死
+}
+
+function revealAnswer(q,qq){
+  if(q.dataset.revealed) return; q.dataset.revealed='1';
+  qq.opts.forEach((o,j)=>{ if(j===qq.ans){ const node=q.querySelectorAll('.opt')[j]; node.classList.add('correct'); const s=el(`<span class="ans">正确答案</span>`); node.appendChild(s); } });
+  const tip=el(`<div class="hint">标准答案：${String.fromCharCode(65+qq.ans)}. ${qq.opts[qq.ans]} —— 确认你口头读出的是这个选项，并练到流畅。</div>`);
+  q.appendChild(tip);
+}
+
+/* —— 回答问题 —— */
+async function taskListenAnswer(m,t,exam){
+  if(!examMode){ ovBody.innerHTML=''; ovBody.appendChild(addBackBar(m, m.backAction||(()=>openModule(m)))); }
+  async function playMon(times){
+    for(let r=0;r<times;r++){ await speak(t.monologue); if(times>1&&r<times-1) await new Promise(r=>setTimeout(r,800)); }
+  }
+  /* 规则卡 */
+  ovBody.appendChild(el(`<div class="checklist" style="margin-bottom:14px">
+    <h4>📋 本题规则（考场就是这样，请照着做）</h4>
+    <div class="exrule">① <b>15 秒读题</b>：屏幕显示 4 个问题，你先看问题、预判答案类型（问时间→数字/am pm，问地点→方位词，问原因→because…）。</div>
+    <div class="exrule">② <b>独白播放 2 遍</b>：第 1 遍抓大意记要点，第 2 遍补全未记清的信息（数字是 15 还是 50？）。</div>
+    <div class="exrule">③ <b>每题 8 秒作答（共 4 题）</b>：听到提示音后<b>停 1 秒</b>再开口。</div>
+    <div class="exrule">④ <b>用完整短语或短句</b>：建议说 <i>Tom went to the library at 3 o'clock.</i>；至少要说 <i>At 3 o'clock.</i>，不要只回答 <i>Three.</i></div>
+    <div class="exrule">⑤ <b>注意时态与单复数</b>：听到过去就用过去式；说错了不要停，接着说完。</div>
+  </div>`));
+  ovBody.appendChild(el(noteGuide('listenanswer')));
+  // STEP 0 · 范例示范：先示范一题的完整答案长什么样
+  ovBody.appendChild(stageLabel('STEP 0 · 范例示范'));
+  const demo=el(`<div class="checklist">
+    <h4>📌 听完后该怎么说？（示范）</h4>
+    <div class="q" style="margin:8px 0">
+      <div class="qt">问题：${t.questions[0].q}</div>
+      <div style="margin:6px 0"><b style="color:var(--gold)">示范回答：</b>${t.keys[0]}</div>
+      <div class="btn-row"><button class="btn" id="ad">🔊 听示范回答</button><button class="btn" id="ads">🔊 慢速听</button></div>
+    </div>
+    <div class="hint">答题三原则：① 用<b>完整短语或短句</b>，不要只蹦单词；② 注意<b>时态</b>（听到过去就用过去式）与<b>名词单复数</b>；③ 说错了不要停，直接把话说完。</div>
+  </div>`);
+  ovBody.appendChild(demo);
+  demo.querySelector('#ad').onclick=()=>{ beep(660,0.1); speak(t.keys[0]); };
+  demo.querySelector('#ads').onclick=()=>{ beep(660,0.1); speak(t.keys[0],{slow:true}); };
+
+  ovBody.appendChild(stageLabel('STEP 1 · 读题 15 秒 + 听独白 2 遍'));
+  const readT=el(`<div><div class="timer"><div class="tnum" id="raT">--</div><div class="tbar"><i id="raB"></i></div></div><div class="btn-row"><button class="btn gold" id="raGo">⏱ 开始 15 秒读题</button></div><div class="hint" id="raHint">读题时不出声，只看 4 个问题并预判答案类型。</div></div>`);
+  ovBody.appendChild(readT);
+  readT.querySelector('#raGo').onclick=()=>{ beep(660,0.12); runTimer(15, readT.querySelector('#raT'), readT.querySelector('#raB'), ()=>{ beep(880,0.18); readT.querySelector('#raHint').textContent='读题时间结束 ✅ 下面开始听独白。'; }); };
+  const row=el(`<div><div class="btn-row"><button class="btn gold" id="pm">🔊 播放独白（听第1遍）</button><button class="btn" id="pm1">🔊 只听第1遍</button><button class="btn" id="pmMore">🔊 听第2遍</button><button class="btn" id="pmStop">⏹ 停止播放</button></div><div class="hint">抓取 who / what / when / where / why；第1遍抓大意，第2遍核实细节。</div></div>`);
+  ovBody.appendChild(row);
+  row.querySelector('#pm').onclick=()=>{ beep(660,0.1); playMon(1); };
+  row.querySelector('#pm1').onclick=()=>playMon(1);
+  row.querySelector('#pmMore').onclick=()=>{ beep(660,0.1); playMon(1); };
+  row.querySelector('#pmStop').onclick=()=>{ try{ speechSynthesis.cancel(); }catch(e){} toast('已停止播放'); };
+
+  if(t.script){
+    const scWrap=el(`<div style="margin-top:8px"><button class="btn ghost" id="laScriptBtn">📖 看听力原文（做完再核对，别提前看）</button><div class="textbox" id="laScriptBox" style="display:none;font-size:13.5px;line-height:1.8;margin-top:8px;white-space:pre-wrap"></div></div>`);
+    ovBody.appendChild(scWrap);
+    scWrap.querySelector('#laScriptBtn').onclick=()=>{
+      const bx=scWrap.querySelector('#laScriptBox');
+      const btn=scWrap.querySelector('#laScriptBtn');
+      if(bx.style.display==='none'){ bx.textContent=t.script; bx.style.display=''; btn.textContent='📖 收起听力原文'; }
+      else { bx.style.display='none'; btn.textContent='📖 看听力原文（做完再核对，别提前看）'; }
+    };
+  }
+
+  ovBody.appendChild(stageLabel('STEP 2 · 4道问答题（每题8秒口头回答）'));
+  ovBody.appendChild(el(`<div class="hint">练习建议：先出声说一遍 → 录音 → 回听 → 点「看参考要点」对照 → 不满意就再录一次（录音按钮可反复点，上一段会自动覆盖）。</div>`));
+  t.questions.forEach((qq,i)=>{
+    const q=el(`<div class="q"><div class="qt">第 ${i+1} 题：${qq.q}</div></div>`);
+    const ctl=el(`<div><div class="btn-row"><button class="btn" id="rh${i}">🔊 重听独白</button><button class="btn gold" id="ra${i}">🎤 开始录音(8秒)</button><button class="btn" id="rk${i}">看参考要点</button><button class="btn ghost" id="rp${i}">🔊 听参考要点</button></div><div id="aud${i}"></div><div id="judge${i}"></div></div>`);
+    q.appendChild(ctl);
+    ctl.querySelector('#rh'+i).onclick=()=>playMon(1);
+    ctl.querySelector('#ra'+i).onclick=()=>recordShort(8, ctl.querySelector('#aud'+i), ()=>{ revealKey(q,qq,t); showJudge(i,qq); }, ctl.querySelector('#ra'+i));
+    ctl.querySelector('#rk'+i).onclick=()=>{ revealKey(q,qq,t); showJudge(i,qq); };
+    ctl.querySelector('#rp'+i).onclick=()=>{ beep(660,0.1); speak(t.keys[i]); };
+    ovBody.appendChild(q);
+  });
+  /* 录音后自判"我说对了没" → 系统据此计分 */
+  const judges=new Array(t.questions.length).fill(-1);   // 0=没答到 1=答到一半 2=完全答对
+  const JUDGE_LABEL=['没答到','答到一半','完全答对'];
+  function showJudge(i,qq){
+    const host=ovBody.querySelector('#judge'+i);
+    if(!host||host.dataset.on) return;
+    host.dataset.on='1';
+    host.appendChild(el(`<div class="hint" style="margin-top:8px;color:var(--gold-soft)">对照上面的参考要点，我的回答属于：</div>`));
+    const row=el(`<div class="btn-row"></div>`);
+    [0,1,2].forEach(v=>{
+      const b=el(`<button class="btn" id="jd${i}_${v}">${JUDGE_LABEL[v]}</button>`);
+      row.appendChild(b);
+    });
+    host.appendChild(row);
+    row.querySelectorAll('button').forEach((b,v)=>{
+      b.onclick=()=>{
+        judges[i]=v;
+        row.querySelectorAll('button').forEach((x,k)=>{ x.classList.toggle('gold', k===v); });
+        const w=[0,0.5,1][v];
+        row.appendChild(el(`<div class="hint" style="margin-top:6px;color:${v===2?'var(--ok)':v===1?'var(--gold-soft)':'var(--red)'}">本题得分 ${w} / 1</div>`));
+        refreshScore();
+      };
+    });
+  }
+
+  const scoreWrap=el(`<div></div>`);
+  ovBody.appendChild(scoreWrap);
+  const scoreBox=el(`<div></div>`);
+  scoreWrap.appendChild(scoreBox);
+  const dimEarned={acc:0, comp:0, gram:0, ctrl:0};
+  let scorePanel=null;
+  function refreshScore(){
+    const n=t.questions.length;
+    const judged=judges.filter(x=>x>=0).length;
+    const rawAcc=judges.reduce((a,v)=>a+(v<0?0:[0,0.5,1][v]),0);
+    dimEarned.acc=Math.round(rawAcc*3*10)/10;
+    if(!scorePanel){
+      scoreBox.innerHTML='';
+      const panel=el(`<div class="checklist" style="margin-top:14px">
+        <h4>📊 回答问题评分（满分 6 分）</h4>
+        <div class="hint" id="laStat">每题录完音后，点「我的回答属于」自判，系统据此计分。</div>
+        <div class="chk"><input type="checkbox" id="laComp"><label for="laComp">回答完整：每题都说了完整短语或短句，不是只蹦单词（+1.5）</label></div>
+        <div class="chk"><input type="checkbox" id="laGram"><label for="laGram">语法时态：时态正确、单复数对、句子完整（+1.0）</label></div>
+        <div class="chk"><input type="checkbox" id="laCtrl"><label for="laCtrl">节奏控制：每题 8 秒内说完、没超时（+0.5）</label></div>
+        <div id="laPanel"></div>
+      </div>`);
+      scoreBox.appendChild(panel);
+      const inner=el(`<div></div>`);
+      panel.appendChild(inner);
+      scorePanel=buildScorePanel({
+        container:inner, modId:'listenanswer', taskId:t.id, modName:'回答问题', full:6,
+        dimEarned:dimEarned, items:buildItems(),
+        extraNote:'信息准确由你对照参考要点自判；表达与语法由你自己核对。',
+        onRedo:()=>{ judges.fill(-1); refreshScore(); },
+        exam:examMode
+      });
+      panel.querySelector('#laComp').addEventListener('change',()=>{ dimEarned.comp=panel.querySelector('#laComp').checked?1.5:0; scorePanel.recalc(); });
+      panel.querySelector('#laGram').addEventListener('change',()=>{ dimEarned.gram=panel.querySelector('#laGram').checked?1.0:0; scorePanel.recalc(); });
+      panel.querySelector('#laCtrl').addEventListener('change',()=>{ dimEarned.ctrl=panel.querySelector('#laCtrl').checked?0.5:0; scorePanel.recalc(); });
+    }else{
+      const inner=scoreBox.querySelector('#laPanel');
+      if(inner){
+        const rows=inner.querySelectorAll('#scItems .endRow');
+        buildItems().forEach((it,i)=>{
+          const r=rows[i]; if(!r) return;
+          r.innerHTML=`<span style="flex:1">${it.label}${it.note?`<span class="hint" style="display:block;margin:2px 0 0">${it.note}</span>`:''}</span>
+            <b style="color:${it.earned>=it.max?'var(--ok)':'var(--red)'};white-space:nowrap">${it.earned} / ${it.max}</b>`;
+        });
+        scorePanel.recalc();
+      }
+    }
+    const stat=scoreBox.querySelector('#laStat');
+    if(stat) stat.innerHTML=`每题录完音后，点「我的回答属于」自判。<b>已自评 ${judged}/${n} 题。</b>`;
+  }
+  function buildItems(){
+    return t.questions.map((qq,i)=>({
+      label:`第 ${i+1} 题：${qq.q}`,
+      note: judges[i]<0 ? '未自评 —— 先录一遍再对照参考要点判定' :
+            `自评：${JUDGE_LABEL[judges[i]]}　｜　参考要点：${t.keys[i]}`,
+      earned: judges[i]<0?0:[0,0.5,1][judges[i]], max:1
+    }));
+  }
+  refreshScore();
+}
+function revealKey(q,qq,t){
+  if(q.dataset.revealed) return; q.dataset.revealed='1';
+  const i=t.questions.indexOf(qq);
+  const tip=el(`<div class="hint">参考要点：${t.keys[i]||''} —— 核对你的回答：时态、名词单复数、是否用了完整短语而非单词。</div>`);
+  q.appendChild(tip);
+  /* 官方真题带三层次答案：简短 → 完整短句 → 强调句 */
+  if(t.keysFull||t.keysEmph){
+    let rows=`<div class="exrule"><b style="color:var(--gold)">① 简短回答</b>（答出关键信息即可得分）：${t.keys[i]||''}</div>`;
+    if(t.keysFull&&t.keysFull[i]) rows+=`<div class="exrule"><b style="color:var(--gold)">② 完整短句</b>（建议这样说）：${t.keysFull[i]}</div>`;
+    if(t.keysEmph&&t.keysEmph[i]) rows+=`<div class="exrule"><b style="color:var(--gold)">③ 强调句</b>（高级句型，冲击满分）：${t.keysEmph[i]}</div>`;
+    q.appendChild(el(`<div class="checklist" style="margin-top:8px"><h4>📚 官方答案三层次（说得越完整越好）</h4>${rows}<div class="hint">官方评分逻辑：答出关键信息就能拿到要点分；能用完整短句更好；强调句是加分项。基础弱的学生先把第①层说稳，再追求第②③层。</div></div>`));
+  }
+}
+
+/* ============================================================
+   笔记批改器（信息转述专用）
+   作用：学生写完速记笔记 → 自动比对要点 → 指出漏了哪条 → 给出预估得分
+   评分口径对齐官方：信息转述 6 分。要点齐全 > 语法完美
+   ============================================================ */
+  const LINK=/\b(first|then|after that|finally|next|also|lastly|at first|at last|at the end)\b/;
+  const TIMEWORD=/\b(morning|afternoon|evening|lunch|breakfast|midday|weekend|sunday|saturday|monday|tuesday|wednesday|thursday|friday|dinner|breakfast)\b/;
+function norm(s){
+  return (s||'').toLowerCase()
+    .replace(/[’']/g,"'")
+    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g,' ')
+    .trim();
+}
+/* 关键词命中判定：笔记中出现任一同义词组词即算命中（支持前缀匹配，容忍速记简写） */
+function hitKeywords(noteNorm, kwGroup){
+  if(!kwGroup||!kwGroup.length) return true;
+  for(const k of kwGroup){
+    const kn=norm(k);
+    if(!kn) continue;
+    if(noteNorm.indexOf(kn)>=0) return true;
+    // 前缀/子串容忍：速记常写 get up 7，关键词 get up 会被直接匹配；
+    // 对较长词允许 60% 以上字符连续出现，容忍拼写简写
+    if(kn.length>=4){
+      for(let i=0;i<kn.length-1;i++){
+        if(kn.length-i>=3 && noteNorm.indexOf(kn.slice(i,i+Math.min(4,kn.length-i)))>=0) return true;
+      }
+    }
+  }
+  return false;
+}
+/* 生成"好笔记"范例：由要点反向拼出速记串 */
+function buildSampleNotes(t){
+  const short = kws => (kws&&kws.length)?kws[0]:'';
+  return t.points.map(p=>{
+    const kw=(t.keywords&&t.keywords[t.points.indexOf(p)])||[];
+    return short(kw)||p;
+  }).join(' / ');
+}
+/* 批改笔记并输出结果
+   评分模型（对齐官方"信息转述 6 分"）：
+     ① 要点分（4.5 分）—— 覆盖率 × 4.5，权重最高（要点齐全 > 语法完美）
+     ② 结构分（1.0 分）—— 是否用了连接词/时间线词，反映"能不能串成话"
+     ③ 细节分（0.5 分）—— 是否记到具体名词（谁/什么/哪），而非只有动作
+   缺要点是硬伤：漏 1 条 ≈ 掉 0.7 分；全记到但没连接词 ≈ 5.5 分；全记到 + 有连接词 ≈ 满分。 */
+function gradeNotes(t, raw, box){
+  const text=(raw||'').trim();
+  if(!text){ box.innerHTML='<div class="warnbox">请先写下你的速记要点，再点批改。</div>'; return; }
+  const noteNorm=norm(text);
+  const rows=[];
+  let hit=0;
+  (t.points||[]).forEach((pt,i)=>{
+    const kws=(t.keywords&&t.keywords[i])||null;
+    const ok=hitKeywords(noteNorm,kws);
+    if(ok) hit++;
+    rows.push({pt,kws,ok,i});
+  });
+  const total=rows.length||1;
+  const rate=hit/total;
+
+  // ② 结构分：连接词 / 时间线词
+  const hasLink=LINK.test(noteNorm);
+  const hasTime=TIMEWORD.test(noteNorm);
+  const structScore = (hasLink?0.6:0) + (hasTime?0.4:0);
+  // ③ 细节分：记到具体名词（要点里的大写词/专有名词）
+  const propers=(t.points||[]).filter(p=>/[A-Z]/.test(p)).length;
+  const detailScore = (propers>0 && hit/total>=0.8) ? 0.5 : 0;
+
+  const coverScore = Math.round(rate*4.5*10)/10;
+  const est = Math.round((coverScore + structScore + detailScore)*10)/10;
+
+  const missed=rows.filter(r=>!r.ok);
+  const extraHint = missed.length===0
+    ? '🎉 要点全部记到了！'
+    : `⚠ 还漏了 <b style="color:var(--red)">${missed.length}</b> 个要点，60 秒复述时这些内容你一定说不出来。`;
+
+  box.innerHTML='';
+  const main=el(`<div class="checklist" style="margin-top:12px">
+    <h4>📝 笔记批改结果</h4>
+    <div style="display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;margin:6px 0 10px">
+      <span>要点覆盖：<b style="color:var(--gold);font-size:20px">${hit}/${total}</b>（${Math.round(rate*100)}%）</span>
+      <span>预估得分：<b style="color:${est>=5.4?'var(--ok)':'var(--gold)'};font-size:22px">${est.toFixed(1)}</b> / 6 分</span>
+    </div>
+    <div class="hint">${extraHint}</div>
+    <div style="margin:10px 0 4px;font-weight:700;color:var(--gold-soft)">逐条核对（✔ = 你的笔记里记到了）</div>
+    <div id="gRows"></div>
+
+    <div style="margin:12px 0 4px;font-weight:700;color:var(--gold-soft)">得分构成（预估）</div>
+    <div class="endRow"><span style="flex:1">① 要点齐全（权重最高）</span><b style="color:var(--gold)">${coverScore.toFixed(1)} / 4.5</b></div>
+    <div class="endRow"><span style="flex:1">② 结构串联 ${hasLink?'<span style="color:var(--ok)">✔ 已用连接词</span>':'<span style="color:var(--red)">✘ 没看到 First/Then/After that/Finally</span>'}</span><b style="color:var(--gold)">${structScore.toFixed(1)} / 1.0</b></div>
+    <div class="endRow"><span style="flex:1">③ 细节具体（记到人名/地点/名物）</span><b style="color:var(--gold)">${detailScore.toFixed(1)} / 0.5</b></div>
+
+    <div class="hint" style="margin-top:10px">
+      <b>对照表：</b>全部记到 + 有连接词 ≈ <b>6 分（满分）</b>；全部记到但没连接词 ≈ 5.5 分；漏 1 条 ≈ 4–5 分；漏一半 ≈ 2–3 分；只记开头 ≈ 1 分。
+      <br><b>提分顺序：</b>先补漏掉的要点（最值钱）→ 再加连接词 → 最后抠语法。
+    </div>
+  </div>`);
+  box.appendChild(main);
+  const rs=main.querySelector('#gRows');
+  rows.forEach(r=>{
+    const kwTxt=(r.kws&&r.kws.length)?r.kws.join(' / '):'—';
+    rs.appendChild(el(`<div class="endRow" style="align-items:center">
+      <span style="font-size:16px;width:22px;text-align:center">${r.ok?'<span style="color:var(--ok)">✔</span>':'<span style="color:var(--red)">✘</span>'}</span>
+      <span style="flex:1">${r.pt}</span>
+      <span class="hint" style="margin:0">关键信息：${kwTxt}</span>
+    </div>`));
+  });
+  if(missed.length){
+    box.appendChild(el(`<div class="hint" style="margin-top:8px;color:var(--red)">
+      <b>补救建议：</b>把这 ${missed.length} 条的关键信息补进笔记，再点一次批改。漏掉的要点在正式考试里会直接丢分。
+    </div>`));
+  }
+  toast(`批改完成：覆盖 ${hit}/${total}，预估 ${est.toFixed(1)}/6 分`);
+}
+
+/* —— 信息转述 —— */
+async function taskRetell(m,t,exam){
+  const retPrepS=(t.retPrep!=null?t.retPrep:RET_PREP[currentLevel]);
+  const retRecS=(t.retRec!=null?t.retRec:RET_REC[currentLevel]);
+  const retGradNote=(t.retPrep!=null)?'（本段为中考真题长度，按官方 50 秒标准执行）'
+    :(currentLevel==='B1'?'（本级已到官方 50 秒标准）'
+    :'（官方考试为 50 秒；本级文本短，训练时缩短等待，随关卡变长逐步适应真题长度）');
+  if(!examMode){ ovBody.innerHTML=''; ovBody.appendChild(addBackBar(m, m.backAction||(()=>openModule(m)))); }
+  async function playPass(times){
+    for(let r=0;r<times;r++){ await speak(t.passage); if(times>1&&r<times-1) await new Promise(r=>setTimeout(r,800)); }
+  }
+  /* 规则卡 */
+  ovBody.appendChild(el(`<div class="checklist" style="margin-bottom:14px">
+    <h4>📋 本题规则（考场就是这样，请照着做）</h4>
+    <div class="exrule">① <b>短文播放 2 遍</b>：第 1 遍抓大意记要点（动词、名词、形容词），第 2 遍补全并核实数字/时间/因果。</div>
+    <div class="exrule">② <b>${retPrepS} 秒准备</b>：用简单句把要点串起来，加上 First / Then / After that / Finally。<b>宁可语法有错，也不能漏要点。</b>${retGradNote}</div>
+    <div class="exrule">③ <b>${retRecS} 秒复述</b>：听到提示音后<b>停 1 秒</b>再开口；某要点卡住<b>立刻跳到下一个</b>；不会的词换简单说法（library → a place with many books）。</div>
+    <div class="exrule">④ <b>要点齐全 ＞ 语法完美</b>：漏一个要点的扣分，往往比一个语法错误更严重。</div>
+    <div class="exrule">⑤ <b>时长控制</b>：经常超时说明表达啰嗦，删掉不必要的修饰语。</div>
+  </div>`));
+  ovBody.appendChild(el(noteGuide('retell')));
+  /* STEP 0 · 范例示范：先看一节完整的"标准复述"长什么样，再自己练 */
+  ovBody.appendChild(stageLabel('STEP 0 · 范例示范（先看懂要写成什么样）'));
+  const demo=el(`<div class="checklist">
+    <h4>📌 范例：同一篇短文，标准复述是这样写的</h4>
+    <div class="hint" style="margin-bottom:6px">原文（听到的）：</div>
+    <div class="textbox" style="font-size:13.5px">${t.passage}</div>
+    <div class="hint" style="margin:10px 0 6px">示范复述（你要说的）：<b style="color:var(--gold-soft)">用 First / Then / After that / Finally 把要点串起来，不要逐句翻译，不要加原文没有的内容</b></div>
+    <div class="textbox" style="border-color:rgba(255,214,102,.45);font-size:13.5px" id="demoTxt">${t.sample||'（本条暂未提供范例）'}</div>
+    <div class="btn-row" style="margin-top:8px">
+      <button class="btn" id="demoPlay">🔊 听示范复述</button>
+      <button class="btn" id="demoSlow">🔊 慢速 0.6× 听示范</button>
+      <button class="btn ghost" id="demoHide">隐藏范例（正式练习时用）</button>
+    </div>
+    <div class="hint">要点清单（复述时逐条覆盖）：${t.points.join(' · ')}</div>
+  </div>`);
+  ovBody.appendChild(demo);
+  demo.querySelector('#demoPlay').onclick=()=>{ beep(660,0.1); speak(t.sample||t.passage); };
+  demo.querySelector('#demoSlow').onclick=()=>{ beep(660,0.1); speak(t.sample||t.passage,{slow:true}); };
+  const showDemo=el(`<div class="btn-row" style="display:none;margin-top:8px"><button class="btn ghost" id="demoShow">📖 重新显示范例（核对答案用）</button></div>`);
+  ovBody.appendChild(showDemo);
+  demo.querySelector('#demoHide').onclick=()=>{
+    demo.style.display='none'; showDemo.style.display='flex';
+    toast('范例已隐藏 —— 现在请自己先说一遍，再录音');
+  };
+  showDemo.querySelector('#demoShow').onclick=()=>{ demo.style.display=''; showDemo.style.display='none'; };
+  ovBody.appendChild(stageLabel('STEP 1 · 听短文（2遍）'));
+  const row=el(`<div><div class="btn-row"><button class="btn gold" id="pp">🔊 播放短文（2遍）</button><button class="btn" id="pp1">🔊 单遍</button><button class="btn" id="ppStop">⏹ 停止播放</button></div><div class="hint">听时只记要点：动词、名词、时间地点，用速记符号（& = and，↑ = 增加）。</div></div>`);
+  ovBody.appendChild(row);
+  row.querySelector('#pp').onclick=()=>{ beep(660,0.1); playPass(2); };
+  row.querySelector('#pp1').onclick=()=>playPass(1);
+  row.querySelector('#ppStop').onclick=()=>{ try{ speechSynthesis.cancel(); }catch(e){} toast('已停止播放'); };
+
+  ovBody.appendChild(stageLabel(`STEP 2 · 15 秒读题 → ${retPrepS} 秒准备`));
+  const readT=el(`<div><div class="timer"><div class="tnum" id="rtT">--</div><div class="tbar"><i id="rtB"></i></div></div><div class="btn-row"><button class="btn gold" id="rtGo">⏱ 开始 15 秒读题</button></div><div class="hint" id="rtHint">读题时不出声，看首句和要点提示，预测每个要点后面缺什么。</div></div>`);
+  ovBody.appendChild(readT);
+  readT.querySelector('#rtGo').onclick=()=>{ beep(660,0.12); runTimer(15, readT.querySelector('#rtT'), readT.querySelector('#rtB'), ()=>{ beep(880,0.18); readT.querySelector('#rtHint').textContent=`读题时间结束 ✅ 下面 ${retPrepS} 秒准备。`; }); };
+  if(t.firstLine){
+    ovBody.appendChild(el(`<div class="checklist" style="margin:8px 0"><h4>✍️ 首句提示（复述必须以这句开头）</h4><div class="textbox" style="font-size:15px;border-color:rgba(255,214,102,.45)">${t.firstLine}</div></div>`));
+  }
+  ovBody.appendChild(el(`<div class="hint">考试这里是纸笔速记，本页用文本框模拟。写完点「批改我的笔记」，系统会自动对照要点告诉你<b>漏了哪条</b>、<b>预估能得多少分</b>。</div>`));
+  const notes=el(`<textarea class="notes" id="rtNotes" placeholder="把你的速记要点写在这里，用 / 或换行分隔都可以。例如：&#10;Tom / get up 7 / breakfast / school / football / home 5"></textarea>`);
+  ovBody.appendChild(notes);
+  const chkRow=el(`<div><div class="btn-row">
+      <button class="btn gold" id="rtCheck">🔍 批改我的笔记（看漏了哪条 + 预估分）</button>
+      <button class="btn" id="rtClear">清空重写</button>
+      <button class="btn ghost" id="rtFill">不会写？看范例笔记</button>
+    </div></div>`);
+  ovBody.appendChild(chkRow);
+  const chkBox=el(`<div></div>`);
+  ovBody.appendChild(chkBox);
+  chkRow.querySelector('#rtClear').onclick=()=>{ notes.value=''; chkBox.innerHTML=''; toast('已清空，可以重写一遍'); };
+  chkRow.querySelector('#rtFill').onclick=()=>{
+    notes.value = buildSampleNotes(t);
+    chkBox.innerHTML='';
+    toast('已填入范例笔记 —— 先看看好笔记长什么样，再清空自己写一遍');
+  };
+  chkRow.querySelector('#rtCheck').onclick=()=>gradeNotes(t, notes.value, chkBox);
+  const prep=el(`<div><div class="timer"><div class="tnum" id="tp">--</div><div class="tbar"><i id="bp"></i></div></div><div class="btn-row"><button class="btn gold" id="sp">⏱ 开始 ${retPrepS} 秒准备</button><button class="btn" id="spSkip">⏩ 已准备好，提前复述</button></div><div class="hint">准备好了不用干等 —— 点「⏩ 提前复述」直接进入下一步。</div></div>`);
+  ovBody.appendChild(prep);
+  prep.querySelector('#sp').onclick=()=>{
+    beep(660,0.12);
+    runTimer(retPrepS, prep.querySelector('#tp'), prep.querySelector('#bp'), ()=>{ beep(880,0.18); toast('准备结束，开始复述'); startRec(); });
+  };
+  prep.querySelector('#spSkip').onclick=()=>{ try{ stopTimer(); }catch(e){} startRec(); };
+
+  function startRec(){
+    ovBody.appendChild(stageLabel(`STEP 3 · 口头复述（${retRecS}秒）`));
+    const rec=el(`<div><div class="timer"><span class="rec-dot"></span><div class="tnum" id="tr">--</div><div class="tbar"><i id="br"></i></div></div><div class="btn-row"><button class="btn gold" id="sr">开始录音</button><button class="btn" id="er" disabled>停止并回放</button></div><div id="aud"></div></div>`);
+    ovBody.appendChild(rec);
+    const errBox=el(`<div></div>`); ovBody.appendChild(errBox);
+    rec.querySelector('#sr').onclick=async()=>{
+      if(!recSupported){ errBox.innerHTML='<div class="warnbox">当前环境不支持录音（需 localhost/https）。可口头复述后对照要点自评。</div>'; return; }
+      try{ await startRecording(); beep(880,0.18); rec.querySelector('#sr').disabled=true; rec.querySelector('#er').disabled=false;
+        runTimer(retRecS, rec.querySelector('#tr'), rec.querySelector('#br'), async()=>{ beep(520,0.22); const u=await stopRecording(); showA(u); finish(); });
+      }catch(e){ errBox.innerHTML='<div class="warnbox">无法访问麦克风：'+e.message+'</div>'; }
+    };
+    rec.querySelector('#er').onclick=async()=>{ stopTimer(); const u=await stopRecording(); showA(u); finish(); };
+    function showA(u){ if(!u) return; rec.querySelector('#aud').innerHTML=''; rec.querySelector('#aud').appendChild(el(`<div class="audio-row"><span>我的复述：</span><audio controls src="${u}"></audio></div>`)); }
+  }
+
+  function finish(){
+    // 录音后自评：结合笔记覆盖率给出官方 6 分制
+    const noteVal=(document.getElementById('rtNotes')||{}).value||'';
+    const noteNorm=norm(noteVal);
+    let noteHit=0;
+    (t.points||[]).forEach((pt,i)=>{ if(hitKeywords(noteNorm,(t.keywords&&t.keywords[i])||null)) noteHit++; });
+    const totalPts=(t.points&&t.points.length)||1;
+    const noteRate=noteHit/totalPts;
+    const hasLink=LINK.test(noteNorm);
+    const hasTime=TIMEWORD.test(noteNorm);
+    const dimEarned={cover:Math.round(noteRate*4.5*10)/10, struct:0, detail:0};
+    let panel=null;
+
+    const cl=el(`<div class="checklist" style="margin-top:12px"><h4>🎧 录音自评（信息转述 6 分）</h4>
+      <div class="hint">要点分已由你的<b>笔记覆盖率</b>自动算出，这里再自评结构、细节两项。</div>
+      <div class="chk"><input type="checkbox" id="rtStruct"><label for="rtStruct">结构串联：用了 First / Then / After that / Finally 把要点串起来（+1.0）</label></div>
+      <div class="chk"><input type="checkbox" id="rtDetail"><label for="rtDetail">细节具体：记到了人名 / 地点 / 名物，不是只记动作（+0.5）</label></div>
+      <div class="hint" id="rtNoteHint"></div>
+      <div id="rtPanel"></div>
+    </div>`);
+    ovBody.appendChild(cl);
+    const inner=el(`<div></div>`);
+    cl.querySelector('#rtPanel').appendChild(inner);
+    panel=buildScorePanel({
+      container:inner, modId:'retell', taskId:t.id, modName:'信息转述', full:6,
+      dimEarned:dimEarned,
+      items:(t.points||[]).map((pt,i)=>({
+        label:pt,
+        note: hitKeywords(noteNorm,(t.keywords&&t.keywords[i])||null) ? '笔记里记到了 ✔' : '笔记里没记到 ✘ —— 录音时大概率也会漏',
+        earned: hitKeywords(noteNorm,(t.keywords&&t.keywords[i])||null)?1:0, max:1
+      })),
+      extraNote:'要点分来自笔记批改（覆盖率 × 4.5）；结构与细节由你自评。',
+      onRedo:()=>{ /* 重新录音由外层处理 */ },
+      exam:examMode
+    });
+
+    const ntHint=cl.querySelector('#rtNoteHint');
+    ntHint.innerHTML = noteVal
+      ? `要点分（来自笔记批改）：覆盖 <b>${noteHit}/${totalPts}</b> → <b>${dimEarned.cover.toFixed(1)} / 4.5</b>` +
+        (noteHit<totalPts?'<span style="color:var(--red)">　还有要点没记到。</span>':'<span style="color:var(--ok)">　要点齐全 ✅</span>') +
+        `　｜　连接词 ${hasLink?'✔':'✘'}　时间线 ${hasTime?'✔':'✘'}`
+      : '你还没写笔记 —— 要点分按 0 算（上限 4.5 分）。建议回到 STEP 2 写笔记并点「批改我的笔记」。';
+
+    // 结构分：勾选即得；另按笔记里是否真的用了连接词给出提示
+    const structBox=cl.querySelector('#rtStruct');
+    const detailBox=cl.querySelector('#rtDetail');
+    structBox.addEventListener('change',e=>{ dimEarned.struct=e.target.checked?1.0:0; panel.recalc(); });
+    detailBox.addEventListener('change',e=>{ dimEarned.detail=e.target.checked?0.5:0; panel.recalc(); });
+    if(hasLink) structBox.checked=true;
+    dimEarned.struct=hasLink?1.0:0;
+    structBox.checked=hasLink;
+    if(noteRate>=0.8 && totalPts>0){ detailBox.checked=true; dimEarned.detail=0.5; }
+    panel.recalc();
+  }
+
+}
+
+/* —— 询问信息 —— */
+async function taskAsk(m,t,exam){
+  if(!examMode){ ovBody.innerHTML=''; ovBody.appendChild(addBackBar(m, m.backAction||(()=>openModule(m)))); }
+  // STEP 0 范例：先示范一题的标准问句怎么写
+  ovBody.appendChild(el(`<div class="checklist" style="margin-bottom:14px">
+    <h4>📋 本题规则（考场就是这样，请照着做）</h4>
+    <div class="exrule">① 屏幕显示 <b>2 个中文问题</b>，每题有 <b>15 秒准备时间</b>，准备时不出声，在心里把中文问句翻成英文。</div>
+    <div class="exrule">② <b>8 秒内说出英文问句</b>：听到提示音后<b>停 1 秒</b>再开口。</div>
+    <div class="exrule">③ <b>一般疑问句句尾必须升调</b> ↑（Do you...? / Is he...?），特殊疑问句用降调。</div>
+    <div class="exrule">④ <b>只提问，不加多余的话</b>：不要加 Please…、Could you tell me… 之类的客套话，直接说问句。</div>
+    <div class="exrule">⑤ 说错了<b>立刻改口说出正确答案</b>，不要干等时间结束。</div>
+  </div>`));
+  ovBody.appendChild(el(noteGuide('ask')));
+  ovBody.appendChild(stageLabel('STEP 0 · 范例示范'));
+  const demo=el(`<div class="checklist">
+    <h4>📌 中文问题 → 标准英文问句 怎么写</h4>
+    <div class="q" style="margin:8px 0">
+      <div class="qt">中文：<span style="color:var(--gold-soft)">${t.prompts[0].cn}</span></div>
+      <div style="margin:6px 0"><b style="color:var(--gold)">标准答案：</b>${t.prompts[0].en}</div>
+      <div class="btn-row"><button class="btn" id="ad">🔊 听标准问句</button><button class="btn" id="ads">🔊 慢速听</button></div>
+    </div>
+    <div class="hint">构造三步：① 选对疑问词（What / Where / When / Who / How / Why / Is / Do / Does）；② 助动词跟着主语走（I <b>do</b>，he/she <b>does</b>，昨天 <b>did</b>）；③ 助动词后面动词用<b>原形</b>。一般疑问句句尾<b>升调</b> ↑。</div>
+  </div>`);
+  ovBody.appendChild(demo);
+  demo.querySelector('#ad').onclick=()=>{ beep(660,0.1); speak(t.prompts[0].en); };
+  demo.querySelector('#ads').onclick=()=>{ beep(660,0.1); speak(t.prompts[0].en,{slow:true}); };
+
+  ovBody.appendChild(stageLabel('STEP 1 · 中文转英文问句（每题15秒准备 → 8秒输出）'));
+  ovBody.appendChild(el(`<div class="hint">练习建议：先自己出声说一遍 → 录音 → 点「显示标准答案」对照差异 → 再录一次。注意：录音按钮随时可点，不必等准备倒计时结束。</div>`));
+  t.prompts.forEach((pp,i)=>{
+    const q=el(`<div class="q"><div class="qt">第 ${i+1} 题（中文）：<span style="color:var(--gold-soft)">${pp.cn}</span></div></div>`);
+    const ctl=el(`<div><div class="btn-row"><button class="btn" id="prep${i}">⏱ 开始准备(15秒)</button><button class="btn gold" id="rec${i}">🎤 录音作答(8秒)</button><button class="btn" id="show${i}">显示标准答案</button><button class="btn ghost" id="ref${i}">🔊 听标准答案</button></div><div id="pt${i}"></div><div id="aud${i}"></div><div id="ans${i}"></div></div>`);
+    q.appendChild(ctl);
+    const tNum=ctl.querySelector('#pt'+i);
+    tNum.style.cssText='display:none;margin-top:8px;font-size:22px;font-weight:800;color:var(--gold)';
+    ctl.querySelector('#prep'+i).onclick=()=>{
+      beep(660,0.1);
+      tNum.style.display='inline-block';
+      runTimer(15, tNum, null, ()=>{ beep(880,0.15); toast('准备结束，请开口提问'); });
+    };
+    ctl.querySelector('#rec'+i).onclick=()=>recordShort(8, ctl.querySelector('#aud'+i), ()=>{ showJudge(i,pp); }, ctl.querySelector('#rec'+i));
+    ctl.querySelector('#show'+i).onclick=()=>{ ctl.querySelector('#ans'+i).innerHTML='<div class="hint">标准英文问句：<b style="color:var(--gold-soft)">'+pp.en+'</b> —— 请对照四件事：疑问词、助动词、动词原形、句尾升调。</div>'; showJudge(i,pp); };
+    ctl.querySelector('#ref'+i).onclick=()=>{ beep(660,0.1); speak(pp.en); };
+    ovBody.appendChild(q);
+  });
+  /* 三维度自评：疑问词 / 助动词 / 句尾语调（每维度 0/0.5/1） */
+  const judges=[];   // judges[i] = {qw:0|0.5|1, aux:..., tone:...}
+  const JD=['做错了','对了一半','完全正确'];
+  function showJudge(i,pp){
+    const host=ovBody.querySelector('#ans'+i);
+    if(!host) return;
+    judges[i]=judges[i]||{};
+    const wrap=el(`<div style="margin-top:10px;border-top:1px solid var(--line);padding-top:8px"></div>`);
+    wrap.appendChild(el(`<div class="hint" style="color:var(--gold-soft)">对照标准答案，逐项自评：</div>`));
+    const mk=(key,name)=>{
+      const r=el(`<div class="btn-row" style="align-items:center"><span style="min-width:88px;font-size:13px">${name}</span></div>`);
+      const row=r.querySelector('.btn-row');
+      [0,0.5,1].forEach(v=>{
+        const b=el(`<button class="btn" style="font-size:12px;padding:5px 10px">${JD[v===0?0:(v===0.5?1:2)]}</button>`);
+        row.appendChild(b);
+        b.onclick=()=>{
+          judges[i][key]=v;
+          row.querySelectorAll('button').forEach(x=>x.classList.remove('gold'));
+          b.classList.add('gold');
+          refreshScore();
+        };
+      });
+      wrap.appendChild(r);
+    };
+    mk('qw','疑问词');
+    mk('aux','助动词/原形');
+    mk('tone','句尾语调');
+    host.appendChild(wrap);
+  }
+  const scoreWrap=el(`<div></div>`);
+  ovBody.appendChild(scoreWrap);
+  const scoreBox=el(`<div></div>`);
+  scoreWrap.appendChild(scoreBox);
+  const dimEarned={qw:0, aux:0, tone:0};
+  let scorePanel=null;
+  function buildItems(){
+    return t.prompts.map((pp,i)=>{
+      const j=judges[i]||{};
+      const got=(j.qw||0)+(j.aux||0)+(j.tone||0);
+      return {
+        label:`第 ${i+1} 题：${pp.cn}`,
+        note:`标准答案：${pp.en}　｜　自评 疑问词 ${j.qw??'-'} / 助动词 ${j.aux??'-'} / 语调 ${j.tone??'-'}`,
+        earned:got, max:3
+      };
+    });
+  }
+  function refreshScore(){
+    const qw=t.prompts.reduce((a,pp,i)=>a+(judges[i]&&judges[i].qw||0),0);
+    const aux=t.prompts.reduce((a,pp,i)=>a+(judges[i]&&judges[i].aux||0),0);
+    const tone=t.prompts.reduce((a,pp,i)=>a+(judges[i]&&judges[i].tone||0),0);
+    dimEarned.qw=Math.round(qw*10)/10;
+    dimEarned.aux=Math.round(aux*10)/10;
+    dimEarned.tone=Math.round(tone*10)/10;
+    if(!scorePanel){
+      scoreBox.innerHTML='';
+      const panel=el(`<div class="checklist" style="margin-top:14px">
+        <h4>📊 询问信息评分（满分 3 分）</h4>
+        <div class="hint" id="akStat">每题录完音（或点「显示标准答案」）后，在题目下方逐项自评：疑问词 / 助动词 / 句尾语调。</div>
+        <div id="akPanel"></div>
+      </div>`);
+      scoreBox.appendChild(panel);
+      const inner=el(`<div></div>`);
+      panel.appendChild(inner);
+      scorePanel=buildScorePanel({
+        container:inner, modId:'ask', taskId:t.id, modName:'询问信息', full:3,
+        dimEarned:dimEarned, items:buildItems(),
+        extraNote:'询问信息共 2 题，每题 1.5 分（疑问词 / 助动词与原形 / 句尾升调 三项各 0.5）。',
+        onRedo:()=>{ judges.length=0; refreshScore(); },
+        exam:examMode
+      });
+    }else{
+      const inner=scoreBox.querySelector('#akPanel');
+      if(inner){
+        const rows=inner.querySelectorAll('#scItems .endRow');
+        buildItems().forEach((it,i)=>{
+          const r=rows[i]; if(!r) return;
+          r.innerHTML=`<span style="flex:1">${it.label}<span class="hint" style="display:block;margin:2px 0 0">${it.note}</span></span>
+            <b style="color:${it.earned>=it.max?'var(--ok)':'var(--red)'};white-space:nowrap">${it.earned} / ${it.max}</b>`;
+        });
+        scorePanel.recalc();
+      }
+    }
+  }
+  refreshScore();
+}
+
+/* 通用短录音（用于听选/回答/询问），sec秒后自动停
+   修复要点：
+   1) 录音前先清理上一次的计时器/录音器，避免叠加多个 recorder 与倒计时
+   2) 提供「提前结束」按钮，不必干等到倒计时结束
+   3) 挂载点在切页/返回后失效时（!isConnected）不再写 DOM、不再弹答案
+   4) recBusy 互斥，防止两个按钮同时开录 */
+let recBusy=false, curRecStop=null, curRecMount=null;
+async function recordShort(sec, mountEl, onAutoStop, btn){
+  if(!recSupported){ mountEl.innerHTML='<div class="warnbox">当前环境不支持录音（需通过 http://localhost 或 https 打开，并允许麦克风权限），可直接口头作答后对照答案自评。</div>'; return; }
+  if(recBusy){ toast('上一段录音还在进行，请先「提前结束」或等倒计时结束'); return; }
+  try{ if(curRecStop) curRecStop(); }catch(e){}
+  try{ stopTimer(); }catch(e){}
+  if(curRecMount && curRecMount!==mountEl) curRecMount.innerHTML='';
+  mountEl.innerHTML='';
+  recBusy=true;
+  const ui=el(`<div><div class="timer"><span class="rec-dot"></span><div class="tnum">${String(sec).padStart(2,'0')}</div><div class="tbar"><i style="width:100%"></i></div></div>
+    <div class="hint">录音中，上限 ${sec} 秒，到时自动停止；也可以提前结束。</div>
+    <div class="btn-row"><button class="btn" id="earlyStop">⏹ 提前结束并回放</button></div></div>`);
+  mountEl.appendChild(ui);
+  if(btn) btn.disabled=true;
+  let finished=false;
+  const finish=async(auto)=>{
+    if(finished) return; finished=true;
+    try{ stopTimer(); }catch(e){}
+    beep(520,0.2);
+    const u=await stopRecording();
+    recBusy=false; curRecStop=null; curRecMount=null;
+    if(btn) btn.disabled=false;
+    if(!alive(mountEl)) return;          // 已切页/返回：不再写 DOM、不再触发后续
+    ui.innerHTML=`<div class="hint">${auto?'⏱ 已到时自动结束':'⏹ 已提前结束'}（上限 ${sec} 秒）</div>`;
+    if(u) ui.appendChild(el(`<div class="audio-row"><span>我的作答：</span><audio controls src="${u}"></audio></div>`));
+    if(onAutoStop) onAutoStop();
+  };
+  curRecMount=mountEl;
+  curRecStop=()=>finish(false);
+  ui.querySelector('#earlyStop').onclick=()=>finish(false);
+  try{
+    await startRecording();
+    if(!alive(mountEl)){ try{ await stopRecording(); }catch(e){} recBusy=false; return; }
+    beep(880,0.15);
+    runTimer(sec, ui.querySelector('.tnum'), ui.querySelector('.tbar>i'), ()=>finish(true));
+  }catch(e){
+    recBusy=false; curRecStop=null;
+    if(btn) btn.disabled=false;
+    if(!alive(mountEl)) return;
+    mountEl.innerHTML='<div class="warnbox">无法访问麦克风：'+e.message+'。请检查地址栏的麦克风权限，并确认用 localhost / https 打开。</div>';
+  }
+}
+
+/* ---------- 我的成绩单：汇总各关卡成绩 + 薄弱项排行 ---------- */
+/* —— 官方全真模拟：入口卡片 → 试卷详情 → 复用五大题型渲染 —— */
+function renderOfficial(){
+  const box=document.getElementById('officialBox');
+  if(!box) return;
+  const all=(SITE_DATA.official&&SITE_DATA.official.papers)||[];
+  box.innerHTML='';
+  if(!all.length){ box.innerHTML='<div class="hint">真题卷整理中，敬请期待。</div>'; return; }
+  const papers=all.filter(pp=>pp.level===currentLevel);
+  const ofProg=(getProg().official)||{};
+  papers.forEach(pp=>{
+    const doneCnt=pp.items.filter(it=>ofProg[it.task.id]).length;
+    const c=el(`<div class="card" style="cursor:pointer"><span class="tag">满分 30</span><h3>🏛️ ${pp.name}</h3><p>${pp.desc}</p><div class="meta">${pp.items.length} 个题型 · 已完成 ${doneCnt} · 点击进入</div></div>`);
+    c.onclick=()=>openPaper(pp);
+    box.appendChild(c);
+  });
+}
+function openPaper(pp){
+  try{ stopAllMedia(); }catch(e){}
+  try{ navGuard(); }catch(e){}
+  document.getElementById('ovTitle').textContent=pp.name;
+  document.getElementById('ovSub').textContent=pp.desc;
+  ovBody.innerHTML='';
+  ovBody.appendChild(el(`<div class="btn-row" style="margin-bottom:14px"><button class="btn ghost" id="backHome">← 返回首页</button><span class="hint" style="margin:0">满分 30 分 · 按官方流程与规则设计</span></div>`));
+  ovBody.querySelector('#backHome').onclick=()=>{ try{stopAllMedia();}catch(e){} try{navGuard();}catch(e){} closeOverlay(); };
+  ovBody.appendChild(el(`<div class="notice" style="margin:0 0 12px"><h4>📌 本卷说明</h4><div class="hint">真题长度 = 官方标准：模仿朗读与信息转述均为 <b>50 秒准备 + 60 秒作答</b>。建议按卷面顺序完成，体验真实考试节奏；做完再点「看听力原文」核对。</div></div>`));
+  const ofProg=(getProg().official)||{};
+  const scores=getScores();
+  pp.items.forEach(it=>{
+    const t=it.task;
+    const done=ofProg[t.id];
+    const rec=scores[t.id]&&scores[t.id][it.type];
+    const best=rec?('最好成绩 '+rec.total+' / '+rec.full+' 分'):'';
+    const row=el(`<div class="q"><div class="qt">${it.label} ${done?'<span class="done">✓ 已完成</span>':''}</div>
+      <div class="hint" style="margin:2px 0 6px">${it.score}${best?' · '+best:''}${t.note?'<br>'+t.note:''}</div>
+      <div class="btn-row"><button class="btn gold">开始练习</button></div></div>`);
+    row.querySelector('button').onclick=()=>launchOfficial(pp,it);
+    ovBody.appendChild(row);
+  });
+  overlay.classList.add('show');
+  ovBody.scrollTop=0;
+}
+function launchOfficial(pp,it){
+  const m={id:it.type, name:it.label, score:it.score, official:true, backAction:()=>openPaper(pp)};
+  launchTask(m, it.task);
+}
+
+function renderMyReport(){
+  const box=document.getElementById('myReport');
+  if(!box) return;
+  const scores=getScores();
+  const entries=Object.entries(scores);
+  if(!entries.length){
+    box.innerHTML='<div class="hint">还没有成绩记录。随便进入一个题型练习并保存成绩，这里就会出现你的分析。</div>';
+    return;
+  }
+  // ① 各题型平均分
+  const modAgg={};
+  entries.forEach(([taskId,byMod])=>{
+    if(taskId.indexOf('of_')===0) return;   // 官方真题成绩单独展示，不混入五大题型统计
+    Object.entries(byMod).forEach(([modId,rec])=>{
+      modAgg[modId]=modAgg[modId]||{sum:0,n:0,full:rec.full,dims:{}};
+      modAgg[modId].sum+=rec.total; modAgg[modId].n++;
+      Object.entries(rec.dims||{}).forEach(([d,v])=>{ modAgg[modId].dims[d]=(modAgg[modId].dims[d]||0)+v; });
+    });
+  });
+  let totalEarn=0,totalFull=0;
+  const modRows=Object.entries(modAgg).map(([modId,a])=>{
+    const mod=SITE_DATA.modules.find(m=>m.id===modId);
+    const avg=a.sum/a.n;
+    totalEarn+=a.sum; totalFull+=a.full*a.n;
+    return {modId,name:mod?mod.name:modId,avg,a};
+  });
+  // ② 薄弱维度排行（跨题型汇总各维度的失分）
+  const dimAgg={};
+  Object.entries(modAgg).forEach(([modId,a])=>{
+    const dims=SCORE_DIMS[modId]||[];
+    dims.forEach(d=>{
+      const earned=(a.dims[d.id]||0)/a.n;
+      dimAgg[d.id]=dimAgg[d.id]||{name:d.name,tip:d.tip,modName:(SITE_DATA.modules.find(m=>m.id===modId)||{}).name||'',loss:0};
+      dimAgg[d.id].loss+=(d.full-earned);
+    });
+  });
+  const weakList=Object.values(dimAgg).filter(x=>x.loss>0.01).sort((a,b)=>b.loss-a.loss).slice(0,5);
+  const pct=totalFull?Math.round(totalEarn/totalFull*100):0;
+
+  box.innerHTML='';
+  box.appendChild(el(`<div style="display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;margin-bottom:10px">
+    <span>累计得分：<b style="color:var(--gold);font-size:22px">${Math.round(totalEarn*10)/10}</b> / ${Math.round(totalFull*10)/10} 分</span>
+    <span>得分率：<b style="color:${pct>=80?'var(--ok)':'var(--gold)'}">${pct}%</b></span>
+    <span>已练关卡：<b>${entries.length}</b> 关</span>
+  </div>`));
+  box.appendChild(el(`<div style="margin:8px 0 4px;font-weight:700;color:var(--gold-soft)">各题型平均分</div>`));
+  modRows.forEach(r=>{
+    const p=Math.round(r.avg/r.a.full*100);
+    box.appendChild(el(`<div class="endRow" style="align-items:center">
+      <span style="flex:1">${r.name} <span class="hint" style="display:block;margin:2px 0 0">练了 ${r.a.n} 关 · 满分 ${r.a.full} 分</span></span>
+      <span style="min-width:110px"><i style="display:block;height:7px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden"><i style="display:block;height:100%;width:${p}%;background:${p>=80?'var(--ok)':'var(--gold)'}"></i></i></span>
+      <b style="color:var(--gold);white-space:nowrap;min-width:78px;text-align:right">${r.avg.toFixed(1)} / ${r.a.full}</b>
+    </div>`));
+  });
+  if(weakList.length){
+    box.appendChild(el(`<div style="margin:14px 0 4px;font-weight:700;color:var(--red)">🔴 薄弱项排行（按累计失分排序，先补第 1 项）</div>`));
+    weakList.forEach((w,i)=>{
+      box.appendChild(el(`<div class="endRow" style="align-items:flex-start">
+        <span style="flex:1"><b style="color:var(--red)">第 ${i+1} 位：${w.name}</b>（${w.modName}）
+        <span class="hint" style="display:block;margin:2px 0 0">${w.tip}</span></span>
+        <b style="color:var(--red);white-space:nowrap">累计失 ${w.loss.toFixed(1)} 分</b>
+      </div>`));
+    });
+  }else{
+    box.appendChild(el(`<div class="hint" style="margin-top:10px;color:var(--ok)">🎉 所有维度都满分，太厉害了！</div>`));
+  }
+}
+
+/* 全真模考：按级别现场生成 10 套（A–J），每套由该级别五大题型各一题组成，
+   直接复用现有题库任务对象（内容零新增），保证「一个水平十套」；
+   若某题型题库不足 10 题则循环复用，不报错。 */
+function buildOfficialPapers(){
+  const lvls=['A1','A2','B1'];
+  const types=['readaloud','listenchoose','listenanswer','retell','ask'];
+  const labels={readaloud:'模仿朗读',listenchoose:'听选信息',listenanswer:'回答问题',retell:'信息转述',ask:'询问信息'};
+  const scores={readaloud:'满分 6',listenchoose:'满分 9',listenanswer:'满分 6',retell:'满分 6',ask:'满分 3'};
+  const papers=[];
+  lvls.forEach(lv=>{
+    const bank={};
+    types.forEach(t=>{ bank[t]=(SITE_DATA.modules.find(m=>m.id===t).tasks[lv])||[]; });
+    for(let k=1;k<=12;k++){
+      const idx=k-1;
+      const items=types.map(t=>{
+        const arr=bank[t];
+        if(!arr.length) return null;
+        const base=arr[idx % arr.length];
+        // 克隆任务并赋予 of_ 前缀 id：进度计入 official 档，不与常规题型互相污染
+        const task=Object.assign({}, base, {id:'of_'+lv+'_'+t+'_'+k});
+        return {label:labels[t], score:scores[t], type:t, task:task};
+      }).filter(Boolean);
+      const letter=String.fromCharCode(64+k); // A..L
+      papers.push({
+        level: lv,
+        name: lv+' 全真模拟卷 '+letter+'（第 '+k+' 套）',
+        desc:'广州中考听说全真模考 · '+lv+' 级 · 五大题型各一题，满分 30 分，按官方流程四环节连做、严格计时。',
+        items:items
+      });
+    }
+  });
+  return papers;
+}
+SITE_DATA.official = { papers: buildOfficialPapers() };
+
+/* 初始化 */
+renderLevels(); renderCards(); refreshProgress(); renderScoreTable(); renderMyReport(); renderBadgeWall(); renderOfficial();
+document.getElementById('examBtn').onclick=runMockExam;
+document.getElementById('rate').oninput=e=>{ cfg.rate=+e.target.value; document.getElementById('rateV').textContent=(+e.target.value).toFixed(2)+'×'; };
+</script>
+<!-- 全站 Service Worker 已由站点根目录 index.html 统一注册，此处不再单独注册 -->
+</body>
+</html>

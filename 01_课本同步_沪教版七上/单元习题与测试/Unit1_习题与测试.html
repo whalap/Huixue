@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 1 Friendship · 习题与测试（沪教版七上）</title>
+<style>
+:root{
+  --ink:#2b2118; --ink2:#5c4f42; --muted:#8a7c6b;
+  --paper:#faf6ee; --card:#ffffff; --line:#e6dcc8;
+  --gold:#b8860b; --gold-soft:#d4a933; --red:#c0392b; --ok:#1e8449;
+  --brand:#1a1410;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:var(--paper); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.75; font-size:15px}
+.wrap{max-width:860px; margin:0 auto; padding:0 18px 90px}
+
+/* ---------- 顶部 ---------- */
+.hero{background:linear-gradient(135deg,#1a1410 0%,#2b2118 60%,#3a2c1c 100%); color:#f5ecd7; padding:34px 20px 26px; text-align:center; border-bottom:3px solid var(--gold)}
+.hero .kicker{color:var(--gold-soft); font-size:13px; letter-spacing:3px; margin-bottom:8px}
+.hero h1{font-size:26px; margin-bottom:8px}
+.hero .sub{color:#cbbd9d; font-size:13.5px}
+.hero .meta{margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.hero .meta span{border:1px solid rgba(212,169,51,.45); color:#e8d9ac; border-radius:99px; padding:3px 14px; font-size:12.5px}
+
+/* ---------- 卷子切换 ---------- */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:22px 0 26px; position:sticky; top:0; z-index:20; background:var(--paper); padding:12px 0; border-bottom:1px dashed var(--line)}
+.tabs button{border:1.5px solid var(--line); background:var(--card); color:var(--ink2); border-radius:10px; padding:8px 16px; font-size:14px; cursor:pointer; font-weight:600; transition:.15s}
+.tabs button:hover{border-color:var(--gold-soft)}
+.tabs button.on{background:var(--brand); color:#f0e2b8; border-color:var(--brand)}
+.tabs button .tag{display:block; font-size:11px; font-weight:400; opacity:.75; margin-top:1px}
+
+/* ---------- 卷子主体 ---------- */
+.paper{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:30px 34px; box-shadow:0 2px 14px rgba(43,33,24,.06)}
+.p-head{border-bottom:2px solid var(--brand); padding-bottom:14px; margin-bottom:8px}
+.p-head .pt{font-size:20px; font-weight:800}
+.p-head .ps{font-size:13px; color:var(--muted); margin-top:4px}
+.p-info{display:flex; gap:18px; font-size:13px; color:var(--ink2); margin:10px 0 22px; flex-wrap:wrap}
+.p-info b{color:var(--gold)}
+.sec{margin-bottom:30px}
+.sec>h3{font-size:16px; font-weight:800; color:var(--brand); border-left:4px solid var(--gold); padding-left:10px; margin-bottom:6px}
+.sec .sn{font-size:12.5px; color:var(--muted); margin-bottom:12px}
+.q{padding:12px 14px; border:1px solid var(--line); border-radius:10px; margin-bottom:10px; background:#fffdf8}
+.q .qt{font-weight:600; margin-bottom:8px}
+.q .qt .qn{color:var(--gold); font-weight:800; margin-right:6px}
+.q .qt u{ text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:3px; font-weight:700 }
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.opts.one{grid-template-columns:1fr}
+.opt{border:1px solid var(--line); border-radius:8px; padding:7px 12px; cursor:pointer; font-size:14px; background:#fff; transition:.12s; display:flex; gap:8px; align-items:baseline}
+.opt .lb{font-weight:800; color:var(--muted)}
+.opt:hover{border-color:var(--gold-soft); background:#fffaf0}
+.opt.sel{border-color:var(--gold); background:#fdf3d8}
+.opt.ok{border-color:var(--ok); background:#eafaf0}
+.opt.bad{border-color:var(--red); background:#fdecea}
+.opt .mk{margin-left:auto; font-weight:800}
+.opt.ok .mk{color:var(--ok)} .opt.bad .mk{color:var(--red)}
+.ans-in{border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:14px; width:100%; max-width:340px; background:#fff; font-family:inherit}
+.ans-in:focus{outline:none; border-color:var(--gold)}
+.ans-in.ok{border-color:var(--ok); background:#f2fbf6}
+.ans-in.bad{border-color:var(--red); background:#fdf0ee}
+.tfrow{display:flex; gap:10px}
+.tfrow .opt{min-width:88px; justify-content:center}
+.hint{font-size:12.5px; color:var(--muted); margin-top:4px}
+.wordbank{font-size:13.5px; background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-bottom:12px; color:var(--ink2)}
+.wordbank b{color:var(--gold)}
+textarea.essay{width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:12px; font-size:14px; font-family:inherit; resize:vertical; background:#fff}
+textarea.essay:focus{outline:none; border-color:var(--gold)}
+.checklist{background:#f4f8f4; border:1px solid #cfe3d2; border-radius:10px; padding:12px 16px; margin-top:12px; font-size:13.5px}
+.checklist b{color:var(--ok)}
+.checklist li{margin-left:20px; margin-top:3px}
+details.sample{margin-top:12px; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fffdf6}
+details.sample summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13.5px}
+details.sample .body{margin-top:10px; font-size:14px; line-height:1.9; border-top:1px dashed var(--line); padding-top:10px}
+details.sample .body .en{color:var(--ink)}
+details.sample .body .zh{color:var(--muted); font-size:12.5px}
+
+/* ---------- 阅读原文框 ---------- */
+.rdbox{background:#fffdf6; border:1.5px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px}
+.rdbox .rd-title{font-size:16px; font-weight:800; color:var(--brand); margin-bottom:10px}
+.rdbox .rd-title span{font-size:12px; font-weight:400; color:var(--muted); margin-left:8px}
+.rdbox .rd-body p{font-size:14.5px; line-height:2.05; margin:0 0 4px}
+.rdbox .rd-body p b{color:var(--brand)}
+.rdbox .kw{background:#fdf0d5; border-bottom:2px solid var(--gold-soft); border-radius:3px; padding:0 2px; font-weight:600}
+.rdbox .rd-note{font-size:12.5px; color:var(--ink2); background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-top:12px}
+details.rdtr{margin-top:12px; border:1px dashed var(--line); border-radius:8px; padding:8px 12px; background:#fff}
+details.rdtr summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13px}
+details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-height:2}
+
+/* ---------- 操作区 ---------- */
+.acts{display:flex; gap:12px; margin:26px 0 10px; flex-wrap:wrap; position:sticky; bottom:0; background:linear-gradient(180deg,transparent, var(--paper) 30%); padding:14px 0}
+.btn{border:none; border-radius:10px; padding:12px 26px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit}
+.btn-go{background:var(--brand); color:#f0e2b8}
+.btn-go:hover{background:#3a2c1c}
+.btn-ghost{background:#fff; color:var(--ink2); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-reset{background:#fff; color:var(--red); border:1.5px solid #ecc9c3}
+.score{display:none; border-radius:12px; padding:18px 22px; margin-top:16px; font-size:15px}
+.score.show{display:block}
+.score.pass{background:#eafaf0; border:1px solid #bfe6cc}
+.score.fail{background:#fdf0ee; border:1px solid #ecc9c3}
+.score .big{font-size:26px; font-weight:800}
+.score.pass .big{color:var(--ok)} .score.fail .big{color:var(--red)}
+.score .adv{font-size:13.5px; color:var(--ink2); margin-top:6px}
+.backhome{display:block; text-align:center; margin:26px auto 0; color:var(--muted); font-size:13px; text-decoration:none}
+.backhome:hover{color:var(--gold)}
+@media (max-width:640px){ .opts{grid-template-columns:1fr} .paper{padding:20px 16px} }
+@media print{
+  .hero,.tabs,.acts,.backhome{display:none!important}
+  body{background:#fff} .paper{border:none; box-shadow:none; padding:0}
+  .opt.sel{border-color:#999; background:#fff}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">沪教版 · 英语七年级上册</div>
+  <h1>Unit 1 Friendship</h1>
+  <div class="sub">习题与单元测试 · 每单元 5 份练习 + 3 套测试卷（在线作答 · 即时批改 · 可打印）</div>
+  <div class="meta">
+    <span>覆盖：本单元词汇 / 短语 / Wh-questions / -er 词缀 / 音标 / 课文 / 中国文化</span>
+    <span>依据：上海教育出版社 英语 七年级上册（2024 广州新版）</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div id="paperHost"></div>
+  <div id="scoreHost"></div>
+  <a class="backhome" href="../点读学习包/Unit0_总目录_点读学习中心.html">← 返回七上点读学习中心</a>
+</div>
+
+<script>
+/* ============================================================
+   Unit 1 习题与测试 —— 题目数据（PAPERS 由下方数据填充）
+   ============================================================ */
+const PAPERS = [
+/* ==================== 练习一 · 词汇与短语 ==================== */
+{
+  id:'p1', title:'练习一 · 词汇与短语', time:'20 分钟',
+  sub:'本单元核心词汇 27 个 + 拓展词 18 个 + 短语 17 个，先认词，再会用。',
+  sections:[
+  { name:'一、词汇匹配（选出正确中文意思）', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'guitar', type:'choice', a:0, opts:['吉他','勇气；胆量','调查','友谊']},
+    {stem:'survey', type:'choice', a:1, opts:['尊敬；尊重','调查','支持；鼓励','品质；品德']},
+    {stem:'patient', type:'choice', a:2, opts:['诚实的','自信的','有耐心的','高兴的']},
+    {stem:'appearance', type:'choice', a:0, opts:['外貌','想法','结局','心']},
+    {stem:'however', type:'choice', a:1, opts:['上升','然而；不过','改进；改善','描述；形容']},
+  ]},
+  { name:'二、看中文，写英文', note:'每题 1 分，共 5 分。注意拼写和大小写（句首要大写）。',
+    items:[
+    {stem:'友谊', type:'text', a:'friendship'},
+    {stem:'诚实的', type:'text', a:'honest'},
+    {stem:'勇气；胆量', type:'text', a:'courage'},
+    {stem:'自信的', type:'text', a:'confident'},
+    {stem:'改进；改善', type:'text', a:'improve'},
+  ]},
+  { name:'三、短语填空（选词填空，注意形式）', note:'每题 1 分，共 5 分。',
+    bank:'<b>短语库：</b>be good at · turn to · thanks to · count on · take care of',
+    items:[
+    {stem:'Li Hua is ____ playing basketball. He is really good at it.', type:'choice', a:0, opts:['be good at','thanks to','count on','take care of']},
+    {stem:'When I meet difficult problems, I ____ my friend for help.', type:'choice', a:1, opts:['take care of','turn to','be good at','count on']},
+    {stem:'____ your help, I passed the English exam.', type:'choice', a:2, opts:['Take care of','Count on','Thanks to','Turn to']},
+    {stem:'Good friends can ____ each other in life.', type:'choice', a:2, opts:['turn to','take care of','count on','be good at']},
+    {stem:'My grandma is ill in bed. I have to ____ her at home.', type:'choice', a:1, opts:['count on','take care of','turn to','be good at']},
+  ]},
+  { name:'四、单项选择', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'—Your English has ____ a lot. —Thanks to my new friend.', type:'choice', a:0, opts:['improved','appeared','risen','ended'],
+      explain:'improve 进步；rise 上升（主语多为数量/温度）；end 结束。'},
+    {stem:'He is an ____ boy. He never tells lies.', type:'choice', a:0, opts:['honest','honestly','honesty','dishonest'],
+      explain:'honest 的 h 不发音，前面用 an；be 动词后接形容词。'},
+    {stem:'I have the ____ to try new things now.', type:'choice', a:0, opts:['courage','survey','respect','heart'],
+      explain:'have the courage to do sth 有勇气做某事。'},
+    {stem:'Li Hua is helpful and ____. He always helps others.', type:'choice', a:0, opts:['caring','careful','carelessly','care'],
+      explain:'caring 关心他人的；careful 仔细的（侧重不出错）。'},
+    {stem:'—What do you think of your new school? —It\'s very ____. I like it.', type:'choice', a:0, opts:['modern','honest','courage','improve'],
+      explain:'very 后接形容词；modern 现代的。'},
+  ]},
+  { name:'五、对划线部分提问', note:'每题 1 分，共 5 分。用 Wh-word + 一般疑问句语序；动词为实义动词时用 do/does。',
+    items:[
+    {stem:'<u>Li Hua</u> is my new friend.（对划线部分提问）', type:'text', a:'Who is your new friend?', a2:['Who is your new friend'],
+      ph:'写完整问句，句末加 ?'},
+    {stem:'He is good at <u>maths</u>.（对划线部分提问）', type:'text', a:'What is he good at?', a2:["What's he good at"],
+      ph:'写完整问句'},
+    {stem:'I go to school <u>by bike</u>.（对划线部分提问）', type:'text', a:'How do you go to school?',
+      ph:'注意主语 you 搭配 do'},
+    {stem:'We have lunch <u>at school</u>.（对划线部分提问）', type:'text', a:'Where do you have lunch?',
+      ph:'写完整问句'},
+    {stem:'She is happy <u>because she has many friends</u>.（对划线部分提问）', type:'text', a:'Why is she happy?',
+      ph:'问原因用 Why'},
+  ]},
+  ]},
+/* ==================== 练习二 · 语法与句型 ==================== */
+{
+  id:'p2', title:'练习二 · 语法与句型', time:'20 分钟',
+  sub:'本单元语法重点：Wh-questions（疑问词 + am/is/are/do/does）与名词后缀 -er。',
+  sections:[
+  { name:'一、语法选择（单选）', note:'每题 1 分，共 10 分。',
+    items:[
+    {stem:'—What ____ he like doing? —He likes playing the guitar.', type:'choice', a:2, opts:['is','are','does','do'],
+      explain:'like 是实义动词，主语 he 是第三人称单数 → does。'},
+    {stem:'—Where ____ your new friend from? —She\'s from Beijing.', type:'choice', a:0, opts:['is','are','does','do'],
+      explain:'be from 来自；主语 your new friend 是单数 → is。'},
+    {stem:'____ your parents workers?', type:'choice', a:1, opts:['Is','Are','Do','Does'],
+      explain:'parents 是复数 → Are。'},
+    {stem:'My friend ____ maths very much.', type:'choice', a:1, opts:['like','likes','liking','is like'],
+      explain:'主语 My friend 是第三人称单数，一般现在时动词加 -s。'},
+    {stem:'—____ is your new school? —It\'s great.', type:'choice', a:2, opts:['What','Who','How','Where'],
+      explain:'问"怎么样"用 How；What do you think of... 也可以。'},
+    {stem:'He ____ play the guitar, but he can sing very well.', type:'choice', a:0, opts:['can\'t','can','isn\'t','doesn\'t'],
+      explain:'play 是实义动词，表能力用 can\'t（不会）。'},
+    {stem:'—Who ____ over there? —My English teacher.', type:'choice', a:0, opts:['is','are','am','be'],
+      explain:'Who 作主语通常视为单数 → is。'},
+    {stem:'We ____ good friends now.', type:'choice', a:2, opts:['am','is','are','be'],
+      explain:'We 搭配 are。'},
+    {stem:'—Does Li Hua ____ ping-pong after school? —Yes, he does.', type:'choice', a:2, opts:['plays','playing','play','played'],
+      explain:'Does 开头的一般疑问句，动词用原形。'},
+    {stem:'____ your new friend like dancing?', type:'choice', a:2, opts:['Is','Are','Does','Do'],
+      explain:'your new friend 是单数 → Does。'},
+  ]},
+  { name:'二、词形转换', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'sing（变成表示职业的名词：歌手）', type:'text', a:'singer'},
+    {stem:'work（变成表示职业的名词：工人）', type:'text', a:'worker'},
+    {stem:'help（变成形容词：乐于助人的）', type:'text', a:'helpful'},
+    {stem:'friend（变成形容词：友好的）', type:'text', a:'friendly'},
+    {stem:'care（变成形容词：关心他人的）', type:'text', a:'caring'},
+  ]},
+  { name:'三、完成句子（每空一词）', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'他擅长数学。He ____ ____ ____ maths.', type:'text', a:'is good at'},
+    {stem:'我遇到困难时常向她求助。I often ____ ____ her ____ help.', type:'text', a:'turn to for'},
+    {stem:'多亏你的帮助，我的英语进步很大。____ ____ your help, my English has improved a lot.', type:'text', a:'Thanks to'},
+    {stem:'好朋友应该互相依靠。Good friends should ____ ____ each other.', type:'text', a:'count on'},
+    {stem:'请照顾我的小猫。Please ____ ____ ____ my little cat.', type:'text', a:'take care of'},
+  ]},
+  { name:'四、句型转换', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'Li Hua is helpful.（改为一般疑问句）', type:'text', a:'Is Li Hua helpful?'},
+    {stem:'He is good at maths.（改为否定句）', type:'text', a:'He is not good at maths.', a2:["He isn't good at maths"]},
+    {stem:'I like playing the guitar.（改为一般疑问句）', type:'text', a:'Do you like playing the guitar?'},
+    {stem:'She is <u>patient</u>.（对 patient 提问，问性格品质）', type:'text', a:'What is she like?', a2:["What's she like"]},
+    {stem:'We play basketball <u>after school</u>.（对 after school 提问）', type:'text', a:'When do you play basketball?'},
+  ]},
+  ]},
+/* ==================== 练习三 · 课文与阅读 ==================== */
+{
+  id:'p3', title:'练习三 · 课文与阅读', time:'25 分钟',
+  sub:'围绕单元阅读语篇《New school, new friends》——先读懂，再会答。',
+  sections:[
+  { name:'一、课文原文《New school, new friends》', note:'沪教版英语七上 Unit 1 阅读语篇。先读原文，再做后面四道大题；答案都能在原文里找到。',
+    passage:'<div class="rdbox"><div class="rd-title">New school, new friends <span>阅读语篇 · 沪教版 英语 七年级上册 Unit 1</span></div><div class="rd-body"><p><span class="rdn">1</span>I love my new school! I have made a lot of new friends there. Li Hua is one of them.</p><p><span class="rdn">2</span>Li Hua is helpful and patient. He is also good at maths.</p><p><span class="rdn">3</span>When I meet difficult maths problems, I turn to him for help.</p><p><span class="rdn">4</span>When something interesting happens to me, I share my happiness with him.</p><p><span class="rdn">5</span>When one of us feels sad, we tell the other one and this makes us feel better.</p><p><span class="rdn">6</span>We really like doing things together.</p><p><span class="rdn">7</span>Li Hua loves playing ping-pong with me after school.</p><p><span class="rdn">8</span>"It\'s fun to play with a good player like you," he says.</p><p><span class="rdn">9</span>With his help, my maths has improved a lot.</p><p><span class="rdn">10</span>I am also more confident now, and I have the courage to try new things.</p><p><span class="rdn">11</span>My parents also tell me that I am more open and willing to help than before.</p><p><span class="rdn">12</span>I think this is all thanks to Li Hua.</p><p><span class="rdn">13</span>Close friends can really help us in our lives!</p><p><span class="rdn">14</span>My friendship with Li Hua teaches me that friends count on each other for love, admiration, respect and support.</p><p><span class="rdn">15</span>Friendships are not only about having fun, but also about love, honesty, understanding and trust.</p></div><details class="rdtr"><summary>中文翻译（点开对照，先自己做题再看）</summary><div class="rdzh"><p>1. 我爱我的新学校！我在那里交了很多新朋友，李华就是其中之一。</p><p>2. 李华乐于助人又有耐心，他还擅长数学。</p><p>3. 当我遇到数学难题时，我就向他求助。</p><p>4. 当我遇到有趣的事情时，我会和他分享我的快乐。</p><p>5. 当我们中有谁感到难过时，我们会告诉对方，这让我们感觉好一些。</p><p>6. 我们真的喜欢一起做事。</p><p>7. 李华喜欢放学后和我一起打乒乓球。</p><p>8. "和你这么优秀的选手一起打球真有意思，"他说。</p><p>9. 在他的帮助下，我的数学进步很大。</p><p>10. 现在我也更自信了，而且我有勇气尝试新事物。</p><p>11. 我父母也说，我比以前更开朗、更乐于助人了。</p><p>12. 我认为这一切都要感谢李华。</p><p>13. 亲密的朋友真的能在生活中帮助我们！</p><p>14. 我和李华的友谊让我明白：朋友之间因爱、赞赏、尊敬和支持而互相依靠。</p><p>15. 友谊不仅是玩乐，还包含爱、诚实、理解与信任。</p></div></details><div class="rd-note"><b>阅读策略：</b>读的时候试着找出每个 he / him / us / they 分别指谁，再圈出本单元学过的词汇和短语。</div></div>',
+    items:[
+    {stem:'这篇课文的作者是谁？文章主要讲什么？', type:'choice', a:1, opts:['李华；他的新学校','陈明；他的新学校和他的朋友李华','李华；一场乒乓球比赛','老师；如何学好数学'], explain:'作者是 Chen Ming（陈明），课文讲他的新学校生活和与李华的友谊。'},
+  ]},
+  { name:'二、课文选词填空', note:'每题 1 分，共 5 分。均出自课文原句。',
+    bank:'<b>词库：</b>helpful · improved · count · trust · confident',
+    items:[
+    {stem:'课文原句：Li Hua is ____ and patient.', type:'choice', a:0, opts:['helpful','honest','modern','caring']},
+    {stem:'课文原句：With his help, my maths has ____ a lot.', type:'choice', a:1, opts:['described','improved','risen','ended']},
+    {stem:'课文原句：My friendship with Li Hua teaches me that friends ____ on each other...', type:'choice', a:0, opts:['count','take','turn','come']},
+    {stem:'课文原句：...but also about love, honesty, understanding and ____.', type:'choice', a:1, opts:['support','trust','survey','thought']},
+    {stem:'课文原句：I am also more ____ now, and I have the courage to try new things.', type:'choice', a:2, opts:['honest','basic','confident','glad']},
+  ]},
+  { name:'三、阅读理解 · 判断正误（T / F）', note:'每题 1 分，共 5 分。根据课文《New school, new friends》判断。',
+    items:[
+    {stem:'Chen Ming loves his new school.', type:'tf', a:'T'},
+    {stem:'Li Hua is good at English.', type:'tf', a:'F', explain:'课文说 He is also good at maths（数学），不是英语。'},
+    {stem:'Li Hua loves playing ping-pong with Chen Ming after school.', type:'tf', a:'T'},
+    {stem:'Chen Ming\'s parents think he is more open and willing to help than before.', type:'tf', a:'T'},
+    {stem:'Friendships are only about having fun.', type:'tf', a:'F', explain:'课文原句：not only about having fun, but also about love, honesty, understanding and trust。'},
+  ]},
+  { name:'四、阅读理解 · 选择最佳答案', note:'每题 1 分，共 4 分。',
+    items:[
+    {stem:'What does Chen Ming do when he meets difficult maths problems?', type:'choice', a:1, opts:['He asks his parents.','He turns to Li Hua for help.','He gives up.','He asks the teacher first.']},
+    {stem:'How does Chen Ming feel when something interesting happens?', type:'choice', a:2, opts:['Sad.','Angry.','Happy, and he shares it with Li Hua.','Bored.']},
+    {stem:'What does Li Hua say about playing with Chen Ming?', type:'choice', a:1, opts:['It\'s boring.','It\'s fun to play with a good player like you.','He doesn\'t like it at all.','He wants to play alone.']},
+    {stem:'What is the passage mainly about?', type:'choice', a:1, opts:['How to play ping-pong well.','Chen Ming\'s new school and his friendship with Li Hua.','Li Hua\'s family life.','Some difficult maths problems.']},
+  ]},
+  { name:'五、阅读表达（回答问题）', note:'每题 1 分，共 4 分。答案不唯一，意思对即可。',
+    items:[
+    {stem:'Who is Chen Ming\'s new friend?', type:'text', a:'Li Hua', a2:['His new friend is Li Hua.','Li Hua is his new friend.']},
+    {stem:'What is Li Hua good at?', type:'text', a:'maths', a2:['He is good at maths.','Maths.','He is good at math.']},
+    {stem:'When does Li Hua play ping-pong with Chen Ming?', type:'text', a:'after school', a2:['After school.','They play it after school.','After school they play ping-pong.']},
+    {stem:'What can close friends really do for us?', type:'text', a:'help us in our lives', a2:['Close friends can help us in our lives.','They can help us in our lives.','Help us in our lives.']},
+  ]},
+  ]},
+/* ==================== 练习四 · 阅读新篇章 ==================== */
+{
+  id:'p4', title:'练习四 · 阅读新篇章', time:'25 分钟',
+  sub:'用本单元词汇、短语和句型新写的一篇文章。不翻课本，看看你是否真的理解和掌握了它们。',
+  sections:[
+  { name:'一、阅读原文《The Class Survey》', note:'先通读全文，再完成下面的题。金色底纹的是本单元词汇短语，读的时候留意它们。',
+    passage:'<div class="rdbox"><div class="rd-title">The Class Survey · 班级小调查 <span>用 Unit 1 词汇与表达新写</span></div><div class="rd-body"><p>Last month, our class did a <span class="kw">survey</span> about hobbies. I learned that many students like playing basketball. <span class="kw">However</span>, my new deskmate Mei is different. She loves singing, and she wants to be a <span class="kw">singer</span> one day.</p><p>Mei is of <span class="kw">medium height</span> with straight black hair, and she always has a smile on her face. She is <span class="kw">honest</span>, <span class="kw">patient</span> and <span class="kw">caring</span>. When I have problems with my English, I <span class="kw">turn to her for help</span>. She never says no. However, she is not <span class="kw">good at</span> maths. "I don\'t have the <span class="kw">courage</span> to answer questions in maths class," she told me once. So I said, "Let\'s study together. We can <span class="kw">count on</span> each other."</p><p>Every Wednesday <span class="kw">after school</span>, we study in the library for an hour. I teach her maths, and she helps me with my English speaking. <span class="kw">Thanks to</span> Mei, my English has <span class="kw">improved</span> a lot, and I am more <span class="kw">confident</span> now. She teaches me that true friends <span class="kw">respect</span> and <span class="kw">support</span> each other. Good friends <span class="kw">take care of</span> each other. I think friendship is about love, honesty, understanding and <span class="kw">trust</span>.</p></div><div class="rd-note"><b>阅读小任务：</b>读的时候圈出金色底纹的词汇和短语，看看你是不是每个都认识、都会用。</div></div>',
+    items:[
+    {stem:'这篇文章主要讲什么？', type:'choice', a:1, opts:['一场篮球比赛','一次班级爱好调查和"我"与同桌 Mei 的友谊','一位新来的老师','一次英语考试'], explain:'文章开头是班级爱好调查，主体是 Mei 和"我"互相帮助的友谊故事。'},
+  ]},
+  { name:'二、阅读理解 · 判断正误（T / F）', note:'每题 1 分，共 5 分。根据《The Class Survey》判断。',
+    items:[
+    {stem:'The survey is about the students\' hobbies.', type:'tf', a:'T'},
+    {stem:'Mei wants to be a player one day.', type:'tf', a:'F', explain:'她想当歌手（singer），不是运动员（player）。'},
+    {stem:'Mei is good at maths.', type:'tf', a:'F', explain:'文中说 she is not good at maths，数学还需要"我"帮忙。'},
+    {stem:'The writer helps Mei with her English speaking.', type:'tf', a:'F', explain:'是 Mei helps the writer with English speaking；作者教她的是数学。'},
+    {stem:'They study together in the library once a week.', type:'tf', a:'T', explain:'Every Wednesday after school 每周三放学后，也就是一周一次。'},
+  ]},
+  { name:'三、阅读理解 · 选择最佳答案', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'What is Mei like?', type:'choice', a:1, opts:['Tall and funny.','Honest, patient and caring.','Hard-working and modern.','Kind but shy.']},
+    {stem:'What does the writer do when he has problems with his English?', type:'choice', a:1, opts:['He asks the teacher for help.','He turns to Mei for help.','He studies by himself.','He gives up.']},
+    {stem:'What does "count on each other" mean in the passage?', type:'choice', a:0, opts:['They help and believe in each other.','They often argue with each other.','They live next to each other.','They compete with each other.'], explain:'count on sb 依靠、信赖某人。'},
+    {stem:'How is the writer\'s English now?', type:'choice', a:2, opts:['It is getting worse.','It stays the same.','It has improved a lot.','It is the best in the class.']},
+    {stem:'What does the writer learn from Mei?', type:'choice', a:0, opts:['True friends respect and support each other.','Maths is more important than English.','Singing is the best hobby.','Friends never study together.']},
+  ]},
+  { name:'四、词汇与表达 · 语境理解', note:'每题 1 分，共 5 分。结合文章语境，判断词汇和短语的意思与用法。',
+    items:[
+    {stem:'"Thanks to Mei, my English has improved a lot." 这里 Thanks to 的意思是：', type:'choice', a:1, opts:['谢谢 Mei 的帮助','多亏了 Mei；因为 Mei','向 Mei 道谢','和 Mei 一起谢谢'], explain:'thanks to = because of 多亏；由于。'},
+    {stem:'文中 "survey" 的意思是：', type:'choice', a:0, opts:['调查（了解大家的想法或做法）','一种球类运动','一本书','一条校规'], explain:'do a survey about hobbies 做一次关于爱好的调查。'},
+    {stem:'"I don\'t have the courage to answer questions" 说明 Mei：', type:'choice', a:2, opts:['非常勇敢','不喜欢数学老师','有些害怕、不够自信','没有时间回答问题'], explain:'courage 勇气；没有勇气就是不敢、不自信。'},
+    {stem:'文中哪个短语表示"擅长"？', type:'choice', a:0, opts:['be good at','turn to...for help','count on','take care of']},
+    {stem:'An honest person ____.', type:'choice', a:1, opts:['often tells lies','always tells the truth','likes singing very much','is good at maths'], explain:'honest 诚实的，就是说真话、不撒谎。'},
+  ]},
+  { name:'五、阅读表达（回答问题）', note:'每题 1 分，共 5 分。答案不唯一，意思对即可。',
+    items:[
+    {stem:'What did the class do last month?', type:'text', a:'They did a survey about hobbies.', a2:['They did a survey','A survey about hobbies','The class did a survey about hobbies']},
+    {stem:'Who is the writer\'s new deskmate?', type:'text', a:'Mei', a2:['Mei is his new deskmate','His new deskmate is Mei']},
+    {stem:'What does Mei love doing?', type:'text', a:'Singing', a2:['She loves singing','Singing. She wants to be a singer']},
+    {stem:'How often do they study together?', type:'text', a:'Once a week', a2:['Every Wednesday after school','They study together every Wednesday','Once a week, every Wednesday after school']},
+    {stem:'What is friendship about, according to the passage?', type:'text', a:'Love, honesty, understanding and trust', a2:['It is about love, honesty, understanding and trust','Love, honesty, understanding and trust.']},
+  ]},
+  ]},
+/* ==================== 练习五 · 中国友谊文化 ==================== */
+{
+  id:'p5', title:'练习五 · 中国友谊文化', time:'20 分钟',
+  sub:'把 Unit 1 的 Friendship 主题放进中国文化里：知音、管鲍之交，还有今天中国校园里的友谊。',
+  sections:[
+  { name:'一、文化读本（三段原文）', note:'三段都围绕"友谊"。先通读，再做后面的题。',
+    passage:'<div class="rdbox"><div class="rd-title">Friends in Chinese Culture · 中国文化中的友谊 <span>结合 Unit 1 Friendship</span></div><div class="rd-body"><p><b>A. Bo Ya and Ziqi · 知音（Bosom Friends）</b><br>Bo Ya was a great player of the guqin (古琴), a Chinese instrument. Few people could understand his music. However, Ziqi could. When Bo Ya was thinking of high mountains in his music, Ziqi said, "The music is like the high mountains!" When Bo Ya was thinking of running water, Ziqi said, "It is like the great rivers!" Ziqi really understood Bo Ya, and they became the best of friends.</p><p>When Ziqi died, Bo Ya was very sad. He broke his guqin and never played again. In Chinese, we call a friend who really understands you a <b>知音 (zhīyīn)</b>, a "bosom friend".</p><p><b>B. Guan Zhong and Bao Shuya · 管鲍之交</b><br>Guan Zhong and Bao Shuya were good friends in ancient China. Bao Shuya understood Guan Zhong very well and always supported him. Later, Bao Shuya recommended Guan Zhong to the king, and Guan Zhong became a great ruler of the state of Qi (齐). People still use the phrase <b>管鲍之交 (guǎn bào zhī jiāo)</b> to describe a deep friendship with understanding and trust.</p><p><b>C. Friends in Chinese Schools Today · 今天的校园友谊</b><br>In China, classmates often help each other after school. They study together, share books and talk about their problems. Many students say their friends give them support and courage when things are difficult. Chinese people believe good friends should be honest, caring and loyal (忠诚的).</p></div><div class="rd-note"><b>文化小知识：</b>孔子说："有朋自远方来，不亦乐乎？"（To have friends come from far away — is that not a joy?）中国人还说"千里送鹅毛，礼轻情意重"——朋友之间，情意比礼物更重要。</div></div>',
+    items:[
+    {stem:'这三段文字共同讲的是什么？', type:'choice', a:0, opts:['中国文化中的友谊','中国的学校课程','中国的乐器历史','广州的旅游景点'], explain:'三段分别讲了知音、管鲍之交和今天中国校园里的友谊，都围绕"友谊"。'},
+  ]},
+  { name:'二、阅读理解 A · 判断正误（T / F）', note:'每题 1 分，共 4 分。根据 A 篇 Bo Ya and Ziqi 判断。',
+    items:[
+    {stem:'Bo Ya played the guqin very well.', type:'tf', a:'T'},
+    {stem:'Ziqi could understand Bo Ya\'s music.', type:'tf', a:'T'},
+    {stem:'After Ziqi died, Bo Ya played the guqin for him every day.', type:'tf', a:'F', explain:'Bo Ya 摔碎了琴，从此不再弹奏（broke his guqin and never played again）。'},
+    {stem:'In Chinese, 知音 means a friend who really understands you.', type:'tf', a:'T'},
+  ]},
+  { name:'三、阅读理解 B · 选择最佳答案', note:'每题 1 分，共 4 分。根据 B、C 两篇判断。',
+    items:[
+    {stem:'Who recommended Guan Zhong to the king?', type:'choice', a:1, opts:['The king himself.','Bao Shuya.','Ziqi.','A teacher.']},
+    {stem:'What does 管鲍之交 describe?', type:'choice', a:2, opts:['A kind of Chinese food.','A famous mountain in China.','A deep friendship with understanding and trust.','A traditional instrument.']},
+    {stem:'What do Chinese classmates often do after school?', type:'choice', a:0, opts:['They help each other and study together.','They play computer games alone.','They never talk to each other.','They only read books.']},
+    {stem:'According to the passage, good friends should be ____.', type:'choice', a:3, opts:['rich and famous','tall and strong','quiet and shy','honest, caring and loyal']},
+  ]},
+  { name:'四、文化表达（回答问题）', note:'每题 1 分，共 5 分。答案不唯一，意思对即可。',
+    items:[
+    {stem:'Who was Bo Ya\'s bosom friend?', type:'text', a:'Ziqi', a2:['Ziqi was his bosom friend','His bosom friend was Ziqi']},
+    {stem:'What did Bo Ya do after Ziqi died?', type:'text', a:'He broke his guqin and never played again.', a2:['He broke his guqin','He never played the guqin again','He broke his guqin and never played']},
+    {stem:'Why did Bo Ya think no one could understand his music any more?', type:'text', a:'Because Ziqi, the one who understood him, had died.', a2:['Because Ziqi died','Because the one who understood his music was dead','Because Ziqi had died']},
+    {stem:'What does 管鲍之交 mean in English?', type:'text', a:'The friendship of Guan Zhong and Bao Shuya', a2:['A deep friendship with understanding and trust','the friendship of Guan and Bao','A deep friendship with trust and understanding']},
+    {stem:'What do friends give students when things are difficult?', type:'text', a:'Support and courage', a2:['They give them support and courage','support and courage','Friends give them support and courage']},
+  ]},
+  ]},
+/* ==================== 测试卷一 ==================== */
+{
+  id:'t1', title:'测试卷一 · Unit 1 单元测试', time:'60 分钟',
+  sub:'客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。结构参照本地单元卷：辨音 + 单选 + 语法选择 + 完形 + 阅读 + 回答问题 + 拼写 + 词形转换 + 写作。',
+  sections:[
+  { name:'一、辨音（找出划线部分发音不同的单词）', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'A. m<u>e</u>&nbsp;&nbsp;B. h<u>i</u>s&nbsp;&nbsp;C. m<u>ee</u>t&nbsp;&nbsp;D. s<u>ee</u>', type:'choice', a:1, opts:['me','his','meet','see'],
+      explain:'his 中 i 发 /ɪ/，其余发 /iː/。'},
+    {stem:'A. m<u>a</u>ths&nbsp;&nbsp;B. h<u>a</u>ve&nbsp;&nbsp;C. m<u>a</u>ny&nbsp;&nbsp;D. n<u>a</u>me', type:'choice', a:3, opts:['maths','have','many','name'],
+      explain:'name 中 a 发 /eɪ/，其余发 /æ/。'},
+    {stem:'A. t<u>e</u>ll&nbsp;&nbsp;B. h<u>e</u>lp&nbsp;&nbsp;C. b<u>a</u>sketball&nbsp;&nbsp;D. b<u>e</u>d', type:'choice', a:2, opts:['tell','help','basketball','bed'],
+      explain:'basketball 重读音节发 /ɑː/，其余发 /e/。'},
+    {stem:'A. ho<u>b</u>by&nbsp;&nbsp;B. ping-<u>p</u>ong&nbsp;&nbsp;C. <u>p</u>lay&nbsp;&nbsp;D. <u>p</u>olite', type:'choice', a:0, opts:['hobby','ping-pong','play','polite'],
+      explain:'hobby 中 b 发 /b/，其余发 /p/。'},
+    {stem:'A. <u>h</u>onest&nbsp;&nbsp;B. <u>h</u>eart&nbsp;&nbsp;C. <u>h</u>ave&nbsp;&nbsp;D. <u>h</u>ere', type:'choice', a:0, opts:['honest','heart','have','here'],
+      explain:'honest 的 h 不发音，其余都发音。'},
+  ]},
+  { name:'二、单项选择', note:'每题 1 分，共 10 分。',
+    items:[
+    {stem:'—____ do you think of your new friend? —He\'s very kind.', type:'choice', a:1, opts:['How','What','Who','Where']},
+    {stem:'—Is your new friend ____ honest boy? —Yes, he never tells lies.', type:'choice', a:1, opts:['a','an','the','/'],
+      explain:'honest 的 h 不发音，以元音音素开头 → an。'},
+    {stem:'I have made a lot of new friends ____ I came here.', type:'choice', a:2, opts:['after','before','since','until'],
+      explain:'现在完成时 have made 常与 since + 时间点连用。'},
+    {stem:'He is ____ medium height and looks very strong.', type:'choice', a:0, opts:['of','in','on','with'],
+      explain:'be of medium height 中等身高，固定搭配。'},
+    {stem:'Thanks ____ your help, I finished my homework on time.', type:'choice', a:1, opts:['for','to','of','at']},
+    {stem:'—____ does your father do? —He\'s a worker.', type:'choice', a:1, opts:['Who','What','How','Where']},
+    {stem:'My best friend always ____ me up when I\'m sad.', type:'choice', a:0, opts:['cheers','cheer','cheering','cheered'],
+      explain:'主语是第三人称单数，always 提示一般现在时 → cheers。'},
+    {stem:'We should ____ our parents. They work hard for us every day.', type:'choice', a:0, opts:['respect','describe','rise','survey']},
+    {stem:'—What\'s your ____? —I like collecting stamps.', type:'choice', a:0, opts:['hobby','survey','appearance','quality']},
+    {stem:'My deskmate is very ____. She always has a smile on her face.', type:'choice', a:0, opts:['friendly','honestly','politely','angrily'],
+      explain:'very 后接形容词。'},
+  ]},
+  { name:'三、语法选择（短文填空）', note:'每题 1 分，共 10 分。通读全文再作答。',
+    items:[
+    {stem:'Hello! I\'m Chen Ming. I have a new friend ____ Lily.', type:'choice', a:1, opts:['call','named','name','calling'],
+      explain:'named 过去分词作后置定语，意为"名叫……的"。'},
+    {stem:'She is 13 ____ old.', type:'choice', a:1, opts:['year','years','year\'s','years\''], explain:'13 years old 十三岁。'},
+    {stem:'She is friendly and ____ (help).', type:'choice', a:1, opts:['help','helpful','helping','helps'],
+      explain:'and 连接两个形容词 → helpful。'},
+    {stem:'She ____ good at English.', type:'choice', a:0, opts:['is','are','am','does']},
+    {stem:'I often turn ____ her for help.', type:'choice', a:1, opts:['on','to','for','at'], explain:'turn to sb for help 求助。'},
+    {stem:'When I feel sad, she always ____ (talk) to me and makes me happy.', type:'choice', a:1, opts:['talk','talks','talking','talked'],
+      explain:'主语 she 是单数，一般现在时。'},
+    {stem:'Thanks ____ her help, my English improves a lot.', type:'choice', a:1, opts:['for','to','of','with']},
+    {stem:'I think friendship ____ (be) about love and trust.', type:'choice', a:1, opts:['am','is','are','be']},
+    {stem:'"Friends ____ (count) on each other," she often says.', type:'choice', a:0, opts:['count','counts','counted','counting'],
+      explain:'引述经常性的话用一般现在时；Friends 是复数 → count。'},
+    {stem:'I\'m glad ____ (have) such a good friend.', type:'choice', a:1, opts:['have','to have','having','has'],
+      explain:'be glad to do sth 很高兴做某事。'},
+  ]},
+  { name:'四、完形填空', note:'每题 1 分，共 10 分。先通读全文，再逐题作答。',
+    items:[
+    {stem:'One day, Tom found a wallet on the playground. His friend Mike said, "Let\'s ____ the money for lunch."', type:'choice', a:1, opts:['use','spend','take','pay'],
+      explain:'spend money for... 把钱花在……上。'},
+    {stem:'Tom shook his head. "No," he said. "We should ____ it to the teacher."', type:'choice', a:0, opts:['give','take','bring','carry'],
+      explain:'give sth to sb 把某物交给某人。'},
+    {stem:'Tom is an ____ boy. Everyone in our class trusts him.', type:'choice', a:0, opts:['honest','honestly','honesty','honests']},
+    {stem:'When I have problems with maths, he always helps me ____ a smile.', type:'choice', a:2, opts:['in','on','with','by'],
+      explain:'with a smile 微笑着。'},
+    {stem:'Our teacher says Tom is a good example ____ us all.', type:'choice', a:0, opts:['to','for','of','at'],
+      explain:'an example to us all 我们所有人的榜样。'},
+    {stem:'He is good ____ playing basketball, and he teaches me how to play better.', type:'choice', a:3, opts:['in','for','on','at'],
+      explain:'be good at 擅长。'},
+    {stem:'I used to be shy and not ____, but now I am more confident.', type:'choice', a:0, opts:['confident','confidence','confidently','confide']},
+    {stem:'I think a true friend is ____ a gift.', type:'choice', a:1, opts:['as','like','for','of']},
+    {stem:'Friends count on each other for love, admiration, respect ____ support.', type:'choice', a:0, opts:['and','but','or','so']},
+    {stem:'I\'m glad ____ such an honest friend.', type:'choice', a:1, opts:['have','to have','having','had']},
+  ]},
+  { name:'五、阅读理解 A（应用文）', note:'每题 1 分，共 3 分。',
+    items:[
+    {stem:'<b>Friends Club 招新海报：</b>Are you looking for new friends? Join our Friends Club! We meet every Friday after school in the school hall. Activities: singing, dancing, playing basketball and ping-pong. You can also learn to make friends with others here. Tel: 020-12345678 · Miss Li<br>When does the club meet?', type:'choice', a:0, opts:['Every Friday after school.','Every Saturday morning.','Every Friday morning.','Every day after class.']},
+    {stem:'Which activity is NOT in the poster?', type:'choice', a:2, opts:['Singing.','Dancing.','Swimming.','Playing basketball.']},
+    {stem:'What can you learn in the club?', type:'choice', a:1, opts:['How to cook.','How to make friends with others.','How to swim.','How to play the guitar.']},
+  ]},
+  { name:'六、阅读理解 B（笔友来信）', note:'每题 1 分，共 4 分。',
+    items:[
+    {stem:'<b>来信：</b>Dear Tom, I\'m your new pen pal. My name is Lily. I\'m 13 years old and I\'m from Guangzhou. I\'m a middle school student. I\'m of medium height with long straight hair. I\'m friendly and polite, and I like helping others. My hobbies are reading and dancing. I\'m good at English, but I\'m not good at maths. I often turn to my deskmate for help. She is patient and never laughs at me. Thanks to her, my maths is better now. Do you like making friends? Write to me soon!<br>How old is Lily?', type:'choice', a:1, opts:['12.','13.','14.','15.']},
+    {stem:'What does Lily look like?', type:'choice', a:2, opts:['She is tall with curly hair.','She is short with dark hair.','She is of medium height with long straight hair.','She is of medium height with curly hair.']},
+    {stem:'What is Lily NOT good at?', type:'choice', a:1, opts:['English.','Maths.','Dancing.','Reading.']},
+    {stem:'Who often helps Lily with maths?', type:'choice', a:1, opts:['Her teacher.','Her deskmate.','Her mother.','Tom.']},
+  ]},
+  { name:'七、阅读理解 C（记叙文）', note:'每题 1 分，共 4 题。',
+    items:[
+    {stem:'<b>故事：</b>Last week, our class had a basketball game. Our team was one point behind. At the last minute, Tom passed the ball to me. I was nervous and missed the shot. We lost the game. I was sad and wanted to cry. No one in my team said a word. Then my best friend Li Hua came to me. "Don\'t be sad," he said. "We can count on each other. Next time we will win." His words made me feel better. After school, we practised together for an hour. The next week, we played again. This time I scored the last basket. We won! I learned that true friends count on each other and never give up.<br>判断：Our class won the basketball game last week.', type:'tf', a:'F',
+      explain:'Last week... We lost the game（上周输了，下一周才赢）。'},
+    {stem:'判断：Li Hua encouraged me after the game.', type:'tf', a:'T'},
+    {stem:'How did the writer feel after the first game?', type:'choice', a:1, opts:['Happy.','Sad.','Angry.','Bored.']},
+    {stem:'What can we learn from the story?', type:'choice', a:0, opts:['Friends should count on each other.','Basketball is an easy game.','We shouldn\'t play basketball.','Winning is everything.']},
+  ]},
+  { name:'八、回答问题（阅读表达）', note:'每题 1 分，共 5 分。答案不唯一，意思对即可。',
+    items:[
+    {stem:'<b>短文：</b>I have a new friend named Chen Ming. He is 13 years old. He is of medium height with straight black hair. He is honest, patient and caring. Everyone in our class likes him. Chen Ming is good at maths. When I have problems with maths, I always turn to him for help. He never says no. With his help, my maths has improved a lot. After school, we often play ping-pong together. He is a good player. He also teaches me how to describe things in English. Thanks to Chen Ming, my school life is colourful.<br>How old is Chen Ming?', type:'text', a:'13', a2:['He is 13 years old.','He is 13.','13 years old']},
+    {stem:'What does Chen Ming look like?', type:'text', a:'He is of medium height with straight black hair.', a2:['medium height with straight black hair','He is of medium height with straight black hair']},
+    {stem:'What is Chen Ming like?（性格品质）', type:'text', a:'He is honest, patient and caring.', a2:['honest, patient and caring','Honest, patient and caring.']},
+    {stem:'What does the writer always do when she has maths problems?', type:'text', a:'She always turns to Chen Ming for help.', a2:['turns to him for help','She turns to Chen Ming for help.','Turn to him for help.']},
+    {stem:'What do they often do after school?', type:'text', a:'They often play ping-pong together.', a2:['play ping-pong','They play ping-pong together.','Play ping-pong together.']},
+  ]},
+  { name:'九、单词拼写', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'f____（友谊）', type:'text', a:'friendship'},
+    {stem:'（有耐心的）', type:'text', a:'patient'},
+    {stem:'c____（勇气；胆量）', type:'text', a:'courage'},
+    {stem:'（诚实的）', type:'text', a:'honest'},
+    {stem:'（改进；改善）', type:'text', a:'improve'},
+  ]},
+  { name:'十、词形转换', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'honest（变成名词）', type:'text', a:'honesty'},
+    {stem:'help（变成形容词：乐于助人的）', type:'text', a:'helpful'},
+    {stem:'sing（变成名词：歌手）', type:'text', a:'singer'},
+    {stem:'friend（变成形容词：友好的）', type:'text', a:'friendly'},
+    {stem:'care（变成形容词：关心他人的）', type:'text', a:'caring'},
+  ]},
+  { name:'十一、写作（10 分）', note:'请写在作文格/横线上，写完对照自查清单和范文。',
+    items:[
+    {stem:'<b>题目：介绍你的好朋友。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 helpful, patient, honest, be good at, turn to...for help, thanks to, count on, after school）；③ 注意主谓一致和句首大写。', type:'essay', score:10,
+      ph:'My Good Friend\n\nMy good friend is...',
+      check:['有没有写名字、年龄、长什么样？','有没有写性格（至少 2 个形容词）？','有没有用到 be good at / turn to...for help / after school？','有没有写你们一起做的事？','句首字母大写了吗？主谓一致吗？'],
+      sample:'<div class="en">My Good Friend<br><br>My good friend is Li Hua. He is 13 years old. He is of medium height with straight black hair. He is honest, patient and helpful. He is good at maths, and I often turn to him for help. After school, we often play ping-pong together. Thanks to Li Hua, my maths has improved a lot. I think true friends count on each other. I will take care of our friendship.</div><div class="zh">（参考范文：我的好朋友。介绍了名字、年龄、外貌、性格、擅长的事、一起做的事和感受，用了 honest / patient / helpful / be good at / turn to...for help / after school / thanks to / count on 等本单元词汇短语。）</div>'},
+  ]},
+  ]},
+/* ==================== 测试卷二 ==================== */
+{
+  id:'t2', title:'测试卷二 · Unit 1 单元测试', time:'60 分钟',
+  sub:'客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与测试卷一相同，题目全部更换（词汇、语法角度、阅读体裁均不同）。',
+  sections:[
+  { name:'一、辨音（找出划线部分发音不同的单词）', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'A. m<u>e</u>&nbsp;&nbsp;B. h<u>e</u>&nbsp;&nbsp;C. th<u>i</u>n&nbsp;&nbsp;D. s<u>ee</u>', type:'choice', a:2, opts:['me','he','thin','see'],
+      explain:'thin 中 i 发 /ɪ/，其余发 /iː/。'},
+    {stem:'A. pl<u>a</u>yer&nbsp;&nbsp;B. m<u>a</u>ths&nbsp;&nbsp;C. h<u>a</u>ve&nbsp;&nbsp;D. h<u>a</u>ppy', type:'choice', a:0, opts:['player','maths','have','happy'],
+      explain:'player 中 a 发 /eɪ/，其余发 /æ/。'},
+    {stem:'A. b<u>a</u>sketball&nbsp;&nbsp;B. m<u>a</u>ny&nbsp;&nbsp;C. h<u>a</u>ppy&nbsp;&nbsp;D. m<u>a</u>ths', type:'choice', a:0, opts:['basketball','many','happy','maths'],
+      explain:'basketball 重读音节发 /ɑː/，其余发 /æ/。'},
+    {stem:'A. <u>p</u>olite&nbsp;&nbsp;B. <u>p</u>lay&nbsp;&nbsp;C. hel<u>p</u>ful&nbsp;&nbsp;D. ho<u>b</u>by', type:'choice', a:3, opts:['polite','play','helpful','hobby'],
+      explain:'hobby 中 b 发 /b/，其余发 /p/。'},
+    {stem:'A. <u>h</u>our&nbsp;&nbsp;B. <u>h</u>eart&nbsp;&nbsp;C. <u>h</u>ard&nbsp;&nbsp;D. <u>h</u>and', type:'choice', a:0, opts:['hour','heart','hard','hand'],
+      explain:'hour 的 h 不发音，其余都发音。'},
+  ]},
+  { name:'二、单项选择', note:'每题 1 分，共 10 分。',
+    items:[
+    {stem:'—____ are you from? —I\'m from Shanghai.', type:'choice', a:1, opts:['What','Where','Who','How']},
+    {stem:'My new friend is good ____ dancing.', type:'choice', a:1, opts:['in','at','on','for']},
+    {stem:'—____ your new friend like music? —Yes, very much.', type:'choice', a:2, opts:['Is','Are','Does','Do'],
+      explain:'like 是实义动词，主语 your new friend 是单数 → Does。'},
+    {stem:'She has ____ long straight hair.', type:'choice', a:3, opts:['a','an','the','/'],
+      explain:'hair 是不可数名词，前面不加冠词。'},
+    {stem:'There ____ a pen and two books on the desk.', type:'choice', a:0, opts:['is','are','am','be'],
+      explain:'there be 就近原则：靠近的 a pen 是单数 → is。'},
+    {stem:'—What ____ he look like? —He is tall and thin.', type:'choice', a:1, opts:['is','does','do','are'],
+      explain:'问外貌：What does sb look like?'},
+    {stem:'Li Hua often ____ me with my English after school.', type:'choice', a:1, opts:['help','helps','helping','helped'],
+      explain:'often + 一般现在时，主语是第三人称单数 → helps。'},
+    {stem:'I\'m glad ____ a friend like you.', type:'choice', a:1, opts:['have','to have','having','has'],
+      explain:'be glad to do sth。'},
+    {stem:'My mother always tells me ____ late for school.', type:'choice', a:1, opts:['not be','not to be','don\'t be','to not be'],
+      explain:'tell sb (not) to do sth 告诉某人（不要）做某事。'},
+    {stem:'____ your help, I can finish the work on time.', type:'choice', a:2, opts:['Thanks','Thanks for','Thanks to','Thank'],
+      explain:'Thanks to sb/sth 多亏……（to 是介词）。'},
+  ]},
+  { name:'三、语法选择（短文填空）', note:'每题 1 分，共 10 分。',
+    items:[
+    {stem:'Hello! I\'m Wang Fang. I\'m a new student at Sunshine Middle School. I was shy on my first day. Everything was strange ____ me.', type:'choice', a:1, opts:['for','to','of','with'],
+      explain:'strange to sb 对某人来说很陌生。'},
+    {stem:'A girl named Lily came to me and said, "Let me show you around." She is tall ____ long straight hair.', type:'choice', a:1, opts:['in','with','of','on'],
+      explain:'with + 外貌特征，表示"有着……"。'},
+    {stem:'Lily is hard-working ____ helpful.', type:'choice', a:2, opts:['but','or','and','so']},
+    {stem:'She always helps me ____ my English.', type:'choice', a:2, opts:['in','at','with','for'],
+      explain:'help sb with sth 帮助某人做某事。'},
+    {stem:'When I feel sad, she tells funny jokes ____ me laugh.', type:'choice', a:1, opts:['make','to make','making','makes'],
+      explain:'动词不定式表目的：to make me laugh 让我笑。'},
+    {stem:'Our teacher says we are a good example ____ the class.', type:'choice', a:0, opts:['to','for','of','with']},
+    {stem:'"Friends ____ count on each other," she often says.', type:'choice', a:1, opts:['may','should','mustn\'t','can\'t'],
+      explain:'句意：朋友"应该"互相依靠。'},
+    {stem:'I think friendship is ____ important part of our school life.', type:'choice', a:1, opts:['a','an','the','/'],
+      explain:'important 以元音音素开头 → an。'},
+    {stem:'I\'m glad ____ (have) such a good friend.', type:'choice', a:1, opts:['have','to have','having','has']},
+    {stem:'I ____ (write) to my old friends about her every week.', type:'choice', a:0, opts:['write','writes','wrote','writing'],
+      explain:'every week 提示一般现在时；主语 I → write。'},
+  ]},
+  { name:'四、完形填空', note:'每题 1 分，共 10 分。',
+    items:[
+    {stem:'Last Friday, I forgot to bring my maths notebook. I was worried because we would have a test that afternoon. My deskmate Li Hua noticed that and passed his notebook to me. "Take it," he said. "I have an old copy at home." I was surprised ____ moved.', type:'choice', a:1, opts:['and','but','so','or'],
+      explain:'surprised 与 moved 意思转折 → but。'},
+    {stem:'After school, I thanked Li Hua. "That\'s what friends are ____," he said with a smile.', type:'choice', a:3, opts:['at','in','on','for'],
+      explain:'That\'s what friends are for 这就是朋友的意义。'},
+    {stem:'I used to be shy and didn\'t like ____ with others.', type:'choice', a:1, opts:['share','sharing','shared','shares'],
+      explain:'like doing sth 喜欢做某事。'},
+    {stem:'Now I often share my things with my classmates and help them ____ problems.', type:'choice', a:1, opts:['in','with','at','on'],
+      explain:'help sb with sth。'},
+    {stem:'Last week, a new student named Tom came to our class. He knew nobody and looked ____.', type:'choice', a:2, opts:['happy','excited','lonely','funny'],
+      explain:'knew nobody 说明孤单 → lonely。'},
+    {stem:'I went up to him and said, "Come along! You can sit ____ us."', type:'choice', a:2, opts:['between','in','with','among'],
+      explain:'sit with us 和我们坐在一起（三人以上among，此处"加入我们"用with最自然）。'},
+    {stem:'Our teacher often says a true friend ____ for your hand and touches your heart.', type:'choice', a:0, opts:['reaches','reach','reaching','reached'],
+      explain:'主语 a true friend 是单数，一般现在时 → reaches。'},
+    {stem:'Friends ____ each other for love, admiration, respect and support.', type:'choice', a:1, opts:['count','count on','turn','turn to'],
+      explain:'count on each other 互相依靠（课文原句）。'},
+    {stem:'I\'m lucky ____ so many good friends.', type:'choice', a:1, opts:['have','to have','having','had'],
+      explain:'be lucky to do sth。'},
+    {stem:'I will take care of our friendship ____ it grows strong.', type:'choice', a:2, opts:['because','so','and','but'],
+      explain:'and 表顺承：呵护友谊，让它茁壮成长。'},
+  ]},
+  { name:'五、阅读理解 A（邮件）', note:'每题 1 分，共 3 分。',
+    items:[
+    {stem:'<b>邮件：</b>Dear Tom, How are you? I\'m writing to tell you about my new school in Guangzhou. It\'s modern and beautiful. My classroom is on the second floor. We have a big library and a playground. My new deskmate is a girl named Wang Fang. She is hard-working and helpful. She always helps me with English. After school, we often dance in the dancing room. I love modern dance. I\'m happy here. What about your new school? Write back soon! Yours, Lily<br>Where is Lily\'s new school?', type:'choice', a:1, opts:['Shanghai.','Guangzhou.','Beijing.','Shenzhen.']},
+    {stem:'Who is Lily\'s deskmate?', type:'choice', a:2, opts:['Tom.','Miss Li.','Wang Fang.','Chen Ming.']},
+    {stem:'What do they often do after school?', type:'choice', a:3, opts:['Play basketball.','Sing in the music room.','Read in the library.','Dance in the dancing room.']},
+  ]},
+  { name:'六、阅读理解 B（日记）', note:'每题 1 分，共 4 分。',
+    items:[
+    {stem:'<b>日记：</b>Sunday, October 12th, Sunny. Today I visited my new school library. It was so quiet! I met a boy there. He was reading a book about space. "Do you like space?" I asked. "Yes," he said. "I want to be an astronaut one day." His name is Chen Ming. He is honest and patient. We talked for an hour about stars, the moon and rockets. He told me that hard work can make dreams come true. Before leaving, he said, "Thanks to books, we can travel without moving." I laughed. I made a new friend today, and I learned a new word: admiration.<br>Where did the writer meet Chen Ming?', type:'choice', a:1, opts:['In the classroom.','In the library.','On the playground.','In the dancing room.']},
+    {stem:'What does Chen Ming want to be?', type:'choice', a:2, opts:['A teacher.','A player.','An astronaut.','A writer.']},
+    {stem:'What is Chen Ming like?', type:'choice', a:0, opts:['Honest and patient.','Funny and polite.','Hard-working and caring.','Friendly and modern.']},
+    {stem:'What did the writer learn from Chen Ming?', type:'choice', a:1, opts:['Books are expensive.','Hard work can make dreams come true.','Space is very far away.','Dreams are not important.']},
+  ]},
+  { name:'七、阅读理解 C（判断正误）', note:'每题 1 分，共 4 题。',
+    items:[
+    {stem:'<b>给编辑的信：</b>Dear Editor, I\'m a Grade 7 student. I was shy when I first came to this school. I didn\'t dare to talk to anyone. Then a boy named Li Hua said hello to me every morning. He also asked me to play basketball with his team. At first I said no because I was not good at it. "It doesn\'t matter," he said. "Come along!" Thanks to him, I have many friends now. I\'m not shy any more. I think everyone needs a friend who counts on him.<br>判断：The writer was shy at first.', type:'tf', a:'T'},
+    {stem:'判断：Li Hua said hello to the writer every morning.', type:'tf', a:'T'},
+    {stem:'判断：The writer was good at basketball at first.', type:'tf', a:'F',
+      explain:'信中明确说 I was not good at it（一开始不擅长篮球）。'},
+    {stem:'判断：The writer has few friends now.', type:'tf', a:'F',
+      explain:'Thanks to him, I have many friends now（现在有很多朋友）。'},
+  ]},
+  { name:'八、回答问题（阅读表达）', note:'每题 1 分，共 5 分。答案不唯一，意思对即可。',
+    items:[
+    {stem:'<b>短文：</b>My name is Wang Fang. I\'m 13 and I\'m a new student at Sunshine Middle School. My school is modern and beautiful. I have made many new friends here. My best friend is Lily. She is tall with long straight hair. She is friendly, polite and hard-working. Everyone likes her. Lily is good at English. I\'m not good at it, so I often turn to her for help. She is patient and never laughs at me. With her help, my English has improved a lot. After school, we often play basketball or dance in the dancing room. On weekends, we sometimes go to the library together. I used to be shy, but now I\'m confident and open. I think this is all thanks to Lily. Good friends count on each other. I will take care of our friendship.<br>How old is Wang Fang?', type:'text', a:'13', a2:['She is 13.','She is 13 years old.','13 years old']},
+    {stem:'What does Lily look like?', type:'text', a:'She is tall with long straight hair.', a2:['tall with long straight hair','Tall with long straight hair.']},
+    {stem:'What is Lily good at?', type:'text', a:'English', a2:['She is good at English.','English.']},
+    {stem:'Why does Wang Fang often turn to Lily for help?', type:'text', a:'Because she is not good at English.', a2:['because she is not good at English','Because she isn\'t good at English.','She is not good at English.']},
+    {stem:'What do they often do after school?', type:'text', a:'They often play basketball or dance in the dancing room.', a2:['play basketball or dance','They play basketball or dance.','Play basketball or dance.']},
+  ]},
+  { name:'九、单词拼写', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'h____（勤奋的）', type:'text', a:'hard-working'},
+    {stem:'（友好的）', type:'text', a:'friendly'},
+    {stem:'m____（现代的）', type:'text', a:'modern'},
+    {stem:'（中等的）', type:'text', a:'medium'},
+    {stem:'（爱好）', type:'text', a:'hobby'},
+  ]},
+  { name:'十、词形转换', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'care（变成形容词：仔细的；小心的）', type:'text', a:'careful'},
+    {stem:'honest（变成副词）', type:'text', a:'honestly'},
+    {stem:'polite（变成副词）', type:'text', a:'politely'},
+    {stem:'play（变成名词：运动员；选手）', type:'text', a:'player'},
+    {stem:'friend（变成名词：友谊）', type:'text', a:'friendship'},
+  ]},
+  { name:'十一、写作（10 分）', note:'请写在作文格/横线上，写完对照自查清单和范文。',
+    items:[
+    {stem:'<b>题目：My New School Life（我的新学校生活）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 modern, friendly, be good at, after school, thanks to, make friends, hard-working, count on）；③ 注意主谓一致和句首大写。', type:'essay', score:10,
+      ph:'My New School Life\n\nMy new school is...',
+      check:['有没有介绍学校（modern / beautiful）？','有没有写新朋友长什么样、性格如何？','有没有写到 after school 做什么？','有没有用到 be good at / thanks to / make friends？','句首字母大写了吗？主谓一致吗？'],
+      sample:'<div class="en">My New School Life<br><br>My new school is modern and beautiful. I have made many new friends here. My best friend is Lily. She is tall with long straight hair. She is friendly, polite and hard-working. She is good at English and always helps me with it. After school, we often play basketball or dance in the dancing room. Thanks to Lily, I love my new school. I think good friends count on each other.</div><div class="zh">（参考范文：介绍了学校、新朋友的外貌性格、课后活动和感受，用了 modern / make friends / friendly / polite / hard-working / be good at / after school / thanks to / count on 等本单元词汇短语。）</div>'},
+  ]},
+  ]},
+/* ==================== 测试卷三 ==================== */
+{
+  id:'t3', title:'测试卷三 · Unit 1 单元测试', time:'60 分钟',
+  sub:'客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与前两套相同，题目全部更换（辨音组合、语法角度、阅读体裁均不同）。',
+  sections:[
+  { name:'一、辨音（找出划线部分发音不同的单词）', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'A. tr<u>u</u>st&nbsp;&nbsp;B. b<u>u</u>s&nbsp;&nbsp;C. st<u>u</u>dy&nbsp;&nbsp;D. st<u>u</u>dent', type:'choice', a:3, opts:['trust','bus','study','student'],
+      explain:'trust / bus / study 中 u 都发 /ʌ/，student 中 u 发 /juː/。'},
+    {stem:'A. surv<u>ey</u>&nbsp;&nbsp;B. gr<u>ea</u>t&nbsp;&nbsp;C. w<u>ai</u>t&nbsp;&nbsp;D. m<u>a</u>ny', type:'choice', a:3, opts:['survey','great','wait','many'],
+      explain:'survey / great / wait 的画线部分都发 /eɪ/，many 中 a 发 /e/。'},
+    {stem:'A. <u>h</u>onest&nbsp;&nbsp;B. <u>h</u>ero&nbsp;&nbsp;C. <u>h</u>otel&nbsp;&nbsp;D. <u>h</u>ope', type:'choice', a:0, opts:['honest','hero','hotel','hope'],
+      explain:'honest 的 h 不发音，hero / hotel / hope 的 h 都发音。'},
+    {stem:'A. <u>p</u>olite&nbsp;&nbsp;B. clu<u>b</u>&nbsp;&nbsp;C. <u>p</u>lay&nbsp;&nbsp;D. <u>p</u>roblem', type:'choice', a:1, opts:['polite','club','play','problem'],
+      explain:'polite / play / problem 的 p 发 /p/，club 的 b 发 /b/。'},
+    {stem:'A. tr<u>ea</u>t&nbsp;&nbsp;B. gr<u>ea</u>t&nbsp;&nbsp;C. m<u>ea</u>t&nbsp;&nbsp;D. t<u>ea</u>m', type:'choice', a:1, opts:['treat','great','meat','team'],
+      explain:'treat / meat / team 的 ea 发 /iː/，great 的 ea 发 /eɪ/。'},
+  ]},
+  { name:'二、单项选择', note:'每题 1 分，共 10 分。',
+    items:[
+    {stem:'—What ____ your deskmate ____? —He is honest and caring.', type:'choice', a:0, opts:['is; like','does; like','is; look','does; look'],
+      explain:'问性格品质用 What is sb like?；问外貌才用 What does sb look like? 答语 honest and caring 是性格。'},
+    {stem:'My sister wants to be a ____ when she grows up. She loves music.', type:'choice', a:0, opts:['singer','player','worker','driver'],
+      explain:'动词 + -er 表示"做某事的人"；love music → singer 歌手。'},
+    {stem:'Li Hua is ____ honest boy, so everyone in our class trusts him.', type:'choice', a:1, opts:['a','an','the','/'],
+      explain:'honest 的 h 不发音，以元音音素开头 → an。'},
+    {stem:'A true friend is someone you can ____.', type:'choice', a:2, opts:['describe','survey','trust','improve'],
+      explain:'trust 信任；信赖。真正的朋友是你可以信赖的人。'},
+    {stem:'Don\'t laugh ____ others when they make mistakes.', type:'choice', a:1, opts:['to','at','for','with'],
+      explain:'laugh at sb 嘲笑某人；朋友做错事时不应该嘲笑。'},
+    {stem:'—____ do you like best about your new school? —The library.', type:'choice', a:0, opts:['What','Who','How','Where'],
+      explain:'What do you like best about...? 你最喜欢……的什么？'},
+    {stem:'He wants to ____ his English this term, so he reads English every morning.', type:'choice', a:0, opts:['improve','describe','support','trust'],
+      explain:'improve 改进；提高。每天早晨读英语就是为了提高英语。'},
+    {stem:'Our class did a ____ about students\' hobbies last week.', type:'choice', a:0, opts:['survey','promise','decision','thought'],
+      explain:'do a survey 做调查；about hobbies 说明是关于爱好的调查。'},
+    {stem:'My deskmate always thinks of others first. She is really ____.', type:'choice', a:2, opts:['honest','patient','caring','confident'],
+      explain:'caring 关心他人的；总先想到别人就是关心他人。'},
+    {stem:'True friends should ____ on each other.', type:'choice', a:0, opts:['count','turn','take','cheer'],
+      explain:'count on sb 依靠、信赖某人，固定搭配。'},
+  ]},
+  { name:'三、语法选择（短文填空）', note:'每题 1 分，共 10 分。通读全文再作答。',
+    items:[
+    {stem:'Hello! I\'m David. I ____ from England, but now I study in Guangzhou.', type:'choice', a:0, opts:['come','comes','coming','came'],
+      explain:'主语 I，一般现在时 → come。'},
+    {stem:'On my first day, a boy ____ Zhang Wei came and said hello to me.', type:'choice', a:1, opts:['name','named','names','naming'],
+      explain:'named 过去分词作后置定语，意为"名叫……的"。'},
+    {stem:'He is of medium height and ____ glasses.', type:'choice', a:1, opts:['wear','wears','wearing','wore'],
+      explain:'主语 he 是第三人称单数，一般现在时 → wears。'},
+    {stem:'He is funny and always tells jokes ____ me laugh.', type:'choice', a:1, opts:['make','to make','making','makes'],
+      explain:'tell jokes to make me laugh 讲笑话逗我笑，动词不定式表目的。'},
+    {stem:'He is good ____ English, and he often helps me ____ it.', type:'choice', a:0, opts:['at','in','on','for'],
+      explain:'be good at 擅长。'},
+    {stem:'He is good ____ English, and he often helps me ____ it.', type:'choice', a:2, opts:['in','at','with','for'],
+      explain:'help sb with sth 帮助某人做某事。'},
+    {stem:'Thanks ____ him, I have many friends now.', type:'choice', a:1, opts:['for','to','of','at'],
+      explain:'thanks to sb/sth 多亏……（to 是介词）。'},
+    {stem:'I think friendship ____ about love and trust.', type:'choice', a:1, opts:['am','is','are','be'],
+      explain:'friendship 是不可数名词，视为单数 → is。'},
+    {stem:'I\'m glad ____ a friend like him.', type:'choice', a:1, opts:['have','to have','having','has'],
+      explain:'be glad to do sth 很高兴做某事。'},
+    {stem:'He also teaches me how ____ things in English.', type:'choice', a:1, opts:['describe','to describe','describing','described'],
+      explain:'how to do sth 怎样做某事，"疑问词 + 不定式"结构。'},
+  ]},
+  { name:'四、完形填空', note:'每题 1 分，共 10 分。先通读全文，再逐题作答。',
+    items:[
+    {stem:'Last month, a new student named Leo came to our class. He played basketball very well, and our teacher asked him to ____ our school team.', type:'choice', a:0, opts:['join','take','bring','make'],
+      explain:'join the team 加入队伍。'},
+    {stem:'At first, I didn\'t want to play with him. I was the best player, and I thought he might ____ my place.', type:'choice', a:1, opts:['give','take','bring','make'],
+      explain:'take one\'s place 替代某人的位置（本单元短语）。'},
+    {stem:'However, Leo was friendly and polite. He always said hello to ____ and shared his snacks with us.', type:'choice', a:1, opts:['I','me','my','mine'],
+      explain:'say hello to sb，to 是介词，后接宾格 me。'},
+    {stem:'"You are a good player," he said. "Let\'s ____ on each other and practise together."', type:'choice', a:2, opts:['laugh','look','count','turn'],
+      explain:'count on each other 互相依靠。'},
+    {stem:'I was surprised ____ moved by his words.', type:'choice', a:1, opts:['and','but','so','or'],
+      explain:'surprised 与 moved 意思转折 → but。'},
+    {stem:'After school, we practised together ____ an hour every day.', type:'choice', a:3, opts:['in','on','with','for'],
+      explain:'for + 时间段，表示动作持续多久。'},
+    {stem:'With his help, my basketball skills have ____ a lot.', type:'choice', a:0, opts:['improved','described','supported','trusted'],
+      explain:'improve 提高；进步。'},
+    {stem:'Last week, we played ____ Class 4 and won the game.', type:'choice', a:0, opts:['against','for','to','with'],
+      explain:'play against... 与……比赛。'},
+    {stem:'Now I have the ____ to try new things on the team.', type:'choice', a:1, opts:['survey','courage','hobby','appearance'],
+      explain:'have the courage to do sth 有勇气做某事。'},
+    {stem:'I learned that true friends ____ each other, not only in games but also in life.', type:'choice', a:2, opts:['describe','survey','support','improve'],
+      explain:'support each other 互相支持。'},
+  ]},
+  { name:'五、阅读理解 A（校园通知）', note:'每题 1 分，共 3 分。',
+    items:[
+    {stem:'<b>校园通知：</b>Do you want a buddy (伙伴) to study and play with? Our school has a Buddy Programme. Every new student can have an old student as a buddy. Buddies meet every Tuesday and Thursday after school in Room 302. They study together, play sports and share hobbies. New students, please come to the school office and fill in a form. Old students who want to help, please talk to Miss Wang. Tel: 020-87654321<br>What is the Buddy Programme for?', type:'choice', a:2, opts:['To train basketball players.','To choose new class monitors.','To help new students study and play with buddies.','To collect students\' hobbies.']},
+    {stem:'When do buddies meet?', type:'choice', a:0, opts:['Every Tuesday and Thursday after school.','Every Wednesday after school.','Every Friday morning.','Every day after class.']},
+    {stem:'What can buddies do together?', type:'choice', a:3, opts:['Only study in the classroom.','Play computer games.','Fill in forms in the office.','Study, play sports and share hobbies.']},
+  ]},
+  { name:'六、阅读理解 B（记叙文）', note:'每题 1 分，共 4 分。',
+    items:[
+    {stem:'<b>故事：</b>Lin Tao was a quiet boy. He had few friends because he was too shy to talk to others. One rainy Monday, he saw a little girl crying near the school gate. She was lost and could not find her mother. Lin Tao took her to the school office and waited with her until her mother came. The next day, the girl\'s mother came to the school to say thanks. Many students heard about it and wanted to make friends with Lin Tao. Now Lin Tao is not shy any more. He learned that a small act of kindness can change a life.<br>Why did Lin Tao have few friends at first?', type:'choice', a:1, opts:['Because he was new at school.','Because he was too shy to talk to others.','Because he was not good at basketball.','Because he moved to another city.']},
+    {stem:'What did Lin Tao do on the rainy Monday?', type:'choice', a:0, opts:['He helped a lost girl find her mother.','He played basketball with his friends.','He studied in the library.','He went home alone in the rain.']},
+    {stem:'How did other students feel about Lin Tao after that?', type:'choice', a:2, opts:['They were angry with him.','They laughed at him.','They wanted to make friends with him.','They didn\'t notice him.']},
+    {stem:'What can we learn from the story?', type:'choice', a:0, opts:['A small act of kindness can change a life.','Never help strangers.','Rainy days are unlucky.','Shy boys have no friends.'], explain:'小善举也能改变生活——Lin Tao 的善意让同学们愿意和他做朋友。'},
+  ]},
+  { name:'七、阅读理解 C（邮件）', note:'每题 1 分，共 4 题。',
+    items:[
+    {stem:'<b>邮件：</b>Dear Li Hua, How are you? I\'m writing to tell you about my first week at your school in Guangzhou. On Monday, I was nervous because my Chinese was poor. However, my deskmate Xiao Mei was very patient. She taught me how to say "nihao" and "xiexie", and she showed me around the library and the playground. On Wednesday, our class had a survey about hobbies. I learned that many students like playing basketball and ping-pong. On Friday, Xiao Mei invited me to play ping-pong with her friends after school. They were friendly and never laughed at my mistakes. Now I have three new friends. Thanks to them, I love my new school. Write soon! Yours, Jack<br>How did Jack feel on Monday?', type:'choice', a:1, opts:['Excited.','Nervous.','Angry.','Bored.']},
+    {stem:'Who taught Jack some Chinese?', type:'choice', a:0, opts:['His deskmate Xiao Mei.','His English teacher.','His mother.','Miss Wang.']},
+    {stem:'What did Jack learn from the class survey?', type:'choice', a:2, opts:['Many students like singing.','Many students want to be players.','Many students like playing basketball and ping-pong.','Many students are good at Chinese.']},
+    {stem:'What can we say about Xiao Mei and her friends?', type:'choice', a:3, opts:['They are shy and quiet.','They are strict.','They only like computer games.','They are friendly and patient.']},
+  ]},
+  { name:'八、回答问题（阅读表达）', note:'每题 1 分，共 5 分。答案不唯一，意思对即可。',
+    items:[
+    {stem:'<b>短文：</b>My name is Sarah. I\'m from Australia. I\'m 13 years old and I\'m a new student at Guangya Middle School. I have made many friends here. My best friend is Chen Yue. She is of medium height with long straight hair. She is honest, hard-working and caring. She is good at English, and she often helps me with my Chinese. When I feel sad, she tells funny jokes to cheer me up. Thanks to Chen Yue, my school life is colourful. We often play basketball after school and sometimes go to the library on weekends. I think true friends count on each other and take care of each other.<br>Where is Sarah from?', type:'text', a:'Australia', a2:['She is from Australia','Australia','She comes from Australia']},
+    {stem:'What does Chen Yue look like?', type:'text', a:'She is of medium height with long straight hair.', a2:['medium height with long straight hair','Of medium height with long straight hair','She is of medium height with long straight hair']},
+    {stem:'What is Chen Yue good at?', type:'text', a:'English', a2:['She is good at English','English.','She is good at English.']},
+    {stem:'What does Chen Yue do when Sarah feels sad?', type:'text', a:'She tells funny jokes to cheer her up.', a2:['She tells funny jokes','She cheers her up','She tells funny jokes to cheer Sarah up']},
+    {stem:'What do Sarah and Chen Yue often do after school?', type:'text', a:'They often play basketball.', a2:['They play basketball','Play basketball','They often play basketball together']},
+  ]},
+  { name:'九、单词拼写', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'s____（调查）', type:'text', a:'survey'},
+    {stem:'（尊敬；尊重）', type:'text', a:'respect'},
+    {stem:'c____（关心他人的）', type:'text', a:'caring'},
+    {stem:'a____（外貌）', type:'text', a:'appearance'},
+    {stem:'（然而；不过）', type:'text', a:'however'},
+  ]},
+  { name:'十、词形转换', note:'每题 1 分，共 5 分。',
+    items:[
+    {stem:'describe（变成名词：描述）', type:'text', a:'description'},
+    {stem:'patient（变成名词：耐心）', type:'text', a:'patience'},
+    {stem:'confident（变成名词：信心）', type:'text', a:'confidence'},
+    {stem:'improve（变成名词：改进；改善）', type:'text', a:'improvement'},
+    {stem:'honest（变成反义词：不诚实的）', type:'text', a:'dishonest'},
+  ]},
+  { name:'十一、写作（10 分）', note:'请写在作文格/横线上，写完对照自查清单和范文。',
+    items:[
+    {stem:'<b>题目：A Friend Who Helped Me（帮助过我的朋友）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 honest, patient, helpful, turn to...for help, cheer up, thanks to, count on, take care of）；③ 注意主谓一致和句首大写。', type:'essay', score:10,
+      ph:'A Friend Who Helped Me\n\nMy good friend is...',
+      check:['有没有写朋友是谁、长什么样？','有没有写性格（至少 2 个形容词）？','有没有写他/她怎么帮你（turn to...for help / cheer up）？','有没有写你的感受和变化（thanks to / improve / confident）？','句首字母大写了吗？主谓一致吗？'],
+      sample:'<div class="en">A Friend Who Helped Me<br><br>My good friend is Wang Fang. Last term, I was weak in English and had no courage to speak in class. Wang Fang is honest, patient and helpful. I often turned to her for help, and she never said no. When I wanted to give up, she always cheered me up. Thanks to her, my English has improved a lot, and I am more confident now. True friends count on each other, and I will take care of our friendship.</div><div class="zh">（参考范文：写了朋友是谁、性格、怎么帮我、我的变化和感受，用了 honest / patient / helpful / turn to...for help / cheer up / thanks to / improve / confident / count on / take care of 等本单元词汇短语。）</div>'},
+  ]},
+  ]},
+];
+
+/* ============================================================
+   渲染与批改引擎
+   ============================================================ */
+const $ = s => document.querySelector(s);
+const host = $('#paperHost'), tabsEl = $('#tabs'), scoreHost = $('#scoreHost');
+let curPaper = null, answers = {};
+
+const store = {
+  key(id){ return 'hx_quiz_u1_' + id; },
+  save(id, data){ try{ localStorage.setItem(this.key(id), JSON.stringify(data)); }catch(e){} },
+  load(id){ try{ return JSON.parse(localStorage.getItem(this.key(id)) || 'null'); }catch(e){ return null; } },
+  clear(id){ try{ localStorage.removeItem(this.key(id)); }catch(e){} }
+};
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buildTabs(){
+  tabsEl.innerHTML = '';
+  PAPERS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.innerHTML = esc(p.title.split(' · ')[0]) + '<span class="tag">' + esc(p.title.split(' · ')[1] || '') + '</span>';
+    b.onclick = () => selectPaper(i);
+    b.dataset.idx = i;
+    tabsEl.appendChild(b);
+  });
+}
+
+function selectPaper(i){
+  const p = PAPERS[i];
+  curPaper = p;
+  [...tabsEl.children].forEach((b, j) => b.classList.toggle('on', j === i));
+  scoreHost.innerHTML = '';
+  const saved = store.load(p.id);
+  answers = (saved && saved.answers) || {};
+  renderPaper(p, saved && saved.submitted);
+}
+
+function qid(si, qi){ return 'q' + si + '_' + qi; }
+
+function renderPaper(p, submitted){
+  let total = 0;
+  let html = `<div class="paper">
+    <div class="p-head">
+      <div class="pt">${esc(p.title)}</div>
+      <div class="ps">${esc(p.sub || '')}</div>
+    </div>
+    <div class="p-info"><span>建议用时：<b>${esc(p.time || '20 分钟')}</b></span><span>满分：<b id="fullMark">100</b> 分</span><span>范围：<b>Unit 1</b></span></div>`;
+
+  p.sections.forEach((s, si) => {
+    html += `<div class="sec"><h3>${esc(s.name)}</h3>`;
+    if (s.note) html += `<div class="sn">${s.note}</div>`;
+    if (s.bank) html += `<div class="wordbank">${s.bank}</div>`;
+    if (s.passage) html += s.passage;
+    s.items.forEach((it, qi) => {
+      const qq = qid(si, qi);
+      total += (it.score || 1);
+      const ans = answers[qq];
+      const st = submitted && it.type !== 'essay'
+        ? (isRight(it, ans) ? 'ok' : 'bad') : '';
+      html += `<div class="q" id="${qq}"><div class="qt"><span class="qn">${qi + 1}.</span>${it.stem}</div>`;
+      if (it.type === 'choice' || it.type === 'tf'){
+        const opts = it.type === 'choice' ? it.opts : ['T（正确）', 'F（错误）'];
+        const cols = (it.opts && it.opts.length > 4) ? 'one' : '';
+        html += `<div class="opts ${cols}">`;
+        opts.forEach((o, oi) => {
+          const tv = it.type === 'tf' ? (oi === 0 ? 'T' : 'F') : String(oi);
+          const key = it.type === 'tf' ? tv : String.fromCharCode(65 + oi);
+          let cls = 'opt';
+          if (submitted && it.type === 'choice'){
+            if (String(oi) === String(it.a)) cls += ' ok'; else if (tv === String(ans) && String(oi) !== String(it.a)) cls += ' bad';
+          } else if (submitted && it.type === 'tf'){
+            if (tv === it.a) cls += ' ok'; else if (tv === String(ans) && tv !== it.a) cls += ' bad';
+          }
+          if (!submitted && ans !== undefined && String(ans) === tv) cls += ' sel';
+          const mk = (submitted && ((it.type === 'choice' && String(oi) === String(it.a)) || (it.type === 'tf' && tv === it.a))) ? '<span class="mk">✓</span>' : '';
+          html += `<div class="${cls}" data-q="${qq}" data-v="${tv}"><span class="lb">${key}.</span><span>${esc(o)}</span>${mk}</div>`;
+        });
+        html += `</div>`;
+        if (submitted && !isRight(it, ans) && it.explain) html += `<div class="hint">💡 ${it.explain}</div>`;
+      } else if (it.type === 'text'){
+        const cls = submitted ? (st === 'ok' ? 'ok' : 'bad') : '';
+        html += `<input class="ans-in ${cls}" data-q="${qq}" value="${esc(ans || '')}" placeholder="${esc(it.ph || '输入答案')}" ${submitted ? 'disabled' : ''}>`;
+        if (submitted && st !== 'ok') html += `<div class="hint">💡 参考答案：<b>${esc((it.a2 || it.a).join ? (it.a2||it.a).join(' / ') : it.a)}</b></div>`;
+      } else if (it.type === 'essay'){
+        html += `<textarea class="essay" data-q="${qq}" placeholder="${esc(it.ph || '')}">${esc(ans || '')}</textarea>`;
+        html += `<div class="checklist"><b>自查清单：</b><ul>${(it.check||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>`;
+        html += `<details class="sample"><summary>📖 参考范文（写完后展开对照）</summary><div class="body">${it.sample}</div></details>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `</div>
+    <div class="acts">
+      <button class="btn btn-go" id="btnSubmit">${submitted ? '重新作答' : '提交批改'}</button>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 打印 / 存 PDF</button>
+      <button class="btn btn-reset" id="btnReset">清空重做</button>
+    </div>`;
+  host.innerHTML = html;
+  $('#fullMark').textContent = total;
+
+  host.querySelectorAll('.opt').forEach(o => o.onclick = () => {
+    if (submitted) return;
+    answers[o.dataset.q] = o.dataset.v;
+    host.querySelectorAll(`.opt[data-q="${o.dataset.q}"]`).forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+  });
+  host.querySelectorAll('.ans-in').forEach(i => i.oninput = () => { answers[i.dataset.q] = i.value; });
+  host.querySelectorAll('textarea.essay').forEach(t => t.oninput = () => { answers[t.dataset.q] = t.value; });
+  $('#btnSubmit').onclick = () => grade();
+  $('#btnReset').onclick = () => { store.clear(p.id); answers = {}; renderPaper(p, false); };
+  if (submitted) grade(true);
+}
+
+function norm(s){ return String(s||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+function isRight(it, ans){
+  if (ans === undefined || ans === '' || ans === null) return false;
+  if (it.type === 'choice') return String(ans) === String(it.a);
+  if (it.type === 'tf') return String(ans) === it.a;
+  if (it.type === 'text'){
+    const ok = (it.a2 && it.a2.length ? it.a2 : [it.a]).some(a => norm(a) === norm(ans));
+    return ok;
+  }
+  return false;
+}
+
+function grade(resubmit){
+  const p = curPaper; if (!p) return;
+  const submitted = !resubmit;
+  let got = 0, full = 0, wrong = [];
+  p.sections.forEach((s, si) => s.items.forEach((it, qi) => {
+    const v = it.score || 1; full += v;
+    const a = answers[qid(si, qi)];
+    if (it.type === 'essay') return;
+    if (isRight(it, a)) got += v;
+    else wrong.push(si + '-' + qi);
+  }));
+  const pct = Math.round(got / full * 100);
+  const pass = pct >= 60;
+  const advice = wrong.length === 0 ? '全部正确，太棒了！可以进入下一单元。'
+    : wrong.length <= 3 ? '只错 ' + wrong.length + ' 题，把错题的解析看一遍就能全对。'
+    : '错题偏多，建议回到点读页把本单元词汇和课文再过一遍，第二天重做这份卷子。';
+  scoreHost.innerHTML = `<div class="score ${pass ? 'pass' : 'fail'}">
+    <div class="big">${got} / ${full} 分（${pct}%）</div>
+    <div class="adv">${advice}${wrong.length ? ' · 错题已在卷面标红' : ''}</div>
+  </div>`;
+  if (resubmit) return;
+  store.save(p.id, { answers, submitted: true, got, full, pct });
+  renderPaper(p, true);
+}
+
+/* 启动 */
+buildTabs();
+selectPaper(0);
+</script>
+<style>
+.pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
+.pgnav .pg-h{margin:0 0 8px;font-size:12.5px;color:#6B6359;letter-spacing:.6px;}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.pgnav a{text-decoration:none;font-size:13px;color:#2B2620;background:#fff;border:1px solid #EFE6DA;border-radius:999px;padding:6px 13px;}
+.pgnav a:hover{border-color:#E8552D;color:#E8552D;}
+.pgnav a.up{background:#E8552D;border-color:#E8552D;color:#fff;}
+.pgnav a.up:hover{background:#D64520;color:#fff;}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff;}
+.pgnav a.gr:hover{background:#0B7369;color:#fff;}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff;}
+.pgnav a.bl:hover{background:#245A94;color:#fff;}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">继续学习</p>
+    <div class="pg-row">
+      <a class="up" href="../点读学习包/Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
+      <a href="Unit2_习题与测试.html">Unit2 习题 →</a>
+      <a href="../点读学习包/Unit1_Friendship_点读学习页.html">📖 Unit1 点读学习页</a>
+      <a href="../点读学习包/Unit1_Friendship_精简练习页.html">✏️ Unit1 精简练习</a>
+      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="../点读学习包/全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
+    </div>
+    <p class="pg-h">其他三条线 · 全站跳转</p>
+    <div class="pg-row">
+      <a class="gr" href="../../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+      <a class="bl" href="../../E听说练习/index.html">🎤 中考 E 听说</a>
+      <a class="up" href="../../index.html">🏠 返回慧学首页</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

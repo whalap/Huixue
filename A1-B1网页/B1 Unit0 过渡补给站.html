@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B1 英语跟读 · Unit 0 Transition Station</title>
+<style>
+  :root{
+    --bg:#0f1424; --panel:#171d33; --panel2:#1f2742; --ink:#eef2ff; --sub:#9aa6c7;
+    --gold:#f5c542; --gold2:#caa12f; --red:#ff5a5f; --green:#5bd6a0; --line:#2a3358;
+    --chip:#243056;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);color:var(--ink);min-height:100vh}
+  header{padding:14px 20px 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{font-size:26px}
+  .title{font-weight:800;font-size:20px}
+  .title small{color:var(--sub);font-weight:500;font-size:13px;display:block;margin-top:2px}
+  .grow{flex:1}
+  .prog{display:flex;align-items:center;gap:8px}
+  .homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);color:var(--gold);
+           border:1px solid var(--gold2);border-radius:20px;padding:7px 14px;font-size:12.5px;
+           font-weight:700;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .homebtn:hover{background:var(--gold);color:#1a1a1a;border-color:var(--gold)}
+  .lvlsw{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+  .lvlsw .lv{font-size:11px;padding:5px 10px;border-radius:14px;background:var(--chip);color:var(--sub);
+           border:1px solid var(--line);text-decoration:none;font-weight:600;white-space:nowrap;transition:.12s}
+  .lvlsw .lv:hover{border-color:var(--gold2);color:var(--gold)}
+  .lvlsw .lv.cur{background:var(--gold);color:#1a1a1a;border-color:var(--gold);font-weight:800}
+  .phxlink{display:inline-block;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+           padding:6px 13px;border-radius:20px;font-size:12.5px;text-decoration:none;font-weight:600}
+  .phxlink:hover{background:var(--gold);color:#1a1a1a}
+  .stars{font-size:20px;letter-spacing:2px}
+  .bar{height:8px;width:160px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .globalbar{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+    background:rgba(15,20,36,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+    padding:8px 20px;margin-bottom:6px}
+  .globalbar label{font-size:13px;color:var(--sub);display:flex;gap:6px;align-items:center}
+  .globalbar select,.globalbar input{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+  .globalbar .recnote{margin-left:auto;font-size:12px;color:var(--gold)}
+  nav{display:flex;gap:8px;padding:6px 20px 0;flex-wrap:wrap}
+  nav button{background:var(--panel);color:var(--sub);border:1px solid var(--line);
+    padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;cursor:pointer;font-weight:600}
+  nav button.on{background:var(--panel2);color:var(--ink);border-bottom:2px solid var(--gold)}
+  nav a.navgram{display:inline-flex;align-items:center;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;font-weight:700;text-decoration:none;margin-left:auto}
+  main{padding:16px 20px 60px;max-width:1100px;margin:0 auto}
+  .tab{display:none}
+  .tab.on{display:block}
+  .beast{background:linear-gradient(135deg,#1b2b4d,#20294a);border:1px solid var(--line);
+    border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin-bottom:16px}
+  .beast .emoji{font-size:54px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+  .beast h2{margin:0 0 4px;font-size:18px}
+  .beast p{margin:2px 0;color:var(--sub);font-size:13px}
+  .grp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+  .grp-tabs button{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .grp-tabs button.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.2s}
+  .card.done{border-color:var(--green)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .w{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .ipa{color:var(--sub);font-size:13px;font-style:italic}
+  .badges{display:flex;gap:6px;margin:6px 0}
+  .badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--chip);color:var(--sub)}
+  .badge.pos{background:#2b3a6b;color:#bcd0ff}
+  .badge.band{background:#3a2f12;color:var(--gold)}
+  .badge.awl{background:#0d3b2e;color:#7ef0c0}
+  .badge.reg{background:#3a2440;color:#e6b8ff}
+  .def{font-size:14px;margin:4px 0;line-height:1.5}
+  .phrase{font-size:13px;color:var(--gold);margin:4px 0}
+  .usage{font-size:12.5px;color:var(--sub);line-height:1.65;margin:6px 0 2px;padding:6px 9px;border-left:2px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 6px 6px 0}
+  .ex{font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px;margin:6px 0;cursor:pointer}
+  .ex .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .ex .cn.hide{display:none}
+  .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .acts button{flex:1;border:none;border-radius:9px;padding:8px;font-size:13px;cursor:pointer;font-weight:600;min-width:60px}
+  .b-play{background:var(--chip);color:var(--ink)}
+  .b-shadow{background:var(--gold);color:#1a1a1a}
+  .b-master{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
+  .b-master.mastered{background:var(--green);color:#06281c}
+  .b-err{color:var(--gold);border:1px solid var(--gold2);flex:none;min-width:0;padding:8px 10px}
+  .mini{display:inline-flex;gap:4px;align-items:center}
+  .spk{background:none;border:none;color:var(--gold);font-size:18px;cursor:pointer;padding:0 4px}
+  .toggle{cursor:pointer;color:var(--gold)}
+  .sense{border-left:3px solid var(--line);padding:4px 0 4px 10px;margin:6px 0}
+  .sense.hiddenSense{display:none}
+  .defline{font-size:14px;line-height:1.5;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .exbox{display:none;margin-top:6px;font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px}
+  .exbox .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:12px;cursor:pointer;margin-top:6px;font-weight:600}
+  .player{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .player .now{font-size:18px;font-weight:700;margin-bottom:6px}
+  .player .nowcn{color:var(--sub);font-size:14px;margin-bottom:12px}
+  /* 跟读提示条：英文 + 中文译文同一横行，一眼看完 */
+  .nowrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:11px 14px;border:1px solid var(--gold2);border-radius:10px;background:rgba(245,197,66,.06);margin-bottom:12px}
+  .nowrow .now,.nowrow .nowcn{margin-bottom:0}
+  .nowrow .now{font-size:18px;font-weight:700}
+  .nowrow .nowcn{font-size:14px;color:var(--sub)}
+  .recbox{min-height:8px;margin:10px 0}
+  .recbox audio{width:100%}
+  .rec-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .ctr{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ctr button{background:var(--gold);color:#1a1a1a;border:none;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .ctr .ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .ctr button.recording{background:var(--red);color:#fff}
+  .coll{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .cbox .e{font-size:38px}
+  .cbox .n{font-weight:700;margin:6px 0 2px}
+  .cbox .s{color:var(--gold);font-size:14px;letter-spacing:1px}
+  .cbox.lock{opacity:.45;filter:grayscale(1)}
+  .hint{color:var(--sub);font-size:12px;margin-top:10px;line-height:1.6;width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word}
+  /* 通用提示框（原 .phx-tip，拼读移除后改名；句模页等仍在用） */
+  .tip{color:var(--sub);font-size:12px;line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:9px 12px;margin:0 0 12px}
+  .tip b{color:var(--ink)}
+  .streak{color:var(--gold);font-weight:700}
+  .banner{background:#2a1f12;border:1px solid var(--gold2);color:var(--gold);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:12px;display:none}
+  .subtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .subtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .turn{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}
+  .turn.recording{border-color:var(--red)}
+  .turn .role{font-weight:800;font-size:13px;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;flex:none}
+  .role-A{background:#2b3a6b;color:#bcd0ff}
+  .role-B{background:#3a2f12;color:var(--gold)}
+  .turn-text{flex:1;font-size:15px}
+  .turn-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  .turn-acts{display:flex;gap:6px;flex:none}
+  .turn-acts button{border:none;border-radius:8px;padding:7px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .turn-acts .b-play{background:var(--chip);color:var(--ink)}
+  .turn-acts .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  /* 录音提示/回放整行横向铺满，绝不被 flex 压成竖条 */
+  .turn-rec{display:block;width:100%;min-width:0;margin-top:8px;clear:both}
+  .turn-rec audio{width:100%}
+  .turn-rec .hint{white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.6;margin-top:0}
+  .exchange{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:10px;background:var(--panel2)}
+  .qa{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .qa-text{flex:1;min-width:170px;font-size:15px}
+  /* 中文译文与英文同行，形成横向长条，便于一次性扫读 */
+  .qa-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  /* 回应行：标签 + 句子 + 按钮全部同一横行 */
+  .resp{margin-top:8px;padding:8px 10px;border-left:3px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 8px 8px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .resp-label{font-size:12px;color:var(--gold);font-weight:700;flex:none}
+  .resp .qa-text{flex:1;min-width:180px}
+  .resp-acts{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .resp-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .resp-acts .b-play{background:var(--chip);color:var(--ink)}
+  .resp-acts .b-drill{background:var(--gold);color:#1a1a1a}
+  .q-opt.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  /* 阅读·听力 */
+  .rd-tip{color:var(--sub);font-size:12px;margin-bottom:8px}
+  .rd-playall{margin-bottom:10px}
+  .rd-sents{display:flex;flex-direction:column;gap:8px}
+  .rd-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .rd-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .rd-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .rd-sent .b-play,.rd-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .rd-sent .b-play{background:var(--chip);color:var(--ink)}
+  .rd-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .rd-qtitle{font-weight:700;margin:16px 0 8px;color:var(--gold)}
+  .rdtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .rdtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .rd-en.ls-masked{color:transparent;background:var(--panel2);border-radius:6px;user-select:none}
+  .listen-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .ls-tip{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:10px}
+  .ghostbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .ghostbtn:hover{border-color:var(--gold)}
+  .q{margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .q-q{font-size:14px;margin-bottom:6px}
+  .q-opts{display:flex;gap:8px;flex-wrap:wrap}
+  .q-opt{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);cursor:pointer;font-size:13px}
+  .q-fb{margin-top:6px;font-size:13px}
+  .q-opt.sel{border-color:var(--gold);background:#3a2f12;color:var(--gold)}
+  .q-input{width:100%;box-sizing:border-box;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);font-size:14px}
+  .quiz-prompt{font-size:16px;margin:6px 0 10px}
+  .quiz-prompt .big{font-size:24px;font-weight:800}
+  .quiz-prompt .tag{display:inline-block;margin-left:8px;font-size:11px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:1px 8px;vertical-align:middle}
+  /* 可点发音的词块：全局统一靠 data-say 绑定 */
+  .wchip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--gold);border-radius:9px;padding:3px 10px;font-weight:800;cursor:pointer;color:var(--ink)}
+  .wchip b{font-size:12px;color:var(--gold);font-weight:700}
+  .wchip:hover{background:var(--chip)}
+  .wchip.big{font-size:24px;padding:6px 14px}
+  .wchip.big b{font-size:15px}
+  .q-prog{height:8px;width:100%;background:var(--panel2);border-radius:6px;overflow:hidden;margin:8px 0}
+  .q-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .q-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:10px 0}
+  .q-opt{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;cursor:pointer;font-weight:600}
+  .q-opt:hover{border-color:var(--gold)}
+  .q-opt.ok{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-opt.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fb{font-size:14px;font-weight:700;min-height:20px;margin:8px 0}
+  .err-type{font-weight:800;color:var(--gold);margin:14px 0 8px;font-size:15px}
+  .err-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+  .err-meta{font-size:13px;color:var(--sub);margin-bottom:4px}
+  .err-line{font-size:14px;margin:2px 0}
+  .err-btns{display:flex;gap:8px;margin-top:8px}
+  .err-btns button{border:none;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .err-btns .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line)}
+  .err-btns .err-del{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+
+  /* ---- 本单元语法 tab（联动语法练习页） ---- */
+  .gramwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:4px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+         display:flex;flex-direction:column;gap:7px;transition:.15s}
+  .gcard:hover{border-color:var(--gold2);transform:translateY(-2px)}
+  .gcard .gi{font-size:22px;line-height:1}
+  .gcard .gname{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4}
+  .gcard .gdesc{font-size:12px;color:var(--sub);line-height:1.6}
+  .gcard .ggo{margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+              background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+              border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:700;
+              text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .gcard .ggo:hover{background:var(--gold);color:#1a1a1a}
+  .gcard .gdone{font-size:11px;color:var(--green)}
+  .gramhead{color:var(--sub);font-size:12.5px;line-height:1.75;margin-bottom:12px}
+  .gramhead b{color:var(--gold)}
+  .gramfoot{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+  .fr-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:14px}
+  .fr-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .fr-cn-head{font-size:13px;color:var(--sub);font-family:var(--mono);margin-bottom:10px}
+  .fr-slots{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .fr-slot{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--sub)}
+  .fr-slot select{min-width:130px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);
+                  background:var(--bg);color:var(--fg);font-size:13px}
+  .fr-sent{font-size:19px;line-height:1.5;color:var(--gold);font-weight:500;margin-bottom:6px}
+  .fr-cn{font-size:13px;color:var(--sub);margin-bottom:10px}
+  .fr-acts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .fr-tip{font-size:12px;color:var(--sub);line-height:1.65;border-top:1px dashed var(--line);padding-top:8px}
+
+  /* ---------- 单元文章 ---------- */
+  .art-para{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .art-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .art-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .art-en{flex:1;min-width:160px;font-size:15px;cursor:pointer;line-height:1.65}
+  .art-sent .b-play,.art-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .art-sent .b-play{background:var(--chip);color:var(--ink)}
+  .art-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .art-zh{width:100%;color:var(--sub);font-size:13px;line-height:1.6}
+  .art-hl{color:var(--gold);font-weight:700;border-bottom:1px dashed var(--gold2)}
+  .artmark{font-size:12px;margin-left:6px;opacity:.95}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🐉</div>
+  <div class="title">英语跟读学院 · B1
+    <small id="subtitle"></small>
+  </div>
+  <nav class="lvlsw" title="切换学习级别"><a class="lv hub" href="index.html" title="返回四级总站">🏛️ 总站</a><a class="lv" href="A1 主页.html">🌱 A1</a><a class="lv" href="A2 主页.html">📗 A2</a><a class="lv cur" href="B1 主页.html">🌉 B1</a><a class="lv" href="B1 主页.html" style="display:none" aria-hidden="true">🎓 B2</a></nav>
+  <a class="homebtn" href="B1 主页.html" title="返回 B1 过渡线主页英语学习网络主页">🏠 回主页</a>
+  <div class="grow"></div>
+  <div class="prog">
+    <span class="stars" id="starTop">☆☆☆</span>
+    <div class="bar"><i id="barTop"></i></div>
+    <span id="pctTop" style="color:var(--sub);font-size:13px">0%</span>
+  </div>
+</header>
+<div class="globalbar">
+  <label>🇬🇧 音色(英式优先) <select id="voiceSel"><option>默认(英式)</option></select></label>
+  <label>语速 <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.9"> <span id="rateVal">0.9×</span></label>
+  <span class="recnote" id="recNote"></span>
+</div>
+<nav>
+  <button data-tab="learn">📘 学习 B</button>
+  <button data-tab="frames">🧩 句模</button>
+  <button data-tab="review">🔁 复习 C</button>
+  <button data-tab="shadow">🎤 跟读·对话</button>
+  <button data-tab="reading">📖 阅读·听力</button>
+  <button data-tab="article" class="on">📰 单元文章</button>
+  <button data-tab="grammar">✍️ 本单元语法</button>
+  <button data-tab="quiz">📝 小测</button>
+  <button data-tab="errors">🩹 错题</button>
+  <button data-tab="codex">📜 图鉴</button>
+  <a class="navgram" href="语法练习_A1-A2-B1-B2.html" target="_blank" title="语法练习 A1→B2：U0/U1 一般现在时在「一般现在时」三组；like+doing 在「动词搭配」；频率副词在「副词」">🧩 语法 ↗</a>
+</nav>
+<main>
+  <!-- 句模：词 → 句 -->
+  <section class="tab" id="frames">
+    <div class="beast" style="padding:14px 18px">
+      <div class="emoji">🧩</div>
+      <div>
+        <h2>句模工坊 · 把词拼成自己的话</h2>
+        <p>词表是零件，句模是模具。换一个词、句子就变成你的 —— 先从这里张嘴，再回去记词。</p>
+      </div>
+    </div>
+    <div id="frWrap"></div>
+  </section>
+  <!-- 学习 B -->
+  <section class="tab" id="learn">
+    <div class="beast">
+      <div class="emoji" id="beastEmoji"></div>
+      <div>
+        <h2 id="beastName"></h2>
+        <p id="beastDesc"></p>
+        <p>打卡进度：<span class="streak" id="beastStreak"></span></p>
+      </div>
+    </div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnLearn">👁 开</span></label>
+    </div>
+    <div class="grp-tabs" id="grpLearn"></div>
+    <div class="grid" id="gridLearn"></div>
+    <div class="hint">双击例句可慢速（0.6×）跟读；点 🔊 听单词。卡片「🎤 跟读打卡」跳到单句跟读页并定位该词，「❌ 记一笔」把没记住的收进错题本。</div>
+  </section>
+
+  <!-- 复习 C -->
+  <section class="tab" id="review">
+    <div class="banner" id="revBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">自测模式 <span class="toggle" id="tgHideCn">🙈 隐藏中文</span></label>
+      <span style="color:var(--sub);font-size:12px">一词义一例句，点「看例句」展开；多义词点「更多 ▾」继续；每句可 🎤 跟读。</span>
+    </div>
+    <div class="grp-tabs" id="grpReview"></div>
+    <div class="grid" id="gridReview"></div>
+    <div class="hint">C 版释义已加厚：含【词性】+ 近义/反义 + 更完整场景。自测时隐藏中文，看英文回想起全部信息即过关。例句下的 🎤 跟读会跳到单句跟读页并定位该句。</div>
+  </section>
+
+  <!-- 跟读·对话 -->
+  <section class="tab" id="shadow">
+    <div class="banner" id="shBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-sh="dialog">💬 对话跟读</button>
+      <button class="subtab" data-sh="single">📝 单句跟读</button>
+      <span style="color:var(--sub);font-size:12px">对话跟读＝听问句→看回应句→录你自己的回答；单句跟读可打卡升星。</span>
+    </div>
+    <div id="shDialog"></div>
+    <div id="shSingle" style="display:none">
+      <div class="player">
+        <div class="nowrow" style="display:none">
+          <div class="now" id="shNow">准备开始…</div>
+          <div class="nowcn" id="shNowCn"></div>
+        </div>
+        <div class="hint" id="shProg" style="margin:0 0 12px">👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这里会出现回放音轨，和原声对比。</div>
+        <div class="recbox" id="shRecBox"></div>
+        <div class="ctr">
+          <button id="shPlay">▶ 听原声</button>
+          <button id="shRec">● 开始录音</button>
+          <button id="shStop" class="ghost">■ 停止</button>
+          <button id="shCheck" class="ghost">✓ 我已跟读打卡</button>
+          <button id="shPrev" class="ghost">⏮ 上一句</button>
+          <button id="shNext" class="ghost">⏭ 下一句</button>
+          <button id="shAuto" class="ghost">🔁 自动连播</button>
+          <label style="color:var(--sub);font-size:13px">跟读留白
+            <select id="shGap">
+              <option value="1500">1.5 秒</option>
+              <option value="2500" selected>2.5 秒</option>
+              <option value="4000">4 秒</option>
+              <option value="-1">手动</option>
+            </select>
+          </label>
+        </div>
+        <div class="hint" id="shHint">跟读流程：▶ 听原声 → ● 开始录音（读完后点 ■ 停止可回放对比）→ ✓ 打卡。连续打卡积累神兽星级。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本单元语法（联动语法练习页） -->
+    <!-- 单元文章：本单元生词的语境容器 -->
+  <section class="tab on" id="article">
+    <div class="banner" id="artBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="b-play" id="artPlayAll">🔊 听全篇</button>
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnArt">👁 开</span></label>
+      <label style="font-size:13px;color:var(--sub)">高亮生词 <span class="toggle" id="tgArtHL">👁 开</span></label>
+      <span style="color:var(--sub);font-size:12px">本单元生词已织进这篇短文，命中处标金色。点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。</span>
+    </div>
+    <div id="artBody"></div>
+  </section>
+
+  <section class="tab" id="grammar">
+    <div class="gramhead" id="gramHead"></div>
+    <div class="gramwrap" id="gramList"></div>
+    <div class="gramfoot">
+      <a class="phxlink" id="gramAll" target="_blank" rel="noopener">✍️ 打开英语语法练习全册 →</a>
+      <span class="hint" style="margin-top:0">点任一关，直接跳到语法练习里<b>这一个点</b>的知识卡（一次只学一个点）。练完回来，跟读这边会自动记一笔。</span>
+    </div>
+  </section>
+
+  <!-- 阅读·听力 -->
+  <section class="tab" id="reading">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="rdtab on" data-rd="read">📖 阅读</button>
+      <button class="rdtab" data-rd="listen">🎧 听力</button>
+      <span style="color:var(--sub);font-size:12px">阅读＝看文本做小题；<b style="color:var(--gold)">听力＝先盲听、再答题</b>，听不懂可调慢顶部语速或点「👀 看文本」。<b style="color:var(--gold)">🇨🇳</b> ＝中国主题篇。</span>
+    </div>
+
+    <div id="rdReadWrap">
+      <div class="banner" id="rdBanner"></div>
+      <div class="grp-tabs" id="rdPassages" style="margin-bottom:10px"></div>
+      <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+        <span id="rdHint" style="color:var(--sub);font-size:12px"></span>
+      </div>
+      <div id="rdText"></div>
+      <div id="rdQuiz"></div>
+    </div>
+
+    <div id="rdListenWrap" style="display:none">
+      <div class="banner" id="lsBanner"></div>
+      <div class="grp-tabs" id="lsPassages" style="margin-bottom:10px"></div>
+      <div class="listen-box">
+        <div class="ls-tip">🎧 <b>盲听三步</b>：① 点「▶ 听全篇」（顶部语速可调慢）→ ② 做下面小题 → ③ 不会就点「👀 看文本」对照，再听一遍。每句都可单点 🔊 重听、🎤 跟读。答错自动进错题本。</div>
+        <div class="rd-playall" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="b-play" id="lsPlayAll">▶ 听全篇</button>
+          <button id="lsReplay" class="ghostbtn">🔁 再听一遍</button>
+          <button id="lsReveal" class="ghostbtn">👀 看文本</button>
+        </div>
+        <div class="rd-sents" id="lsSents"></div>
+      </div>
+      <div id="lsQuiz"></div>
+    </div>
+  </section>
+
+  <!-- 小测 -->
+  <section class="tab" id="quiz">
+    <div class="hint" style="margin-bottom:10px">主动回忆：听音选义 / 看词选义 / 看义选词 三类随机混出，答错自动记入「🩹 错题」。每轮覆盖本单元全部词。</div>
+    <div id="quizBox"></div>
+  </section>
+
+  <!-- 错题 -->
+  <section class="tab" id="errors">
+    <div class="hint" style="margin-bottom:10px">统一错误池（schema：话题/层级/类型/原文/标准答/学生答/时间）。词卡「记一笔」或「小测答错」自动汇总到这里，按类型聚合，可重练或删除。</div>
+    <div id="errList"></div>
+  </section>
+
+  <!-- 神兽图鉴 -->
+  <section class="tab" id="codex">
+    <div class="coll" id="codexGrid"></div>
+    <div class="hint">13 个板块 = 13 只神兽。本单元神兽已解锁，掌握度越高星级越多。其余神兽可从 <a href="B1 主页.html" style="color:var(--gold)">B1 目录</a> 进入对应单元解锁。</div>
+  </section>
+</main>
+
+<script>
+const DATA = {"unit":0,"title":"Transition Station","subtitle":"A2→B1 桥接 · 高频功能词 · 简单论证句","beast_emoji":"🪜","beast_name":"渡阶之灵","groups":[{"name":"功能动词","words":[{"word":"describe","ipa":"/dɪˈskraɪb/","pos":"v.","cef":"B1","band":"B1 · 必会","defB":"描述；说出……的样子","phrase":"describe a picture","phraseDef":"描述一幅图画","ex":"Can you describe your new school to me?","exCn":"你能给我描述一下你的新学校吗？","defC":"描述；说出……的样子","awl":"—","register":"daily","senses":[{"def":"描述；说出……的样子","ex":"Can you describe your new school to me?","exCn":"你能给我描述一下你的新学校吗？","syn":"depict","ant":"—"}],"inArt":1},{"word":"explain","ipa":"/ɪkˈspleɪn/","pos":"v.","cef":"B1","band":"B1 · 必会","defB":"解释；说明","phrase":"explain the rule","phraseDef":"解释规则","ex":"Our teacher explained the rule twice.","exCn":"老师把规则解释了两遍。","defC":"解释；说明","awl":"—","register":"daily","senses":[{"def":"解释；说明","ex":"Our teacher explained the rule twice.","exCn":"老师把规则解释了两遍。","syn":"clarify","ant":"—"}],"inArt":1},{"word":"compare","ipa":"/kəmˈpeə/","pos":"v.","cef":"B1","band":"B1 · 必会","defB":"比较；对照","phrase":"compare two texts","phraseDef":"比较两篇文本","ex":"Let us compare the two methods carefully.","exCn":"让我们仔细比较这两种方法。","defC":"比较；对照","awl":"—","register":"daily","senses":[{"def":"比较；对照","ex":"Let us compare the two methods carefully.","exCn":"让我们仔细比较这两种方法。","syn":"contrast","ant":"—"}],"inArt":1},{"word":"suggest","ipa":"/səˈdʒest/","pos":"v.","cef":"B1","band":"B1 · 必会","defB":"建议；提出","phrase":"suggest a topic","phraseDef":"建议一个题目","ex":"I suggest we meet in the library.","exCn":"我建议我们在图书馆见面。","defC":"建议；提出","awl":"—","register":"daily","senses":[{"def":"建议；提出","ex":"I suggest we meet in the library.","exCn":"我建议我们在图书馆见面。","syn":"recommend","ant":"—"}],"inArt":1},{"word":"improve","ipa":"/ɪmˈpruːv/","pos":"v.","cef":"B1","band":"B1 · 高频","defB":"改进；提高","phrase":"improve your English","phraseDef":"提高你的英语","ex":"Daily practice will improve your speaking.","exCn":"每天练习会提高你的口语。","defC":"改进；提高","awl":"—","register":"daily","senses":[{"def":"改进；提高","ex":"Daily practice will improve your speaking.","exCn":"每天练习会提高你的口语。","syn":"better","ant":"worsen"}],"inArt":1},{"word":"decide","ipa":"/dɪˈsaɪd/","pos":"v.","cef":"B1","band":"B1 · 必会","defB":"决定；抉择","phrase":"decide on a plan","phraseDef":"定下一个计划","ex":"We decided to study together on Friday.","exCn":"我们决定周五一起学习。","defC":"决定；抉择","awl":"—","register":"daily","senses":[{"def":"决定；抉择","ex":"We decided to study together on Friday.","exCn":"我们决定周五一起学习。","syn":"choose","ant":"hesitate"}],"inArt":1}]},{"name":"描述形容词","words":[{"word":"clear","ipa":"/klɪə/","pos":"adj.","cef":"B1","band":"B1 · 必会","defB":"清楚的；清晰的","phrase":"a clear example","phraseDef":"一个清楚的例子","ex":"Her explanation was short but very clear.","exCn":"她的解释很短但非常清楚。","defC":"清楚的；清晰的","awl":"—","register":"daily","senses":[{"def":"清楚的；清晰的","ex":"Her explanation was short but very clear.","exCn":"她的解释很短但非常清楚。","syn":"obvious","ant":"vague"}],"inArt":1},{"word":"common","ipa":"/ˈkɒmən/","pos":"adj.","cef":"B1","band":"B1 · 高频","defB":"常见的；共同的","phrase":"a common mistake","phraseDef":"一个常见错误","ex":"This is a common mistake among new learners.","exCn":"这是新学习者常见的错误。","defC":"常见的；共同的","awl":"—","register":"daily","senses":[{"def":"常见的；共同的","ex":"This is a common mistake among new learners.","exCn":"这是新学习者常见的错误。","syn":"usual","ant":"rare"}],"inArt":1},{"word":"similar","ipa":"/ˈsɪmələ/","pos":"adj.","cef":"B1","band":"B1 · 必会","defB":"相似的；类似的","phrase":"similar methods","phraseDef":"相似的方法","ex":"The two books are similar in style.","exCn":"这两本书风格相似。","defC":"相似的；类似的","awl":"—","register":"daily","senses":[{"def":"相似的；类似的","ex":"The two books are similar in style.","exCn":"这两本书风格相似。","syn":"alike","ant":"different"}],"inArt":1},{"word":"different","ipa":"/ˈdɪfrənt/","pos":"adj.","cef":"B1","band":"zipf 5.0 · 高频","defB":"不同的；有差别的","phrase":"different topics","phraseDef":"不同的话题","ex":"We chose different topics for our essays.","exCn":"我们给作文选了不同的话题。","defC":"不同的；有差别的","awl":"—","register":"daily","senses":[{"def":"不同的；有差别的","ex":"We chose different topics for our essays.","exCn":"我们给作文选了不同的话题。","syn":"distinct","ant":"same"}],"inArt":1},{"word":"difficult","ipa":"/ˈdɪfɪkəlt/","pos":"adj.","cef":"A2","band":"A2 · 巩固","defB":"困难的；难的","phrase":"a difficult question","phraseDef":"一个难题","ex":"The last question was difficult but fair.","exCn":"最后一道题很难但公平。","defC":"困难的；难的","awl":"—","register":"daily","senses":[{"def":"困难的；难的","ex":"The last question was difficult but fair.","exCn":"最后一道题很难但公平。","syn":"hard","ant":"easy"}],"inArt":1},{"word":"important","ipa":"/ɪmˈpɔːtnt/","pos":"adj.","cef":"B1","band":"B1 · 必会","defB":"重要的","phrase":"an important factor","phraseDef":"一个重要因素","ex":"Sleep is an important factor in memory.","exCn":"睡眠是记忆中的一个重要因素。","defC":"重要的","awl":"—","register":"daily","senses":[{"def":"重要的","ex":"Sleep is an important factor in memory.","exCn":"睡眠是记忆中的一个重要因素。","syn":"vital","ant":"trivial"}],"inArt":1}]},{"name":"因果衔接","words":[{"word":"because","ipa":"/bɪˈkɒz/","pos":"conj.","cef":"B1","band":"zipf 5.0 · 高频","defB":"因为（后接句子）","phrase":"because it rained","phraseDef":"因为下雨了","ex":"We stayed home because it rained all day.","exCn":"我们待在家里，因为下了一整天雨。","defC":"因为（后接句子）","awl":"—","register":"daily","senses":[{"def":"因为（后接句子）","ex":"We stayed home because it rained all day.","exCn":"我们待在家里，因为下了一整天雨。","syn":"since","ant":"—"}],"inArt":1,"usage":"because 后面必须跟完整句子：because it rained。只跟名词时用 because of：because of the rain。口语常用 now / and，书面用 therefore。"},{"word":"so","ipa":"/səʊ/","pos":"conj.","cef":"B1","band":"zipf 5.0 · 高频","defB":"所以；因此（口语常用）","phrase":"so we left early","phraseDef":"所以我们早走了","ex":"The bus was full, so we walked instead.","exCn":"公交车满了，所以我们改成走路。","defC":"所以；因此（口语常用）","awl":"—","register":"daily","senses":[{"def":"所以；因此（口语常用）","ex":"The bus was full, so we walked instead.","exCn":"公交车满了，所以我们改成走路。","syn":"therefore","ant":"—"}],"inArt":1},{"word":"therefore","ipa":"/ˈðeəfɔː/","pos":"adv.","cef":"B1","band":"B1 · 书面","defB":"因此；所以（书面，正式）","phrase":"therefore, we conclude…","phraseDef":"因此，我们得出结论……","ex":"The evidence is clear; therefore, we act now.","exCn":"证据清楚，因此我们现在就行动。","defC":"因此；所以（书面，正式）","awl":"—","register":"academic","senses":[{"def":"因此；所以（书面，正式）","ex":"The evidence is clear; therefore, we act now.","exCn":"证据清楚，因此我们现在就行动。","syn":"consequently","ant":"—"}],"inArt":1,"usage":"therefore 是书面正式词，后面常跟逗号：..., therefore, ...。口语里说 so：It rained, so we stayed in."},{"word":"as a result","ipa":"/æz ə rɪˈzʌlt/","pos":"phr.","cef":"B1","band":"B1 · 必会","defB":"结果；因此","phrase":"as a result of practice","phraseDef":"由于练习","ex":"He practised daily; as a result, he improved fast.","exCn":"他每天练习，结果进步很快。","defC":"结果；因此","awl":"—","register":"academic","senses":[{"def":"结果；因此","ex":"He practised daily; as a result, he improved fast.","exCn":"他每天练习，结果进步很快。","syn":"consequently","ant":"—"}],"inArt":1},{"word":"because of","ipa":"/bɪˈkɒz əv/","pos":"prep.","cef":"B1","band":"B1 · 必会","defB":"由于（后接名词）","phrase":"because of the rain","phraseDef":"由于下雨","ex":"The match stopped because of the heavy rain.","exCn":"比赛因为大雨停止了。","defC":"由于（后接名词）","awl":"—","register":"daily","senses":[{"def":"由于（后接名词）","ex":"The match stopped because of the heavy rain.","exCn":"比赛因为大雨停止了。","syn":"due to","ant":"—"}],"inArt":1},{"word":"cause","ipa":"/kɔːz/","pos":"v. & n.","cef":"B1","band":"B1 · 必会","defB":"造成；原因","phrase":"cause a problem","phraseDef":"造成问题","ex":"One small mistake can cause a big problem.","exCn":"一个小错误可能造成大问题。","defC":"造成；原因","awl":"—","register":"daily","senses":[{"def":"造成；原因","ex":"One small mistake can cause a big problem.","exCn":"一个小错误可能造成大问题。","syn":"trigger","ant":"effect"}],"inArt":1}]},{"name":"举例衔接","words":[{"word":"for example","ipa":"/fəʳ ɪɡˈzɑːmpl/","pos":"phr.","cef":"B1","band":"zipf 5.0 · 高频","defB":"例如","phrase":"for example, in class","phraseDef":"例如，在课堂上","ex":"Many words repeat, for example, 'clear' and 'common'.","exCn":"许多词会重复，例如 clear 和 common。","defC":"例如","awl":"—","register":"daily","senses":[{"def":"例如","ex":"Many words repeat, for example, 'clear' and 'common'.","exCn":"许多词会重复，例如 clear 和 common。","syn":"for instance","ant":"—"}],"inArt":1},{"word":"for instance","ipa":"/fɔːr ˈɪnstəns/","pos":"phr.","cef":"B1","band":"B1 · 必会","defB":"比如；举例来说","phrase":"for instance, this book","phraseDef":"比如这本书","ex":"For instance, this book uses short sentences.","exCn":"比如，这本书用的是短句。","defC":"比如；举例来说","awl":"—","register":"daily","senses":[{"def":"比如；举例来说","ex":"For instance, this book uses short sentences.","exCn":"比如，这本书用的是短句。","syn":"for example","ant":"—"}],"inArt":1},{"word":"such as","ipa":"/sʌʧ æz/","pos":"prep.","cef":"B1","band":"zipf 5.0 · 高频","defB":"例如；诸如（后接名词）","phrase":"subjects such as maths","phraseDef":"诸如数学这类科目","ex":"We study subjects such as maths and English.","exCn":"我们学习诸如数学和英语这类科目。","defC":"例如；诸如（后接名词）","awl":"—","register":"daily","senses":[{"def":"例如；诸如（后接名词）","ex":"We study subjects such as maths and English.","exCn":"我们学习诸如数学和英语这类科目。","syn":"like","ant":"—"}],"inArt":1},{"word":"like","ipa":"/laɪk/","pos":"prep.","cef":"A2","band":"A2 · 巩固","defB":"像；比如（口语举例）","phrase":"cities like Beijing","phraseDef":"像北京这样的城市","ex":"Big cities like Beijing change very fast.","exCn":"像北京这样的大城市变化很快。","defC":"像；比如（口语举例）","awl":"—","register":"daily","senses":[{"def":"像；比如（口语举例）","ex":"Big cities like Beijing change very fast.","exCn":"像北京这样的大城市变化很快。","syn":"such as","ant":"—"}],"inArt":1},{"word":"include","ipa":"/ɪnˈkluːd/","pos":"v.","cef":"B1","band":"B1 · 必会","defB":"包括；包含","phrase":"include examples","phraseDef":"包含例子","ex":"Good paragraphs include facts and examples.","exCn":"好的段落包含事实和例子。","defC":"包括；包含","awl":"—","register":"daily","senses":[{"def":"包括；包含","ex":"Good paragraphs include facts and examples.","exCn":"好的段落包含事实和例子。","syn":"involve","ant":"exclude"}],"inArt":1},{"word":"e.g.","ipa":"/ˌiː ˈdʒiː/","pos":"abbr.","cef":"B1","band":"B1 · 书面","defB":"例如（= for example，多用于书面）","phrase":"linking words, e.g. however","phraseDef":"衔接词，例如 however","ex":"Use short links, e.g. 'but' or 'so'.","exCn":"使用简短的衔接词，例如 but 或 so。","defC":"例如（= for example，多用于书面）","awl":"—","register":"academic","senses":[{"def":"例如（= for example，多用于书面）","ex":"Use short links, e.g. 'but' or 'so'.","exCn":"使用简短的衔接词，例如 but 或 so。","syn":"for example","ant":"—"}],"inArt":1}]},{"name":"AWL 起步词","words":[{"word":"factor","ipa":"/ˈfæktə/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"因素；要素","phrase":"a key factor","phraseDef":"一个关键因素","ex":"Sleep is an important factor in learning.","exCn":"睡眠是学习中的一个重要因素。","defC":"因素；要素","awl":"1","register":"academic","senses":[{"def":"因素；要素","ex":"Sleep is an important factor in learning.","exCn":"睡眠是学习中的一个重要因素。","syn":"element","ant":"—"}],"inArt":1},{"word":"process","ipa":"/ˈprəʊses/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"过程；步骤","phrase":"a simple process","phraseDef":"一个简单的过程","ex":"Writing is a process, not a single jump.","exCn":"写作是一个过程，不是一步跳到的。","defC":"过程；步骤","awl":"1","register":"academic","senses":[{"def":"过程；步骤","ex":"Writing is a process, not a single jump.","exCn":"写作是一个过程，不是一步跳到的。","syn":"procedure","ant":"—"}],"inArt":1},{"word":"method","ipa":"/ˈmeθəd/","pos":"n.","cef":"B1","band":"AWL 2 · 学术","defB":"方法；办法","phrase":"a useful method","phraseDef":"一个有用的方法","ex":"This method helped me remember new words.","exCn":"这个方法帮我记住了新单词。","defC":"方法；办法","awl":"2","register":"academic","senses":[{"def":"方法；办法","ex":"This method helped me remember new words.","exCn":"这个方法帮我记住了新单词。","syn":"approach","ant":"—"}],"inArt":1},{"word":"research","ipa":"/rɪˈsɜːtʃ/","pos":"n.","cef":"B1","band":"AWL 4 · 学术","defB":"研究；调研","phrase":"recent research","phraseDef":"最近的研究","ex":"Research shows that short practice works well.","exCn":"研究表明短时练习效果很好。","defC":"研究；调研","awl":"4","register":"academic","senses":[{"def":"研究；调研","ex":"Research shows that short practice works well.","exCn":"研究表明短时练习效果很好。","syn":"study","ant":"—"}],"inArt":1},{"word":"role","ipa":"/rəʊl/","pos":"n.","cef":"B1","band":"AWL 1 · 学术","defB":"作用；角色","phrase":"play a role in…","phraseDef":"在……中起作用","ex":"Breakfast plays a big role in a school morning.","exCn":"早餐在学校的早晨作用很大。","defC":"作用；角色","awl":"1","register":"academic","senses":[{"def":"作用；角色","ex":"Breakfast plays a big role in a school morning.","exCn":"早餐在学校的早晨作用很大。","syn":"function","ant":"—"}],"inArt":1},{"word":"topic","ipa":"/ˈtɒpɪk/","pos":"n.","cef":"B1","band":"zipf 4.5 · 高频","defB":"话题；题目","phrase":"choose a topic","phraseDef":"选一个话题","ex":"We each chose a different topic for speaking.","exCn":"我们各自选了一个不同的话题来说。","defC":"话题；题目","awl":"—","register":"daily","senses":[{"def":"话题；题目","ex":"We each chose a different topic for speaking.","exCn":"我们各自选了一个不同的话题来说。","syn":"subject","ant":"—"}],"inArt":1}]},{"name":"课堂场景词","words":[{"word":"homework","ipa":"/ˈhəʊmwɜːk/","pos":"n.","cef":"A2","band":"A2 · 巩固","defB":"作业；功课","phrase":"finish your homework","phraseDef":"完成作业","ex":"I finished my homework before dinner.","exCn":"我在晚饭前写完了作业。","defC":"作业；功课","awl":"—","register":"daily","senses":[{"def":"作业；功课","ex":"I finished my homework before dinner.","exCn":"我在晚饭前写完了作业。","syn":"assignment","ant":"—"}],"inArt":1},{"word":"notebook","ipa":"/ˈnəʊtbʊk/","pos":"n.","cef":"A2","band":"A2 · 巩固","defB":"笔记本","phrase":"a thin notebook","phraseDef":"一个薄笔记本","ex":"She writes new words in a small notebook.","exCn":"她把生词写在一个小笔记本上。","defC":"笔记本","awl":"—","register":"daily","senses":[{"def":"笔记本","ex":"She writes new words in a small notebook.","exCn":"她把生词写在一个小笔记本上。","syn":"notepad","ant":"—"}],"inArt":1},{"word":"worksheet","ipa":"/ˈwɜːkʃiːt/","pos":"n.","cef":"B1","band":"B1 · 课堂","defB":"练习纸；工作纸","phrase":"hand out a worksheet","phraseDef":"发练习纸","ex":"The teacher handed out a worksheet on linking words.","exCn":"老师发了一张关于衔接词的练习纸。","defC":"练习纸；工作纸","awl":"—","register":"daily","senses":[{"def":"练习纸；工作纸","ex":"The teacher handed out a worksheet on linking words.","exCn":"老师发了一张关于衔接词的练习纸。","syn":"exercise sheet","ant":"—"}],"inArt":1},{"word":"mistake","ipa":"/mɪˈsteɪk/","pos":"n.","cef":"B1","band":"B1 · 必会","defB":"错误；失误","phrase":"make a mistake","phraseDef":"犯一个错误","ex":"Do not be afraid to make a mistake in class.","exCn":"别害怕在课堂上犯错误。","defC":"错误；失误","awl":"—","register":"daily","senses":[{"def":"错误；失误","ex":"Do not be afraid to make a mistake in class.","exCn":"别害怕在课堂上犯错误。","syn":"error","ant":"—"}],"inArt":1},{"word":"practice","ipa":"/ˈpræktɪs/","pos":"n.","cef":"B1","band":"zipf 5.0 · 高频","defB":"练习；实践","phrase":"daily practice","phraseDef":"每天练习","ex":"Ten minutes of daily practice beats one long hour.","exCn":"每天十分钟练习胜过长长一小时。","defC":"练习；实践","awl":"—","register":"daily","senses":[{"def":"练习；实践","ex":"Ten minutes of daily practice beats one long hour.","exCn":"每天十分钟练习胜过长长一小时。","syn":"exercise","ant":"—"}],"inArt":1},{"word":"progress","ipa":"/ˈprəʊɡres/","pos":"n.","cef":"B1","band":"B1 · 必会","defB":"进步；进展","phrase":"make progress","phraseDef":"取得进步","ex":"You have made real progress this term.","exCn":"你这学期取得了真正的进步。","defC":"进步；进展","awl":"—","register":"daily","senses":[{"def":"进步；进展","ex":"You have made real progress this term.","exCn":"你这学期取得了真正的进步。","syn":"improvement","ant":"decline"}],"inArt":1}]}],"dialogues":[{"title":"开学第一天的紧张","focus":"describe · because · for example","turns":[{"role":"A","en":"You look tired. Did you sleep well last night?","cn":"你看起来累了。昨晚睡得好吗？"},{"role":"B","en":"Not really. I was nervous about the new class.","cn":"不太好。我对新班级有点紧张。"},{"role":"A","en":"Me too. Can you describe your old school to me?","cn":"我也是。你能给我描述一下你的母校吗？"},{"role":"B","en":"It was small, with only six classrooms and a big tree.","cn":"它很小，只有六间教室和一棵大树。"},{"role":"A","en":"Mine was big. However, I still felt lost on the first day.","cn":"我的学校很大。不过第一天我还是很迷茫。"},{"role":"B","en":"Because everything was new: the teachers, the books, even the bell.","cn":"因为一切都是新的：老师、课本，甚至铃声。"},{"role":"A","en":"For example, I went to the wrong room twice this morning!","cn":"比如，今天早上我两次走错了教室！"},{"role":"B","en":"Don't worry. My brother says the first week is always the hardest.","cn":"别担心。我哥哥说第一周总是最难的。"},{"role":"A","en":"That is good to hear. Shall we walk to the library together?","cn":"那我就放心了。我们一起去图书馆好吗？"},{"role":"B","en":"Sure. Two nervous students are better than one.","cn":"好啊。两个紧张的学生总比一个好。"}]},{"title":"挑一本英语书","focus":"compare · suggest · because","turns":[{"role":"A","en":"I want to read an English book, but I cannot choose one.","cn":"我想读一本英语书，但选不定。"},{"role":"B","en":"What topics do you like?","cn":"你喜欢什么话题？"},{"role":"A","en":"I like science and animals. Can you suggest something simple?","cn":"我喜欢科学和动物。你能建议一点简单的吗？"},{"role":"B","en":"Sure. This one has short chapters and many pictures.","cn":"当然。这本章节短，插图也多。"},{"role":"A","en":"Why do you suggest it?","cn":"你为什么推荐它？"},{"role":"B","en":"Because the sentences are clear, and the words repeat often.","cn":"因为句子清楚，而且词汇重复出现得多。"},{"role":"A","en":"How can I compare it with that one?","cn":"我怎么把它和那本比较呢？"},{"role":"B","en":"Open both and read one page. The easier book is the better book.","cn":"两本都翻开各读一页。更容易的那本就是更好的书。"},{"role":"A","en":"Good idea. I will try this science book first.","cn":"好主意。我先试这本科学书。"},{"role":"B","en":"Great. If you finish it, we can discuss it next week.","cn":"太好了。读完了我们下周讨论。"}]},{"title":"向老师求助","focus":"explain · improve · practice","turns":[{"role":"Student","en":"Excuse me, Mr Li. Could you explain this grammar rule again?","cn":"打扰一下，李老师。您能再解释一遍这条语法规则吗？"},{"role":"Teacher","en":"Of course. 'Because' gives a reason, and 'so' gives a result.","cn":"当然。because 给原因，so 给结果。"},{"role":"Student","en":"I see. For example, 'I was late because it rained'?","cn":"明白了。比如“我迟到了，因为下雨了”？"},{"role":"Teacher","en":"Exactly. Now try one with 'so'.","cn":"对。现在用 so 造一句。"},{"role":"Student","en":"It rained, so I was late.","cn":"下雨了，所以我迟到了。"},{"role":"Teacher","en":"Well done. How can you improve your writing?","cn":"很好。你想怎么提高写作？"},{"role":"Student","en":"I think I need more practice with linking words.","cn":"我觉得我需要在衔接词上多练习。"},{"role":"Teacher","en":"Then write three short paragraphs this week, one link in each.","cn":"那这周写三个小段落，每段用一个衔接词。"},{"role":"Student","en":"Should I use 'for example' in every paragraph?","cn":"我每段都要用 for example 吗？"},{"role":"Teacher","en":"Only when you have a real example. Too many links tire the reader.","cn":"只有真有例子时才用。衔接词太多读者会累。"},{"role":"Student","en":"Understood. Thank you!","cn":"明白了。谢谢您！"}]}],"reading":[{"title":"My First Week at High School（高中第一周）","focus":"describe · because · however · for example","meta":"记叙文 · 159词 · 衔接6处 · 日常语域","genre":"记叙文","china":true,"sentences":["Last September, Li Hua walked into her new high school in Nanjing with a heavy bag.","She was shy, so she sat at the back of the classroom and said nothing.","The first lesson was English, and the teacher asked the class to describe their summer.","Li Hua's voice was small, but she finished her sentence without a mistake.","After class, a boy named Wang Tao showed her the library and the school shop.","On Tuesday, the maths homework was difficult, and she almost cried in the evening.","However, Wang Tao explained each step twice, and slowly the questions became clear.","For example, he taught her a simple method for checking every answer.","By Friday, Li Hua had two new friends and a small notebook full of useful words.","She wrote in her diary that change is hard, but people can make it easier.","Her mother read the diary and said that progress often starts with one small step."],"questions":[{"type":"mc","q":"Where did Li Hua sit on the first day?","opts":["at the front of the classroom","at the back of the classroom","next to the teacher"],"answer":1},{"type":"mc","q":"What did Wang Tao teach her?","opts":["how to cook eggs","a simple method for checking answers","a new song"],"answer":1},{"type":"fb","q":"The teacher asked the class to ______ their summer.","answer":"describe","accept":["describe"]},{"type":"fb","q":"Wang Tao explained each step ______.","answer":"twice","accept":["two times"]},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["She sat at the back of the classroom","Her maths homework was difficult","Wang Tao showed her the library","She had no friends by Friday"],"answers":[0,1,2]},{"type":"tf","q":"Li Hua finished her sentence without a mistake.","answer":0}]},{"title":"The Day I Learned to Cook（第一次学做饭）","focus":"because · for example · however","meta":"记叙文 · 162词 · 衔接5处 · 日常语域","genre":"记叙文","china":false,"sentences":["On my twelfth birthday, my grandmother gave me a small blue apron and a wooden spoon.","She said that every adult should know how to cook one simple meal.","The next Sunday, we stood in her tiny kitchen and started with tomatoes and eggs.","First, she asked me to wash the tomatoes and describe their colour and smell.","I cut them slowly, because I was afraid of the sharp knife.","My grandmother laughed and showed me a safer method for holding the knife.","For example, she told me to keep my fingers curved like a small claw.","The eggs were easier, but the pan was hot, and I jumped back.","However, she said that a good cook must stay calm, even when the oil sings.","In ten minutes, the dish was ready, and the kitchen smelled like summer.","It did not look perfect, but my family ate every bite and asked for more.","That day I learned that practice, not talent, makes a good meal."],"questions":[{"type":"mc","q":"What did the grandmother give the writer on her birthday?","opts":["a sharp knife","a recipe book","a small blue apron and a wooden spoon"],"answer":2},{"type":"mc","q":"What makes a good meal, according to the writer?","opts":["talent","practice","luck"],"answer":1},{"type":"fb","q":"She asked me to wash the tomatoes and describe their colour and ______.","answer":"smell","accept":["smell"]},{"type":"fb","q":"Grandma told me to keep my fingers curved like a small ______.","answer":"claw","accept":["claw"]},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["Every adult should know how to cook a simple meal","I cut the tomatoes slowly","The eggs were easier than the tomatoes","My family refused to eat the dish"],"answers":[0,1,2]},{"type":"tf","q":"The dish looked perfect and tasted terrible.","answer":1}]},{"title":"What Makes a Good Paragraph?（什么造就好段落）","focus":"for example · such as · therefore","meta":"说明文 · 165词 · 衔接7处 · 日常语域","genre":"说明文","china":false,"sentences":["A paragraph is a group of sentences that talk about one main idea.","The first sentence usually tells the reader what the paragraph is about.","We call this sentence the topic sentence, and it works like a small map.","The next sentences give details, facts, or examples that support the main idea.","For example, if your topic is school lunch, you can describe the food or the price.","Good writers also use linking words, such as 'for example' and 'however'.","These words show the reader how the ideas are connected.","For instance, 'because' gives a reason, and 'as a result' gives a result.","A short paragraph of two sentences can be clear, but a long wall of text is not.","Therefore, writers break their ideas into small blocks so the reader can breathe.","The last sentence often repeats the main idea in new words.","Students can practise this skill with short writing tasks every week.","When you read a good paragraph, you can usually find its main idea in one line."],"questions":[{"type":"mc","q":"What does the first sentence of a paragraph usually do?","opts":["asks the reader a question","tells the reader what the paragraph is about","gives the final answer"],"answer":1},{"type":"mc","q":"What do linking words show?","opts":["how the ideas are connected","how long the text is","the writer's age"],"answer":0},{"type":"fb","q":"We call this sentence the ______ sentence.","answer":"topic","accept":["topic"]},{"type":"fb","q":"'As a result' gives a ______.","answer":"result","accept":["result"]},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["A paragraph talks about one main idea","'because' gives a reason","Good paragraphs use linking words","A long wall of text is easy to read"],"answers":[0,1,2]},{"type":"tf","q":"The passage explains how to cook tomatoes.","answer":2}]},{"title":"How Word Cards Help Chinese Students（单词卡如何帮助中国学生）","focus":"because · for example · however · research","meta":"说明文 · 159词 · 衔接7处 · 日常语域","genre":"说明文","china":true,"sentences":["Many students in China carry small word cards in their pockets.","A word card has an English word on one side and its Chinese meaning on the other.","This method is popular because it turns waiting time into study time.","For example, a student can review ten cards on the bus to school.","Research shows that short and regular practice works better than one long session.","Therefore, many learners check their cards three times a day for only five minutes.","Some students also draw a small picture on the card to help the word stick.","For instance, the word 'apple' is easy, but the word 'process' needs a clear example.","Teachers in Chengdu often ask students to make their own cards before a test.","When students write the word themselves, they remember the spelling more easily.","However, cards are only a tool, and they cannot replace reading real sentences.","In short, the best card is the one that you actually use every day."],"questions":[{"type":"mc","q":"What is on the other side of a word card?","opts":["its Chinese meaning","a photo","the price"],"answer":0},{"type":"mc","q":"What do teachers in Chengdu often ask students to do?","opts":["buy expensive cards","make their own cards before a test","copy the whole dictionary"],"answer":1},{"type":"fb","q":"A student can review ten cards on the ______ to school.","answer":"bus","accept":["bus"]},{"type":"fb","q":"When students write the word themselves, they remember the ______ more easily.","answer":"spelling","accept":["spelling"]},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["Word cards turn waiting time into study time","Short regular practice beats one long session","Cards can replace reading real sentences","Teachers in Chengdu ask students to make cards"],"answers":[0,1,3]},{"type":"tf","q":"The passage says cards work best when they stay in a drawer.","answer":1}]},{"title":"Small Habits, Big Results（小习惯，大成果）","focus":"however · for example · therefore · progress","meta":"论说文 · 159词 · 衔接6处 · 学术语域","genre":"论说文","china":true,"sentences":["Some people think that big changes need big plans, but I disagree with this idea.","Last year, my English was weak, and my test scores were always below average.","However, I started with one small habit: reading one page before bed.","For example, on Monday I read about a farmer, and on Tuesday about a pilot.","The pages were simple, but the words began to repeat, and slowly I remembered them.","After three months, my reading speed improved, and the texts felt much easier.","Therefore, I believe that small daily actions can lead to large results.","Of course, a small habit is not magic, and it cannot fix everything at once.","For instance, I still make grammar mistakes, and my writing needs more practice.","However, progress is real, and progress gives a student the courage to continue.","In my class, two friends tried the same method, and both felt the difference.","In short, do not wait for a perfect plan; start with one page today."],"questions":[{"type":"mc","q":"What did the writer start doing last year?","opts":["reading one page before bed","running every morning","watching TV"],"answer":0},{"type":"mc","q":"What happened after three months?","opts":["test scores dropped","nothing changed","reading speed improved"],"answer":2},{"type":"fb","q":"I started with one small habit: reading one ______ before bed.","answer":"page","accept":["page"]},{"type":"fb","q":"The pages were simple, but the words began to ______.","answer":"repeat","accept":["repeat"]},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["The writer's English was weak last year","Two friends tried the same method","Small habits can fix everything at once","Progress gives students courage"],"answers":[0,1,3]},{"type":"tf","q":"The writer believes small daily actions can lead to large results.","answer":0}]},{"title":"Why a Bicycle Can Beat a Car（为什么自行车能胜过汽车）","focus":"however · for example · as a result · on the other hand","meta":"论说文 · 168词 · 衔接8处 · 学术语域","genre":"论说文","china":false,"sentences":["Many people dream of owning a car, but in a small city a bicycle is often better.","Some people say a car is faster, and on highways this is true.","However, most trips inside a city are short, and cars lose their advantage there.","For example, my uncle drives to work, but he spends twenty minutes looking for parking.","His neighbour rides a bicycle and arrives at the same time, or even earlier.","Furthermore, a bicycle costs little to repair, and it keeps the rider healthy.","As a result, many young people in Europe now choose two wheels over four.","On the other hand, a car is useful when the weather is bad or the family is large.","Therefore, the honest answer is not 'cars are bad', but 'choose the right tool'.","For instance, a family trip to the mountains still needs a car with a big boot.","In short, we should compare cost, time, and comfort before we choose.","After that comparison, many city learners find that the bicycle wins the daily race."],"questions":[{"type":"mc","q":"What is the writer's main point?","opts":["choose the right tool for the trip","cars are always bad","bicycles are always faster"],"answer":0},{"type":"mc","q":"How long does the uncle spend looking for parking?","opts":["five minutes","twenty minutes","an hour"],"answer":1},{"type":"fb","q":"My uncle drives to work, but he spends twenty minutes looking for ______.","answer":"parking","accept":["parking"]},{"type":"fb","q":"A bicycle costs little to ______.","answer":"repair","accept":["repair"]},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["The uncle spends twenty minutes looking for parking","A bicycle keeps the rider healthy","Cars are always the best choice","A family mountain trip may need a car"],"answers":[0,1,3]},{"type":"tf","q":"The passage says bicycles are faster than cars on highways.","answer":2}]},{"title":"Should Students Bring Phones to School?（学生该带手机上学吗）","focus":"for example · because · on the other hand · however","meta":"议论文 · 160词 · 衔接7处 · 学术语域","genre":"议论文","china":true,"sentences":["Should students bring phones to school? Many parents say yes, but many teachers say no.","In my opinion, phones should stay in lockers during lessons, for three clear reasons.","First, a phone is a machine of interruption, and a lesson is a chain of thought.","For example, one message can break ten minutes of careful listening.","Second, phones create unfair comparison, because not every family can buy a new model.","For instance, a student with an old phone may feel shy in group photos.","Third, school is a safe place to learn talking face to face.","On the other hand, phones can be useful tools, and this point deserves respect.","For example, students can look up a word quickly or check a bus time after school.","However, these jobs can wait for the break, and nobody dies from a late dictionary.","Therefore, schools should teach students to control phones instead of fearing them.","In short, a phone is a good servant but a bad master in the classroom."],"questions":[{"type":"mc","q":"What is the writer's opinion?","opts":["phones should be banned everywhere","phones should stay in lockers during lessons","phones should be free all day"],"answer":1},{"type":"mc","q":"What can students do with phones after school?","opts":["cheat in exams","check a bus time","call the teacher at night"],"answer":1},{"type":"fb","q":"One message can break ten minutes of careful ______.","answer":"listening","accept":["listening"]},{"type":"fb","q":"A phone is a good servant but a bad ______ in the classroom.","answer":"master","accept":["master"]},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["One message can break careful listening","Not every family can buy a new phone","Phones are useless tools","Schools should teach students to control phones"],"answers":[0,1,3]},{"type":"tf","q":"The writer believes phones should be free during lessons.","answer":1}]},{"title":"Is Breakfast Really Important?（早餐真的重要吗）","focus":"however · for example · on the other hand · therefore","meta":"议论文 · 162词 · 衔接8处 · 学术语域","genre":"议论文","china":false,"sentences":["Some students skip breakfast to save ten minutes of sleep, but this trade is unwise.","In my view, breakfast is the most important meal for a school morning.","First, the body has fasted all night, and the brain needs fuel before the first lesson.","For example, a bowl of porridge and an egg can lift a student's attention.","Second, students who eat breakfast make fewer careless mistakes in maths tests.","On the other hand, a heavy breakfast of fried food can make a child sleepy.","Therefore, the goal is a light meal, not a big one.","For instance, milk, fruit, and bread work better than a large hamburger.","Of course, some families are busy, and mornings are short in every home.","However, even a banana and a glass of milk beat an empty stomach.","In short, schools could open ten minutes earlier so every child can eat calmly.","After all, a hungry student cannot argue, calculate, or even listen well.","A small change at breakfast can change the whole school day."],"questions":[{"type":"mc","q":"What does the writer think of skipping breakfast?","opts":["it is an unwise trade","it saves a lot of time","it is good for health"],"answer":0},{"type":"mc","q":"What kind of breakfast does the writer suggest?","opts":["a heavy fried meal","nothing at all","a light meal"],"answer":2},{"type":"fb","q":"A bowl of porridge and an ______ can lift a student's attention.","answer":"egg","accept":["egg"]},{"type":"fb","q":"Even a banana and a glass of ______ beat an empty stomach.","answer":"milk","accept":["milk"]},{"type":"mm","q":"Which statements are TRUE according to the passage?","opts":["The body has fasted all night","A heavy breakfast can make a child sleepy","Skipping breakfast improves maths","Milk, fruit, and bread work well"],"answers":[0,1,3]},{"type":"tf","q":"The writer says a light breakfast is the goal.","answer":0}]}],"listening":[{"title":"My New School Bag（新书包独白）","focus":"however · therefore · for example","meta":"独白 · 79词 · 日常语域","kind":"独白","reg":"daily","china":true,"sentences":["Hi, everyone. Today is my first day at a new school in Hangzhou.","My mum bought this blue bag, and it is very light.","Inside, I have three notebooks and one dictionary.","I was nervous, so I checked my bag twice.","However, my new teacher smiled and gave us a welcome game.","For example, we described our favourite food to our neighbour.","By lunchtime, I had learned five new words.","Therefore, I think this year will be a good one."],"questions":[{"type":"mc","q":"Where is the speaker's new school?","opts":["in Beijing","in Hangzhou","in the countryside"],"answer":1},{"type":"fb","q":"I checked my bag ______ before leaving.","answer":"twice","accept":["two times"]},{"type":"tf","q":"The teacher gave the class a welcome game.","answer":0}]},{"title":"My Pet Fish Taught Me Routine（宠物鱼教我规律）","focus":"therefore · however · in short","meta":"独白 · 80词 · 日常语域","kind":"独白","reg":"daily","china":false,"sentences":["Last month, my family got a small orange fish called Nemo.","He swims near my desk, and he eats twice a day.","At first, I forgot his food, and I felt terrible.","Therefore, I set a phone alarm for eight in the morning.","The alarm also reminds me to review ten English words.","Now my fish is healthy, and my words grow too.","In short, a small duty can build a big habit.","Overall, I thank my little fish for this lesson."],"questions":[{"type":"mc","q":"What is the fish's name?","opts":["Nemo","Bobby","Dory"],"answer":0},{"type":"fb","q":"I set a phone alarm for eight in the ______.","answer":"morning","accept":["morning"]},{"type":"tf","q":"The speaker forgets the fish's food every single day.","answer":1}]},{"title":"Mini-Lecture: The Word 'Factor'（微讲座：factor 一词）","focus":"for example · therefore · in short","meta":"独白 · 78词 · 学术语域","kind":"独白","reg":"academic","china":false,"sentences":["Today we look at one small word with a big job: 'factor'.","A factor is one part of a situation that helps cause a result.","For example, sleep is a factor in memory.","Researchers list many factors before they draw a conclusion.","A study on exam stress may use time, noise, and sleep as factors.","The word appears in phrases like 'key factor'.","Therefore, 'several factors' means a list of causes.","In short, one word can open a whole academic habit."],"questions":[{"type":"mc","q":"What is a factor?","opts":["one part that helps cause a result","a type of fish","a school subject"],"answer":0},{"type":"fb","q":"Sleep is a factor in ______.","answer":"memory","accept":["memory"]},{"type":"tf","q":"The lecture says 'several factors' means a list of causes.","answer":0}]},{"title":"Class Summary: How to Compare Two Texts（课堂小结：比较两篇文本）","focus":"first · for example · in short","meta":"独白 · 70词 · 学术语域","kind":"独白","reg":"academic","china":true,"sentences":["Let's summarise today's lesson on comparing two short texts.","First, read both texts and note the topic of each one.","Second, ask what is similar and what is different.","For example, two texts may describe the same festival from different ages.","Third, use a table with two columns for your points.","Finally, choose one difference and explain why it matters.","In short, comparing is a skill, and skills grow with practice."],"questions":[{"type":"mc","q":"What is the first step?","opts":["read both texts and note the topics","write a long essay","draw a picture"],"answer":0},{"type":"fb","q":"Use a table with two ______ for your points.","answer":"columns","accept":["columns"]},{"type":"tf","q":"The summary says comparing is a skill that grows with practice.","answer":0}]},{"title":"At the School Shop（在学校小卖部）","focus":"because · however · therefore","meta":"对话 · 84词 · 日常语域","kind":"对话","reg":"daily","china":true,"sentences":["A: Excuse me, do you sell blue notebooks here?","B: Yes. The blue ones are on the second shelf.","A: How much is this one?","B: It is eight yuan, because it has a thick cover.","A: I will take two, please.","B: Sure. Do you need pens as well?","A: No, thanks. I have enough at home.","B: That is sixteen yuan. When does the shop close?","A: At six o'clock? Then I have time after class.","B: Yes. See you tomorrow!"],"questions":[{"type":"mc","q":"How much is one notebook?","opts":["sixteen yuan","eight yuan","six yuan"],"answer":1},{"type":"fb","q":"The blue notebooks are on the ______ shelf.","answer":"second","accept":["2nd"]},{"type":"tf","q":"The shop closes at six o'clock.","answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["The shop sells blue notebooks","One notebook is eight yuan","The speaker buys pens","The shop closes at six"],"answers":[0,1,3]}]},{"title":"Planning a Study Group（约学习小组）","focus":"however · furthermore · therefore","meta":"对话 · 92词 · 日常语域","kind":"对话","reg":"daily","china":false,"sentences":["A: The English test is on Friday, and I feel worried.","B: Me too. However, we could study together this week.","A: Good idea. When are you free?","B: Wednesday afternoon, because I have no club.","A: Perfect. We can meet in the library and practise speaking.","B: Furthermore, we can test each other with word cards.","A: Great. I will bring my notebook full of new words.","B: And I will prepare example sentences for each card.","A: Exactly. Therefore, the words will stay in our memory.","B: See you on Wednesday!"],"questions":[{"type":"mc","q":"When will they meet?","opts":["on Wednesday afternoon","on Friday","on Monday"],"answer":0},{"type":"fb","q":"We can test each other with word ______.","answer":"cards","accept":["cards"]},{"type":"tf","q":"They will meet on Friday morning.","answer":1}]},{"title":"Teacher and Student: Choosing a Topic（师生谈选题）","focus":"however · for example · furthermore","meta":"对话 · 95词 · 学术语域","kind":"对话","reg":"academic","china":false,"sentences":["Student: I need to write a short essay, but I cannot choose a topic.","Teacher: Start with a subject you already enjoy.","Student: I enjoy basketball, but I worry it is not academic enough.","Teacher: That worry is common. However, good essays can begin with a hobby.","Student: For example, I could compare two famous players.","Teacher: Furthermore, you can describe how training changes a player.","Student: Should every paragraph give reasons and examples?","Teacher: Yes. Therefore, each paragraph needs one clear point.","Student: Thank you. I will start with basketball tonight."],"questions":[{"type":"mc","q":"What subject does the student enjoy?","opts":["chemistry","music","basketball"],"answer":2},{"type":"fb","q":"Each paragraph needs one clear ______.","answer":"point","accept":["point"]},{"type":"tf","q":"The teacher says a hobby cannot be a good essay topic.","answer":1},{"type":"mm","q":"Which statements are TRUE?","opts":["The student enjoys basketball","Good essays can begin with a hobby","Every paragraph needs one clear point","The essay must be ten pages"],"answers":[0,1,2]}]},{"title":"Two Students Comparing Notes（两位学生对比笔记）","focus":"however · for instance · furthermore","meta":"对话 · 92词 · 学术语域","kind":"对话","reg":"academic","china":true,"sentences":["A: Can I see your history notes? I missed yesterday's class.","B: Sure. We wrote about the old city wall.","A: Thanks. However, my notes from last week are messy.","B: Mine were messy too, until I used two columns.","A: Two columns? What do you mean?","B: Facts on the left, questions on the right.","A: A simple method. For instance, the date goes left.","B: Furthermore, compare both sides before a test.","A: So reviewing becomes a dialogue with yourself.","B: Right. In short, clear notes make clear thinking."],"questions":[{"type":"mc","q":"What subject are the notes for?","opts":["history","maths","English"],"answer":0},{"type":"fb","q":"Facts on the left, ______ on the right.","answer":"questions","accept":["questions"]},{"type":"tf","q":"The student missed yesterday's class.","answer":0},{"type":"mm","q":"Which statements are TRUE?","opts":["The notes are about an old city wall","One student uses two columns","The date goes on the right","Clear notes make clear thinking"],"answers":[0,1,3]}]}],"frames":[{"en":"___ , the new method is not perfect.","cn":"{0}，新方法并不完美。","slots":[{"label":"承认事实","opts":[["admittedly","诚然"],["of course","当然"],["clearly","显然"],["certainly","诚然"]]}],"tip":"这些词放句首、后用逗号，先承认一个事实，后半句再转折。"},{"en":"I like this book ___ it has many clear examples.","cn":"我喜欢这本书，{0}它有很多清楚的例子。","slots":[{"label":"原因连词","opts":[["because","因为"],["since","既然"],["as","由于"]]}],"tip":"because 最口语最稳；since/as 稍正式，一句话里别混用。"},{"en":"___ , many students review their notes before a test.","cn":"{0}，许多学生在考试前复习笔记。","slots":[{"label":"举例衔接","opts":[["for example","例如"],["for instance","比如"],["in other words","换句话说"]]}],"tip":"举例放句首引出具体情境；后面那句就是被支撑的观点。"},{"en":"The old plan was slow. ___ , the new one saves time.","cn":"老计划很慢。{0}，新计划省时间。","slots":[{"label":"对照衔接","opts":[["by contrast","相比之下"],["on the other hand","另一方面"],["in the same way","同样地"]]}],"tip":"两者对照用 by contrast / on the other hand；同向补充才用 in the same way。"},{"en":"She practises every day; ___ , her speaking improves quickly.","cn":"她每天练习；{0}，她的口语进步很快。","slots":[{"label":"因果衔接","opts":[["therefore","因此"],["as a result","结果"],["consequently","结果"]]}],"tip":"therefore / as a result 前可用分号或句号；一段里别连用三个。"}],"grammar":[{"pid":"linking","name":"衔接词入门（Linking Words）","desc":"because/so/therefore 表因果，for example/for instance 表举例；放句首加分号或逗号，句子立刻成篇。"},{"pid":"clause","name":"简单从句（One Subordinate Clause）","desc":"B1 起手式：主句 + 一个 because/when/if/although 从句；先写对，再写快。"},{"pid":"compare","name":"比较级与同级（Comparatives）","desc":"easier than / as clear as / more useful than；比较是 B1 论证最常用的起手式。"}],"thread":"Welcome to the Transition Station, where simple words learn to think together. We start with clear verbs like describe and explain, because every argument begins with a simple sentence. For example, 'I like this book because it has clear examples' already shows a reason. However, a reason is only half of an argument; we also need examples such as real stories from our own class. Therefore, this unit practises three small moves: state, explain, and prove. In short, A2 speaks, but B1 argues, and the ladder between them is built one link at a time.","article":{"title":"How to Study Better","paras":[[["Good students can describe their ideas in a clear way.","好学生能清楚地描述自己的想法。"],["They can also explain difficult topics to their friends.","他们也能向朋友解释难懂的话题。"],["It is important to compare two answers and see what is different.","比较两个答案并看看有什么不同，这很重要。"],["The two methods are similar, but one is faster.","这两种方法相似，但其中一种更快。"],["Scientists do research to understand a process.","科学家做研究来理解一个过程。"],["Many factors can cause a mistake in your homework.","许多因素可能导致作业出错。"]],[["Because of one small error, the result can change.","因为一个小错误，结果可能改变。"],["As a result, you should check your work again.","因此，你应该再检查一遍。"],["I suggest you use a notebook for new words.","我建议你用笔记本记新单词。"],["For example, write ten words every day.","例如，每天写十个单词。"],["For instance, a worksheet can help you practise.","比如，练习纸能帮你练习。"],["Some students like games; others like reading.","有些学生喜欢游戏，有些喜欢阅读。"],["Our plan includes speaking, writing and listening.","我们的计划包括说、写、听。"]],[["We compare ideas in groups, e.g. three people each.","我们分组比较想法，例如每组三人。"],["Practice plays an important role in your progress.","练习在你的进步中扮演重要角色。"],["Decide your goal, so you can improve step by step.","定下目标，这样你就能逐步提高。"],["It is common to make mistakes; therefore, do not be afraid.","犯错很常见，因此不要害怕。"],["Use clear words, such as short sentences.","使用清晰的词语，比如短句。"],["I study hard because I want to improve.","我学习努力，因为我想提高。"]]]},"artForms":["as a result","because of","different","difficult","important","therefore","worksheet","describe","instance","research","homework","notebook","practice","progress","explain","compare","suggest","improve","similar","because","example","such as","include","process","mistake","decide","common","factor","method","clear","cause","topic","like","e.g.","role","for","so"]};
+const STORE_KEY = "b1_unit"+DATA.unit+"_state_v4";
+const CHECK_KEY = "b1_checkin_dates_v4";  // 全局共享打卡 streak（跨单元）
+const ERR_KEY = "b1_unit"+DATA.unit+"_errors_v4";
+const BEASTS = [
+  {u:0,e:"🧭",n:"启程之灵",d:"胶水词·语料最高频30词"},
+  {u:1,e:"🎉",n:"欢乐之灵",d:"爱好·like+-ing·频率副词"},
+  {u:2,e:"🛍️",n:"精算之灵",d:"购物·现在进行时"},
+  {u:3,e:"🍜",n:"滋味之灵",d:"食物·可数不可数"},
+  {u:4,e:"👨‍👩‍👧",n:"牵挂之灵",d:"家人·所有格·was/were"},
+  {u:5,e:"🏠",n:"归属之灵",d:"家·过去时·-ed/-ing"},
+  {u:6,e:"🤝",n:"知己之灵",d:"朋友·过去时不规则"},
+  {u:7,e:"🛋️",n:"逍遥之灵",d:"建议·have to·should"},
+  {u:8,e:"🏀",n:"燃动之灵",d:"运动·过去进行时"},
+  {u:9,e:"🗿",n:"奇观之灵",d:"世界·比较级最高级"},
+  {u:10,e:"🏙️",n:"漫游之灵",d:"城镇·be going to"},
+  {u:11,e:"🦾",n:"进化之灵",d:"身体·will·条件句"},
+  {u:12,e:"✈️",n:"远行之灵",d:"旅行·现在完成时"},
+];
+
+let state = loadState();
+let checkins = loadCheckins();
+let errors = loadErrors();
+let curGroupLearn = 0, curGroupReview = 0;
+let shIdx = 0, shQueue = [], shAuto = false, shTimer = null;
+let rec = {mr:null, recording:false, url:null, stopBtn:null, stopLabel:null, containerEl:null};
+
+function loadState(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}} }
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function loadCheckins(){ try{return JSON.parse(localStorage.getItem(CHECK_KEY))||[]}catch(e){return[]} }
+function loadErrors(){ try{return JSON.parse(localStorage.getItem(ERR_KEY))||[]}catch(e){return[]} }
+function saveErrors(){ localStorage.setItem(ERR_KEY, JSON.stringify(errors)); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ---------- 语音（全局） ---------- */
+let voices=[], voice=null;
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const sel=document.getElementById('voiceSel');
+  const PREF=['en-GB','en-AU','en-IE','en-US'];
+  sel.innerHTML='';
+  voices = voices.slice().sort(function(a,b){function rank(v){if(/en-GB/i.test(v.lang||''))return (/Libby/i.test(v.name)?0:1);if(/en-AU/i.test(v.lang||''))return 2;if(/en-IE/i.test(v.lang||''))return 3;if(/en-US/i.test(v.lang||''))return 4;return 9;}return rank(a)-rank(b);});
+  let prefV=null;
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    const isGB=(v.lang||'').indexOf('en-GB')===0;
+    o.value=i; o.textContent=(isGB?'🇬🇧 ':'')+v.name+(v.localService?' · 离线':' · 在线');
+    sel.appendChild(o);
+    if((/en-GB/i.test(v.lang||'')&&/Libby/i.test(v.name)&&!prefV)){ prefV=v; o.selected=true; }if(!prefV){ for(const p of PREF){ if(v.lang===p){ prefV=v; o.selected=true; break; } } }
+  });
+  voice = prefV || voices[0] || null;
+  if(prefV){ sel.value = voices.indexOf(prefV); }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function getVoice(){ const i=document.getElementById('voiceSel').value; return voices[i]||null; }
+function rateVal(){ return parseFloat(document.getElementById('rate').value); }
+function speak(text, opt){
+  opt=opt||{};
+  if(!('speechSynthesis' in window)){ if(opt.onend)opt.onend(); return; }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const v=getVoice(); if(v)u.voice=v;
+  u.lang = (v && v.lang) || 'en-GB';   // 默认英式发音；用户若手动选了其他口音则尊重其选择
+  u.rate = rateVal()*(opt.slow?0.6:1); u.pitch=1; u.volume=1;
+  u.onend = opt.onend||function(){};
+  u.onerror = opt.onend||function(){};
+  speechSynthesis.speak(u);
+  if(speechSynthesis.paused) speechSynthesis.resume();
+}
+
+/* ---------- 工具 ---------- */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* 可发音词块：任何带 data-say 的元素点一下就朗读（全局事件委托，一次绑定全页生效）
+   suppressSay：作答的那一次点击只算「选择」，不当成「点词发音」，避免中文选英文时
+   点一下选项既答题又泄题听感 */
+let suppressSay=false;
+document.addEventListener('click', function(e){
+  const t=e.target.closest('[data-say]');
+  if(t && !suppressSay && !e.target.closest('[data-nsay]')){ e.preventDefault(); e.stopPropagation(); speak(t.getAttribute('data-say')); }
+});
+function sayChip(text, cls){ return '<span class="wchip '+(cls||'')+'" data-say="'+esc(text)+'">'+esc(text)+'<b>🔊</b></span>'; }
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function allWords(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w.word))); return a; }
+function allWordObjs(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w))); return a; }
+function masteredCount(){ return allWords().filter(w=>(state[w]||{}).mastered).length; }
+function shadowedCount(){ return allWords().filter(w=>(state[w]||{}).shadowed).length; }
+function updateProgress(){
+  const total=allWords().length;
+  const m=masteredCount();
+  const pct=Math.round(m/total*100);
+  document.getElementById('pctTop').textContent=pct+'%';
+  document.getElementById('barTop').style.width=pct+'%';
+  let stars = pct>=80?3:pct>=50?2:pct>=20?1:0;
+  document.getElementById('starTop').textContent = '★'.repeat(stars)+'☆'.repeat(3-stars);
+  document.getElementById('beastStreak').textContent=`已跟读 ${shadowedCount()}/${total} · 已掌握 ${m}/${total} · 错题 ${errors.length}`;
+}
+function flash(msg){ const t=document.createElement('div'); t.textContent=msg;
+  t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--gold);color:#1a1a1a;padding:8px 16px;border-radius:10px;font-weight:700;z-index:99';
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1400); }
+
+/* ---------- 统一录音（单句 & 对话共用） ---------- */
+function noteShadow(msg){ const n=document.getElementById('shBanner'); if(msg){ n.style.display='block'; n.textContent=msg; } else { n.style.display='none'; } }
+function startRec(text, container, stopBtn, stopLabel){
+  if(rec.recording && rec.stopBtn===stopBtn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音；现在可用「听原声」模式。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你的跟读录音，对比原声找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=stopBtn; rec.stopLabel=stopLabel||'● 开始录音';
+    rec.containerEl=container.parentElement; if(rec.containerEl) rec.containerEl.classList.add('recording');
+    stopBtn.textContent='■ 停止';
+    speak(text);
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可改用「听原声」模式。'); });
+}
+function stopRec(){
+  if(rec.recording && rec.mr){ rec.mr.stop(); rec.recording=false;
+    if(rec.stopBtn) rec.stopBtn.textContent = rec.stopLabel||'● 开始录音';
+    if(rec.containerEl) rec.containerEl.classList.remove('recording');
+    rec.stopBtn=null; rec.containerEl=null; }
+}
+/* 只录不放（用于"我来回应"——先看清/听问句，再录自己的回答） */
+function startRecRaw(text, container, btn){
+  if(rec.recording && rec.stopBtn===btn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你回应的录音，对比示范找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=btn; rec.stopLabel=btn.textContent;
+    rec.containerEl = btn.closest('.exchange')||container.parentElement;
+    if(rec.containerEl) rec.containerEl.classList.add('recording');
+    btn.textContent='■ 停止（说完点这）';
+    container.innerHTML='<div class="hint"><span class="rec-dot"></span> 请说出回应：'+esc(text)+'</div>';
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可先点「🔊 听示范回应」模仿。'); });
+}
+function addError(obj){
+  obj.time=Date.now(); obj.unit=DATA.unit;
+  errors.push(obj); saveErrors(); renderErrors(); updateProgress();
+}
+
+/* ---------- 渲染：学习 B ---------- */
+function renderLearn(){
+  const grpTabs=document.getElementById('grpLearn');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupLearn)b.className='on';
+    b.onclick=()=>{curGroupLearn=i; renderLearn();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridLearn'); grid.innerHTML='';
+  DATA.groups[curGroupLearn].words.forEach((w)=>{
+    const st=state[w.word]||{};
+    const card=document.createElement('div'); card.className='card'+(st.mastered?' done':'');
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span>${(w.awl&&w.awl!=='—')?`<span class="badge awl">AWL ${esc(w.awl)}</span>`:''}${(w.register&&w.register!=='—')?`<span class="badge reg">${esc(w.register)}</span>`:''}</div>
+      <div class="def"><span class="cnLearn">${esc(w.defB)}</span></div>
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}${w.usage?`<div class="usage">💡 ${esc(w.usage)}</div>`:''}
+      <div class="ex" data-ex="${esc(w.ex)}">${esc(w.ex)}<span class="cn cnLearn">${esc(w.exCn||'')}</span></div>
+      <div class="acts">
+        <button class="b-play" data-word="${esc(w.word)}">🔊 单词</button>
+        <button class="b-shadow" data-word="${esc(w.word)}">🎤 跟读打卡</button>
+        <button class="b-master ${st.mastered?'mastered':''}" data-word="${esc(w.word)}">${st.mastered?'✅ 已掌握':'☆ 掌握'}</button>
+        <button class="b-err" data-word="${esc(w.word)}">❌ 记一笔</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.ex').forEach(el=>{
+    el.onclick=()=>speak(el.getAttribute('data-ex'));
+    el.ondblclick=()=>speak(el.getAttribute('data-ex'),{slow:true});
+  });
+  grid.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-shadow').forEach(b=>b.onclick=()=>goShadowWord(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-master').forEach(b=>b.onclick=()=>toggleMaster(b.getAttribute('data-word'),b));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'词卡标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 渲染：复习 C（渐进式） ---------- */
+function renderReview(){
+  const grpTabs=document.getElementById('grpReview');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupReview)b.className='on';
+    b.onclick=()=>{curGroupReview=i; renderReview();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridReview'); grid.innerHTML='';
+  const hide=document.getElementById('tgHideCn').dataset.hide==='1';
+  DATA.groups[curGroupReview].words.forEach(w=>{
+    const card=document.createElement('div'); card.className='card';
+    let sensesHtml='';
+    w.senses.forEach((s,i)=>{
+      const hidden = i>0 ? ' hiddenSense' : '';
+      const synAnt = (s.syn&&s.syn!=='—'?'近义 '+esc(s.syn)+' ':'') + (s.ant&&s.ant!=='—'?'反义 '+esc(s.ant):'');
+      const ex = s.ex||''; const exCn = s.exCn||'';
+      sensesHtml += `
+      <div class="sense${hidden}">
+        <div class="defline">${esc(s.def)}
+          <button class="spk" data-text="${esc(w.word)}">🔊</button>
+          ${synAnt?`<span style="color:var(--sub);font-size:12px">（${synAnt}）</span>`:''}
+        </div>
+        <button class="morebtn act-ex">💡 看例句</button>
+        <div class="exbox" data-ex="${esc(ex)}">${esc(ex)}<span class="cn">${esc(exCn)}</span>
+          ${ex?`<button class="morebtn act-shadow" data-text="${esc(ex)}">🎤 跟读这句</button>`:''}
+        </div>
+      </div>`;
+    });
+    const moreBtn = w.senses.length>1 ? `<button class="morebtn act-more">更多 ▾（还有 ${w.senses.length-1} 个义项）</button>` : '';
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span>${(w.awl&&w.awl!=='—')?`<span class="badge awl">AWL ${esc(w.awl)}</span>`:''}${(w.register&&w.register!=='—')?`<span class="badge reg">${esc(w.register)}</span>`:''}</div>
+      ${sensesHtml}
+      ${moreBtn}
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}${w.usage?`<div class="usage">💡 ${esc(w.usage)}</div>`:''}
+      <button class="morebtn b-err" data-word="${esc(w.word)}">❌ 记一笔（没记住）</button>`;
+    grid.appendChild(card);
+  });
+  if(hide){ grid.querySelectorAll('.cn').forEach(e=>e.style.display='none'); }
+  grid.querySelectorAll('.act-ex').forEach(b=>b.onclick=()=>{
+    const box=b.parentElement.querySelector('.exbox');
+    const open = box.style.display==='block';
+    box.style.display = open?'none':'block';
+    b.textContent = open?'💡 看例句':'🔼 收起例句';
+    if(!open){ const ex=box.getAttribute('data-ex'); if(ex) speak(ex); }
+  });
+  grid.querySelectorAll('.act-more').forEach(b=>b.onclick=()=>{
+    const card=b.closest('.card');
+    const next=card.querySelector('.sense.hiddenSense');
+    if(next){ next.classList.remove('hiddenSense');
+      const exb=next.querySelector('.exbox'); if(exb.getAttribute('data-ex')) speak(exb.getAttribute('data-ex'));
+    }
+    if(!card.querySelector('.sense.hiddenSense')) b.style.display='none';
+  });
+  grid.querySelectorAll('.spk').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  grid.querySelectorAll('.act-shadow').forEach(b=>b.onclick=()=>goShadowText(b.getAttribute('data-text')));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'复习标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 神兽/图鉴 ---------- */
+function renderCodex(){
+  const grid=document.getElementById('codexGrid'); grid.innerHTML='';
+  BEASTS.forEach(b=>{
+    const box=document.createElement('div');
+    const active = b.u===DATA.unit;
+    box.className='cbox'+(active?'':' lock');
+    let stars=0;
+    if(active){ const pct=Math.round(masteredCount()/allWords().length*100); stars=pct>=80?3:pct>=50?2:pct>=20?1:0; }
+    box.innerHTML=`<div class="e">${b.e}</div><div class="n">${b.n}</div>
+      <div class="s">${active?'★'.repeat(stars)+'☆'.repeat(3-stars):'🔒 未解锁'}</div>
+      <div style="color:var(--sub);font-size:12px;margin-top:4px">${b.d}</div>`;
+    grid.appendChild(box);
+  });
+}
+
+/* ---------- 交互 ---------- */
+function toggleMaster(w, btn){
+  if(!state[w]) state[w]={};
+  state[w].mastered=!state[w].mastered;
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  saveState();
+  btn.classList.toggle('mastered', state[w].mastered);
+  btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
+  updateProgress(); renderCodex();
+}
+function checkIn(w){
+  const d=today();
+  if(!state[w]) state[w]={};
+  state[w].shadowed=d;
+  saveState();
+  if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
+  updateProgress(); renderCodex();
+}
+function switchSub(which){
+  document.querySelectorAll('.subtab').forEach(x=>x.classList.toggle('on', x.dataset.sh===which));
+  document.getElementById('shDialog').style.display = which==='dialog'?'block':'none';
+  document.getElementById('shSingle').style.display = which==='single'?'block':'none';
+}
+function goShadowWord(word){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.word===word);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到「'+word+'」'); }
+}
+function goShadowText(text){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.en===text);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到该句'); }
+}
+function goReviewWord(word){
+  document.querySelector('nav button[data-tab="review"]').click();
+  DATA.groups.forEach((g,i)=>{ if(g.words.some(w=>w.word===word)){ curGroupReview=i; renderReview(); flash('🔁 已定位复习：'+word); } });
+}
+
+/* ---------- 跟读队列（含复习例句） + 单句跟读 ---------- */
+function buildQueue(){
+  shQueue=[]; const seen=new Set();
+  DATA.groups.forEach(g=>g.words.forEach(w=>{
+    if(w.ex && !seen.has(w.ex)){ seen.add(w.ex); shQueue.push({en:w.ex,cn:w.exCn,word:w.word}); }
+    (w.senses||[]).forEach(s=>{ if(s.ex && !seen.has(s.ex)){ seen.add(s.ex); shQueue.push({en:s.ex,cn:s.exCn,word:w.word}); } });
+  }));
+}
+function renderShadowCurrent(){
+  const it=shQueue[shIdx]; if(!it)return;
+  document.getElementById('shProg').textContent='第 '+(shIdx+1)+' / '+shQueue.length+' 句 · 👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这块会出现回放音轨，和原声对比。';
+  document.getElementById('shNow').textContent=(shIdx+1)+'/'+shQueue.length+'  '+it.en;
+  document.getElementById('shNowCn').textContent=it.cn||'';
+}
+function shPlay(){ const it=shQueue[shIdx]; if(it) speak(it.en); }
+function shGo(dir){ shIdx=(shIdx+dir+shQueue.length)%shQueue.length; renderShadowCurrent(); }
+function shCheck(){
+  const it=shQueue[shIdx]; if(!it)return;
+  checkIn(it.word); flash('🎤 已跟读打卡：'+it.word);
+}
+function shAutoPlay(){
+  if(!shQueue.length)return;
+  const it=shQueue[shIdx];
+  const gap=parseInt(document.getElementById('shGap').value,10);
+  speak(it.en,{onend:()=>{
+    if(gap>0){ shTimer=setTimeout(()=>{ if(shAuto){ shIdx=(shIdx+1)%shQueue.length; renderShadowCurrent(); shAutoPlay(); } }, gap); }
+  }});
+}
+function initShadow(){
+  buildQueue(); if(shIdx>=shQueue.length) shIdx=0; renderShadowCurrent();
+  document.getElementById('shPlay').onclick=shPlay;
+  document.getElementById('shNext').onclick=()=>shGo(1);
+  document.getElementById('shPrev').onclick=()=>shGo(-1);
+  document.getElementById('shRec').onclick=function(){
+    if(rec.recording && rec.stopBtn===this){ stopRec(); }
+    else { startRec(shQueue[shIdx].en, document.getElementById('shRecBox'), this); }
+  };
+  document.getElementById('shStop').onclick=stopRec;
+  document.getElementById('shCheck').onclick=shCheck;
+  document.getElementById('shAuto').onclick=function(){ shAuto=!shAuto; this.textContent=shAuto?'⏹ 停止连播':'🔁 自动连播'; if(shAuto)shAutoPlay(); else {clearTimeout(shTimer); speechSynthesis.cancel();} };
+}
+
+/* ---------- 对话跟读（call-response 结构） ---------- */
+function renderDialogues(){
+  const list=document.getElementById('shDialog'); list.innerHTML='';
+  DATA.dialogues.forEach(d=>{
+    const box=document.createElement('div'); box.className='player';
+    let html='';
+    const turns = d.turns ? d.turns : (Array.isArray(d.lines) ? d.lines.map(function(t){ return {role:t[0], en:t[1], cn:(t[2]||'')}; }) : []);
+    let i=0;
+    while(i<turns.length){
+      const t=turns[i];
+      if(t.role==='A' && i+1<turns.length && turns[i+1].role==='B'){
+        const q=t, r=turns[i+1];
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-A">A</span>
+            <div class="qa-text">${esc(q.en)}<span class="cn">${esc(q.cn)}</span></div>
+            <button class="b-play" data-text="${esc(q.en)}">🔊 听问句</button>
+          </div>
+          <div class="resp">
+            <div class="resp-label">👉 你要回应的句子（B）：先听示范，再录你自己的</div>
+            <div class="qa-text">${esc(r.en)}<span class="cn">${esc(r.cn)}</span></div>
+            <div class="resp-acts">
+              <button class="b-play" data-text="${esc(r.en)}">🔊 听示范回应</button>
+              <button class="b-drill" data-text="${esc(r.en)}">🎤 我来回应</button>
+            </div>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=2;
+      } else {
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-${t.role}">${t.role}</span>
+            <div class="qa-text">${esc(t.en)}<span class="cn">${esc(t.cn)}</span></div>
+            <button class="b-play" data-text="${esc(t.en)}">🔊 原声</button>
+            <button class="b-turn-rec" data-text="${esc(t.en)}">🎤 跟读</button>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=1;
+      }
+    }
+    box.innerHTML=`<div class="now" style="font-size:16px">💬 ${esc(d.title)}</div>
+      <div class="nowcn" style="margin-bottom:10px">蓝字＝A 的问句（点「🔊 听问句」）；黄框＝<b>你要回应的句子，始终显示</b>，先点「🔊 听示范回应」模仿，再点「🎤 我来回应」录下你自己的回答。回放对比原声。</div>${html}`;
+    list.appendChild(box);
+  });
+  list.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  list.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); }
+    else { startRec(b.getAttribute('data-text'), container, b); }
+  });
+  list.querySelectorAll('.b-drill').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    startRecRaw(b.getAttribute('data-text'), container, b);
+  });
+}
+let rdIdx = 0;
+function frBuild(f, sel){
+  const parts = f.en.split('___');
+  let s = parts[0];
+  for(let i=0;i<(f.slots||[]).length;i++){
+    const idx = sel[i]||0;
+    const opt = f.slots[i].opts[idx];
+    s += (opt?opt[0]:'___') + (parts[i+1]||'');
+  }
+  return s.replace(/\s+([.,!?])/g,'$1').trim();
+}
+function frCn(f, sel){
+  let s = f.cn||'';
+  for(let i=0;i<(f.slots||[]).length;i++){
+    const opt = f.slots[i].opts[sel[i]||0];
+    const val = opt&&opt[1] ? opt[1] : '';
+    s = s.split('{'+i+'}').join(val);
+    s = s.replace('……', val || '……', 1);
+  }
+  return s;
+}
+function renderFrames(){
+  const box = document.getElementById('frWrap');
+  const fs = DATA.frames || [];
+  if(!fs.length){ box.innerHTML='<div class="hint">本单元暂无句模。</div>'; return; }
+  const thread = DATA.thread || '';
+  box.innerHTML = ''
+   + '<div class="tip">🧩 <b>句模 = 把散装单词拼成自己句子的模具</b>。下拉框里换一个词，整句立刻变成你的话；每个句模本身就是一个可以随时套用的回答公式。'
+   + '<br><b>它和「学习」tab 里的单词是同一批</b>：句模的每个选项都来自本单元词卡。同一个词，从词卡 → 句模 → 对话 → 阅读，只是换了场合出现，从不零散。</div>'
+   + '<div class="ladder" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0 14px;font-size:12px">'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>① 词卡</b><br><span style="color:var(--sub)">「学习」里学</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>② 短语</b><br><span style="color:var(--sub)">词卡自带</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--gold2);border:1px solid var(--gold);border-radius:10px;padding:7px 10px"><b>③ 句模</b><br><span style="color:var(--ink)">本页·下拉造句</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>④ 对话</b><br><span style="color:var(--sub)">「跟读」里用</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>⑤ 阅读听力</b><br><span style="color:var(--sub)">「阅读」里读懂</span></div>'
+   + '</div>'
+   + (thread ? '<div style="background:var(--panel2);border:1px dashed var(--gold2);border-radius:12px;padding:12px 14px;margin-bottom:14px"><div style="color:var(--gold);font-weight:700;font-size:13px;margin-bottom:6px">🧵 本单元词汇串烧 · 先看这些词怎么串成一段话</div>'
+        + '<div style="line-height:1.9">'+esc(thread)+'</div>'
+        + '<div style="color:var(--sub);font-size:11px;margin-top:6px">这就是「单词 → 句子」一体化的样子：散装词，被时间和场景串成了一条线。</div></div>' : '')
+   + '<div class="fr-grid"></div>';
+  const g = box.querySelector('.fr-grid');
+  fs.forEach((f,fi)=>{
+    const sel = (f.slots||[]).map(()=>0);
+    const d = document.createElement('div'); d.className='fr-card';
+    d.innerHTML = '<div class="fr-cn-head">' + esc(f.en) + '</div>'
+      + '<div class="fr-slots"></div>'
+      + '<div class="fr-sent"></div>'
+      + '<div class="fr-cn"></div>'
+      + '<div class="fr-acts">'
+      +   '<button class="p">🔊 朗读整句</button>'
+      +   '<button class="ghost fr-rec">🎤 我来念</button>'
+      +   '<button class="ghost fr-reset">↺ 换回第一个</button>'
+      + '</div>'
+      + '<div class="fr-tip">💡 ' + esc(f.tip||'') + '</div>'
+      + '<div class="rec-slot"></div>';
+    const sd = d.querySelector('.fr-slots');
+    (f.slots||[]).forEach((sl,i)=>{
+      const wrap = document.createElement('label'); wrap.className='fr-slot';
+      wrap.innerHTML = '<span>' + esc(sl.label) + '</span>';
+      const s = document.createElement('select');
+      sl.opts.forEach((o,oi)=>{
+        const op=document.createElement('option'); op.value=oi;
+        op.textContent = o[0] + (o[1] ? '（' + o[1] + '）' : '');
+        s.appendChild(op);
+      });
+      wrap.appendChild(s); sd.appendChild(wrap);
+    });
+    const upd = ()=>{
+      const cur = [...d.querySelectorAll('select')].map(s=>+s.value);
+      d.querySelector('.fr-sent').textContent = frBuild(f, cur);
+      d.querySelector('.fr-cn').textContent = frCn(f, cur);
+    };
+    d.querySelectorAll('select').forEach(s=>s.onchange=upd);
+    d.querySelector('.fr-reset').onclick=()=>{ d.querySelectorAll('select').forEach(s=>s.value=0); upd(); };
+    d.querySelector('.p').onclick=()=>speak(d.querySelector('.fr-sent').textContent);
+    d.querySelector('.fr-rec').onclick=()=>frRec(d, f);
+    upd();
+    g.appendChild(d);
+  });
+}
+function frRec(card, f){
+  const slot = card.querySelector('.rec-slot');
+  if(!slot) return;
+  const txt = card.querySelector('.fr-sent').textContent;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 双击文件打开时无法录音，请用本地服务地址打开本页。</div>'; return;
+  }
+  if(slot.dataset.on==='1'){ slot.innerHTML=''; slot.dataset.on='0'; return; }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const chunks=[]; const mr=new MediaRecorder(stream);
+    mr.ondataavailable=e=>chunks.push(e.data);
+    mr.onstop=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      const url=URL.createObjectURL(new Blob(chunks,{type:'audio/webm'}));
+      slot.innerHTML='<div class="hint">🎧 你的：<audio src="'+url+'" controls></audio></div>';
+    };
+    mr.start();
+    slot.dataset.on='1';
+    slot.innerHTML='<div class="hint" style="color:var(--gold)">● 正在录……念：<b>'+esc(txt)+'</b>（再点一次停止）</div>';
+    card._mr=mr;
+  }).catch(()=>{ slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 浏览器拒绝了麦克风权限。</div>'; });
+}
+
+/* ---------- 阅读/听力小题：支持 mc 单选 / mm 多选 / fb 填空 ---------- */
+function normAns(s){ return (s==null?'':String(s)).toLowerCase().trim().replace(/[.,!?;:'"()]/g,'').replace(/\s+/g,' '); }
+function renderQ(d, q, qi, tag){
+  d.className='q'; d.dataset.answered='';
+  d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)
+    +(q.type==='mm'?' <span style="color:var(--gold);font-size:12px">（多选：选出所有正确项）</span>':'')
+    +(q.type==='fb'?' <span style="color:var(--gold);font-size:12px">（填空：用文中原词作答）</span>':'')
+    +(q.type==='tf'?' <span style="color:var(--gold);font-size:12px">（判断：选 True / False / Not Given）</span>':'')
+    +'</div><div class="q-opts"></div><div class="q-fb"></div>';
+  const optsBox=d.querySelector('.q-opts'), fbBox=d.querySelector('.q-fb');
+  const good=function(std,student){ d.dataset.answered='1'; fbBox.innerHTML='<span style="color:var(--green)">✅ 正确</span>'; };
+  const bad=function(std,student){ d.dataset.answered='1';
+    fbBox.innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(std)+'</span>';
+    addError({word:q.q, type:tag, original:(tag==='阅读'?'阅读':'听力')+'小题', standard:std, student:student||''}); };
+  if(q.type==='fb'){
+    const inp=document.createElement('input'); inp.className='q-input'; inp.placeholder=q.hint||'输入答案…';
+    const btn=document.createElement('button'); btn.className='q-opt'; btn.textContent='检查';
+    btn.onclick=function(){
+      if(d.dataset.answered) return;
+      const acc=(q.accept||[]).concat([q.answer]).map(normAns);
+      if(acc.indexOf(normAns(inp.value))>=0){ good(); } else { bad(q.answer, inp.value); }
+    };
+    inp.onkeydown=function(e){ if(e.key==='Enter') btn.click(); };
+    optsBox.appendChild(inp); optsBox.appendChild(btn);
+  } else if(q.type==='mm'){
+    const sel=[]; const ans=(q.answers||[]).map(Number);
+    q.opts.forEach(function(o,oi){
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=function(){ if(d.dataset.answered) return;
+        if(sel.indexOf(oi)>=0){ sel.splice(sel.indexOf(oi),1); b.classList.remove('sel'); }
+        else { sel.push(oi); b.classList.add('sel'); } };
+      optsBox.appendChild(b);
+    });
+    const btn=document.createElement('button'); btn.className='q-opt'; btn.textContent='检查（多选）';
+    btn.onclick=function(){
+      if(d.dataset.answered) return;
+      const std=q.opts.filter(function(o,oi){ return ans.indexOf(oi)>=0; }).join('；');
+      const stu=q.opts.filter(function(o,oi){ return sel.indexOf(oi)>=0; }).join('；');
+      const ok=ans.length===sel.length && ans.every(function(x){ return sel.indexOf(x)>=0; });
+      if(ok){ good(); q.opts.forEach(function(o,oi){ if(ans.indexOf(oi)>=0) optsBox.children[oi].classList.add('good'); }); }
+      else { bad(std, stu); q.opts.forEach(function(o,oi){ optsBox.children[oi].classList.add(ans.indexOf(oi)>=0?'good':'bad'); }); }
+    };
+    optsBox.appendChild(btn);
+  } else if(q.type==='tf'){
+    const opts = (q.opts && q.opts.length) ? q.opts : ['True','False','Not Given'];
+    const ans = Number(q.answer);
+    opts.forEach(function(o,oi){
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=function(){
+        if(d.dataset.answered) return;
+        if(oi===ans){ b.classList.add('good'); good(); }
+        else { b.classList.add('bad'); bad(opts[ans], o); }
+      };
+      optsBox.appendChild(b);
+    });
+  } else {
+    q.opts.forEach(function(o,oi){
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=function(){
+        if(d.dataset.answered) return;
+        if(oi===Number(q.answer)){ b.classList.add('good'); good(); }
+        else { b.classList.add('bad'); bad(q.opts[Number(q.answer)], o); }
+      };
+      optsBox.appendChild(b);
+    });
+  }
+}
+
+function renderReading(){
+  const list = DATA.reading;
+  const ptabs = document.getElementById('rdPassages'); ptabs.innerHTML='';
+  list.forEach((rd,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(rd.title)+(rd.genre?' <span style="font-size:11px;color:var(--sub)">['+esc(rd.genre)+']</span>':'')+(rd.china?' 🇨🇳':'');
+    if(i===rdIdx) b.className='on';
+    b.onclick=()=>{ rdIdx=i; renderReading(); };
+    ptabs.appendChild(b);
+  });
+  document.getElementById('rdHint').textContent=list.length+' 篇受控短文：读 → 听（TTS）→ 跟读 → 做小题，一文多吃。词汇 / 短语 / 句式在不同情境重复出现，形成螺旋。🇨🇳 ＝中国主题篇。';
+  renderReadingContent();
+}
+function renderReadingContent(){
+  const rd=DATA.reading[rdIdx];
+  const rdb=document.getElementById('rdBanner');
+  rdb.style.display='block';
+  rdb.innerHTML='📖 <b>'+esc(rd.title)+'</b>'+(rd.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +(rd.genre?' <span style="background:#22325f;color:#cfe0ff;font-size:11px;padding:1px 7px;border-radius:9px">'+esc(rd.genre)+'</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(rd.focus||'')+'</span> · <span style="color:var(--sub);font-size:12px">'+esc(rd.meta||'')+'</span>';
+  const txt=document.getElementById('rdText');
+  txt.innerHTML='<div class="rd-tip">点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。先读一遍，再点「🔊 听整篇」做听力，最后做下面小题。</div>'
+    +'<div class="rd-playall"><button class="b-play" id="rdPlayAll">🔊 听整篇</button></div>'
+    +'<div class="rd-sents"></div>';
+  const sents=txt.querySelector('.rd-sents');
+  rd.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    sents.appendChild(d);
+  });
+  txt.querySelector('#rdPlayAll').onclick=()=>{ speakSeq(rd.sentences, 600); };
+  sents.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  sents.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  sents.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const qz=document.getElementById('rdQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 理解小题（答错自动进错题本）</div>';
+  rd.questions.forEach((q,qi)=>{
+    const d=document.createElement('div');
+    renderQ(d, q, qi, '阅读');
+    qz.appendChild(d);
+  });
+}
+
+/* ---------- 听力子模式：盲听 → 答题 → 看文本 ---------- */
+let lsIdx = 0, lsRevealed = false;
+function renderListening(){
+  const list = DATA.listening || [];
+  const ptabs = document.getElementById('lsPassages'); ptabs.innerHTML='';
+  list.forEach((ls,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(ls.title)+(ls.kind?' <span style="font-size:11px;color:var(--sub)">['+esc(ls.kind)+(ls.reg?('·'+(ls.reg==='academic'?'学术':'日常')):'')+']</span>':'')+(ls.china?' 🇨🇳':'');
+    if(i===lsIdx) b.className='on';
+    b.onclick=()=>{ lsIdx=i; renderListening(); };
+    ptabs.appendChild(b);
+  });
+  renderListeningContent();
+}
+function renderListeningContent(){
+  const ls=(DATA.listening||[])[lsIdx]; if(!ls) return;
+  const lsb=document.getElementById('lsBanner');
+  lsb.style.display='block';
+  lsb.innerHTML='🎧 <b>'+esc(ls.title)+'</b>'+(ls.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +(ls.kind?' <span style="background:#22325f;color:#cfe0ff;font-size:11px;padding:1px 7px;border-radius:9px">'+esc(ls.kind)+(ls.reg?('·'+(ls.reg==='academic'?'学术':'日常')):'')+'</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(ls.focus||'')+'</span>'
+    +' · <span style="color:var(--sub);font-size:12px">'+esc(ls.meta||'')+'</span>';
+  const box=document.getElementById('lsSents'); box.innerHTML=''; lsRevealed=false;
+  ls.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en ls-masked" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    box.appendChild(d);
+  });
+  box.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  box.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  box.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  document.getElementById('lsPlayAll').onclick=()=>speakSeq(ls.sentences,600);
+  document.getElementById('lsReplay').onclick=()=>speakSeq(ls.sentences,600);
+  const revealBtn=document.getElementById('lsReveal');
+  revealBtn.textContent='👀 看文本';
+  revealBtn.onclick=()=>{
+    lsRevealed=!lsRevealed;
+    box.querySelectorAll('.rd-en').forEach(e=>e.classList.toggle('ls-masked', !lsRevealed));
+    revealBtn.textContent = lsRevealed ? '🙈 收起文本' : '👀 看文本';
+  };
+  const qz=document.getElementById('lsQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 听力小题（答错自动进错题本）</div>';
+  ls.questions.forEach((q,qi)=>{
+    const d=document.createElement('div');
+    renderQ(d, q, qi, '听力');
+    qz.appendChild(d);
+  });
+}
+function switchRd(which){
+  document.querySelectorAll('[data-rd]').forEach(x=>x.classList.toggle('on', x.dataset.rd===which));
+  document.getElementById('rdReadWrap').style.display = which==='read' ? '' : 'none';
+  document.getElementById('rdListenWrap').style.display = which==='listen' ? '' : 'none';
+  if(which==='listen') renderListening();
+}
+
+/* 依次朗读一组词：文章连读 / 跟读连播共用（TTS 不能直接念音标，故按词逐个读） */
+function speakSeq(words, gap, onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const arr=(words||[]).filter(Boolean);
+  let i=0;
+  (function next(){
+    if(i>=arr.length){ if(onDone)onDone(); return; }
+    const w=arr[i++];
+    speak(w, {onend:()=>setTimeout(next, gap||550)});
+  })();
+}
+
+/* ---------- 小测 ---------- */
+let quizQueue=[], quizIdx=0, quizScore=0, quizTotal=0, quizDone=false;
+function cnOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.defB)).slice(0,3);
+  return shuffle([{label:w.defB,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function enOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.word)).slice(0,3);
+  return shuffle([{label:w.word,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function buildQuiz(){
+  const words=shuffle(allWordObjs());
+  quizQueue=[];
+  words.forEach(w=>{
+    const r=Math.random();
+    if(r<0.30){ const opts=cnOpts(w); quizQueue.push({kind:'listen',word:w.word,cn:w.defB,opts}); }
+    else if(r<0.60){ const opts=cnOpts(w); quizQueue.push({kind:'en2cn',word:w.word,cn:w.defB,opts}); }
+    else { const opts=enOpts(w); quizQueue.push({kind:'cn2en',word:w.word,cn:w.defB,opts}); }
+  });
+  quizIdx=0; quizScore=0; quizTotal=quizQueue.length; quizDone=false; renderQuiz();
+}
+function renderQuiz(){
+  const box=document.getElementById('quizBox');
+  if(quizDone){ box.innerHTML=`<div class="player"><div class="now">🎉 本轮完成！</div>
+    <div class="nowcn">答对 ${quizScore} / ${quizTotal}。答错的已自动记入「🩹 错题」，去错题本重练。</div>
+    <div class="ctr"><button id="quizAgain">🔁 再来一轮</button></div></div>`;
+    document.getElementById('quizAgain').onclick=buildQuiz; return; }
+  const q=quizQueue[quizIdx];
+  /* 三种题面都把「英文」做成可点发音块：
+     listen — 不直接露词，只有播放钮
+     en2cn — 题干英文可点（听音不影响作答，帮助记发音）
+     cn2en — 选完后英文选项立刻变成可点发音块；作答前点选项＝选择，不发音 */
+  let promptHtml='';
+  if(q.kind==='listen') promptHtml=`<div class="quiz-prompt">🔊 听发音，选出中文意思
+      <button class="b-play" id="qPlay">▶ 播放</button>
+      <button class="ghost" id="qPeek">👀 看单词</button></div>`;
+  else if(q.kind==='en2cn') promptHtml=`<div class="quiz-prompt">${sayChip(q.word,'big')}
+      <span class="tag">点单词听发音</span><div style="color:var(--sub);font-size:13px">选出中文意思</div></div>`;
+  else promptHtml=`<div class="quiz-prompt"><span class="big">「${esc(q.cn)}」</span>
+      <div style="color:var(--sub);font-size:13px">对应的英文是？<span class="tag">选完后点选项可再听发音</span></div></div>`;
+  let opts='';
+  q.opts.forEach((o,i)=>{ opts+=`<button class="q-opt" data-i="${i}">${esc(o.label)}</button>`; });
+  box.innerHTML=`<div class="player"><div class="now">📝 小测 ${quizIdx+1}/${quizTotal}</div>${promptHtml}
+    <div class="q-prog"><div class="bar"><i style="width:${Math.round(quizIdx/quizTotal*100)}%"></i></div></div>
+    <div class="q-opts">${opts}</div><div class="q-fb" id="qFb"></div>
+    <div class="ctr"><button id="qNext" class="ghost">⏭ 下一题</button></div></div>`;
+  if(q.kind==='listen'){
+    document.getElementById('qPlay').onclick=()=>speak(q.word);
+    document.getElementById('qPeek').onclick=()=>{ speak(q.word); flash('🔊 单词是：'+q.word); };
+    setTimeout(()=>speak(q.word),250);
+  }
+  if(q.kind==='en2cn') setTimeout(()=>speak(q.word),250);   // 题干可点，也可自动听一次
+  /* 作答后：把正确英文自动读一遍 + 给所有英文选项装上发音块（连排多次，强化记忆） */
+  function afterAnswer(){
+    const fb=document.getElementById('qFb');
+    const tail=' <span style="font-weight:600;color:var(--sub)">点单词再听：</span>';
+    if(q.kind==='cn2en') fb.innerHTML += tail+sayChip(q.word)+' '+sayChip(q.word);
+    else fb.innerHTML += tail+sayChip(q.word);
+    box.querySelectorAll('.q-opt').forEach((bb,j)=>{
+      const lab=q.opts[j].label;
+      if(/^[A-Za-z' -]+$/.test(lab)){ bb.setAttribute('data-say',lab); bb.insertAdjacentHTML('beforeend','<span style="font-size:11px;color:var(--gold)"> 🔊</span>'); }
+    });
+    setTimeout(()=>speak(q.word), 260);
+  }
+  let answered=false;
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    suppressSay=true;                       // 本次点击只算作答，不触发词块发音
+    setTimeout(()=>{ suppressSay=false; },0);
+    const o=q.opts[+b.dataset.i];
+    if(o.ok){ quizScore++; b.classList.add('ok'); document.getElementById('qFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('qFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：</span>'+sayChip(q.word);
+      addError({word:q.word,type:'小测',original:'小测题',standard:q.word,student:o.label});
+      box.querySelectorAll('.q-opt').forEach((bb,j)=>{ if(q.opts[j].ok) bb.classList.add('ok'); }); }
+    afterAnswer();
+    document.getElementById('qNext').onclick=()=>{ quizIdx++; if(quizIdx>=quizTotal){quizDone=true;} renderQuiz(); };
+  });
+}
+
+/* ---------- 错题池 ---------- */
+function renderErrors(){
+  const box=document.getElementById('errList');
+  if(!errors.length){ box.innerHTML='<div class="hint">还没有错题。小测答错、或在词卡/复习点「❌ 记一笔」会自动收集到这里，按类型聚合，方便专项重练。</div>'; return; }
+  const byType={};
+  errors.forEach((e,i)=>{ (byType[e.type]=byType[e.type]||[]).push({...e,idx:i}); });
+  const labels={词汇:'📘 词汇没记住',小测:'📝 小测答错'};
+  let html='';
+  for(const t in byType){
+    html+=`<div class="err-type">${labels[t]||t}（${byType[t].length}）</div>`;
+    byType[t].forEach(e=>{
+      html+=`<div class="err-item"><div class="err-meta"><b>${esc(e.word)}</b> · ${new Date(e.time).toLocaleDateString()} ${new Date(e.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</div>
+        <div class="err-line">标准：<span style="color:var(--green)">${esc(e.standard)}</span></div>
+        ${e.student&&e.student!==e.standard?`<div class="err-line">你的：<span style="color:var(--red)">${esc(e.student)}</span></div>`:''}
+        <div class="err-btns"><button class="morebtn" data-w="${esc(e.word)}">🔁 重练</button><button class="err-del" data-i="${e.idx}">🗑 删除</button></div></div>`;
+    });
+  }
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>goReviewWord(b.dataset.w));
+  box.querySelectorAll('.err-del').forEach(b=>b.onclick=()=>{ errors.splice(+b.dataset.i,1); saveErrors(); renderErrors(); updateProgress(); });
+}
+
+/* ---------- 本单元语法：跳到语法练习的具体知识点 ---------- */
+const GRAM_PAGE = "语法练习_A1-A2-B1-B2.html";
+const GRAM_KEY  = "a1_gram_done_v1";
+function loadGram(){ try{return JSON.parse(localStorage.getItem(GRAM_KEY))||{}}catch(e){return{}} }
+function saveGram(g){ localStorage.setItem(GRAM_KEY, JSON.stringify(g)); }
+/* 只记一笔「点过」，真正的跳转交给 <a href target=_blank> —— 避免 window.open 与新标签重复开两次 */
+function markGrammar(pid){
+  var g=loadGram();
+  var u=DATA.unit;
+  g[u]=g[u]||[]; if(g[u].indexOf(pid)<0){ g[u].push(pid); saveGram(g); }
+  setTimeout(renderGrammar,60);
+}
+function renderGrammar(){
+  var list=(DATA.grammar||[]), box=document.getElementById('gramList'), head=document.getElementById('gramHead');
+  var all=document.getElementById('gramAll');
+  if(all) all.href=GRAM_PAGE;
+  if(!head||!box) return;
+  var done=(loadGram()[DATA.unit]||[]);
+  head.innerHTML='Unit '+DATA.unit+' 学 <b>'+list.length+' 个语法点</b>。'
+    + '跟读是「听进来」，语法是「写出来」—— 本单元的句子会用到这些点，'
+    + '点一下就跳到语法练习里对应的那一关（已完成 '+done.length+' / '+list.length+'）。';
+  if(!list.length){
+    box.innerHTML='<div class="hint">本单元还没配语法点。</div>'; return;
+  }
+  box.innerHTML=list.map(function(it,i){
+    var pid = (typeof it==='string')? it : it.pid;
+    var nm  = (typeof it==='string')? it : (it.name||it.pid);
+    var ds  = (typeof it==='string')? '' : (it.desc||'');
+    var ok=done.indexOf(pid)>=0;
+    return '<div class="gcard">'
+      + '<div class="gi">'+(ok?'✅':'✍️')+'</div>'
+      + '<div class="gname">'+esc(nm)+'</div>'
+      + '<div class="gdesc">'+esc(ds||'')+'<br><span style="opacity:.6">pid: '+esc(pid)+'</span></div>'
+      + (ok?'<div class="gdone">已练过</div>':'')
+      + '<a class="ggo" href="'+GRAM_PAGE+'?p='+encodeURIComponent(pid)+'&u='+DATA.unit+'"'
+      +   ' target="_blank" rel="noopener" onclick="markGrammar(\'' + pid + '\')">去练这一点 →</a>'
+      + '</div>';
+  }).join('');
+}
+
+/* ---------- 单元文章：把本单元生词织进一个语境 ---------- */
+function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
+function artHL(text){
+  const fs = DATA.artForms || [];
+  const out = esc(text);
+  if(!fs.length) return out;
+  try{
+    const re = new RegExp('(?<![a-zA-Z])(' + fs.map(f=>f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|') + ')(?![a-zA-Z])','gi');
+    return out.replace(re,'<span class="art-hl">$1</span>');
+  }catch(e){ return out; }
+}
+function renderArticle(){
+  const a=DATA.article;
+  const body=document.getElementById('artBody');
+  const banner=document.getElementById('artBanner');
+  if(!a || !a.paras || !a.paras.length){
+    banner.style.display='none';
+    body.innerHTML='<div class="hint">本单元暂无文章。</div>';
+    return;
+  }
+  const total=a.paras.reduce((s,p)=>s+p.length,0);
+  const hlEl=document.getElementById('tgArtHL');
+  const hl=!hlEl || hlEl.dataset.hide!=='1';
+  let nArt=0, nAll=0;
+  (DATA.groups||[]).forEach(g=>g.words.forEach(w=>{ nAll++; if(w.inArt) nArt++; }));
+  banner.style.display='block';
+  banner.innerHTML='📰 <b>'+esc(a.title)+'</b> · <span style="font-weight:700;font-size:12px">'+total+' 句</span> · <span style="font-size:12px">本单元生词全部织进这篇短文</span>';
+  body.innerHTML='';
+  let gi=0; const all=[];
+  a.paras.forEach(para=>{
+    const pd=document.createElement('div'); pd.className='art-para';
+    para.forEach(s=>{
+      gi++; all.push(s[0]);
+      const d=document.createElement('div'); d.className='art-sent';
+      d.innerHTML='<span class="art-idx">'+gi+'</span>'
+        +'<span class="art-en" data-text="'+escAttr(s[0])+'">'+(hl?artHL(s[0]):esc(s[0]))+'</span>'
+        +'<button class="b-play" data-text="'+escAttr(s[0])+'">🔊</button>'
+        +'<button class="b-turn-rec" data-text="'+escAttr(s[0])+'">🎤</button>'
+        +'<div class="turn-rec"></div>'
+        +'<div class="art-zh cnArt">'+esc(s[1]||'')+'</div>';
+      pd.appendChild(d);
+    });
+    body.appendChild(pd);
+  });
+  body.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  body.querySelectorAll('.art-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),{slow:true}));
+  body.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.art-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const pa=document.getElementById('artPlayAll');
+  if(pa) pa.onclick=()=>{ speakSeq(all, 600); };
+}
+
+/* ---------- tab 切换 ---------- */
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.tab).classList.add('on');
+    if(b.dataset.tab==='shadow') initShadow();
+    if(b.dataset.tab==='codex') renderCodex();
+    if(b.dataset.tab==='review') renderReview();
+    if(b.dataset.tab==='quiz') buildQuiz();
+    if(b.dataset.tab==='errors') renderErrors();
+    if(b.dataset.tab==='reading') renderReading();
+    if(b.dataset.tab==='article') renderArticle();
+    if(b.dataset.tab==='frames') renderFrames();
+    if(b.dataset.tab==='grammar') renderGrammar();
+  };
+});
+document.querySelectorAll('.subtab').forEach(b=>b.onclick=()=>switchSub(b.dataset.sh));
+document.querySelectorAll('[data-rd]').forEach(b=>b.onclick=()=>switchRd(b.dataset.rd));
+(function(){
+  const r=(DATA.reading||[]).length, l=(DATA.listening||[]).length;
+  const rb=document.querySelector('[data-rd="read"]'), lb=document.querySelector('[data-rd="listen"]');
+  if(rb) rb.innerHTML='📖 阅读 '+r+' 篇';
+  if(lb){ if(!l){ lb.style.display='none'; } else lb.innerHTML='🎧 听力 '+l+' 篇'; }
+})();
+document.getElementById('tgCnLearn').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnLearn').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgHideCn').onclick=function(){
+  const hide=this.dataset.hide!=='1'; this.dataset.hide=hide?'1':'';
+  this.textContent=hide?'👁 显示中文':'🙈 隐藏中文'; renderReview();
+};
+document.getElementById('tgCnArt').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnArt').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgArtHL').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  renderArticle();
+};
+document.getElementById('rate').oninput=function(){ document.getElementById('rateVal').textContent=this.value+'×'; };
+document.getElementById('voiceSel').onchange=function(){ voice=getVoice(); };
+
+/* ---------- 初始化 ---------- */
+document.getElementById('subtitle').textContent='Unit '+DATA.unit+' · '+DATA.title+' — '+DATA.subtitle;
+function beastBadge(beast, emoji, size){
+  size=size||78; var uid='bb'+Math.random().toString(36).slice(2,7);
+  var ticks='';
+  for(var i=0;i<12;i++){
+    var a=i*30*Math.PI/180, major=(i%3===0);
+    var r1=48, r2=major?40:44;
+    ticks+='<line x1="'+(60+r1*Math.cos(a)).toFixed(1)+'" y1="'+(60+r1*Math.sin(a)).toFixed(1)+'" x2="'+(60+r2*Math.cos(a)).toFixed(1)+'" y2="'+(60+r2*Math.sin(a)).toFixed(1)+'" stroke="#f5c542" stroke-width="'+(major?1.7:0.8)+'" opacity="'+(major?0.95:0.5)+'"/>';
+  }
+  return '<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" role="img" aria-label="'+beast+'" style="display:block">'
+   +'<defs>'
+   +'<radialGradient id="disc'+uid+'" cx="50%" cy="34%" r="74%"><stop offset="0" stop-color="#3a3550"/><stop offset="0.5" stop-color="#201d30"/><stop offset="1" stop-color="#0e0c16"/></radialGradient>'
+   +'<linearGradient id="ring'+uid+'" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#ffeeb8"/><stop offset="0.45" stop-color="#f5c542"/><stop offset="1" stop-color="#9c7115"/></linearGradient>'
+   +'<radialGradient id="halo'+uid+'" cx="50%" cy="46%" r="50%"><stop offset="0" stop-color="#f5c542" stop-opacity="0.30"/><stop offset="1" stop-color="#f5c542" stop-opacity="0"/></radialGradient>'
+   +'</defs>'
+   +'<circle cx="60" cy="60" r="58" fill="none" stroke="url(#ring'+uid+')" stroke-width="1" opacity="0.30"/>'
+   +'<circle cx="60" cy="60" r="52" fill="url(#disc'+uid+')"/>'
+   +'<circle cx="60" cy="60" r="52" fill="none" stroke="url(#ring'+uid+')" stroke-width="3"/>'
+   +'<circle cx="60" cy="60" r="45.5" fill="none" stroke="#f5c542" stroke-width="0.7" opacity="0.30"/>'
+   + ticks
+   +'<circle cx="60" cy="60" r="41" fill="url(#halo'+uid+')"/>'
+   +'<text x="60" y="64" font-size="44" text-anchor="middle" dominant-baseline="central">'+emoji+'</text>'
+   +'<text x="60" y="101" font-size="11" text-anchor="middle" fill="#f5c542" font-weight="700" letter-spacing="1.5">'+beast+'</text>'
+   +'<circle cx="60" cy="9" r="2.6" fill="#e05a4f"/>'
+   +'</svg>';
+}
+document.getElementById('beastName').textContent=(DATA.beast_name||'英语跟读')+'（Unit '+DATA.unit+' '+DATA.title+'）';
+document.getElementById('beastEmoji').innerHTML=beastBadge(DATA.beast_name||'英语跟读', DATA.beast_emoji||'🐾', 78);
+document.getElementById('beastDesc').textContent=DATA.subtitle;
+buildQueue(); renderDialogues();
+renderLearn(); renderReview(); updateProgress(); renderCodex();
+</script>
+</body>
+</html>

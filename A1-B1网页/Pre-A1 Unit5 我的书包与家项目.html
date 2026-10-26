@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 5 项目 · 我的书包与我的家</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.proj({
+  n: 5,
+  emo: '🎒',
+  beast: '收纳精灵',
+  en: 'My Bag & My Family',
+  cn: '我的书包与我的家',
+  make: '做一本两页的小书 —— 第一页「我的书包」画出文具并标注英文，第二页「我的家」画出家人并一人一句。' +
+        '这是 Pre-A1 起步线的结业作品：做完它，就可以上 A1 启程线了。',
+  tip: '这本小书把起步线<b>全部五个单元用上了</b>：字母（拼写）、数字（There are four people）、' +
+       '颜色（a blue ruler）、身体（指着自己说）、以及本单元的 This is my… 和 I have a…。<b>做的时候回头翻翻前面几页，忘了就点回去听一遍。</b>',
+  steps: [
+    '拿两张 A4 纸（或者一张对折成两页）：第一页写 <b>My Bag</b>，第二页写 <b>My Family</b>。',
+    '第一页<b>画一个打开的书包</b>，里面画出 5–8 样文具，每样旁边写英文：<b>a book</b> ／ <b>a pen</b> ／ <b>a pencil</b> ／ <b>a ruler</b> ／ <b>an eraser</b> ／ <b>a crayon</b> ／ <b>a notebook</b>。',
+    '第一页底部写一句：<b>What is in my bag? — Two books and a pencil.</b>（按你书包里真实的东西改。）',
+    '第二页<b>画你的家人</b>（火柴人就行），每个人下面写一句：<b>This is my mum.</b> ／ <b>This is my dad.</b> ／ <b>This is my sister.</b>…',
+    '第二页底部写：<b>There are ___ people in my family. I love my family.</b>（有几口人就填几。）',
+    '装订起来，封面写 <b>My Book — by ___</b>。<b>拿着它从头念到尾</b> —— 念完这一本，Pre-A1 起步线就走完了，可以进 <b>A1 启程线</b>。'
+  ],
+  scaffold: {
+    lines: [
+      {en:'This is my bag.', cn:'这是我的书包。'},
+      {en:'I have a book, a pen and a ruler.', cn:'我有一本书、一支钢笔和一把尺子。'},
+      {en:'What is in my bag? — Two books and a pencil.', cn:'我的书包里有什么？——两本书和一支铅笔。'},
+      {en:'This is my mum.', cn:'这是我的妈妈。'},
+      {en:'I have a brother.', cn:'我有一个兄弟。'},
+      {en:'There are four people in my family.', cn:'我家有四口人。'},
+      {en:'I love my family.', cn:'我爱我的家人。'}
+    ],
+    words: ['bag','book','pen','pencil','ruler','eraser','crayon','notebook','ball','doll','car','kite','teddy bear','mum','dad','brother','sister','grandma','grandpa','family','my','this','have','love','people','there are']
+  },
+  demo: [
+    {t:'第 1 页 · 标题', en:'MY BAG — by Tom', cn:'我的书包 —— Tom'},
+    {t:'第 1 页 · 标注', en:'a book 📕　a pen 🖊️　a pencil ✏️　a ruler 📏　an eraser', cn:'一本书、一支钢笔、一支铅笔、一把尺子、一块橡皮'},
+    {t:'第 1 页 · 底部', en:'What is in my bag? — Two books and a pencil.', cn:'我的书包里有什么？——两本书和一支铅笔。'},
+    {t:'第 2 页 · 家人', en:'This is my mum. This is my dad. This is my sister.', cn:'这是我的妈妈。这是我的爸爸。这是我的姐妹。'},
+    {t:'第 2 页 · 底部', en:'There are four people in my family. I love my family.', cn:'我家有四口人。我爱我的家人。'}
+  ],
+  checks: [
+    '第一页画了书包，标注了至少 5 样文具的英文',
+    '第二页画了家人，每个人都写了一句 This is my…',
+    '两页底部各写了一句总结的话',
+    '注意了 a / an 的区别（a book，an eraser）',
+    '封面有书名和我的名字',
+    '我能拿着小书从头念到尾'
+  ],
+  ph: '把你两页小书的英文写在这里（文具清单 + 家人介绍 + 总结句）……写完点保存。',
+  unitFile: 'Pre-A1 Unit5 英语跟读.html',
+  prev: 'Pre-A1 Unit4 身体翻翻书项目.html',
+  next: 'A1 主页.html'
+});
+</script>
+</body>
+</html>

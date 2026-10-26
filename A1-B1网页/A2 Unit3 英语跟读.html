@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A2 英语跟读 · Unit 3 Food for life</title>
+<style>
+  :root{
+    --bg:#0f1424; --panel:#171d33; --panel2:#1f2742; --ink:#eef2ff; --sub:#9aa6c7;
+    --gold:#f5c542; --gold2:#caa12f; --red:#ff5a5f; --green:#5bd6a0; --line:#2a3358;
+    --chip:#243056;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);color:var(--ink);min-height:100vh}
+  header{padding:14px 20px 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{font-size:26px}
+  .title{font-weight:800;font-size:20px}
+  .title small{color:var(--sub);font-weight:500;font-size:13px;display:block;margin-top:2px}
+  .grow{flex:1}
+  .prog{display:flex;align-items:center;gap:8px}
+  .homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);color:var(--gold);
+           border:1px solid var(--gold2);border-radius:20px;padding:7px 14px;font-size:12.5px;
+           font-weight:700;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .homebtn:hover{background:var(--gold);color:#1a1a1a;border-color:var(--gold)}
+  .lvlsw{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+  .lvlsw .lv{font-size:11px;padding:5px 10px;border-radius:14px;background:var(--chip);color:var(--sub);
+           border:1px solid var(--line);text-decoration:none;font-weight:600;white-space:nowrap;transition:.12s}
+  .lvlsw .lv:hover{border-color:var(--gold2);color:var(--gold)}
+  .lvlsw .lv.cur{background:var(--gold);color:#1a1a1a;border-color:var(--gold);font-weight:800}
+  .phxlink{display:inline-block;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+           padding:6px 13px;border-radius:20px;font-size:12.5px;text-decoration:none;font-weight:600}
+  .phxlink:hover{background:var(--gold);color:#1a1a1a}
+  .stars{font-size:20px;letter-spacing:2px}
+  .bar{height:8px;width:160px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .globalbar{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+    background:rgba(15,20,36,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+    padding:8px 20px;margin-bottom:6px}
+  .globalbar label{font-size:13px;color:var(--sub);display:flex;gap:6px;align-items:center}
+  .globalbar select,.globalbar input{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+  .globalbar .recnote{margin-left:auto;font-size:12px;color:var(--gold)}
+  nav{display:flex;gap:8px;padding:6px 20px 0;flex-wrap:wrap}
+  nav button{background:var(--panel);color:var(--sub);border:1px solid var(--line);
+    padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;cursor:pointer;font-weight:600}
+  nav button.on{background:var(--panel2);color:var(--ink);border-bottom:2px solid var(--gold)}
+  nav a.navgram{display:inline-flex;align-items:center;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;font-weight:700;text-decoration:none;margin-left:auto}
+  main{padding:16px 20px 60px;max-width:1100px;margin:0 auto}
+  .tab{display:none}
+  .tab.on{display:block}
+  .beast{background:linear-gradient(135deg,#1b2b4d,#20294a);border:1px solid var(--line);
+    border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin-bottom:16px}
+  .beast .emoji{font-size:54px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+  .beast h2{margin:0 0 4px;font-size:18px}
+  .beast p{margin:2px 0;color:var(--sub);font-size:13px}
+  .grp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+  .grp-tabs button{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .grp-tabs button.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.2s}
+  .card.done{border-color:var(--green)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .w{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .ipa{color:var(--sub);font-size:13px;font-style:italic}
+  .badges{display:flex;gap:6px;margin:6px 0}
+  .badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--chip);color:var(--sub)}
+  .badge.pos{background:#2b3a6b;color:#bcd0ff}
+  .badge.band{background:#3a2f12;color:var(--gold)}
+  .def{font-size:14px;margin:4px 0;line-height:1.5}
+  .phrase{font-size:13px;color:var(--gold);margin:4px 0}
+  .ex{font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px;margin:6px 0;cursor:pointer}
+  .ex .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .ex .cn.hide{display:none}
+  .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .acts button{flex:1;border:none;border-radius:9px;padding:8px;font-size:13px;cursor:pointer;font-weight:600;min-width:60px}
+  .b-play{background:var(--chip);color:var(--ink)}
+  .b-shadow{background:var(--gold);color:#1a1a1a}
+  .b-master{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
+  .b-master.mastered{background:var(--green);color:#06281c}
+  .b-err{color:var(--gold);border:1px solid var(--gold2);flex:none;min-width:0;padding:8px 10px}
+  .mini{display:inline-flex;gap:4px;align-items:center}
+  .spk{background:none;border:none;color:var(--gold);font-size:18px;cursor:pointer;padding:0 4px}
+  .toggle{cursor:pointer;color:var(--gold)}
+  .sense{border-left:3px solid var(--line);padding:4px 0 4px 10px;margin:6px 0}
+  .sense.hiddenSense{display:none}
+  .defline{font-size:14px;line-height:1.5;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .exbox{display:none;margin-top:6px;font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px}
+  .exbox .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:12px;cursor:pointer;margin-top:6px;font-weight:600}
+  .player{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .player .now{font-size:18px;font-weight:700;margin-bottom:6px}
+  .player .nowcn{color:var(--sub);font-size:14px;margin-bottom:12px}
+  /* 跟读提示条：英文 + 中文译文同一横行，一眼看完 */
+  .nowrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:11px 14px;border:1px solid var(--gold2);border-radius:10px;background:rgba(245,197,66,.06);margin-bottom:12px}
+  .nowrow .now,.nowrow .nowcn{margin-bottom:0}
+  .nowrow .now{font-size:18px;font-weight:700}
+  .nowrow .nowcn{font-size:14px;color:var(--sub)}
+  .recbox{min-height:8px;margin:10px 0}
+  .recbox audio{width:100%}
+  .rec-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .ctr{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ctr button{background:var(--gold);color:#1a1a1a;border:none;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .ctr .ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .ctr button.recording{background:var(--red);color:#fff}
+  .coll{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .cbox .e{font-size:38px}
+  .cbox .n{font-weight:700;margin:6px 0 2px}
+  .cbox .s{color:var(--gold);font-size:14px;letter-spacing:1px}
+  .cbox.lock{opacity:.45;filter:grayscale(1)}
+  .hint{color:var(--sub);font-size:12px;margin-top:10px;line-height:1.6;width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word}
+  .streak{color:var(--gold);font-weight:700}
+  .banner{background:#2a1f12;border:1px solid var(--gold2);color:var(--gold);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:12px;display:none}
+  .subtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .subtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .turn{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}
+  .turn.recording{border-color:var(--red)}
+  .turn .role{font-weight:800;font-size:13px;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;flex:none}
+  .role-A{background:#2b3a6b;color:#bcd0ff}
+  .role-B{background:#3a2f12;color:var(--gold)}
+  .turn-text{flex:1;font-size:15px}
+  .turn-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  .turn-acts{display:flex;gap:6px;flex:none}
+  .turn-acts button{border:none;border-radius:8px;padding:7px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .turn-acts .b-play{background:var(--chip);color:var(--ink)}
+  .turn-acts .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  /* 录音提示/回放整行横向铺满，绝不被 flex 压成竖条 */
+  .turn-rec{display:block;width:100%;min-width:0;margin-top:8px;clear:both}
+  .turn-rec audio{width:100%}
+  .turn-rec .hint{white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.6;margin-top:0}
+  .exchange{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:10px;background:var(--panel2)}
+  .qa{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .qa-text{flex:1;min-width:170px;font-size:15px}
+  /* 中文译文与英文同行，形成横向长条，便于一次性扫读 */
+  .qa-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  /* 回应行：标签 + 句子 + 按钮全部同一横行 */
+  .resp{margin-top:8px;padding:8px 10px;border-left:3px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 8px 8px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .resp-label{font-size:12px;color:var(--gold);font-weight:700;flex:none}
+  .resp .qa-text{flex:1;min-width:180px}
+  .resp-acts{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .resp-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .resp-acts .b-play{background:var(--chip);color:var(--ink)}
+  .resp-acts .b-drill{background:var(--gold);color:#1a1a1a}
+  .q-opt.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  /* 阅读·听力 */
+  .rd-tip{color:var(--sub);font-size:12px;margin-bottom:8px}
+  .rd-playall{margin-bottom:10px}
+  .rd-sents{display:flex;flex-direction:column;gap:8px}
+  .rd-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .rd-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .rd-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .rd-sent .b-play,.rd-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .rd-sent .b-play{background:var(--chip);color:var(--ink)}
+  .rd-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .rd-qtitle{font-weight:700;margin:16px 0 8px;color:var(--gold)}
+  .rdtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .rdtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .rd-en.ls-masked{color:transparent;background:var(--panel2);border-radius:6px;user-select:none}
+  .listen-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .ls-tip{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:10px}
+  .ghostbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .ghostbtn:hover{border-color:var(--gold)}
+  .q{margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .q-q{font-size:14px;margin-bottom:6px}
+  .q-opts{display:flex;gap:8px;flex-wrap:wrap}
+  .q-opt{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);cursor:pointer;font-size:13px}
+  .q-fb{margin-top:6px;font-size:13px}
+  /* 拼读 */
+  /* 元音手掌握图 */
+  .hand-wrap{display:flex;gap:18px;flex-wrap:wrap;align-items:stretch;margin-bottom:6px}
+  .hand-palm{flex:1;min-width:280px;background:var(--panel);border:1px solid var(--gold2);border-radius:14px;padding:14px}
+  .hand-title{font-weight:800;color:var(--gold);font-size:14px;margin-bottom:4px}
+  .hand-hint{font-size:12px;color:var(--sub);line-height:1.6;margin-bottom:10px}
+  .hand-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0;border-top:1px dashed var(--line)}
+  .hand-row:first-of-type{border-top:none}
+  .finger{flex:1;min-width:52px;text-align:center;background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 4px;cursor:pointer;transition:transform .1s}
+  .finger:hover{transform:translateY(-2px);border-color:var(--gold2)}
+  .finger .fpos{font-size:10px;color:var(--sub)}
+  .finger .fipa{font-size:17px;font-weight:800;color:var(--gold);margin:2px 0}
+  .finger .fsay{font-size:11px;color:var(--ink)}
+  .palm-vowels{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pv{flex:1;min-width:56px;text-align:center;background:rgba(245,197,66,.08);border:1px solid var(--gold2);border-radius:10px;padding:8px 4px;cursor:pointer}
+  .pv:hover{transform:translateY(-2px)}
+  .pv .pipa{font-size:17px;font-weight:800;color:var(--gold)}
+  .pv .psay{font-size:11px;color:var(--sub)}
+  .hand-words{font-size:12px;color:var(--ink);margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .hand-words .cn{color:var(--sub);font-size:11px}
+  .hand-words b{color:var(--gold);font-weight:700}
+  .phx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+  .phx-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .phx-card .ps{font-size:26px;font-weight:800;color:var(--gold)}
+  .phx-card .pn{font-size:14px;font-weight:700;margin:4px 0}
+  .phx-card .ptip{font-size:12px;color:var(--sub);margin:6px 0 8px;line-height:1.5}
+  .phx-words{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  /* 例词做成独立可点击块：学生一眼看出「每个词都能单独点」 */
+  .phx-words span,.hand-words span{display:inline-block;background:var(--chip);border:1px solid var(--line);
+    border-radius:8px;padding:5px 12px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;
+    transition:transform .1s,border-color .15s,background .15s}
+  .phx-words span:hover,.hand-words span:hover{border-color:var(--gold);background:rgba(245,197,66,.12);color:var(--gold)}
+  .phx-words span:active,.hand-words span:active{transform:scale(.94)}
+  .phx-phrase{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(245,197,66,.07);
+    border:1px solid var(--gold2);border-radius:10px;padding:9px 11px;margin:2px 0 8px}
+  .phx-phrase .pl{font-size:11px;color:var(--gold);font-weight:700;flex:none}
+  .phx-phrase .pe{font-size:15px;font-weight:600;flex:1;min-width:150px}
+  .phx-phrase .pc{font-size:12px;color:var(--sub);flex-basis:100%}
+  .phx-tip{color:var(--sub);font-size:12px;line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:9px 12px;margin:0 0 12px}
+  .phx-tip b{color:var(--ink)}
+  /* ---------- 情绪语调卡（intonation）：把「音调走向」画出来 ---------- */
+  .itn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .itn{border:1px solid var(--line);border-radius:12px;padding:13px;background:var(--panel);
+    display:flex;flex-direction:column;gap:8px}
+  .itn-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .itn-arrow{font-size:26px;font-weight:700;line-height:1;min-width:44px;text-align:center;
+    background:var(--panel2);border:1px solid var(--gold2);border-radius:10px;padding:6px 8px;color:var(--gold)}
+  .itn-w{font-size:19px;font-weight:700}
+  .itn-ipa{font-size:13px;color:var(--sub)}
+  .itn-tone{font-size:11px;color:var(--gold);font-weight:700;background:rgba(245,197,66,.12);
+    border-radius:20px;padding:3px 10px}
+  /* 音高曲线：把 ↗ / → / ↘ 画成折线，孩子一眼看懂"往上走/往下掉" */
+  .itn-pitch{width:100%;height:56px;display:block}
+  .itn-pitch .base{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+  .itn-pitch .path{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .itn-pitch .dot{fill:var(--gold)}
+  .itn-sent{font-size:15px;font-weight:600;line-height:1.5}
+  .itn-sentcn{font-size:12px;color:var(--sub)}
+  .itn-tip{font-size:12px;color:var(--sub);line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:8px 10px}
+  .itn-acts{display:flex;gap:8px;flex-wrap:wrap}
+  .itn-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .itn-acts .b-real{background:var(--green);color:#06281c}
+  .itn-acts .b-rec{background:var(--gold);color:#1a1a1a}
+  .rec-slot{margin-top:8px}
+  .rec-slot audio{width:100%;height:36px}
+  .itnp-side .itn-acts button{padding:5px 9px;font-size:11px}
+  .itn-q{border:1px dashed var(--gold2);border-radius:8px;padding:6px 10px;font-size:12px;color:var(--sub)}
+  .itn-q b{color:var(--gold);font-weight:600}
+  /* 同句异调对照 */
+  .itnp{border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:12px;background:var(--panel)}
+  .itnp-vs{display:grid;grid-template-columns:1fr 44px 1fr;gap:10px;align-items:center}
+  .itnp-side{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel2)}
+  .itnp-side .lbl{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:5px}
+  .itnp-side .itn-pitch{height:40px;margin-bottom:6px}
+  .itnp-side .en{font-size:14px;font-weight:600;line-height:1.5}
+  .itnp-side .cn{font-size:11px;color:var(--sub);margin-bottom:6px}
+  .itnp-mid{text-align:center;font-size:11px;color:var(--sub);font-weight:700}
+  .itnp-q{font-size:13px;font-weight:600;margin-top:10px}
+  .itnp-a{font-size:12px;color:var(--sub);line-height:1.7;margin-top:6px;padding:9px 11px;
+    background:rgba(245,197,66,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0}
+  .itnp-a.hide{filter:blur(4px);cursor:pointer;user-select:none}
+  /* 反义情绪对 */
+  .apo{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:10px;background:var(--panel2)}
+  .apo-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .apo-w{font-size:16px;font-weight:700;padding:3px 10px;border-radius:8px;background:var(--chip)}
+  .apo-vs{color:var(--gold);font-weight:700;font-size:13px}
+  .apo-cn{font-size:12px;color:var(--sub)}
+  .pair{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--panel)}
+  .pair .pt{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .pair .pc{flex:1;min-width:140px}
+  .pair .pc .pw{font-size:18px;font-weight:800}
+  .pair .pc .pi{color:var(--sub);font-size:13px;font-style:italic}
+  .pair-acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .pair-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .pair-acts .b-play{background:var(--chip);color:var(--ink)}
+  .pair-acts .b-ok{background:var(--green);color:#06281c}
+  .pair-acts .b-bad{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+  .pair .ptip{font-size:12px;color:var(--gold);margin-top:6px}
+  .quiz-prompt{font-size:16px;margin:6px 0 10px}
+  .quiz-prompt .big{font-size:24px;font-weight:800}
+  .quiz-prompt .tag{display:inline-block;margin-left:8px;font-size:11px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:1px 8px;vertical-align:middle}
+  /* 可点发音的词块：全局统一靠 data-say 绑定 */
+  .wchip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--gold);border-radius:9px;padding:3px 10px;font-weight:800;cursor:pointer;color:var(--ink)}
+  .wchip b{font-size:12px;color:var(--gold);font-weight:700}
+  .wchip:hover{background:var(--chip)}
+  .wchip.big{font-size:24px;padding:6px 14px}
+  .wchip.big b{font-size:15px}
+  /* 预学词：来自后面单元，本单元只练发音不记意思 */
+  [data-pre="1"]{border-style:dashed;border-color:var(--sub);opacity:.95}
+  .pre-tag{font-size:10px;color:var(--sub);font-weight:700;border:1px solid var(--line);border-radius:5px;padding:0 4px;margin-left:2px}
+  .q-prog{height:8px;width:100%;background:var(--panel2);border-radius:6px;overflow:hidden;margin:8px 0}
+  .q-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .q-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:10px 0}
+  .q-opt{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;cursor:pointer;font-weight:600}
+  .q-opt:hover{border-color:var(--gold)}
+  .q-opt.ok{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-opt.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fb{font-size:14px;font-weight:700;min-height:20px;margin:8px 0}
+  .err-type{font-weight:800;color:var(--gold);margin:14px 0 8px;font-size:15px}
+  .err-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+  .err-meta{font-size:13px;color:var(--sub);margin-bottom:4px}
+  .err-line{font-size:14px;margin:2px 0}
+  .err-btns{display:flex;gap:8px;margin-top:8px}
+  .err-btns button{border:none;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .err-btns .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line)}
+  .err-btns .err-del{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+
+  /* ---- 本单元语法 tab（联动语法练习页） ---- */
+  .gramwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:4px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+         display:flex;flex-direction:column;gap:7px;transition:.15s}
+  .gcard:hover{border-color:var(--gold2);transform:translateY(-2px)}
+  .gcard .gi{font-size:22px;line-height:1}
+  .gcard .gname{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4}
+  .gcard .gdesc{font-size:12px;color:var(--sub);line-height:1.6}
+  .gcard .ggo{margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+              background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+              border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:700;
+              text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .gcard .ggo:hover{background:var(--gold);color:#1a1a1a}
+  .gcard .gdone{font-size:11px;color:var(--green)}
+  .gramhead{color:var(--sub);font-size:12.5px;line-height:1.75;margin-bottom:12px}
+  .gramhead b{color:var(--gold)}
+  .gramfoot{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+  .fr-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:14px}
+  .fr-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .fr-cn-head{font-size:13px;color:var(--sub);font-family:var(--mono);margin-bottom:10px}
+  .fr-slots{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .fr-slot{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--sub)}
+  .fr-slot select{min-width:130px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);
+                  background:var(--bg);color:var(--fg);font-size:13px}
+  .fr-sent{font-size:19px;line-height:1.5;color:var(--gold);font-weight:500;margin-bottom:6px}
+  .fr-cn{font-size:13px;color:var(--sub);margin-bottom:10px}
+  .fr-acts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .fr-tip{font-size:12px;color:var(--sub);line-height:1.65;border-top:1px dashed var(--line);padding-top:8px}
+
+  /* ---------- 单元文章 ---------- */
+  .art-para{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .art-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .art-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .art-en{flex:1;min-width:160px;font-size:15px;cursor:pointer;line-height:1.65}
+  .art-sent .b-play,.art-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .art-sent .b-play{background:var(--chip);color:var(--ink)}
+  .art-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .art-zh{width:100%;color:var(--sub);font-size:13px;line-height:1.6}
+  .art-hl{color:var(--gold);font-weight:700;border-bottom:1px dashed var(--gold2)}
+  .artmark{font-size:12px;margin-left:6px;opacity:.95}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🐉</div>
+  <div class="title">英语跟读学院 · A2
+    <small id="subtitle"></small>
+  </div>
+  <nav class="lvlsw" title="切换学习级别"><a class="lv hub" href="index.html" title="返回四级总站">🏛️ 总站</a><a class="lv" href="A1 启程线/index.html">🌱 A1</a><a class="lv cur" href="A2 主页.html">📗 A2</a><a class="lv" href="B1 主页.html">🌉 B1</a><a class="lv" href="B2 主页.html">🎓 B2</a></nav>
+  <a class="homebtn" href="A2 主页.html" title="返回 A2 日常线主页 A2 学习网络主页">🏠 回主页</a>
+  <div class="grow"></div>
+  <div class="prog">
+    <span class="stars" id="starTop">☆☆☆</span>
+    <div class="bar"><i id="barTop"></i></div>
+    <span id="pctTop" style="color:var(--sub);font-size:13px">0%</span>
+  </div>
+</header>
+<div class="globalbar">
+  <label>🇬🇧 音色(英式优先) <select id="voiceSel"><option>默认(英式)</option></select></label>
+  <label>语速 <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.95"> <span id="rateVal">0.95×</span></label>
+  <span class="recnote" id="recNote"></span>
+</div>
+<nav>
+  <button data-tab="learn">📘 学习 B</button>
+  <button data-tab="frames">🧩 句模</button>
+  <button data-tab="review">🔁 复习 C</button>
+  <button data-tab="shadow">🎤 跟读·对话</button>
+  <button data-tab="reading">📖 阅读·听力</button>
+  <button data-tab="article" class="on">📰 单元文章</button>
+  <button data-tab="grammar">✍️ 本单元语法</button>
+  <button data-tab="phonics">🅰️ 拼读</button>
+  <button data-tab="quiz">📝 小测</button>
+  <button data-tab="errors">🩹 错题</button>
+  <button data-tab="codex">📜 图鉴</button>
+  <a class="navgram" href="语法练习_A1-A2-B1-B2.html" target="_blank" title="语法练习 A1→B2：U0/U1 一般现在时在「一般现在时」三组；like+doing 在「动词搭配」；频率副词在「副词」">🧩 语法 ↗</a>
+</nav>
+<main>
+  <!-- 句模：词 → 句 -->
+  <section class="tab" id="frames">
+    <div class="beast" style="padding:14px 18px">
+      <div class="emoji">🧩</div>
+      <div>
+        <h2>句模工坊 · 把词拼成自己的话</h2>
+        <p>词表是零件，句模是模具。换一个词、句子就变成你的 —— 先从这里张嘴，再回去记词。</p>
+      </div>
+    </div>
+    <div id="frWrap"></div>
+  </section>
+  <!-- 学习 B -->
+  <section class="tab" id="learn">
+    <div class="beast">
+      <div class="emoji" id="beastEmoji"></div>
+      <div>
+        <h2 id="beastName"></h2>
+        <p id="beastDesc"></p>
+        <p>打卡进度：<span class="streak" id="beastStreak"></span></p>
+      </div>
+    </div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnLearn">👁 开</span></label>
+    </div>
+    <div class="grp-tabs" id="grpLearn"></div>
+    <div class="grid" id="gridLearn"></div>
+    <div class="hint">双击例句可慢速（0.6×）跟读；点 🔊 听单词。卡片「🎤 跟读打卡」跳到单句跟读页并定位该词，「❌ 记一笔」把没记住的收进错题本。</div>
+  </section>
+
+  <!-- 复习 C -->
+  <section class="tab" id="review">
+    <div class="banner" id="revBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">自测模式 <span class="toggle" id="tgHideCn">🙈 隐藏中文</span></label>
+      <span style="color:var(--sub);font-size:12px">一词义一例句，点「看例句」展开；多义词点「更多 ▾」继续；每句可 🎤 跟读。</span>
+    </div>
+    <div class="grp-tabs" id="grpReview"></div>
+    <div class="grid" id="gridReview"></div>
+    <div class="hint">C 版释义已加厚：含【词性】+ 近义/反义 + 更完整场景。自测时隐藏中文，看英文回想起全部信息即过关。例句下的 🎤 跟读会跳到单句跟读页并定位该句。</div>
+  </section>
+
+  <!-- 跟读·对话 -->
+  <section class="tab" id="shadow">
+    <div class="banner" id="shBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-sh="dialog">💬 对话跟读</button>
+      <button class="subtab" data-sh="single">📝 单句跟读</button>
+      <span style="color:var(--sub);font-size:12px">对话跟读＝听问句→看回应句→录你自己的回答；单句跟读可打卡升星。</span>
+    </div>
+    <div id="shDialog"></div>
+    <div id="shSingle" style="display:none">
+      <div class="player">
+        <div class="nowrow" style="display:none">
+          <div class="now" id="shNow">准备开始…</div>
+          <div class="nowcn" id="shNowCn"></div>
+        </div>
+        <div class="hint" id="shProg" style="margin:0 0 12px">👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这里会出现回放音轨，和原声对比。</div>
+        <div class="recbox" id="shRecBox"></div>
+        <div class="ctr">
+          <button id="shPlay">▶ 听原声</button>
+          <button id="shRec">● 开始录音</button>
+          <button id="shStop" class="ghost">■ 停止</button>
+          <button id="shCheck" class="ghost">✓ 我已跟读打卡</button>
+          <button id="shPrev" class="ghost">⏮ 上一句</button>
+          <button id="shNext" class="ghost">⏭ 下一句</button>
+          <button id="shAuto" class="ghost">🔁 自动连播</button>
+          <label style="color:var(--sub);font-size:13px">跟读留白
+            <select id="shGap">
+              <option value="1500">1.5 秒</option>
+              <option value="2500" selected>2.5 秒</option>
+              <option value="4000">4 秒</option>
+              <option value="-1">手动</option>
+            </select>
+          </label>
+        </div>
+        <div class="hint" id="shHint">跟读流程：▶ 听原声 → ● 开始录音（读完后点 ■ 停止可回放对比）→ ✓ 打卡。连续打卡积累神兽星级。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本单元语法（联动语法练习页） -->
+    <!-- 单元文章：本单元生词的语境容器 -->
+  <section class="tab on" id="article">
+    <div class="banner" id="artBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="b-play" id="artPlayAll">🔊 听全篇</button>
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnArt">👁 开</span></label>
+      <label style="font-size:13px;color:var(--sub)">高亮生词 <span class="toggle" id="tgArtHL">👁 开</span></label>
+      <span style="color:var(--sub);font-size:12px">本单元生词已织进这篇短文，命中处标金色。点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。</span>
+    </div>
+    <div id="artBody"></div>
+  </section>
+
+  <section class="tab" id="grammar">
+    <div class="gramhead" id="gramHead"></div>
+    <div class="gramwrap" id="gramList"></div>
+    <div class="gramfoot">
+      <a class="phxlink" id="gramAll" target="_blank" rel="noopener">✍️ 打开英语语法练习全册 →</a>
+      <span class="hint" style="margin-top:0">点任一关，直接跳到语法练习里<b>这一个点</b>的知识卡（一次只学一个点）。练完回来，跟读这边会自动记一笔。</span>
+    </div>
+  </section>
+
+  <!-- 拼读 -->
+  <!-- 阅读·听力 -->
+  <section class="tab" id="reading">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="rdtab on" data-rd="read">📖 阅读</button>
+      <button class="rdtab" data-rd="listen">🎧 听力</button>
+      <span style="color:var(--sub);font-size:12px">阅读＝看文本做小题；<b style="color:var(--gold)">听力＝先盲听、再答题</b>，听不懂可调慢顶部语速或点「👀 看文本」。<b style="color:var(--gold)">🇨🇳</b> ＝中国主题篇。</span>
+    </div>
+
+    <div id="rdReadWrap">
+      <div class="banner" id="rdBanner"></div>
+      <div class="grp-tabs" id="rdPassages" style="margin-bottom:10px"></div>
+      <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+        <span id="rdHint" style="color:var(--sub);font-size:12px"></span>
+      </div>
+      <div id="rdText"></div>
+      <div id="rdQuiz"></div>
+    </div>
+
+    <div id="rdListenWrap" style="display:none">
+      <div class="banner" id="lsBanner"></div>
+      <div class="grp-tabs" id="lsPassages" style="margin-bottom:10px"></div>
+      <div class="listen-box">
+        <div class="ls-tip">🎧 <b>盲听三步</b>：① 点「▶ 听全篇」（顶部语速可调慢）→ ② 做下面小题 → ③ 不会就点「👀 看文本」对照，再听一遍。每句都可单点 🔊 重听、🎤 跟读。答错自动进错题本。</div>
+        <div class="rd-playall" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="b-play" id="lsPlayAll">▶ 听全篇</button>
+          <button id="lsReplay" class="ghostbtn">🔁 再听一遍</button>
+          <button id="lsReveal" class="ghostbtn">👀 看文本</button>
+        </div>
+        <div class="rd-sents" id="lsSents"></div>
+      </div>
+      <div id="lsQuiz"></div>
+    </div>
+  </section>
+
+  <section class="tab" id="phonics">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-phx="cards">🔤 音素卡</button>
+      <button class="subtab" data-phx="pairs">🔁 最小对立对</button>
+      <button class="subtab" data-phx="listen">🎧 听音选词</button>
+      <button class="subtab" data-phx="intonation">🎵 情绪语调</button>
+ <button class="subtab" data-phx="antonym">↔️ 反义情绪对</button>
+      <span style="color:var(--sub);font-size:12px">A2 拼读轨道：建立 letter-sound 对应，否则跟读只是模仿不可迁移。中国学生易错音（θ / sh / ch）已优先纳入。</span>
+      <a class="phxlink" href="英语音标48音训练.html" target="_blank" title="48 个音标的系统训练：本站 4 个音 + 全 48 音渐进路线（新窗口打开）">🔊 48 音系统训练 ↗</a>
+    </div>
+    <div id="phxHand"></div>
+    <div class="phx-tip">💡 <b>例词块</b>（蓝底方块）可以<b>逐个单独点</b>发音；<b>🔗 短语连读</b>是把含这个音的词连成一句来听——单词里听得清，句子里才知道它怎么和其他音连起来。建议把顶部语速调慢后听两遍。<br>
+      带<b>虚线框 + 「预学」标签</b>的词来自后面单元：本单元<b>只要求读准，不要求记意思</b>，占比控制在 30% 以内。</div>
+    <div id="phxCards"></div>
+    <div id="phxPairs" style="display:none"></div>
+    <div id="phxListen" style="display:none"></div>
+    <div id="phxIntonation" style="display:none"></div>
+    <div id="phxAntonym" style="display:none"></div>
+  </section>
+
+  <!-- 小测 -->
+  <section class="tab" id="quiz">
+    <div class="hint" style="margin-bottom:10px">主动回忆：听音选义 / 看词选义 / 看义选词 三类随机混出，答错自动记入「🩹 错题」。每轮覆盖本单元全部词。</div>
+    <div id="quizBox"></div>
+  </section>
+
+  <!-- 错题 -->
+  <section class="tab" id="errors">
+    <div class="hint" style="margin-bottom:10px">统一错误池（schema：话题/层级/类型/原文/标准答/学生答/时间）。词卡「记一笔」或「小测答错」自动汇总到这里，按类型聚合，可重练或删除。</div>
+    <div id="errList"></div>
+  </section>
+
+  <!-- 神兽图鉴 -->
+  <section class="tab" id="codex">
+    <div class="coll" id="codexGrid"></div>
+    <div class="hint">13 个板块 = 13 只神兽。本单元神兽已解锁，掌握度越高星级越多。其余神兽可从 <a href="A2 主页.html" style="color:var(--gold)">A2 目录</a> 进入对应单元解锁。</div>
+  </section>
+</main>
+
+<script>
+const DATA = {"unit":3,"title":"Food for life","subtitle":"食物与味道 · 可数/不可数 · How much/many · too/enough","beast_emoji":"🍜","beast_name":"灶台貘","groups":[{"name":"主食与饮品","words":[{"word":"rice","ipa":"/raɪs/","pos":"n.","cef":"A2","band":"zipf 4.8","defB":"米饭；米（不可数）","phrase":"a bowl of rice","phraseDef":"一碗米饭","ex":"In the south, people eat rice every day.","exCn":"在南方，人们每天吃米饭。","defC":"米饭；米（不可数）","senses":[{"def":"米饭；米（不可数）","ex":"In the south, people eat rice every day.","exCn":"在南方，人们每天吃米饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"bread","ipa":"/bred/","pos":"n.","cef":"A2","band":"zipf 4.6","defB":"面包（不可数；一个面包 = a loaf of bread）","phrase":"a piece of bread","phraseDef":"一片面包","ex":"I am having bread and milk for breakfast today.","exCn":"我今天早饭吃面包喝牛奶。","defC":"面包（不可数；一个面包 = a loaf of bread）","senses":[{"def":"面包（不可数；一个面包 = a loaf of bread）","ex":"I am having bread and milk for breakfast today.","exCn":"我今天早饭吃面包喝牛奶。","syn":"—","ant":"—"}],"inArt":1},{"word":"water","ipa":"/ˈwɔːtə(r)/","pos":"n.","cef":"A2","band":"zipf 5.2","defB":"水（不可数）","phrase":"a glass of water","phraseDef":"一杯水","ex":"Drink more water when you do sport.","exCn":"运动时要多喝水。","defC":"水（不可数）","senses":[{"def":"水（不可数）","ex":"Drink more water when you do sport.","exCn":"运动时要多喝水。","syn":"—","ant":"—"}],"inArt":1},{"word":"milk","ipa":"/mɪlk/","pos":"n.","cef":"A2","band":"zipf 4.8","defB":"牛奶（不可数）","phrase":"hot milk","phraseDef":"热牛奶","ex":"She drinks a glass of milk every morning.","exCn":"她每天早上喝一杯牛奶。","defC":"牛奶（不可数）","senses":[{"def":"牛奶（不可数）","ex":"She drinks a glass of milk every morning.","exCn":"她每天早上喝一杯牛奶。","syn":"—","ant":"—"}],"inArt":1},{"word":"juice","ipa":"/dʒuːs/","pos":"n.","cef":"A2","band":"zipf 4.5","defB":"果汁","phrase":"orange juice","phraseDef":"橙汁","ex":"Would you like some apple juice?","exCn":"你想要点苹果汁吗？","defC":"果汁","senses":[{"def":"果汁","ex":"Would you like some apple juice?","exCn":"你想要点苹果汁吗？","syn":"—","ant":"—"}],"inArt":1},{"word":"tea","ipa":"/tiː/","pos":"n.","cef":"A2","band":"zipf 4.7","defB":"茶","phrase":"green tea","phraseDef":"绿茶","ex":"My grandfather is drinking tea and reading the newspaper.","exCn":"我爷爷正在喝茶看报。","defC":"茶","senses":[{"def":"茶","ex":"My grandfather is drinking tea and reading the newspaper.","exCn":"我爷爷正在喝茶看报。","syn":"—","ant":"—"}],"inArt":1},{"word":"noodles","ipa":"/ˈnuːdlz/","pos":"n.","cef":"A2","band":"zipf 4.2","defB":"面条（常用复数）","phrase":"a bowl of noodles","phraseDef":"一碗面条","ex":"Lanzhou noodles are famous in China.","exCn":"兰州拉面在中国很有名。","defC":"面条（常用复数）","senses":[{"def":"面条（常用复数）","ex":"Lanzhou noodles are famous in China.","exCn":"兰州拉面在中国很有名。","syn":"—","ant":"—"}],"inArt":1},{"word":"dumplings","ipa":"/ˈdʌmplɪŋz/","pos":"n.","cef":"A2","band":"中国味道","defB":"饺子（复数）","phrase":"make dumplings","phraseDef":"包饺子","ex":"We are making dumplings for Spring Festival now.","exCn":"我们正在为春节包饺子。","defC":"饺子（复数）","senses":[{"def":"饺子（复数）","ex":"We are making dumplings for Spring Festival now.","exCn":"我们正在为春节包饺子。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"荤素与水果","words":[{"word":"meat","ipa":"/miːt/","pos":"n.","cef":"A2","band":"zipf 4.8","defB":"肉（总称，不可数）","phrase":"eat less meat","phraseDef":"少吃肉","ex":"I don't eat much meat, but I love fish.","exCn":"我不太吃肉，但我爱吃鱼。","defC":"肉（总称，不可数）","senses":[{"def":"肉（总称，不可数）","ex":"I don't eat much meat, but I love fish.","exCn":"我不太吃肉，但我爱吃鱼。","syn":"—","ant":"—"}],"inArt":1},{"word":"chicken","ipa":"/ˈtʃɪkɪn/","pos":"n.","cef":"A2","band":"zipf 4.6","defB":"鸡肉；小鸡","phrase":"fried chicken","phraseDef":"炸鸡","ex":"Mum is cooking chicken soup in the kitchen.","exCn":"妈妈正在厨房炖鸡汤。","defC":"鸡肉；小鸡","senses":[{"def":"鸡肉；小鸡","ex":"Mum is cooking chicken soup in the kitchen.","exCn":"妈妈正在厨房炖鸡汤。","syn":"—","ant":"—"}],"inArt":1},{"word":"fish","ipa":"/fɪʃ/","pos":"n.","cef":"A2","band":"zipf 4.9","defB":"鱼（单复数同形）","phrase":"fresh fish","phraseDef":"新鲜的鱼","ex":"Steamed fish is a healthy dish.","exCn":"清蒸鱼是一道健康的菜。","defC":"鱼（单复数同形）","senses":[{"def":"鱼（单复数同形）","ex":"Steamed fish is a healthy dish.","exCn":"清蒸鱼是一道健康的菜。","syn":"—","ant":"—"}],"inArt":1},{"word":"egg","ipa":"/eg/","pos":"n.","cef":"A2","band":"zipf 4.9","defB":"鸡蛋（可数）","phrase":"boiled eggs","phraseDef":"煮鸡蛋","ex":"There are two eggs in the fridge.","exCn":"冰箱里有两个鸡蛋。","defC":"鸡蛋（可数）","senses":[{"def":"鸡蛋（可数）","ex":"There are two eggs in the fridge.","exCn":"冰箱里有两个鸡蛋。","syn":"—","ant":"—"}],"inArt":1},{"word":"vegetable","ipa":"/ˈvedʒtəbl/","pos":"n.","cef":"A2","band":"zipf 4.7","defB":"蔬菜（常用复数）","phrase":"green vegetables","phraseDef":"绿叶蔬菜","ex":"Eat more vegetables — they are good for you.","exCn":"多吃蔬菜——对你有好处。","defC":"蔬菜（常用复数）","senses":[{"def":"蔬菜（常用复数）","ex":"Eat more vegetables — they are good for you.","exCn":"多吃蔬菜——对你有好处。","syn":"—","ant":"—"}],"inArt":1},{"word":"fruit","ipa":"/fruːt/","pos":"n.","cef":"A2","band":"zipf 4.9","defB":"水果（总称不可数；种类可数 fruits）","phrase":"fresh fruit","phraseDef":"新鲜水果","ex":"We buy fresh fruit at the market every week.","exCn":"我们每周在市场买新鲜水果。","defC":"水果（总称不可数；种类可数 fruits）","senses":[{"def":"水果（总称不可数；种类可数 fruits）","ex":"We buy fresh fruit at the market every week.","exCn":"我们每周在市场买新鲜水果。","syn":"—","ant":"—"}],"inArt":1},{"word":"tomato","ipa":"/təˈmɑːtəʊ/","pos":"n.","cef":"A2","band":"zipf 4.3","defB":"西红柿（复数 tomatoes，加 -es）","phrase":"tomato soup","phraseDef":"西红柿汤","ex":"Tomatoes and eggs is a classic Chinese dish.","exCn":"西红柿炒鸡蛋是一道经典中国菜。","defC":"西红柿（复数 tomatoes，加 -es）","senses":[{"def":"西红柿（复数 tomatoes，加 -es）","ex":"Tomatoes and eggs is a classic Chinese dish.","exCn":"西红柿炒鸡蛋是一道经典中国菜。","syn":"—","ant":"—"}],"inArt":1},{"word":"potato","ipa":"/pəˈteɪtəʊ/","pos":"n.","cef":"A2","band":"zipf 4.3","defB":"土豆（复数 potatoes）","phrase":"fried potatoes","phraseDef":"炒土豆","ex":"Children love chips, but they are made of potatoes and oil.","exCn":"孩子爱吃薯条，但它是土豆和油做的。","defC":"土豆（复数 potatoes）","senses":[{"def":"土豆（复数 potatoes）","ex":"Children love chips, but they are made of potatoes and oil.","exCn":"孩子爱吃薯条，但它是土豆和油做的。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"味道形容词","words":[{"word":"sweet","ipa":"/swiːt/","pos":"adj.","cef":"A2","band":"zipf 4.9","defB":"甜的","phrase":"sweet food","phraseDef":"甜食","ex":"This cake is too sweet for me.","exCn":"这个蛋糕对我来说太甜了。","defC":"甜的","senses":[{"def":"甜的","ex":"This cake is too sweet for me.","exCn":"这个蛋糕对我来说太甜了。","syn":"—","ant":"bitter（苦的）"}],"inArt":1},{"word":"sour","ipa":"/ˈsaʊə(r)/","pos":"adj.","cef":"A2","band":"zipf 4.2","defB":"酸的","phrase":"sour and spicy","phraseDef":"酸辣的","ex":"The lemon tastes very sour.","exCn":"这个柠檬尝起来很酸。","defC":"酸的","senses":[{"def":"酸的","ex":"The lemon tastes very sour.","exCn":"这个柠檬尝起来很酸。","syn":"—","ant":"sweet"}],"inArt":1},{"word":"salty","ipa":"/ˈsɔːlti/","pos":"adj.","cef":"A2","band":"zipf 4.1","defB":"咸的","phrase":"too salty","phraseDef":"太咸了","ex":"The soup is a little salty — there is too much salt in it.","exCn":"汤有点咸——盐放太多了。","defC":"咸的","senses":[{"def":"咸的","ex":"The soup is a little salty — there is too much salt in it.","exCn":"汤有点咸——盐放太多了。","syn":"—","ant":"—"}],"inArt":1},{"word":"spicy","ipa":"/ˈspaɪsi/","pos":"adj.","cef":"A2","band":"zipf 4.2","defB":"辣的","phrase":"spicy food","phraseDef":"辣的食物","ex":"Sichuan food is famous for being spicy.","exCn":"川菜以辣出名。","defC":"辣的","senses":[{"def":"辣的","ex":"Sichuan food is famous for being spicy.","exCn":"川菜以辣出名。","syn":"hot（口语里也表示辣）","ant":"—"}],"inArt":1},{"word":"delicious","ipa":"/dɪˈlɪʃəs/","pos":"adj.","cef":"A2","band":"zipf 4.6","defB":"美味的","phrase":"taste delicious","phraseDef":"尝起来很美味","ex":"Your dumplings smell wonderful and taste delicious!","exCn":"你包的饺子闻着香、吃着美味！","defC":"美味的","senses":[{"def":"美味的","ex":"Your dumplings smell wonderful and taste delicious!","exCn":"你包的饺子闻着香、吃着美味！","syn":"yummy（儿语）","ant":"awful（难吃的）"}],"inArt":1},{"word":"hungry","ipa":"/ˈhʌŋɡri/","pos":"adj.","cef":"A2","band":"zipf 5.0","defB":"饿的","phrase":"be hungry","phraseDef":"饿了","ex":"I am so hungry — is lunch ready yet?","exCn":"我好饿——午饭好了吗？","defC":"饿的","senses":[{"def":"饿的","ex":"I am so hungry — is lunch ready yet?","exCn":"我好饿——午饭好了吗？","syn":"—","ant":"full（饱的）"}],"inArt":1},{"word":"thirsty","ipa":"/ˈθɜːsti/","pos":"adj.","cef":"A2","band":"zipf 4.3","defB":"渴的","phrase":"feel thirsty","phraseDef":"觉得渴","ex":"After the football game, everyone was thirsty.","exCn":"足球赛后大家都渴了。","defC":"渴的","senses":[{"def":"渴的","ex":"After the football game, everyone was thirsty.","exCn":"足球赛后大家都渴了。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"三餐与量","words":[{"word":"breakfast","ipa":"/ˈbrekfəst/","pos":"n.","cef":"A2","band":"zipf 4.9","defB":"早餐（前面不加 the/a：have breakfast）","phrase":"have breakfast","phraseDef":"吃早饭","ex":"I have breakfast at seven with my family.","exCn":"我七点和家人吃早饭。","defC":"早餐（前面不加 the/a：have breakfast）","senses":[{"def":"早餐（前面不加 the/a：have breakfast）","ex":"I have breakfast at seven with my family.","exCn":"我七点和家人吃早饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"lunch","ipa":"/lʌntʃ/","pos":"n.","cef":"A2","band":"zipf 4.9","defB":"午餐","phrase":"have lunch","phraseDef":"吃午饭","ex":"We have lunch in the school canteen at twelve.","exCn":"我们十二点在学校食堂吃午饭。","defC":"午餐","senses":[{"def":"午餐","ex":"We have lunch in the school canteen at twelve.","exCn":"我们十二点在学校食堂吃午饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"dinner","ipa":"/ˈdɪnə(r)/","pos":"n.","cef":"A2","band":"zipf 4.9","defB":"正餐；晚餐","phrase":"have dinner","phraseDef":"吃晚饭","ex":"My family has dinner together every evening.","exCn":"我家每天晚上一起吃晚饭。","defC":"正餐；晚餐","senses":[{"def":"正餐；晚餐","ex":"My family has dinner together every evening.","exCn":"我家每天晚上一起吃晚饭。","syn":"supper（较口语）","ant":"—"}],"inArt":1},{"word":"How much…?","ipa":"/haʊ ˈmʌtʃ/","pos":"句型","cef":"A2","band":"问不可数 · 必会","defB":"多少（+ 不可数名词）/多少钱","phrase":"How much water?","phraseDef":"多少水？","ex":"How much sugar do you want in your tea?","exCn":"你茶里要多少糖？","defC":"多少（+ 不可数名词）/多少钱","senses":[{"def":"多少（+ 不可数名词）/多少钱","ex":"How much sugar do you want in your tea?","exCn":"你茶里要多少糖？","syn":"—","ant":"How many…?（问可数）"}]},{"word":"How many…?","ipa":"/haʊ ˈmeni/","pos":"句型","cef":"A2","band":"问可数 · 必会","defB":"多少（+ 可数名词复数）","phrase":"How many eggs?","phraseDef":"多少个鸡蛋？","ex":"How many students are there in your class?","exCn":"你们班有多少学生？","defC":"多少（+ 可数名词复数）","senses":[{"def":"多少（+ 可数名词复数）","ex":"How many students are there in your class?","exCn":"你们班有多少学生？","syn":"—","ant":"How much…?（问不可数）"}]},{"word":"enough","ipa":"/ɪˈnʌf/","pos":"adj./adv.","cef":"A2","band":"zipf 5.2","defB":"足够的（形容词后置：time enough；副词后置：big enough）","phrase":"big enough","phraseDef":"足够大","ex":"This shirt is not big enough for me.","exCn":"这件衬衫对我来说不够大。","defC":"足够的（形容词后置：time enough；副词后置：big enough）","senses":[{"def":"足够的（形容词后置：time enough；副词后置：big enough）","ex":"This shirt is not big enough for me.","exCn":"这件衬衫对我来说不够大。","syn":"—","ant":"too（太……）"}],"inArt":1},{"word":"too","ipa":"/tuː/","pos":"adv.","cef":"A2","band":"zipf 5.9 · 超高频","defB":"太……（超过需要的程度，常带负面）","phrase":"too sweet / too much","phraseDef":"太甜/太多","ex":"The coffee is too hot to drink now.","exCn":"咖啡现在太烫，没法喝。","defC":"太……（超过需要的程度，常带负面）","senses":[{"def":"太……（超过需要的程度，常带负面）","ex":"The coffee is too hot to drink now.","exCn":"咖啡现在太烫，没法喝。","syn":"—","ant":"enough（足够）"}],"inArt":1},{"word":"a lot of","ipa":"/ə lɒt əv/","pos":"量词","cef":"A2","band":"zipf 5.6 · 高频","defB":"许多（可数不可数都行，肯定句常用）","phrase":"a lot of rice","phraseDef":"很多米饭","ex":"There are a lot of restaurants near our school.","exCn":"我们学校附近有很多餐馆。","defC":"许多（可数不可数都行，肯定句常用）","senses":[{"def":"许多（可数不可数都行，肯定句常用）","ex":"There are a lot of restaurants near our school.","exCn":"我们学校附近有很多餐馆。","syn":"lots of（更口语）","ant":"—"}],"inArt":1}]}],"dialogues":[{"title":"食堂点餐","focus":"How much/many · too · enough","lines":[["Mum","What do you want for lunch today?","你今天午饭想吃什么？"],["Xiaoming","Noodles, please. But not too salty.","面条吧。但是别太咸。"],["Mum","OK. How many eggs do you want in it?","好。里面要打几个鸡蛋？"],["Xiaoming","Two, please. And a lot of vegetables!","两个。还要很多蔬菜！"],["Mum","That is a big bowl. Are you that hungry?","那可是一大碗啊。你这么饿吗？"],["Xiaoming","Yes! I have a football game after lunch.","对！午饭后我有足球赛。"]]},{"title":"买水果","focus":"How much · taste · expensive","lines":[["Seller","These peaches are very sweet today. Try one!","今天的桃子特别甜。尝一个吧！"],["Amy","Mmm, it tastes delicious. How much are they?","嗯，真好吃。怎么卖？"],["Seller","Twelve yuan for a kilo.","十二块钱一公斤。"],["Amy","That is not too expensive. I will take two kilos, please.","不算太贵。请给我来两公斤。"]]},{"title":"辣不辣","focus":"spicy · smell · enough","lines":[["Tom","What is that wonderful smell?","这是什么香味，真好闻？"],["Li Lei","Mum is cooking mapo tofu. It is very spicy, though.","妈妈在做麻婆豆腐。不过特别辣。"],["Tom","How spicy? I can eat a little hot food.","有多辣？我能吃一点辣。"],["Li Lei","Then it is OK. Have some rice with it — that helps.","那还行。配着米饭吃——能好一些。"],["Tom","Thanks. The rice smells good too!","谢谢。米饭闻着也很香！"]]}],"phonics":{"hand_anchor":{"title":"iː vs ɪ","lines":["/iː/ 长音 嘴角拉宽","/ɪ/ 短音 放松"]},"sound_cards":[{"sym":"/iː/","tip":"嘴角向两边拉开，像微笑时说「衣——」","words":[["eat","吃"],["tea","茶"],["meat","肉"],["sweet","甜的"]]},{"sym":"/ɪ/","tip":"短促放松的「衣」，嘴没那么扁","words":[["fish","鱼"],["milk","牛奶"],["this","这个"],["big","大的"]]}],"min_pairs":[{"a":"eat","a_ipa":"/iːt/","b":"it","b_ipa":"/ɪt/","tip":"/iː/ 长衣 还是 /ɪ/ 短衣？eat 是吃，it 是它"},{"a":"seat","a_ipa":"/siːt/","b":"sit","b_ipa":"/sɪt/","tip":"seat 是座位，sit 是坐下"}],"intonation_cards":[{"word":"It smells delicious!","ipa":"/ɪt smelz dɪˈlɪʃəs/","cn":"闻起来太香了！","arrow":"↗","tone":"升调（赞叹）","sent":"— Dinner is almost ready. — It smells delicious!","sent_cn":"— 晚饭快好了。— 闻起来太香了！","tip":"真心赞叹时句尾上扬 ↗，delicious 要重读；平淡的降调听起来像客套。","audio":"data:audio/mpeg;base64,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"},{"word":"How much sugar?","ipa":"/haʊ ˈmʌtʃ ˈʃʊɡə/","cn":"要多少糖？","arrow":"↘","tone":"降调（问量）","sent":"— I am making tea. — How much sugar?","sent_cn":"— 我在泡茶。— 要多少糖？","tip":"简短问句用降调 ↘ 是在认真收集信息；用升调 ↗ 则像随口一问。","audio":"data:audio/mpeg;base64,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YGyH88GVMzL5aZm+F7XglSF1kloEA0gBWMFtgCgSjUWCHHz+iU81RDY2QDCQVNDimNHs8wZo6mSy5eIIKlt9m/hYACort3VruWu4zMbkfbeZN80NV1Ry1rollUSaARkDuH99CHnHnf/7OMTogAxZeUemFG+hg6+qcJGKtmlHSIZCTUbSfyyh+gxQf6h9xjZwC8nn0+t8lI5GCaPypwqpidqMDlW59Q1PRbXjJMn1r2AYNucIDDYyU7I9ibqNLYtMroijDVci950QiHZRhXzE6sF3fqsJEbAk8u3ZR/c79Qg97FXLGpIALh5WkaUFFEC3yUb6TQ47AUuXqvwURAy8xrjoo5ntZfho5ezQ8+oHJxo8Mgz3y6UM2h5Zwoe3miNDxJ/r2LdFJxK0Y7t/69XLC0/6xWZbHYLwSS23Xa7TEf/7OMToAAu9a0mjBHRhbyioaJKObKEzRhJ1FFNeEKgql3bhhSY1+7aigGGuysbXKjl2NNLo4dGiokBe5MQU1FMy45N1VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuOTdVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7OMTsgArpEUWhmFwheqJpsJMVf1VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7OMTzAEsZP0egmGGotxUqdBGWVlVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVRBR0kgbGlrZSBkcmF3aW5nLgAAAAAAAAAAAAAAAAAAAENoYXJsZXMgS2VsbHkAAAAAAAAAAAAAAAAAAAAAAHd3dy5tYW55dGhpbmdzLm9yZy90YXRvZWJhAAAAADIwMTk3ODAyOTk1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/"}],"intonation_pairs":[{"left":{"en":"It's delicious.","cn":"很好吃。（评价）","arrow":"↘","tone":"降调","audio":"data:audio/mpeg;base64,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VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7OMTzgAq1QzzEmGfhvyOlCPSNcFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7OMTBA8jAnRNApM1AAAA0gAAABFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVRBR0l0J3MgZGVsaWNpb3VzLgAAAAAAAAAAAAAAAAAAAENoYXJsZXMgS2VsbHkAAAAAAAAAAAAAAAAAAAAAAHd3dy5tYW55dGhpbmdzLm9yZy90YXRvZWJhAAAAADIwMTMyMTg3MjA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/"},"right":{"en":"It's delicious?","cn":"这好吃？（怀疑）","arrow":"↗","tone":"升调","audio":"data:audio/mpeg;base64,SUQzAgAAAAARdFRDTQAAHAB3d3cubWFueXRoaW5ncy5vcmcvdGF0b2ViYQBUQUwAABwAd3d3Lm1hbnl0aGluZ3Mub3JnL3RhdG9lYmEAVFlFAAAGADIwMTEAVENPAAALAFNlbnRlbmNlcwBDT00AABAAZW5naVR1blBHQVAAMAAAVEVOAAAPAGlUdW5lcyAxMC4yLjIAQ09NAABoAGVuZ2lUdW5OT1JNACAwMDAwMDJFNiAwMDAwMDAwMCAwMDAwMUJBQiAwMDAwMDAwMCAwMDAwMDFCQyAwMDAwMDAwMCAwMDAwNzQyOSAwMDAwMDAwMCAwMDAwMDFCQyAwMDAwMDAwMABDT00AAIIAZW5naVR1blNNUEIAIDAwMDAwMDAwIDAwMDAwMjEwIDAwMDAwQjU1IDAwMDAwMDAwMDAwMEM2MUIgMDAwMDAwMDAgMDAwMDE3RTEgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAgMDAwMDAwMDAAVENQAAADADEAQ09NAAAMAGVuZwA0Mjg0MDIAVFQyAAARAFdoYXQgdGltZSBpcyBpdABUUDEAABcB//5VT0JmZjCZMFcwhzBGMEswAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/7MsAAAAdQbx4HpGcA/hAmpPSNKAjaFv2xklT5pie0kCaPpitu29t3d+AAhX6aPC//4hfuLQMYIA+Hy9JQ5n/Lg+s/5f5QMYg//qDFH/6P//////CVCxkmJ8rIB+FwfSFgb0GiYjOLdA0u1BVbEWxQuZILM7K0hRDhZiff8iMGzAqXaKPUp7aunXP/2f/rDMvM0pVV5Z50JTJfCYb/+zLABwAIDEkoDCTHAROPpQD0jSjPoCXU3UlhO5FuXeE1zafEZYFJJousDhhJgu94gsa276Pst+Qb/fIOmAxU6XfFw/riDUAhmEcRN5V0hxxWWiARvCZYSixM2UxhuKdVjOTFhXM+BSzKB85cpCt50RitRIgHHsb+U6fuqt+k1Bo8JQagEltqMGFcskA4RFFH0rTlW/mvFA0I1DBo//swwAgACABTKAykxwECC+TBlJjgPwcoi411y0GWmlLLjtVmrQJBKRZN4qfQUQ+TMdmH9lWcyn6VOv3f7epKbv/////oOYp4duPTwROygoTJEx/AoRCeCN7erXVRmo2dxCHd4/iPDKFDwlB58Nkjl5RyBpJlSPu5VvZ/Z//0+7//////bqAHsTqe95p/M/shiBhQnEiRSCg4oiFw//sywAsAB6A3LAwYZMDSBqXBgZiYY8HxywG021w5rUDaUE3pre/RuKId01imBz9oPg+DjrWuSnp//LroBW17SyDuZYIGKZVCoV0a0FyfRobQTE5cs1plijI9z9kx2f6v8cef/9FzRxdDe74xf9HYNpA6sZJSXa1Jet4WcK7yEYsH5Nxj9ybikVJZInrSPaur5aa6PvXpS3vf/+/////7MsAWAAp5Iy4MIEvJAQ3mZYGM4P//3T3WkysZykMGSgUwWVBkoFPMcSbSosZZxRUGbiyirEySWFNcr/R9gAOv/w/CtNazOXr21jBZQEAt8F9ht0s257RSqmTLXzN3F3BQHzI9YgUSAyqYkruvqeCrjstetRXdf1/TX6/qAtbbyqryWZcveocDGZPJt2OaD4ckyuj76v9d11J72dH/+zLAEAAIlJUuDIxJQQUOZQGUjSjYDoHEIMsFA2A1ipnmDQEaBATCIroBwLNzJnzTi//8zgRqfkzR5pJ5wA03l+i5PUwJhRhUHzBASxZisgN1VKr7AUYV6+da0v2r3LQUQlLBdAHKEYlRSZ0CCSr5Ji9A9l3/9P//t9YKACBpQEEorbqxtezZGyuMClpjEVQBbKy2yL8yQocGihpQ//swwBEACABhMyeMZyECoOVBhIlwHjp4PLOEEBV6np75BDGE4tSaan4gWD4ccXH///trErqXZCQ+0ta7EpLczRHBRolJVWza1UlcUl6uk9+fw3/I065HWrumW3TtmY0n//3/rXKVzf/6VIUQlqGf+r05MMgBASIAaAuZqax4i3MNrtzLTjiDtOuaOHakrqZdOnfGMqZMMt12xVNX//sywBQABtRXLAwkZwEDG+XCsiAA//pV/5YOHmiv/Vd8ch1ZyGHNwbP498hMBBgcouyDH+jEYs1otN54vGlKQjKqERyMxiEKp0qyHczVnf6fv6/////9GBp/1f/6CjrLaq6P8wADHymAyUGgWb4Gbl2BgeRgbadgXrFsAwiEgDgoBmk/gZOBbyNK5fJpqq1Lq6HIPrpMR2F4HSZaf//7MsAcAAr6QUAZVQABAIlqt7QgALm///T///////////+jf/////+/////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"},"ask":"同一句话，降调和升调态度一样吗？","answer":"降调 = 我尝过，真心觉得好吃；升调 = 我还没吃/我不信——语调就是态度。"}],"antonym_pairs":[{"a":"hungry","b":"full","cn_a":"饿的","cn_b":"饱的","sent":"I am hungry now, but I was full after lunch.","sent_cn":"我现在饿了，但午饭之后很饱。"},{"a":"sweet","b":"sour","cn_a":"甜的","cn_b":"酸的","sent":"The cake is sweet, but the lemon is sour.","sent_cn":"蛋糕是甜的，柠檬是酸的。"}]},"reading":[{"title":"Breakfast Around China","focus":"have breakfast · different · noodle","meta":"坡道 · 108词 · 连词6处 · 中国主题","sentences":["People in different parts of China eat very different breakfasts, and each one tells a small story about the place.","In Beijing, many people start the day with a warm bowl of douzhi and fried dough sticks.","In Guangzhou, breakfast is a slow, happy meal with many small dishes, which people call 'morning tea'.","In my home in Xi'an, we usually have a big bowl of hot noodles because they are cheap, fast and delicious.","My friend in Shanghai drinks sweet soy milk and eats small breads.","When we visit each other, we always try each other's breakfast, and that is how we learn about each other's cities."],"questions":[{"q":"What do many people in Beijing eat?","opts":["douzhi and fried dough sticks","sweet soy milk","hot noodles"],"answer":0},{"q":"Why does the writer's family eat noodles?","opts":["cheap, fast and delicious","they are expensive","it is a festival"],"answer":0},{"q":"What do friends do when they visit each other?","opts":["try each other's breakfast","cook dinner together","go to restaurants"],"answer":0}]},{"title":"Grandma's Dumplings","focus":"make dumplings · smell · delicious","meta":"坡道 · 99词 · 连词5处 · 中国主题","sentences":["Every Spring Festival, my whole family meets at Grandma's house to make dumplings together.","She makes the dough first, and then everyone helps to fill and fold them.","My little brother is not very good at it, so his dumplings look strange, but they taste just as delicious.","While we are working, Grandma tells us stories about her childhood.","She says that when she was young, meat was expensive, so people ate dumplings only a few times a year.","Now there is food everywhere, but she still says the best taste is the one you make with your family."],"questions":[{"q":"When does the family make dumplings?","opts":["Every Spring Festival","Every Saturday","Every month"],"answer":0},{"q":"What is special about the brother's dumplings?","opts":["They look strange but taste good","They are too salty","They are too sweet"],"answer":0},{"q":"Why did people eat dumplings only a few times a year?","opts":["Meat was expensive","They did not like them","There was no flour"],"answer":0},{"q":"What does Grandma say is the best taste?","opts":["food made with your family","very expensive food","food from restaurants"],"answer":0}]},{"title":"Too Much Sugar?","focus":"sweet · too · healthy","meta":"坡道 · 91词 · 连词5处 ","sentences":["Many drinks today have a lot of sugar, and sugar tastes good, but it is not always good for our health.","One bottle of cola can have more sugar than four eggs of sugar cubes!","Doctors say that drinking too many sweet drinks is bad for our teeth and our body.","Water has no taste, but it is the best drink for us.","If you feel thirsty after sport, water is enough.","Sweet drinks are OK sometimes, but not every day, because too much of anything is never a good idea."],"questions":[{"q":"What do many drinks have a lot of?","opts":["sugar","salt","oil"],"answer":0},{"q":"What is the best drink for us?","opts":["water","cola","juice"],"answer":0},{"q":"What do doctors say about sweet drinks?","opts":["bad for teeth and body","good after sport","good for health"],"answer":0}]},{"title":"Food Miles","focus":"market · local · a lot of","meta":"坡道 · 97词 · 连词4处 ","sentences":["The food on your table travels a long way before it arrives.","Apples in my city supermarket often come from Shandong, which is more than one thousand kilometres away.","When food travels, it needs trucks, planes and ships, and all of them use a lot of energy.","Some people now try to buy local food because it is fresher and it is better for the environment.","The market near my school sells fruit from farms only twenty kilometres away.","It tastes better, and it does not cost much more, so my family is happy to buy there."],"questions":[{"q":"Where do the apples come from?","opts":["Shandong","Xinjiang","a local farm"],"answer":0},{"q":"Why do some people buy local food?","opts":["fresher and better for environment","cheaper than water","it looks nice"],"answer":0},{"q":"How far is the market from school?","opts":["twenty kilometres","one thousand kilometres","one hundred metres"],"answer":0}]},{"title":"A Chef's Day","focus":"cook · delicious · restaurant","meta":"坡道 · 91词 · 连词6处 · 中国主题","sentences":["Uncle Zhang is a cook at a small restaurant in Chengdu, and he starts work at nine in the morning.","First, he goes to the market to choose fresh vegetables and fish.","He always says that good food starts with good ingredients.","In the afternoon, the kitchen is very busy, and all the cooks are moving fast.","The food smells wonderful, and the customers are happy.","When the last customer leaves, Uncle Zhang sits down and eats a simple meal, and he says this is his favourite part of the day."],"questions":[{"q":"When does Uncle Zhang start work?","opts":["nine in the morning","six in the evening","at noon"],"answer":0},{"q":"What does he say good food starts with?","opts":["good ingredients","a big kitchen","expensive tools"],"answer":0},{"q":"What is his favourite part of the day?","opts":["eating a simple meal after work","cooking for customers","going to the market"],"answer":0}]}],"listening":[{"title":"What's for Dinner?","focus":"have dinner · smell","meta":"坡道 · 25词 · 连词1处 ","sentences":["Mum, what's for dinner tonight?","Fish and vegetables. Can you set the table?","Sure. Wow, it smells great!","It's almost ready. Wash your hands first.","Yes, I'll set the table.","Should I put the fish in the middle?","Yes, and please put the soup on the right.","It smells really good from here.","Tell your father dinner is almost ready.","We have ten minutes before he comes."],"questions":[{"q":"What's for dinner?","opts":["fish and vegetables","noodles","chicken and rice"],"answer":0},{"q":"What does the child need to do first?","opts":["wash hands","set the table","do homework"],"answer":0}]},{"title":"How Many Apples?","focus":"How many/much · enough","meta":"坡道 · 30词 · 连词2处 ","sentences":["How many apples do we need for the cake?","Three is enough.","And how much sugar?","Two hundred grams, but not more — the cake should not be too sweet.","How many eggs do we need as well?","Four is enough.","About five hundred grams.","Do we have enough oil?","Yes, there is plenty of oil.","Everything is ready. Let's start."],"questions":[{"q":"How many apples?","opts":["three","two","five"],"answer":0},{"q":"Why not more sugar?","opts":["not too sweet","not enough money","it is unhealthy"],"answer":0}]},{"title":"The Night Market in Kaifeng","focus":"market · delicious · crowd","meta":"坡道 · 45词 · 连词3处 · 中国主题","sentences":["The night market in Kaifeng is famous for its street food.","People come at six, and by eight o'clock the streets are full.","Everything smells delicious, and it is hard to choose.","My favourite is the hot soup with lamb — spicy, salty and warm.","We share one plate of dumplings and one of fried noodles.","It is noisy, but that is part of the fun."],"questions":[{"q":"What is Kaifeng famous for?","opts":["street food","old buildings","tea houses"],"answer":0},{"q":"What is the writer's favourite?","opts":["hot lamb soup","sweet cakes","fried rice"],"answer":0}]},{"title":"Too Salty!","focus":"taste · salty · enough","meta":"坡道 · 30词 · 连词1处 ","sentences":["Dad, taste this soup. Is it OK?","Hmm, it is a little salty for me.","Really? I think it tastes fine.","Add a little water, and it will be perfect.","Your sister says it is a little salty too.","OK, let's not argue about food.","Now, does everybody agree?"],"questions":[{"q":"What does Dad think of the soup?","opts":["a little salty","too sweet","perfect"],"answer":0},{"q":"What does he suggest?","opts":["add water","add salt","start again"],"answer":0}]},{"title":"Lunch at School","focus":"have lunch · canteen · enough","meta":"坡道 · 41词 · 连词3处 ","sentences":["I usually have lunch at the school canteen at twelve.","The rice is free, and you can choose two dishes.","My favourite is tomato and egg — sweet, sour and a little salty.","It is simple, but it tastes like home.","We eat in the hall, and we talk quietly.","After lunch we put our bowls back on the shelf."],"questions":[{"q":"When is lunch?","opts":["at twelve","at one","at eleven"],"answer":0},{"q":"How many dishes can you choose?","opts":["two","three","one"],"answer":0}]},{"title":"How Much Do We Need?","focus":"盲听 · How much / How many · 不可数名词","meta":"A2 听力 · 先盲听再答题","sentences":["We're making porridge for breakfast.","How much rice do we need?","About two hundred grams is enough for four people.","How many eggs?","Four, please.","Do we have enough water in the kettle?","Yes, the kettle is full.","Ten minutes, then breakfast is ready."],"questions":[{"q":"How much rice do they need?","opts":["Two hundred grams","Four hundred grams","Two eggs"],"answer":0},{"q":"How many eggs?","opts":["Two","Four","Six"],"answer":1},{"q":"How long does it take?","opts":["Five minutes","Ten minutes","One hour"],"answer":1}]},{"title":"A Street Food Tour","focus":"盲听 · 味道 · 城市 · 中国主题","meta":"A2 听力 · 先盲听再答题","sentences":["Come with me — the best food is on this street.","The noodles are famous all over China.","They are hot, salty and very tasty.","One bowl costs only fifteen yuan.","Be careful, the soup is very hot.","Do you want to try one?","Yes, please. It smells delicious.","If you like it, there is a small shop behind the temple."],"questions":[{"q":"What are the noodles like?","opts":["Hot, salty and tasty","Cold and sweet","Dry and salty"],"answer":0},{"q":"How much is one bowl?","opts":["Ten yuan","Fifteen yuan","Fifty yuan"],"answer":1},{"q":"Where is the small shop?","opts":["Behind the temple","Behind the station","Next to the hotel"],"answer":0}]}],"frames":[{"en":"How much/many ___?","cn":"要多少{0}？","slots":[{"label":"问什么","opts":[["sugar do you want","糖（你要多少）"],["eggs do we need","鸡蛋（我们需要几个）"],["water do you drink","水（你喝多少）"],["students are there","学生（有多少）"]]}],"tip":"much + 不可数（sugar/water/rice），many + 可数复数（eggs/students）。"},{"en":"There is/are too ___.","cn":"{0}——太多了。","slots":[{"label":"表达","opts":[["much salt in the soup","汤里的盐（不可数）"],["many cars in the street","街上的车（可数）"],["much sugar in this cake","蛋糕里的糖（不可数）"],["many people in the shop","店里的人（可数）"]]}],"tip":"too much + 不可数，too many + 可数。抱怨时用：too much homework!"},{"en":"This ___ tastes ___.","cn":"这个{0}尝起来{1}。","slots":[{"label":"食物","opts":[["soup","汤"],["cake","蛋糕"],["fish","鱼"],["tea","茶"]]},{"label":"味道","opts":[[" sweet","是甜的"],[" a little salty","有点咸"],[" delicious","很美味"],[" too spicy","太辣"]]}],"tip":"感官动词 + 形容词：taste sweet / smell good / sound nice。"},{"en":"I have ___ for ___.","cn":"我{1}吃{0}。","slots":[{"label":"吃什么","opts":[["bread and milk","面包牛奶"],["noodles","面条"],["rice and vegetables","米饭蔬菜"],["an egg","一个鸡蛋"]]},{"label":"哪一餐","opts":[["breakfast","早饭"],["lunch","午饭"],["dinner","晚饭"]]}],"tip":"三餐前不加 the/a：have breakfast / have lunch / have dinner。"},{"en":"The ___ is not ___ enough.","cn":"这个{0}不够{1}。","slots":[{"label":"东西","opts":[["soup","汤"],["room","房间"],["shirt","衬衫"],["bike","自行车"]]},{"label":"怎么样","opts":[[" hot enough","够热"],[" big enough","够大"],[" long enough","够长"],[" fast enough","够快"]]}],"tip":"enough 修饰形容词时后置：big enough ✔ / enough big ✘。"}],"grammar":["count-uncount","much-many","too-enough"],"thread":"","article":{"title":"A Day of Meals","paras":[[["I have breakfast at seven o'clock.","我七点钟吃早饭。"],["I eat an egg, bread and milk for breakfast.","我早饭吃一个鸡蛋、面包，喝牛奶。"],["For lunch, I have rice, chicken and vegetables.","午饭我吃米饭、鸡肉和蔬菜。"],["My favourite vegetable is the tomato.","我最喜欢的蔬菜是西红柿。"],["I like the potato too.","我也喜欢土豆。"],["We have fish and noodles for dinner.","我们晚饭吃鱼和面条。"],["Mum makes dumplings on Sunday.","妈妈星期天包饺子。"]],[["I drink water, juice and tea every day.","我每天喝水、果汁和茶。"],["We eat meat only on special days.","我们只在特殊的日子吃肉。"],["I never drink cola — it is too sweet.","我从不喝可乐——它太甜了。"],["These grapes are sour, but they are delicious.","这些葡萄很酸，但很好吃。"],["The soup is salty, and the chicken is spicy.","汤很咸，鸡肉很辣。"]],[["I eat a lot of fruit every week.","我每周吃很多水果。"],["\"How many eggs are there?\" \"There are twelve.\"","\"有多少个鸡蛋？\"\"有十二个。\""],["\"How much is the fish?\" \"It is twenty yuan.\"","\"鱼多少钱？\"\"二十元。\""],["We do not have enough rice — can you buy some?","我们的米饭不够了——你能买一些吗？"],["After football I am hungry and thirsty.","踢完足球我又饿又渴。"]]]},"artForms":["dumplings","vegetable","delicious","breakfast","a lot of","noodles","chicken","thirsty","tomato","potato","hungry","dinner","enough","bread","water","juice","fruit","sweet","salty","spicy","lunch","rice","milk","meat","fish","sour","tea","egg","too"]};
+const STORE_KEY = "a2_unit"+DATA.unit+"_state_v4";
+const CHECK_KEY = "a2_checkin_dates_v4";  // 全局共享打卡 streak（跨单元）
+const ERR_KEY = "a2_unit"+DATA.unit+"_errors_v4";
+const BEASTS = [
+  {u:0,e:"🧭",n:"启程之灵",d:"胶水词·语料最高频30词"},
+  {u:1,e:"🎉",n:"欢乐之灵",d:"爱好·like+-ing·频率副词"},
+  {u:2,e:"🛍️",n:"精算之灵",d:"购物·现在进行时"},
+  {u:3,e:"🍜",n:"滋味之灵",d:"食物·可数不可数"},
+  {u:4,e:"👨‍👩‍👧",n:"牵挂之灵",d:"家人·所有格·was/were"},
+  {u:5,e:"🏠",n:"归属之灵",d:"家·过去时·-ed/-ing"},
+  {u:6,e:"🤝",n:"知己之灵",d:"朋友·过去时不规则"},
+  {u:7,e:"🛋️",n:"逍遥之灵",d:"建议·have to·should"},
+  {u:8,e:"🏀",n:"燃动之灵",d:"运动·过去进行时"},
+  {u:9,e:"🗿",n:"奇观之灵",d:"世界·比较级最高级"},
+  {u:10,e:"🏙️",n:"漫游之灵",d:"城镇·be going to"},
+  {u:11,e:"🦾",n:"进化之灵",d:"身体·will·条件句"},
+  {u:12,e:"✈️",n:"远行之灵",d:"旅行·现在完成时"},
+];
+
+let state = loadState();
+let checkins = loadCheckins();
+let errors = loadErrors();
+let curGroupLearn = 0, curGroupReview = 0;
+let shIdx = 0, shQueue = [], shAuto = false, shTimer = null;
+let rec = {mr:null, recording:false, url:null, stopBtn:null, stopLabel:null, containerEl:null};
+
+function loadState(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}} }
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function loadCheckins(){ try{return JSON.parse(localStorage.getItem(CHECK_KEY))||[]}catch(e){return[]} }
+function loadErrors(){ try{return JSON.parse(localStorage.getItem(ERR_KEY))||[]}catch(e){return[]} }
+function saveErrors(){ localStorage.setItem(ERR_KEY, JSON.stringify(errors)); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ---------- 语音（全局） ---------- */
+let voices=[], voice=null;
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const sel=document.getElementById('voiceSel');
+  const PREF=['en-GB','en-AU','en-IE','en-US'];
+  sel.innerHTML='';
+  voices = voices.slice().sort(function(a,b){function rank(v){if(/en-GB/i.test(v.lang||''))return (/Libby/i.test(v.name)?0:1);if(/en-AU/i.test(v.lang||''))return 2;if(/en-IE/i.test(v.lang||''))return 3;if(/en-US/i.test(v.lang||''))return 4;return 9;}return rank(a)-rank(b);});
+  let prefV=null;
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    const isGB=(v.lang||'').indexOf('en-GB')===0;
+    o.value=i; o.textContent=(isGB?'🇬🇧 ':'')+v.name+(v.localService?' · 离线':' · 在线');
+    sel.appendChild(o);
+    if((/en-GB/i.test(v.lang||'')&&/Libby/i.test(v.name)&&!prefV)){ prefV=v; o.selected=true; }if(!prefV){ for(const p of PREF){ if(v.lang===p){ prefV=v; o.selected=true; break; } } }
+  });
+  voice = prefV || voices[0] || null;
+  if(prefV){ sel.value = voices.indexOf(prefV); }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function getVoice(){ const i=document.getElementById('voiceSel').value; return voices[i]||null; }
+function rateVal(){ return parseFloat(document.getElementById('rate').value); }
+function speak(text, opt){
+  opt=opt||{};
+  if(!('speechSynthesis' in window)){ if(opt.onend)opt.onend(); return; }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const v=getVoice(); if(v)u.voice=v;
+  u.lang = (v && v.lang) || 'en-GB';   // 默认英式发音；用户若手动选了其他口音则尊重其选择
+  u.rate = rateVal()*(opt.slow?0.6:1); u.pitch=1; u.volume=1;
+  u.onend = opt.onend||function(){};
+  u.onerror = opt.onend||function(){};
+  speechSynthesis.speak(u);
+  if(speechSynthesis.paused) speechSynthesis.resume();
+}
+
+/* ---------- 工具 ---------- */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* 可发音词块：任何带 data-say 的元素点一下就朗读（全局事件委托，一次绑定全页生效）
+   suppressSay：作答的那一次点击只算「选择」，不当成「点词发音」，避免中文选英文时
+   点一下选项既答题又泄题听感 */
+let suppressSay=false;
+document.addEventListener('click', function(e){
+  const t=e.target.closest('[data-say]');
+  if(t && !suppressSay && !e.target.closest('[data-nsay]')){ e.preventDefault(); e.stopPropagation(); speak(t.getAttribute('data-say')); }
+});
+function sayChip(text, cls){ return '<span class="wchip '+(cls||'')+'" data-say="'+esc(text)+'">'+esc(text)+'<b>🔊</b></span>'; }
+/* 功能词/专名/缩写：不算「预学新词」（它们不是需要记忆的实义词） */
+const FUNCWORDS=new Set(("a an the is are am was were be been being do does did have has had "+
+"i you he she it we they me him her us them my your his its our their this that these those "+
+"what where who why how when in on at to for from of with and but or so not no yes "+
+"very too also can could will would shall may might must there here my one two three now "+
+"hello hi ok okay oh right thanks thank please let's im it's how's what's who's he's she's "+
+"that's there's we're they're don't doesn't isn't aren't wasn't weren't can't couldn't "+
+"wouldn't shouldn't i've i'll you're you've name fine good").split(/\s+/));
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function allWords(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w.word))); return a; }
+function allWordObjs(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w))); return a; }
+function masteredCount(){ return allWords().filter(w=>(state[w]||{}).mastered).length; }
+function shadowedCount(){ return allWords().filter(w=>(state[w]||{}).shadowed).length; }
+function updateProgress(){
+  const total=allWords().length;
+  const m=masteredCount();
+  const pct=Math.round(m/total*100);
+  document.getElementById('pctTop').textContent=pct+'%';
+  document.getElementById('barTop').style.width=pct+'%';
+  let stars = pct>=80?3:pct>=50?2:pct>=20?1:0;
+  document.getElementById('starTop').textContent = '★'.repeat(stars)+'☆'.repeat(3-stars);
+  document.getElementById('beastStreak').textContent=`已跟读 ${shadowedCount()}/${total} · 已掌握 ${m}/${total} · 错题 ${errors.length}`;
+}
+function flash(msg){ const t=document.createElement('div'); t.textContent=msg;
+  t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--gold);color:#1a1a1a;padding:8px 16px;border-radius:10px;font-weight:700;z-index:99';
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1400); }
+
+/* ---------- 统一录音（单句 & 对话共用） ---------- */
+function noteShadow(msg){ const n=document.getElementById('shBanner'); if(msg){ n.style.display='block'; n.textContent=msg; } else { n.style.display='none'; } }
+function startRec(text, container, stopBtn, stopLabel){
+  if(rec.recording && rec.stopBtn===stopBtn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音；现在可用「听原声」模式。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你的跟读录音，对比原声找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=stopBtn; rec.stopLabel=stopLabel||'● 开始录音';
+    rec.containerEl=container.parentElement; if(rec.containerEl) rec.containerEl.classList.add('recording');
+    stopBtn.textContent='■ 停止';
+    speak(text);
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可改用「听原声」模式。'); });
+}
+function stopRec(){
+  if(rec.recording && rec.mr){ rec.mr.stop(); rec.recording=false;
+    if(rec.stopBtn) rec.stopBtn.textContent = rec.stopLabel||'● 开始录音';
+    if(rec.containerEl) rec.containerEl.classList.remove('recording');
+    rec.stopBtn=null; rec.containerEl=null; }
+}
+/* 只录不放（用于"我来回应"——先看清/听问句，再录自己的回答） */
+function startRecRaw(text, container, btn){
+  if(rec.recording && rec.stopBtn===btn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你回应的录音，对比示范找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=btn; rec.stopLabel=btn.textContent;
+    rec.containerEl = btn.closest('.exchange')||container.parentElement;
+    if(rec.containerEl) rec.containerEl.classList.add('recording');
+    btn.textContent='■ 停止（说完点这）';
+    container.innerHTML='<div class="hint"><span class="rec-dot"></span> 请说出回应：'+esc(text)+'</div>';
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可先点「🔊 听示范回应」模仿。'); });
+}
+function addError(obj){
+  obj.time=Date.now(); obj.unit=DATA.unit;
+  errors.push(obj); saveErrors(); renderErrors(); updateProgress();
+}
+
+/* ---------- 渲染：学习 B ---------- */
+function renderLearn(){
+  const grpTabs=document.getElementById('grpLearn');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupLearn)b.className='on';
+    b.onclick=()=>{curGroupLearn=i; renderLearn();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridLearn'); grid.innerHTML='';
+  DATA.groups[curGroupLearn].words.forEach((w)=>{
+    const st=state[w.word]||{};
+    const card=document.createElement('div'); card.className='card'+(st.mastered?' done':'');
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      <div class="def"><span class="cnLearn">${esc(w.defB)}</span></div>
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <div class="ex" data-ex="${esc(w.ex)}">${esc(w.ex)}<span class="cn cnLearn">${esc(w.exCn||'')}</span></div>
+      <div class="acts">
+        <button class="b-play" data-word="${esc(w.word)}">🔊 单词</button>
+        <button class="b-shadow" data-word="${esc(w.word)}">🎤 跟读打卡</button>
+        <button class="b-master ${st.mastered?'mastered':''}" data-word="${esc(w.word)}">${st.mastered?'✅ 已掌握':'☆ 掌握'}</button>
+        <button class="b-err" data-word="${esc(w.word)}">❌ 记一笔</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.ex').forEach(el=>{
+    el.onclick=()=>speak(el.getAttribute('data-ex'));
+    el.ondblclick=()=>speak(el.getAttribute('data-ex'),{slow:true});
+  });
+  grid.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-shadow').forEach(b=>b.onclick=()=>goShadowWord(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-master').forEach(b=>b.onclick=()=>toggleMaster(b.getAttribute('data-word'),b));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'词卡标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 渲染：复习 C（渐进式） ---------- */
+function renderReview(){
+  const grpTabs=document.getElementById('grpReview');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupReview)b.className='on';
+    b.onclick=()=>{curGroupReview=i; renderReview();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridReview'); grid.innerHTML='';
+  const hide=document.getElementById('tgHideCn').dataset.hide==='1';
+  DATA.groups[curGroupReview].words.forEach(w=>{
+    const card=document.createElement('div'); card.className='card';
+    let sensesHtml='';
+    w.senses.forEach((s,i)=>{
+      const hidden = i>0 ? ' hiddenSense' : '';
+      const synAnt = (s.syn&&s.syn!=='—'?'近义 '+esc(s.syn)+' ':'') + (s.ant&&s.ant!=='—'?'反义 '+esc(s.ant):'');
+      const ex = s.ex||''; const exCn = s.exCn||'';
+      sensesHtml += `
+      <div class="sense${hidden}">
+        <div class="defline">${esc(s.def)}
+          <button class="spk" data-text="${esc(w.word)}">🔊</button>
+          ${synAnt?`<span style="color:var(--sub);font-size:12px">（${synAnt}）</span>`:''}
+        </div>
+        <button class="morebtn act-ex">💡 看例句</button>
+        <div class="exbox" data-ex="${esc(ex)}">${esc(ex)}<span class="cn">${esc(exCn)}</span>
+          ${ex?`<button class="morebtn act-shadow" data-text="${esc(ex)}">🎤 跟读这句</button>`:''}
+        </div>
+      </div>`;
+    });
+    const moreBtn = w.senses.length>1 ? `<button class="morebtn act-more">更多 ▾（还有 ${w.senses.length-1} 个义项）</button>` : '';
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      ${sensesHtml}
+      ${moreBtn}
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <button class="morebtn b-err" data-word="${esc(w.word)}">❌ 记一笔（没记住）</button>`;
+    grid.appendChild(card);
+  });
+  if(hide){ grid.querySelectorAll('.cn').forEach(e=>e.style.display='none'); }
+  grid.querySelectorAll('.act-ex').forEach(b=>b.onclick=()=>{
+    const box=b.parentElement.querySelector('.exbox');
+    const open = box.style.display==='block';
+    box.style.display = open?'none':'block';
+    b.textContent = open?'💡 看例句':'🔼 收起例句';
+    if(!open){ const ex=box.getAttribute('data-ex'); if(ex) speak(ex); }
+  });
+  grid.querySelectorAll('.act-more').forEach(b=>b.onclick=()=>{
+    const card=b.closest('.card');
+    const next=card.querySelector('.sense.hiddenSense');
+    if(next){ next.classList.remove('hiddenSense');
+      const exb=next.querySelector('.exbox'); if(exb.getAttribute('data-ex')) speak(exb.getAttribute('data-ex'));
+    }
+    if(!card.querySelector('.sense.hiddenSense')) b.style.display='none';
+  });
+  grid.querySelectorAll('.spk').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  grid.querySelectorAll('.act-shadow').forEach(b=>b.onclick=()=>goShadowText(b.getAttribute('data-text')));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'复习标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 神兽/图鉴 ---------- */
+function renderCodex(){
+  const grid=document.getElementById('codexGrid'); grid.innerHTML='';
+  BEASTS.forEach(b=>{
+    const box=document.createElement('div');
+    const active = b.u===DATA.unit;
+    box.className='cbox'+(active?'':' lock');
+    let stars=0;
+    if(active){ const pct=Math.round(masteredCount()/allWords().length*100); stars=pct>=80?3:pct>=50?2:pct>=20?1:0; }
+    box.innerHTML=`<div class="e">${b.e}</div><div class="n">${b.n}</div>
+      <div class="s">${active?'★'.repeat(stars)+'☆'.repeat(3-stars):'🔒 未解锁'}</div>
+      <div style="color:var(--sub);font-size:12px;margin-top:4px">${b.d}</div>`;
+    grid.appendChild(box);
+  });
+}
+
+/* ---------- 交互 ---------- */
+function toggleMaster(w, btn){
+  if(!state[w]) state[w]={};
+  state[w].mastered=!state[w].mastered;
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  saveState();
+  btn.classList.toggle('mastered', state[w].mastered);
+  btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
+  updateProgress(); renderCodex();
+}
+function checkIn(w){
+  const d=today();
+  if(!state[w]) state[w]={};
+  state[w].shadowed=d;
+  saveState();
+  if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
+  updateProgress(); renderCodex();
+}
+function switchSub(which){
+  document.querySelectorAll('.subtab').forEach(x=>x.classList.toggle('on', x.dataset.sh===which));
+  document.getElementById('shDialog').style.display = which==='dialog'?'block':'none';
+  document.getElementById('shSingle').style.display = which==='single'?'block':'none';
+}
+function goShadowWord(word){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.word===word);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到「'+word+'」'); }
+}
+function goShadowText(text){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.en===text);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到该句'); }
+}
+function goReviewWord(word){
+  document.querySelector('nav button[data-tab="review"]').click();
+  DATA.groups.forEach((g,i)=>{ if(g.words.some(w=>w.word===word)){ curGroupReview=i; renderReview(); flash('🔁 已定位复习：'+word); } });
+}
+
+/* ---------- 跟读队列（含复习例句） + 单句跟读 ---------- */
+function buildQueue(){
+  shQueue=[]; const seen=new Set();
+  DATA.groups.forEach(g=>g.words.forEach(w=>{
+    if(w.ex && !seen.has(w.ex)){ seen.add(w.ex); shQueue.push({en:w.ex,cn:w.exCn,word:w.word}); }
+    (w.senses||[]).forEach(s=>{ if(s.ex && !seen.has(s.ex)){ seen.add(s.ex); shQueue.push({en:s.ex,cn:s.exCn,word:w.word}); } });
+  }));
+}
+function renderShadowCurrent(){
+  const it=shQueue[shIdx]; if(!it)return;
+  document.getElementById('shProg').textContent='第 '+(shIdx+1)+' / '+shQueue.length+' 句 · 👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这块会出现回放音轨，和原声对比。';
+  document.getElementById('shNow').textContent=(shIdx+1)+'/'+shQueue.length+'  '+it.en;
+  document.getElementById('shNowCn').textContent=it.cn||'';
+}
+function shPlay(){ const it=shQueue[shIdx]; if(it) speak(it.en); }
+function shGo(dir){ shIdx=(shIdx+dir+shQueue.length)%shQueue.length; renderShadowCurrent(); }
+function shCheck(){
+  const it=shQueue[shIdx]; if(!it)return;
+  checkIn(it.word); flash('🎤 已跟读打卡：'+it.word);
+}
+function shAutoPlay(){
+  if(!shQueue.length)return;
+  const it=shQueue[shIdx];
+  const gap=parseInt(document.getElementById('shGap').value,10);
+  speak(it.en,{onend:()=>{
+    if(gap>0){ shTimer=setTimeout(()=>{ if(shAuto){ shIdx=(shIdx+1)%shQueue.length; renderShadowCurrent(); shAutoPlay(); } }, gap); }
+  }});
+}
+function initShadow(){
+  buildQueue(); if(shIdx>=shQueue.length) shIdx=0; renderShadowCurrent();
+  document.getElementById('shPlay').onclick=shPlay;
+  document.getElementById('shNext').onclick=()=>shGo(1);
+  document.getElementById('shPrev').onclick=()=>shGo(-1);
+  document.getElementById('shRec').onclick=function(){
+    if(rec.recording && rec.stopBtn===this){ stopRec(); }
+    else { startRec(shQueue[shIdx].en, document.getElementById('shRecBox'), this); }
+  };
+  document.getElementById('shStop').onclick=stopRec;
+  document.getElementById('shCheck').onclick=shCheck;
+  document.getElementById('shAuto').onclick=function(){ shAuto=!shAuto; this.textContent=shAuto?'⏹ 停止连播':'🔁 自动连播'; if(shAuto)shAutoPlay(); else {clearTimeout(shTimer); speechSynthesis.cancel();} };
+}
+
+/* ---------- 对话跟读（call-response 结构） ---------- */
+function renderDialogues(){
+  const list=document.getElementById('shDialog'); list.innerHTML='';
+  DATA.dialogues.forEach(d=>{
+    const box=document.createElement('div'); box.className='player';
+    let html='';
+    const turns = d.turns ? d.turns : (Array.isArray(d.lines) ? d.lines.map(function(t){ return {role:t[0], en:t[1], cn:(t[2]||'')}; }) : []);
+    let i=0;
+    while(i<turns.length){
+      const t=turns[i];
+      if(t.role==='A' && i+1<turns.length && turns[i+1].role==='B'){
+        const q=t, r=turns[i+1];
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-A">A</span>
+            <div class="qa-text">${esc(q.en)}<span class="cn">${esc(q.cn)}</span></div>
+            <button class="b-play" data-text="${esc(q.en)}">🔊 听问句</button>
+          </div>
+          <div class="resp">
+            <div class="resp-label">👉 你要回应的句子（B）：先听示范，再录你自己的</div>
+            <div class="qa-text">${esc(r.en)}<span class="cn">${esc(r.cn)}</span></div>
+            <div class="resp-acts">
+              <button class="b-play" data-text="${esc(r.en)}">🔊 听示范回应</button>
+              <button class="b-drill" data-text="${esc(r.en)}">🎤 我来回应</button>
+            </div>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=2;
+      } else {
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-${t.role}">${t.role}</span>
+            <div class="qa-text">${esc(t.en)}<span class="cn">${esc(t.cn)}</span></div>
+            <button class="b-play" data-text="${esc(t.en)}">🔊 原声</button>
+            <button class="b-turn-rec" data-text="${esc(t.en)}">🎤 跟读</button>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=1;
+      }
+    }
+    box.innerHTML=`<div class="now" style="font-size:16px">💬 ${esc(d.title)}</div>
+      <div class="nowcn" style="margin-bottom:10px">蓝字＝A 的问句（点「🔊 听问句」）；黄框＝<b>你要回应的句子，始终显示</b>，先点「🔊 听示范回应」模仿，再点「🎤 我来回应」录下你自己的回答。回放对比原声。</div>${html}`;
+    list.appendChild(box);
+  });
+  list.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  list.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); }
+    else { startRec(b.getAttribute('data-text'), container, b); }
+  });
+  list.querySelectorAll('.b-drill').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    startRecRaw(b.getAttribute('data-text'), container, b);
+  });
+}
+let rdIdx = 0;
+function frBuild(f, sel){
+  const parts = f.en.split('___');
+  let s = parts[0];
+  for(let i=0;i<(f.slots||[]).length;i++){
+    const idx = sel[i]||0;
+    const opt = f.slots[i].opts[idx];
+    s += (opt?opt[0]:'___') + (parts[i+1]||'');
+  }
+  return s.replace(/\s+([.,!?])/g,'$1').trim();
+}
+function frCn(f, sel){
+  let s = f.cn||'';
+  for(let i=0;i<(f.slots||[]).length;i++){
+    const opt = f.slots[i].opts[sel[i]||0];
+    const val = opt&&opt[1] ? opt[1] : '';
+    s = s.split('{'+i+'}').join(val);
+    s = s.replace('……', val || '……', 1);
+  }
+  return s;
+}
+function renderFrames(){
+  const box = document.getElementById('frWrap');
+  const fs = DATA.frames || [];
+  if(!fs.length){ box.innerHTML='<div class="hint">本单元暂无句模。</div>'; return; }
+  const thread = DATA.thread || '';
+  box.innerHTML = ''
+   + '<div class="phx-tip">🧩 <b>句模 = 把散装单词拼成自己句子的模具</b>。下拉框里换一个词，整句立刻变成你的话；每个句模本身就是一个可以随时套用的回答公式。'
+   + '<br><b>它和「学习」tab 里的单词是同一批</b>：句模的每个选项都来自本单元词卡。同一个词，从词卡 → 句模 → 对话 → 阅读，只是换了场合出现，从不零散。</div>'
+   + '<div class="ladder" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0 14px;font-size:12px">'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>① 词卡</b><br><span style="color:var(--sub)">「学习」里学</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>② 短语</b><br><span style="color:var(--sub)">词卡自带</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--gold2);border:1px solid var(--gold);border-radius:10px;padding:7px 10px"><b>③ 句模</b><br><span style="color:var(--ink)">本页·下拉造句</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>④ 对话</b><br><span style="color:var(--sub)">「跟读」里用</span></div>'
+   +   '<span style="color:var(--gold)">→</span>'
+   +   '<div style="background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:7px 10px"><b>⑤ 阅读听力</b><br><span style="color:var(--sub)">「阅读」里读懂</span></div>'
+   + '</div>'
+   + (thread ? '<div style="background:var(--panel2);border:1px dashed var(--gold2);border-radius:12px;padding:12px 14px;margin-bottom:14px"><div style="color:var(--gold);font-weight:700;font-size:13px;margin-bottom:6px">🧵 本单元词汇串烧 · 先看这些词怎么串成一段话</div>'
+        + '<div style="line-height:1.9">'+esc(thread)+'</div>'
+        + '<div style="color:var(--sub);font-size:11px;margin-top:6px">这就是「单词 → 句子」一体化的样子：散装词，被时间和场景串成了一条线。</div></div>' : '')
+   + '<div class="fr-grid"></div>';
+  const g = box.querySelector('.fr-grid');
+  fs.forEach((f,fi)=>{
+    const sel = (f.slots||[]).map(()=>0);
+    const d = document.createElement('div'); d.className='fr-card';
+    d.innerHTML = '<div class="fr-cn-head">' + esc(f.en) + '</div>'
+      + '<div class="fr-slots"></div>'
+      + '<div class="fr-sent"></div>'
+      + '<div class="fr-cn"></div>'
+      + '<div class="fr-acts">'
+      +   '<button class="p">🔊 朗读整句</button>'
+      +   '<button class="ghost fr-rec">🎤 我来念</button>'
+      +   '<button class="ghost fr-reset">↺ 换回第一个</button>'
+      + '</div>'
+      + '<div class="fr-tip">💡 ' + esc(f.tip||'') + '</div>'
+      + '<div class="rec-slot"></div>';
+    const sd = d.querySelector('.fr-slots');
+    (f.slots||[]).forEach((sl,i)=>{
+      const wrap = document.createElement('label'); wrap.className='fr-slot';
+      wrap.innerHTML = '<span>' + esc(sl.label) + '</span>';
+      const s = document.createElement('select');
+      sl.opts.forEach((o,oi)=>{
+        const op=document.createElement('option'); op.value=oi;
+        op.textContent = o[0] + (o[1] ? '（' + o[1] + '）' : '');
+        s.appendChild(op);
+      });
+      wrap.appendChild(s); sd.appendChild(wrap);
+    });
+    const upd = ()=>{
+      const cur = [...d.querySelectorAll('select')].map(s=>+s.value);
+      d.querySelector('.fr-sent').textContent = frBuild(f, cur);
+      d.querySelector('.fr-cn').textContent = frCn(f, cur);
+    };
+    d.querySelectorAll('select').forEach(s=>s.onchange=upd);
+    d.querySelector('.fr-reset').onclick=()=>{ d.querySelectorAll('select').forEach(s=>s.value=0); upd(); };
+    d.querySelector('.p').onclick=()=>speak(d.querySelector('.fr-sent').textContent);
+    d.querySelector('.fr-rec').onclick=()=>frRec(d, f);
+    upd();
+    g.appendChild(d);
+  });
+}
+function frRec(card, f){
+  const slot = card.querySelector('.rec-slot');
+  if(!slot) return;
+  const txt = card.querySelector('.fr-sent').textContent;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 双击文件打开时无法录音，请用本地服务地址打开本页。</div>'; return;
+  }
+  if(slot.dataset.on==='1'){ slot.innerHTML=''; slot.dataset.on='0'; return; }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const chunks=[]; const mr=new MediaRecorder(stream);
+    mr.ondataavailable=e=>chunks.push(e.data);
+    mr.onstop=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      const url=URL.createObjectURL(new Blob(chunks,{type:'audio/webm'}));
+      slot.innerHTML='<div class="hint">🎧 你的：<audio src="'+url+'" controls></audio></div>';
+    };
+    mr.start();
+    slot.dataset.on='1';
+    slot.innerHTML='<div class="hint" style="color:var(--gold)">● 正在录……念：<b>'+esc(txt)+'</b>（再点一次停止）</div>';
+    card._mr=mr;
+  }).catch(()=>{ slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 浏览器拒绝了麦克风权限。</div>'; });
+}
+
+function renderReading(){
+  const list = DATA.reading;
+  const ptabs = document.getElementById('rdPassages'); ptabs.innerHTML='';
+  list.forEach((rd,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(rd.title)+(rd.china?' 🇨🇳':'');
+    if(i===rdIdx) b.className='on';
+    b.onclick=()=>{ rdIdx=i; renderReading(); };
+    ptabs.appendChild(b);
+  });
+  document.getElementById('rdHint').textContent=list.length+' 篇受控短文：读 → 听（TTS）→ 跟读 → 做小题，一文多吃。词汇 / 短语 / 句式在不同情境重复出现，形成螺旋。🇨🇳 ＝中国主题篇。';
+  renderReadingContent();
+}
+function renderReadingContent(){
+  const rd=DATA.reading[rdIdx];
+  const rdb=document.getElementById('rdBanner');
+  rdb.style.display='block';
+  rdb.innerHTML='📖 <b>'+esc(rd.title)+'</b>'+(rd.china?' <span style="font-size:12px">🇨🇳</span>':'')+' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(rd.focus||'')+'</span> · <span style="color:var(--sub);font-size:12px">'+esc(rd.meta||'')+'</span>';
+  const txt=document.getElementById('rdText');
+  txt.innerHTML='<div class="rd-tip">点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。先读一遍，再点「🔊 听整篇」做听力，最后做下面小题。</div>'
+    +'<div class="rd-playall"><button class="b-play" id="rdPlayAll">🔊 听整篇</button></div>'
+    +'<div class="rd-sents"></div>';
+  const sents=txt.querySelector('.rd-sents');
+  rd.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    sents.appendChild(d);
+  });
+  txt.querySelector('#rdPlayAll').onclick=()=>{ speakSeq(rd.sentences, 600); };
+  sents.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  sents.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  sents.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const qz=document.getElementById('rdQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 理解小题（答错自动进错题本）</div>';
+  rd.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'阅读', original:'阅读小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+
+/* ---------- 听力子模式：盲听 → 答题 → 看文本 ---------- */
+let lsIdx = 0, lsRevealed = false;
+function renderListening(){
+  const list = DATA.listening || [];
+  const ptabs = document.getElementById('lsPassages'); ptabs.innerHTML='';
+  list.forEach((ls,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(ls.title)+(ls.china?' 🇨🇳':'');
+    if(i===lsIdx) b.className='on';
+    b.onclick=()=>{ lsIdx=i; renderListening(); };
+    ptabs.appendChild(b);
+  });
+  renderListeningContent();
+}
+function renderListeningContent(){
+  const ls=(DATA.listening||[])[lsIdx]; if(!ls) return;
+  const lsb=document.getElementById('lsBanner');
+  lsb.style.display='block';
+  lsb.innerHTML='🎧 <b>'+esc(ls.title)+'</b>'+(ls.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(ls.focus||'')+'</span>'
+    +' · <span style="color:var(--sub);font-size:12px">'+esc(ls.meta||'')+'</span>';
+  const box=document.getElementById('lsSents'); box.innerHTML=''; lsRevealed=false;
+  ls.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en ls-masked" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    box.appendChild(d);
+  });
+  box.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  box.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  box.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  document.getElementById('lsPlayAll').onclick=()=>speakSeq(ls.sentences,600);
+  document.getElementById('lsReplay').onclick=()=>speakSeq(ls.sentences,600);
+  const revealBtn=document.getElementById('lsReveal');
+  revealBtn.textContent='👀 看文本';
+  revealBtn.onclick=()=>{
+    lsRevealed=!lsRevealed;
+    box.querySelectorAll('.rd-en').forEach(e=>e.classList.toggle('ls-masked', !lsRevealed));
+    revealBtn.textContent = lsRevealed ? '🙈 收起文本' : '👀 看文本';
+  };
+  const qz=document.getElementById('lsQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 听力小题（答错自动进错题本）</div>';
+  ls.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'听力', original:'听力小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+function switchRd(which){
+  document.querySelectorAll('[data-rd]').forEach(x=>x.classList.toggle('on', x.dataset.rd===which));
+  document.getElementById('rdReadWrap').style.display = which==='read' ? '' : 'none';
+  document.getElementById('rdListenWrap').style.display = which==='listen' ? '' : 'none';
+  if(which==='listen') renderListening();
+}
+
+/* ---------- 拼读轨道 ---------- */
+/* TTS 不能直接念音标（/iː/ 去斜杠后会被当单词乱读）→ 「点音素」改为依次朗读该音的例词 */
+function speakSeq(words, gap, onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const arr=(words||[]).filter(Boolean);
+  let i=0;
+  (function next(){
+    if(i>=arr.length){ if(onDone)onDone(); return; }
+    const w=arr[i++];
+    speak(w, {onend:()=>setTimeout(next, gap||550)});
+  })();
+}
+function switchPhx(which){
+  document.querySelectorAll('[data-phx]').forEach(x=>x.classList.toggle('on', x.dataset.phx===which));
+  /* 手掌握图 + 顶部两条提示只属于「音素卡」视图：切到其他子 tab 时一并隐藏，
+     否则用户会看到"切过去了还是音素内容"。
+     注意选择器用 `> .phx-tip`（仅直接子级）——语调/反义区内部的提示是那些视图自己的内容，不能藏。 */
+  document.getElementById('phxHand').style.display = which==='cards'?'block':'none';
+  document.querySelectorAll('#phonics > .phx-tip').forEach(x=>x.style.display = which==='cards'?'block':'none');
+  document.getElementById('phxCards').style.display = which==='cards'?'block':'none';
+  document.getElementById('phxPairs').style.display = which==='pairs'?'block':'none';
+  document.getElementById('phxListen').style.display = which==='listen'?'block':'none';
+  document.getElementById('phxIntonation').style.display = which==='intonation'?'block':'none';
+  document.getElementById('phxAntonym').style.display = which==='antonym'?'block':'none';
+}
+function renderPhonics(){
+  /* ---- 预学词标记 ----
+     音素练习的目的是「练发音」，所以例词允许少量来自后面单元的词（虚线框 + 预学标签），
+     但必须 ≤30%，且本单元词优先。规则：不在本单元词库里的词自动标为「预学」。 */
+  const BANK=new Set(allWordObjs().map(w=>w.word.trim().toLowerCase()));
+  function wdWord(w){ return Array.isArray(w)? w[0] : w; }
+  function wdCn(w){ return Array.isArray(w)? (w[1]||'') : ''; }
+  function isPre(w){
+    const s=String(wdWord(w)).toLowerCase().replace(/[.,!?]/g,'').trim();
+    if(BANK.has(s)) return false;                 // 词库以短语整条收录
+    return !s.split(/\s+/).filter(Boolean).every(p=>BANK.has(p)||FUNCWORDS.has(p));
+  }
+  let preTotal=0, allTotal=0;
+  function preWord(w){
+    allTotal++;
+    const pre=isPre(w); if(pre) preTotal++;
+    const word=wdWord(w), cn=wdCn(w);
+    return `<span data-say-word="${esc(word)}"${pre?' data-pre="1"':''}>${esc(word)}${cn?` <i class="cn">${esc(cn)}</i>`:''}${pre?'<i class="pre-tag">预学</i>':''}</span>`;
+  }
+  function preRatio(){ return allTotal? Math.round(preTotal/allTotal*100):0; }
+  // 元音手掌握图
+  const hand=document.getElementById('phxHand');
+  const ha=DATA.phonics.hand_anchor||{};
+  let handHtml;
+  if(ha.long){
+    const fingerHtml=ha.long.map(f=>
+      `<div class="finger" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+        <div class="fpos">${esc(f.pos)}</div><div class="fipa">${esc(f.ipa)}</div><div class="fsay">${esc(f.say)}</div>
+        <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+      </div>`).join('');
+    const palmHtml=ha.short.map(f=>
+      `<div class="pv" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+        <div class="pipa">${esc(f.ipa)}</div><div class="psay">${esc(f.say)}</div>
+        <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+      </div>`).join('');
+    handHtml=`<div class="hand-wrap">
+      <div class="hand-palm">
+        <div class="hand-title">${esc(ha.title)}</div>
+        <div class="hand-hint">${esc(ha.hint)}</div>
+        <div class="hand-row">${fingerHtml}</div>
+        <div class="hand-row"><div style="font-size:11px;color:var(--gold);font-weight:700;width:100%;margin-bottom:2px">掌心＝短元音（短促）</div></div>
+        <div class="palm-vowels">${palmHtml}</div>
+        <div class="hand-hint" style="margin-top:10px">👆 <b>每个例词都是独立可点的块</b>，点哪个词就单独读哪个词；点卡片空白处会连读全部例词。</div>
+      </div>
+    </div>`;
+  } else if(ha.lines){
+    handHtml=`<div class="hand-wrap"><div class="hand-palm">
+      <div class="hand-title">${esc(ha.title)}</div>
+      <div class="hand-hint">两个易混元音，点卡片连读对比（若已配置发音）。</div>
+      <div class="palm-vowels">${ha.lines.map(function(ln){ return `<div class="pv" data-words="${esc(ln)}"><div class="pipa">${esc(ln)}</div></div>`; }).join('')}</div>
+      <div class="hand-hint" style="margin-top:10px">👆 <b>每个元音卡可点击朗读</b>。</div>
+    </div></div>`;
+  } else {
+    handHtml='<div class="hint">本单元无手掌握图。</div>';
+  }
+  hand.innerHTML=handHtml;
+  hand.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  hand.querySelectorAll('.finger,.pv').forEach(c=>c.onclick=()=>{ if(c.dataset.words) speakSeq(c.dataset.words.split(' ')); });
+  // 音素卡
+  const cards=document.getElementById('phxCards'); cards.innerHTML='<div class="phx-grid"></div>';
+  const cg=cards.querySelector('.phx-grid');
+  DATA.phonics.sound_cards.forEach(sc=>{
+    const sym=sc.sound||sc.sym||''; const nm=sc.name||'';
+    const d=document.createElement('div'); d.className='phx-card';
+    d.innerHTML=`<div class="ps">${esc(sym)}</div>${nm?`<div class="pn">${esc(nm)}</div>`:''}
+      <div class="ptip">${esc(sc.tip||'')}</div>
+      <div class="phx-words">${sc.words.map(preWord).join('')}</div>
+      ${sc.phrase_en?`<div class="phx-phrase"><span class="pl">🔗 短语连读</span><span class="pe">${esc(sc.phrase_en)}</span>
+        <button class="b-play" data-phrase="${esc(sc.phrase_en)}">🔊 听短语</button>
+        ${sc.audio?`<button class="b-real" data-audio="${esc(sc.audio)}">🎧 真人</button>`:''}
+        <span class="pc">${esc(sc.phrase_cn||'')}</span></div>`:''}`;
+    cg.appendChild(d);
+  });
+  cards.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  cards.querySelectorAll('[data-phrase]').forEach(b=>b.onclick=e=>{e.stopPropagation();speak(b.dataset.phrase);});
+  cards.querySelectorAll('[data-audio]').forEach(b=>b.onclick=e=>{e.stopPropagation();playAudio(b.dataset.audio);});
+  cards.querySelectorAll('.phx-card').forEach(c=>c.addEventListener('click',e=>{
+    if(e.target.closest('[data-say-word]')||e.target.closest('button')) return;
+    speakSeq(Array.from(c.querySelectorAll('[data-say-word]')).map(x=>x.dataset.sayWord));
+  }));
+  /* 预学词占比提示：练发音可以带一点外单元新词，但控制在 30% 以内 */
+  const pct=preRatio();
+  const note=document.createElement('div');
+  note.className='phx-tip';
+  note.innerHTML=`📊 本单元拼读例词里 <b>${preTotal}</b> 个是后面单元的词（虚线框「预学」标签），占比 <b>${pct}%</b>。
+    ${pct>30?'<span style="color:var(--red)">⚠️ 超过 30%，需要替换为本单元词。</span>':'✅ 在 30% 以内 —— 这些词<b>只要求你会读出来</b>，不要求现在记住意思。'}`;
+  cards.appendChild(note);
+  /* ---------- 情绪语调（本单元专属维度：教材 U8/U9 语调） ----------
+   浏览器 TTS 无法真正控制语调，这里做两件事：
+   ① 用 SVG 折线把「音高走向」画出来（↗ 上扬/ → 平/ ↘ 下降），让视觉先建立概念
+   ② 用 pitch 参数近似：升调调高 pitch、降调调低 pitch，让学生能听出差别        */
+function pitchSvg(arrow){
+  // 起点(12,44) 终点(228,10)；按箭头决定控制点，画出上扬/平/下降
+  let pts;
+  if(arrow.indexOf('↑')>=0)      pts='12,46 60,40 120,26 180,10 228,4';   // 强升调
+  else if(arrow.indexOf('↗')>=0) pts='12,46 70,40 140,28 228,12';       // 升调
+  else if(arrow.indexOf('↓')>=0) pts='12,12 70,20 140,32 228,44';       // 平后微降
+  else if(arrow.indexOf('↘')>=0) pts='12,12 70,22 140,34 228,46';       // 降调
+  else                            pts='12,29 80,27 150,30 228,28';       // 平调
+  return `<svg class="itn-pitch" viewBox="0 0 240 56" preserveAspectRatio="none">
+    <line class="base" x1="6" y1="28" x2="234" y2="28"></line>
+    <polyline class="path" points="${pts}"></polyline>
+    <circle class="dot" cx="228" cy="${pts.split(' ').pop().split(',')[1]}" r="3.5"></circle>
+  </svg>`;
+}
+function tonePitch(arrow){
+  if(arrow.indexOf('↑')>=0) return 1.5;
+  if(arrow.indexOf('↗')>=0) return 1.25;
+  if(arrow.indexOf('↘')>=0) return 0.72;
+  if(arrow.indexOf('↓')>=0) return 0.85;
+  return 1.0;
+}
+/* ---------- 语调朗读：为什么不能直接调 pitch ----------
+   SpeechSynthesis 的 u.pitch 只是「整句音高缩放」，不改变句内音高走向。
+   所以同一句话设 pitch=1.25（↗）和 pitch=0.72（↘）听起来完全一样 —— 骗不了学生。
+   可行做法：把句子切成 [前半 + 末段] 两段，末段按语调方向给不同音高，
+   这样「句末往上走」还是「句末往下落」在合成音里真的能听出来。
+   仍然要诚实标注：这是电脑合成的近似语调，真语调必须听真人（老师/家长/录音）。 */
+function contourSegs(text, arrow){
+  const s=String(text||'').trim();
+  const toks=s.split(/\s+/).filter(Boolean);
+  if(toks.length<2) return [{t:s, p:tonePitch(arrow)}];
+  const head=toks.slice(0,-1).join(' '), tail=toks[toks.length-1];
+  let end;
+  if(arrow.indexOf('↑')>=0)      end=1.75;   // 强升调：末段明显抬高
+  else if(arrow.indexOf('↗')>=0) end=1.45;   // 升调
+  else if(arrow.indexOf('↘')>=0) end=0.55;   // 降调：末段明显压低
+  else if(arrow.indexOf('↓')>=0) end=0.8;    // 平后微降
+  else                            end=1.0;    // 平调
+  return [{t:head,p:1.0},{t:tail,p:end}];
+}
+function speakTone(text,arrow,rate,onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const segs=contourSegs(text,arrow);
+  let i=0;
+  (function next(){
+    if(i>=segs.length){ if(onDone)onDone(); return; }
+    const s=segs[i++];
+    const u=new SpeechSynthesisUtterance(s.t);
+    const v=getVoice(); if(v)u.voice=v;
+    u.rate=(typeof rateVal==='function'?rateVal():0.9);
+    u.pitch=s.p; u.volume=1; u.lang=(v&&v.lang)||'en-GB';
+    u.onend=()=>setTimeout(next,80);
+    u.onerror=()=>setTimeout(next,80);
+    speechSynthesis.speak(u);
+  })();
+}
+function renderIntonation(){
+  const box=document.getElementById('phxIntonation');
+  const cards=(DATA.phonics.intonation_cards)||[];
+  const pairs =(DATA.phonics.intonation_pairs)||[];
+  if(!cards.length && !pairs.length){ box.innerHTML='<div class="hint">本单元暂无语调卡。</div>'; return; }
+  let html='';
+  if(cards.length){
+    html+=`<div class="phx-tip">🎵 <b>语调 = 句子的情绪体温</b>。同一句话，音调走的方向不同，意思就完全不同：
+<b>↗ 上扬</b>（开心/疑问/惊讶）｜ <b>↘ 下降</b>（难过/肯定/结束）｜ <b>→ 平直</b>（无聊/累/敷衍）。
+折线图告诉你的就是「音高往哪走」。
+<br><br>🎧 <b>有「🎧 真人示范」按钮的卡，先听真人</b>：那是母语者的真实录音（Tatoeba 社区 · CC BY 2.0），语调是真的、句末上挑也是真的；
+没有这个按钮的卡，说明语料库里没找到这句，只能听合成示意。
+<br>⚠️ 电脑合成音<b>做不出真正的语调</b>——它只能把整句话整体调高或调低，<b>走不出「句末往上挑」的旋律线</b>，所以「🔊 音高示意」只是近似演示。
+<br>👉 <b>真正能听出语调的，只有你自己的声音。</b>点「🎤 我来念」录一遍，回放对比——那才是真语调。</div>`;
+    html+='<div class="itn-grid"></div>';
+  }
+  box.innerHTML=html;
+  if(cards.length){
+    const cg=box.querySelector('.itn-grid');
+    cards.forEach(ic=>{
+      const d=document.createElement('div'); d.className='itn';
+      d.innerHTML=`<div class="itn-top">
+          <div class="itn-arrow">${esc(ic.arrow)}</div>
+          <div><div class="itn-w">${esc(ic.word)}</div><div class="itn-ipa">${esc(ic.ipa)} · ${esc(ic.cn)}</div></div>
+          <div class="itn-tone">${esc(ic.tone)}</div>
+        </div>
+        ${pitchSvg(ic.arrow)}
+        <div class="itn-sent">${esc(ic.sent)}</div>
+        <div class="itn-sentcn">${esc(ic.sent_cn)}</div>
+        <div class="itn-tip">${esc(ic.tip)}</div>
+        <div class="itn-q">再练一句：<b>${esc(ic.pair.en)}</b> <span style="color:var(--sub)">${esc(ic.pair.cn)}</span></div>
+        <div class="itn-acts">
+          ${ic.audio?'<button class="b-real" data-audio="'+esc(ic.audio)+'">🎧 真人示范</button>':''}
+          <button class="b-play" data-t="${esc(ic.sent)}" data-a="${esc(ic.arrow)}">🔊 音高示意</button>
+          ${ic.pair.audio?'<button class="b-real" data-audio="'+esc(ic.pair.audio)+'">🎧 真人</button>':''}
+          <button class="ghost" data-t="${esc(ic.pair.en)}" data-a="${esc(ic.arrow)}">🔊 再练一句</button>
+          <button class="b-rec" data-rec-t="${esc(ic.sent)}" data-rec-a="${esc(ic.arrow)}">🎤 我来念</button>
+        </div>
+        <div class="rec-slot"></div>`;
+      cg.appendChild(d);
+    });
+    box.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+  // 同句异调：从「听辨」改为「自己念两种，自己比」
+  if(pairs.length){
+    const box2=document.createElement('div');
+    box2.innerHTML=`<div class="phx-tip" style="margin-top:16px">🎤 <b>同句异调 · 自己念、自己比</b>：下面每一组<b>文字完全一样</b>，只有语调不同。
+<b>别指望用合成音听出区别（它听不出来）</b>——正确练法是：<b>照着曲线自己念一遍↗，再自己念一遍↘，录下来回放对比</b>。
+你自己的声音里有真语调，一比就知道差在哪。</div>`;
+    box.appendChild(box2);
+    pairs.forEach((p,i)=>{
+      const d=document.createElement('div'); d.className='itnp';
+      d.innerHTML=`<div class="itnp-vs">
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.left.arrow)} ${esc(p.left.tone)}</div>
+            ${pitchSvg(p.left.arrow)}
+            <div class="en">${esc(p.left.en)}</div><div class="cn">${esc(p.left.cn)}</div>
+            <div class="itn-acts">
+              ${p.left.audio?'<button class="b-real" data-audio="'+esc(p.left.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.left.en)}" data-a="${esc(p.left.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.left.en)}" data-rec-a="${esc(p.left.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+          <div class="itnp-mid">VS</div>
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.right.arrow)} ${esc(p.right.tone)}</div>
+            ${pitchSvg(p.right.arrow)}
+            <div class="en">${esc(p.right.en)}</div><div class="cn">${esc(p.right.cn)}</div>
+            <div class="itn-acts">
+              ${p.right.audio?'<button class="b-real" data-audio="'+esc(p.right.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.right.en)}" data-a="${esc(p.right.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.right.en)}" data-rec-a="${esc(p.right.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+        </div>
+        <div class="itnp-q">Q${i+1}. ${esc(p.ask)}</div>
+        <div class="itnp-a hide" data-a="${esc(p.answer)}">${esc(p.answer)}</div>`;
+      box2.appendChild(d);
+    });
+    box.querySelectorAll('.itnp-a').forEach(x=>x.onclick=()=>x.classList.toggle('hide'));
+    box2.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box2.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box2.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+}
+/* 真人示范音频（老师录制后填 audio 字段即可，没有就只显示合成音） */
+let realAudioEl=null;
+function playAudio(src){
+  try{
+    if(realAudioEl){ realAudioEl.pause(); }
+    realAudioEl=new Audio(src); realAudioEl.play();
+  }catch(e){ speak(src); }
+}
+/* 语调录音：学生自己念 → 回放对比（这才是真语调） */
+function toneRec(btn, text, arrow){
+  const card = btn.closest('.itn') || btn.closest('.itnp-side');
+  const slot = card ? card.querySelector('.rec-slot') : null;
+  if(!slot) return;
+  if(toneRecState.mr){ toneRecState.stop(); return; }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 双击文件打开时无法录音。请用本地服务地址打开本页（见首页说明）。</div>';
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const chunks=[];
+    const mr=new MediaRecorder(stream);
+    mr.ondataavailable=e=>{ if(e.data.size) chunks.push(e.data); };
+    mr.onstop=()=>{
+      const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'});
+      const url=URL.createObjectURL(blob);
+      slot.innerHTML='<audio controls src="'+url+'"></audio>'
+        +'<div class="hint">🎧 上面是<b>你自己的声音</b>——回放听句末是往上还是往下，跟上面的曲线对一下。</div>';
+      stream.getTracks().forEach(t=>t.stop());
+      toneRecState.mr=null; btn.textContent=toneRecState.label;
+    };
+    mr.start();
+    toneRecState.mr=mr; toneRecState.btn=btn; toneRecState.label=btn.textContent;
+    toneRecState.stop=function(){ mr.stop(); };
+    btn.textContent='■ 停止';
+    slot.innerHTML='<div class="hint"><span class="rec-dot"></span> 请念：<b>'+esc(text)+'</b>　'
+      +(arrow.indexOf('↗')>=0||arrow.indexOf('↑')>=0?'（句末<b>往上挑</b>）':(arrow.indexOf('↘')>=0||arrow.indexOf('↓')>=0?'（句末<b>往下落</b>）':'（<b>平平的</b>）'))
+      +'</div>';
+  }).catch(err=>{
+    slot.innerHTML='<div class="hint" style="color:var(--red)">无法录音：'+esc(err.message)+'</div>';
+  });
+}
+let toneRecState={mr:null,btn:null,label:'',stop:function(){}};
+/* ---------- 反义情绪对（本单元专属词，语义对立 + 语调对比） ---------- */
+function renderAntonym(){
+  const box=document.getElementById('phxAntonym');
+  const list=(DATA.phonics.antonym_pairs)||[];
+  if(!list.length){ box.innerHTML='<div class="hint">本单元暂无反义情绪对。</div>'; return; }
+  let html=`<div class="phx-tip">↔️ <b>反义情绪对</b>：两词意思相反，<b>说话时的情绪也相反</b>。
+先各听一次单词，再听整句。<b>注意</b>：这里的句子是<b>平读</b>的——合成音做不出情绪语调，
+真正的情绪语调要靠你自己念（去「🎤 语调」那栏录一遍），或听真人示范。</div>`;
+  list.forEach(p=>{
+    html+=`<div class="apo">
+      <div class="apo-top">
+        <span class="apo-w">${esc(p.a)}</span><span class="apo-vs">↔ 意思相反 →</span><span class="apo-w">${esc(p.b)}</span>
+        <span class="apo-cn">${esc(p.cn_a)} / ${esc(p.cn_b)}</span>
+      </div>
+      <div style="font-size:14px;font-weight:600;line-height:1.6;margin-bottom:7px">${esc(p.sent)}</div>
+      <div class="apo-cn" style="margin-bottom:8px">${esc(p.sent_cn)}</div>
+      <div class="itn-acts">
+        <button class="b-play" data-w2="${esc(p.a)}">🔊 ${esc(p.a)}</button>
+        <button class="b-play" data-w2="${esc(p.b)}">🔊 ${esc(p.b)}</button>
+        <button class="b-play" data-t2="${esc(p.sent)}">🔊 听整句</button>
+      </div>
+    </div>`;
+  });
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w2]').forEach(b=>b.onclick=()=>speak(b.dataset.w2));
+  box.querySelectorAll('[data-t2]').forEach(b=>b.onclick=()=>speak(b.dataset.t2));
+}
+  // 最小对立对
+  const pairs=document.getElementById('phxPairs'); pairs.innerHTML='';
+  DATA.phonics.min_pairs.forEach(mp=>{
+    const d=document.createElement('div'); d.className='pair';
+    d.innerHTML=`<div class="pt">
+        <div class="pc"><div class="pw">${esc(mp.a)}</div><div class="pi">${esc(mp.a_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.a)}">🔊 ${esc(mp.a)}</button></div></div>
+        <div class="pc"><div class="pw">${esc(mp.b)}</div><div class="pi">${esc(mp.b_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.b)}">🔊 ${esc(mp.b)}</button></div></div>
+      </div>
+      <div class="ptip">${esc(mp.tip)}</div>
+      <div class="pair-acts">
+        <button class="b-ok" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">✅ 我能区分</button>
+        <button class="b-bad" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">❌ 我还混</button>
+      </div>`;
+    pairs.appendChild(d);
+  });
+  pairs.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.dataset.text));
+  pairs.querySelectorAll('.b-ok').forEach(b=>b.onclick=()=>flash('👍 已标记：能区分'));
+  pairs.querySelectorAll('.b-bad').forEach(b=>b.onclick=()=>{ addError({word:b.dataset.a+' / '+b.dataset.b,type:'拼读',original:'最小对立对',standard:b.dataset.a+' '+b.dataset.b,student:'未区分'}); flash('🩹 已记入错题'); });
+  // 听音选词（运行时生成）
+  const lis=document.getElementById('phxListen');
+  lis.innerHTML=`<div class="player"><div class="now">🎧 听音选词</div>
+    <div class="nowcn">听发音，从 4 个选项里选出你听到的词。答错自动入错题本。</div>
+    <div id="phxListenBox"></div></div>`;
+  phxListenNext();
+  /* 语调 / 反义情绪对两个视图的内容在这里渲染（否则 div 是空的，用户切过去一片空白） */
+  renderIntonation();
+  renderAntonym();
+}
+function phxListenNext(){
+  const box=document.getElementById('phxListenBox'); if(!box) return;
+  const words=allWordObjs();
+  const correct=words[Math.floor(Math.random()*words.length)];
+  const distract=shuffle(words.filter(w=>w.word!==correct.word)).slice(0,3);
+  const opts=shuffle([correct,...distract]);
+  box.innerHTML=`<div class="ctr"><button id="phxPlay" class="b-play">▶ 播放发音</button></div>
+    <div class="q-opts">${opts.map((o,i)=>`<button class="q-opt" data-word="${esc(o.word)}">${esc(o.word)}</button>`).join('')}</div>
+    <div class="q-fb" id="phxFb"></div>
+    <div class="ctr"><button id="phxNext" class="ghost">⏭ 下一题</button></div>`;
+  let answered=false;
+  document.getElementById('phxPlay').onclick=()=>speak(correct.word);
+  setTimeout(()=>speak(correct.word),300);
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    if(b.dataset.word===correct.word){ b.classList.add('ok'); document.getElementById('phxFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('phxFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：'+esc(correct.word)+'</span>';
+      addError({word:correct.word,type:'拼读',original:'听音选词',standard:correct.word,student:b.dataset.word});
+      box.querySelectorAll('.q-opt').forEach(bb=>{ if(bb.dataset.word===correct.word) bb.classList.add('ok'); }); }
+    document.getElementById('phxNext').onclick=phxListenNext;
+  });
+}
+
+/* ---------- 小测 ---------- */
+let quizQueue=[], quizIdx=0, quizScore=0, quizTotal=0, quizDone=false;
+function cnOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.defB)).slice(0,3);
+  return shuffle([{label:w.defB,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function enOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.word)).slice(0,3);
+  return shuffle([{label:w.word,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function buildQuiz(){
+  const words=shuffle(allWordObjs());
+  quizQueue=[];
+  words.forEach(w=>{
+    const r=Math.random();
+    if(r<0.30){ const opts=cnOpts(w); quizQueue.push({kind:'listen',word:w.word,cn:w.defB,opts}); }
+    else if(r<0.60){ const opts=cnOpts(w); quizQueue.push({kind:'en2cn',word:w.word,cn:w.defB,opts}); }
+    else { const opts=enOpts(w); quizQueue.push({kind:'cn2en',word:w.word,cn:w.defB,opts}); }
+  });
+  quizIdx=0; quizScore=0; quizTotal=quizQueue.length; quizDone=false; renderQuiz();
+}
+function renderQuiz(){
+  const box=document.getElementById('quizBox');
+  if(quizDone){ box.innerHTML=`<div class="player"><div class="now">🎉 本轮完成！</div>
+    <div class="nowcn">答对 ${quizScore} / ${quizTotal}。答错的已自动记入「🩹 错题」，去错题本重练。</div>
+    <div class="ctr"><button id="quizAgain">🔁 再来一轮</button></div></div>`;
+    document.getElementById('quizAgain').onclick=buildQuiz; return; }
+  const q=quizQueue[quizIdx];
+  /* 三种题面都把「英文」做成可点发音块：
+     listen — 不直接露词，只有播放钮
+     en2cn — 题干英文可点（听音不影响作答，帮助记发音）
+     cn2en — 选完后英文选项立刻变成可点发音块；作答前点选项＝选择，不发音 */
+  let promptHtml='';
+  if(q.kind==='listen') promptHtml=`<div class="quiz-prompt">🔊 听发音，选出中文意思
+      <button class="b-play" id="qPlay">▶ 播放</button>
+      <button class="ghost" id="qPeek">👀 看单词</button></div>`;
+  else if(q.kind==='en2cn') promptHtml=`<div class="quiz-prompt">${sayChip(q.word,'big')}
+      <span class="tag">点单词听发音</span><div style="color:var(--sub);font-size:13px">选出中文意思</div></div>`;
+  else promptHtml=`<div class="quiz-prompt"><span class="big">「${esc(q.cn)}」</span>
+      <div style="color:var(--sub);font-size:13px">对应的英文是？<span class="tag">选完后点选项可再听发音</span></div></div>`;
+  let opts='';
+  q.opts.forEach((o,i)=>{ opts+=`<button class="q-opt" data-i="${i}">${esc(o.label)}</button>`; });
+  box.innerHTML=`<div class="player"><div class="now">📝 小测 ${quizIdx+1}/${quizTotal}</div>${promptHtml}
+    <div class="q-prog"><div class="bar"><i style="width:${Math.round(quizIdx/quizTotal*100)}%"></i></div></div>
+    <div class="q-opts">${opts}</div><div class="q-fb" id="qFb"></div>
+    <div class="ctr"><button id="qNext" class="ghost">⏭ 下一题</button></div></div>`;
+  if(q.kind==='listen'){
+    document.getElementById('qPlay').onclick=()=>speak(q.word);
+    document.getElementById('qPeek').onclick=()=>{ speak(q.word); flash('🔊 单词是：'+q.word); };
+    setTimeout(()=>speak(q.word),250);
+  }
+  if(q.kind==='en2cn') setTimeout(()=>speak(q.word),250);   // 题干可点，也可自动听一次
+  /* 作答后：把正确英文自动读一遍 + 给所有英文选项装上发音块（连排多次，强化记忆） */
+  function afterAnswer(){
+    const fb=document.getElementById('qFb');
+    const tail=' <span style="font-weight:600;color:var(--sub)">点单词再听：</span>';
+    if(q.kind==='cn2en') fb.innerHTML += tail+sayChip(q.word)+' '+sayChip(q.word);
+    else fb.innerHTML += tail+sayChip(q.word);
+    box.querySelectorAll('.q-opt').forEach((bb,j)=>{
+      const lab=q.opts[j].label;
+      if(/^[A-Za-z' -]+$/.test(lab)){ bb.setAttribute('data-say',lab); bb.insertAdjacentHTML('beforeend','<span style="font-size:11px;color:var(--gold)"> 🔊</span>'); }
+    });
+    setTimeout(()=>speak(q.word), 260);
+  }
+  let answered=false;
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    suppressSay=true;                       // 本次点击只算作答，不触发词块发音
+    setTimeout(()=>{ suppressSay=false; },0);
+    const o=q.opts[+b.dataset.i];
+    if(o.ok){ quizScore++; b.classList.add('ok'); document.getElementById('qFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('qFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：</span>'+sayChip(q.word);
+      addError({word:q.word,type:'小测',original:'小测题',standard:q.word,student:o.label});
+      box.querySelectorAll('.q-opt').forEach((bb,j)=>{ if(q.opts[j].ok) bb.classList.add('ok'); }); }
+    afterAnswer();
+    document.getElementById('qNext').onclick=()=>{ quizIdx++; if(quizIdx>=quizTotal){quizDone=true;} renderQuiz(); };
+  });
+}
+
+/* ---------- 错题池 ---------- */
+function renderErrors(){
+  const box=document.getElementById('errList');
+  if(!errors.length){ box.innerHTML='<div class="hint">还没有错题。小测答错、或在词卡/复习点「❌ 记一笔」会自动收集到这里，按类型聚合，方便专项重练。</div>'; return; }
+  const byType={};
+  errors.forEach((e,i)=>{ (byType[e.type]=byType[e.type]||[]).push({...e,idx:i}); });
+  const labels={词汇:'📘 词汇没记住',拼读:'🅰️ 拼读没区分',小测:'📝 小测答错'};
+  let html='';
+  for(const t in byType){
+    html+=`<div class="err-type">${labels[t]||t}（${byType[t].length}）</div>`;
+    byType[t].forEach(e=>{
+      html+=`<div class="err-item"><div class="err-meta"><b>${esc(e.word)}</b> · ${new Date(e.time).toLocaleDateString()} ${new Date(e.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</div>
+        <div class="err-line">标准：<span style="color:var(--green)">${esc(e.standard)}</span></div>
+        ${e.student&&e.student!==e.standard?`<div class="err-line">你的：<span style="color:var(--red)">${esc(e.student)}</span></div>`:''}
+        <div class="err-btns"><button class="morebtn" data-w="${esc(e.word)}">🔁 重练</button><button class="err-del" data-i="${e.idx}">🗑 删除</button></div></div>`;
+    });
+  }
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>goReviewWord(b.dataset.w));
+  box.querySelectorAll('.err-del').forEach(b=>b.onclick=()=>{ errors.splice(+b.dataset.i,1); saveErrors(); renderErrors(); updateProgress(); });
+}
+
+/* ---------- 本单元语法：跳到语法练习的具体知识点 ---------- */
+const GRAM_PAGE = "语法练习_A1-A2-B1-B2.html";
+const GRAM_KEY  = "a1_gram_done_v1";
+function loadGram(){ try{return JSON.parse(localStorage.getItem(GRAM_KEY))||{}}catch(e){return{}} }
+function saveGram(g){ localStorage.setItem(GRAM_KEY, JSON.stringify(g)); }
+/* 只记一笔「点过」，真正的跳转交给 <a href target=_blank> —— 避免 window.open 与新标签重复开两次 */
+function markGrammar(pid){
+  var g=loadGram();
+  var u=DATA.unit;
+  g[u]=g[u]||[]; if(g[u].indexOf(pid)<0){ g[u].push(pid); saveGram(g); }
+  setTimeout(renderGrammar,60);
+}
+function renderGrammar(){
+  var list=(DATA.grammar||[]), box=document.getElementById('gramList'), head=document.getElementById('gramHead');
+  var all=document.getElementById('gramAll');
+  if(all) all.href=GRAM_PAGE;
+  if(!head||!box) return;
+  var done=(loadGram()[DATA.unit]||[]);
+  head.innerHTML='Unit '+DATA.unit+' 学 <b>'+list.length+' 个语法点</b>。'
+    + '跟读是「听进来」，语法是「写出来」—— 本单元的句子会用到这些点，'
+    + '点一下就跳到语法练习里对应的那一关（已完成 '+done.length+' / '+list.length+'）。';
+  if(!list.length){
+    box.innerHTML='<div class="hint">本单元还没配语法点。</div>'; return;
+  }
+  box.innerHTML=list.map(function(it,i){
+    var pid = (typeof it==='string')? it : it.pid;
+    var nm  = (typeof it==='string')? it : (it.name||it.pid);
+    var ds  = (typeof it==='string')? '' : (it.desc||'');
+    var ok=done.indexOf(pid)>=0;
+    return '<div class="gcard">'
+      + '<div class="gi">'+(ok?'✅':'✍️')+'</div>'
+      + '<div class="gname">'+esc(nm)+'</div>'
+      + '<div class="gdesc">'+esc(ds||'')+'<br><span style="opacity:.6">pid: '+esc(pid)+'</span></div>'
+      + (ok?'<div class="gdone">已练过</div>':'')
+      + '<a class="ggo" href="'+GRAM_PAGE+'?p='+encodeURIComponent(pid)+'&u='+DATA.unit+'"'
+      +   ' target="_blank" rel="noopener" onclick="markGrammar(\'' + pid + '\')">去练这一点 →</a>'
+      + '</div>';
+  }).join('');
+}
+
+/* ---------- 单元文章：把本单元生词织进一个语境 ---------- */
+function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
+function artHL(text){
+  const fs = DATA.artForms || [];
+  const out = esc(text);
+  if(!fs.length) return out;
+  try{
+    const re = new RegExp('(?<![a-zA-Z])(' + fs.map(f=>f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|') + ')(?![a-zA-Z])','gi');
+    return out.replace(re,'<span class="art-hl">$1</span>');
+  }catch(e){ return out; }
+}
+function renderArticle(){
+  const a=DATA.article;
+  const body=document.getElementById('artBody');
+  const banner=document.getElementById('artBanner');
+  if(!a || !a.paras || !a.paras.length){
+    banner.style.display='none';
+    body.innerHTML='<div class="hint">本单元暂无文章。</div>';
+    return;
+  }
+  const total=a.paras.reduce((s,p)=>s+p.length,0);
+  const hlEl=document.getElementById('tgArtHL');
+  const hl=!hlEl || hlEl.dataset.hide!=='1';
+  let nArt=0, nAll=0;
+  (DATA.groups||[]).forEach(g=>g.words.forEach(w=>{ nAll++; if(w.inArt) nArt++; }));
+  banner.style.display='block';
+  banner.innerHTML='📰 <b>'+esc(a.title)+'</b> · <span style="font-weight:700;font-size:12px">'+total+' 句</span> · <span style="font-size:12px">本单元生词全部织进这篇短文</span>';
+  body.innerHTML='';
+  let gi=0; const all=[];
+  a.paras.forEach(para=>{
+    const pd=document.createElement('div'); pd.className='art-para';
+    para.forEach(s=>{
+      gi++; all.push(s[0]);
+      const d=document.createElement('div'); d.className='art-sent';
+      d.innerHTML='<span class="art-idx">'+gi+'</span>'
+        +'<span class="art-en" data-text="'+escAttr(s[0])+'">'+(hl?artHL(s[0]):esc(s[0]))+'</span>'
+        +'<button class="b-play" data-text="'+escAttr(s[0])+'">🔊</button>'
+        +'<button class="b-turn-rec" data-text="'+escAttr(s[0])+'">🎤</button>'
+        +'<div class="turn-rec"></div>'
+        +'<div class="art-zh cnArt">'+esc(s[1]||'')+'</div>';
+      pd.appendChild(d);
+    });
+    body.appendChild(pd);
+  });
+  body.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  body.querySelectorAll('.art-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),{slow:true}));
+  body.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.art-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const pa=document.getElementById('artPlayAll');
+  if(pa) pa.onclick=()=>{ speakSeq(all, 600); };
+}
+
+/* ---------- tab 切换 ---------- */
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.tab).classList.add('on');
+    if(b.dataset.tab==='shadow') initShadow();
+    if(b.dataset.tab==='codex') renderCodex();
+    if(b.dataset.tab==='review') renderReview();
+    if(b.dataset.tab==='phonics') renderPhonics();
+    if(b.dataset.tab==='quiz') buildQuiz();
+    if(b.dataset.tab==='errors') renderErrors();
+    if(b.dataset.tab==='reading') renderReading();
+    if(b.dataset.tab==='article') renderArticle();
+    if(b.dataset.tab==='frames') renderFrames();
+    if(b.dataset.tab==='grammar') renderGrammar();
+  };
+});
+document.querySelectorAll('.subtab').forEach(b=>b.onclick=()=>switchSub(b.dataset.sh));
+document.querySelectorAll('[data-phx]').forEach(b=>b.onclick=()=>switchPhx(b.dataset.phx));
+document.querySelectorAll('[data-rd]').forEach(b=>b.onclick=()=>switchRd(b.dataset.rd));
+(function(){
+  const r=(DATA.reading||[]).length, l=(DATA.listening||[]).length;
+  const rb=document.querySelector('[data-rd="read"]'), lb=document.querySelector('[data-rd="listen"]');
+  if(rb) rb.innerHTML='📖 阅读 '+r+' 篇';
+  if(lb){ if(!l){ lb.style.display='none'; } else lb.innerHTML='🎧 听力 '+l+' 篇'; }
+})();
+document.getElementById('tgCnLearn').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnLearn').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgHideCn').onclick=function(){
+  const hide=this.dataset.hide!=='1'; this.dataset.hide=hide?'1':'';
+  this.textContent=hide?'👁 显示中文':'🙈 隐藏中文'; renderReview();
+};
+document.getElementById('tgCnArt').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnArt').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgArtHL').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  renderArticle();
+};
+document.getElementById('rate').oninput=function(){ document.getElementById('rateVal').textContent=this.value+'×'; };
+document.getElementById('voiceSel').onchange=function(){ voice=getVoice(); };
+
+/* ---------- 初始化 ---------- */
+document.getElementById('subtitle').textContent='Unit '+DATA.unit+' · '+DATA.title+' — '+DATA.subtitle;
+function beastBadge(beast, emoji, size){
+  size=size||78; var uid='bb'+Math.random().toString(36).slice(2,7);
+  var ticks='';
+  for(var i=0;i<12;i++){
+    var a=i*30*Math.PI/180, major=(i%3===0);
+    var r1=48, r2=major?40:44;
+    ticks+='<line x1="'+(60+r1*Math.cos(a)).toFixed(1)+'" y1="'+(60+r1*Math.sin(a)).toFixed(1)+'" x2="'+(60+r2*Math.cos(a)).toFixed(1)+'" y2="'+(60+r2*Math.sin(a)).toFixed(1)+'" stroke="#f5c542" stroke-width="'+(major?1.7:0.8)+'" opacity="'+(major?0.95:0.5)+'"/>';
+  }
+  return '<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" role="img" aria-label="'+beast+'" style="display:block">'
+   +'<defs>'
+   +'<radialGradient id="disc'+uid+'" cx="50%" cy="34%" r="74%"><stop offset="0" stop-color="#3a3550"/><stop offset="0.5" stop-color="#201d30"/><stop offset="1" stop-color="#0e0c16"/></radialGradient>'
+   +'<linearGradient id="ring'+uid+'" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#ffeeb8"/><stop offset="0.45" stop-color="#f5c542"/><stop offset="1" stop-color="#9c7115"/></linearGradient>'
+   +'<radialGradient id="halo'+uid+'" cx="50%" cy="46%" r="50%"><stop offset="0" stop-color="#f5c542" stop-opacity="0.30"/><stop offset="1" stop-color="#f5c542" stop-opacity="0"/></radialGradient>'
+   +'</defs>'
+   +'<circle cx="60" cy="60" r="58" fill="none" stroke="url(#ring'+uid+')" stroke-width="1" opacity="0.30"/>'
+   +'<circle cx="60" cy="60" r="52" fill="url(#disc'+uid+')"/>'
+   +'<circle cx="60" cy="60" r="52" fill="none" stroke="url(#ring'+uid+')" stroke-width="3"/>'
+   +'<circle cx="60" cy="60" r="45.5" fill="none" stroke="#f5c542" stroke-width="0.7" opacity="0.30"/>'
+   + ticks
+   +'<circle cx="60" cy="60" r="41" fill="url(#halo'+uid+')"/>'
+   +'<text x="60" y="64" font-size="44" text-anchor="middle" dominant-baseline="central">'+emoji+'</text>'
+   +'<text x="60" y="101" font-size="11" text-anchor="middle" fill="#f5c542" font-weight="700" letter-spacing="1.5">'+beast+'</text>'
+   +'<circle cx="60" cy="9" r="2.6" fill="#e05a4f"/>'
+   +'</svg>';
+}
+document.getElementById('beastName').textContent=(DATA.beast_name||'英语跟读')+'（Unit '+DATA.unit+' '+DATA.title+'）';
+document.getElementById('beastEmoji').innerHTML=beastBadge(DATA.beast_name||'英语跟读', DATA.beast_emoji||'🐾', 78);
+document.getElementById('beastDesc').textContent=DATA.subtitle;
+buildQueue(); renderDialogues();
+renderLearn(); renderReview(); updateProgress(); renderCodex();
+</script>
+</body>
+</html>

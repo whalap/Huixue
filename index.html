@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>慧学学习网络 · Jerry 慧学</title>
+<meta name="theme-color" content="#14110c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<script src="pwa-register.js" defer></script>
+<style>
+:root{
+  --bg:#0E1013; --bg2:#151922; --card:#1A1F29; --card2:#202632;
+  --line:#2A3140; --line2:#374152;
+  --ink:#F2F4F8; --ink2:#A7B0C0; --ink3:#6E7889;
+  --gold:#C9A227; --gold-soft:#3A3115; --gold-line:#5A4A1E;
+  --red:#C0392B; --green:#2E8B57; --blue:#2E6FB7; --purple:#8A5AA6; --teal:#3E8E8E; --orange:#E08A2E;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif;
+     background:var(--bg); color:var(--ink); line-height:1.65; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:1120px; margin:0 auto; padding:0 20px;}
+
+/* ===== Hero ===== */
+.hero{background:linear-gradient(160deg,#12161E 0%,#1A1410 55%,#241C10 100%);
+      border-bottom:1px solid var(--gold-line); padding:52px 0 44px; position:relative; overflow:hidden;}
+.hero::after{content:''; position:absolute; right:-120px; top:-120px; width:380px; height:380px;
+      border-radius:50%; background:radial-gradient(circle,rgba(201,162,39,.14),transparent 70%);}
+.hero .brand{display:inline-flex; align-items:center; gap:9px; border:1px solid var(--gold-line);
+      background:rgba(201,162,39,.08); border-radius:999px; padding:5px 15px; font-size:12.5px;
+      color:var(--gold); letter-spacing:1.5px; font-weight:600;}
+.hero h1{font-size:34px; margin:16px 0 8px; letter-spacing:.5px; line-height:1.25;}
+.hero h1 em{font-style:normal; color:var(--gold);}
+.hero .sub{color:var(--ink2); font-size:14.5px; max-width:760px;}
+.hero .tags{margin-top:20px; display:flex; gap:9px; flex-wrap:wrap;}
+.hero .tag{background:var(--card); border:1px solid var(--line2); border-radius:999px;
+      padding:5px 14px; font-size:12.5px; color:var(--ink2);}
+.hero .tag b{color:var(--gold); font-weight:600;}
+
+/* ===== 区块标题 ===== */
+h2.sec{font-size:19px; margin:44px 0 16px; display:flex; align-items:center; gap:11px;}
+h2.sec .no{background:var(--gold); color:#1A1408; font-size:12px; font-weight:700;
+      border-radius:6px; padding:2px 9px; letter-spacing:.5px;}
+h2.sec .hint{font-size:12.5px; color:var(--ink3); font-weight:400; margin-left:auto;}
+
+/* ===== 四线卡片 ===== */
+.lines{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+.line{background:var(--card); border:1px solid var(--line); border-radius:18px;
+      padding:22px 22px 20px; display:flex; flex-direction:column; gap:11px; position:relative;
+      overflow:hidden; transition:border-color .18s, transform .18s;}
+.line:hover{border-color:var(--gold-line); transform:translateY(-2px);}
+.line::before{content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--c,var(--gold));}
+.line .top{display:flex; align-items:center; gap:12px;}
+.line .ico{width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+      font-size:22px; background:var(--card2); border:1px solid var(--line2); flex:none;}
+.line .t{font-size:17px; font-weight:700;}
+.line .t small{display:block; font-size:12px; color:var(--ink3); font-weight:400; margin-top:2px; letter-spacing:.3px;}
+.line .desc{font-size:13.5px; color:var(--ink2);}
+.line ul{list-style:none; display:flex; flex-direction:column; gap:5px; margin-top:2px;}
+.line li{font-size:13px; color:var(--ink2); padding-left:16px; position:relative;}
+.line li::before{content:'▸'; position:absolute; left:0; color:var(--c,var(--gold)); font-size:11px; top:1px;}
+.line li b{color:var(--ink); font-weight:600;}
+.line .acts{margin-top:auto; padding-top:14px; display:flex; gap:9px; flex-wrap:wrap;}
+.btn{display:inline-flex; align-items:center; gap:6px; text-decoration:none; font-size:13.5px; font-weight:600;
+     border-radius:10px; padding:9px 16px; border:1px solid var(--line2); background:var(--card2); color:var(--ink);
+     transition:background .15s,border-color .15s; cursor:pointer;}
+.btn:hover{background:#2A3242; border-color:var(--gold-line);}
+.btn.primary{background:linear-gradient(135deg,#C9A227,#A8831B); color:#1A1408; border-color:transparent;}
+.btn.primary:hover{background:linear-gradient(135deg,#D8B232,#B8911F);}
+.btn.ghost{background:transparent;}
+
+/* ===== 学习路径 ===== */
+.paths{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.path{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+.path h3{font-size:15px; margin-bottom:4px; display:flex; align-items:center; gap:8px;}
+.path h3 .dot{width:9px; height:9px; border-radius:50%; flex:none;}
+.path .who{font-size:12px; color:var(--ink3); margin-bottom:11px;}
+.path ol{margin:0 0 0 18px; display:flex; flex-direction:column; gap:6px;}
+.path li{font-size:13px; color:var(--ink2);}
+.path li b{color:var(--ink);}
+.path .foot{margin-top:12px; font-size:12px; color:var(--gold); border-top:1px dashed var(--line2); padding-top:10px;}
+
+/* ===== 使用说明 ===== */
+.notes{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 22px;}
+.notes .row{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+.notes h4{font-size:14px; margin-bottom:9px; color:var(--gold);}
+.notes ol{margin:0 0 0 19px; display:flex; flex-direction:column; gap:6px;}
+.notes li{font-size:13px; color:var(--ink2);}
+.notes li b{color:var(--ink);}
+.notes .path{background:#0E1116; border:1px solid var(--line); border-radius:8px; padding:7px 11px;
+      font-size:12.5px; font-family:Consolas,'Courier New',monospace; color:#8FB8DE; margin:5px 0 9px;}
+.warn{margin-top:14px; background:#2A1A12; border:1px solid #5A3A22; color:#E0A87A;
+      border-radius:11px; padding:11px 15px; font-size:12.8px; line-height:1.75;}
+.warn b{color:#F0C08A;}
+
+footer{margin:46px 0 30px; text-align:center; color:var(--ink3); font-size:12.5px; line-height:1.9;}
+footer .rule{width:52px; height:1px; background:var(--gold-line); margin:0 auto 14px;}
+
+@media (max-width:860px){
+  .lines{grid-template-columns:1fr;}
+  .paths{grid-template-columns:1fr;}
+  .notes .row{grid-template-columns:1fr;}
+  .hero h1{font-size:26px;}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="brand">JERRY 慧学 · 英语学习网络</span>
+    <h1>一条网络，四条线<br><em>课本同步 · 语法 · 跟读 · 中考听说</em></h1>
+    <p class="sub">把沪教版七上课本点读、Pre-A1–B1 分级跟读、A1–B1 语法练习与广州中考 E 听说训练合并成一个入口。
+       内容各自独立成站，进度互不干扰；从首页出发，哪条线都能进，练完哪条线都能回。</p>
+    <div class="tags">
+      <span class="tag">课本点读 <b>8 单元</b></span>
+      <span class="tag">语法知识点 <b>A1 / A2 / B1</b></span>
+      <span class="tag">跟读单元 <b>Pre-A1 6 · 七上 8 · A1 12 · A2 12 · B1 12</b></span>
+      <span class="tag">中考听说题库 <b>1500 关</b></span>
+      <span class="tag">官方真题 <b>全真模拟</b></span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <h2 class="sec"><span class="no">01</span>四条线，四个入口<span class="hint">点击卡片按钮直接进入</span></h2>
+  <div class="lines">
+
+    <div class="line" style="--c:#E08A2E;">
+      <div class="top">
+        <div class="ico">📚</div>
+        <div class="t">课本同步 · 沪教版七上<small>SHANGHAI EDITION · GRADE 7 VOL.1</small></div>
+      </div>
+      <div class="desc">跟着课本走：单词音节分色点读、课文逐句跟读、语法对话、选词填空，每个单元都有完整学习页。</div>
+      <ul>
+        <li><b>8 个单元</b>点读学习页（词汇 / 课文 / 语音 / 语法 / 听音选词）</li>
+        <li><b>8 套</b>单元精简练习页 + 全单元单词短语翻页闪卡</li>
+        <li><b>原声听力</b>：每单元 6 段教材录音（Reading / Listening / Speaking / Culture / Words）</li>
+        <li><b>原声课文跟读</b>：138 句课文逐句点读 + 录音对比 + 整篇连读</li>
+        <li><b>单元习题与测试卷</b>：每单元 5 份练习 + 3 套测试，含课文原文、单元词汇新写篇章与中国文化阅读，在线作答即时批改（Unit 1–8 已上线）</li>
+      </ul>
+      <div class="acts">
+        <a class="btn primary" href="01_课本同步_沪教版七上/点读学习包/Unit0_总目录_点读学习中心.html">进入课本同步线 ▶</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/点读学习包/全单元单词短语_翻页闪卡.html">单词闪卡</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/点读学习包/Unit0_总目录_点读学习中心.html">课文点读 · 逐句跟读</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/单元习题与测试/Unit1_习题与测试.html">Unit1 习题与测试</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/单元习题与测试/Unit2_习题与测试.html">Unit2 习题与测试</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/单元习题与测试/Unit3_习题与测试.html">Unit3 习题与测试</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/单元习题与测试/Unit4_习题与测试.html">Unit4 习题与测试</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/单元习题与测试/Unit5_习题与测试.html">Unit5 习题与测试</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/单元习题与测试/Unit6_习题与测试.html">Unit6 习题与测试</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/单元习题与测试/Unit7_习题与测试.html">Unit7 习题与测试</a>
+        <a class="btn ghost" href="01_课本同步_沪教版七上/单元习题与测试/Unit8_习题与测试.html">Unit8 习题与测试</a>
+      </div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px dashed var(--line2)">
+        <div style="font-size:12.5px;color:var(--ink3);margin-bottom:8px">🎮 游戏区<span style="opacity:.7">（背单词 / 练专注）</span></div>
+        <div class="acts" style="padding-top:0">
+          <a class="btn ghost" href="01_课本同步_沪教版七上/点读学习包/游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
+          <a class="btn ghost" href="01_课本同步_沪教版七上/点读学习包/采花成长记_蜜蜂进化_八单元.html">🐝 蜜蜂采花</a>
+          <a class="btn ghost" href="../../2026-10-16-16-25-39/Ch0-通关地图.html" title="大脑远征队 · 通关地图（独立游戏工作区）">🧠 大脑远征队</a>
+        </div>
+        <div style="font-size:11.5px;color:var(--ink3);margin-top:8px;line-height:1.7">
+          气球射击：限时 60 秒，听发音点中对应气球 —— 单词各走独立通道不重叠，可中途暂停。<br>
+          蜜蜂采花：看中文找对应英文的花，采对 8 朵晋级一级，每单元 5 级通关解锁神兽。
+        </div>
+      </div>
+    </div>
+
+    <div class="line" style="--c:#2E8B57;">
+      <div class="top">
+        <div class="ico">✍️</div>
+        <div class="t">语法练习 · A1–B1<small>GRAMMAR DRILL</small></div>
+      </div>
+      <div class="desc">一次只练一个知识点，七组递进挖法，从识别到输出；做完对答案、自评、错题进 SRS 间隔重复。</div>
+      <ul>
+        <li><b>语法练习</b>：A1 87 点 / A2 171 点 / B1 107 点，按难度重排，七组阶梯</li>
+        <li><b>输出练习</b>：中译英 + 改错，写完对答案</li>
+        <li><b>错题本</b>：答错自动入池，连对 2 次移出，到期提醒</li>
+      </ul>
+      <div class="acts">
+        <a class="btn primary" href="A1-B1网页/语法练习_A1-A2-B1-B2.html">进入语法线 ▶</a>
+        <a class="btn ghost" href="A1-B1网页/index.html">跟读总站</a>
+      </div>
+    </div>
+
+    <div class="line" style="--c:#2E8B57;">
+      <div class="top">
+        <div class="ico">🎧</div>
+        <div class="t">跟读线 · 分级跟读 Pre-A1 → B1<small>SHADOWING · Pre-A1 6 · A1 12 · A2 12 · B1 12 单元</small></div>
+      </div>
+      <div class="desc">课本之外的分级听说线：从零基础的字母音开始，一级一级往上走，每级都是「跟读轴 + 项目轴」。发音地基（48 音标）也放在这条线里，随时回炉。</div>
+      <ul>
+        <li><b>Pre-A1 起步线</b>：零基础六单元 —— 字母发音 / 数字 / 颜色形状 / 课堂用语 / 身体 / 我的东西与家人</li>
+        <li><b>A1 启程线 · A2 日常线 · B1 过渡线</b>：每级 12 单元跟读 + 12 个项目；A2 配「胶水词补给站」、B1 配「过渡补给站」</li>
+        <li><b>48 音标训练</b>：元音辅音逐个校准，英式取向、三级难度、易混音对比</li>
+      </ul>
+      <div class="acts">
+        <a class="btn primary" href="A1-B1网页/Pre-A1 主页.html">零基础从这里起步 ▶</a>
+        <a class="btn ghost" href="A1-B1网页/A1 主页.html">A1 启程线</a>
+        <a class="btn ghost" href="A1-B1网页/A2 主页.html">A2 日常线</a>
+        <a class="btn ghost" href="A1-B1网页/B1 主页.html">B1 过渡线</a>
+        <a class="btn ghost" href="A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+        <a class="btn ghost" href="A1-B1网页/index.html">跟读总站</a>
+      </div>
+    </div>
+
+    <div class="line" style="--c:#C0392B;">
+      <div class="top">
+        <div class="ico">🎤</div>
+        <div class="t">中考 E 听说 · 广州<small>GUANGZHOU · ENGLISH LISTENING &amp; SPEAKING</small></div>
+      </div>
+      <div class="desc">五大题型对齐官方分值，共 1500 关分级训练 + 官方全真模拟，录音作答、逐题给分并指出哪里需改进。</div>
+      <ul>
+        <li><b>模仿朗读</b> 6 分 · <b>听选信息</b> 9 分 · <b>回答问题</b> 6 分</li>
+        <li><b>信息转述</b> 6 分 · <b>询问信息</b> 3 分（合计 30 分）</li>
+        <li>每题型 <b>100 关 × A1/A2/B1</b> 三级，官方全真模拟卷</li>
+        <li>尾音标记逐词核对、三层次答案、折叠式答题解析</li>
+      </ul>
+      <div class="acts">
+        <a class="btn primary" href="E听说练习/index.html">进入中考听说线 ▶</a>
+        <a class="btn ghost" href="E听说练习/index.html#official">官方真题</a>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="sec"><span class="no">02</span>怎么走这条网络<span class="hint">三条路径，按学生情况选一条</span></h2>
+  <div class="paths">
+
+    <div class="path">
+      <h3><span class="dot" style="background:#E08A2E;"></span>跟着课本走</h3>
+      <div class="who">适合：在校生，进度跟学校单元走</div>
+      <ol>
+        <li>进<b>课本同步线</b>，按当前单元看点读页</li>
+        <li>用<b>单词闪卡</b>过一遍本单元词汇</li>
+        <li>课后做<b>精简练习页</b>，错的点记下来</li>
+        <li>周末进<b>语法线</b>，补本单元对应的语法点</li>
+      </ol>
+      <div class="foot">课本是主线，语法和跟读是副线</div>
+    </div>
+
+    <div class="path">
+      <h3><span class="dot" style="background:#2E8B57;"></span>补语法底子</h3>
+      <div class="who">适合：语法薄弱、写作老出错</div>
+      <ol>
+        <li>进<b>语法线</b>，从 A1 第一个知识点开始</li>
+        <li>七组全过 → ★，卡住就退回上一组</li>
+        <li>做完<b>输出练习</b>，给自己句子打星级</li>
+        <li>错题进 SRS，按提醒日子回头重练</li>
+      </ol>
+      <div class="foot">一次只练一个点，不贪多</div>
+    </div>
+
+    <div class="path">
+      <h3><span class="dot" style="background:#C0392B;"></span>冲中考听说</h3>
+      <div class="who">适合：初二 / 初三，备考人机对话</div>
+      <ol>
+        <li>进<b>中考 E 听说线</b>，先做官方全真模拟定水平</li>
+        <li>按给分找弱项题型，进对应分级题库</li>
+        <li>A1 打基础 → A2 同步 → B1 拔高，每关 100 题</li>
+        <li>弱项回<b>跟读线</b>练发音，回<b>课本线</b>补词汇</li>
+      </ol>
+      <div class="foot">考试驱动，缺什么补什么</div>
+    </div>
+
+  </div>
+
+  <h2 class="sec"><span class="no">03</span>使用前必看<span class="hint">麦克风与启动方式</span></h2>
+  <div class="notes">
+    <div class="row">
+      <div>
+        <h4>💻 电脑端启动</h4>
+        <ol>
+          <li>双击文件夹里的 <b>启动.bat</b>，等黑色窗口出现「已启动」。</li>
+          <li>浏览器自动打开 <b>http://localhost:8080</b>；没自动开就手动输入。</li>
+          <li><b>关掉那个黑色窗口 = 停止服务</b>，下次练再双击。</li>
+          <li>练完直接关浏览器标签页即可，进度存在本机。</li>
+        </ol>
+        <div class="path">http://localhost:8080</div>
+      </div>
+      <div>
+        <h4>📱 iPad / 手机</h4>
+        <ol>
+          <li>用 <b>Safari</b> 打开发布链接（https）。</li>
+          <li>底部「分享」→「<b>添加到主屏幕</b>」，桌面出现图标。</li>
+          <li>首次联网打开后<b>可离线</b>练习。</li>
+          <li>别用「文件」App 直接开 html —— <b>麦克风会被禁用</b>。</li>
+        </ol>
+        <div class="path">必须 https 或 localhost 才能录音</div>
+      </div>
+    </div>
+    <div class="warn">
+      <b>⚠ 关于录音：</b>E听说线的「模仿朗读 / 回答问题 / 信息转述」需要麦克风。浏览器只在<b>安全环境</b>下开放麦克风 ——
+      电脑端用 <b>localhost</b>（双击启动.bat 即是），iPad 必须走 <b>https 发布链接</b>。
+      四条线里的点读、发音、语法、跟读<b>不需要麦克风</b>，任何方式打开都能用。
+    </div>
+  </div>
+
+  <footer>
+    <div class="rule"></div>
+    <p>慧学学习网络 · Jerry 慧学 ｜ 课本同步 · 语法 · 跟读 · 中考听说 四线合一</p>
+    <p>课本依据：上海教育出版社《义务教育教科书 英语 七年级上册》（2024 广州新版）Units 1–8</p>
+    <p>中考依据：广州中考英语听说考试题型与分值（模仿朗读 6 / 听选信息 9 / 回答问题 6 / 信息转述 6 / 询问信息 3）</p>
+  </footer>
+
+</div>
+
+<script>
+/* 轻量交互：记录最近进入的线，方便下次直接继续 */
+(function(){
+  'use strict';
+  var KEY = 'huixue_last_line';
+  document.querySelectorAll('a.btn[href]').forEach(function(a){
+    a.addEventListener('click', function(){
+      try { localStorage.setItem(KEY, a.getAttribute('href')); } catch(e){}
+    });
+  });
+  try {
+    var last = localStorage.getItem(KEY);
+    if (last) {
+      var bar = document.createElement('div');
+      bar.style.cssText = 'position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#1A1F29;'+
+        'border:1px solid #5A4A1E;border-radius:999px;padding:8px 18px;font-size:13px;color:#A7B0C0;z-index:99;'+
+        'box-shadow:0 6px 24px rgba(0,0,0,.45);display:flex;align-items:center;gap:12px;';
+      var t = document.createElement('span'); t.textContent = '上次练到：'; bar.appendChild(t);
+      var l = document.createElement('a'); l.href = last; l.textContent = '继续 ▶';
+      l.style.cssText = 'color:#C9A227;font-weight:600;text-decoration:none;'; bar.appendChild(l);
+      var c = document.createElement('span'); c.textContent = '✕'; c.title = '关闭';
+      c.style.cssText = 'color:#6E7889;cursor:pointer;padding-left:4px;';
+      c.addEventListener('click', function(){ bar.remove(); });
+      bar.appendChild(c);
+      document.body.appendChild(bar);
+    }
+  } catch(e){}
+})();
+</script>
+
+</body>
+</html>

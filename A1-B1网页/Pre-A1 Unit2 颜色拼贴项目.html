@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 2 项目 · 颜色形状拼贴画</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.proj({
+  n: 2,
+  emo: '🎨',
+  beast: '调色精灵',
+  en: 'My Shape Picture',
+  cn: '颜色形状拼贴画',
+  make: '用彩纸剪出不同的形状，拼贴成一个东西（房子 / 机器人 / 小鱼 / 花 / 小车都行），' +
+        '然后给每一块写英文标签 —— 做成一张能念出来的「形状 + 颜色」图。',
+  tip: '这一步真正练的是 <b>a red circle</b> 这个结构：<b>a + 颜色 + 形状</b>。' +
+       '每一块剪下来就贴一张标签，贴完你会发现这句话已经写了十几遍。',
+  steps: [
+    '先想好要拼什么 —— <b>房子、机器人、小鱼、花、小车</b>都行；在草稿纸上画个草图，标出每一块用什么形状、什么颜色。',
+    '按草图从彩纸上剪形状：<b>circle 圆、square 方、triangle 三角、rectangle 长方、star 星、heart 心</b>。',
+    '把剪好的形状<b>拼贴在一张卡纸上</b>贴牢；拼的时候想想：这块是头？是门？是眼睛？',
+    '给每一块做一张<b>英文小标签</b>：<b>a red rectangle</b>（一块红色的长方形）、<b>two blue circles</b>（两个蓝色的圆形），贴在图形旁边当图例。',
+    '在图的最下面写<b>三句介绍</b>：<b>This is my robot.</b> ／ <b>It has a blue square.</b> ／ <b>I like my picture.</b>',
+    '<b>指着作品念一遍</b>：先说这是什么，再一块一块说颜色和形状。念不顺就先慢速听一遍再念。'
+  ],
+  scaffold: {
+    lines: [
+      {en:'This is my robot.', cn:'这是我的机器人。'},
+      {en:'It has a blue square.', cn:'它有一个蓝色的正方形。'},
+      {en:'It has two red circles.', cn:'它有两个红色的圆形。'},
+      {en:'What colour is it? — It is yellow.', cn:'它是什么颜色？——是黄色的。'},
+      {en:'What shape is it? — It is a triangle.', cn:'它是什么形状？——是三角形。'},
+      {en:'I like my picture.', cn:'我喜欢我的画。'}
+    ],
+    words: ['red','blue','yellow','green','black','white','orange','pink','purple','brown','grey','circle','square','triangle','rectangle','star','heart','picture','robot','house','fish','flower','car','this','my','has','like']
+  },
+  demo: [
+    {t:'作品标题', en:'My Shape Picture — by Tom', cn:'我的形状拼贴画 —— Tom 制作'},
+    {t:'图例第 1 行', en:'a red rectangle — the door', cn:'一块红色的长方形 —— 门'},
+    {t:'图例第 2 行', en:'two blue circles — the eyes', cn:'两个蓝色的圆形 —— 眼睛'},
+    {t:'图例第 3 行', en:'a yellow star — on top', cn:'一颗黄色的星星 —— 在最上面'},
+    {t:'结尾三句', en:'This is my robot. It has a blue square. I like my picture.', cn:'这是我的机器人。它有一个蓝色的正方形。我喜欢我的画。'}
+  ],
+  checks: [
+    '用了至少 3 种不同的形状',
+    '用了至少 3 种不同的颜色',
+    '每一块都写了英文标签（a red circle 这种）',
+    '写了三句介绍自己作品的话',
+    '作品有标题和我的名字',
+    '我能指着作品把颜色和形状都说出来'
+  ],
+  ph: '把你的图例和三句介绍写在这里……写完点保存。',
+  unitFile: 'Pre-A1 Unit2 英语跟读.html',
+  prev: 'Pre-A1 Unit1 数字海报项目.html',
+  next: 'Pre-A1 Unit3 课堂指令卡项目.html'
+});
+</script>
+</body>
+</html>

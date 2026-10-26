@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 5 Off to space · 习题与测试（沪教版七上）</title>
+<style>
+:root{
+  --ink:#2b2118; --ink2:#5c4f42; --muted:#8a7c6b;
+  --paper:#faf6ee; --card:#ffffff; --line:#e6dcc8;
+  --gold:#b8860b; --gold-soft:#d4a933; --red:#c0392b; --ok:#1e8449;
+  --brand:#1a1410;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:var(--paper); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.75; font-size:15px}
+.wrap{max-width:860px; margin:0 auto; padding:0 18px 90px}
+
+/* ---------- 顶部 ---------- */
+.hero{background:linear-gradient(135deg,#1a1410 0%,#2b2118 60%,#3a2c1c 100%); color:#f5ecd7; padding:34px 20px 26px; text-align:center; border-bottom:3px solid var(--gold)}
+.hero .kicker{color:var(--gold-soft); font-size:13px; letter-spacing:3px; margin-bottom:8px}
+.hero h1{font-size:26px; margin-bottom:8px}
+.hero .sub{color:#cbbd9d; font-size:13.5px}
+.hero .meta{margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.hero .meta span{border:1px solid rgba(212,169,51,.45); color:#e8d9ac; border-radius:99px; padding:3px 14px; font-size:12.5px}
+
+/* ---------- 卷子切换 ---------- */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:22px 0 26px; position:sticky; top:0; z-index:20; background:var(--paper); padding:12px 0; border-bottom:1px dashed var(--line)}
+.tabs button{border:1.5px solid var(--line); background:var(--card); color:var(--ink2); border-radius:10px; padding:8px 16px; font-size:14px; cursor:pointer; font-weight:600; transition:.15s}
+.tabs button:hover{border-color:var(--gold-soft)}
+.tabs button.on{background:var(--brand); color:#f0e2b8; border-color:var(--brand)}
+.tabs button .tag{display:block; font-size:11px; font-weight:400; opacity:.75; margin-top:1px}
+
+/* ---------- 卷子主体 ---------- */
+.paper{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:30px 34px; box-shadow:0 2px 14px rgba(43,33,24,.06)}
+.p-head{border-bottom:2px solid var(--brand); padding-bottom:14px; margin-bottom:8px}
+.p-head .pt{font-size:20px; font-weight:800}
+.p-head .ps{font-size:13px; color:var(--muted); margin-top:4px}
+.p-info{display:flex; gap:18px; font-size:13px; color:var(--ink2); margin:10px 0 22px; flex-wrap:wrap}
+.p-info b{color:var(--gold)}
+.sec{margin-bottom:30px}
+.sec>h3{font-size:16px; font-weight:800; color:var(--brand); border-left:4px solid var(--gold); padding-left:10px; margin-bottom:6px}
+.sec .sn{font-size:12.5px; color:var(--muted); margin-bottom:12px}
+.q{padding:12px 14px; border:1px solid var(--line); border-radius:10px; margin-bottom:10px; background:#fffdf8}
+.q .qt{font-weight:600; margin-bottom:8px}
+.q .qt .qn{color:var(--gold); font-weight:800; margin-right:6px}
+.q .qt u{ text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:3px; font-weight:700 }
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.opts.one{grid-template-columns:1fr}
+.opt{border:1px solid var(--line); border-radius:8px; padding:7px 12px; cursor:pointer; font-size:14px; background:#fff; transition:.12s; display:flex; gap:8px; align-items:baseline}
+.opt .lb{font-weight:800; color:var(--muted)}
+.opt:hover{border-color:var(--gold-soft); background:#fffaf0}
+.opt.sel{border-color:var(--gold); background:#fdf3d8}
+.opt.ok{border-color:var(--ok); background:#eafaf0}
+.opt.bad{border-color:var(--red); background:#fdecea}
+.opt .mk{margin-left:auto; font-weight:800}
+.opt.ok .mk{color:var(--ok)} .opt.bad .mk{color:var(--red)}
+.ans-in{border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:14px; width:100%; max-width:340px; background:#fff; font-family:inherit}
+.ans-in:focus{outline:none; border-color:var(--gold)}
+.ans-in.ok{border-color:var(--ok); background:#f2fbf6}
+.ans-in.bad{border-color:var(--red); background:#fdf0ee}
+.tfrow{display:flex; gap:10px}
+.tfrow .opt{min-width:88px; justify-content:center}
+.hint{font-size:12.5px; color:var(--muted); margin-top:4px}
+.wordbank{font-size:13.5px; background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-bottom:12px; color:var(--ink2)}
+.wordbank b{color:var(--gold)}
+textarea.essay{width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:12px; font-size:14px; font-family:inherit; resize:vertical; background:#fff}
+textarea.essay:focus{outline:none; border-color:var(--gold)}
+.checklist{background:#f4f8f4; border:1px solid #cfe3d2; border-radius:10px; padding:12px 16px; margin-top:12px; font-size:13.5px}
+.checklist b{color:var(--ok)}
+.checklist li{margin-left:20px; margin-top:3px}
+details.sample{margin-top:12px; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fffdf6}
+details.sample summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13.5px}
+details.sample .body{margin-top:10px; font-size:14px; line-height:1.9; border-top:1px dashed var(--line); padding-top:10px}
+details.sample .body .en{color:var(--ink)}
+details.sample .body .zh{color:var(--muted); font-size:12.5px}
+
+/* ---------- 阅读原文框 ---------- */
+.rdbox{background:#fffdf6; border:1.5px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px}
+.rdbox .rd-title{font-size:16px; font-weight:800; color:var(--brand); margin-bottom:10px}
+.rdbox .rd-title span{font-size:12px; font-weight:400; color:var(--muted); margin-left:8px}
+.rdbox .rd-body p{font-size:14.5px; line-height:2.05; margin:0 0 4px}
+.rdbox .rd-body p b{color:var(--brand)}
+.rdbox .rdn{display:inline-block; min-width:18px; color:var(--gold); font-weight:800; font-size:12.5px; margin-right:4px}
+.rdbox .kw{background:#fdf0d5; border-bottom:2px solid var(--gold-soft); border-radius:3px; padding:0 2px; font-weight:600}
+.rdbox .rd-note{font-size:12.5px; color:var(--ink2); background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-top:12px}
+details.rdtr{margin-top:12px; border:1px dashed var(--line); border-radius:8px; padding:8px 12px; background:#fff}
+details.rdtr summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13px}
+details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-height:2}
+
+/* ---------- 操作区 ---------- */
+.acts{display:flex; gap:12px; margin:26px 0 10px; flex-wrap:wrap; position:sticky; bottom:0; background:linear-gradient(180deg,transparent, var(--paper) 30%); padding:14px 0}
+.btn{border:none; border-radius:10px; padding:12px 26px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit}
+.btn-go{background:var(--brand); color:#f0e2b8}
+.btn-go:hover{background:#3a2c1c}
+.btn-ghost{background:#fff; color:var(--ink2); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-reset{background:#fff; color:var(--red); border:1.5px solid #ecc9c3}
+.score{display:none; border-radius:12px; padding:18px 22px; margin-top:16px; font-size:15px}
+.score.show{display:block}
+.score.pass{background:#eafaf0; border:1px solid #bfe6cc}
+.score.fail{background:#fdf0ee; border:1px solid #ecc9c3}
+.score .big{font-size:26px; font-weight:800}
+.score.pass .big{color:var(--ok)} .score.fail .big{color:var(--red)}
+.score .adv{font-size:13.5px; color:var(--ink2); margin-top:6px}
+.backhome{display:block; text-align:center; margin:26px auto 0; color:var(--muted); font-size:13px; text-decoration:none}
+.backhome:hover{color:var(--gold)}
+@media (max-width:640px){ .opts{grid-template-columns:1fr} .paper{padding:20px 16px} }
+@media print{
+  .hero,.tabs,.acts,.backhome{display:none!important}
+  body{background:#fff} .paper{border:none; box-shadow:none; padding:0}
+  .opt.sel{border-color:#999; background:#fff}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">沪教版 · 英语七年级上册</div>
+  <h1>Unit 5 Off to space</h1>
+  <div class="sub">习题与单元测试 · 每单元 5 份练习 + 3 套测试卷（在线作答 · 即时批改 · 可打印）</div>
+  <div class="meta">
+    <span>覆盖：本单元词汇 / 短语 / 一般将来时 / 课文 / 中国航天</span>
+    <span>依据：上海教育出版社 英语 七年级上册（2024 广州新版）</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div id="paperHost"></div>
+  <div id="scoreHost"></div>
+  <a class="backhome" href="../点读学习包/Unit0_总目录_点读学习中心.html">← 返回七上点读学习中心</a>
+</div>
+
+<script>
+const PAPERS = [
+  {
+    "id": "p1",
+    "title": "练习一 · 词汇与短语",
+    "time": "20 分钟",
+    "sub": "本单元核心词汇 30 个 + 拓展词 18 个 + 短语 17 个，先认词，再会用。",
+    "sections": [
+    {
+      "name": "一、词汇匹配（选出正确中文意思）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "spaceship", "type": "choice", "a": 0, "opts": ["宇宙飞船", "太空", "离开；不在", "神秘的"]},
+        {"stem": "gravity", "type": "choice", "a": 1, "opts": ["弱的；无力的", "重力；引力", "穿；戴", "宇航员"]},
+        {"stem": "body", "type": "choice", "a": 2, "opts": ["锻炼；运动", "精彩的；绝妙的", "身体", "旅行；行进"]},
+        {"stem": "breathe", "type": "choice", "a": 3, "opts": ["声音", "着陆；降落", "睡觉", "呼吸"]},
+        {"stem": "future", "type": "choice", "a": 0, "opts": ["未来；将来", "计划", "千米；公里", "有……重；重"]}
+      ]
+    },
+    {
+      "name": "二、看中文，写英文",
+      "note": "每题 1 分，共 5 分。注意拼写。",
+      "items": [
+        {"stem": "航天服；宇航服", "type": "text", "a": "spacesuit", "ph": "拼写注意大小写"},
+        {"stem": "漂浮；浮动", "type": "text", "a": "float", "ph": "拼写注意大小写"},
+        {"stem": "到达", "type": "text", "a": "arrive", "ph": "拼写注意大小写"},
+        {"stem": "奇怪的；陌生的", "type": "text", "a": "strange", "ph": "拼写注意大小写"},
+        {"stem": "旅行", "type": "text", "a": "trip", "ph": "拼写注意大小写"}
+      ]
+    },
+    {
+      "name": "三、短语填空（选词填空，注意形式）",
+      "note": "每题 1 分，共 5 分。",
+      "bank": "<b>短语库：</b>travel into space · walk on · sleeping bags · as many photos · look forward to",
+      "items": [
+        {"stem": "Tomorrow I'll be one of the first students to ____ ____ ____.", "type": "choice", "a": 0, "opts": ["travel into space", "get into orbit", "look forward to", "take photos"], "explain": "travel into space 进入太空旅行；one of the first students to do sth 首批做某事的学生之一。"},
+        {"stem": "We can't wait — we're going to ____ ____ the Moon tomorrow.", "type": "choice", "a": 0, "opts": ["walk on", "float away", "sleep in", "land on"], "explain": "walk on the Moon 在月球上行走。"},
+        {"stem": "We won't sleep in beds. We'll sleep in ____ ____.", "type": "choice", "a": 0, "opts": ["sleeping bags", "space stations", "spacesuits", "spaceships"], "explain": "sleeping bag 睡袋；太空中重力弱，要睡在绑好的睡袋里。"},
+        {"stem": "I'm going to take ____ ____ ____ as I can.", "type": "choice", "a": 0, "opts": ["as many photos", "as many sounds", "as many trips", "as many plans"], "explain": "as many photos as I can 尽可能多地拍照。"},
+        {"stem": "We all ____ ____ ____ the trip to the Moon.", "type": "choice", "a": 0, "opts": ["look forward to", "float away", "travel back to", "get into orbit"], "explain": "look forward to 期待；to 是介词，后接名词或 doing。"}
+      ]
+    },
+    {
+      "name": "四、单项选择",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "An ____ is a person who travels into space.", "type": "choice", "a": 0, "opts": ["astronaut", "pilot", "driver", "engineer"], "explain": "astronaut 宇航员；乘宇宙飞船进入太空的人。"},
+        {"stem": "There is no air on the Moon, so we must ____ a spacesuit there.", "type": "choice", "a": 0, "opts": ["wear", "take", "bring", "wash"], "explain": "wear 穿、戴；wear a spacesuit 穿航天服。"},
+        {"stem": "The Moon has very weak ____, so we can jump very high.", "type": "choice", "a": 0, "opts": ["gravity", "sound", "light", "air"], "explain": "gravity 重力；月球重力弱，所以能跳高。"},
+        {"stem": "We will ____ at the space station first and then go to the Moon.", "type": "choice", "a": 0, "opts": ["arrive", "leave", "return", "land"], "explain": "arrive 到达；先到空间站，再去月球。"},
+        {"stem": "I can't ____ for the space show tomorrow!", "type": "choice", "a": 0, "opts": ["wait", "ask", "look", "go"], "explain": "can't wait for 迫不及待；固定搭配。"}
+      ]
+    },
+    {
+      "name": "五、对划线部分提问",
+      "note": "每题 1 分，共 5 分。用 Wh-word + 一般疑问句语序；动词为实义动词时用 do/does。",
+      "items": [
+        {"stem": "The spaceship will leave the Earth <u>at 9:00 a.m.</u>.（对划线部分提问）", "type": "text", "a": "When will the spaceship leave the Earth?", "a2": ["What time will the spaceship leave the Earth?", "When will the spaceship leave the Earth"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "I'm going to <u>walk on the Moon</u>.（对划线部分提问）", "type": "text", "a": "What are you going to do?", "a2": ["What are you going to do?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "The spaceship will take us to <u>the Moon</u>.（对划线部分提问）", "type": "text", "a": "Where will the spaceship take you?", "a2": ["Where will the spaceship take you?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "It will take us about <u>three days</u> to get there.（对划线部分提问）", "type": "text", "a": "How long will it take you to get there?", "a2": ["How long will it take you to get there?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "We won't sleep in beds <u>because we will float away</u>.（对划线部分提问）", "type": "text", "a": "Why won't you sleep in beds?", "a2": ["Why won't you sleep in beds?"], "ph": "写完整问句，句末加 ?"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p2",
+    "title": "练习二 · 语法与句型",
+    "time": "20 分钟",
+    "sub": "本单元语法重点：The simple future（will + 动词原形 / be going to + 动词原形）。",
+    "sections": [
+    {
+      "name": "一、语法选择（单选）",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "The spaceship ____ leave the Earth at 9:00 tomorrow morning.", "type": "choice", "a": 1, "opts": ["is", "will", "are", "does"], "explain": "一般将来时：will + 动词原形。"},
+        {"stem": "I ____ going to walk on the Moon when we arrive.", "type": "choice", "a": 0, "opts": ["am", "is", "are", "be"], "explain": "主语 I → am going to。"},
+        {"stem": "They ____ going to take photos of the Earth.", "type": "choice", "a": 2, "opts": ["am", "is", "are", "be"], "explain": "主语 they → are going to。"},
+        {"stem": "—____ you sleep in a bed in space? —No, we won't.", "type": "choice", "a": 0, "opts": ["Will", "Do", "Are", "Have"], "explain": "一般将来时一般疑问句把 will 提前；答语 won't 也提示用 Will。"},
+        {"stem": "We ____ sleep in beds. We'll sleep in sleeping bags.", "type": "choice", "a": 1, "opts": ["will", "won't", "don't", "aren't"], "explain": "后句说睡睡袋，前句应为否定：will not = won't。"},
+        {"stem": "There ____ no air on the Moon.", "type": "choice", "a": 0, "opts": ["is", "are", "will", "has"], "explain": "air 不可数 → there is no air。"},
+        {"stem": "A person ____ much less on the Moon than on the Earth.", "type": "choice", "a": 1, "opts": ["weigh", "weighs", "weighing", "weighed"], "explain": "主语 a person 是三单 → weighs。"},
+        {"stem": "Look at the black clouds! It ____ rain.", "type": "choice", "a": 1, "opts": ["will", "is going to", "was", "does"], "explain": "有迹象表明将要发生（乌云）用 be going to。"},
+        {"stem": "I think robots ____ do many jobs in space in the future.", "type": "choice", "a": 0, "opts": ["will", "are going to", "do", "did"], "explain": "表预料、没有明显迹象用 will。"},
+        {"stem": "—What ____ you going to do on the Moon? —I'm going to walk on it.", "type": "choice", "a": 2, "opts": ["is", "am", "are", "do"], "explain": "主语 you → are you going to。"}
+      ]
+    },
+    {
+      "name": "二、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "visit（用 will 构成将来时）", "type": "text", "a": "will visit", "ph": "will + 动词原形"},
+        {"stem": "explore（用 will 构成将来时）", "type": "text", "a": "will explore", "ph": "will + 动词原形"},
+        {"stem": "not sleep（用 will 的否定式）", "type": "text", "a": "won't sleep", "a2": ["will not sleep"], "ph": "will not = won't"},
+        {"stem": "build（主语 they，用 be going to 构成将来时）", "type": "text", "a": "they are going to build", "a2": ["they're going to build"], "ph": "are going to + 动词原形"},
+        {"stem": "join（主语 you，用 be going to 构成将来时）", "type": "text", "a": "you are going to join", "a2": ["you're going to join"], "ph": "are going to + 动词原形"}
+      ]
+    },
+    {
+      "name": "三、完成句子（每空一词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "明天宇宙飞船将离开地球。The spaceship ____ ____ the Earth tomorrow.", "type": "text", "a": "will leave", "a2": ["will leave"]},
+        {"stem": "我打算在月球上拍很多照片。I ____ ____ ____ take many photos on the Moon.", "type": "text", "a": "am going to", "a2": ["am going to"]},
+        {"stem": "我们不会睡在床上。We ____ ____ sleep in beds.", "type": "text", "a": "will not", "a2": ["will not", "won't"]},
+        {"stem": "月球距地球大约 38 万公里。The Moon is ____ 380,000 kilometres ____ the Earth.", "type": "text", "a": "around; from", "a2": ["around; from"]},
+        {"stem": "我们必须每天做锻炼。We will ____ ____ do exercise every day.", "type": "text", "a": "have to", "a2": ["have to"]}
+      ]
+    },
+    {
+      "name": "四、句型转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "I'll travel into space tomorrow.（改为一般疑问句）", "type": "text", "a": "Will you travel into space tomorrow?", "a2": ["Will you travel into space tomorrow?"]},
+        {"stem": "She is going to <u>visit the space museum</u>.（对划线部分提问）", "type": "text", "a": "What is she going to do?", "a2": ["What is she going to do?"]},
+        {"stem": "We will sleep in sleeping bags.（改为否定句）", "type": "text", "a": "We won't sleep in sleeping bags.", "a2": ["We won't sleep in sleeping bags.", "We will not sleep in sleeping bags."]},
+        {"stem": "The spaceship will leave <u>at 9:00 a.m.</u>.（对划线部分提问）", "type": "text", "a": "What time will the spaceship leave?", "a2": ["What time will the spaceship leave?", "When will the spaceship leave?"]},
+        {"stem": "I'm going to take photos on the Moon.（改为同义句，用 will）", "type": "text", "a": "I will take photos on the Moon.", "a2": ["I will take photos on the Moon.", "I'll take photos on the Moon."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p3",
+    "title": "练习三 · 课文与阅读",
+    "time": "25 分钟",
+    "sub": "围绕单元阅读语篇《Flying to the Moon》——先读原文，再会答。",
+    "sections": [
+    {
+      "name": "一、课文原文《Flying to the Moon》",
+      "note": "沪教版英语七上 Unit 5 阅读语篇。先读原文，再做后面四道大题；答案都能在原文里找到。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">Flying to the Moon <span>阅读语篇 · 沪教版 英语 七年级上册 Unit 5</span></div><div class=\"rd-body\"><p><span class=\"rdn\">1</span>I'm so happy! Tomorrow I'll be one of the first students to travel into space.</p><p><span class=\"rdn\">2</span>The spaceship will leave the Earth at 9:00 a.m.</p><p><span class=\"rdn\">3</span>It'll take us to the Moon. I can't wait!</p><p><span class=\"rdn\">4</span>The Moon is around 380,000 kilometres from the Earth, so it'l" +
+      "l take us about three days to get there.</p><p><span class=\"rdn\">5</span>The gravity in space is very weak, so we'll all be floating around in the spaceship.</p><p><span class=\"rdn\">6</span>And we won't sleep in beds—we'll sleep in sleeping bags.</p><p><span class=\"rdn\">7</span>We need to tie the sleeping bag to the wall so that we won't float away in our sleep!</p><p><span class=\"rdn\">8</span>Because of the low gravity, our bodies may get weak, so we'll have to do exercise e" +
+      "very day.</p><p><span class=\"rdn\">9</span>When we arrive, I'm going to walk on the Moon.</p><p><span class=\"rdn\">10</span>The Moon has much weaker gravity than the Earth.</p><p><span class=\"rdn\">11</span>A person weighs much less on the Moon, so we can jump very high.</p><p><span class=\"rdn\">12</span>I'll have to wear a spacesuit to help me breathe because there's no air on the Moon.</p><p><span class=\"rdn\">13</span>That also means there is no sound there.</p><p><span class=\"" +
+      "rdn\">14</span>We can only hear the sounds inside our spacesuits.</p><p><span class=\"rdn\">15</span>The Moon is a strange and mysterious place.</p><p><span class=\"rdn\">16</span>I'm going to take as many photos as I can.</p><p><span class=\"rdn\">17</span>I'm sure that it'll be a wonderful trip!</p></div><details class=\"rdtr\"><summary>中文翻译（点开对照，先自己做题再看）</summary><div class=\"rdzh\"><p>1. 我太开心了！明天我将成为首批进入太空的学生之一。</p><p>2. 宇宙飞船将于上午 9 点离开地球。</p><p>3. 它将带我们去月球。我等不及了！</p><p>4. 月球距地球约 38 " +
+      "万公里，所以我们要花大约三天时间才能到达那里。</p><p>5. 太空中的重力非常弱，所以我们都会在宇宙飞船里四处飘浮。</p><p>6. 而且我们不会睡在床上——我们会睡在睡袋里。</p><p>7. 我们需要把睡袋绑在墙上，这样睡觉时就不会飘走！</p><p>8. 由于重力低，我们的身体可能会变得虚弱，所以我们必须每天做锻炼。</p><p>9. 我们到达时，我打算在月球上行走。</p><p>10. 月球的重力比地球弱得多。</p><p>11. 一个人在月球上体重轻得多，所以我们可以跳得很高。</p><p>12. 我必须穿航天服来帮助呼吸，因为月球上没有空气。</p><p>13. 那也意味着那里没有声音。</p><p>14. 我们只能听到航天服里面的声音。</p><p>15. 月球是一个奇怪而神秘的地方。</p><p>16. 我打算拍尽可能多的照片。</p><p>17. 我确信这将是一次精彩的旅行！</p></div></details><div class=\"rd-note\"><b>阅读策略：</b>读的时候试着找出每个 he / him / " +
+      "us / they 分别指谁，再圈出本单元学过的词汇和短语。</div></div>",
+      "items": [
+        {"stem": "这篇课文主要讲什么？", "type": "choice", "a": 0, "opts": ["一次即将到来的月球旅行：旅途、太空中的生活和月球上的活动", "如何制造宇宙飞船", "月球的历史", "学校的一天"], "explain": "课文以第一人称讲即将乘坐宇宙飞船去月球：路上三天、睡睡袋、穿航天服、在月球上行走拍照。"}
+      ]
+    },
+    {
+      "name": "二、课文选词填空",
+      "note": "每题 1 分，共 5 分。均出自课文原句。",
+      "items": [
+        {"stem": "Tomorrow I'll be one of the first students to ____ into space.", "type": "choice", "a": 0, "opts": ["travel", "arrive", "leave", "walk"]},
+        {"stem": "It'll take us to the Moon. I ____ wait!", "type": "choice", "a": 0, "opts": ["can't", "can", "must", "need"]},
+        {"stem": "The ____ in space is very weak, so we'll all be floating around.", "type": "choice", "a": 0, "opts": ["gravity", "air", "sound", "body"]},
+        {"stem": "We need to tie the sleeping bag to the wall so that we won't float ____.", "type": "choice", "a": 0, "opts": ["away", "in", "on", "up"]},
+        {"stem": "When we ____, I'm going to walk on the Moon.", "type": "choice", "a": 0, "opts": ["arrive", "leave", "return", "sleep"]}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据课文《Flying to the Moon》判断。",
+      "items": [
+        {"stem": "The writer will travel into space tomorrow.", "type": "tf", "a": "T"},
+        {"stem": "The spaceship will leave the Earth at 9:00 a.m.", "type": "tf", "a": "T"},
+        {"stem": "The Moon is about 380,000 kilometres from the Earth.", "type": "tf", "a": "T"},
+        {"stem": "They will sleep in beds in the spaceship.", "type": "tf", "a": "F", "explain": "他们睡在睡袋里（sleeping bags），而且要绑在墙上。"},
+        {"stem": "There is a lot of air on the Moon.", "type": "tf", "a": "F", "explain": "月球上没有空气（no air），所以要穿航天服帮助呼吸。"}
+      ]
+    },
+    {
+      "name": "四、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "How will they go to the Moon?", "type": "choice", "a": 0, "opts": ["By spaceship.", "By train.", "By plane.", "On foot."]},
+        {"stem": "How long will it take them to get to the Moon?", "type": "choice", "a": 0, "opts": ["About three days.", "About three hours.", "About nine days.", "One day."]},
+        {"stem": "Why will they wear spacesuits?", "type": "choice", "a": 1, "opts": ["To look cool.", "To help them breathe.", "To keep warm.", "To sleep well."]},
+        {"stem": "What is the writer going to do on the Moon?", "type": "choice", "a": 1, "opts": ["Sleep in a bed.", "Walk on the Moon and take photos.", "Build a house.", "Swim in the sea."]}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 4 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "When will the spaceship leave the Earth?", "type": "text", "a": "At 9:00 a.m. tomorrow", "a2": ["At 9:00 a.m. tomorrow.", "At 9:00 a.m.", "Tomorrow at 9:00 a.m."]},
+        {"stem": "Where will they sleep in the spaceship?", "type": "text", "a": "In sleeping bags", "a2": ["In sleeping bags.", "They will sleep in sleeping bags.", "In beds."]},
+        {"stem": "Why do they have to do exercise every day?", "type": "text", "a": "Because their bodies may get weak", "a2": ["Because their bodies may get weak.", "Because the spaceship is small.", "Because they like sport."]},
+        {"stem": "Is there any sound on the Moon?", "type": "text", "a": "No, there isn't", "a2": ["No, there isn't.", "No.", "No, there is no sound there."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p4",
+    "title": "练习四 · 阅读新篇章",
+    "time": "25 分钟",
+    "sub": "用本单元词汇、短语和句型新写的一篇文章。不翻课本，看看你是否真的理解和掌握了它们。",
+    "sections": [
+    {
+      "name": "一、阅读原文",
+      "note": "先通读全文，再完成下面的题。金色底纹的是本单元词汇短语，读的时候留意它们。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">Our Trip to the Moon · 我们的月球之旅 <span>用 Unit 5 词汇与表达新写</span></div><div class=\"rd-body\"><p>Next month, our class will <span class=\"kw\">travel into space</span>. We will <span class=\"kw\">leave</span> the Earth in a new <span class=\"kw\">spaceship</span> early in the morning. I <span class=\"kw\">can't wait</span>! Our <span class=\"kw\">mission</span> is to visit the <span class=\"kw\">space station</span> first. After we <span class=\"kw\">get i" +
+      "nto orbit</span>, we will see the blue Earth below us. It will be <span class=\"kw\">a wonderful trip</span>.</p><p>In space, the <span class=\"kw\">gravity</span> is very <span class=\"kw\">weak</span>, so we will <span class=\"kw\">float</span> around in the spaceship. We will not sleep in beds — we will sleep in <span class=\"kw\">sleeping bags</span>. We need to <span class=\"kw\">tie</span> them to the wall so that we will not <span class=\"kw\">float away</span> in our sleep. Our <sp" +
+      "an class=\"kw\">bodies</span> may get weak, so we will have to <span class=\"kw\">do exercise</span> every day. When we work outside, we will <span class=\"kw\">wear a spacesuit</span>.</p><p>The Moon is about 380,000 <span class=\"kw\">kilometres</span> from the Earth. It will take us about three days to get there. When we <span class=\"kw\">arrive</span>, I am going to <span class=\"kw\">walk on the Moon</span>. The Moon has much weaker gravity than the Earth, so a person <span class=\"" +
+      "kw\">weighs</span> much less there and we can <span class=\"kw\">jump</span> very high. I am going to <span class=\"kw\">take as many photos</span> as I can.</p><p>The Moon has no air, so we must wear a spacesuit to help us <span class=\"kw\">breathe</span>. There is no <span class=\"kw\">sound</span> there, either. It is a <span class=\"kw\">strange</span> and <span class=\"kw\">mysterious</span> place. <span class=\"kw\">In the future</span>, more students will <span class=\"kw\">travel int" +
+      "o space</span>. I <span class=\"kw\">look forward to</span> our <span class=\"kw\">trip</span>, and I will <span class=\"kw\">travel back to</span> the Earth with many stories to tell.</p></div><div class=\"rd-note\"><b>阅读小任务：</b>读的时候圈出金色底纹的词汇和短语，看看你是不是每个都认识、都会用。</div></div>",
+      "items": [
+        {"stem": "这篇文章主要讲什么？", "type": "choice", "a": 0, "opts": ["一次未来的月球旅行：行程、在太空里的生活和月球上的活动", "宇宙飞船是怎样造出来的", "月球的历史", "怎样成为宇航员"], "explain": "文章按行程顺序写：乘飞船离开地球、在太空站的生活、三天后到月球、在月球上行走拍照。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据上文判断。",
+      "items": [
+        {"stem": "The class will travel into space next month.", "type": "tf", "a": "T"},
+        {"stem": "They will visit the space station first.", "type": "tf", "a": "T"},
+        {"stem": "They will sleep in beds on the spaceship.", "type": "tf", "a": "F", "explain": "他们睡在睡袋里，还要把睡袋绑在墙上。"},
+        {"stem": "A person weighs more on the Moon than on the Earth.", "type": "tf", "a": "F", "explain": "在月球上体重轻得多（weighs much less）。"},
+        {"stem": "There is no sound on the Moon.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "How will they leave the Earth?", "type": "choice", "a": 0, "opts": ["In a new spaceship.", "By train.", "By plane.", "By bus."]},
+        {"stem": "Why do they tie the sleeping bags to the wall?", "type": "choice", "a": 0, "opts": ["So that they won't float away in their sleep.", "Because the wall is soft.", "To keep the bags clean.", "Because they like the wall."]},
+        {"stem": "How far is the Moon from the Earth?", "type": "choice", "a": 0, "opts": ["About 380,000 kilometres.", "About 380 kilometres.", "About 3,800 kilometres.", "About 38,000 kilometres."]},
+        {"stem": "What is the writer going to do on the Moon?", "type": "choice", "a": 1, "opts": ["Sleep in a bed.", "Walk on the Moon and take photos.", "Build a house.", "Swim in the sea."]},
+        {"stem": "What does \"mysterious\" mean in the passage?", "type": "choice", "a": 1, "opts": ["Easy to see.", "Hard to explain or understand.", "Very noisy.", "Very heavy."]}
+      ]
+    },
+    {
+      "name": "四、词汇与表达 · 语境理解",
+      "note": "每题 1 分，共 5 分。结合文章语境，判断词汇和短语的意思与用法。",
+      "items": [
+        {"stem": "\"get into orbit\" 的意思是：", "type": "choice", "a": 0, "opts": ["进入轨道", "进入房间", "飞离地球", "穿好衣服"], "explain": "get into orbit 进入轨道；环绕地球飞行的路线叫 orbit。"},
+        {"stem": "\"float away\" 的意思是：", "type": "choice", "a": 0, "opts": ["飘走", "跑掉", "飞走（有动力）", "沉下去"], "explain": "float 漂浮；float away 飘走；太空中不拴好就会飘走。"},
+        {"stem": "\"mission\" 在文中指：", "type": "choice", "a": 1, "opts": ["一次考试", "这次太空旅行的任务", "一封邮件", "一个假期"], "explain": "mission 任务、使命；文中指这次太空之行的任务。"},
+        {"stem": "\"weighs much less\" 的意思是：", "type": "choice", "a": 1, "opts": ["体重重得多", "体重轻得多", "长得高得多", "跑得快得多"], "explain": "weigh 重（多少）；less 是 little 的比较级；月球重力弱，体重轻得多。"},
+        {"stem": "\"look forward to\" 的意思是：", "type": "choice", "a": 2, "opts": ["向前看", "寻找", "期待", "回顾"], "explain": "look forward to 期待；to 是介词，后面接名词或 doing。"}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "When will the class travel into space?", "type": "text", "a": "Next month", "a2": ["Next month.", "They will travel into space next month.", "Next week."]},
+        {"stem": "What will they visit first?", "type": "text", "a": "The space station", "a2": ["The space station.", "They will visit the space station first.", "The Moon."]},
+        {"stem": "Why will they do exercise every day?", "type": "text", "a": "Because their bodies may get weak", "a2": ["Because their bodies may get weak.", "Because the spaceship is small.", "Because they like sport."]},
+        {"stem": "What must they wear to breathe on the Moon?", "type": "text", "a": "A spacesuit", "a2": ["A spacesuit.", "They must wear a spacesuit.", "A spacesuit to help them breathe."]},
+        {"stem": "What will the writer bring back from the trip?", "type": "text", "a": "Many stories (and photos)", "a2": ["Many stories (and photos).", "The writer will bring back many stories and photos.", "Many photos."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p5",
+    "title": "练习五 · 中国航天",
+    "time": "20 分钟",
+    "sub": "从神舟五号到天宫空间站，从嫦娥探月到天问探火——学英语，也看看中国人怎样一步步走向深空。",
+    "sections": [
+    {
+      "name": "一、文化读本（原文）",
+      "note": "三段都围绕本单元主题与中国文化。先通读，再做后面的题。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">China in Space · 中国航天 <span>结合 Unit 5 Off to space</span></div><div class=\"rd-body\"><p><b>A. From Shenzhou to Tiangong · 从神舟到天宫</b><br>China's space story is full of firsts. In 2003, Yang Liwei (杨利伟) flew in Shenzhou 5 (神舟五号) and became the first Chinese to <span class=\"kw\">travel into space</span>. In 2021, China launched (发射) Tianhe (天和), the core module (核心舱) of its <span class=\"kw\">space station</span> Tiangong (天宫). Today, Chinese" +
+      " <span class=\"kw\">astronauts</span> stay there for months, do science experiments (科学实验) and sometimes walk in space. Every <span class=\"kw\">mission</span> makes the dream closer.</p><p><b>B. Chang'e to the Moon · 嫦娥探月</b><br>China's Moon programme is called Chang'e (嫦娥). In 2019, Chang'e 4 became the first spacecraft (航天器) to <span class=\"kw\">land</span> on the far side of the Moon (月球背面) — the side we never see from the Earth. It sent back photos of a <span class=\"kw\">stran" +
+      "ge</span> and <span class=\"kw\">mysterious</span> world. In 2020, Chang'e 5 brought moon rocks (月壤) back to the Earth, and in 2024 Chang'e 6 brought back samples (样品) from the far side. China also plans to send astronauts to the Moon before 2030. They will <span class=\"kw\">walk on the Moon</span> and <span class=\"kw\">take photos</span> of our blue planet.</p><p><b>C. Looking Further · 望向更远</b><br>China looks further than the Moon. Beidou (北斗) is a navigation (导航) satellite sys" +
+      "tem (卫星系统) that helps phones and cars find their way. In 2021, Tianwen 1 (天问一号) reached Mars (火星), and the rover Zhurong (祝融号) drove on the red planet. Scientists say more robots and more astronauts will <span class=\"kw\">travel into space</span> <span class=\"kw\">in the future</span>. Maybe one of them will be you. Study hard, do exercise and stay curious (好奇) — the sky is not the limit.</p></div><div class=\"rd-note\"><b>文化小知识：</b>\"我们的目标是星辰大海\"出自中国航天人的座右铭。英语可以说 \"Our goal is the " +
+      "stars and the sea\" 或 \"The sky is not the limit\"。</div></div>",
+      "items": [
+        {"stem": "这三段文字共同讲的是什么？", "type": "choice", "a": 0, "opts": ["中国的航天成就：空间站、探月与更远的探测", "中国的城市建设", "中国的美食", "中国的交通"], "explain": "三段分别讲从神舟到天宫、嫦娥探月、北斗与天问，都是中国航天成就。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 A · 判断正误（T / F）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "Yang Liwei was the first Chinese to travel into space.", "type": "tf", "a": "T"},
+        {"stem": "Tiangong is the name of a Chinese space station.", "type": "tf", "a": "T"},
+        {"stem": "Chang'e 4 landed on the far side of the Moon.", "type": "tf", "a": "T"},
+        {"stem": "China has brought back samples from Mars.", "type": "tf", "a": "F", "explain": "嫦娥五号、六号从月球带回样品；火星样品还没有。"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 B · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "Who was the first Chinese to travel into space?", "type": "choice", "a": 0, "opts": ["Yang Liwei.", "Zhai Zhigang.", "Nie Haisheng.", "Liu Boming."]},
+        {"stem": "What did Chang'e 5 do in 2020?", "type": "choice", "a": 0, "opts": ["Brought moon rocks back to the Earth.", "Landed on Mars.", "Built the space station.", "Flew to the Sun."]},
+        {"stem": "Where did the rover Zhurong drive?", "type": "choice", "a": 1, "opts": ["On the Moon.", "On Mars.", "On the Earth.", "On the Sun."]},
+        {"stem": "What is Beidou?", "type": "choice", "a": 0, "opts": ["A navigation satellite system.", "A spaceship.", "A space station.", "A rover."]}
+      ]
+    },
+    {
+      "name": "四、文化表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What is the name of China's space station?", "type": "text", "a": "Tiangong", "a2": ["Tiangong.", "It is Tiangong.", "Tiangong (天宫)."]},
+        {"stem": "What did Chang'e 6 bring back in 2024?", "type": "text", "a": "Samples from the far side of the Moon", "a2": ["Samples from the far side of the Moon.", "It brought back samples from the far side of the Moon.", "Moon rocks."]},
+        {"stem": "Which planet did Tianwen 1 reach?", "type": "text", "a": "Mars", "a2": ["Mars.", "It reached Mars.", "The red planet Mars."]},
+        {"stem": "What is China's Moon programme called?", "type": "text", "a": "Chang'e", "a2": ["Chang'e.", "It is called Chang'e.", "The Chang'e programme (嫦娥工程)."]},
+        {"stem": "What can students do if they love space?", "type": "text", "a": "Study hard, do exercise and stay curious", "a2": ["Study hard, do exercise and stay curious.", "They can study hard and stay curious.", "Maybe become astronauts in the future."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t1",
+    "title": "测试卷一 · Unit 5 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型参照本地单元卷：辨音 + 单选 + 语法选择 + 完形 + 阅读 + 回答问题 + 拼写 + 词形转换 + 写作。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>ear</u>th&nbsp;&nbsp;B. <u>ear</u>ly&nbsp;&nbsp;C. l<u>ear</u>n&nbsp;&nbsp;D. w<u>ear</u>", "type": "choice", "a": 3, "opts": ["earth", "early", "learn", "wear"], "explain": "earth / early / learn 中 ear 发 /ɜː/，wear 中 ear 发 /eə/。"},
+        {"stem": "A. <u>th</u>ree&nbsp;&nbsp;B. <u>th</u>ere&nbsp;&nbsp;C. <u>th</u>in&nbsp;&nbsp;D. <u>th</u>ank", "type": "choice", "a": 1, "opts": ["three", "there", "thin", "thank"], "explain": "three / thin / thank 中 th 发 /θ/，there 中 th 发 /ð/。"},
+        {"stem": "A. <u>w</u>eak&nbsp;&nbsp;B. <u>w</u>eigh&nbsp;&nbsp;C. <u>w</u>onderful&nbsp;&nbsp;D. <u>wr</u>ong", "type": "choice", "a": 3, "opts": ["weak", "weigh", "wonderful", "wrong"], "explain": "wrong 中 w 不发音（读 /r/），其余发 /w/。"},
+        {"stem": "A. tr<u>a</u>vel&nbsp;&nbsp;B. gr<u>a</u>vity&nbsp;&nbsp;C. <u>a</u>stronaut&nbsp;&nbsp;D. j<u>a</u>cket", "type": "choice", "a": 2, "opts": ["travel", "gravity", "astronaut", "jacket"], "explain": "travel / gravity / jacket 中 a 发 /æ/，astronaut 中 a 发 /ə/。"},
+        {"stem": "A. ph<u>o</u>to&nbsp;&nbsp;B. fl<u>o</u>at&nbsp;&nbsp;C. c<u>o</u>me&nbsp;&nbsp;D. gr<u>o</u>w", "type": "choice", "a": 2, "opts": ["photo", "float", "come", "grow"], "explain": "photo / float / grow 中 o 发 /əʊ/，come 中 o 发 /ʌ/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "The spaceship ____ leave the Earth at 9:00 tomorrow morning.", "type": "choice", "a": 1, "opts": ["is", "will", "are", "does"], "explain": "一般将来时 will + 动词原形。"},
+        {"stem": "When we arrive, I'm going to ____ on the Moon.", "type": "choice", "a": 0, "opts": ["walk", "sleep", "swim", "run away"], "explain": "walk on the Moon 在月球上行走。"},
+        {"stem": "We ____ sleep in beds. We'll sleep in sleeping bags.", "type": "choice", "a": 1, "opts": ["will", "won't", "don't", "aren't"], "explain": "后句提示否定：won't = will not。"},
+        {"stem": "There ____ no air on the Moon.", "type": "choice", "a": 0, "opts": ["is", "are", "will", "has"], "explain": "air 不可数 → there is no air。"},
+        {"stem": "A person ____ much less on the Moon.", "type": "choice", "a": 1, "opts": ["weigh", "weighs", "weighing", "weighed"], "explain": "a person 三单 → weighs。"},
+        {"stem": "—____ will the spaceship leave? —At 9:00 a.m.", "type": "choice", "a": 0, "opts": ["When", "Where", "What", "Who"], "explain": "对时间提问用 When。"},
+        {"stem": "—What are you going to do in space? —I'm going to ____.", "type": "choice", "a": 0, "opts": ["take photos", "take off", "take care", "take away"], "explain": "take photos 拍照；其余短语不合语境。"},
+        {"stem": "We must ____ a spacesuit to help us breathe.", "type": "choice", "a": 0, "opts": ["wear", "dress", "put on", "take"], "explain": "wear 穿着的状态；后接服装/鞋帽。dress 后接人，put on 强调动作。"},
+        {"stem": "The Moon is about 380,000 ____ from the Earth.", "type": "choice", "a": 0, "opts": ["kilometres", "metres", "miles", "grams"], "explain": "kilometre 公里；38 万公里。"},
+        {"stem": "I can't wait ____ the trip to the Moon.", "type": "choice", "a": 0, "opts": ["for", "to", "on", "of"], "explain": "can't wait for sth 迫不及待。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Next month, I ____ going to travel into space with my classmates.", "type": "choice", "a": 0, "opts": ["am", "is", "are", "be"], "explain": "主语 I → am going to。"},
+        {"stem": "The spaceship will ____ the Earth early in the morning.", "type": "choice", "a": 0, "opts": ["leave", "arrive", "return", "land"], "explain": "离开地球用 leave。"},
+        {"stem": "First, we will visit the space ____.", "type": "choice", "a": 0, "opts": ["station", "room", "museum", "hall"], "explain": "space station 空间站。"},
+        {"stem": "The gravity in space is very ____, so we will float around.", "type": "choice", "a": 0, "opts": ["weak", "strong", "heavy", "big"], "explain": "重力弱才会飘浮。"},
+        {"stem": "We will ____ around in the spaceship.", "type": "choice", "a": 0, "opts": ["float", "fly", "run", "walk"], "explain": "float 漂浮；弱重力下到处飘。"},
+        {"stem": "We won't sleep in beds — we'll sleep in sleeping ____.", "type": "choice", "a": 0, "opts": ["bags", "beds", "rooms", "ships"], "explain": "sleeping bag 睡袋。"},
+        {"stem": "We have to ____ them to the wall.", "type": "choice", "a": 0, "opts": ["tie", "wear", "take", "wash"], "explain": "tie...to... 把……绑到……上。"},
+        {"stem": "On the Moon, I am going to take as many ____ as I can.", "type": "choice", "a": 0, "opts": ["photos", "sounds", "trips", "plans"], "explain": "take photos 拍照。"},
+        {"stem": "I will ____ a spacesuit because there is no air.", "type": "choice", "a": 0, "opts": ["wear", "take", "bring", "buy"], "explain": "wear a spacesuit 穿航天服。"},
+        {"stem": "It ____ be a wonderful trip!", "type": "choice", "a": 0, "opts": ["will", "is", "does", "has"], "explain": "将来时 will + be。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "In the future, people will ____ into space more often.", "type": "choice", "a": 0, "opts": ["travel", "arrive", "leave", "return"], "explain": "travel into space 进入太空旅行。"},
+        {"stem": "A(n) ____ is a person who works in space.", "type": "choice", "a": 0, "opts": ["astronaut", "pilot", "driver", "engineer"], "explain": "在太空工作的人是宇航员。"},
+        {"stem": "We'll sleep in ____ ____ on the spaceship.", "type": "choice", "a": 0, "opts": ["sleeping bags", "space suits", "space ships", "blue skies"], "explain": "sleeping bag 睡袋。"},
+        {"stem": "Don't let the book float ____!", "type": "choice", "a": 0, "opts": ["away", "in", "on", "up"], "explain": "float away 飘走。"},
+        {"stem": "The Moon has weaker ____ than the Earth.", "type": "choice", "a": 0, "opts": ["gravity", "sound", "light", "air"], "explain": "gravity 重力。"},
+        {"stem": "We must ____ a spacesuit in space.", "type": "choice", "a": 0, "opts": ["wear", "take", "bring", "wash"], "explain": "wear a spacesuit 穿航天服。"},
+        {"stem": "I can't ____ for the space show!", "type": "choice", "a": 0, "opts": ["wait", "ask", "look", "go"], "explain": "can't wait for 迫不及待。"},
+        {"stem": "The spaceship will ____ on the Moon at 10:00.", "type": "choice", "a": 0, "opts": ["land", "leave", "float", "sleep"], "explain": "land 着陆。"},
+        {"stem": "Our ____ is to visit the space station.", "type": "choice", "a": 0, "opts": ["mission", "mistake", "message", "moment"], "explain": "mission 任务。"},
+        {"stem": "It will be a ____ trip!", "type": "choice", "a": 0, "opts": ["wonderful", "strange", "weak", "noisy"], "explain": "wonderful 精彩的。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>SPACE SHOW AT SCHOOL. When: Friday, June 20th, 4:00 p.m. Where: The school hall. What: photos of the Moon and Mars, a talk by Dr Liu from the city space museum, and a short video about China's space station. After the show, students can join the Space Club in Room 302. The first thirty students will get a free book about the stars. Please be on time.<br>Where will the Space Show be?", "type": "choice", "a": 1, "opts": ["In the school library.", "In the school hall.", "In Room 302.", "In the city space museum."]},
+        {"stem": "Who will give the talk?", "type": "choice", "a": 0, "opts": ["Dr Liu from the city space museum.", "A teacher.", "A student.", "Dr Ma."]},
+        {"stem": "What can the first thirty students get?", "type": "choice", "a": 1, "opts": ["A poster.", "A free book about the stars.", "A model spaceship.", "A ticket."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Lin Tao is a middle school student. He loves space. When he was eight, his father took him to a space museum. He saw a real spacesuit and many photos of the Moon. From that day, Lin Tao had a dream: he would travel into space one day. He reads books about astronauts and watches videos of rockets every week. Last month, his school had a space talk. A young engineer told the students, \"The Moon is our next stop. Maybe some of you will walk on the Moon.\" Lin Tao could not sleep that night. He wrote in his notebook: \"I will study hard, do exercise every day and learn English well. In the future, I will be an astronaut. I will take photos of the Earth from space and look at our blue planet. It will be a wonderful trip.\"<br>What did Lin Tao see in the space museum?", "type": "choice", "a": 1, "opts": ["A real spaceship.", "A real spacesuit and many photos of the Moon.", "A book about Mars.", "A video about rockets."]},
+        {"stem": "What does Lin Tao do every week?", "type": "choice", "a": 1, "opts": ["Goes to a space museum.", "Reads books about astronauts and watches videos of rockets.", "Builds model rockets.", "Writes letters to astronauts."]},
+        {"stem": "What did the engineer tell the students?", "type": "choice", "a": 1, "opts": ["Space travel is too expensive.", "The Moon is our next stop and maybe they will walk on it.", "Rockets are dangerous.", "They should stay on the Earth."]},
+        {"stem": "What will Lin Tao do in the future?", "type": "choice", "a": 0, "opts": ["Be an astronaut and take photos of the Earth from space.", "Be an engineer and build rockets.", "Be a teacher and give talks.", "Be a pilot and fly planes."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Sara, How are you? Last week, I went to a space camp with my classmates. It was wonderful! We slept in special rooms that look like a space station. We wore small spacesuits and learned how astronauts work in space. We also learned that there is no sound in space, and that astronauts must do exercise every day because their bodies get weak. On the last day, each student made a small model spaceship. Mine could \"fly\" to the Moon! My teacher said our class will visit the city space museum next term. I can't wait. What about you? Have you ever been to a camp? Write back soon! Yours, Han Mei<br>Where did Han Mei go last week?", "type": "choice", "a": 1, "opts": ["To a space museum.", "To a space camp.", "To a space station.", "To the Moon."]},
+        {"stem": "Why must astronauts do exercise every day?", "type": "choice", "a": 1, "opts": ["Because they like sport.", "Because their bodies get weak.", "Because they have nothing to do.", "Because the teacher asks them to."]},
+        {"stem": "What did each student make on the last day?", "type": "choice", "a": 0, "opts": ["A small model spaceship.", "A poster.", "A spacesuit.", "A video."]},
+        {"stem": "What will Han Mei's class do next term?", "type": "choice", "a": 0, "opts": ["Visit the city space museum.", "Go to another space camp.", "Fly to the Moon.", "Build a real spaceship."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>In the future, travelling into space will not be only for astronauts. Scientists are planning space hotels. A space hotel will get into orbit 400 kilometres above the Earth. Guests will travel there in a spaceship. Inside, they will float around because the gravity is very weak. They will sleep in sleeping bags tied to the wall, and they will do exercise every day. They will wear special clothes and eat special food. From the hotel, they will see the Earth below them — blue and beautiful. They will take as many photos as they can. Trips will not be cheap, but many people look forward to the day when they can spend a weekend in space.<br>How high will the space hotel be above the Earth?", "type": "text", "a": "400 kilometres", "a2": ["400 kilometres.", "About 400 kilometres.", "400 km."]},
+        {"stem": "Why will guests float around inside?", "type": "text", "a": "Because the gravity is very weak", "a2": ["Because the gravity is very weak.", "Because the hotel is small.", "Because they wear special clothes."]},
+        {"stem": "Where will guests sleep?", "type": "text", "a": "In sleeping bags tied to the wall", "a2": ["In sleeping bags tied to the wall.", "In beds.", "On the floor.", "In special rooms."]},
+        {"stem": "What will the Earth look like from the hotel?", "type": "text", "a": "Blue and beautiful", "a2": ["Blue and beautiful.", "Red and hot.", "Green and small.", "Dark and quiet."]},
+        {"stem": "How do many people feel about the space hotel?", "type": "text", "a": "They look forward to it", "a2": ["They look forward to it.", "They are afraid of it.", "They do not like it.", "They think it is cheap."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "s____（宇宙飞船）", "type": "text", "a": "spaceship"},
+        {"stem": "g____（重力；引力）", "type": "text", "a": "gravity"},
+        {"stem": "（身体）", "type": "text", "a": "body"},
+        {"stem": "b____（呼吸）", "type": "text", "a": "breathe"},
+        {"stem": "f____（未来；将来）", "type": "text", "a": "future"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "visit（用 will 构成将来时）", "type": "text", "a": "will visit", "ph": "将会参观"},
+        {"stem": "explore（用 will 构成将来时）", "type": "text", "a": "will explore", "ph": "将会探索"},
+        {"stem": "not sleep（用 will 的否定式）", "type": "text", "a": "won't sleep", "a2": ["will not sleep"], "ph": "将不会睡觉"},
+        {"stem": "build（主语 they，用 be going to 构成将来时）", "type": "text", "a": "they are going to build", "a2": ["they're going to build"], "ph": "他们打算建造"},
+        {"stem": "join（主语 you，用 be going to 构成将来时）", "type": "text", "a": "you are going to join", "a2": ["you're going to join"], "ph": "你打算加入"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Dream Trip to Space（我的太空之旅梦想）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 spaceship, travel into space, gravity, float, spacesuit, take photos, walk on the Moon, wonderful trip, in the future, look forward to）；③ 注意 will / be going to 和句首大写。", "type": "essay", "score": 10, "ph": "My Dream Trip to Space\n\nIn the future, I will travel into space...", "check": ["有没有写什么时候去、怎么去（in the future / spaceship）？", "有没有写在太空里的生活（gravity / float / sleeping bag）？", "有没有写在月球上做什么（walk on the Moon / take photos）？", "有没有用 will 或 be going to 造句？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">My Dream Trip to Space<br><br>In the future, I will travel into space with my classmates. We will leave the Earth in a spaceship early in the morning. First, we will visit a space station. The gravity in space is very weak, so we will float around in the spaceship. We will sleep in sleeping bags and do exercise every day. On the Moon, I am going to walk on the Moon and take as many photos as I can. I will wear a spacesuit because there is no air there. I am sure it will be a wonderful trip, and I look forward to it.</div><div class=\"zh\">（参考范文：写了时间、交通方式、太空生活和月球上的活动，用了 travel into space / spaceship / space station / gravity / float / sleeping bags / do exercise / walk on the Moon / take photos / spacesuit / wonderful trip / look forward to 等本单元词汇短语，注意了 will 与 be going to 的区分和句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t2",
+    "title": "测试卷二 · Unit 5 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与测试卷一相同，题目全部更换（词汇、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>s</u>paceship&nbsp;&nbsp;B. <u>s</u>pacesuit&nbsp;&nbsp;C. <u>s</u>ure&nbsp;&nbsp;D. <u>s</u>leep", "type": "choice", "a": 2, "opts": ["spaceship", "spacesuit", "sure", "sleep"], "explain": "spaceship / spacesuit / sleep 中 s 发 /s/，sure 中 s 发 /ʃ/。"},
+        {"stem": "A. <u>ch</u>emistry&nbsp;&nbsp;B. <u>ch</u>air&nbsp;&nbsp;C. s<u>ch</u>ool&nbsp;&nbsp;D. <u>ch</u>eese", "type": "choice", "a": 2, "opts": ["chemistry", "chair", "school", "cheese"], "explain": "chemistry / chair / cheese 中 ch 发 /tʃ/，school 中 ch 发 /k/。"},
+        {"stem": "A. m<u>oo</u>n&nbsp;&nbsp;B. r<u>oo</u>m&nbsp;&nbsp;C. b<u>oo</u>k&nbsp;&nbsp;D. s<u>oo</u>n", "type": "choice", "a": 2, "opts": ["moon", "room", "book", "soon"], "explain": "moon / room / soon 中 oo 发 /uː/，book 中 oo 发 /ʊ/。"},
+        {"stem": "A. b<u>r</u>eathe&nbsp;&nbsp;B. <u>w</u>eak&nbsp;&nbsp;C. <u>r</u>obot&nbsp;&nbsp;D. <u>r</u>ocket", "type": "choice", "a": 1, "opts": ["breathe", "weak", "robot", "rocket"], "explain": "breathe / robot / rocket 发 /r/，weak 发 /w/。"},
+        {"stem": "A. myster<u>i</u>ous&nbsp;&nbsp;B. astr<u>o</u>naut&nbsp;&nbsp;C. grav<u>i</u>ty&nbsp;&nbsp;D. sp<u>a</u>ceship", "type": "choice", "a": 3, "opts": ["mysterious", "astronaut", "gravity", "spaceship"], "explain": "mysterious / astronaut / gravity 中划线部分发 /ə/，spaceship 中 a 发 /eɪ/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "—____ is the Moon from the Earth? —About 380,000 kilometres.", "type": "choice", "a": 0, "opts": ["How far", "How long", "How often", "How many"], "explain": "对距离提问用 How far。"},
+        {"stem": "We ____ going to visit the space station next week.", "type": "choice", "a": 2, "opts": ["am", "is", "are", "be"], "explain": "主语 we → are going to。"},
+        {"stem": "There ____ no sound in space.", "type": "choice", "a": 0, "opts": ["is", "are", "has", "have"], "explain": "sound 在这里指\"声音\"总称，单数 → there is no sound。"},
+        {"stem": "The gravity on the Moon is ____ than on the Earth.", "type": "choice", "a": 1, "opts": ["weak", "weaker", "weakest", "the weakest"], "explain": "than 提示比较级 weaker。"},
+        {"stem": "—____ you please take a photo for me? —Sure.", "type": "choice", "a": 0, "opts": ["Will", "Do", "Are", "Have"], "explain": "Will you please...? 礼貌请求。"},
+        {"stem": "Astronauts ____ special clothes in space.", "type": "choice", "a": 0, "opts": ["wear", "dress", "put on", "take"], "explain": "wear 穿着；后接衣物。"},
+        {"stem": "I'm sure the trip ____ be wonderful.", "type": "choice", "a": 0, "opts": ["will", "is", "does", "has"], "explain": "be sure (that)...will 确信将会。"},
+        {"stem": "Our bodies may get weak, ____ we have to do exercise every day.", "type": "choice", "a": 2, "opts": ["and", "but", "so", "or"], "explain": "因果关系：身体变弱 → 必须锻炼，用 so。"},
+        {"stem": "The spaceship will get ____ orbit in ten minutes.", "type": "choice", "a": 0, "opts": ["into", "in", "on", "to"], "explain": "get into orbit 进入轨道。"},
+        {"stem": "Listen! The rocket ____ take off in one minute.", "type": "choice", "a": 0, "opts": ["is going to", "will", "was", "does"], "explain": "有迹象表明即将发生（倒计时）用 be going to。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Living on a space station ____ not easy.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "动名词短语作主语，视作单数 → is。"},
+        {"stem": "Astronauts ____ up early because they have a lot of work.", "type": "choice", "a": 0, "opts": ["get", "gets", "getting", "got"], "explain": "主语 astronauts 复数，一般现在时 → get。"},
+        {"stem": "There is no gravity, so they ____ around to move.", "type": "choice", "a": 0, "opts": ["float", "floats", "floated", "floating"], "explain": "漂浮移动，一般现在时复数 → float。"},
+        {"stem": "They must ____ their shoes to the wall, or the shoes will float away.", "type": "choice", "a": 0, "opts": ["tie", "wear", "take", "bring"], "explain": "tie...to... 把……绑到……上。"},
+        {"stem": "They do exercise every day ____ their bodies get weak.", "type": "choice", "a": 0, "opts": ["because", "so", "but", "and"], "explain": "后句是原因：因为身体会变弱。"},
+        {"stem": "They eat special food and ____ in sleeping bags.", "type": "choice", "a": 0, "opts": ["sleep", "sleeps", "slept", "sleeping"], "explain": "and 连接并列谓语，一般现在时复数 → sleep。"},
+        {"stem": "When they work outside, they ____ spacesuits.", "type": "choice", "a": 0, "opts": ["wear", "wears", "wore", "wearing"], "explain": "一般现在时复数 → wear。"},
+        {"stem": "There is no sound in space, so they talk ____ radio.", "type": "choice", "a": 0, "opts": ["by", "in", "on", "with"], "explain": "by radio 通过无线电。"},
+        {"stem": "It is hard work, ____ it is wonderful to see the Earth from space.", "type": "choice", "a": 0, "opts": ["but", "and", "so", "or"], "explain": "转折：辛苦但值得。"},
+        {"stem": "After six months, they will travel ____ to the Earth.", "type": "choice", "a": 0, "opts": ["back", "away", "out", "in"], "explain": "travel back to 返回……；back 表示\"回\"。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "The spaceship will ____ the Earth tomorrow morning.", "type": "choice", "a": 0, "opts": ["leave", "arrive", "return", "land"], "explain": "明天早上离开地球。"},
+        {"stem": "Astronauts ____ in the spaceship when they sleep.", "type": "choice", "a": 0, "opts": ["float", "run", "walk", "jump"], "explain": "弱重力下睡觉时会飘起来。"},
+        {"stem": "We'll ____ on the Moon and take photos.", "type": "choice", "a": 0, "opts": ["walk", "sleep", "swim", "drive"], "explain": "walk on the Moon 在月球上行走。"},
+        {"stem": "There is no air on the Moon, so we must ____ a spacesuit.", "type": "choice", "a": 0, "opts": ["wear", "take", "bring", "wash"], "explain": "must + 动词原形；wear a spacesuit。"},
+        {"stem": "The Moon is about 380,000 ____ from the Earth.", "type": "choice", "a": 0, "opts": ["kilometres", "metres", "miles", "grams"], "explain": "kilometre 公里。"},
+        {"stem": "Our bodies may get ____ in space, so we do exercise.", "type": "choice", "a": 0, "opts": ["weak", "strong", "heavy", "ill"], "explain": "get weak 变虚弱。"},
+        {"stem": "I can't ____ to see the stars from space!", "type": "choice", "a": 0, "opts": ["wait", "ask", "look", "go"], "explain": "can't wait to do 迫不及待做某事。"},
+        {"stem": "People will travel to Mars ____ the future.", "type": "choice", "a": 0, "opts": ["in", "on", "at", "for"], "explain": "in the future 在未来。"},
+        {"stem": "The spaceship will ____ at 9:00 a.m. Please be on time.", "type": "choice", "a": 0, "opts": ["leave", "arrive", "land", "return"], "explain": "上午九点出发。"},
+        {"stem": "It will be a ____ trip to the Moon!", "type": "choice", "a": 0, "opts": ["wonderful", "strange", "weak", "noisy"], "explain": "wonderful 精彩的。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（海报）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>海报：</b>SPACE CLUB WANTS YOU! Do you love the stars? Do you want to know how astronauts live in space? Come and join the Space Club! What do we do? We watch space videos every Tuesday. We read books about the Moon and Mars. We make model spaceships. We learn how astronauts eat, sleep and do exercise in space. When: every Tuesday, 4:00–5:00 p.m. Where: Room 302. Who can join: all students. There are no fees. Come and fly with us!<br>Who can join the Space Club?", "type": "choice", "a": 1, "opts": ["Only astronauts.", "All students.", "Only teachers.", "Students in Class 7 only."]},
+        {"stem": "What does the club do every Tuesday?", "type": "choice", "a": 0, "opts": ["Watch space videos.", "Fly real rockets.", "Visit the Moon.", "Make real spacesuits."]},
+        {"stem": "How much does it cost to join?", "type": "choice", "a": 1, "opts": ["Ten yuan.", "Nothing.", "Fifty yuan.", "One hundred yuan."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Last Friday, our school had a model rocket competition. Each class made one model spaceship. Class 7's rocket was white and blue, with the word \"Dream\" on it. When the teacher pressed the button, the rocket flew up, up, up — and then it came down slowly with a small parachute (降落伞). Everyone cheered. Our class came second, but we were very happy. On the way home, my friend Li Lei said, \"One day, I will build a real spaceship and travel into space.\" I smiled and said, \"And I will take photos of the Earth from up there!\"<br>What did each class make?", "type": "choice", "a": 1, "opts": ["One model rocket.", "One model spaceship.", "One poster.", "One model Moon."]},
+        {"stem": "How did the rocket come down?", "type": "choice", "a": 1, "opts": ["Fast and straight.", "Slowly with a small parachute.", "It stayed in the sky.", "It broke into pieces."]},
+        {"stem": "What place did the class come in?", "type": "choice", "a": 1, "opts": ["First.", "Second.", "Third.", "Last."]},
+        {"stem": "What will Li Lei do one day?", "type": "choice", "a": 0, "opts": ["Build a real spaceship and travel into space.", "Take photos of the Earth.", "Win another competition.", "Become a teacher."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Tom, How are things? Last Sunday, I went to the city planetarium (天文馆) with my family. It was wonderful! In the space hall, there was a big model of the Moon. I walked on it — well, a special floor that feels like the Moon. A guide told us that the Moon has much weaker gravity than the Earth, so a person weighs much less there and can jump very high. I tried. It was fun! We also saw a real spacesuit. It was big and white. The guide said astronauts wear it to breathe in space. On the way home, my little sister asked, \"Will I travel into space one day?\" My father said, \"Maybe. If you study hard, you will.\" I think so too. Write soon! Yours, Chen Xi<br>Where did Chen Xi go last Sunday?", "type": "choice", "a": 1, "opts": ["To the city space museum.", "To the city planetarium.", "To a space camp.", "To the Moon."]},
+        {"stem": "What was in the space hall?", "type": "choice", "a": 0, "opts": ["A big model of the Moon.", "A real spacesuit.", "A real spaceship.", "A video of Mars."]},
+        {"stem": "Why can people jump very high on the Moon?", "type": "choice", "a": 0, "opts": ["Because it has much weaker gravity.", "Because the Moon is big.", "Because there is a lot of air.", "Because the Moon is hot."]},
+        {"stem": "What did Chen Xi's father say?", "type": "choice", "a": 1, "opts": ["She will never travel into space.", "Maybe she will travel into space if she studies hard.", "She should build a spaceship.", "Space travel is dangerous."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>On 20 July 1969, two American astronauts, Neil Armstrong and Buzz Aldrin, landed on the Moon in a spaceship called Apollo 11. It was a great moment. Armstrong came out first and walked on the Moon. He said, \"That's one small step for a man, one giant leap for mankind.\" They spent about two hours on the Moon. They took photos, collected moon rocks and did some simple exercise. They wore heavy spacesuits because there is no air on the Moon. Before they went, they trained for many years. They had to learn how to eat, sleep and work in a place with no sound and weak gravity. Their trip lasted about eight days. It was a wonderful trip, and it opened the door to space travel.<br>When did Apollo 11 land on the Moon?", "type": "text", "a": "On 20 July 1969", "a2": ["On 20 July 1969.", "In July 1969.", "On 20 June 1969."]},
+        {"stem": "Who walked on the Moon first?", "type": "text", "a": "Neil Armstrong", "a2": ["Neil Armstrong.", "Buzz Aldrin.", "Dr Liu.", "Yang Liwei."]},
+        {"stem": "Why did they wear heavy spacesuits?", "type": "text", "a": "Because there is no air on the Moon", "a2": ["Because there is no air on the Moon.", "Because it was cold.", "Because they looked cool.", "Because the Moon was dark."]},
+        {"stem": "What did they do on the Moon?", "type": "text", "a": "Took photos, collected moon rocks and did some simple exercise", "a2": ["Built a house.", "Took photos, collected moon rocks and did some simple exercise.", "Slept for two days.", "Collected air."]},
+        {"stem": "How long did their trip last?", "type": "text", "a": "About eight days", "a2": ["About eight days.", "About two hours.", "About two days.", "About eight hours."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "s____（太空）", "type": "text", "a": "space"},
+        {"stem": "（弱的；无力的）", "type": "text", "a": "weak"},
+        {"stem": "e____（锻炼；运动）", "type": "text", "a": "exercise"},
+        {"stem": "s____（声音）", "type": "text", "a": "sound"},
+        {"stem": "（计划）", "type": "text", "a": "plan"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "travel（用 will 构成将来时）", "type": "text", "a": "will travel", "ph": "将会去旅行"},
+        {"stem": "take off（用 will 构成将来时）", "type": "text", "a": "will take off", "ph": "将会起飞"},
+        {"stem": "watch（主语 I，用 be going to 构成将来时）", "type": "text", "a": "I am going to watch", "a2": ["I'm going to watch"], "ph": "我打算观看"},
+        {"stem": "take（主语 we，用 be going to 构成将来时）", "type": "text", "a": "we are going to take", "a2": ["we're going to take"], "ph": "我们打算拍摄"},
+        {"stem": "not travel（主语 they，用 be going to 的否定式）", "type": "text", "a": "they are not going to travel", "a2": ["they aren't going to travel", "they're not going to travel"], "ph": "他们不打算去旅行"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Plan for a Trip to Space（我的太空旅行计划）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 spaceship, travel into space, gravity, float, sleeping bag, spacesuit, take photos, do exercise, wonderful trip）；③ 注意 will / be going to 和句首大写。", "type": "essay", "score": 10, "ph": "My Plan for a Trip to Space\n\nNext month, I am going to...", "check": ["有没有写什么时候去、坐什么去（spaceship / travel into space）？", "有没有写在飞船上的生活（gravity / float / sleeping bag / do exercise）？", "有没有写到月球上做什么（walk on the Moon / take photos / wear a spacesuit）？", "有没有用 will 或 be going to 造句？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">My Plan for a Trip to Space<br><br>Next month, I am going to travel into space with my class. We will leave the Earth in a spaceship early in the morning. The gravity in space is very weak, so we will float around in the spaceship. We will sleep in sleeping bags tied to the wall, and we will have to do exercise every day. When we arrive on the Moon, I am going to walk on the Moon and take as many photos as I can. I will wear a spacesuit because there is no air there. It will be a wonderful trip, and I will never forget it.</div><div class=\"zh\">（参考范文：写了时间、交通方式、飞船生活和月球活动，用了 travel into space / spaceship / gravity / float / sleeping bags / do exercise / walk on the Moon / take photos / spacesuit / wonderful trip 等本单元词汇短语，注意了 will 与 be going to 的区分和句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t3",
+    "title": "测试卷三 · Unit 5 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与前两套相同，题目全部更换（辨音组合、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. l<u>ea</u>ve&nbsp;&nbsp;B. w<u>ea</u>k&nbsp;&nbsp;C. gr<u>ea</u>t&nbsp;&nbsp;D. br<u>ea</u>kfast", "type": "choice", "a": 3, "opts": ["leave", "weak", "great", "breakfast"], "explain": "leave / weak / great 中 ea 发 /iː/，breakfast 中 ea 发 /e/。"},
+        {"stem": "A. <u>o</u>rbit&nbsp;&nbsp;B. astr<u>o</u>naut&nbsp;&nbsp;C. ph<u>o</u>to&nbsp;&nbsp;D. mysteri<u>o</u>us", "type": "choice", "a": 0, "opts": ["orbit", "astronaut", "photo", "mysterious"], "explain": "astronaut / photo / mysterious 中 o 发 /ə/，orbit 中 o 发 /ɔː/。"},
+        {"stem": "A. <u>th</u>ree&nbsp;&nbsp;B. <u>th</u>ey&nbsp;&nbsp;C. <u>th</u>ank&nbsp;&nbsp;D. <u>th</u>irsty", "type": "choice", "a": 1, "opts": ["three", "they", "thank", "thirsty"], "explain": "three / thank / thirsty 中 th 发 /θ/，they 中 th 发 /ð/。"},
+        {"stem": "A. s<u>p</u>aceship&nbsp;&nbsp;B. <u>p</u>hoto&nbsp;&nbsp;C. <u>p</u>lan&nbsp;&nbsp;D. <u>p</u>arade", "type": "choice", "a": 1, "opts": ["spaceship", "photo", "plan", "parade"], "explain": "spaceship / plan / parade 中 p 发 /p/，photo 中 p 发 /f/。"},
+        {"stem": "A. j<u>u</u>mp&nbsp;&nbsp;B. astr<u>o</u>naut&nbsp;&nbsp;C. m<u>u</u>sic&nbsp;&nbsp;D. comm<u>u</u>nity", "type": "choice", "a": 1, "opts": ["jump", "astronaut", "music", "community"], "explain": "jump 中 u 发 /ʌ/，music / community 中 u 发 /juː/，astronaut 中划线部分发 /ə/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "There ____ a space station in the city in the future.", "type": "choice", "a": 0, "opts": ["will be", "is", "are", "has"], "explain": "in the future 提示将来时 → there will be。"},
+        {"stem": "The spaceship will get into ____ in five minutes.", "type": "choice", "a": 0, "opts": ["orbit", "the air", "space", "the sky"], "explain": "get into orbit 进入轨道。"},
+        {"stem": "We are going to take ____ many photos as we can on the Moon.", "type": "choice", "a": 0, "opts": ["as", "so", "too", "very"], "explain": "as many...as we can 尽可能多的。"},
+        {"stem": "The Moon is a ____ place. Many people want to know more about it.", "type": "choice", "a": 0, "opts": ["mysterious", "mystery", "mysteriously", "mysteries"], "explain": "修饰 place 用形容词 mysterious。"},
+        {"stem": "—____ will you travel back to the Earth? —Next week.", "type": "choice", "a": 0, "opts": ["When", "Where", "What", "Who"], "explain": "对时间提问用 When。"},
+        {"stem": "Astronauts ____ in sleeping bags in space.", "type": "choice", "a": 0, "opts": ["sleep", "sleeps", "slept", "sleeping"], "explain": "主语 astronauts 复数，一般现在时 → sleep。"},
+        {"stem": "The gravity in space is very ____, so we float around.", "type": "choice", "a": 0, "opts": ["weak", "strong", "heavy", "big"], "explain": "重力弱 → 飘浮。"},
+        {"stem": "Our class ____ going to visit the space museum next Friday.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "主语 our class 视作单数 → is going to。"},
+        {"stem": "I will ____ a spacesuit to help me breathe.", "type": "choice", "a": 0, "opts": ["wear", "dress", "put on", "take"], "explain": "wear a spacesuit 穿航天服（状态）。"},
+        {"stem": "It is our dream to walk ____ the Moon one day.", "type": "choice", "a": 0, "opts": ["on", "in", "at", "to"], "explain": "walk on the Moon 在月球表面行走。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Next year, our school will have a space week. Every class will make something about space. Our class ____ going to make a big model of the Moon.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "主语 our class 单数 → is going to。"},
+        {"stem": "First, we will ____ a big round table and cover it with white paper.", "type": "choice", "a": 0, "opts": ["use", "using", "used", "uses"], "explain": "will + 动词原形。"},
+        {"stem": "On the model, there ____ small flags and a little spaceship.", "type": "choice", "a": 2, "opts": ["is", "are", "will be", "was"], "explain": "将来时 there will be。"},
+        {"stem": "Our teacher says the Moon ____ no air, so nothing can live there.", "type": "choice", "a": 1, "opts": ["have", "has", "there is", "there are"], "explain": "the Moon 三单 → has no air。"},
+        {"stem": "A person ____ much less on the Moon, and people can jump very high.", "type": "choice", "a": 1, "opts": ["weigh", "weighs", "weighed", "weighing"], "explain": "a person 三单 → weighs。"},
+        {"stem": "We will also ____ a short play about astronauts.", "type": "choice", "a": 0, "opts": ["put on", "take off", "look at", "listen to"], "explain": "put on a play 上演一出短剧。"},
+        {"stem": "In the play, the astronauts will ____ in sleeping bags and do exercise every day.", "type": "choice", "a": 0, "opts": ["sleep", "sleeps", "slept", "sleeping"], "explain": "will + 动词原形。"},
+        {"stem": "They will ____ photos of the Earth.", "type": "choice", "a": 0, "opts": ["take", "takes", "took", "taking"], "explain": "take photos 拍照；will + 动词原形。"},
+        {"stem": "We are ____ ____ to the space week.", "type": "choice", "a": 0, "opts": ["looking forward", "looking for", "looking after", "looking up"], "explain": "look forward to 期待。"},
+        {"stem": "I am sure it ____ be wonderful!", "type": "choice", "a": 0, "opts": ["will", "is", "does", "has"], "explain": "be sure it will be 确信将会。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "I can't wait ____ the space show.", "type": "choice", "a": 0, "opts": ["for", "to", "on", "of"], "explain": "can't wait for sth 迫不及待。"},
+        {"stem": "The astronauts will travel ____ to the Earth next week.", "type": "choice", "a": 0, "opts": ["back", "away", "out", "in"], "explain": "travel back to 返回……。"},
+        {"stem": "We'll sleep in ____ ____ in the spaceship.", "type": "choice", "a": 0, "opts": ["sleeping bags", "space suits", "space ships", "blue skies"], "explain": "sleeping bag 睡袋。"},
+        {"stem": "The spaceship will take ____ at 9:00 a.m.", "type": "choice", "a": 0, "opts": ["off", "on", "up", "away"], "explain": "take off 起飞。"},
+        {"stem": "There is no ____ on the Moon, so it is very quiet.", "type": "choice", "a": 0, "opts": ["sound", "air", "light", "gravity"], "explain": "没有声音 → 安静。"},
+        {"stem": "A spacesuit helps astronauts ____ in space.", "type": "choice", "a": 0, "opts": ["breathe", "sleep", "float", "jump"], "explain": "航天服帮助呼吸。"},
+        {"stem": "The Moon is a ____ and mysterious place.", "type": "choice", "a": 0, "opts": ["strange", "weak", "noisy", "heavy"], "explain": "strange 奇怪的；and 连接并列形容词。"},
+        {"stem": "Our ____ is to walk on the Moon.", "type": "choice", "a": 0, "opts": ["mission", "mistake", "message", "moment"], "explain": "mission 任务。"},
+        {"stem": "Astronauts must do ____ every day in space.", "type": "choice", "a": 0, "opts": ["exercise", "homework", "shopping", "reading"], "explain": "do exercise 做锻炼。"},
+        {"stem": "In the future, people will live in a ____ station in space.", "type": "choice", "a": 0, "opts": ["space", "police", "bus", "train"], "explain": "space station 空间站。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>SPACE PHOTO SHOW. Our school library will have a space photo show next week. There will be more than 100 photos of the Moon, Mars and the space station. Some of them were taken by astronauts. There will also be a short talk about China's space programme on Wednesday afternoon. Students can visit the show during the lunch break or after school. The show will last for one week. If you want to take photos of the show, please ask the librarian (图书管理员) first.<br>Where will the photo show be?", "type": "choice", "a": 0, "opts": ["In the school library.", "In the school hall.", "In the city museum.", "In Room 302."]},
+        {"stem": "Who took some of the photos?", "type": "choice", "a": 0, "opts": ["Astronauts.", "Teachers.", "Students.", "The librarian."]},
+        {"stem": "When will the talk about China's space programme be?", "type": "choice", "a": 0, "opts": ["On Wednesday afternoon.", "On Friday morning.", "During the lunch break.", "Next week."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Zhao Peng is fourteen. He wants to be an astronaut. Every morning, he gets up at six and runs for thirty minutes. \"Strong bodies help astronauts,\" he says. Every evening, he does exercise for twenty minutes and reads books about space for half an hour. His room is full of model spaceships and photos of the Moon. Last year, he wrote a plan for his future: \"At eighteen, I will learn to fly a small plane. At twenty-two, I will study space science at university. Then I will travel into space. I will walk on the Moon and take photos of the Earth. It will be a wonderful trip.\" His classmates smile when he talks about his plan, but nobody laughs. \"Plans help us grow,\" says his teacher.<br>What does Zhao Peng want to be?", "type": "choice", "a": 0, "opts": ["An astronaut.", "A pilot.", "A scientist.", "A teacher."]},
+        {"stem": "What does he do every morning?", "type": "choice", "a": 1, "opts": ["Reads books for an hour.", "Gets up at six and runs for thirty minutes.", "Builds model spaceships.", "Watches space videos."]},
+        {"stem": "What is his room full of?", "type": "choice", "a": 0, "opts": ["Model spaceships and photos of the Moon.", "Books about sport.", "His plans.", "Pictures of planes."]},
+        {"stem": "What does his teacher think of his plan?", "type": "choice", "a": 0, "opts": ["Plans help us grow.", "Plans are only dreams.", "Plans make him tired.", "Plans are dangerous."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（日记）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>日记：</b>Friday, June 6th, Sunny. Today our class went to the city space museum. In the morning, we saw a real spaceship. The guide told us it could travel into space at a speed of 28,000 kilometres an hour. I could not believe it! Then we saw a spacesuit. It was very heavy on the Earth, but the guide said it feels light in space. After lunch, we watched a video about life on a space station. Astronauts float around to move. They sleep in sleeping bags tied to the wall, and they do exercise every day. In the afternoon, each of us made a small model of the Moon. Mine is my favourite because I painted it blue and green — like the Earth from space. On the bus home, I told my friend, \"I will travel into space one day.\" She laughed and said, \"And I will take photos!\"<br>How fast can the spaceship travel?", "type": "choice", "a": 0, "opts": ["28,000 kilometres an hour.", "2,800 kilometres an hour.", "380,000 kilometres an hour.", "8,000 kilometres an hour."]},
+        {"stem": "What did they watch after lunch?", "type": "choice", "a": 0, "opts": ["A video about life on a space station.", "A video about Mars.", "A short play.", "A space show."]},
+        {"stem": "Where do astronauts sleep on the space station?", "type": "choice", "a": 0, "opts": ["In sleeping bags tied to the wall.", "In beds.", "On the floor.", "In special rooms."]},
+        {"stem": "What did the writer paint on the model?", "type": "choice", "a": 0, "opts": ["Blue and green, like the Earth from space.", "Black and white.", "Red and yellow.", "Only blue."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>In the future, robots will do many jobs in space. They will fly spaceships to the space station, and they will work outside in the dark and cold. Robots do not need air, food or sleep, so they can work for a long time. They will not get weak, and they will not float away because they will tie themselves to the station. They will also take photos and send them back to the Earth. Scientists are already planning these robot missions. Some day, robots will walk on Mars and build houses there. People will watch everything on screens and give orders by radio. The work will be hard, but it will be a wonderful new step for mankind (人类).<br>What will robots do in the future?", "type": "text", "a": "Do many jobs in space", "a2": ["Do many jobs in space.", "Take the place of all people.", "Fly spaceships only.", "Build houses on the Moon."]},
+        {"stem": "Why can robots work for a long time?", "type": "text", "a": "Because they do not need air, food or sleep", "a2": ["Because they do not need air, food or sleep.", "Because they never get tired.", "Because they are cheap.", "Because they like the work."]},
+        {"stem": "What will robots do on Mars some day?", "type": "text", "a": "Walk on Mars and build houses there", "a2": ["Walk on Mars and build houses there.", "Take photos of the Earth.", "Fly spaceships.", "Give orders by radio."]},
+        {"stem": "How will people give orders?", "type": "text", "a": "By radio", "a2": ["By radio.", "By phone.", "By letter.", "In person."]},
+        {"stem": "What does the writer think of the future?", "type": "text", "a": "It will be a wonderful new step for mankind", "a2": ["It will be a wonderful new step for mankind.", "It will be dangerous.", "It will be cheap.", "It will be boring."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "s____（航天服；宇航服）", "type": "text", "a": "spacesuit"},
+        {"stem": "f____（漂浮；浮动）", "type": "text", "a": "float"},
+        {"stem": "a____（到达）", "type": "text", "a": "arrive"},
+        {"stem": "s____（奇怪的；陌生的）", "type": "text", "a": "strange"},
+        {"stem": "（旅行）", "type": "text", "a": "trip"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "return（用 will 构成将来时）", "type": "text", "a": "will return", "ph": "将会返回"},
+        {"stem": "land（用 will 构成将来时）", "type": "text", "a": "will land", "ph": "将会着陆"},
+        {"stem": "fly（主语 she，用 be going to 构成将来时）", "type": "text", "a": "she is going to fly", "a2": ["she's going to fly"], "ph": "她打算飞往"},
+        {"stem": "leave（主语 the spaceship，用 be going to 构成将来时）", "type": "text", "a": "the spaceship is going to leave", "a2": ["the spaceship's going to leave"], "ph": "宇宙飞船将离开"},
+        {"stem": "fly（用 will 构成将来时）", "type": "text", "a": "will fly", "ph": "将会飞"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：If I Were an Astronaut（如果我是宇航员）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 astronaut, spaceship, gravity, float, spacesuit, do exercise, take photos, walk on the Moon, wonderful trip）；③ 注意 will / be going to 和句首大写。", "type": "essay", "score": 10, "ph": "If I Were an Astronaut\n\nIf I were an astronaut, I would...", "check": ["有没有写自己是谁、去哪里（astronaut / spaceship / travel into space）？", "有没有写在太空里的生活（gravity / float / sleeping bag / do exercise）？", "有没有写做什么工作（take photos / walk on the Moon / wear a spacesuit）？", "有没有用 will 或 be going to 造句？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">If I Were an Astronaut<br><br>If I were an astronaut, I would travel into space in a spaceship. First, I would stay on a space station for two months. The gravity there is very weak, so I would float around to move. I would sleep in a sleeping bag tied to the wall and do exercise every day. When I work outside, I will wear a spacesuit to help me breathe. I am going to take many photos of the Earth and the stars, and I will send them back to my school. One day, I will walk on the Moon. It will be hard work, but it will be a wonderful trip.</div><div class=\"zh\">（参考范文：写了身份、去处、太空生活和要做的工作，用了 astronaut / spaceship / travel into space / space station / gravity / float / sleeping bag / do exercise / spacesuit / take photos / walk on the Moon / wonderful trip 等本单元词汇短语，注意了 will 与 be going to 的区分和句首大写。）</div>"}
+      ]
+    }
+  ]
+  }
+];
+
+const $ = s => document.querySelector(s);
+const host = $('#paperHost'), tabsEl = $('#tabs'), scoreHost = $('#scoreHost');
+let curPaper = null, answers = {};
+
+const store = {
+  key(id){ return 'hx_quiz_' + 'u5' + '_' + id; },
+  save(id, data){ try{ localStorage.setItem(this.key(id), JSON.stringify(data)); }catch(e){} },
+  load(id){ try{ return JSON.parse(localStorage.getItem(this.key(id)) || 'null'); }catch(e){ return null; } },
+  clear(id){ try{ localStorage.removeItem(this.key(id)); }catch(e){} }
+};
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buildTabs(){
+  tabsEl.innerHTML = '';
+  PAPERS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.innerHTML = esc(p.title.split(' · ')[0]) + '<span class="tag">' + esc(p.title.split(' · ')[1] || '') + '</span>';
+    b.onclick = () => selectPaper(i);
+    b.dataset.idx = i;
+    tabsEl.appendChild(b);
+  });
+}
+
+function selectPaper(i){
+  const p = PAPERS[i];
+  curPaper = p;
+  [...tabsEl.children].forEach((b, j) => b.classList.toggle('on', j === i));
+  scoreHost.innerHTML = '';
+  const saved = store.load(p.id);
+  answers = (saved && saved.answers) || {};
+  renderPaper(p, saved && saved.submitted);
+}
+
+function qid(si, qi){ return 'q' + si + '_' + qi; }
+
+function renderPaper(p, submitted){
+  let total = 0;
+  let html = `<div class="paper">
+    <div class="p-head">
+      <div class="pt">${esc(p.title)}</div>
+      <div class="ps">${esc(p.sub || '')}</div>
+    </div>
+    <div class="p-info"><span>建议用时：<b>${esc(p.time || '20 分钟')}</b></span><span>满分：<b id="fullMark">100</b> 分</span><span>范围：<b>Unit 5</b></span></div>`;
+
+  p.sections.forEach((s, si) => {
+    html += `<div class="sec"><h3>${esc(s.name)}</h3>`;
+    if (s.note) html += `<div class="sn">${s.note}</div>`;
+    if (s.bank) html += `<div class="wordbank">${s.bank}</div>`;
+    if (s.passage) html += s.passage;
+    s.items.forEach((it, qi) => {
+      const qq = qid(si, qi);
+      total += (it.score || 1);
+      const ans = answers[qq];
+      const st = submitted && it.type !== 'essay'
+        ? (isRight(it, ans) ? 'ok' : 'bad') : '';
+      html += `<div class="q" id="${qq}"><div class="qt"><span class="qn">${qi + 1}.</span>${it.stem}</div>`;
+      if (it.type === 'choice' || it.type === 'tf'){
+        const opts = it.type === 'choice' ? it.opts : ['T（正确）', 'F（错误）'];
+        const cols = (it.opts && it.opts.length > 4) ? 'one' : '';
+        html += `<div class="opts ${cols}">`;
+        opts.forEach((o, oi) => {
+          const tv = it.type === 'tf' ? (oi === 0 ? 'T' : 'F') : String(oi);
+          const key = it.type === 'tf' ? tv : String.fromCharCode(65 + oi);
+          let cls = 'opt';
+          if (submitted && it.type === 'choice'){
+            if (String(oi) === String(it.a)) cls += ' ok'; else if (tv === String(ans) && String(oi) !== String(it.a)) cls += ' bad';
+          } else if (submitted && it.type === 'tf'){
+            if (tv === it.a) cls += ' ok'; else if (tv === String(ans) && tv !== it.a) cls += ' bad';
+          }
+          if (!submitted && ans !== undefined && String(ans) === tv) cls += ' sel';
+          const mk = (submitted && ((it.type === 'choice' && String(oi) === String(it.a)) || (it.type === 'tf' && tv === it.a))) ? '<span class="mk">✓</span>' : '';
+          html += `<div class="${cls}" data-q="${qq}" data-v="${tv}"><span class="lb">${key}.</span><span>${esc(o)}</span>${mk}</div>`;
+        });
+        html += `</div>`;
+        if (submitted && !isRight(it, ans) && it.explain) html += `<div class="hint">💡 ${it.explain}</div>`;
+      } else if (it.type === 'text'){
+        const cls = submitted ? (st === 'ok' ? 'ok' : 'bad') : '';
+        html += `<input class="ans-in ${cls}" data-q="${qq}" value="${esc(ans || '')}" placeholder="${esc(it.ph || '输入答案')}" ${submitted ? 'disabled' : ''}>`;
+        if (submitted && st !== 'ok') html += `<div class="hint">💡 参考答案：<b>${esc((it.a2 || it.a).join ? (it.a2||it.a).join(' / ') : it.a)}</b></div>`;
+      } else if (it.type === 'essay'){
+        html += `<textarea class="essay" data-q="${qq}" placeholder="${esc(it.ph || '')}">${esc(ans || '')}</textarea>`;
+        html += `<div class="checklist"><b>自查清单：</b><ul>${(it.check||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>`;
+        html += `<details class="sample"><summary>📖 参考范文（写完后展开对照）</summary><div class="body">${it.sample}</div></details>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `</div>
+    <div class="acts">
+      <button class="btn btn-go" id="btnSubmit">${submitted ? '重新作答' : '提交批改'}</button>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 打印 / 存 PDF</button>
+      <button class="btn btn-reset" id="btnReset">清空重做</button>
+    </div>`;
+  host.innerHTML = html;
+  $('#fullMark').textContent = total;
+
+  host.querySelectorAll('.opt').forEach(o => o.onclick = () => {
+    if (submitted) return;
+    answers[o.dataset.q] = o.dataset.v;
+    host.querySelectorAll(`.opt[data-q="${o.dataset.q}"]`).forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+  });
+  host.querySelectorAll('.ans-in').forEach(i => i.oninput = () => { answers[i.dataset.q] = i.value; });
+  host.querySelectorAll('textarea.essay').forEach(t => t.oninput = () => { answers[t.dataset.q] = t.value; });
+  $('#btnSubmit').onclick = () => grade();
+  $('#btnReset').onclick = () => { store.clear(p.id); answers = {}; renderPaper(p, false); };
+  if (submitted) grade(true);
+}
+
+function norm(s){ return String(s||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+function isRight(it, ans){
+  if (ans === undefined || ans === '' || ans === null) return false;
+  if (it.type === 'choice') return String(ans) === String(it.a);
+  if (it.type === 'tf') return String(ans) === it.a;
+  if (it.type === 'text'){
+    const ok = (it.a2 && it.a2.length ? it.a2 : [it.a]).some(a => norm(a) === norm(ans));
+    return ok;
+  }
+  return false;
+}
+
+function grade(resubmit){
+  const p = curPaper; if (!p) return;
+  const submitted = !resubmit;
+  let got = 0, full = 0, wrong = [];
+  p.sections.forEach((s, si) => s.items.forEach((it, qi) => {
+    const v = it.score || 1; full += v;
+    const a = answers[qid(si, qi)];
+    if (it.type === 'essay') return;
+    if (isRight(it, a)) got += v;
+    else wrong.push(si + '-' + qi);
+  }));
+  const pct = Math.round(got / full * 100);
+  const pass = pct >= 60;
+  const advice = wrong.length === 0 ? '全部正确，太棒了！可以进入下一单元。'
+    : wrong.length <= 3 ? '只错 ' + wrong.length + ' 题，把错题的解析看一遍就能全对。'
+    : '错题偏多，建议回到点读页把本单元词汇和课文再过一遍，第二天重做这份卷子。';
+  scoreHost.innerHTML = `<div class="score ${pass ? 'pass' : 'fail'}">
+    <div class="big">${got} / ${full} 分（${pct}%）</div>
+    <div class="adv">${advice}${wrong.length ? ' · 错题已在卷面标红' : ''}</div>
+  </div>`;
+  if (resubmit) return;
+  store.save(p.id, { answers, submitted: true, got, full, pct });
+  renderPaper(p, true);
+}
+
+buildTabs();
+selectPaper(0);
+
+</script>
+<style>
+.pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
+.pgnav .pg-h{margin:0 0 8px;font-size:12.5px;color:#6B6359;letter-spacing:.6px;}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.pgnav a{text-decoration:none;font-size:13px;color:#2B2620;background:#fff;border:1px solid #EFE6DA;border-radius:999px;padding:6px 13px;}
+.pgnav a:hover{border-color:#E8552D;color:#E8552D;}
+.pgnav a.up{background:#E8552D;border-color:#E8552D;color:#fff;}
+.pgnav a.up:hover{background:#D64520;color:#fff;}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff;}
+.pgnav a.gr:hover{background:#0B7369;color:#fff;}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff;}
+.pgnav a.bl:hover{background:#245A94;color:#fff;}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">继续学习</p>
+    <div class="pg-row">
+      <a class="up" href="../点读学习包/Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
+      <a href="Unit4_习题与测试.html">← Unit4 习题</a>
+      <a href="Unit6_习题与测试.html">Unit6 习题 →</a>
+      <a href="../点读学习包/Unit5_Off_to_Space_点读学习页.html">📖 Unit5 点读学习页</a>
+      <a href="../点读学习包/Unit5_Off_to_Space_精简练习页.html">✏️ Unit5 精简练习</a>
+      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="../点读学习包/全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
+    </div>
+    <p class="pg-h">其他三条线 · 全站跳转</p>
+    <div class="pg-row">
+      <a class="gr" href="../../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+      <a class="bl" href="../../E听说练习/index.html">🎤 中考 E 听说</a>
+      <a class="up" href="../../index.html">🏠 返回慧学首页</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

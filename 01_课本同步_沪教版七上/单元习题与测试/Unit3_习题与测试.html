@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 3 The Seasons · 习题与测试（沪教版七上）</title>
+<style>
+:root{
+  --ink:#2b2118; --ink2:#5c4f42; --muted:#8a7c6b;
+  --paper:#faf6ee; --card:#ffffff; --line:#e6dcc8;
+  --gold:#b8860b; --gold-soft:#d4a933; --red:#c0392b; --ok:#1e8449;
+  --brand:#1a1410;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:var(--paper); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.75; font-size:15px}
+.wrap{max-width:860px; margin:0 auto; padding:0 18px 90px}
+
+/* ---------- 顶部 ---------- */
+.hero{background:linear-gradient(135deg,#1a1410 0%,#2b2118 60%,#3a2c1c 100%); color:#f5ecd7; padding:34px 20px 26px; text-align:center; border-bottom:3px solid var(--gold)}
+.hero .kicker{color:var(--gold-soft); font-size:13px; letter-spacing:3px; margin-bottom:8px}
+.hero h1{font-size:26px; margin-bottom:8px}
+.hero .sub{color:#cbbd9d; font-size:13.5px}
+.hero .meta{margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.hero .meta span{border:1px solid rgba(212,169,51,.45); color:#e8d9ac; border-radius:99px; padding:3px 14px; font-size:12.5px}
+
+/* ---------- 卷子切换 ---------- */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:22px 0 26px; position:sticky; top:0; z-index:20; background:var(--paper); padding:12px 0; border-bottom:1px dashed var(--line)}
+.tabs button{border:1.5px solid var(--line); background:var(--card); color:var(--ink2); border-radius:10px; padding:8px 16px; font-size:14px; cursor:pointer; font-weight:600; transition:.15s}
+.tabs button:hover{border-color:var(--gold-soft)}
+.tabs button.on{background:var(--brand); color:#f0e2b8; border-color:var(--brand)}
+.tabs button .tag{display:block; font-size:11px; font-weight:400; opacity:.75; margin-top:1px}
+
+/* ---------- 卷子主体 ---------- */
+.paper{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:30px 34px; box-shadow:0 2px 14px rgba(43,33,24,.06)}
+.p-head{border-bottom:2px solid var(--brand); padding-bottom:14px; margin-bottom:8px}
+.p-head .pt{font-size:20px; font-weight:800}
+.p-head .ps{font-size:13px; color:var(--muted); margin-top:4px}
+.p-info{display:flex; gap:18px; font-size:13px; color:var(--ink2); margin:10px 0 22px; flex-wrap:wrap}
+.p-info b{color:var(--gold)}
+.sec{margin-bottom:30px}
+.sec>h3{font-size:16px; font-weight:800; color:var(--brand); border-left:4px solid var(--gold); padding-left:10px; margin-bottom:6px}
+.sec .sn{font-size:12.5px; color:var(--muted); margin-bottom:12px}
+.q{padding:12px 14px; border:1px solid var(--line); border-radius:10px; margin-bottom:10px; background:#fffdf8}
+.q .qt{font-weight:600; margin-bottom:8px}
+.q .qt .qn{color:var(--gold); font-weight:800; margin-right:6px}
+.q .qt u{ text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:3px; font-weight:700 }
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.opts.one{grid-template-columns:1fr}
+.opt{border:1px solid var(--line); border-radius:8px; padding:7px 12px; cursor:pointer; font-size:14px; background:#fff; transition:.12s; display:flex; gap:8px; align-items:baseline}
+.opt .lb{font-weight:800; color:var(--muted)}
+.opt:hover{border-color:var(--gold-soft); background:#fffaf0}
+.opt.sel{border-color:var(--gold); background:#fdf3d8}
+.opt.ok{border-color:var(--ok); background:#eafaf0}
+.opt.bad{border-color:var(--red); background:#fdecea}
+.opt .mk{margin-left:auto; font-weight:800}
+.opt.ok .mk{color:var(--ok)} .opt.bad .mk{color:var(--red)}
+.ans-in{border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:14px; width:100%; max-width:340px; background:#fff; font-family:inherit}
+.ans-in:focus{outline:none; border-color:var(--gold)}
+.ans-in.ok{border-color:var(--ok); background:#f2fbf6}
+.ans-in.bad{border-color:var(--red); background:#fdf0ee}
+.tfrow{display:flex; gap:10px}
+.tfrow .opt{min-width:88px; justify-content:center}
+.hint{font-size:12.5px; color:var(--muted); margin-top:4px}
+.wordbank{font-size:13.5px; background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-bottom:12px; color:var(--ink2)}
+.wordbank b{color:var(--gold)}
+textarea.essay{width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:12px; font-size:14px; font-family:inherit; resize:vertical; background:#fff}
+textarea.essay:focus{outline:none; border-color:var(--gold)}
+.checklist{background:#f4f8f4; border:1px solid #cfe3d2; border-radius:10px; padding:12px 16px; margin-top:12px; font-size:13.5px}
+.checklist b{color:var(--ok)}
+.checklist li{margin-left:20px; margin-top:3px}
+details.sample{margin-top:12px; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fffdf6}
+details.sample summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13.5px}
+details.sample .body{margin-top:10px; font-size:14px; line-height:1.9; border-top:1px dashed var(--line); padding-top:10px}
+details.sample .body .en{color:var(--ink)}
+details.sample .body .zh{color:var(--muted); font-size:12.5px}
+
+/* ---------- 阅读原文框 ---------- */
+.rdbox{background:#fffdf6; border:1.5px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px}
+.rdbox .rd-title{font-size:16px; font-weight:800; color:var(--brand); margin-bottom:10px}
+.rdbox .rd-title span{font-size:12px; font-weight:400; color:var(--muted); margin-left:8px}
+.rdbox .rd-body p{font-size:14.5px; line-height:2.05; margin:0 0 4px}
+.rdbox .rd-body p b{color:var(--brand)}
+.rdbox .rdn{display:inline-block; min-width:18px; color:var(--gold); font-weight:800; font-size:12.5px; margin-right:4px}
+.rdbox .kw{background:#fdf0d5; border-bottom:2px solid var(--gold-soft); border-radius:3px; padding:0 2px; font-weight:600}
+.rdbox .rd-note{font-size:12.5px; color:var(--ink2); background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-top:12px}
+details.rdtr{margin-top:12px; border:1px dashed var(--line); border-radius:8px; padding:8px 12px; background:#fff}
+details.rdtr summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13px}
+details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-height:2}
+
+/* ---------- 操作区 ---------- */
+.acts{display:flex; gap:12px; margin:26px 0 10px; flex-wrap:wrap; position:sticky; bottom:0; background:linear-gradient(180deg,transparent, var(--paper) 30%); padding:14px 0}
+.btn{border:none; border-radius:10px; padding:12px 26px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit}
+.btn-go{background:var(--brand); color:#f0e2b8}
+.btn-go:hover{background:#3a2c1c}
+.btn-ghost{background:#fff; color:var(--ink2); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-reset{background:#fff; color:var(--red); border:1.5px solid #ecc9c3}
+.score{display:none; border-radius:12px; padding:18px 22px; margin-top:16px; font-size:15px}
+.score.show{display:block}
+.score.pass{background:#eafaf0; border:1px solid #bfe6cc}
+.score.fail{background:#fdf0ee; border:1px solid #ecc9c3}
+.score .big{font-size:26px; font-weight:800}
+.score.pass .big{color:var(--ok)} .score.fail .big{color:var(--red)}
+.score .adv{font-size:13.5px; color:var(--ink2); margin-top:6px}
+.backhome{display:block; text-align:center; margin:26px auto 0; color:var(--muted); font-size:13px; text-decoration:none}
+.backhome:hover{color:var(--gold)}
+@media (max-width:640px){ .opts{grid-template-columns:1fr} .paper{padding:20px 16px} }
+@media print{
+  .hero,.tabs,.acts,.backhome{display:none!important}
+  body{background:#fff} .paper{border:none; box-shadow:none; padding:0}
+  .opt.sel{border-color:#999; background:#fff}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">沪教版 · 英语七年级上册</div>
+  <h1>Unit 3 The Seasons</h1>
+  <div class="sub">习题与单元测试 · 每单元 5 份练习 + 3 套测试卷（在线作答 · 即时批改 · 可打印）</div>
+  <div class="meta">
+    <span>覆盖：本单元词汇 / 短语 / 形容词 / 课文 / 中国节气与四季</span>
+    <span>依据：上海教育出版社 英语 七年级上册（2024 广州新版）</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div id="paperHost"></div>
+  <div id="scoreHost"></div>
+  <a class="backhome" href="../点读学习包/Unit0_总目录_点读学习中心.html">← 返回七上点读学习中心</a>
+</div>
+
+<script>
+const PAPERS = [
+  {
+    "id": "p1",
+    "title": "练习一 · 词汇与短语",
+    "time": "20 分钟",
+    "sub": "本单元核心词汇 30 个 + 拓展词 18 个 + 短语 17 个，先认词，再会用。",
+    "sections": [
+    {
+      "name": "一、词汇匹配（选出正确中文意思）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "footprint", "type": "choice", "a": 0, "opts": ["脚印；足迹", "潮湿的", "闪电", "沙堡"]},
+        {"stem": "feature", "type": "choice", "a": 1, "opts": ["南；南方", "特色；特征", "区域；地区", "地方的；当地的"]},
+        {"stem": "fresh", "type": "choice", "a": 2, "opts": ["采集（植物、水果等）", "（使）分开", "新鲜的", "铺满沙子的；含沙的"]},
+        {"stem": "article", "type": "choice", "a": 3, "opts": ["原因；理由", "持续；继续存在", "喧闹地；响亮地", "文章"]},
+        {"stem": "decide", "type": "choice", "a": 0, "opts": ["对……作出抉择；决定", "庄稼；作物", "镇；市镇", "蛇"]}
+      ]
+    },
+    {
+      "name": "二、看中文，写英文",
+      "note": "每题 1 分，共 5 分。注意拼写。",
+      "items": [
+        {"stem": "深的", "type": "text", "a": "deep", "ph": "拼写注意大小写"},
+        {"stem": "晴朗的", "type": "text", "a": "clear", "ph": "拼写注意大小写"},
+        {"stem": "安静的；平静的", "type": "text", "a": "peaceful", "ph": "拼写注意大小写"},
+        {"stem": "有生气；有活力", "type": "text", "a": "alive", "ph": "拼写注意大小写"},
+        {"stem": "文化；文明", "type": "text", "a": "culture", "ph": "拼写注意大小写"}
+      ]
+    },
+    {
+      "name": "三、短语填空（选词填空，注意形式）",
+      "note": "每题 1 分，共 5 分。",
+      "bank": "<b>短语库：</b>have picnics · take a trip · In fact · is divided into · play an important part in",
+      "items": [
+        {"stem": "Many families ____ ____ in the park on sunny spring days.", "type": "choice", "a": 0, "opts": ["have picnics", "take a trip", "go to the beach", "play in the snow"], "explain": "have picnics 野餐；春天在公园野餐最合适。"},
+        {"stem": "Spring is the best time to ____ ____ ____ to the countryside.", "type": "choice", "a": 0, "opts": ["take a trip", "have picnics", "wake up", "come back"], "explain": "take a trip 去旅行；take a trip to... 去某地旅行。"},
+        {"stem": "____ ____, the weather in Guangzhou is warm all year round.", "type": "choice", "a": 0, "opts": ["In fact", "At first", "By the way", "Of course"], "explain": "in fact 事实上；句首大写 In fact。"},
+        {"stem": "A year ____ ____ ____ four seasons.", "type": "choice", "a": 0, "opts": ["is divided into", "is based on", "plays a part in", "wakes up"], "explain": "be divided into 被划分成……；主语 A year 是单数 → is divided into。"},
+        {"stem": "Outdoor activities ____ ____ ____ ____ in keeping us healthy.", "type": "choice", "a": 0, "opts": ["play an important part in", "take a trip", "have picnics", "go to the beach"], "explain": "play an important part in 在……上发挥重要作用。"}
+      ]
+    },
+    {
+      "name": "四、单项选择",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "The sky is ____ today. Let us go to the beach.", "type": "choice", "a": 0, "opts": ["clear", "cloudy", "snowy", "windy"], "explain": "clear 晴朗的；去海滩要天晴。"},
+        {"stem": "The beach is ____. Children like to build sandcastles there.", "type": "choice", "a": 0, "opts": ["sandy", "wet", "deep", "peaceful"], "explain": "sandy 铺满沙子的；能堆沙堡的沙滩是 sandy。"},
+        {"stem": "Do not ____ the ball too hard. It may hurt someone.", "type": "choice", "a": 0, "opts": ["kick", "gather", "decide", "follow"], "explain": "kick 踢；踹。"},
+        {"stem": "This is a small ____ near Guangzhou. People there all know each other.", "type": "choice", "a": 0, "opts": ["town", "town's", "towns", "city"], "explain": "town 镇；市镇，比 city 小。"},
+        {"stem": "Do not play music too ____ at night. Your neighbours need to sleep.", "type": "choice", "a": 0, "opts": ["loudly", "clearly", "warm", "fresh"], "explain": "loudly 喧闹地；修饰动词 play 用副词。"}
+      ]
+    },
+    {
+      "name": "五、对划线部分提问",
+      "note": "每题 1 分，共 5 分。用 Wh-word + 一般疑问句语序；动词为实义动词时用 do/does。",
+      "items": [
+        {"stem": "It is <u>hot and sunny</u> today.（对划线部分提问）", "type": "text", "a": "What is the weather like today?", "a2": ["How is the weather today?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "My favourite season is <u>autumn</u>.（对划线部分提问）", "type": "text", "a": "What is your favourite season?", "a2": ["What's your favourite season?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "We go to the beach <u>in summer</u>.（对划线部分提问）", "type": "text", "a": "When do you go to the beach?", "a2": ["When do you go to the beach?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "I like winter <u>because I love to play in the snow</u>.（对划线部分提问）", "type": "text", "a": "Why do you like winter?", "a2": ["Why do you like winter?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "The children are playing <u>in the park</u>.（对划线部分提问）", "type": "text", "a": "Where are the children playing?", "a2": ["Where are the children playing?"], "ph": "写完整问句，句末加 ?"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p2",
+    "title": "练习二 · 语法与句型",
+    "time": "20 分钟",
+    "sub": "本单元语法重点：Adjectives（形容词）与 It is + adj. + to do sth.。",
+    "sections": [
+    {
+      "name": "一、语法选择（单选）",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "The sky is ____ and the sun is shining.", "type": "choice", "a": 0, "opts": ["clear", "clearly", "clearing", "clears"], "explain": "be 动词后用形容词 clear。"},
+        {"stem": "It is ____ to swim in the sea in summer.", "type": "choice", "a": 0, "opts": ["nice", "nicely", "nicer", "nicest"], "explain": "It is + 形容词 + to do sth.。"},
+        {"stem": "The cicadas are singing ____.", "type": "choice", "a": 1, "opts": ["loud", "loudly", "louder", "loudest"], "explain": "修饰动词 sing 用副词 loudly。"},
+        {"stem": "Autumn is ____ and full of colour.", "type": "choice", "a": 0, "opts": ["beautiful", "beautifully", "beauty", "beautify"], "explain": "be 动词后用形容词 beautiful。"},
+        {"stem": "Which is ____, summer or winter?", "type": "choice", "a": 1, "opts": ["hot", "hotter", "hottest", "hoter"], "explain": "两者比较用比较级 hotter。"},
+        {"stem": "Of the four seasons, I like autumn ____.", "type": "choice", "a": 1, "opts": ["better", "best", "good", "well"], "explain": "三者以上比较用最高级 best。"},
+        {"stem": "The weather in spring is ____ than in winter.", "type": "choice", "a": 1, "opts": ["warm", "warmer", "warmest", "more warm"], "explain": "than 提示比较级 warmer。"},
+        {"stem": "This park is very ____. We can read books here.", "type": "choice", "a": 1, "opts": ["peace", "peaceful", "peacefully", "pleasure"], "explain": "peaceful 安静的；修饰 park 用形容词。"},
+        {"stem": "It is ____ to feed wild animals in the zoo.", "type": "choice", "a": 1, "opts": ["danger", "dangerous", "dangerously", "endanger"], "explain": "It is + 形容词 + to do sth. → dangerous。"},
+        {"stem": "The soup smells ____. I want to try it.", "type": "choice", "a": 0, "opts": ["fresh", "freshly", "fresher", "freshest"], "explain": "smell 是感官动词，后面接形容词 fresh。"}
+      ]
+    },
+    {
+      "name": "二、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "cloud（变成形容词）", "type": "text", "a": "cloudy", "ph": "直接加 -y"},
+        {"stem": "snow（变成形容词）", "type": "text", "a": "snowy", "ph": "直接加 -y"},
+        {"stem": "health（变成形容词）", "type": "text", "a": "healthy", "ph": "直接加 -y"},
+        {"stem": "peace（变成形容词）", "type": "text", "a": "peaceful", "ph": "直接加 -ful"},
+        {"stem": "love（变成形容词）", "type": "text", "a": "lovely", "ph": "去 e 加 -y"}
+      ]
+    },
+    {
+      "name": "三、完成句子（每空一词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "春天天气暖和。The weather is ____ in spring.", "type": "text", "a": "warm", "a2": ["warm"]},
+        {"stem": "事实上广州很少下雪。____ ____, it seldom snows in Guangzhou.", "type": "text", "a": "In fact", "a2": ["In fact", "At first"]},
+        {"stem": "一年被分成四个季节。A year ____ ____ ____ four seasons.", "type": "text", "a": "is divided into", "a2": ["is divided into", "is dividing into"]},
+        {"stem": "农民们忙着收获。The farmers are busy ____ the ____.", "type": "text", "a": "with; harvest", "a2": ["with; harvest", "with; harvesting"]},
+        {"stem": "户外活动对我们的健康很重要。Outdoor activities ____ ____ ____ ____ in keeping us healthy.", "type": "text", "a": "play an important part", "a2": ["play an important part"]}
+      ]
+    },
+    {
+      "name": "四、句型转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "It is hot today.（对 hot 提问）", "type": "text", "a": "What is the weather like today?", "a2": ["How is the weather today?"]},
+        {"stem": "The park is very beautiful.（改为感叹句）", "type": "text", "a": "How beautiful the park is!", "a2": ["What a beautiful park it is!"]},
+        {"stem": "Summer is my favourite season.（改为同义句）", "type": "text", "a": "I like summer best.", "a2": ["I like summer best of all seasons."]},
+        {"stem": "Autumn is cooler than summer.（对 cooler 提问）", "type": "text", "a": "Which is cooler, autumn or summer?", "a2": ["Which season is cooler, autumn or summer?"]},
+        {"stem": "Spring is warm and rainy.（对 warm and rainy 提问）", "type": "text", "a": "What is spring like?", "a2": ["What is the weather like in spring?"]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p3",
+    "title": "练习三 · 课文与阅读",
+    "time": "25 分钟",
+    "sub": "围绕单元阅读语篇《The four seasons》——先读原文，再会答。",
+    "sections": [
+    {
+      "name": "一、课文原文《The four seasons》",
+      "note": "沪教版英语七上 Unit 3 阅读语篇。先读原文，再做后面四道大题；答案都能在原文里找到。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">The four seasons <span>阅读语篇 · 沪教版 英语 七年级上册 Unit 3</span></div><div class=\"rd-body\"><p><span class=\"rdn\">1</span>There are four seasons in a year, and each season has its special features.</p><p><span class=\"rdn\">2</span>Life begins again in spring. The snow melts, and nature wakes up after the long winter.</p><p><span class=\"rdn\">3</span>Warm rain falls on the forests and fields.</p><p><span class=\"rdn\">4</span>Plants start to grow, an" +
+      "d birds come back from the south.</p><p><span class=\"rdn\">5</span>Farmers begin to work their land.</p><p><span class=\"rdn\">6</span>It is a time of new life and new hope.</p><p><span class=\"rdn\">7</span>It is exciting to take a trip in the countryside in springtime.</p><p><span class=\"rdn\">8</span>Summer is bright and noisy. The weather is hot.</p><p><span class=\"rdn\">9</span>The sun shines brightly in the clear, blue sky.</p><p><span class=\"rdn\">10</span>Cicadas sing loudly." +
+      " There is often thunder and lightning in the afternoon.</p><p><span class=\"rdn\">11</span>Many people like to go to the beach and swim in the sea.</p><p><span class=\"rdn\">12</span>It is nice to eat ice cream or fresh fruit in summer.</p><p><span class=\"rdn\">13</span>Autumn is beautiful and full of colour. The weather is cool and dry.</p><p><span class=\"rdn\">14</span>In autumn, everything changes. Leaves turn brown, red or yellow and start falling from the trees.</p><p><span cl" +
+      "ass=\"rdn\">15</span>Squirrels gather food for the cold winter.</p><p><span class=\"rdn\">16</span>Farmers are busy with the harvest.</p><p><span class=\"rdn\">17</span>It is great to go on a family outing at this time of year.</p><p><span class=\"rdn\">18</span>Winter is peaceful and fun. It is cold and snowy in many places.</p><p><span class=\"rdn\">19</span>Bears and snakes find warm places to sleep through the winter.</p><p><span class=\"rdn\">20</span>Children love winter because th" +
+      "ey love to play in the snow.</p></div><details class=\"rdtr\"><summary>中文翻译（点开对照，先自己做题再看）</summary><div class=\"rdzh\"><p>1. 一年有四个季节，每个季节都有它独特的特色。</p><p>2. 春天，生命重新开始。雪融化了，大自然在漫长的冬天之后苏醒过来。</p><p>3. 温暖的雨水落在森林和田野上。</p><p>4. 植物开始生长，鸟儿从南方飞回来。</p><p>5. 农民们开始耕种他们的土地。</p><p>6. 这是一个充满新生命和新希望的时节。</p><p>7. 春天到乡间旅行令人兴奋。</p><p>8. 夏天明亮又喧闹，天气炎热。</p><p>9. 太阳在晴朗的蓝天上明亮地照耀着。</p><p>10. 蝉大声地鸣叫，下午常常电闪雷鸣。</p><p>11. 许多人喜欢去海滩，在海里游泳。</p><p>12. 夏天吃冰淇淋或新鲜水果很惬意。</p><p>13. 秋天美丽、五彩缤纷，天气凉爽干燥。</p><p>14. 秋天，万物都在变" +
+      "化。树叶变成棕色、红色或黄色，开始从树上飘落。</p><p>15. 松鼠为寒冷的冬天收集食物。</p><p>16. 农民们忙着收获。</p><p>17. 每年的这个时候，很适合全家出游。</p><p>18. 冬天宁静又有趣。许多地方寒冷多雪。</p><p>19. 熊和蛇会寻找温暖的地方冬眠。</p><p>20. 孩子们喜爱冬天，因为他们热爱在雪地里玩耍。</p></div></details><div class=\"rd-note\"><b>阅读策略：</b>读的时候试着找出每个 he / him / us / they 分别指谁，再圈出本单元学过的词汇和短语。</div></div>",
+      "items": [
+        {"stem": "这篇课文主要讲什么？", "type": "choice", "a": 0, "opts": ["四季的特点和人们在四季里的活动", "一个农场主的日常生活", "如何种植庄稼", "冬天的运动项目"], "explain": "课文按春夏秋冬顺序写每个季节的天气特点和人们做的事。"}
+      ]
+    },
+    {
+      "name": "二、课文选词填空",
+      "note": "每题 1 分，共 5 分。均出自课文原句。",
+      "items": [
+        {"stem": "There are four seasons in a year, and each season has its special ____.", "type": "choice", "a": 0, "opts": ["features", "reasons", "parts"]},
+        {"stem": "In spring, birds come back from the ____.", "type": "choice", "a": 0, "opts": ["south", "north", "east"]},
+        {"stem": "The sun shines brightly in the clear, ____ sky.", "type": "choice", "a": 0, "opts": ["blue", "green", "brown"]},
+        {"stem": "Many people like to go to the ____ and swim in the sea.", "type": "choice", "a": 0, "opts": ["beach", "forest", "mountain"]},
+        {"stem": "Leaves turn brown, red or yellow and start falling from the ____.", "type": "choice", "a": 0, "opts": ["trees", "rivers", "roads"]}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据课文《The four seasons》判断。",
+      "items": [
+        {"stem": "Each season has its special features.", "type": "tf", "a": "T"},
+        {"stem": "In spring, birds come back from the north.", "type": "tf", "a": "F", "explain": "课文原句：birds come back from the south（从南方归来）。"},
+        {"stem": "The weather is cool and dry in autumn.", "type": "tf", "a": "T"},
+        {"stem": "Squirrels gather food for the cold winter.", "type": "tf", "a": "T"},
+        {"stem": "Bears and snakes play in the snow in winter.", "type": "tf", "a": "F", "explain": "它们 find warm places to sleep（找暖和地方冬眠），不在雪里玩。"}
+      ]
+    },
+    {
+      "name": "四、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "What wakes up in spring after the long winter?", "type": "choice", "a": 0, "opts": ["Nature.", "The sun.", "The cicadas.", "The farmers."]},
+        {"stem": "Where do birds come back from?", "type": "choice", "a": 0, "opts": ["The south.", "The north.", "The east.", "The west."]},
+        {"stem": "What do squirrels do in autumn?", "type": "choice", "a": 1, "opts": ["They swim in the sea.", "They gather food for the cold winter.", "They make snowmen.", "They work their land."]},
+        {"stem": "What do children love to do in winter?", "type": "choice", "a": 0, "opts": ["Play in the snow.", "Swim in the sea.", "Gather crops.", "Fly to the moon."]}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 4 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "How many seasons are there in a year?", "type": "text", "a": "Four", "a2": ["There are four seasons.", "Four seasons.", "4."]},
+        {"stem": "What do farmers begin to do in spring?", "type": "text", "a": "They begin to work their land.", "a2": ["They work their land.", "Work their land.", "To work their land."]},
+        {"stem": "Why do children love winter?", "type": "text", "a": "Because they love to play in the snow.", "a2": ["Because they love to play in the snow.", "They love to play in the snow."]},
+        {"stem": "When is it great to go on a family outing?", "type": "text", "a": "In autumn", "a2": ["In autumn.", "At this time of year.", "At harvest time."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p4",
+    "title": "练习四 · 阅读新篇章",
+    "time": "25 分钟",
+    "sub": "用本单元词汇、短语和句型新写的一篇文章。不翻课本，看看你是否真的理解和掌握了它们。",
+    "sections": [
+    {
+      "name": "一、阅读原文",
+      "note": "先通读全文，再完成下面的题。金色底纹的是本单元词汇短语，读的时候留意它们。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">My Hometown in Four Seasons · 家乡的四季 <span>用 Unit 3 词汇与表达新写</span></div><div class=\"rd-body\"><p>My hometown is a small <span class=\"kw\">town</span> in the <span class=\"kw\">south</span> of China. It is <span class=\"kw\">wet</span> and warm, and each season has its own special <span class=\"kw\">features</span>.</p><p>Spring is my favourite time. <span class=\"kw\">In fact</span>, the whole town looks <span class=\"kw\">alive</span> again. The r" +
+      "ain is <span class=\"kw\">fresh</span> and soft, farmers begin to work on their <span class=\"kw\">crops</span>, and we often <span class=\"kw\">take a trip</span> to the countryside. We <span class=\"kw\">have picnics</span> on the green grass and <span class=\"kw\">gather</span> wild flowers (野花) for Grandma.</p><p>Summer is hot. The sky is not always <span class=\"kw\">clear</span> — there is often <span class=\"kw\">thunder</span> and <span class=\"kw\">lightning</span> in the afternoon." +
+      " But we still love to <span class=\"kw\">go to the beach</span> and <span class=\"kw\">swim in the sea</span>. The beach is long and <span class=\"kw\">sandy</span>, and the water is cool and <span class=\"kw\">deep</span> near the rocks. My friends and I <span class=\"kw\">kick</span> a ball on the sand and build big sandcastles.</p><p>Autumn is <span class=\"kw\">peaceful</span> and cool. <span class=\"kw\">Outdoor activities</span> <span class=\"kw\">play an important part in</span> our l" +
+      "ife. We <span class=\"kw\">follow</span> the <span class=\"kw\">local</span> <span class=\"kw\">tradition</span> and climb the hill behind the town. From the top, we can see the whole town <span class=\"kw\">through</span> the golden leaves.</p><p>Winter is short here. On cold days we <span class=\"kw\">decide</span> to stay at home and read books about other <span class=\"kw\">cultures</span>. My grandmother always says, \"Every season is a gift. Enjoy every <span class=\"kw\">part</span> " +
+      "of it.\"</p></div><div class=\"rd-note\"><b>阅读小任务：</b>读的时候圈出金色底纹的词汇和短语，看看你是不是每个都认识、都会用。</div></div>",
+      "items": [
+        {"stem": "这篇文章主要讲什么？", "type": "choice", "a": 0, "opts": ["南方小城镇的四季景色与四季活动", "一个农场的四季耕作", "海边的夏天运动", "如何制作鲜花饼"], "explain": "文章按春夏秋冬介绍家乡小城的天气、景色和家人活动。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据上文判断。",
+      "items": [
+        {"stem": "The writer's hometown is in the south of China.", "type": "tf", "a": "T"},
+        {"stem": "Spring is the writer's favourite season.", "type": "tf", "a": "T"},
+        {"stem": "The sky is always clear in summer.", "type": "tf", "a": "F", "explain": "夏天常常有雷电（often thunder and lightning），并非总是晴朗。"},
+        {"stem": "The beach near the town is long and sandy.", "type": "tf", "a": "T"},
+        {"stem": "The family climbs the hill behind the town in winter.", "type": "tf", "a": "F", "explain": "他们秋天爬山（follow the local tradition），冬天待在家。"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "What is the weather like in the writer's hometown?", "type": "choice", "a": 1, "opts": ["Cold and snowy.", "Wet and warm.", "Dry and hot.", "Cool and windy."]},
+        {"stem": "What do farmers begin to do in spring?", "type": "choice", "a": 0, "opts": ["Work on their crops.", "Play in the snow.", "Build sandcastles.", "Gather wild flowers."]},
+        {"stem": "What do the writer and friends do on the beach?", "type": "choice", "a": 1, "opts": ["Swim alone.", "Kick a ball and build sandcastles.", "Plant crops.", "Read books."]},
+        {"stem": "Why do they climb the hill in autumn?", "type": "choice", "a": 0, "opts": ["To follow the local tradition.", "To see the snow.", "To swim in the sea.", "To pick rice."]},
+        {"stem": "What does \"alive\" mean in \"the whole town looks alive again\"?", "type": "choice", "a": 1, "opts": ["Quiet and empty.", "Full of life and energy.", "Very clean.", "Very old."]}
+      ]
+    },
+    {
+      "name": "四、词汇与表达 · 语境理解",
+      "note": "每题 1 分，共 5 分。结合文章语境，判断词汇和短语的意思与用法。",
+      "items": [
+        {"stem": "\"features\" 在文中的意思是：", "type": "choice", "a": 0, "opts": ["特色；特征", "原因", "文章", "部分"], "explain": "special features 独特的特色。"},
+        {"stem": "\"In fact\" 在文中的作用是：", "type": "choice", "a": 1, "opts": ["表示转折（但是）", "补充真实情况（事实上）", "表示顺序（首先）", "表示总结（总之）"], "explain": "in fact 事实上，用来强调真实情况。"},
+        {"stem": "\"sandy\" 描述的是：", "type": "choice", "a": 1, "opts": ["潮湿的", "铺满沙子的", "深的", "安静的"], "explain": "sandy 铺满沙子的；形容沙滩。"},
+        {"stem": "\"play an important part in\" 的意思是：", "type": "choice", "a": 1, "opts": ["在……中玩得开心", "在……中发挥重要作用", "把……分成部分", "对……作出决定"], "explain": "play an important part in 发挥重要作用。"},
+        {"stem": "\"peaceful\" 在文中的意思是：", "type": "choice", "a": 2, "opts": ["喧闹的", "危险的", "安静的；宁静的", "炎热的"], "explain": "peaceful 安静的；秋天是 peaceful 的季节。"}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "Where is the writer's hometown?", "type": "text", "a": "In the south of China", "a2": ["In a small town in the south of China.", "In the south of China.", "In a town in the south."]},
+        {"stem": "What do the family gather for Grandma in spring?", "type": "text", "a": "Wild flowers", "a2": ["Wild flowers.", "They gather wild flowers for Grandma.", "Flowers."]},
+        {"stem": "What is the weather like in summer in the town?", "type": "text", "a": "Hot, with thunder and lightning", "a2": ["Hot, with thunder and lightning.", "Cool and dry.", "Cold and snowy."]},
+        {"stem": "What do they follow in autumn?", "type": "text", "a": "The local tradition", "a2": ["The local tradition.", "They follow the local tradition."]},
+        {"stem": "What does Grandma say about every season?", "type": "text", "a": "Every season is a gift", "a2": ["Every season is a gift.", "She says every season is a gift."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p5",
+    "title": "练习五 · 中国节气与四季",
+    "time": "20 分钟",
+    "sub": "把四季放进中国节气、诗词和传统里，学英语也了解中国。",
+    "sections": [
+    {
+      "name": "一、文化读本（原文）",
+      "note": "三段都围绕本单元主题与中国文化。先通读，再做后面的题。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">Solar Terms and Seasons in China · 中国的节气与四季 <span>结合 Unit 3 The Seasons</span></div><div class=\"rd-body\"><p><b>A. The 24 Solar Terms · 二十四节气</b><br>China has a special calendar. A year <span class=\"kw\">is divided into</span> 24 solar terms (节气). They have a history of over 2,000 years and <span class=\"kw\">play an important part in</span> Chinese farming. The Beginning of Spring (立春) starts the spring, the Summer Solstice (夏至) brings th" +
+      "e longest day, and the Winter Solstice (冬至) brings the longest night. Farmers <span class=\"kw\">follow</span> the terms to <span class=\"kw\">decide</span> when to plant and harvest their <span class=\"kw\">crops</span>. In 2016, the 24 solar terms were put on the UNESCO list (联合国教科文组织名录).</p><p><b>B. Four Seasons in Chinese Poems · 四季与古诗词</b><br>Chinese poets love the four seasons. Meng Haoran wrote about spring: \"Spring sleep is so sweet — I do not know it is morning. Birds are " +
+      "singing everywhere. In the night I heard the wind and rain. How many flowers fell?\" (《春晓》) Du Mu wrote about autumn: \"The stone path goes far up the cold mountain. White clouds grow where people live. I stop the carriage, for I love the maple forest in the evening — the frosted (结霜的) leaves are redder than the flowers in February.\" (《山行》)</p><p><b>C. Seasons and Traditions · 四季与传统</b><br>Each season has its own <span class=\"kw\">traditions</span>. At Qingming in spring, famili" +
+      "es go to the countryside, sweep tombs (扫墓) and fly kites. In summer, the Dragon Boat Festival has dragon boat races. In autumn, families enjoy the harvest and the Mid-Autumn moon. In winter, people eat dumplings (饺子) at the Winter Solstice and have a big family dinner at the Spring Festival. In this way, the year <span class=\"kw\">continues</span>, season after season.</p></div><div class=\"rd-note\"><b>文化小知识：</b>节气是中国文化的瑰宝。英语里没有完全对应的词，通常直接说 solar terms，也可以说 \"the 24 Chinese sola" +
+      "r terms\"。</div></div>",
+      "items": [
+        {"stem": "这三段文字共同讲的是什么？", "type": "choice", "a": 0, "opts": ["中国的节气、四季与传统文化", "中国的天气灾害", "中国的地理分区", "中国的农业历史"], "explain": "三段分别讲二十四节气、四季诗词和四季传统，都围绕节气与四季文化。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 A · 判断正误（T / F）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "A year is divided into 24 solar terms in China.", "type": "tf", "a": "T"},
+        {"stem": "The 24 solar terms help farmers with their work.", "type": "tf", "a": "T"},
+        {"stem": "\"Spring Morning\" (《春晓》) is a poem about winter.", "type": "tf", "a": "F", "explain": "《春晓》写的是春天（春眠、啼鸟、风雨、花落）。"},
+        {"stem": "People eat dumplings at the Spring Festival.", "type": "tf", "a": "F", "explain": "冬至（Winter Solstice）吃饺子；春节是年夜饭。"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 B · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "How many solar terms are there in a year?", "type": "choice", "a": 1, "opts": ["12.", "24.", "4.", "20."]},
+        {"stem": "What does \"霜叶红于二月花\" describe?", "type": "choice", "a": 1, "opts": ["Spring flowers.", "Red autumn leaves.", "Summer rain.", "Winter snow."]},
+        {"stem": "What do people do at Qingming?", "type": "choice", "a": 0, "opts": ["Go to the countryside and fly kites.", "Have dragon boat races.", "Eat dumplings.", "Watch the moon."]},
+        {"stem": "When do Chinese people eat dumplings (饺子)?", "type": "choice", "a": 0, "opts": ["At the Winter Solstice.", "At Qingming.", "In summer.", "At the Dragon Boat Festival."]}
+      ]
+    },
+    {
+      "name": "四、文化表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What is a solar term in Chinese?", "type": "text", "a": "节气", "a2": ["It is 节气 (jieqi).", "节气 (jieqi)."]},
+        {"stem": "How many solar terms are there in a year?", "type": "text", "a": "Twenty-four", "a2": ["24.", "Twenty-four.", "There are 24 solar terms."]},
+        {"stem": "What poem is mentioned about spring?", "type": "text", "a": "Spring Morning (《春晓》) by Meng Haoran", "a2": ["Spring Morning (《春晓》) by Meng Haoran.", "Spring Morning.", "《春晓》."]},
+        {"stem": "What do people eat at the Winter Solstice?", "type": "text", "a": "Dumplings", "a2": ["Dumplings.", "They eat dumplings.", "Mooncakes."]},
+        {"stem": "Why are the solar terms important?", "type": "text", "a": "They help farmers know when to plant and harvest", "a2": ["They help farmers know when to plant and harvest.", "Because they play an important part in farming.", "They help farmers plant and harvest."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t1",
+    "title": "测试卷一 · Unit 3 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型参照本地单元卷：辨音 + 单选 + 语法选择 + 完形 + 阅读 + 回答问题 + 拼写 + 词形转换 + 写作。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. r<u>ai</u>n&nbsp;&nbsp;B. s<u>a</u>ndy&nbsp;&nbsp;C. l<u>a</u>ke&nbsp;&nbsp;D. t<u>a</u>ke", "type": "choice", "a": 1, "opts": ["rain", "sandy", "lake", "take"], "explain": "rain / lake / take 中画线部分发 /eɪ/，sandy 中 a 发 /æ/。"},
+        {"stem": "A. l<u>i</u>ghtning&nbsp;&nbsp;B. l<u>i</u>ve&nbsp;&nbsp;C. d<u>r</u>y&nbsp;&nbsp;D. br<u>i</u>ghtly", "type": "choice", "a": 1, "opts": ["lightning", "live", "dry", "brightly"], "explain": "lightning / dry / brightly 发 /aɪ/，live 发 /ɪ/。"},
+        {"stem": "A. n<u>oi</u>sy&nbsp;&nbsp;B. b<u>o</u>y&nbsp;&nbsp;C. enj<u>o</u>y&nbsp;&nbsp;D. c<u>o</u>ld", "type": "choice", "a": 3, "opts": ["noisy", "boy", "enjoy", "cold"], "explain": "noisy / boy / enjoy 发 /ɔɪ/，cold 发 /əʊ/。"},
+        {"stem": "A. su<u>mm</u>er&nbsp;&nbsp;B. war<u>m</u>&nbsp;&nbsp;C. <u>m</u>any&nbsp;&nbsp;D. <u>n</u>ame", "type": "choice", "a": 3, "opts": ["summer", "warm", "many", "name"], "explain": "summer / warm / many 发 /m/，name 发 /n/。"},
+        {"stem": "A. spri<u>ng</u>&nbsp;&nbsp;B. lo<u>ng</u>&nbsp;&nbsp;C. falli<u>ng</u>&nbsp;&nbsp;D. <u>n</u>ine", "type": "choice", "a": 3, "opts": ["spring", "long", "falling", "nine"], "explain": "spring / long / falling 发 /ŋ/，nine 发 /n/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "It is ____ to swim in the sea in summer.", "type": "choice", "a": 0, "opts": ["nice", "nicely", "nicer", "nicest"], "explain": "It is + 形容词 + to do sth.。"},
+        {"stem": "The sun shines ____ in the clear sky.", "type": "choice", "a": 1, "opts": ["bright", "brightly", "brighter", "brightest"], "explain": "修饰动词 shines 用副词。"},
+        {"stem": "Autumn is ____ than summer.", "type": "choice", "a": 1, "opts": ["cool", "cooler", "coolest", "more cool"], "explain": "than 提示比较级。"},
+        {"stem": "Of all the seasons, I like winter ____.", "type": "choice", "a": 1, "opts": ["better", "best", "good", "well"], "explain": "四者比较用最高级 best。"},
+        {"stem": "There ____ often thunder and lightning in summer.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "thunder and lightning 看作一个天气现象，且 there be 与近处的 thunder 一致。"},
+        {"stem": "The soup smells ____. I want some.", "type": "choice", "a": 0, "opts": ["fresh", "freshly", "fresher", "freshest"], "explain": "smell 后接形容词。"},
+        {"stem": "It is dangerous ____ in the river alone.", "type": "choice", "a": 1, "opts": ["swim", "to swim", "swimming", "swims"], "explain": "It is + adj. + to do sth.。"},
+        {"stem": "The weather in spring is ____ and rainy.", "type": "choice", "a": 0, "opts": ["warm", "warmly", "warmer", "warmest"], "explain": "be 动词后用形容词。"},
+        {"stem": "Birds come back from the ____ in spring.", "type": "choice", "a": 0, "opts": ["south", "southern", "southward", "souths"], "explain": "from the south 从南方。"},
+        {"stem": "We ____ picnics in the park every weekend.", "type": "choice", "a": 1, "opts": ["has", "have", "had", "having"], "explain": "主语 We 复数 → have。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Hello! I am Chen Yu. I live in Guangzhou. Spring ____ my favourite season.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "Spring 单数 → is。"},
+        {"stem": "It is warm and ____ in spring.", "type": "choice", "a": 0, "opts": ["wet", "wetter", "wettest", "wetly"], "explain": "与 warm 并列，用形容词原级。"},
+        {"stem": "The rain is ____ and soft.", "type": "choice", "a": 0, "opts": ["fresh", "freshly", "fresher", "freshest"], "explain": "形容雨水用形容词 fresh。"},
+        {"stem": "The whole city looks ____.", "type": "choice", "a": 0, "opts": ["alive", "live", "living", "lively"], "explain": "alive 有生气；look alive 看起来有生机。"},
+        {"stem": "It is exciting ____ a trip in the countryside.", "type": "choice", "a": 1, "opts": ["take", "to take", "taking", "takes"], "explain": "It is + adj. + to do sth.。"},
+        {"stem": "In summer, the weather is ____.", "type": "choice", "a": 0, "opts": ["hot", "hotly", "hotter", "hottest"], "explain": "夏天热，用形容词原级。"},
+        {"stem": "There is often thunder and ____.", "type": "choice", "a": 0, "opts": ["lightning", "light", "lighten", "lights"], "explain": "thunder and lightning 雷电。"},
+        {"stem": "The sun shines ____ in the clear sky.", "type": "choice", "a": 1, "opts": ["bright", "brightly", "brighter", "brightest"], "explain": "副词修饰 shines。"},
+        {"stem": "Autumn is ____ and dry.", "type": "choice", "a": 0, "opts": ["cool", "coolly", "cooler", "coolest"], "explain": "与 dry 并列用形容词原级。"},
+        {"stem": "It is nice ____ ice cream in summer.", "type": "choice", "a": 1, "opts": ["eat", "to eat", "eating", "eats"], "explain": "It is nice to do sth.。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Spring is here. The weather gets ____.", "type": "choice", "a": 0, "opts": ["warm", "cold", "cool", "snowy"], "explain": "春天天气变暖。"},
+        {"stem": "The snow ____ and the fields turn green.", "type": "choice", "a": 0, "opts": ["melts", "falls", "grows", "flies"], "explain": "雪融化。"},
+        {"stem": "The rain is ____ and the air is clean.", "type": "choice", "a": 0, "opts": ["fresh", "dirty", "dry", "hot"], "explain": "fresh 新鲜的；空气清新。"},
+        {"stem": "Birds come back from the ____ and sing in the trees.", "type": "choice", "a": 0, "opts": ["south", "north", "town", "sea"], "explain": "春天鸟儿从南方归来。"},
+        {"stem": "Farmers begin to work their land and plant ____.", "type": "choice", "a": 0, "opts": ["crops", "animals", "houses", "cars"], "explain": "crops 庄稼。"},
+        {"stem": "Children like to ____ in the park in spring.", "type": "choice", "a": 0, "opts": ["have picnics", "go to bed", "do homework", "watch TV"], "explain": "春天孩子们在公园野餐。"},
+        {"stem": "It is exciting to ____ in the countryside.", "type": "choice", "a": 0, "opts": ["take a trip", "take a rest", "take care", "take off"], "explain": "take a trip 去旅行。"},
+        {"stem": "In ____, everything turns brown and yellow.", "type": "choice", "a": 0, "opts": ["autumn", "spring", "summer", "winter"], "explain": "秋天树叶变黄。"},
+        {"stem": "Every season has its special ____.", "type": "choice", "a": 0, "opts": ["features", "weathers", "reasons", "articles"], "explain": "features 特色。"},
+        {"stem": "The four seasons ____ one another, and life goes on.", "type": "choice", "a": 0, "opts": ["follow", "divide", "gather", "decide"], "explain": "follow 跟随；四季更替。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>The Seasons Club is looking for new members! Do you love the four seasons? In our club, you can learn about the weather, the 24 solar terms and outdoor activities. We meet every Wednesday after school in Room 302. This term we will take a trip to the countryside in spring and go to the beach in summer. Come and join us! For more information, ask Miss Zhang in the science office.<br>Where does the Seasons Club meet?", "type": "choice", "a": 1, "opts": ["In Room 203.", "In Room 302.", "In the science office.", "On the playground."]},
+        {"stem": "What will the club do this term?", "type": "choice", "a": 1, "opts": ["Go to the beach in winter.", "Take a trip to the countryside and go to the beach.", "Have a sports meet.", "Read books about animals."]},
+        {"stem": "Who can students ask for more information?", "type": "choice", "a": 1, "opts": ["Miss Li.", "Miss Zhang.", "The PE teacher.", "The monitor."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Last winter, Lucy's town had a big snow. \"Everything is white!\" she said. She put on her warm clothes and went out. In the park, she met her friends. They made a big snowman and gave it a red nose. Then they had a snowball fight (打雪仗) and laughed loudly. Lucy's hands were cold, but she was happy. In the afternoon, they went to Lucy's house and drank hot chocolate (热巧克力). \"Winter is the best season,\" said Tom. Lucy smiled. \"Yes — snow makes winter fun.\"<br>What did Lucy and her friends make in the snow?", "type": "choice", "a": 1, "opts": ["A sandcastle.", "A big snowman.", "A kite.", "A card."]},
+        {"stem": "How did Lucy feel that day?", "type": "choice", "a": 2, "opts": ["Bored.", "Tired and angry.", "Happy.", "Afraid."]},
+        {"stem": "What did they drink at Lucy's house?", "type": "choice", "a": 1, "opts": ["Cold water.", "Hot chocolate.", "Ice cream.", "Hot soup."]},
+        {"stem": "Why does Lucy like winter?", "type": "choice", "a": 1, "opts": ["Because she can swim.", "Because snow makes winter fun.", "Because winter is quiet.", "Because she can eat ice cream."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Emma, How is the winter in Canada? I'm writing to tell you about the seasons in Guangzhou, my hometown. Spring is warm and wet. The rain is fresh, and the whole city looks alive. I love spring best. Summer is hot. The sky is not always clear — there is often thunder and lightning. But we still go to the beach and swim in the sea. Autumn is cool and dry, and it is a beautiful season. Winter is short and peaceful here. It seldom snows, so we do not play in the snow. Tell me about the seasons in your city! Yours, Chen Yu<br>Which season does Chen Yu love best?", "type": "choice", "a": 1, "opts": ["Summer.", "Spring.", "Autumn.", "Winter."]},
+        {"stem": "What is the weather like in summer in Guangzhou?", "type": "choice", "a": 1, "opts": ["Cold and snowy.", "Hot, with thunder and lightning.", "Cool and dry.", "Warm and wet."]},
+        {"stem": "What do people in Guangzhou do in summer?", "type": "choice", "a": 1, "opts": ["Play in the snow.", "Go to the beach and swim in the sea.", "Make snowmen.", "Stay at home."]},
+        {"stem": "Why can't Chen Yu play in the snow in winter?", "type": "choice", "a": 1, "opts": ["Because she is too busy.", "Because it seldom snows in Guangzhou.", "Because the snow is dirty.", "Because her parents don't let her."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Hello! I am Lily. I come from Harbin, a city in the north of China. There are four seasons here, and each season has its special features. Spring is short and warm. Summer is hot and full of life. Autumn is my favourite — the weather is cool and dry, and the leaves turn golden. Winter is long, cold and snowy. Children love to play in the snow and make snowmen. Every winter, my family gathers together and eats dumplings. The four seasons follow one another, and life continues.<br>Where does Lily come from?", "type": "text", "a": "Harbin, a city in the north of China", "a2": ["Harbin.", "A city in the north of China.", "Harbin, a city in the north of China."]},
+        {"stem": "Which season does Lily like best?", "type": "text", "a": "Autumn", "a2": ["Summer.", "Autumn.", "Winter.", "Spring."]},
+        {"stem": "What is the weather like in winter in Harbin?", "type": "text", "a": "Long, cold and snowy", "a2": ["Short and warm.", "Long, cold and snowy.", "Cool and dry.", "Hot and wet."]},
+        {"stem": "What does Lily's family do every winter?", "type": "text", "a": "They gather together and eat dumplings", "a2": ["They eat mooncakes.", "They gather together and eat dumplings.", "They plant flowers.", "They go to the beach."]},
+        {"stem": "What do children love to do in winter?", "type": "text", "a": "Play in the snow and make snowmen", "a2": ["Play in the snow and make snowmen.", "Swim in the sea.", "Fly kites."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "f____（脚印；足迹）", "type": "text", "a": "footprint"},
+        {"stem": "f____（特色；特征）", "type": "text", "a": "feature"},
+        {"stem": "f____（新鲜的）", "type": "text", "a": "fresh"},
+        {"stem": "a____（文章）", "type": "text", "a": "article"},
+        {"stem": "d____（对……作出抉择；决定）", "type": "text", "a": "decide"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "cloud（变成形容词）", "type": "text", "a": "cloudy", "ph": "多云的"},
+        {"stem": "snow（变成形容词）", "type": "text", "a": "snowy", "ph": "下雪的"},
+        {"stem": "health（变成形容词）", "type": "text", "a": "healthy", "ph": "健康的"},
+        {"stem": "peace（变成形容词）", "type": "text", "a": "peaceful", "ph": "安静的（本单元词）"},
+        {"stem": "love（变成形容词）", "type": "text", "a": "lovely", "ph": "可爱的"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Favourite Season（我最喜欢的季节）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 season, weather, clear, warm, fresh, thunder, lightning, have picnics, take a trip, in the countryside, play in the snow）；③ 注意形容词和句首大写。", "type": "essay", "score": 10, "ph": "My Favourite Season\n\nMy favourite season is...", "check": ["有没有写季节名称和天气特点？", "有没有写人们在这个季节做什么？", "有没有写你为什么喜欢这个季节？", "形容词用得对吗（be + 形容词）？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">My Favourite Season<br><br>My favourite season is autumn. The weather is cool and dry, and the sky is often clear. The leaves turn brown, red and yellow, and the whole countryside looks beautiful. My family often takes a trip to the countryside and has picnics on the grass. Farmers are busy with the harvest, and the markets are full of fresh fruit. I like autumn because it is peaceful and full of colour.</div><div class=\"zh\">（参考范文：写了季节、天气、景色、活动和喜欢的原因，用了 weather / cool and dry / clear / leaves / countryside / takes a trip / has picnics / harvest / fresh / peaceful 等本单元词汇短语，注意了 be 动词后接形容词。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t2",
+    "title": "测试卷二 · Unit 3 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与测试卷一相同，题目全部更换（词汇、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>th</u>under&nbsp;&nbsp;B. <u>th</u>ese&nbsp;&nbsp;C. mou<u>th</u>&nbsp;&nbsp;D. <u>th</u>ink", "type": "choice", "a": 1, "opts": ["thunder", "these", "mouth", "think"], "explain": "thunder / mouth / think 中 th 发 /θ/，these 中 th 发 /ð/。"},
+        {"stem": "A. cl<u>ea</u>r&nbsp;&nbsp;B. w<u>ea</u>ther&nbsp;&nbsp;C. h<u>ea</u>r&nbsp;&nbsp;D. n<u>ea</u>r", "type": "choice", "a": 1, "opts": ["clear", "weather", "hear", "near"], "explain": "clear / hear / near 发 /ɪə/，weather 发 /e/。"},
+        {"stem": "A. d<u>ee</u>p&nbsp;&nbsp;B. fr<u>e</u>sh&nbsp;&nbsp;C. s<u>ee</u>&nbsp;&nbsp;D. b<u>ee</u>", "type": "choice", "a": 1, "opts": ["deep", "fresh", "see", "bee"], "explain": "deep / see / bee 发 /iː/，fresh 发 /e/。"},
+        {"stem": "A. s<u>ou</u>th&nbsp;&nbsp;B. <u>ou</u>tdoors&nbsp;&nbsp;C. cl<u>ou</u>dy&nbsp;&nbsp;D. y<u>ou</u>ng", "type": "choice", "a": 3, "opts": ["south", "outdoors", "cloudy", "young"], "explain": "south / outdoors / cloudy 发 /aʊ/，young 发 /ʌ/。"},
+        {"stem": "A. a<u>l</u>ive&nbsp;&nbsp;B. <u>l</u>ocal&nbsp;&nbsp;C. wor<u>l</u>d&nbsp;&nbsp;D. <u>l</u>oudly", "type": "choice", "a": 2, "opts": ["alive", "local", "world", "loudly"], "explain": "alive / local / loudly 中 l 发音，world 中 l 不发音。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "Which season do you like ____, spring or autumn?", "type": "choice", "a": 1, "opts": ["best", "better", "good", "well"], "explain": "两者比较用比较级 better。"},
+        {"stem": "It is ____ to feed wild animals in the zoo.", "type": "choice", "a": 1, "opts": ["danger", "dangerous", "dangerously", "endanger"], "explain": "It is + 形容词 + to do sth.。"},
+        {"stem": "The children are playing ____ in the snow.", "type": "choice", "a": 1, "opts": ["happy", "happily", "happier", "happiest"], "explain": "修饰动词 play 用副词。"},
+        {"stem": "The park is very ____. We can read books there.", "type": "choice", "a": 1, "opts": ["peace", "peaceful", "peacefully", "pleasure"], "explain": "peaceful 安静的；形容公园。"},
+        {"stem": "A year ____ into four seasons.", "type": "choice", "a": 1, "opts": ["divides", "is divided", "is dividing", "divided"], "explain": "被动语态 is divided into。"},
+        {"stem": "The farmers are busy ____ the harvest.", "type": "choice", "a": 1, "opts": ["in", "with", "on", "for"], "explain": "be busy with sth 忙于某事。"},
+        {"stem": "It often ____ in summer in Guangzhou.", "type": "choice", "a": 1, "opts": ["rain", "rains", "rainy", "raining"], "explain": "It 是第三人称单数 → rains。"},
+        {"stem": "Squirrels ____ food for the winter.", "type": "choice", "a": 0, "opts": ["gather", "take", "decide", "follow"], "explain": "gather 收集。"},
+        {"stem": "My hometown is a small ____ near the sea.", "type": "choice", "a": 0, "opts": ["town", "town's", "towns", "city"], "explain": "town 市镇；海边小镇。"},
+        {"stem": "The weather ____ hot and wet here.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "weather 不可数 → is。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Hello! I ____ in a small town in the south of China.", "type": "choice", "a": 0, "opts": ["live", "lives", "living", "lived"], "explain": "主语 I → live。"},
+        {"stem": "Each season here ____ its special features.", "type": "choice", "a": 1, "opts": ["have", "has", "having", "had"], "explain": "Each season 单数 → has。"},
+        {"stem": "Spring is ____ and rainy.", "type": "choice", "a": 0, "opts": ["warm", "warmly", "warmer", "warmest"], "explain": "与 rainy 并列用形容词。"},
+        {"stem": "Farmers begin ____ their land in spring.", "type": "choice", "a": 1, "opts": ["work", "to work", "working", "worked"], "explain": "begin to do sth. 开始做某事。"},
+        {"stem": "Summer is bright and ____.", "type": "choice", "a": 1, "opts": ["noise", "noisy", "noisily", "noisier"], "explain": "与 bright 并列用形容词 noisy。"},
+        {"stem": "The cicadas sing very ____.", "type": "choice", "a": 1, "opts": ["loud", "loudly", "louder", "loudest"], "explain": "修饰 sing 用副词。"},
+        {"stem": "Many people like ____ in the sea.", "type": "choice", "a": 2, "opts": ["swim", "swims", "swimming", "swam"], "explain": "like doing sth.。"},
+        {"stem": "Autumn is beautiful and full ____ colour.", "type": "choice", "a": 0, "opts": ["of", "with", "in", "for"], "explain": "full of 充满。"},
+        {"stem": "Squirrels ____ food in autumn.", "type": "choice", "a": 1, "opts": ["gathers", "gather", "gathering", "gathered"], "explain": "Squirrels 复数 → gather。"},
+        {"stem": "Winter is ____ and fun.", "type": "choice", "a": 1, "opts": ["peace", "peaceful", "peacefully", "pleasure"], "explain": "与 fun 并列用形容词 peaceful。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Summer is bright and ____.", "type": "choice", "a": 0, "opts": ["noisy", "quiet", "peaceful", "soft"], "explain": "夏天喧闹（蝉鸣、雷雨）。"},
+        {"stem": "The weather is ____. We drink a lot of water.", "type": "choice", "a": 0, "opts": ["hot", "cold", "cool", "warm"], "explain": "热 → 多喝水。"},
+        {"stem": "The sun shines ____ in the clear, blue sky.", "type": "choice", "a": 1, "opts": ["bright", "brightly", "quiet", "slowly"], "explain": "shine brightly 明亮地照耀。"},
+        {"stem": "____ sing loudly in the trees.", "type": "choice", "a": 0, "opts": ["Cicadas", "Squirrels", "Bears", "Farmers"], "explain": "蝉在树上鸣叫。"},
+        {"stem": "There is often thunder and ____ in the afternoon.", "type": "choice", "a": 0, "opts": ["lightning", "sunshine", "rainbow", "wind"], "explain": "thunder and lightning 雷电。"},
+        {"stem": "Many people go to the ____ and swim in the sea.", "type": "choice", "a": 0, "opts": ["beach", "forest", "farm", "town"], "explain": "go to the beach 去海滩。"},
+        {"stem": "The beach is long and ____.", "type": "choice", "a": 0, "opts": ["sandy", "wet", "deep", "peaceful"], "explain": "sandy 铺满沙子的。"},
+        {"stem": "Children love to ____ big sandcastles.", "type": "choice", "a": 0, "opts": ["build", "break", "buy", "burn"], "explain": "build sandcastles 堆沙堡。"},
+        {"stem": "It is nice to eat ice cream or ____ fruit.", "type": "choice", "a": 0, "opts": ["fresh", "salty", "hot", "dry"], "explain": "fresh fruit 新鲜水果。"},
+        {"stem": "Outdoor activities ____ an important part in summer life.", "type": "choice", "a": 0, "opts": ["play", "take", "have", "make"], "explain": "play an important part in 发挥重要作用。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（海报）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>海报：</b>The Four Seasons in China — Come to our show! When: Friday, June 20th, 3:30 p.m. Where: The school hall. At the show, Class 1 will show you spring in the south of China. Class 2 will bring you a hot summer with thunder songs. Class 3 will show autumn harvest dances. Class 4 will act out a winter story with snow. Every student can get a free season card (卡片). Parents are welcome. Do not be late!<br>When is the show?", "type": "choice", "a": 1, "opts": ["On Friday, June 30th.", "On Friday, June 20th.", "On Saturday.", "Every Friday."]},
+        {"stem": "What can every student get at the show?", "type": "choice", "a": 1, "opts": ["A free book.", "A free season card.", "A snowman toy.", "A poster."]},
+        {"stem": "Who are welcome?", "type": "choice", "a": 1, "opts": ["Only teachers.", "Parents.", "Club members only.", "Nobody."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Autumn is Chen Ming's favourite season. This year, his grandpa asked him to help with the harvest. \"The crops are ready,\" said Grandpa. They got up early and went to the fields. The rice (稻谷) was golden. Chen Ming learned to cut the rice and carry it home. It was hard work, and his back hurt. \"Farmers work hard through the year,\" said Grandpa. \"In fact, every grain of rice comes from hard work.\" At noon, they had a picnic under a tree. Chen Ming ate the most rice he had ever eaten. \"Now I know why we say waste is shameful (浪费可耻),\" he said.<br>What did Chen Ming do on the harvest day?", "type": "choice", "a": 1, "opts": ["He went swimming.", "He helped his grandpa with the harvest.", "He made a snowman.", "He read books at home."]},
+        {"stem": "How was the work for Chen Ming?", "type": "choice", "a": 1, "opts": ["Easy.", "Hard.", "Boring but easy.", "Dangerous."]},
+        {"stem": "What did Grandpa say about rice?", "type": "choice", "a": 1, "opts": ["Rice is easy to grow.", "Every grain of rice comes from hard work.", "Rice is not important.", "Farmers do not work hard."]},
+        {"stem": "What did Chen Ming learn?", "type": "choice", "a": 1, "opts": ["To plant trees.", "Not to waste food.", "To cook rice.", "To get up early."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Jack, How are you? I'm writing to tell you about my trip to Beijing last week. We went there by train. In spring, Beijing is warm and windy. The air was fresh after the rain. We took a trip to the Great Wall. From the top, the mountains looked alive with green. We also visited the Summer Palace (颐和园) and had picnics in the park. Beijing has many places of interest, and its culture goes back thousands of years. My father says the four seasons in Beijing are very clear: warm springs, hot summers, cool autumns and cold winters. Which city do you like better, Beijing or Guangzhou? Write soon! Yours, Wang Fang<br>How did Wang Fang go to Beijing?", "type": "choice", "a": 1, "opts": ["By bus.", "By train.", "By plane.", "By bike."]},
+        {"stem": "What was the weather like in Beijing?", "type": "choice", "a": 1, "opts": ["Cold and snowy.", "Warm and windy.", "Hot and wet.", "Cool and dry."]},
+        {"stem": "What did they do at the Summer Palace?", "type": "choice", "a": 1, "opts": ["Swam in the lake.", "Had picnics in the park.", "Climbed the wall.", "Saw a show."]},
+        {"stem": "What does Wang Fang say about Beijing's four seasons?", "type": "choice", "a": 1, "opts": ["They are all the same.", "They are very clear.", "They are always rainy.", "There is no winter."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Guangzhou is in the south of China. The weather here is warm and wet most of the year. Spring is long — the rain is fresh and the whole city looks alive. Summer is hot, and there is often thunder and lightning. But people still love outdoor activities. Many families go to the beach at weekends. Autumn is short, cool and dry. Winter is short and peaceful. It seldom snows. People wear light clothes even in January. In Guangzhou, the four seasons are not as clear as in the north, but every season is nice in its own way.<br>Where is Guangzhou?", "type": "text", "a": "In the south of China", "a2": ["In the south of China.", "In the north of China.", "In the east of China."]},
+        {"stem": "What is the weather like most of the year in Guangzhou?", "type": "text", "a": "Warm and wet", "a2": ["Cold and dry.", "Warm and wet.", "Hot and snowy.", "Cool and windy."]},
+        {"stem": "What is summer like in Guangzhou?", "type": "text", "a": "Hot, with thunder and lightning", "a2": ["Cool and dry.", "Hot, with thunder and lightning.", "Cold and snowy.", "Warm and short."]},
+        {"stem": "What do many families do at weekends in summer?", "type": "text", "a": "They go to the beach", "a2": ["They go to the beach.", "They play in the snow.", "They stay at home.", "They make snowmen."]},
+        {"stem": "Are the four seasons in Guangzhou as clear as in the north?", "type": "text", "a": "No, they are not", "a2": ["No, they are not.", "Yes, they are.", "We do not know."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "（潮湿的）", "type": "text", "a": "wet"},
+        {"stem": "s____（南；南方）", "type": "text", "a": "south"},
+        {"stem": "g____（采集（植物、水果等））", "type": "text", "a": "gather"},
+        {"stem": "r____（原因；理由）", "type": "text", "a": "reason"},
+        {"stem": "（庄稼；作物）", "type": "text", "a": "crop"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "rain（变成形容词）", "type": "text", "a": "rainy", "ph": "多雨的"},
+        {"stem": "noise（变成形容词）", "type": "text", "a": "noisy", "ph": "喧闹的"},
+        {"stem": "beauty（变成形容词）", "type": "text", "a": "beautiful", "ph": "美丽的"},
+        {"stem": "fog（变成形容词）", "type": "text", "a": "foggy", "ph": "有雾的"},
+        {"stem": "deep（变成副词）", "type": "text", "a": "deeply", "ph": "深深地"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：Seasons in My Hometown（我家乡的四季）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 season, weather, warm, hot, cool, cold, clear, snowy, rainy, thunder, in the countryside, outdoor activities）；③ 注意形容词和句首大写。", "type": "essay", "score": 10, "ph": "Seasons in My Hometown\n\nThere are four seasons in...", "check": ["有没有写家乡在哪里、有哪几个季节？", "有没有写每个季节的天气特点？", "有没有写人们在各个季节做什么？", "有没有写你最喜欢哪个季节、为什么？", "形容词和 be 动词搭配合适吗？"], "sample": "<div class=\"en\">Seasons in My Hometown<br><br>My hometown is in the south of China. There are four seasons here. Spring is warm and wet, and the whole city looks alive. Summer is hot, and there is often thunder and lightning. Many families go to the beach and swim in the sea. Autumn is cool and dry. It is the best time for outdoor activities. Winter is short and peaceful, and it seldom snows. I love my hometown in every season.</div><div class=\"zh\">（参考范文：写了家乡位置、四季天气、四季活动和感受，用了 warm and wet / alive / hot / thunder and lightning / go to the beach / swim in the sea / cool and dry / outdoor activities / short and peaceful 等本单元词汇短语。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t3",
+    "title": "测试卷三 · Unit 3 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与前两套相同，题目全部更换（辨音组合、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. f<u>oo</u>tprint&nbsp;&nbsp;B. c<u>oo</u>l&nbsp;&nbsp;C. sch<u>oo</u>l&nbsp;&nbsp;D. n<u>oo</u>n", "type": "choice", "a": 0, "opts": ["footprint", "cool", "school", "noon"], "explain": "cool / school / noon 发 /uː/，footprint 发 /ʊ/。"},
+        {"stem": "A. c<u>i</u>ty&nbsp;&nbsp;B. <u>c</u>old&nbsp;&nbsp;C. <u>c</u>lass&nbsp;&nbsp;D. <u>c</u>loud", "type": "choice", "a": 0, "opts": ["city", "cold", "class", "cloud"], "explain": "cold / class / cloud 中 c 发 /k/，city 中 c 发 /s/。"},
+        {"stem": "A. d<u>i</u>vide&nbsp;&nbsp;B. d<u>e</u>cide&nbsp;&nbsp;C. l<u>i</u>ve&nbsp;&nbsp;D. f<u>i</u>ve", "type": "choice", "a": 0, "opts": ["divide", "decide", "live", "five"], "explain": "decide / live / five 发 /ɪ/，divide 中 i 发 /aɪ/。"},
+        {"stem": "A. tr<u>a</u>dition&nbsp;&nbsp;B. c<u>a</u>tch&nbsp;&nbsp;C. m<u>a</u>ny&nbsp;&nbsp;D. <u>a</u>ny", "type": "choice", "a": 0, "opts": ["tradition", "catch", "many", "any"], "explain": "catch / many / any 发 /æ/，tradition 中 a 发 /ə/。"},
+        {"stem": "A. <u>wh</u>ere&nbsp;&nbsp;B. <u>wh</u>o&nbsp;&nbsp;C. <u>wh</u>ose&nbsp;&nbsp;D. <u>wh</u>en", "type": "choice", "a": 1, "opts": ["where", "who", "whose", "when"], "explain": "where / whose / when 中 wh 发 /w/，who 中 wh 发 /h/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "—____ is the weather like today? —It is sunny.", "type": "choice", "a": 1, "opts": ["How", "What", "When", "Where"], "explain": "问天气用 What is the weather like...?"},
+        {"stem": "It is exciting ____ a trip in spring.", "type": "choice", "a": 1, "opts": ["take", "to take", "taking", "takes"], "explain": "It is + adj. + to do sth.。"},
+        {"stem": "The beach is ____. Children love to play there.", "type": "choice", "a": 1, "opts": ["sand", "sandy", "sandier", "sandiest"], "explain": "sandy 铺满沙子的。"},
+        {"stem": "It is cold and snowy ____ winter.", "type": "choice", "a": 1, "opts": ["on", "in", "at", "of"], "explain": "in winter 在冬天。"},
+        {"stem": "Do not play music too ____ at night.", "type": "choice", "a": 1, "opts": ["loud", "loudly", "louder", "loudest"], "explain": "修饰 play 用副词 loudly。"},
+        {"stem": "Spring is a time ____ new life and new hope.", "type": "choice", "a": 0, "opts": ["of", "for", "with", "in"], "explain": "a time of... 一个……的时节。"},
+        {"stem": "The water in the river is very ____. Do not go in.", "type": "choice", "a": 0, "opts": ["deep", "deeply", "deeper", "deepest"], "explain": "deep 深的。"},
+        {"stem": "It is great ____ a family outing at this time of year.", "type": "choice", "a": 1, "opts": ["Go on", "To go on", "Going on", "Went on"], "explain": "It is great to do sth. → to go on。"},
+        {"stem": "Many people like ____ in the sea in summer.", "type": "choice", "a": 2, "opts": ["swim", "swims", "swimming", "to swim"], "explain": "like doing sth. 喜欢做某事。"},
+        {"stem": "My family often ____ to the countryside at weekends.", "type": "choice", "a": 0, "opts": ["take a trip", "have picnics", "go to the beach", "play in the snow"], "explain": "take a trip 去旅行；周末去乡下。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "A year ____ into four seasons.", "type": "choice", "a": 1, "opts": ["divides", "is divided", "divide", "divided"], "explain": "被动语态 is divided into。"},
+        {"stem": "Spring ____ in March in China.", "type": "choice", "a": 1, "opts": ["come", "comes", "coming", "came"], "explain": "Spring 单数 → comes。"},
+        {"stem": "It is a time ____ new life and new hope.", "type": "choice", "a": 0, "opts": ["of", "for", "with", "at"], "explain": "a time of... 的时节。"},
+        {"stem": "Birds come back from the ____.", "type": "choice", "a": 0, "opts": ["south", "southern", "souths", "southward"], "explain": "from the south 从南方。"},
+        {"stem": "The weather gets ____ and cooler in autumn.", "type": "choice", "a": 1, "opts": ["dry", "drier", "driest", "dryly"], "explain": "and 连接比较级 drier and cooler。"},
+        {"stem": "Farmers are busy ____ the harvest.", "type": "choice", "a": 1, "opts": ["in", "with", "on", "for"], "explain": "be busy with sth。"},
+        {"stem": "It is great ____ on a family outing.", "type": "choice", "a": 1, "opts": ["go", "to go", "going", "goes"], "explain": "It is great to do sth.。"},
+        {"stem": "Winter is cold and ____ in many places.", "type": "choice", "a": 1, "opts": ["snow", "snowy", "snows", "snowed"], "explain": "与 cold 并列用形容词 snowy。"},
+        {"stem": "Bears and snakes find warm places ____ through the winter.", "type": "choice", "a": 1, "opts": ["sleep", "to sleep", "sleeping", "slept"], "explain": "find places to do sth. 找地方做某事。"},
+        {"stem": "The four seasons ____ every year, and life goes on.", "type": "choice", "a": 1, "opts": ["continues", "continue", "continuing", "continued"], "explain": "seasons 复数 → continue。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Winter is ____ and fun.", "type": "choice", "a": 0, "opts": ["peaceful", "noisy", "bright", "hot"], "explain": "冬天宁静有趣。"},
+        {"stem": "It is cold and ____ in many places.", "type": "choice", "a": 0, "opts": ["snowy", "rainy", "sunny", "windy"], "explain": "冬天寒冷多雪。"},
+        {"stem": "Children love to ____ in the snow.", "type": "choice", "a": 0, "opts": ["play", "swim", "read", "sleep"], "explain": "play in the snow 玩雪。"},
+        {"stem": "They ____ snowmen and have snowball fights.", "type": "choice", "a": 0, "opts": ["make", "take", "have", "do"], "explain": "make snowmen 堆雪人。"},
+        {"stem": "Bears and snakes find warm places to ____.", "type": "choice", "a": 0, "opts": ["sleep", "eat", "run", "play"], "explain": "冬眠 sleep。"},
+        {"stem": "They sleep ____ the whole winter.", "type": "choice", "a": 0, "opts": ["through", "on", "at", "in"], "explain": "through the winter 整个冬天。"},
+        {"stem": "The days are ____ and the nights are long.", "type": "choice", "a": 0, "opts": ["short", "long", "bright", "warm"], "explain": "冬天昼短夜长。"},
+        {"stem": "People wear ____ clothes and drink hot soup.", "type": "choice", "a": 0, "opts": ["warm", "cool", "thin", "new"], "explain": "warm clothes 暖和的衣服。"},
+        {"stem": "At the Spring Festival, families ____ together.", "type": "choice", "a": 0, "opts": ["gather", "leave", "divide", "follow"], "explain": "gather 团聚。"},
+        {"stem": "Every winter ____ spring. The year goes on.", "type": "choice", "a": 0, "opts": ["follows", "follow", "following", "followed"], "explain": "Winter 单数 → follows；冬去春来。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>A Talk about the 24 Solar Terms. When: Tuesday, April 22nd, 4:00 p.m. Where: Room 201. The speaker is Mr Liu, a local farmer. He will tell us how the solar terms help farmers decide when to plant and harvest. After the talk, there will be a quiz about the seasons. The first ten students will get a book about Chinese culture. Everyone is welcome. Please come on time.<br>Who will give the talk?", "type": "choice", "a": 1, "opts": ["A teacher.", "Mr Liu, a local farmer.", "A student.", "Mr Wang."]},
+        {"stem": "What will the talk be about?", "type": "choice", "a": 1, "opts": ["How to plant flowers.", "How the solar terms help farmers.", "The weather in Canada.", "How to cook rice."]},
+        {"stem": "What can the first ten students get?", "type": "choice", "a": 1, "opts": ["A poster.", "A book about Chinese culture.", "A season card.", "A kite."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>At Qingming, Li Hua's family went to the countryside, as they do every year. It is a tradition. The hills were green and the air was fresh. His father said, \"In fact, Qingming is also a solar term. It tells farmers it is time to plant.\" They had picnics on the grass. Li Hua's little sister flew a kite, and it flew high in the clear sky. Grandpa told them stories about the old days. On the way home, they gathered some wild flowers. \"Every spring is the same, and every spring is different,\" said Mum. Li Hua looked at the flowers and smiled.<br>What did Li Hua's family do at Qingming?", "type": "choice", "a": 1, "opts": ["Went to the beach.", "Went to the countryside.", "Climbed a mountain in winter.", "Stayed at home."]},
+        {"stem": "What does Qingming tell farmers?", "type": "choice", "a": 1, "opts": ["It is time to harvest.", "It is time to plant.", "It is time to rest.", "It is time to swim."]},
+        {"stem": "What did Li Hua's little sister do?", "type": "choice", "a": 1, "opts": ["Made a snowman.", "Flew a kite.", "Read a book.", "Cooked rice."]},
+        {"stem": "What did the family gather on the way home?", "type": "choice", "a": 1, "opts": ["Some rice.", "Some wild flowers.", "Some stones.", "Some books."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（日记）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>日记：</b>Saturday, March 21st, Rainy. Today is the first day of spring in the Chinese calendar (农历). The rain is fresh and soft. Everything looks alive again. Mum says this is a good time to plant. We planted some flowers in the garden. Dad worked the land, and I watered the plants. It was tiring but fun. In the afternoon, the rain stopped and the sky became clear. We saw a beautiful rainbow. I love spring because it is full of hope. Tomorrow we will have a picnic in the park. I am excited.<br>What was the weather like in the morning?", "type": "choice", "a": 1, "opts": ["Sunny.", "Rainy.", "Snowy.", "Windy."]},
+        {"stem": "What did the family do in the garden?", "type": "choice", "a": 0, "opts": ["Planted some flowers.", "Played in the snow.", "Flew kites.", "Had a picnic."]},
+        {"stem": "What did they see in the afternoon?", "type": "choice", "a": 0, "opts": ["A beautiful rainbow.", "A kite.", "The moon.", "A snowman."]},
+        {"stem": "Why does the writer love spring?", "type": "choice", "a": 1, "opts": ["Because it is hot.", "Because it is full of hope.", "Because it is quiet.", "Because she can swim."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>The 24 solar terms are an important part of Chinese culture. A year is divided into 24 solar terms. They tell farmers the best time to plant and harvest crops. For example, the Awakening of Insects (惊蛰) tells us that insects wake up and spring is really coming. The Spring Equinox (春分) is a day when day and night are the same length. The Grain Rain (谷雨) brings the last spring rain. After it, summer begins. People in different parts of China follow these terms and keep many traditions. The solar terms play an important part in Chinese life.<br>How many solar terms are there in a year?", "type": "text", "a": "Twenty-four", "a2": ["Twenty-four.", "Twelve.", "Four.", "Thirty."]},
+        {"stem": "What do the solar terms tell farmers?", "type": "text", "a": "The best time to plant and harvest crops", "a2": ["When it will rain.", "The best time to plant and harvest crops.", "How to cook food.", "Where to buy seeds."]},
+        {"stem": "What wakes up at the Awakening of Insects?", "type": "text", "a": "Insects", "a2": ["Insects.", "Bears.", "Birds.", "Flowers."]},
+        {"stem": "Which solar term brings the last spring rain?", "type": "text", "a": "The Grain Rain", "a2": ["The Spring Equinox.", "The Grain Rain.", "The Awakening of Insects.", "The Summer Solstice."]},
+        {"stem": "What do the solar terms show about Chinese culture?", "type": "text", "a": "They are an important part of it", "a2": ["It is boring.", "They are an important part of it.", "It is new.", "It is from the west."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "（深的）", "type": "text", "a": "deep"},
+        {"stem": "c____（晴朗的）", "type": "text", "a": "clear"},
+        {"stem": "p____（安静的；平静的）", "type": "text", "a": "peaceful"},
+        {"stem": "a____（有生气；有活力）", "type": "text", "a": "alive"},
+        {"stem": "c____（文化；文明）", "type": "text", "a": "culture"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "wind（变成形容词）", "type": "text", "a": "windy", "ph": "有风的"},
+        {"stem": "luck（变成形容词）", "type": "text", "a": "lucky", "ph": "幸运的"},
+        {"stem": "sand（变成形容词）", "type": "text", "a": "sandy", "ph": "铺满沙子的（本单元词）"},
+        {"stem": "loud（变成副词）", "type": "text", "a": "loudly", "ph": "喧闹地（本单元词）"},
+        {"stem": "sun（变成形容词）", "type": "text", "a": "sunny", "ph": "晴朗的"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：An Outdoor Activity I Like（我喜欢的一项户外活动）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 season, weather, outdoor activities, have picnics, take a trip, in the countryside, go to the beach, play in the snow, fresh）；③ 注意形容词和句首大写。", "type": "essay", "score": 10, "ph": "An Outdoor Activity I Like\n\nMy favourite outdoor activity is...", "check": ["有没有写活动名称和在什么季节做？", "有没有写和谁一起、在哪里做？", "有没有写为什么喜欢（用了形容词吗）？", "有没有写天气或感受？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">An Outdoor Activity I Like<br><br>My favourite outdoor activity is having picnics in the countryside. I often do it in spring with my family. The weather is warm and the rain is fresh. We take a trip to the countryside and have picnics on the green grass. The whole countryside looks alive, and the air is clean. After lunch, we gather wild flowers and fly kites in the clear sky. I like this activity because it is relaxing and fun.</div><div class=\"zh\">（参考范文：写了活动名称、季节、同伴、地点、原因和感受，用了 outdoor activity / having picnics / in the countryside / in spring / fresh / take a trip / alive / clear / gather 等本单元词汇短语。）</div>"}
+      ]
+    }
+  ]
+  }
+];
+
+const $ = s => document.querySelector(s);
+const host = $('#paperHost'), tabsEl = $('#tabs'), scoreHost = $('#scoreHost');
+let curPaper = null, answers = {};
+
+const store = {
+  key(id){ return 'hx_quiz_' + 'u3' + '_' + id; },
+  save(id, data){ try{ localStorage.setItem(this.key(id), JSON.stringify(data)); }catch(e){} },
+  load(id){ try{ return JSON.parse(localStorage.getItem(this.key(id)) || 'null'); }catch(e){ return null; } },
+  clear(id){ try{ localStorage.removeItem(this.key(id)); }catch(e){} }
+};
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buildTabs(){
+  tabsEl.innerHTML = '';
+  PAPERS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.innerHTML = esc(p.title.split(' · ')[0]) + '<span class="tag">' + esc(p.title.split(' · ')[1] || '') + '</span>';
+    b.onclick = () => selectPaper(i);
+    b.dataset.idx = i;
+    tabsEl.appendChild(b);
+  });
+}
+
+function selectPaper(i){
+  const p = PAPERS[i];
+  curPaper = p;
+  [...tabsEl.children].forEach((b, j) => b.classList.toggle('on', j === i));
+  scoreHost.innerHTML = '';
+  const saved = store.load(p.id);
+  answers = (saved && saved.answers) || {};
+  renderPaper(p, saved && saved.submitted);
+}
+
+function qid(si, qi){ return 'q' + si + '_' + qi; }
+
+function renderPaper(p, submitted){
+  let total = 0;
+  let html = `<div class="paper">
+    <div class="p-head">
+      <div class="pt">${esc(p.title)}</div>
+      <div class="ps">${esc(p.sub || '')}</div>
+    </div>
+    <div class="p-info"><span>建议用时：<b>${esc(p.time || '20 分钟')}</b></span><span>满分：<b id="fullMark">100</b> 分</span><span>范围：<b>Unit 3</b></span></div>`;
+
+  p.sections.forEach((s, si) => {
+    html += `<div class="sec"><h3>${esc(s.name)}</h3>`;
+    if (s.note) html += `<div class="sn">${s.note}</div>`;
+    if (s.bank) html += `<div class="wordbank">${s.bank}</div>`;
+    if (s.passage) html += s.passage;
+    s.items.forEach((it, qi) => {
+      const qq = qid(si, qi);
+      total += (it.score || 1);
+      const ans = answers[qq];
+      const st = submitted && it.type !== 'essay'
+        ? (isRight(it, ans) ? 'ok' : 'bad') : '';
+      html += `<div class="q" id="${qq}"><div class="qt"><span class="qn">${qi + 1}.</span>${it.stem}</div>`;
+      if (it.type === 'choice' || it.type === 'tf'){
+        const opts = it.type === 'choice' ? it.opts : ['T（正确）', 'F（错误）'];
+        const cols = (it.opts && it.opts.length > 4) ? 'one' : '';
+        html += `<div class="opts ${cols}">`;
+        opts.forEach((o, oi) => {
+          const tv = it.type === 'tf' ? (oi === 0 ? 'T' : 'F') : String(oi);
+          const key = it.type === 'tf' ? tv : String.fromCharCode(65 + oi);
+          let cls = 'opt';
+          if (submitted && it.type === 'choice'){
+            if (String(oi) === String(it.a)) cls += ' ok'; else if (tv === String(ans) && String(oi) !== String(it.a)) cls += ' bad';
+          } else if (submitted && it.type === 'tf'){
+            if (tv === it.a) cls += ' ok'; else if (tv === String(ans) && tv !== it.a) cls += ' bad';
+          }
+          if (!submitted && ans !== undefined && String(ans) === tv) cls += ' sel';
+          const mk = (submitted && ((it.type === 'choice' && String(oi) === String(it.a)) || (it.type === 'tf' && tv === it.a))) ? '<span class="mk">✓</span>' : '';
+          html += `<div class="${cls}" data-q="${qq}" data-v="${tv}"><span class="lb">${key}.</span><span>${esc(o)}</span>${mk}</div>`;
+        });
+        html += `</div>`;
+        if (submitted && !isRight(it, ans) && it.explain) html += `<div class="hint">💡 ${it.explain}</div>`;
+      } else if (it.type === 'text'){
+        const cls = submitted ? (st === 'ok' ? 'ok' : 'bad') : '';
+        html += `<input class="ans-in ${cls}" data-q="${qq}" value="${esc(ans || '')}" placeholder="${esc(it.ph || '输入答案')}" ${submitted ? 'disabled' : ''}>`;
+        if (submitted && st !== 'ok') html += `<div class="hint">💡 参考答案：<b>${esc((it.a2 || it.a).join ? (it.a2||it.a).join(' / ') : it.a)}</b></div>`;
+      } else if (it.type === 'essay'){
+        html += `<textarea class="essay" data-q="${qq}" placeholder="${esc(it.ph || '')}">${esc(ans || '')}</textarea>`;
+        html += `<div class="checklist"><b>自查清单：</b><ul>${(it.check||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>`;
+        html += `<details class="sample"><summary>📖 参考范文（写完后展开对照）</summary><div class="body">${it.sample}</div></details>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `</div>
+    <div class="acts">
+      <button class="btn btn-go" id="btnSubmit">${submitted ? '重新作答' : '提交批改'}</button>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 打印 / 存 PDF</button>
+      <button class="btn btn-reset" id="btnReset">清空重做</button>
+    </div>`;
+  host.innerHTML = html;
+  $('#fullMark').textContent = total;
+
+  host.querySelectorAll('.opt').forEach(o => o.onclick = () => {
+    if (submitted) return;
+    answers[o.dataset.q] = o.dataset.v;
+    host.querySelectorAll(`.opt[data-q="${o.dataset.q}"]`).forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+  });
+  host.querySelectorAll('.ans-in').forEach(i => i.oninput = () => { answers[i.dataset.q] = i.value; });
+  host.querySelectorAll('textarea.essay').forEach(t => t.oninput = () => { answers[t.dataset.q] = t.value; });
+  $('#btnSubmit').onclick = () => grade();
+  $('#btnReset').onclick = () => { store.clear(p.id); answers = {}; renderPaper(p, false); };
+  if (submitted) grade(true);
+}
+
+function norm(s){ return String(s||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+function isRight(it, ans){
+  if (ans === undefined || ans === '' || ans === null) return false;
+  if (it.type === 'choice') return String(ans) === String(it.a);
+  if (it.type === 'tf') return String(ans) === it.a;
+  if (it.type === 'text'){
+    const ok = (it.a2 && it.a2.length ? it.a2 : [it.a]).some(a => norm(a) === norm(ans));
+    return ok;
+  }
+  return false;
+}
+
+function grade(resubmit){
+  const p = curPaper; if (!p) return;
+  const submitted = !resubmit;
+  let got = 0, full = 0, wrong = [];
+  p.sections.forEach((s, si) => s.items.forEach((it, qi) => {
+    const v = it.score || 1; full += v;
+    const a = answers[qid(si, qi)];
+    if (it.type === 'essay') return;
+    if (isRight(it, a)) got += v;
+    else wrong.push(si + '-' + qi);
+  }));
+  const pct = Math.round(got / full * 100);
+  const pass = pct >= 60;
+  const advice = wrong.length === 0 ? '全部正确，太棒了！可以进入下一单元。'
+    : wrong.length <= 3 ? '只错 ' + wrong.length + ' 题，把错题的解析看一遍就能全对。'
+    : '错题偏多，建议回到点读页把本单元词汇和课文再过一遍，第二天重做这份卷子。';
+  scoreHost.innerHTML = `<div class="score ${pass ? 'pass' : 'fail'}">
+    <div class="big">${got} / ${full} 分（${pct}%）</div>
+    <div class="adv">${advice}${wrong.length ? ' · 错题已在卷面标红' : ''}</div>
+  </div>`;
+  if (resubmit) return;
+  store.save(p.id, { answers, submitted: true, got, full, pct });
+  renderPaper(p, true);
+}
+
+buildTabs();
+selectPaper(0);
+
+</script>
+<style>
+.pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
+.pgnav .pg-h{margin:0 0 8px;font-size:12.5px;color:#6B6359;letter-spacing:.6px;}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.pgnav a{text-decoration:none;font-size:13px;color:#2B2620;background:#fff;border:1px solid #EFE6DA;border-radius:999px;padding:6px 13px;}
+.pgnav a:hover{border-color:#E8552D;color:#E8552D;}
+.pgnav a.up{background:#E8552D;border-color:#E8552D;color:#fff;}
+.pgnav a.up:hover{background:#D64520;color:#fff;}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff;}
+.pgnav a.gr:hover{background:#0B7369;color:#fff;}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff;}
+.pgnav a.bl:hover{background:#245A94;color:#fff;}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">继续学习</p>
+    <div class="pg-row">
+      <a class="up" href="../点读学习包/Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
+      <a href="Unit2_习题与测试.html">← Unit2 习题</a>
+      <a href="Unit4_习题与测试.html">Unit4 习题 →</a>
+      <a href="../点读学习包/Unit3_The_Seasons_点读学习页.html">📖 Unit3 点读学习页</a>
+      <a href="../点读学习包/Unit3_The_Seasons_精简练习页.html">✏️ Unit3 精简练习</a>
+      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="../点读学习包/全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
+    </div>
+    <p class="pg-h">其他三条线 · 全站跳转</p>
+    <div class="pg-row">
+      <a class="gr" href="../../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+      <a class="bl" href="../../E听说练习/index.html">🎤 中考 E 听说</a>
+      <a class="up" href="../../index.html">🏠 返回慧学首页</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

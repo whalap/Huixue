@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 2 · 颜色与形状 Colours &amp; Shapes</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.unit({
+  n: 2,
+  emo: '🎨',
+  beast: '调色精灵',
+  en: 'Colours & Shapes',
+  cn: '颜色与形状',
+  goal: '11 个颜色 + 6 个形状认全，能说「它是什么颜色 / 什么形状」，能把两个信息合进一句。',
+  tip: '这一单元的关键句是 <b>It is a red circle.</b> —— 颜色和形状合在<b>一个</b>句子里。' +
+       '记住顺序：英语里<b>颜色放在形状前面</b>，跟中文一样（红色的圆形），所以这句话不难，难的是别漏掉 a。',
+  vocab: [
+    {g:'Colours 颜色', w:'red', ipa:'/red/', cn:'红色', ex:'The apple is red.', excn:'苹果是红色的。'},
+    {g:'Colours 颜色', w:'blue', ipa:'/bluː/', cn:'蓝色', ex:'The sky is blue.', excn:'天空是蓝色的。'},
+    {g:'Colours 颜色', w:'yellow', ipa:'/ˈjeləʊ/', cn:'黄色', ex:'The sun is yellow.', excn:'太阳是黄色的。'},
+    {g:'Colours 颜色', w:'green', ipa:'/griːn/', cn:'绿色', ex:'The grass is green.', excn:'草是绿色的。'},
+    {g:'Colours 颜色', w:'black', ipa:'/blæk/', cn:'黑色', ex:'My cat is black.', excn:'我的猫是黑色的。'},
+    {g:'Colours 颜色', w:'white', ipa:'/waɪt/', cn:'白色', ex:'The snow is white.', excn:'雪是白色的。'},
+    {g:'Colours 颜色', w:'orange', ipa:'/ˈɒrɪndʒ/', cn:'橙色 · 橙子', ex:'I like orange.', excn:'我喜欢橙色。'},
+    {g:'Colours 颜色', w:'pink', ipa:'/pɪŋk/', cn:'粉色', ex:'She has a pink bag.', excn:'她有一个粉色的包。'},
+    {g:'Colours 颜色', w:'purple', ipa:'/ˈpɜːpl/', cn:'紫色', ex:'Purple grapes.', excn:'紫色的葡萄。'},
+    {g:'Colours 颜色', w:'brown', ipa:'/braʊn/', cn:'棕色', ex:'Brown bread.', excn:'棕色的面包。'},
+    {g:'Colours 颜色', w:'grey', ipa:'/greɪ/', cn:'灰色', ex:'A grey cat.', excn:'一只灰色的猫。'},
+
+    {g:'Shapes 形状', w:'circle', ipa:'/ˈsɜːkl/', cn:'圆形', ex:'It is a circle.', excn:'它是一个圆形。'},
+    {g:'Shapes 形状', w:'square', ipa:'/skweə/', cn:'正方形', ex:'Draw a square.', excn:'画一个正方形。'},
+    {g:'Shapes 形状', w:'triangle', ipa:'/ˈtraɪæŋgl/', cn:'三角形', ex:'A triangle has three sides.', excn:'三角形有三条边。'},
+    {g:'Shapes 形状', w:'rectangle', ipa:'/ˈrektæŋgl/', cn:'长方形', ex:'The door is a rectangle.', excn:'门是长方形的。'},
+    {g:'Shapes 形状', w:'star', ipa:'/stɑː/', cn:'星形 · 星星', ex:'A yellow star.', excn:'一颗黄色的星星。'},
+    {g:'Shapes 形状', w:'heart', ipa:'/hɑːt/', cn:'心形', ex:'Draw a red heart.', excn:'画一个红色的心。'}
+  ],
+  sents: [
+    {en:'What colour is it?', cn:'它是什么颜色？'},
+    {en:"It's red.", cn:'是红色的。'},
+    {en:'I like blue.', cn:'我喜欢蓝色。'},
+    {en:'What shape is it?', cn:'它是什么形状？'},
+    {en:"It's a circle.", cn:'它是圆形。'},
+    {en:'It is a red circle.', cn:'它是一个红色的圆形。'},
+    {en:'Show me something yellow.', cn:'给我看一个黄色的东西。'},
+    {en:'My bag is pink and white.', cn:'我的包是粉色和白色的。'}
+  ],
+  drill: {
+    h: '听发音，选出中文意思（颜色和形状混着来）',
+    items: [
+      {say:'red', opts:['红色','蓝色','绿色','黑色'], a:0},
+      {say:'blue', opts:['蓝色','棕色','黑色','粉色'], a:0},
+      {say:'yellow', opts:['黄色','橙色','绿色','灰色'], a:0},
+      {say:'purple', opts:['紫色','粉色','蓝色','棕色'], a:0},
+      {say:'grey', opts:['灰色','绿色','黑色','白色'], a:0, tip:'grey（英式）和 gray（美式）读音一样，两种写法都对。'},
+      {say:'circle', opts:['圆形','心形','星形','三角形'], a:0},
+      {say:'triangle', opts:['三角形','圆形','正方形','长方形'], a:0},
+      {say:'rectangle', opts:['长方形','正方形','圆形','星形'], a:0},
+      {say:'square', opts:['正方形','长方形','三角形','圆形'], a:0, tip:'square 四条边一样长；rectangle 是拉长了的方形。'},
+      {say:'heart', opts:['心形','星形','圆形','方形'], a:0}
+    ]
+  },
+  quiz: [
+    {q:'“What colour is it?” 是在问什么？', opts:['它是什么颜色？','它是什么形状？','它有多大？','它在哪里？'], a:0},
+    {q:'“It is a red circle.” 指的是什么？', opts:['一个红色的圆形','一个红色的方形','一个蓝色的圆形','一个红色的心形'], a:0},
+    {q:'天空是什么颜色？', opts:['blue','black','green','brown'], a:0},
+    {q:'“triangle” 有几条边？', opts:['三条','四条','五条','没有边'], a:0},
+    {q:'“I like blue.” 的意思是？', opts:['我喜欢蓝色。','我是蓝色的。','蓝色喜欢我。','我有一个蓝色。'], a:0},
+    {q:'下面哪个是形状，不是颜色？', opts:['yellow','square','pink','grey'], a:1},
+    {q:'“Show me something yellow.” 该怎么回应？', opts:['拿一个黄色的东西给他看。','把黄色的东西藏起来。','说出你的名字。','画一个圆。'], a:0},
+    {q:'“a red circle” 中，英语把什么放在前面？', opts:['颜色（red）','形状（circle）','随便放','都要大写'], a:0, tip:'跟中文一样：红色的圆形 —— 颜色在前。'}
+  ],
+  proj: 'Pre-A1 Unit2 颜色拼贴项目.html',
+  projName: '颜色形状拼贴画',
+  prev: 'Pre-A1 Unit1 英语跟读.html',
+  next: 'Pre-A1 Unit3 英语跟读.html'
+});
+</script>
+</body>
+</html>

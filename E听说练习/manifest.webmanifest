@@ -1,0 +1,17 @@
+{
+  "name": "E听说练习 · 广州中考人机对话",
+  "short_name": "E听说练习",
+  "description": "广州中考英语人机对话分级练习：模仿朗读、听选信息、回答问题、信息转述、询问信息，外加官方全真模拟真题。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#14110c",
+  "theme_color": "#14110c",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

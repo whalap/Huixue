@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>B1 英语跟读学院 · 过渡线主页</title>
+<style>
+  :root{--bg:#12100d;--panel:#1c1913;--panel2:#23201a;--chip:#2b2721;--line:#3a352c;
+        --ink:#f0ece4;--sub:#a49c8e;--gold:#f5c542;--gold2:#6b5a22;--red:#e05a4f;--green:#4ec98a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  header{background:#2a1f12;border-bottom:1px solid var(--gold2);padding:22px 20px 18px;text-align:center}
+  header h1{margin:0 0 6px;font-size:24px;color:var(--gold);letter-spacing:1px}
+  header p{margin:0;color:var(--sub);font-size:13px}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 40px}
+  .lvlsw{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 18px}
+  .lvlsw .lv{display:flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:9px 15px;text-decoration:none;color:var(--sub);font-size:13px;font-weight:600;transition:.12s}
+  .lvlsw .lv b{font-size:15px}
+  .lvlsw .lv:hover{border-color:var(--gold2);color:var(--gold)}
+  .lvlsw .lv.cur{background:linear-gradient(160deg,#231b10,#1c1913);border-color:var(--gold);color:var(--gold)}
+  .lvlsw .lv.hub{border-color:var(--gold2);color:var(--gold)}
+  .totalwrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+             background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:13px 18px}
+  .tlab{font-size:12px;color:var(--sub)}
+  .tbar{flex:1;min-width:200px;height:9px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .tbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .tnum{font-size:14px;color:var(--gold);font-weight:700;min-width:52px;text-align:right}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:16px 0 8px;
+           color:var(--sub);font-size:12px}
+  .legend b{color:var(--gold)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:14px;margin-top:10px}
+  .ucard{display:block;background:var(--panel);border:1px solid var(--line);
+         border-radius:16px;padding:15px 14px;text-decoration:none;color:var(--ink);
+         transition:transform .12s,border-color .12s}
+  .ucard:hover{transform:translateY(-3px);border-color:var(--gold2)}
+  .ucard.u0{border-color:var(--gold2);background:linear-gradient(160deg,#231b10,#1c1913)}
+  .uhead{display:flex;align-items:center;gap:11px}
+  .ubeast{font-size:12.5px;color:var(--gold);font-weight:700;letter-spacing:1px}
+  .un{font-size:10.5px;color:var(--sub);letter-spacing:2px;margin-top:3px}
+  .uen{font-size:14px;font-weight:700;margin-top:9px}
+  .ucn{font-size:12px;color:var(--sub);margin-top:2px}
+  .tracks{margin-top:11px;border-top:1px solid var(--line);padding-top:10px;display:grid;gap:6px}
+  .trk{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--sub)}
+  .trk .dot{width:6px;height:6px;border-radius:50%;background:var(--chip);border:1px solid var(--line);flex:none}
+  .trk.on .dot{background:var(--green);border-color:var(--green)}
+  .trk .nm{color:var(--ink);font-weight:600}
+  .trk .mini{margin-left:auto;text-align:right}
+  .ielts{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .ielts span{font-size:10px;padding:3px 9px;border-radius:10px;background:var(--chip);
+           color:var(--sub);border:1px solid var(--line)}
+  .ubars{display:flex;gap:4px;justify-content:center;margin-top:8px}
+  .pblink{display:inline-block;margin:8px 0 0;font-size:10px;font-weight:700;padding:3px 10px;
+          border-radius:10px;background:rgba(245,197,66,.12);color:var(--gold);
+          border:1px solid var(--gold2);cursor:pointer}
+  .pblink:hover{filter:brightness(1.15)}
+  .star{width:9px;height:9px;background:var(--gold);border:1px solid var(--gold);border-radius:2px}
+  .gsec{margin-top:28px;border:1px solid var(--gold2);border-radius:18px;background:var(--panel);padding:18px 20px}
+  .gsec h2{margin:0 0 4px;font-size:17px;color:var(--gold)}
+  .gsec>p{margin:0 0 14px;color:var(--sub);font-size:12.5px;line-height:1.75}
+  .ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+  .glink{display:flex;gap:10px;align-items:center;background:var(--panel2);border:1px solid var(--line);
+         border-radius:12px;padding:12px 13px;text-decoration:none;color:var(--ink);transition:.12s}
+  .glink:hover{border-color:var(--gold2)}
+  .glink .gi{font-size:21px}
+  .glink .gn{font-size:13px;font-weight:700}
+  .glink .gd{font-size:11px;color:var(--sub);margin-top:2px}
+  footer{text-align:center;color:var(--sub);font-size:12px;padding:26px 16px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌉 B1 英语跟读学院 · 过渡线</h1>
+  <p>CEFR-B1 + AWL 1–4 · 句长≤18 · 阅读8篇/听力8篇 · 四类题型轻量版</p>
+</header>
+<div class="wrap">
+  <nav class="lvlsw" title="切换学习级别"><a class="lv hub" href="index.html" title="返回四级总站"><b>🏛️</b> 总站</a><a class="lv" href="A1 主页.html"><b>🌱</b> A1 启程线</a><a class="lv" href="A2 主页.html"><b>📗</b> A2 日常线</a><a class="lv cur" href="B1 主页.html"><b>🌉</b> B1 过渡线</a><a class="lv hub" href="../index.html" title="慧学学习网络首页"><b>🏠</b> 慧学首页</a></nav>
+  <div class="totalwrap">
+    <span class="tlab">本级进度</span>
+    <span class="tbar"><i id="tb"></i></span>
+    <span class="tnum" id="tn">0%</span>
+    <span class="tlab" id="td"></span>
+  </div>
+  <div class="legend"><span>主题线：<b>教育 U1–3 → 科技 U4–6 → 政府 U7–9 → 社会 U10–12</b>，与 B2 同轴降档</span><span>每单元词卡 36 词（6 组×6）· 对话 3 段 · 句模 + 单元文章 + 语法输出</span></div>
+  <div class="grid" id="b1units"></div>
+  
+  <div class="gsec">
+    <h2>📐 B1 怎么学</h2>
+    <p>B1 是 A2 日常线 → B2 论证线的<b>过渡线</b>：语料句长≤18、从句≤2，语域从日常平滑滑向学术。每单元阅读 8 篇（记叙 / 说明 / 论说 / 议论各 2 篇，含中国情境），听力 8 篇（独白 4 ＋ 对话 4，日常与学术各半）。</p>
+    <div class="ggrid">
+      <a class="glink" href="#"><span class="gi">🔘</span><div><div class="gn">选择题 mc</div>
+        <div class="gd">考主旨与细节 · 3 选项</div></div></a>
+      <a class="glink" href="#"><span class="gi">✏️</span><div><div class="gn">填空题 fb</div>
+        <div class="gd">用文中原词作答 · 暂不接受拼写变体以外的答案</div></div></a>
+      <a class="glink" href="#"><span class="gi">☑️</span><div><div class="gn">多选题 mm</div>
+        <div class="gd">至少 2 个正确项 · 少选错选都算错</div></div></a>
+      <a class="glink" href="#"><span class="gi">⚖️</span><div><div class="gn">判断题 tf</div>
+        <div class="gd">True / False / Not Given · Not Given＝文中真没提</div></div></a>
+    </div>
+    <p style="margin:14px 0 0">答错的小题自动进<b>错题本</b>（页面内可回看）；U0 过渡补给站先补 A2→B1 桥接词与简单论证句，再进 U1。词卡带 AWL 子表与语域标签，进度与 A2 / B2 隔离。</p>
+  </div>
+</div>
+<footer>B1 过渡线：CEFR-B1 + AWL 1–4 · 句长≤18、从句≤2 · 进度键 b1_unit*_state_v4 与 A2 / B2 隔离</footer>
+<script>
+
+var KEY = 'a2net_p_';
+var GM_KEY = 'grammar_monster_all_v7';
+var doneShadow = JSON.parse(localStorage.getItem(KEY+'shadow') || '{}');
+var gmDone = {};
+try {
+  var gm = JSON.parse(localStorage.getItem(GM_KEY) || '{}');
+  Object.keys(gm.rounds || {}).forEach(function(k){
+    var gid = k.split('|')[0];
+    gmDone[gid] = (gmDone[gid]||0) + 1;
+  });
+} catch(e){}
+function gList(u){ return (u.g||[]).map(function(x){ return x[0]; }); }
+function gDone(u){
+  if(!u.g) return {n:0, all:0};
+  var n=0, all=0;
+  u.g.forEach(function(g){ all += g[1]; if((gmDone[g[0]]||0) >= g[1]) n += g[1];
+                            else n += Math.min(gmDone[g[0]]||0, g[1]); });
+  return {n:n, all:all};
+}
+function b1StateDone(u){
+  try{ var st=JSON.parse(localStorage.getItem('b1_unit'+u.n+'_state_v4'))||{};
+    var n=0; Object.keys(st).forEach(function(w){ if(st[w]&&st[w].shadowed) n++; });
+    return n;
+  }catch(e){ return 0; }
+}
+function b2StateDone(u){
+  try{ var st=JSON.parse(localStorage.getItem('b2_unit'+u.n+'_state_v4'))||{};
+    var n=0; Object.keys(st).forEach(function(w){ if(st[w]&&st[w].shadowed) n++; });
+    return n;
+  }catch(e){ return 0; }
+}
+
+function beastBadge(beast, emoji, size){
+  size=size||52; var uid='lv'+Math.random().toString(36).slice(2,7);
+  var ticks='';
+  for(var i=0;i<12;i++){
+    var a=i*30*Math.PI/180, major=(i%3===0);
+    var r1=48, r2=major?40:44;
+    ticks+='<line x1="'+(60+r1*Math.cos(a)).toFixed(1)+'" y1="'+(60+r1*Math.sin(a)).toFixed(1)+'" x2="'+(60+r2*Math.cos(a)).toFixed(1)+'" y2="'+(60+r2*Math.sin(a)).toFixed(1)+'" stroke="#f5c542" stroke-width="'+(major?1.7:0.8)+'" opacity="'+(major?0.95:0.5)+'"/>';
+  }
+  return '<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" role="img" aria-label="'+beast+'" style="display:block;flex:none">'
+   +'<defs>'
+   +'<radialGradient id="disc'+uid+'" cx="50%" cy="34%" r="74%"><stop offset="0" stop-color="#3a3550"/><stop offset="0.5" stop-color="#201d30"/><stop offset="1" stop-color="#0e0c16"/></radialGradient>'
+   +'<linearGradient id="ring'+uid+'" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#ffeeb8"/><stop offset="0.45" stop-color="#f5c542"/><stop offset="1" stop-color="#9c7115"/></linearGradient>'
+   +'<radialGradient id="halo'+uid+'" cx="50%" cy="46%" r="50%"><stop offset="0" stop-color="#f5c542" stop-opacity="0.30"/><stop offset="1" stop-color="#f5c542" stop-opacity="0"/></radialGradient>'
+   +'</defs>'
+   +'<circle cx="60" cy="60" r="58" fill="none" stroke="url(#ring'+uid+')" stroke-width="1" opacity="0.30"/>'
+   +'<circle cx="60" cy="60" r="52" fill="url(#disc'+uid+')"/>'
+   +'<circle cx="60" cy="60" r="52" fill="none" stroke="url(#ring'+uid+')" stroke-width="3"/>'
+   +'<circle cx="60" cy="60" r="45.5" fill="none" stroke="#f5c542" stroke-width="0.7" opacity="0.30"/>'
+   + ticks
+   +'<circle cx="60" cy="60" r="41" fill="url(#halo'+uid+')"/>'
+   +'<text x="60" y="64" font-size="44" text-anchor="middle" dominant-baseline="central">'+emoji+'</text>'
+   +'<text x="60" y="101" font-size="11" text-anchor="middle" fill="#f5c542" font-weight="700" letter-spacing="1.5">'+beast+'</text>'
+   +'<circle cx="60" cy="9" r="2.6" fill="#e05a4f"/>'
+   +'</svg>';
+}
+function stars(){ var o=''; for(var i=0;i<5;i++) o+='<i class="star"></i>'; return o; }
+
+
+function cardHtml(u, line){
+  var s = line==='a2' ? (doneShadow[u.n]||0)
+       : line==='b1' ? b1StateDone(u) : b2StateDone(u);
+  var total = line==='a2' ? 8 : (u.words||40);
+  var g = gDone(u);
+  var badge = line!=='a2' ? (s>=total ? '跟读已完成' : (s>0 ? '跟读进行中' : '已解锁'))
+           : (s>=total && g.all>0 && g.n>=g.all) ? '跟读语法都完成'
+           : s>=total ? '跟读已完成，语法待练' : g.n>0 ? '语法进行中' : '已解锁';
+  var h = '<a class="ucard'+(u.n===0?' u0':'')+'" href="'+u.file+'">'
+     + '<div class="uhead">'+beastBadge(u.beast,u.emo,52)
+     + '<div><div class="ubeast">'+u.beast+'</div><div class="un">'+(u.n===0?'UNIT 0 · 补给站':'UNIT '+u.n)+'</div></div></div>'
+     + '<div class="uen">'+u.en+'</div><div class="ucn">'+u.cn+'</div>'
+     + '<div class="tracks">'
+     + '<div class="trk'+(s>0?' on':'')+'"><i class="dot"></i><span class="nm">跟读</span>'
+     + '<span class="mini">'+(line!=='a2' ? ('已跟读 '+s+' / '+total+' 词') : ('8 板块 · 完成 '+s))+'</span></div>'
+     + '<div class="trk'+(line!=='a2'? (s>0?' on':'') : (g.n>0?' on':''))+'"><i class="dot"></i><span class="nm">'+(line!=='a2'?'句型':'语法')+'</span>'
+     + '<span class="mini">'+(line!=='a2' ? ((u.gn||0)+' 组学术句型') : (g.all? g.n+' / '+g.all+' 组' : '本单元用造句输出'))+'</span></div>'
+     + '</div>';
+  if(u.ielts && u.ielts.length){
+    h += '<div class="ielts"><span style="color:var(--sub)">🧩 雅思</span>'
+      + u.ielts.map(function(t){ return '<span>'+t+'</span>'; }).join('') + '</div>';
+  }
+  h += '<div class="ubars">'+stars()+'</div>'
+    + (u.pbl ? '<div style="text-align:center"><span class="pblink" data-u="'+u.n+'" data-f="'+(u.pblFile||'')+'">🏛 PBL 项目</span></div>' : '')
+    + '</a>';
+  return h;
+}
+
+var B1_UNITS = [{"n": 0, "emo": "🪜", "beast": "渡阶之灵", "en": "Transition Station", "cn": "过渡补给站", "file": "B1 Unit0 过渡补给站.html", "words": 36, "gn": 3, "ielts": ["Education", "Study skills", "Daily routines"]}, {"n": 1, "emo": "📖", "beast": "勤学之灵", "en": "Learning to Learn", "cn": "学会学习", "file": "B1 Unit1 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Education", "Study skills", "Learning methods"], "pbl": 1, "pblFile": "B1 Unit1 学习法提案项目.html"}, {"n": 2, "emo": "🎒", "beast": "同窗之灵", "en": "School Life", "cn": "校园生活", "file": "B1 Unit2 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Education", "School life", "Extracurricular activities"], "pbl": 1, "pblFile": "B1 Unit2 校园提案项目.html"}, {"n": 3, "emo": "⚖️", "beast": "衡度之灵", "en": "Exams and Fairness", "cn": "考试与公平", "file": "B1 Unit3 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Education", "Exams and testing", "Fairness"], "pbl": 1, "pblFile": "B1 Unit3 评价提案项目.html"}, {"n": 4, "emo": "🌐", "beast": "触网之灵", "en": "Digital Life", "cn": "数字生活", "file": "B1 Unit4 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Technology", "Internet", "Online learning"], "pbl": 1, "pblFile": "B1 Unit4 数字生活提案项目.html"}, {"n": 5, "emo": "🔧", "beast": "巧手之灵", "en": "Smart Machines", "cn": "会学习的机器", "file": "B1 Unit5 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Technology", "Machines and work", "Robots"], "pbl": 1, "pblFile": "B1 Unit5 智能机器提案项目.html"}, {"n": 6, "emo": "🔐", "beast": "心盾之灵", "en": "Privacy and Trust", "cn": "隐私与信任", "file": "B1 Unit6 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Technology", "Online safety", "Trust"], "pbl": 1, "pblFile": "B1 Unit6 隐私提案项目.html"}, {"n": 7, "emo": "🏙️", "beast": "治巷之灵", "en": "Our City", "cn": "我们的城市", "file": "B1 Unit7 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Cities", "Public transport", "Local services"], "pbl": 1, "pblFile": "B1 Unit7 城市提案项目.html"}, {"n": 8, "emo": "🤝", "beast": "普惠之灵", "en": "Welfare and Fairness", "cn": "福利与公平", "file": "B1 Unit8 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Society", "Equality", "Health"], "pbl": 1, "pblFile": "B1 Unit8 福利提案项目.html"}, {"n": 9, "emo": "📐", "beast": "明规之灵", "en": "Rules and Laws", "cn": "规则与法律", "file": "B1 Unit9 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Rules and laws", "Rights and duties", "Traffic safety"], "pbl": 1, "pblFile": "B1 Unit9 规则提案项目.html"}, {"n": 10, "emo": "💼", "beast": "勤业之灵", "en": "Work and Money", "cn": "工作与金钱", "file": "B1 Unit10 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Work and money", "Part-time jobs", "Pocket money and budgeting"], "pbl": 1, "pblFile": "B1 Unit10 兼职提案项目.html"}, {"n": 11, "emo": "🔎", "beast": "察媒之灵", "en": "Media and Truth", "cn": "媒体与真相", "file": "B1 Unit11 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Media", "News", "Advertising"], "pbl": 1, "pblFile": "B1 Unit11 媒介素养项目.html"}, {"n": 12, "emo": "♻️", "beast": "护青之灵", "en": "Environment and Limits", "cn": "环境与限度", "file": "B1 Unit12 英语跟读.html", "words": 36, "gn": 3, "ielts": ["Environment", "Recycling", "Sustainability"], "pbl": 1, "pblFile": "B1 Unit12 环保提案项目.html"}];
+
+var box = document.getElementById('b1units'), h = '';
+B1_UNITS.forEach(function(u){ h += cardHtml(u,'b1'); });
+box.innerHTML = h;
+/* PBL 项目入口：卡片内「🏛 PBL 项目」徽标跳转（阻止卡片链接冒泡） */
+document.querySelectorAll('.pblink').forEach(function(el){
+  el.addEventListener('click', function(e){
+    e.preventDefault(); e.stopPropagation();
+    var f = el.getAttribute('data-f');
+    if(f) location.href = f;
+  });
+});
+var sSum=0;
+B1_UNITS.forEach(function(u){ sSum += b1StateDone(u); });
+var pct = Math.round(sSum/(B1_UNITS.length*36)*100);
+document.getElementById('tb').style.width = pct+'%';
+document.getElementById('tn').textContent = pct+'%';
+document.getElementById('td').textContent = '已跟读 '+sSum+' / '+(B1_UNITS.length*36)+' 词';
+
+</script>
+</body>
+</html>

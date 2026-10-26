@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 7 Fun after School · 习题与测试（沪教版七上）</title>
+<style>
+:root{
+  --ink:#2b2118; --ink2:#5c4f42; --muted:#8a7c6b;
+  --paper:#faf6ee; --card:#ffffff; --line:#e6dcc8;
+  --gold:#b8860b; --gold-soft:#d4a933; --red:#c0392b; --ok:#1e8449;
+  --brand:#1a1410;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:var(--paper); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.75; font-size:15px}
+.wrap{max-width:860px; margin:0 auto; padding:0 18px 90px}
+
+/* ---------- 顶部 ---------- */
+.hero{background:linear-gradient(135deg,#1a1410 0%,#2b2118 60%,#3a2c1c 100%); color:#f5ecd7; padding:34px 20px 26px; text-align:center; border-bottom:3px solid var(--gold)}
+.hero .kicker{color:var(--gold-soft); font-size:13px; letter-spacing:3px; margin-bottom:8px}
+.hero h1{font-size:26px; margin-bottom:8px}
+.hero .sub{color:#cbbd9d; font-size:13.5px}
+.hero .meta{margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.hero .meta span{border:1px solid rgba(212,169,51,.45); color:#e8d9ac; border-radius:99px; padding:3px 14px; font-size:12.5px}
+
+/* ---------- 卷子切换 ---------- */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:22px 0 26px; position:sticky; top:0; z-index:20; background:var(--paper); padding:12px 0; border-bottom:1px dashed var(--line)}
+.tabs button{border:1.5px solid var(--line); background:var(--card); color:var(--ink2); border-radius:10px; padding:8px 16px; font-size:14px; cursor:pointer; font-weight:600; transition:.15s}
+.tabs button:hover{border-color:var(--gold-soft)}
+.tabs button.on{background:var(--brand); color:#f0e2b8; border-color:var(--brand)}
+.tabs button .tag{display:block; font-size:11px; font-weight:400; opacity:.75; margin-top:1px}
+
+/* ---------- 卷子主体 ---------- */
+.paper{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:30px 34px; box-shadow:0 2px 14px rgba(43,33,24,.06)}
+.p-head{border-bottom:2px solid var(--brand); padding-bottom:14px; margin-bottom:8px}
+.p-head .pt{font-size:20px; font-weight:800}
+.p-head .ps{font-size:13px; color:var(--muted); margin-top:4px}
+.p-info{display:flex; gap:18px; font-size:13px; color:var(--ink2); margin:10px 0 22px; flex-wrap:wrap}
+.p-info b{color:var(--gold)}
+.sec{margin-bottom:30px}
+.sec>h3{font-size:16px; font-weight:800; color:var(--brand); border-left:4px solid var(--gold); padding-left:10px; margin-bottom:6px}
+.sec .sn{font-size:12.5px; color:var(--muted); margin-bottom:12px}
+.q{padding:12px 14px; border:1px solid var(--line); border-radius:10px; margin-bottom:10px; background:#fffdf8}
+.q .qt{font-weight:600; margin-bottom:8px}
+.q .qt .qn{color:var(--gold); font-weight:800; margin-right:6px}
+.q .qt u{ text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:3px; font-weight:700 }
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.opts.one{grid-template-columns:1fr}
+.opt{border:1px solid var(--line); border-radius:8px; padding:7px 12px; cursor:pointer; font-size:14px; background:#fff; transition:.12s; display:flex; gap:8px; align-items:baseline}
+.opt .lb{font-weight:800; color:var(--muted)}
+.opt:hover{border-color:var(--gold-soft); background:#fffaf0}
+.opt.sel{border-color:var(--gold); background:#fdf3d8}
+.opt.ok{border-color:var(--ok); background:#eafaf0}
+.opt.bad{border-color:var(--red); background:#fdecea}
+.opt .mk{margin-left:auto; font-weight:800}
+.opt.ok .mk{color:var(--ok)} .opt.bad .mk{color:var(--red)}
+.ans-in{border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:14px; width:100%; max-width:340px; background:#fff; font-family:inherit}
+.ans-in:focus{outline:none; border-color:var(--gold)}
+.ans-in.ok{border-color:var(--ok); background:#f2fbf6}
+.ans-in.bad{border-color:var(--red); background:#fdf0ee}
+.tfrow{display:flex; gap:10px}
+.tfrow .opt{min-width:88px; justify-content:center}
+.hint{font-size:12.5px; color:var(--muted); margin-top:4px}
+.wordbank{font-size:13.5px; background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-bottom:12px; color:var(--ink2)}
+.wordbank b{color:var(--gold)}
+textarea.essay{width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:12px; font-size:14px; font-family:inherit; resize:vertical; background:#fff}
+textarea.essay:focus{outline:none; border-color:var(--gold)}
+.checklist{background:#f4f8f4; border:1px solid #cfe3d2; border-radius:10px; padding:12px 16px; margin-top:12px; font-size:13.5px}
+.checklist b{color:var(--ok)}
+.checklist li{margin-left:20px; margin-top:3px}
+details.sample{margin-top:12px; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fffdf6}
+details.sample summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13.5px}
+details.sample .body{margin-top:10px; font-size:14px; line-height:1.9; border-top:1px dashed var(--line); padding-top:10px}
+details.sample .body .en{color:var(--ink)}
+details.sample .body .zh{color:var(--muted); font-size:12.5px}
+
+/* ---------- 阅读原文框 ---------- */
+.rdbox{background:#fffdf6; border:1.5px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px}
+.rdbox .rd-title{font-size:16px; font-weight:800; color:var(--brand); margin-bottom:10px}
+.rdbox .rd-title span{font-size:12px; font-weight:400; color:var(--muted); margin-left:8px}
+.rdbox .rd-body p{font-size:14.5px; line-height:2.05; margin:0 0 4px}
+.rdbox .rd-body p b{color:var(--brand)}
+.rdbox .rdn{display:inline-block; min-width:18px; color:var(--gold); font-weight:800; font-size:12.5px; margin-right:4px}
+.rdbox .kw{background:#fdf0d5; border-bottom:2px solid var(--gold-soft); border-radius:3px; padding:0 2px; font-weight:600}
+.rdbox .rd-note{font-size:12.5px; color:var(--ink2); background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-top:12px}
+details.rdtr{margin-top:12px; border:1px dashed var(--line); border-radius:8px; padding:8px 12px; background:#fff}
+details.rdtr summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13px}
+details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-height:2}
+
+/* ---------- 操作区 ---------- */
+.acts{display:flex; gap:12px; margin:26px 0 10px; flex-wrap:wrap; position:sticky; bottom:0; background:linear-gradient(180deg,transparent, var(--paper) 30%); padding:14px 0}
+.btn{border:none; border-radius:10px; padding:12px 26px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit}
+.btn-go{background:var(--brand); color:#f0e2b8}
+.btn-go:hover{background:#3a2c1c}
+.btn-ghost{background:#fff; color:var(--ink2); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-reset{background:#fff; color:var(--red); border:1.5px solid #ecc9c3}
+.score{display:none; border-radius:12px; padding:18px 22px; margin-top:16px; font-size:15px}
+.score.show{display:block}
+.score.pass{background:#eafaf0; border:1px solid #bfe6cc}
+.score.fail{background:#fdf0ee; border:1px solid #ecc9c3}
+.score .big{font-size:26px; font-weight:800}
+.score.pass .big{color:var(--ok)} .score.fail .big{color:var(--red)}
+.score .adv{font-size:13.5px; color:var(--ink2); margin-top:6px}
+.backhome{display:block; text-align:center; margin:26px auto 0; color:var(--muted); font-size:13px; text-decoration:none}
+.backhome:hover{color:var(--gold)}
+@media (max-width:640px){ .opts{grid-template-columns:1fr} .paper{padding:20px 16px} }
+@media print{
+  .hero,.tabs,.acts,.backhome{display:none!important}
+  body{background:#fff} .paper{border:none; box-shadow:none; padding:0}
+  .opt.sel{border-color:#999; background:#fff}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">沪教版 · 英语七年级上册</div>
+  <h1>Unit 7 Fun after School</h1>
+  <div class="sub">习题与单元测试 · 每单元 5 份练习 + 3 套测试卷（在线作答 · 即时批改 · 可打印）</div>
+  <div class="meta">
+    <span>覆盖：本单元词汇 / 短语 / 一般过去时 / 课文《The Clubs Fair》/ 中国课余雅趣</span>
+    <span>依据：上海教育出版社 英语 七年级上册（2024 广州新版）</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div id="paperHost"></div>
+  <div id="scoreHost"></div>
+  <a class="backhome" href="../点读学习包/Unit0_总目录_点读学习中心.html">← 返回七上点读学习中心</a>
+</div>
+
+<script>
+const PAPERS = [
+  {
+    "id": "p1",
+    "title": "练习一 · 词汇与短语",
+    "time": "20 分钟",
+    "sub": "本单元核心词汇 30 个 + 拓展词 18 个 + 短语 17 个，先认词，再会用。",
+    "sections": [
+    {
+      "name": "一、词汇匹配（选出正确中文意思）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "literature", "type": "choice", "a": 0, "opts": ["文学；文学作品", "扮演", "形状；外形", "公开活动"]},
+        {"stem": "launch", "type": "choice", "a": 1, "opts": ["大声说；叫", "发射", "点心；小吃", "剪纸"]},
+        {"stem": "hike", "type": "choice", "a": 2, "opts": ["不久前；最近", "每年的；一年一次的", "去……远足", "肯定；当然"]},
+        {"stem": "decorate", "type": "choice", "a": 3, "opts": ["差别；差异", "惊奇；意外之事", "片刻；瞬间", "装饰；装潢"]},
+        {"stem": "fantastic", "type": "choice", "a": 0, "opts": ["极好的；了不起的", "设备；器材", "火箭", "慈善机构"]}
+      ]
+    },
+    {
+      "name": "二、看中文，写英文",
+      "note": "每题 1 分，共 5 分。注意拼写。",
+      "items": [
+        {"stem": "成为……的一员；参加", "type": "text", "a": "join", "ph": "拼写注意大小写"},
+        {"stem": "力量；能量", "type": "text", "a": "power", "ph": "拼写注意大小写"},
+        {"stem": "出席；参加", "type": "text", "a": "attend", "ph": "拼写注意大小写"},
+        {"stem": "参加比赛", "type": "text", "a": "compete", "ph": "拼写注意大小写"},
+        {"stem": "社团", "type": "text", "a": "club", "ph": "拼写注意大小写"}
+      ]
+    },
+    {
+      "name": "三、短语填空（选词填空，注意形式）",
+      "note": "每题 1 分，共 5 分。",
+      "bank": "<b>短语库：</b>clubs fair · solar power · took off · Watch out · sign up",
+      "items": [
+        {"stem": "Last month, Li Na and Liu Wei went to the ____.", "type": "choice", "a": 0, "opts": ["clubs fair", "science lab", "sports ground", "book corner"], "explain": "clubs fair 社团招募展。"},
+        {"stem": "The toy plane ran on ____.", "type": "choice", "a": 0, "opts": ["solar power", "remote control", "super energy", "school power"], "explain": "solar power 太阳能。"},
+        {"stem": "The rocket ____ and disappeared into the sky.", "type": "choice", "a": 0, "opts": ["took off", "turned around", "fell off", "got up"], "explain": "take off 起飞（过去式 took off）。"},
+        {"stem": "A girl shouted, '____!' when the plane flew past.", "type": "choice", "a": 0, "opts": ["Watch out", "Look out", "Sit down", "Stand up"], "explain": "watch out 当心、小心。"},
+        {"stem": "If you want to join a club, you can ____ first.", "type": "choice", "a": 0, "opts": ["sign up", "make a difference", "put on a play", "have a try"], "explain": "sign up 报名。"}
+      ]
+    },
+    {
+      "name": "四、单项选择",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A ____ is a place where clubs show their activities and you can join them.", "type": "choice", "a": 0, "opts": ["clubs fair", "sports ground", "science lab", "book corner"], "explain": "clubs fair 社团招募展。"},
+        {"stem": "The boy ____ a rocket into the sky at the fair.", "type": "choice", "a": 0, "opts": ["launched", "landed", "caught", "opened"], "explain": "launch 发射（过去式 launched）。"},
+        {"stem": "A ____ is a member of a club.", "type": "choice", "a": 0, "opts": ["member", "teacher", "student", "worker"], "explain": "member 成员。"},
+        {"stem": "The Solar Power Club builds wonderful ____.", "type": "choice", "a": 0, "opts": ["machines", "snacks", "spoons", "sales"], "explain": "machine 机器。"},
+        {"stem": "To cut paper into pretty shapes is a ____.", "type": "choice", "a": 0, "opts": ["paper-cut", "poster", "rocket", "stamp"], "explain": "paper-cut 剪纸。"}
+      ]
+    },
+    {
+      "name": "五、对划线部分提问",
+      "note": "每题 1 分，共 5 分。用 Wh-word + 一般疑问句语序；动词为实义动词时用 do/does。",
+      "items": [
+        {"stem": "Li Na and Liu Wei went to the Clubs Fair <u>last month</u>.（对划线部分提问）", "type": "text", "a": "When did Li Na and Liu Wei go to the Clubs Fair?", "a2": ["When did Li Na and Liu Wei go to the Clubs Fair?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "The boy launched a rocket <u>into the sky</u>.（对划线部分提问）", "type": "text", "a": "Where did the boy launch a rocket?", "a2": ["Where did the boy launch a rocket?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "They were very excited <u>because the fair was fun</u>.（对划线部分提问）", "type": "text", "a": "Why were they very excited?", "a2": ["Why were they very excited?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "Li Na turned around and looked at <u>the Craft Club's table</u>.（对划线部分提问）", "type": "text", "a": "What did Li Na turn around and look at?", "a2": ["What did Li Na turn around and look at?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "The toy plane flew past them <u>quickly</u>.（对划线部分提问）", "type": "text", "a": "How did the toy plane fly past them?", "a2": ["How did the toy plane fly past them?"], "ph": "写完整问句，句末加 ?"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p2",
+    "title": "练习二 · 语法与句型",
+    "time": "20 分钟",
+    "sub": "本单元语法重点：The simple past（一般过去时：规则动词加 -ed，不规则动词用过去式；否定 didn't + 动词原形，疑问 Did…? + 动词原形）。",
+    "sections": [
+    {
+      "name": "一、语法选择（单选）",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "We ____ to the Clubs Fair last month.", "type": "choice", "a": 0, "opts": ["went", "go", "goes", "going"], "explain": "go 的过去式 went。"},
+        {"stem": "Li Na and Liu Wei ____ about the Rocket Club.", "type": "choice", "a": 0, "opts": ["learnt", "learn", "learns", "learning"], "explain": "learn 的过去式 learnt / learned。"},
+        {"stem": "A boy ____ a rocket into the sky.", "type": "choice", "a": 0, "opts": ["launched", "launch", "launches", "launching"], "explain": "launch 的过去式 launched。"},
+        {"stem": "The rocket took off and ____.", "type": "choice", "a": 0, "opts": ["disappeared", "disappear", "disappears", "disappearing"], "explain": "disappear 的过去式 disappeared。"},
+        {"stem": "A girl ____ \"Watch out!\".", "type": "choice", "a": 0, "opts": ["shouted", "shout", "shouts", "shouting"], "explain": "shout 的过去式 shouted。"},
+        {"stem": "The toy plane ____ on solar power.", "type": "choice", "a": 0, "opts": ["ran", "run", "runs", "running"], "explain": "run 的过去式 ran。"},
+        {"stem": "Li Na ____ around and looked at the table.", "type": "choice", "a": 0, "opts": ["turned", "turn", "turns", "turning"], "explain": "turn 的过去式 turned。"},
+        {"stem": "They ____ very excited about the clubs.", "type": "choice", "a": 0, "opts": ["were", "are", "is", "be"], "explain": "they 的过去 be 动词 were。"},
+        {"stem": "A member of the Craft Club ____ them about paper-cuts.", "type": "choice", "a": 0, "opts": ["told", "tell", "tells", "telling"], "explain": "tell 的过去式 told。"},
+        {"stem": "Li Na and Liu Wei ____ all the clubs.", "type": "choice", "a": 0, "opts": ["joined", "join", "joins", "joining"], "explain": "join 的过去式 joined。"}
+      ]
+    },
+    {
+      "name": "二、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "come（不规则动词，come 的过去式是 came）", "type": "text", "a": "came", "ph": "不规则变化"},
+        {"stem": "say（不规则动词，say 的过去式是 said）", "type": "text", "a": "said", "ph": "不规则变化"},
+        {"stem": "design（规则动词，直接加 -ed）", "type": "text", "a": "designed", "ph": "直接加 -ed"},
+        {"stem": "shout（规则动词，直接加 -ed）", "type": "text", "a": "shouted", "ph": "直接加 -ed"},
+        {"stem": "surprise（规则动词，直接加 -d）", "type": "text", "a": "surprised", "ph": "加 -d"}
+      ]
+    },
+    {
+      "name": "三、完成句子（每空一词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "去年他们去了社团招募展。They ____ to the Clubs Fair last year.", "type": "text", "a": "went", "a2": ["went"]},
+        {"stem": "男孩把火箭发射到了天空。The boy ____ a rocket into the sky.", "type": "text", "a": "launched", "a2": ["launched"]},
+        {"stem": "一个女孩突然喊：\"当心！\" A girl suddenly ____ \"Watch out!\".", "type": "text", "a": "shouted", "a2": ["shouted"]},
+        {"stem": "玩具飞机靠太阳能飞行。The toy plane ____ on solar power.", "type": "text", "a": "ran", "a2": ["ran"]},
+        {"stem": "李娜和刘伟参加了所有社团。Li Na and Liu Wei ____ all the clubs.", "type": "text", "a": "joined", "a2": ["joined"]}
+      ]
+    },
+    {
+      "name": "四、句型转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "Li Na went to the Clubs Fair.（改为否定句）", "type": "text", "a": "Li Na didn't go to the Clubs Fair.", "a2": ["Li Na didn't go to the Clubs Fair.", "Li Na did not go to the Clubs Fair."]},
+        {"stem": "They launched a rocket.（改为一般疑问句）", "type": "text", "a": "Did they launch a rocket?", "a2": ["Did they launch a rocket?"]},
+        {"stem": "The boy launched the rocket into the sky.（对划线部分提问）", "type": "text", "a": "Where did the boy launch the rocket?", "a2": ["Where did the boy launch the rocket?"]},
+        {"stem": "They were very excited.（改为否定句）", "type": "text", "a": "They were not very excited.", "a2": ["They were not very excited.", "They weren't very excited."]},
+        {"stem": "A girl shouted, 'Watch out!'（改为一般疑问句）", "type": "text", "a": "Did a girl shout 'Watch out!'?", "a2": ["Did a girl shout 'Watch out!'?", "Did a girl shout \"Watch out!\"?"]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p3",
+    "title": "练习三 · 课文与阅读",
+    "time": "25 分钟",
+    "sub": "围绕单元阅读语篇《The Clubs Fair》——先读原文，再会答。",
+    "sections": [
+    {
+      "name": "一、课文原文《The Clubs Fair》",
+      "note": "沪教版英语七上 Unit 7 阅读语篇。先读原文，再做后面四道大题；答案都能在原文里找到。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">The Clubs Fair <span>阅读语篇 · 沪教版 英语 七年级上册 Unit 7</span></div><div class=\"rd-body\"><p><span class=\"rdn\">1</span>Li Na and Liu Wei are new students at Yangguang Junior High School.</p><p><span class=\"rdn\">2</span>Last month, they went to the Clubs Fair.</p><p><span class=\"rdn\">3</span>The fair was very crowded, but it was also a lot of fun.</p><p><span class=\"rdn\">4</span>First, Li Na and Liu Wei learnt about the Rocket Club.</p><p><span " +
+      "class=\"rdn\">5</span>\"Our club will teach you how to design and build rockets,\" a boy said.</p><p><span class=\"rdn\">6</span>He took a rocket and launched it into the sky.</p><p><span class=\"rdn\">7</span>The rocket took off and disappeared. Li Na and Liu Wei were very surprised.</p><p><span class=\"rdn\">8</span>A girl suddenly shouted, \"Watch out!\"</p><p><span class=\"rdn\">9</span>A moment later, a toy plane quickly flew past them.</p><p><span class=\"rdn\">10</span>\"I'm so sorry! " +
+      "It runs on solar power,\" said the girl.</p><p><span class=\"rdn\">11</span>\"It's amazing! Which club are you in?\" asked Li Na.</p><p><span class=\"rdn\">12</span>\"The Solar Power Club, of course! We build all kinds of wonderful machines.\"</p><p><span class=\"rdn\">13</span>The girl then passed the remote control to Li Na.</p><p><span class=\"rdn\">14</span>\"It is fun to fly the plane around the sports ground!\" said Li Na.</p><p><span class=\"rdn\">15</span>\"Wow, look at those beautiful" +
+      " paper-cuts over there,\" Liu Wei said excitedly.</p><p><span class=\"rdn\">16</span>A member of the Craft Club told them, \"If you join our club, you will learn how to cut paper into many different pretty shapes.\"</p><p><span class=\"rdn\">17</span>Li Na and Liu Wei were very excited. \"I want to join all the clubs!\" said Li Na. \"Me too!\" said Liu Wei.</p></div><details class=\"rdtr\"><summary>中文翻译（点开对照，先自己做题再看）</summary><div class=\"rdzh\"><p>1. 李娜和刘伟是阳光初中的新生。</p><p>2. 上个月，他们去了社团招募展。<" +
+      "/p><p>3. 集市很拥挤，但也非常有趣。</p><p>4. 起初，李娜和刘伟了解了火箭社团。</p><p>5. 一个男孩说：\"我们社团会教你如何设计和制作火箭。\"</p><p>6. 他拿起一枚火箭，把它发射到空中。</p><p>7. 火箭起飞后消失了。李娜和刘伟非常惊讶。</p><p>8. 一个女孩突然喊道：\"当心！\"</p><p>9. 片刻之后，一架玩具飞机迅速从他们身边飞过。</p><p>10. 女孩说：\"很抱歉！它是靠太阳能运行的。\"</p><p>11. 李娜问：\"太神奇了！你在哪个社团？\"</p><p>12. 女孩说：\"当然是太阳能社团！我们制作各种奇妙的机器。\"</p><p>13. 女孩随后把遥控器递给李娜。</p><p>14. 李娜说：\"在运动场周围飞行飞机真有意思！\"</p><p>15. 刘伟兴奋地说：\"哇，看那边那些漂亮的剪纸。\"</p><p>16. 手工社团的一名成员对他们说：\"如果你加入我们社团，你会学会如何把纸剪成许多不同漂亮的形状。\"</p><p>17. 李娜和刘伟非常兴奋。李娜说：\"我想加入所有的社团！\"刘伟说：\"我" +
+      "也是！\"</p></div></details><div class=\"rd-note\"><b>阅读策略：</b>读的时候试着找出每个 he / him / us / they 分别指谁，再圈出本单元学过的词汇和短语。</div></div>",
+      "items": [
+        {"stem": "这篇课文主要讲什么？", "type": "choice", "a": 0, "opts": ["李娜和刘伟在社团招募展上的经历", "如何发射火箭", "怎样做剪纸", "一次运动会"], "explain": "课文讲李娜和刘伟参加社团招募展，了解各个社团。"}
+      ]
+    },
+    {
+      "name": "二、课文选词填空",
+      "note": "每题 1 分，共 5 分。均出自课文原句。",
+      "items": [
+        {"stem": "Last month, Li Na and Liu Wei went to the Clubs ____.", "type": "choice", "a": 0, "opts": ["fair", "sale", "event", "show"]},
+        {"stem": "A boy ____ a rocket into the sky at the Rocket Club.", "type": "choice", "a": 0, "opts": ["launched", "landed", "lit", "left"]},
+        {"stem": "A girl suddenly ____, \"Watch out!\"", "type": "choice", "a": 0, "opts": ["shouted", "shaped", "shared", "shook"]},
+        {"stem": "It is fun to fly the plane around the sports ____.", "type": "choice", "a": 0, "opts": ["ground", "garden", "glove", "gift"]},
+        {"stem": "If you ____ our club, you will learn a lot.", "type": "choice", "a": 0, "opts": ["join", "jump", "joke", "judge"]}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据课文《The Clubs Fair》判断。",
+      "items": [
+        {"stem": "Li Na and Liu Wei went to the Clubs Fair last month.", "type": "tf", "a": "T"},
+        {"stem": "The rocket fell to the ground after it took off.", "type": "tf", "a": "F", "explain": "火箭起飞后消失了，没有掉到地上。"},
+        {"stem": "The toy plane ran on solar power.", "type": "tf", "a": "T"},
+        {"stem": "A member of the Craft Club taught them to cut paper into shapes.", "type": "tf", "a": "T"},
+        {"stem": "Li Na and Liu Wei did not like any clubs.", "type": "tf", "a": "F", "explain": "他们想加入所有社团，非常喜欢。"}
+      ]
+    },
+    {
+      "name": "四、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "What did the boy do at the Rocket Club?", "type": "choice", "a": 0, "opts": ["He launched a rocket into the sky.", "He built a plane.", "He cut paper.", "He sold snacks."]},
+        {"stem": "What runs on solar power?", "type": "choice", "a": 0, "opts": ["The toy plane.", "The rocket.", "The stamp.", "The spoon."]},
+        {"stem": "What did the Craft Club teach?", "type": "choice", "a": 0, "opts": ["How to cut paper into pretty shapes.", "How to launch rockets.", "How to bake pies.", "How to play football."]},
+        {"stem": "How did Li Na and Liu Wei feel about the fair?", "type": "choice", "a": 0, "opts": ["Very excited.", "Bored.", "Sleepy.", "Angry."]}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 4 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "When did Li Na and Liu Wei go to the Clubs Fair?", "type": "text", "a": "Last month", "a2": ["Last month.", "They went there last month.", "In the past month."]},
+        {"stem": "Who passed the remote control to Li Na?", "type": "text", "a": "A girl (from the Solar Power Club)", "a2": ["A girl.", "The girl from the Solar Power Club.", "A girl in the Solar Power Club."]},
+        {"stem": "What did the Craft Club member say they would learn?", "type": "text", "a": "How to cut paper into pretty shapes", "a2": ["How to cut paper into pretty shapes.", "They would learn to cut paper into shapes."]},
+        {"stem": "Why were Li Na and Liu Wei very excited?", "type": "text", "a": "Because the clubs were fun / they wanted to join all clubs", "a2": ["Because the clubs were fun.", "Because they wanted to join all the clubs."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p4",
+    "title": "练习四 · 阅读新篇章",
+    "time": "25 分钟",
+    "sub": "用本单元词汇、短语和句型新写的一篇文章。不翻课本，看看你是否真的理解和掌握了它们。",
+    "sections": [
+    {
+      "name": "一、阅读原文",
+      "note": "先通读全文，再完成下面的题。金色底纹的是本单元词汇短语，读的时候留意它们。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">A School Clubs Fair · 校园社团展 <span>用 Unit 7 词汇与表达新写</span></div><div class=\"rd-body\"><p>Last month, our school had a <span class=\"kw\">clubs fair</span>. It was very crowded, but it was a lot of fun. I <span class=\"kw\">went</span> there with my friend Chen Ming. First, we <span class=\"kw\">learnt</span> about the Rocket Club. A boy <span class=\"kw\">took</span> a <span class=\"kw\">rocket</span> and <span class=\"kw\">launched</span> it into t" +
+      "he sky. The rocket <span class=\"kw\">took off</span> and <span class=\"kw\">disappeared</span>. We were very <span class=\"kw\">surprised</span>.</p><p>Then a girl suddenly <span class=\"kw\">shouted</span>, \"Watch out!\" A toy plane quickly <span class=\"kw\">flew past</span> us. \"It runs on <span class=\"kw\">solar power</span>,\" she said. She <span class=\"kw\">passed</span> the <span class=\"kw\">remote control</span> to me. \"It is fun to fly the plane around the <span class=\"kw\">sports " +
+      "ground</span>,\" I said. We <span class=\"kw\">turned around</span> and saw the Craft Club's table.</p><p>A <span class=\"kw\">member</span> of the Craft Club told us, \"If you <span class=\"kw\">join</span> our club, you will learn how to cut paper into many different pretty <span class=\"kw\">shapes</span>.\" We saw beautiful <span class=\"kw\">paper-cuts</span>. Chen Ming and I were very <span class=\"kw\">excited</span>. \"I want to <span class=\"kw\">join</span> all the clubs!\" I said. \"M" +
+      "e too!\" he said. It was a <span class=\"kw\">fantastic</span> day, and I <span class=\"kw\">made a difference</span> to my school life.</p></div><div class=\"rd-note\"><b>阅读小任务：</b>读的时候圈出金色底纹的词汇和短语，看看你是不是每个都认识、都会用（注意它们大多是一般过去时）。</div></div>",
+      "items": [
+        {"stem": "这篇文章主要讲什么？", "type": "choice", "a": 0, "opts": ["作者和朋友的校园社团展经历", "如何制作火箭", "怎样做剪纸", "一次运动会"], "explain": "文章讲作者和朋友参加校园社团展，了解火箭、太阳能和手工社团。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据上文判断。",
+      "items": [
+        {"stem": "The school had a clubs fair last month.", "type": "tf", "a": "T"},
+        {"stem": "The rocket fell to the ground.", "type": "tf", "a": "F", "explain": "火箭起飞后消失了，没有落地。"},
+        {"stem": "The toy plane ran on solar power.", "type": "tf", "a": "T"},
+        {"stem": "The writer joined all the clubs.", "type": "tf", "a": "F", "explain": "作者想加入所有社团，但文中没说他全加入了。"},
+        {"stem": "The Craft Club taught how to cut paper into shapes.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "What did the boy launch at the fair?", "type": "choice", "a": 0, "opts": ["A rocket.", "A plane.", "A stamp.", "A spoon."]},
+        {"stem": "What did the toy plane run on?", "type": "choice", "a": 0, "opts": ["Solar power.", "Remote control.", "A battery.", "The sun."]},
+        {"stem": "Who passed the remote control to the writer?", "type": "choice", "a": 0, "opts": ["A girl from the Solar Power Club.", "A boy.", "A member of the Craft Club.", "The teacher."]},
+        {"stem": "What did the Craft Club teach?", "type": "choice", "a": 0, "opts": ["How to cut paper into shapes.", "How to fly a plane.", "How to launch rockets.", "How to make snacks."]},
+        {"stem": "How did the writer feel about the fair?", "type": "choice", "a": 0, "opts": ["Excited.", "Bored.", "Tired.", "Angry."]}
+      ]
+    },
+    {
+      "name": "四、词汇与表达 · 语境理解",
+      "note": "每题 1 分，共 5 分。结合文章语境，判断词汇和短语的意思与用法。",
+      "items": [
+        {"stem": "\"clubs fair\" 的意思是：", "type": "choice", "a": 0, "opts": ["社团招募展", "运动会", "书市", "食堂"], "explain": "clubs fair 社团招募展；各社团招新。"},
+        {"stem": "\"launch\" 的意思是：", "type": "choice", "a": 0, "opts": ["发射", "降落", "打开", "关闭"], "explain": "launch 发射（过去式 launched）。"},
+        {"stem": "\"solar power\" 的意思是：", "type": "choice", "a": 0, "opts": ["太阳能", "遥控器", "电池", "电力"], "explain": "solar power 太阳能。"},
+        {"stem": "\"paper-cut\" 的意思是：", "type": "choice", "a": 0, "opts": ["剪纸", "海报", "火箭", "邮票"], "explain": "paper-cut 剪纸。"},
+        {"stem": "\"fantastic\" 的意思是：", "type": "choice", "a": 0, "opts": ["极好的；了不起的", "普通的", "糟糕的", "疲倦的"], "explain": "fantastic 极好的。"}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "When did the school have the clubs fair?", "type": "text", "a": "Last month", "a2": ["Last month.", "The school had it last month."]},
+        {"stem": "What did the rocket do after it took off?", "type": "text", "a": "It disappeared", "a2": ["It disappeared.", "The rocket disappeared."]},
+        {"stem": "What did the girl say when the plane flew past?", "type": "text", "a": "Watch out", "a2": ["Watch out.", "She shouted \"Watch out!\"."]},
+        {"stem": "Where did the writer fly the toy plane?", "type": "text", "a": "Around the sports ground", "a2": ["Around the sports ground.", "On the sports ground."]},
+        {"stem": "Why was it a fantastic day?", "type": "text", "a": "Because the clubs were fun and they wanted to join", "a2": ["Because the clubs were fun.", "Because they wanted to join all the clubs."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p5",
+    "title": "练习五 · 中国课余雅趣",
+    "time": "20 分钟",
+    "sub": "从书法到民乐，从围棋到更多雅趣——用英语带你逛中国的课余生活，边学边看。",
+    "sections": [
+    {
+      "name": "一、文化读本（原文）",
+      "note": "三段都围绕本单元主题与中国文化。先通读，再做后面的题。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">中国课余雅趣 · Chinese After-school Interests <span>结合 Unit 7 Fun after School</span></div><div class=\"rd-body\"><p><b>A. 书法 · Calligraphy</b><br>Many Chinese students <span class=\"kw\">take part in</span> <span class=\"kw\">after-school activities</span> like calligraphy. Calligraphy is a beautiful art of writing Chinese characters with a brush. Last term, Li Hua <span class=\"kw\">joined</span> the school calligraphy <span class=\"kw\">club</span>" +
+      " and became a <span class=\"kw\">member</span>. Every week she practised and <span class=\"kw\">made a difference</span> to her writing. Her teacher said her work was <span class=\"kw\">fantastic</span>.</p><p><b>B. 民乐 · Folk Music</b><br>Chinese folk music is another popular after-school interest. Students learn to play the erhu, the pipa and the guzheng. At the school <span class=\"kw\">clubs fair</span>, a girl <span class=\"kw\">played</span> a wonderful piece on the guzheng. Many " +
+      "students <span class=\"kw\">sign up</span> for the music club because it is a lot of fun. They often <span class=\"kw\">compete</span> in school events and feel very <span class=\"kw\">excited</span>.</p><p><b>C. 围棋 · The Game of Go</b><br>Weiqi, or Go, is an old Chinese board game. It teaches young people to think carefully. Last month, Wang Lei <span class=\"kw\">attended</span> a Go match at his school. He <span class=\"kw\">played</span> against a strong <span class=\"kw\">member</sp" +
+      "an> of the Go club and <span class=\"kw\">learnt</span> a lot. Chinese after-school interests are not only fun but also full of culture. They help students <span class=\"kw\">develop</span> good skills and happy memories.</p></div><div class=\"rd-note\"><b>文化小知识：</b>书法、民乐、围棋都是中国人喜爱的课余雅趣。它们既是爱好，也承载着中华优秀传统文化。</div></div>",
+      "items": [
+        {"stem": "这三段文字共同讲的是什么？", "type": "choice", "a": 0, "opts": ["中国的三种课余雅趣：书法、民乐、围棋", "中国的美食", "中国的节日", "中国的运动"], "explain": "三段分别介绍书法、民乐、围棋三种中国课余雅趣。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 A · 判断正误（T / F）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "Calligraphy is a Chinese after-school activity.", "type": "tf", "a": "T"},
+        {"stem": "Chinese folk music uses only the piano.", "type": "tf", "a": "F", "explain": "民乐用二胡、琵琶、古筝等，不是钢琴。"},
+        {"stem": "Weiqi (Go) is an old Chinese board game.", "type": "tf", "a": "T"},
+        {"stem": "Chinese after-school interests have no culture.", "type": "tf", "a": "F", "explain": "它们承载着中华优秀传统文化。"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 B · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "What did Li Hua join last term?", "type": "choice", "a": 0, "opts": ["The school calligraphy club.", "The music club.", "The Go club.", "The rocket club."]},
+        {"stem": "Which instruments are in Chinese folk music?", "type": "choice", "a": 0, "opts": ["The erhu, pipa and guzheng.", "The piano and violin.", "The drum.", "The flute only."]},
+        {"stem": "What did Wang Lei do last month?", "type": "choice", "a": 0, "opts": ["He attended a Go match at school.", "He launched a rocket.", "He cut paper.", "He played football."]},
+        {"stem": "Why are Chinese after-school interests good?", "type": "choice", "a": 0, "opts": ["They are fun and full of culture.", "They are boring.", "They are only for adults.", "They cost a lot."]}
+      ]
+    },
+    {
+      "name": "四、文化表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What art did Li Hua practise in the calligraphy club?", "type": "text", "a": "Writing Chinese characters with a brush", "a2": ["Writing Chinese characters with a brush.", "She practised calligraphy."]},
+        {"stem": "Why do students sign up for the music club?", "type": "text", "a": "Because it is a lot of fun", "a2": ["Because it is a lot of fun.", "Because they like folk music."]},
+        {"stem": "What did Wang Lei learn from the Go match?", "type": "text", "a": "He learned a lot from a strong member", "a2": ["He learned a lot.", "He learnt from a strong member."]},
+        {"stem": "What do Chinese after-school interests help students do?", "type": "text", "a": "Develop good skills and happy memories", "a2": ["Develop good skills and happy memories.", "They help students develop skills."]},
+        {"stem": "Name one Chinese after-school interest from the text.", "type": "text", "a": "Calligraphy / folk music / Go", "a2": ["Calligraphy.", "Folk music.", "Go (Weiqi)."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t1",
+    "title": "测试卷一 · Unit 7 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型参照本地单元卷：辨音 + 单选 + 语法选择 + 完形 + 阅读 + 回答问题 + 拼写 + 词形转换 + 写作。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>launch</u>ed&nbsp;&nbsp;B. <u>pass</u>ed&nbsp;&nbsp;C. <u>look</u>ed&nbsp;&nbsp;D. <u>visit</u>ed", "type": "choice", "a": 3, "opts": ["launched", "passed", "looked", "visited"], "explain": "launched / passed / looked 中 ed 发 /t/，visited 中 ed 发 /ɪd/。"},
+        {"stem": "A. <u>turn</u>ed&nbsp;&nbsp;B. <u>join</u>ed&nbsp;&nbsp;C. <u>call</u>ed&nbsp;&nbsp;D. <u>shout</u>ed", "type": "choice", "a": 3, "opts": ["turned", "joined", "called", "shouted"], "explain": "turned / joined / called 中 ed 发 /d/，shouted 中 ed 发 /ɪd/。"},
+        {"stem": "A. <u>attend</u>ed&nbsp;&nbsp;B. <u>need</u>ed&nbsp;&nbsp;C. <u>play</u>ed&nbsp;&nbsp;D. <u>visit</u>ed", "type": "choice", "a": 2, "opts": ["attended", "needed", "played", "visited"], "explain": "attended / needed / visited 中 ed 发 /ɪd/，played 中 ed 发 /d/。"},
+        {"stem": "A. r<u>o</u>cket&nbsp;&nbsp;B. l<u>o</u>ve&nbsp;&nbsp;C. s<u>o</u>ck&nbsp;&nbsp;D. p<u>o</u>t", "type": "choice", "a": 1, "opts": ["rocket", "love", "sock", "pot"], "explain": "rocket / sock / pot 中 o 发 /ɒ/，love 中 o 发 /ʌ/。"},
+        {"stem": "A. p<u>ow</u>er&nbsp;&nbsp;B. sh<u>ou</u>t&nbsp;&nbsp;C. m<u>o</u>ment&nbsp;&nbsp;D. n<u>ow</u>", "type": "choice", "a": 2, "opts": ["power", "shout", "moment", "now"], "explain": "power / shout / now 中 ow/ou 发 /aʊ/，moment 中 o 发 /əʊ/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "Li Na and Liu Wei ____ to the Clubs Fair last month.", "type": "choice", "a": 0, "opts": ["went", "go", "goes", "going"], "explain": "go 的过去式 went。"},
+        {"stem": "A boy ____ a rocket into the sky.", "type": "choice", "a": 0, "opts": ["launched", "launch", "launches", "lands"], "explain": "launch 的过去式 launched。"},
+        {"stem": "The rocket took off and ____.", "type": "choice", "a": 0, "opts": ["disappeared", "disappear", "dropped", "landed"], "explain": "disappear 的过去式 disappeared。"},
+        {"stem": "A girl suddenly ____ \"Watch out!\".", "type": "choice", "a": 0, "opts": ["shouted", "shout", "said", "spoke"], "explain": "shout 的过去式 shouted。"},
+        {"stem": "The toy plane ____ on solar power.", "type": "choice", "a": 0, "opts": ["ran", "run", "flies", "runs"], "explain": "run 的过去式 ran。"},
+        {"stem": "Li Na ____ around and looked at the table.", "type": "choice", "a": 0, "opts": ["turned", "turn", "turns", "looked"], "explain": "turn 的过去式 turned。"},
+        {"stem": "They ____ very excited about the clubs.", "type": "choice", "a": 0, "opts": ["were", "are", "was", "be"], "explain": "they 的过去 be 动词 were。"},
+        {"stem": "A member of the Craft Club ____ them about paper-cuts.", "type": "choice", "a": 0, "opts": ["told", "tell", "said", "speaks"], "explain": "tell 的过去式 told。"},
+        {"stem": "Li Na and Liu Wei ____ all the clubs.", "type": "choice", "a": 0, "opts": ["joined", "join", "like", "want"], "explain": "join 的过去式 joined。"},
+        {"stem": "It was a ____ day at the fair.", "type": "choice", "a": 0, "opts": ["fantastic", "fair", "crowded", "small"], "explain": "fantastic 极好的。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Last month, Li Na and Liu Wei (1)____ to the Clubs Fair.", "type": "choice", "a": 0, "opts": ["went", "go", "goes", "walk"], "explain": "go 的过去式 went。"},
+        {"stem": "It (2)____ very crowded but fun.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "it 的过去 be 动词 was。"},
+        {"stem": "A boy (3)____ a rocket and launched it.", "type": "choice", "a": 0, "opts": ["took", "take", "makes", "got"], "explain": "take 的过去式 took。"},
+        {"stem": "He launched (4)____ into the sky.", "type": "choice", "a": 0, "opts": ["it", "them", "him", "her"], "explain": "it 指代 rocket。"},
+        {"stem": "The rocket (5)____ off and disappeared.", "type": "choice", "a": 0, "opts": ["took", "turned", "fell", "got"], "explain": "take off 起飞（过去式 took off）。"},
+        {"stem": "A girl (6)____ \"Watch out!\".", "type": "choice", "a": 0, "opts": ["shouted", "shout", "said", "spoke"], "explain": "shout 的过去式 shouted。"},
+        {"stem": "The plane (7)____ on solar power.", "type": "choice", "a": 0, "opts": ["ran", "run", "fly", "flies"], "explain": "run 的过去式 ran。"},
+        {"stem": "They (8)____ very excited.", "type": "choice", "a": 0, "opts": ["were", "are", "was", "be"], "explain": "they 的过去 be 动词 were。"},
+        {"stem": "A member (9)____ them about paper-cuts.", "type": "choice", "a": 0, "opts": ["told", "tell", "said", "asked"], "explain": "tell 的过去式 told。"},
+        {"stem": "They (10)____ to join all the clubs.", "type": "choice", "a": 0, "opts": ["wanted", "want", "like", "hope"], "explain": "want 的过去式 wanted。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Yesterday, our school (1)____ a charity sale.", "type": "choice", "a": 0, "opts": ["had", "has", "hold", "make"], "explain": "have 的过去式 had。"},
+        {"stem": "Many students (2)____ part in it.", "type": "choice", "a": 0, "opts": ["took", "take", "join", "make"], "explain": "take part in 参加（过去式 took）。"},
+        {"stem": "We (3)____ snacks and drinks.", "type": "choice", "a": 0, "opts": ["sold", "sell", "make", "buy"], "explain": "sell 的过去式 sold。"},
+        {"stem": "We (4)____ the classroom with posters.", "type": "choice", "a": 0, "opts": ["decorated", "decorate", "clean", "open"], "explain": "decorate 的过去式 decorated。"},
+        {"stem": "A boy (5)____ a poster on the wall.", "type": "choice", "a": 0, "opts": ["put", "puts", "made", "wrote"], "explain": "put 的过去式仍是 put。"},
+        {"stem": "Girls (6)____ beautiful paper-cuts.", "type": "choice", "a": 0, "opts": ["cut", "cuts", "made", "draw"], "explain": "cut 的过去式仍是 cut。"},
+        {"stem": "We (7)____ a lot of money for the charity.", "type": "choice", "a": 0, "opts": ["raised", "raise", "get", "give"], "explain": "raise 的过去式 raised（筹集）。"},
+        {"stem": "Everyone (8)____ happy.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "everyone 用 was。"},
+        {"stem": "I (9)____ a member of the team.", "type": "choice", "a": 0, "opts": ["became", "become", "am", "be"], "explain": "become 的过去式 became。"},
+        {"stem": "It (10)____ a fantastic day.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "it 的过去 be 动词 was。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>CLUB SIGN-UP MEETING. When: Friday, September 20th, 3:00 p.m. Where: School Hall. What: Our clubs will show their activities. The Rocket Club will launch a small rocket. The Craft Club will teach paper-cuts. Please sign up before Thursday. Bring your student card.<br>Where will the meeting be?", "type": "choice", "a": 0, "opts": ["In the school hall.", "In the playground.", "At the rocket club.", "In the library."]},
+        {"stem": "What will the Rocket Club do?", "type": "choice", "a": 0, "opts": ["Launch a small rocket.", "Cut paper.", "Sing a song.", "Play football."]},
+        {"stem": "When should students sign up?", "type": "choice", "a": 0, "opts": ["Before Thursday.", "On Friday.", "On Monday.", "Next month."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Last month, Zhang Lei went to the Clubs Fair with his friend. First, they learnt about the Rocket Club. A boy took a rocket and launched it into the sky. \"Wow!\" said Zhang Lei. Then a girl shouted, \"Watch out!\" A toy plane flew past them. It ran on solar power. Zhang Lei turned around and saw the Craft Club. A member said, \"If you join our club, you will learn to cut paper into pretty shapes.\" Zhang Lei was very excited. \"I want to join all the clubs!\" he said.<br>Where did Zhang Lei go last month?", "type": "choice", "a": 0, "opts": ["To the Clubs Fair.", "To the library.", "To the park.", "To the museum."]},
+        {"stem": "What did the boy launch?", "type": "choice", "a": 0, "opts": ["A rocket.", "A plane.", "A stamp.", "A spoon."]},
+        {"stem": "What did the toy plane run on?", "type": "choice", "a": 0, "opts": ["Solar power.", "A battery.", "The sun.", "Wind."]},
+        {"stem": "What did the Craft Club teach?", "type": "choice", "a": 0, "opts": ["How to cut paper into shapes.", "How to fly a plane.", "How to launch rockets.", "How to make snacks."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Wang Fang, Last Sunday I attended the school craft event. I joined the paper-cut club and became a member. A girl taught me to cut paper into a beautiful shape. We also made a poster for the clubs fair. It was fantastic! Next month, I will take part in the school art show. If you come, you will love it. Write back! Yours, Li Tao<br>When did Li Tao attend the craft event?", "type": "choice", "a": 0, "opts": ["Last Sunday.", "Last Monday.", "Yesterday.", "Next month."]},
+        {"stem": "What did Li Tao join?", "type": "choice", "a": 0, "opts": ["The paper-cut club.", "The rocket club.", "The music club.", "The Go club."]},
+        {"stem": "What did a girl teach him?", "type": "choice", "a": 0, "opts": ["How to cut paper into a shape.", "How to launch a rocket.", "How to play the erhu.", "How to fly a plane."]},
+        {"stem": "What will Li Tao do next month?", "type": "choice", "a": 0, "opts": ["Take part in the school art show.", "Launch a rocket.", "Visit a museum.", "Play football."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>A School Clubs Fair. Last month, our school had a clubs fair. Many clubs showed their activities. The Rocket Club launched a rocket. The Solar Power Club flew a toy plane on solar power. The Craft Club taught paper-cuts. I joined the Craft Club and became a member. It was a fantastic day. I want to take part in more after-school activities.<br>When did the school have the clubs fair?", "type": "text", "a": "Last month", "a2": ["Last month.", "The school had it last month."]},
+        {"stem": "What did the Rocket Club do?", "type": "text", "a": "Launched a rocket", "a2": ["Launched a rocket.", "It launched a rocket."]},
+        {"stem": "What did the Solar Power Club fly?", "type": "text", "a": "A toy plane (on solar power)", "a2": ["A toy plane.", "A toy plane on solar power."]},
+        {"stem": "Which club did the writer join?", "type": "text", "a": "The Craft Club", "a2": ["The Craft Club.", "He joined the Craft Club."]},
+        {"stem": "How did the writer feel about the day?", "type": "text", "a": "Fantastic / excited", "a2": ["Fantastic.", "Excited.", "It was fantastic."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "l____（文学；文学作品）", "type": "text", "a": "literature"},
+        {"stem": "l____（发射）", "type": "text", "a": "launch"},
+        {"stem": "（去……远足）", "type": "text", "a": "hike"},
+        {"stem": "d____（装饰；装潢）", "type": "text", "a": "decorate"},
+        {"stem": "f____（极好的；了不起的）", "type": "text", "a": "fantastic"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "come（不规则动词，come 的过去式是 came）", "type": "text", "a": "came", "ph": "来（过去式）"},
+        {"stem": "say（不规则动词，say 的过去式是 said）", "type": "text", "a": "said", "ph": "说（过去式）"},
+        {"stem": "design（规则动词，直接加 -ed）", "type": "text", "a": "designed", "ph": "设计（过去式）"},
+        {"stem": "shout（规则动词，直接加 -ed）", "type": "text", "a": "shouted", "ph": "大喊（过去式）"},
+        {"stem": "surprise（规则动词，直接加 -d）", "type": "text", "a": "surprised", "ph": "使惊讶（过去式）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Favourite School Club（我最喜欢的学校社团）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 clubs fair, launch, rocket, solar power, take part in, join, member, paper-cut, after-school activities, fantastic, shout, turn around）；③ 用一般过去时讲述你参加/了解社团的经历；④ 句首大写、句末标点。", "type": "essay", "score": 10, "ph": "My Favourite School Club\n\nLast month, I went to...", "check": ["有没有写清社团名字和你做了什么（一般过去时）？", "有没有用 launch / rocket / solar power 等本单元词汇？", "有没有用 take part in / join / member？", "有没有用 fantastic / excited 等词表达感受？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">My Favourite School Club<br><br>Last month, our school had a clubs fair. I went there with my friend. First, we saw the Rocket Club. A boy took a rocket and launched it into the sky. It was amazing! Then I joined the Craft Club and became a member. A girl taught me to cut paper into pretty shapes. I was very excited and had a fantastic day. I want to take part in more after-school activities.</div><div class=\"zh\">（参考范文：用一般过去时写了参加社团招募展、看火箭发射、加入手工社团并学剪纸，用了 clubs fair / launch / rocket / joined / member / take part in / after-school activities / fantastic / excited 等本单元词汇，注意了句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t2",
+    "title": "测试卷二 · Unit 7 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与测试卷一相同，题目全部更换（词汇、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>start</u>ed&nbsp;&nbsp;B. <u>need</u>ed&nbsp;&nbsp;C. <u>want</u>ed&nbsp;&nbsp;D. <u>call</u>ed", "type": "choice", "a": 3, "opts": ["started", "needed", "wanted", "called"], "explain": "started / needed / wanted 中 ed 发 /ɪd/，called 中 ed 发 /d/。"},
+        {"stem": "A. <u>help</u>ed&nbsp;&nbsp;B. <u>look</u>ed&nbsp;&nbsp;C. <u>jump</u>ed&nbsp;&nbsp;D. <u>visit</u>ed", "type": "choice", "a": 3, "opts": ["helped", "looked", "jumped", "visited"], "explain": "helped / looked / jumped 中 ed 发 /t/，visited 中 ed 发 /ɪd/。"},
+        {"stem": "A. <u>join</u>ed&nbsp;&nbsp;B. <u>turn</u>ed&nbsp;&nbsp;C. <u>shar</u>ed&nbsp;&nbsp;D. <u>shout</u>ed", "type": "choice", "a": 3, "opts": ["joined", "turned", "shared", "shouted"], "explain": "joined / turned / shared 中 ed 发 /d/，shouted 中 ed 发 /ɪd/。"},
+        {"stem": "A. <u>a</u>ct&nbsp;&nbsp;B. <u>a</u>nnual&nbsp;&nbsp;C. <u>a</u>ttend&nbsp;&nbsp;D. <u>a</u>go", "type": "choice", "a": 3, "opts": ["act", "annual", "attend", "ago"], "explain": "act / annual / attend 中 a 发 /æ/，ago 中 a 发 /əʊ/。"},
+        {"stem": "A. m<u>o</u>ment&nbsp;&nbsp;B. ph<u>o</u>ne&nbsp;&nbsp;C. <u>o</u>ver&nbsp;&nbsp;D. s<u>o</u>ck", "type": "choice", "a": 3, "opts": ["moment", "phone", "over", "sock"], "explain": "moment / phone / over 中 o 发 /əʊ/，sock 中 o 发 /ɒ/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "Last week, we ____ a clubs fair at school.", "type": "choice", "a": 0, "opts": ["had", "have", "has", "hold"], "explain": "have 的过去式 had。"},
+        {"stem": "A boy ____ a rocket and launched it.", "type": "choice", "a": 0, "opts": ["took", "take", "make", "get"], "explain": "take 的过去式 took。"},
+        {"stem": "The toy plane ____ on solar power.", "type": "choice", "a": 0, "opts": ["ran", "run", "fly", "flyed"], "explain": "run 的过去式 ran。"},
+        {"stem": "A girl ____ \"Watch out!\" when it flew past.", "type": "choice", "a": 0, "opts": ["shouted", "shout", "say", "tell"], "explain": "shout 的过去式 shouted。"},
+        {"stem": "Li Na ____ around and looked at the table.", "type": "choice", "a": 0, "opts": ["turned", "turn", "turns", "look"], "explain": "turn 的过去式 turned。"},
+        {"stem": "They ____ very excited about the clubs.", "type": "choice", "a": 0, "opts": ["were", "are", "was", "be"], "explain": "they 的过去 be 动词 were。"},
+        {"stem": "A member ____ them to cut paper.", "type": "choice", "a": 0, "opts": ["taught", "teach", "tell", "said"], "explain": "teach 的过去式 taught。"},
+        {"stem": "I ____ the Craft Club and became a member.", "type": "choice", "a": 0, "opts": ["joined", "join", "like", "want"], "explain": "join 的过去式 joined。"},
+        {"stem": "The paper-cuts were very ____.", "type": "choice", "a": 0, "opts": ["pretty", "ugly", "big", "old"], "explain": "pretty 漂亮的。"},
+        {"stem": "It was a ____ day for everyone.", "type": "choice", "a": 0, "opts": ["fantastic", "bad", "small", "cold"], "explain": "fantastic 极好的。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Last weekend, our class (1)____ a charity sale.", "type": "choice", "a": 0, "opts": ["had", "has", "hold", "make"], "explain": "have 的过去式 had。"},
+        {"stem": "We (2)____ snacks and drinks.", "type": "choice", "a": 0, "opts": ["sold", "sell", "make", "buy"], "explain": "sell 的过去式 sold。"},
+        {"stem": "A boy (3)____ posters on the wall.", "type": "choice", "a": 0, "opts": ["put", "puts", "made", "wrote"], "explain": "put 的过去式 put。"},
+        {"stem": "Girls (4)____ beautiful paper-cuts.", "type": "choice", "a": 0, "opts": ["cut", "cuts", "made", "draw"], "explain": "cut 的过去式 cut。"},
+        {"stem": "We (5)____ the classroom with flowers.", "type": "choice", "a": 0, "opts": ["decorated", "decorate", "clean", "open"], "explain": "decorate 的过去式 decorated。"},
+        {"stem": "Many students (6)____ part in it.", "type": "choice", "a": 0, "opts": ["took", "take", "join", "make"], "explain": "take part in 参加。"},
+        {"stem": "We (7)____ a lot of money for the charity.", "type": "choice", "a": 0, "opts": ["raised", "raise", "get", "give"], "explain": "raise 的过去式 raised。"},
+        {"stem": "Everyone (8)____ happy.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "everyone 用 was。"},
+        {"stem": "I (9)____ a member of the team.", "type": "choice", "a": 0, "opts": ["became", "become", "am", "be"], "explain": "become 的过去式 became。"},
+        {"stem": "It (10)____ a fantastic day.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "it 的过去 be 动词 was。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Yesterday, our school (1)____ a hike.", "type": "choice", "a": 0, "opts": ["had", "has", "hold", "take"], "explain": "have 的过去式 had。"},
+        {"stem": "We (2)____ to the park.", "type": "choice", "a": 0, "opts": ["went", "go", "walk", "run"], "explain": "go 的过去式 went。"},
+        {"stem": "A teacher (3)____ us about plants.", "type": "choice", "a": 0, "opts": ["taught", "teach", "tell", "said"], "explain": "teach 的过去式 taught。"},
+        {"stem": "We (4)____ many flowers.", "type": "choice", "a": 0, "opts": ["saw", "see", "look", "watch"], "explain": "see 的过去式 saw。"},
+        {"stem": "Some students (5)____ photos.", "type": "choice", "a": 0, "opts": ["took", "take", "make", "get"], "explain": "take photos 拍照。"},
+        {"stem": "I (6)____ a friend and we played together.", "type": "choice", "a": 0, "opts": ["met", "meet", "find", "call"], "explain": "meet 的过去式 met。"},
+        {"stem": "We (7)____ together all afternoon.", "type": "choice", "a": 0, "opts": ["played", "play", "walk", "study"], "explain": "play 的过去式 played。"},
+        {"stem": "We (8)____ our lunch on the grass.", "type": "choice", "a": 0, "opts": ["ate", "eat", "make", "buy"], "explain": "eat 的过去式 ate。"},
+        {"stem": "It (9)____ a lot of fun.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "it 用 was。"},
+        {"stem": "Everyone (10)____ happy.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "everyone 用 was。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（海报）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>海报：</b>JOIN THE CRAFT CLUB! Do you like paper-cuts? Come to our club! We meet every Friday after school. A member will teach you to cut paper into pretty shapes. We also make posters and decorate the classroom. Last month, we went to the Clubs Fair and showed our work. It was fantastic! Sign up in Room 305.<br>What does the Craft Club teach?", "type": "choice", "a": 0, "opts": ["How to cut paper into shapes.", "How to launch rockets.", "How to play football.", "How to sing."]},
+        {"stem": "When does the club meet?", "type": "choice", "a": 0, "opts": ["Every Friday after school.", "Every Monday.", "On Sunday.", "Every day."]},
+        {"stem": "Where can students sign up?", "type": "choice", "a": 0, "opts": ["In Room 305.", "In the library.", "At the rocket club.", "On the playground."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Last Saturday, Chen Mei went to a school charity sale with her classmates. They sold snacks and drinks. Chen Mei made a poster. Her friend Lin Tao cut beautiful paper-cuts. They raised money for a charity. \"We can make a difference,\" said Lin Tao. Chen Mei was very happy. \"I want to take part in more after-school activities,\" she said.<br>Where did Chen Mei go last Saturday?", "type": "choice", "a": 0, "opts": ["To a school charity sale.", "To a library.", "To a park.", "To a museum."]},
+        {"stem": "What did Lin Tao cut?", "type": "choice", "a": 0, "opts": ["Beautiful paper-cuts.", "A rocket.", "A poster.", "A stamp."]},
+        {"stem": "What did they do with the money?", "type": "choice", "a": 0, "opts": ["Raised it for a charity.", "Bought snacks.", "Gave it away.", "Saved it."]},
+        {"stem": "How did Chen Mei feel?", "type": "choice", "a": 0, "opts": ["Very happy.", "Bored.", "Tired.", "Angry."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Liu Wei, Guess what! Yesterday I attended the school hike. We went to the park and a teacher taught us about plants. I met a new friend and we played together. We ate our lunch on the grass. It was a lot of fun. I took many photos. If you come next time, you will love it too. Write soon! Yours, Zhao Liang<br>Where did Zhao Liang go yesterday?", "type": "choice", "a": 0, "opts": ["To the school hike (to the park).", "To the library.", "To a museum.", "To the beach."]},
+        {"stem": "What did a teacher teach them?", "type": "choice", "a": 0, "opts": ["About plants.", "About rockets.", "About paper-cuts.", "About music."]},
+        {"stem": "What did Zhao Liang take?", "type": "choice", "a": 0, "opts": ["Many photos.", "A rocket.", "A poster.", "A stamp."]},
+        {"stem": "What will Zhao Liang's friend do next time?", "type": "choice", "a": 0, "opts": ["Come and love it too.", "Launch a rocket.", "Cut paper.", "Stay home."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Our School Charity Sale. Last weekend, our class had a charity sale. We sold snacks and drinks. A boy put posters on the wall. Girls cut beautiful paper-cuts. We decorated the classroom with flowers. Many students took part in it. We raised money for a charity. I became a member of the team. It was a fantastic day.<br>When did the class have the charity sale?", "type": "text", "a": "Last weekend", "a2": ["Last weekend.", "The class had it last weekend."]},
+        {"stem": "What did the girls cut?", "type": "text", "a": "Beautiful paper-cuts", "a2": ["Beautiful paper-cuts.", "They cut paper-cuts."]},
+        {"stem": "What did they raise money for?", "type": "text", "a": "For a charity", "a2": ["For a charity.", "They raised money for a charity."]},
+        {"stem": "What did the writer become?", "type": "text", "a": "A member of the team", "a2": ["A member of the team.", "He became a member."]},
+        {"stem": "How was the day?", "type": "text", "a": "Fantastic", "a2": ["Fantastic.", "It was fantastic."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "（扮演）", "type": "text", "a": "act"},
+        {"stem": "s____（大声说；叫）", "type": "text", "a": "shout"},
+        {"stem": "r____（不久前；最近）", "type": "text", "a": "recently"},
+        {"stem": "d____（差别；差异）", "type": "text", "a": "difference"},
+        {"stem": "e____（设备；器材）", "type": "text", "a": "equipment"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "see（不规则动词，see 的过去式是 saw）", "type": "text", "a": "saw", "ph": "看见（过去式）"},
+        {"stem": "fly（不规则动词，fly 的过去式是 flew）", "type": "text", "a": "flew", "ph": "飞（过去式）"},
+        {"stem": "learn（learn 的过去式可为 learnt / learned）", "type": "text", "a": "learnt", "a2": ["learnt", "learned"], "ph": "学习（过去式）"},
+        {"stem": "pass（规则动词，直接加 -ed）", "type": "text", "a": "passed", "ph": "递给（过去式）"},
+        {"stem": "compete（去 e 加 -ed）", "type": "text", "a": "competed", "ph": "竞争（过去式）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：A School Activity I Took Part In（我参加的一次学校活动）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 take part in, club, member, charity, sale, decorate, raise, fantastic, excited, snack, poster）；③ 用一般过去时叙述活动的经过；④ 句首大写、句末标点。", "type": "essay", "score": 10, "ph": "A School Activity I Took Part In\n\nLast weekend, I...", "check": ["有没有用一般过去时叙述活动经过？", "有没有用 take part in / club / member？", "有没有用 charity / sale / raise 等词汇？", "有没有用 fantastic / excited 表达感受？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">A School Activity I Took Part In<br><br>Last weekend, our class had a charity sale. I took part in it and became a member of the team. We sold snacks and drinks. A boy put posters on the wall, and girls cut beautiful paper-cuts. We decorated the classroom with flowers and raised money for a charity. It was a fantastic day and I was very excited. I want to join more after-school activities.</div><div class=\"zh\">（参考范文：用一般过去时写了班级义卖，用了 take part in / member / club / charity / sale / decorate / raise / fantastic / excited / snack / poster 等本单元词汇，注意了句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t3",
+    "title": "测试卷三 · Unit 7 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与前两套相同，题目全部更换（辨音组合、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>want</u>ed&nbsp;&nbsp;B. <u>need</u>ed&nbsp;&nbsp;C. <u>start</u>ed&nbsp;&nbsp;D. <u>play</u>ed", "type": "choice", "a": 3, "opts": ["wanted", "needed", "started", "played"], "explain": "wanted / needed / started 中 ed 发 /ɪd/，played 中 ed 发 /d/。"},
+        {"stem": "A. <u>look</u>ed&nbsp;&nbsp;B. <u>help</u>ed&nbsp;&nbsp;C. <u>jump</u>ed&nbsp;&nbsp;D. <u>shout</u>ed", "type": "choice", "a": 3, "opts": ["looked", "helped", "jumped", "shouted"], "explain": "looked / helped / jumped 中 ed 发 /t/，shouted 中 ed 发 /ɪd/。"},
+        {"stem": "A. <u>call</u>ed&nbsp;&nbsp;B. <u>join</u>ed&nbsp;&nbsp;C. <u>turn</u>ed&nbsp;&nbsp;D. <u>visit</u>ed", "type": "choice", "a": 3, "opts": ["called", "joined", "turned", "visited"], "explain": "called / joined / turned 中 ed 发 /d/，visited 中 ed 发 /ɪd/。"},
+        {"stem": "A. <u>a</u>ct&nbsp;&nbsp;B. <u>a</u>nnual&nbsp;&nbsp;C. <u>a</u>ttend&nbsp;&nbsp;D. <u>a</u>go", "type": "choice", "a": 3, "opts": ["act", "annual", "attend", "ago"], "explain": "act / annual / attend 中 a 发 /æ/，ago 中 a 发 /əʊ/。"},
+        {"stem": "A. s<u>u</u>n&nbsp;&nbsp;B. r<u>u</u>n&nbsp;&nbsp;C. c<u>u</u>t&nbsp;&nbsp;D. c<u>u</u>te", "type": "choice", "a": 3, "opts": ["sun", "run", "cut", "cute"], "explain": "sun / run / cut 中 u 发 /ʌ/，cute 中 u 发 /juː/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "We ____ about the Rocket Club at the fair.", "type": "choice", "a": 0, "opts": ["learnt", "learn", "learns", "study"], "explain": "learn 的过去式 learnt / learned。"},
+        {"stem": "A boy ____ a rocket into the sky.", "type": "choice", "a": 0, "opts": ["launched", "launch", "land", "drop"], "explain": "launch 的过去式 launched。"},
+        {"stem": "The rocket ____ off and disappeared.", "type": "choice", "a": 0, "opts": ["took", "turned", "fell", "got"], "explain": "take off 起飞（过去式 took off）。"},
+        {"stem": "A girl ____ \"Watch out!\".", "type": "choice", "a": 0, "opts": ["shouted", "shout", "say", "speak"], "explain": "shout 的过去式 shouted。"},
+        {"stem": "The plane ____ on solar power.", "type": "choice", "a": 0, "opts": ["ran", "run", "fly", "move"], "explain": "run 的过去式 ran。"},
+        {"stem": "They ____ very surprised.", "type": "choice", "a": 0, "opts": ["were", "are", "was", "be"], "explain": "they 用 were。"},
+        {"stem": "A member ____ them about paper-cuts.", "type": "choice", "a": 0, "opts": ["told", "tell", "said", "ask"], "explain": "tell 的过去式 told。"},
+        {"stem": "Li Na ____ all the clubs.", "type": "choice", "a": 0, "opts": ["joined", "join", "like", "want"], "explain": "join 的过去式 joined。"},
+        {"stem": "The paper-cuts were ____.", "type": "choice", "a": 0, "opts": ["pretty", "ugly", "small", "old"], "explain": "pretty 漂亮的。"},
+        {"stem": "It was a ____ day.", "type": "choice", "a": 0, "opts": ["fantastic", "bad", "cold", "small"], "explain": "fantastic 极好的。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Last month, our school (1)____ a play.", "type": "choice", "a": 0, "opts": ["put", "puts", "had", "made"], "explain": "put on a play 上演戏剧（过去式 put）。"},
+        {"stem": "We (2)____ the Drama Club.", "type": "choice", "a": 0, "opts": ["joined", "join", "like", "make"], "explain": "join 的过去式 joined。"},
+        {"stem": "A teacher (3)____ us to act.", "type": "choice", "a": 0, "opts": ["taught", "teach", "tell", "said"], "explain": "teach 的过去式 taught。"},
+        {"stem": "I (4)____ a boy in the play.", "type": "choice", "a": 0, "opts": ["acted", "act", "play", "am"], "explain": "act 的过去式 acted。"},
+        {"stem": "My friend (5)____ a girl.", "type": "choice", "a": 0, "opts": ["acted", "act", "play", "was"], "explain": "act 的过去式 acted。"},
+        {"stem": "We (6)____ every day.", "type": "choice", "a": 0, "opts": ["practised", "practise", "play", "study"], "explain": "practise 的过去式 practised。"},
+        {"stem": "Many students (7)____ to watch.", "type": "choice", "a": 0, "opts": ["came", "come", "go", "walk"], "explain": "come 的过去式 came。"},
+        {"stem": "They (8)____ very excited.", "type": "choice", "a": 0, "opts": ["were", "are", "was", "be"], "explain": "they 用 were。"},
+        {"stem": "We (9)____ a lot of fun.", "type": "choice", "a": 0, "opts": ["had", "have", "make", "got"], "explain": "have fun 玩得开心。"},
+        {"stem": "It (10)____ a fantastic show.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "it 用 was。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Last spring, our school (1)____ a sports event.", "type": "choice", "a": 0, "opts": ["had", "has", "hold", "take"], "explain": "have 的过去式 had。"},
+        {"stem": "Many students (2)____ part in it.", "type": "choice", "a": 0, "opts": ["took", "take", "join", "make"], "explain": "take part in 参加。"},
+        {"stem": "We (3)____ football and practised.", "type": "choice", "a": 0, "opts": ["played", "play", "kick", "run"], "explain": "play football 踢足球。"},
+        {"stem": "We (4)____ a match.", "type": "choice", "a": 0, "opts": ["won", "win", "lose", "play"], "explain": "win 的过去式 won。"},
+        {"stem": "A boy (5)____ a goal.", "type": "choice", "a": 0, "opts": ["scored", "score", "made", "got"], "explain": "score 的过去式 scored（进球）。"},
+        {"stem": "Girls (6)____ a dance.", "type": "choice", "a": 0, "opts": ["danced", "dance", "sing", "play"], "explain": "dance 的过去式 danced。"},
+        {"stem": "We (7)____ very happy.", "type": "choice", "a": 0, "opts": ["were", "are", "was", "be"], "explain": "we 用 were。"},
+        {"stem": "Our team (8)____ the game.", "type": "choice", "a": 0, "opts": ["won", "win", "lose", "play"], "explain": "win 的过去式 won。"},
+        {"stem": "Everyone (9)____ excited.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "everyone 用 was。"},
+        {"stem": "It (10)____ a fantastic day.", "type": "choice", "a": 0, "opts": ["was", "is", "were", "be"], "explain": "it 用 was。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>DRAMA CLUB SHOW. Our school will put on a play next Friday. The Drama Club will act in it. A teacher taught them last month. Please come to the school hall at 7:00 p.m. Tickets are five yuan. Last year, we had a fantastic show. Sign up in Room 210.<br>What will the school put on?", "type": "choice", "a": 0, "opts": ["A play.", "A match.", "A sale.", "A hike."]},
+        {"stem": "Where will the show be?", "type": "choice", "a": 0, "opts": ["In the school hall.", "In the library.", "On the playground.", "In Room 210."]},
+        {"stem": "How much is a ticket?", "type": "choice", "a": 0, "opts": ["Five yuan.", "Free.", "Ten yuan.", "One yuan."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Last month, Sun Yue went to the school play. The Drama Club acted in it. A teacher taught them to act. Her friend acted in the play too. They practised every day. Many students came to watch. \"It was fantastic!\" said Sun Yue. \"I want to join the Drama Club,\" she said.<br>Where did Sun Yue go last month?", "type": "choice", "a": 0, "opts": ["To the school play.", "To a library.", "To a park.", "To a museum."]},
+        {"stem": "Who acted in the play?", "type": "choice", "a": 0, "opts": ["The Drama Club.", "The Rocket Club.", "The Craft Club.", "The Music Club."]},
+        {"stem": "What did they do every day?", "type": "choice", "a": 0, "opts": ["Practised.", "Played football.", "Cut paper.", "Sold snacks."]},
+        {"stem": "What does Sun Yue want to do?", "type": "choice", "a": 0, "opts": ["Join the Drama Club.", "Launch a rocket.", "Cut paper.", "Fly a plane."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（日记）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>日记：</b>Saturday, October 11th, Sunny. Today our class had a sports event. Many students took part in it. We played football and won a match. A boy scored a goal. Girls danced. We were very happy. Our team won the game. I was excited. It was a fantastic day. I want to take part in more after-school activities.<br>What did the class have today?", "type": "choice", "a": 0, "opts": ["A sports event.", "A sale.", "A play.", "A hike."]},
+        {"stem": "What did they play?", "type": "choice", "a": 0, "opts": ["Football.", "Basketball.", "A rocket.", "A plane."]},
+        {"stem": "Who scored a goal?", "type": "choice", "a": 0, "opts": ["A boy.", "A girl.", "The teacher.", "The captain."]},
+        {"stem": "How was the day?", "type": "choice", "a": 0, "opts": ["Fantastic.", "Boring.", "Tired.", "Cold."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Our School Sports Event. Last spring, our school had a sports event. Many students took part in it. We played football and won a match. A boy scored a goal. Girls danced a happy dance. We were very happy. Our team won the game. Everyone was excited. It was a fantastic day.<br>When did the school have the sports event?", "type": "text", "a": "Last spring", "a2": ["Last spring.", "The school had it last spring."]},
+        {"stem": "What did they play?", "type": "text", "a": "Football", "a2": ["Football.", "They played football."]},
+        {"stem": "What did a boy do?", "type": "text", "a": "Scored a goal", "a2": ["Scored a goal.", "He scored a goal."]},
+        {"stem": "Who won the game?", "type": "text", "a": "Our team", "a2": ["Our team.", "We won the game."]},
+        {"stem": "How was the day?", "type": "text", "a": "Fantastic", "a2": ["Fantastic.", "It was fantastic."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "（成为……的一员；参加）", "type": "text", "a": "join"},
+        {"stem": "p____（力量；能量）", "type": "text", "a": "power"},
+        {"stem": "a____（出席；参加）", "type": "text", "a": "attend"},
+        {"stem": "c____（参加比赛）", "type": "text", "a": "compete"},
+        {"stem": "（社团）", "type": "text", "a": "club"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "take（不规则动词，take 的过去式是 took）", "type": "text", "a": "took", "ph": "带走（过去式）"},
+        {"stem": "build（不规则动词，build 的过去式是 built）", "type": "text", "a": "built", "ph": "建造（过去式）"},
+        {"stem": "join（规则动词，直接加 -ed）", "type": "text", "a": "joined", "ph": "参加（过去式）"},
+        {"stem": "excite（以 e 结尾，加 -d）", "type": "text", "a": "excited", "ph": "使兴奋（过去式）"},
+        {"stem": "go（不规则动词，go 的过去式是 went）", "type": "text", "a": "went", "ph": "去（过去式）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Favourite After-school Activity（我最喜欢的课外活动）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 after-school activities, take part in, club, member, join, fantastic, excited, practise, act, compete, hobby）；③ 用一般过去时叙述一次经历；④ 句首大写、句末标点。", "type": "essay", "score": 10, "ph": "My Favourite After-school Activity\n\nI like...", "check": ["有没有用一般过去时叙述一次课外活动经历？", "有没有用 after-school activities / take part in / club / member？", "有没有用 fantastic / excited 表达感受？", "有没有用 practise / act / compete 等动词？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">My Favourite After-school Activity<br><br>I like after-school activities. Last month, I took part in the school play. I joined the Drama Club and became a member. A teacher taught us to act, and we practised every day. We put on a fantastic show and many students came to watch. I was very excited and happy. I want to take part in more activities next term.</div><div class=\"zh\">（参考范文：用一般过去时写了参加学校戏剧表演，用了 after-school activities / take part in / join / member / club / fantastic / excited / practise / act 等本单元词汇，注意了句首大写。）</div>"}
+      ]
+    }
+  ]
+  }
+];
+
+const $ = s => document.querySelector(s);
+const host = $('#paperHost'), tabsEl = $('#tabs'), scoreHost = $('#scoreHost');
+let curPaper = null, answers = {};
+
+const store = {
+  key(id){ return 'hx_quiz_' + 'u7' + '_' + id; },
+  save(id, data){ try{ localStorage.setItem(this.key(id), JSON.stringify(data)); }catch(e){} },
+  load(id){ try{ return JSON.parse(localStorage.getItem(this.key(id)) || 'null'); }catch(e){ return null; } },
+  clear(id){ try{ localStorage.removeItem(this.key(id)); }catch(e){} }
+};
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buildTabs(){
+  tabsEl.innerHTML = '';
+  PAPERS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.innerHTML = esc(p.title.split(' · ')[0]) + '<span class="tag">' + esc(p.title.split(' · ')[1] || '') + '</span>';
+    b.onclick = () => selectPaper(i);
+    b.dataset.idx = i;
+    tabsEl.appendChild(b);
+  });
+}
+
+function selectPaper(i){
+  const p = PAPERS[i];
+  curPaper = p;
+  [...tabsEl.children].forEach((b, j) => b.classList.toggle('on', j === i));
+  scoreHost.innerHTML = '';
+  const saved = store.load(p.id);
+  answers = (saved && saved.answers) || {};
+  renderPaper(p, saved && saved.submitted);
+}
+
+function qid(si, qi){ return 'q' + si + '_' + qi; }
+
+function renderPaper(p, submitted){
+  let total = 0;
+  let html = `<div class="paper">
+    <div class="p-head">
+      <div class="pt">${esc(p.title)}</div>
+      <div class="ps">${esc(p.sub || '')}</div>
+    </div>
+    <div class="p-info"><span>建议用时：<b>${esc(p.time || '20 分钟')}</b></span><span>满分：<b id="fullMark">100</b> 分</span><span>范围：<b>Unit 7</b></span></div>`;
+
+  p.sections.forEach((s, si) => {
+    html += `<div class="sec"><h3>${esc(s.name)}</h3>`;
+    if (s.note) html += `<div class="sn">${s.note}</div>`;
+    if (s.bank) html += `<div class="wordbank">${s.bank}</div>`;
+    if (s.passage) html += s.passage;
+    s.items.forEach((it, qi) => {
+      const qq = qid(si, qi);
+      total += (it.score || 1);
+      const ans = answers[qq];
+      const st = submitted && it.type !== 'essay'
+        ? (isRight(it, ans) ? 'ok' : 'bad') : '';
+      html += `<div class="q" id="${qq}"><div class="qt"><span class="qn">${qi + 1}.</span>${it.stem}</div>`;
+      if (it.type === 'choice' || it.type === 'tf'){
+        const opts = it.type === 'choice' ? it.opts : ['T（正确）', 'F（错误）'];
+        const cols = (it.opts && it.opts.length > 4) ? 'one' : '';
+        html += `<div class="opts ${cols}">`;
+        opts.forEach((o, oi) => {
+          const tv = it.type === 'tf' ? (oi === 0 ? 'T' : 'F') : String(oi);
+          const key = it.type === 'tf' ? tv : String.fromCharCode(65 + oi);
+          let cls = 'opt';
+          if (submitted && it.type === 'choice'){
+            if (String(oi) === String(it.a)) cls += ' ok'; else if (tv === String(ans) && String(oi) !== String(it.a)) cls += ' bad';
+          } else if (submitted && it.type === 'tf'){
+            if (tv === it.a) cls += ' ok'; else if (tv === String(ans) && tv !== it.a) cls += ' bad';
+          }
+          if (!submitted && ans !== undefined && String(ans) === tv) cls += ' sel';
+          const mk = (submitted && ((it.type === 'choice' && String(oi) === String(it.a)) || (it.type === 'tf' && tv === it.a))) ? '<span class="mk">✓</span>' : '';
+          html += `<div class="${cls}" data-q="${qq}" data-v="${tv}"><span class="lb">${key}.</span><span>${esc(o)}</span>${mk}</div>`;
+        });
+        html += `</div>`;
+        if (submitted && !isRight(it, ans) && it.explain) html += `<div class="hint">💡 ${it.explain}</div>`;
+      } else if (it.type === 'text'){
+        const cls = submitted ? (st === 'ok' ? 'ok' : 'bad') : '';
+        html += `<input class="ans-in ${cls}" data-q="${qq}" value="${esc(ans || '')}" placeholder="${esc(it.ph || '输入答案')}" ${submitted ? 'disabled' : ''}>`;
+        if (submitted && st !== 'ok') html += `<div class="hint">💡 参考答案：<b>${esc((it.a2 || it.a).join ? (it.a2||it.a).join(' / ') : it.a)}</b></div>`;
+      } else if (it.type === 'essay'){
+        html += `<textarea class="essay" data-q="${qq}" placeholder="${esc(it.ph || '')}">${esc(ans || '')}</textarea>`;
+        html += `<div class="checklist"><b>自查清单：</b><ul>${(it.check||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>`;
+        html += `<details class="sample"><summary>📖 参考范文（写完后展开对照）</summary><div class="body">${it.sample}</div></details>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `</div>
+    <div class="acts">
+      <button class="btn btn-go" id="btnSubmit">${submitted ? '重新作答' : '提交批改'}</button>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 打印 / 存 PDF</button>
+      <button class="btn btn-reset" id="btnReset">清空重做</button>
+    </div>`;
+  host.innerHTML = html;
+  $('#fullMark').textContent = total;
+
+  host.querySelectorAll('.opt').forEach(o => o.onclick = () => {
+    if (submitted) return;
+    answers[o.dataset.q] = o.dataset.v;
+    host.querySelectorAll(`.opt[data-q="${o.dataset.q}"]`).forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+  });
+  host.querySelectorAll('.ans-in').forEach(i => i.oninput = () => { answers[i.dataset.q] = i.value; });
+  host.querySelectorAll('textarea.essay').forEach(t => t.oninput = () => { answers[t.dataset.q] = t.value; });
+  $('#btnSubmit').onclick = () => grade();
+  $('#btnReset').onclick = () => { store.clear(p.id); answers = {}; renderPaper(p, false); };
+  if (submitted) grade(true);
+}
+
+function norm(s){ return String(s||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+function isRight(it, ans){
+  if (ans === undefined || ans === '' || ans === null) return false;
+  if (it.type === 'choice') return String(ans) === String(it.a);
+  if (it.type === 'tf') return String(ans) === it.a;
+  if (it.type === 'text'){
+    const ok = (it.a2 && it.a2.length ? it.a2 : [it.a]).some(a => norm(a) === norm(ans));
+    return ok;
+  }
+  return false;
+}
+
+function grade(resubmit){
+  const p = curPaper; if (!p) return;
+  const submitted = !resubmit;
+  let got = 0, full = 0, wrong = [];
+  p.sections.forEach((s, si) => s.items.forEach((it, qi) => {
+    const v = it.score || 1; full += v;
+    const a = answers[qid(si, qi)];
+    if (it.type === 'essay') return;
+    if (isRight(it, a)) got += v;
+    else wrong.push(si + '-' + qi);
+  }));
+  const pct = Math.round(got / full * 100);
+  const pass = pct >= 60;
+  const advice = wrong.length === 0 ? '全部正确，太棒了！可以进入下一单元。'
+    : wrong.length <= 3 ? '只错 ' + wrong.length + ' 题，把错题的解析看一遍就能全对。'
+    : '错题偏多，建议回到点读页把本单元词汇和课文再过一遍，第二天重做这份卷子。';
+  scoreHost.innerHTML = `<div class="score ${pass ? 'pass' : 'fail'}">
+    <div class="big">${got} / ${full} 分（${pct}%）</div>
+    <div class="adv">${advice}${wrong.length ? ' · 错题已在卷面标红' : ''}</div>
+  </div>`;
+  if (resubmit) return;
+  store.save(p.id, { answers, submitted: true, got, full, pct });
+  renderPaper(p, true);
+}
+
+buildTabs();
+selectPaper(0);
+
+</script>
+<style>
+.pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
+.pgnav .pg-h{margin:0 0 8px;font-size:12.5px;color:#6B6359;letter-spacing:.6px;}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.pgnav a{text-decoration:none;font-size:13px;color:#2B2620;background:#fff;border:1px solid #EFE6DA;border-radius:999px;padding:6px 13px;}
+.pgnav a:hover{border-color:#E8552D;color:#E8552D;}
+.pgnav a.up{background:#E8552D;border-color:#E8552D;color:#fff;}
+.pgnav a.up:hover{background:#D64520;color:#fff;}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff;}
+.pgnav a.gr:hover{background:#0B7369;color:#fff;}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff;}
+.pgnav a.bl:hover{background:#245A94;color:#fff;}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">继续学习</p>
+    <div class="pg-row">
+      <a class="up" href="../点读学习包/Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
+      <a href="Unit6_习题与测试.html">← Unit6 习题</a>
+      <a href="Unit8_习题与测试.html">Unit8 习题 →</a>
+      <a href="../点读学习包/Unit7_Fun_after_School_点读学习页.html">📖 Unit7 点读学习页</a>
+      <a href="../点读学习包/Unit7_Fun_after_School_精简练习页.html">✏️ Unit7 精简练习</a>
+      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="../点读学习包/全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
+    </div>
+    <p class="pg-h">其他三条线 · 全站跳转</p>
+    <div class="pg-row">
+      <a class="gr" href="../../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+      <a class="bl" href="../../E听说练习/index.html">🎤 中考 E 听说</a>
+      <a class="up" href="../../index.html">🏠 返回慧学首页</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

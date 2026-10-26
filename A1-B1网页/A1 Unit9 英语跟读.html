@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1 英语跟读 · Unit 9 WOULD YOU LIKE DESSERT</title>
+<style>
+  :root{
+    --bg:#0f1424; --panel:#171d33; --panel2:#1f2742; --ink:#eef2ff; --sub:#9aa6c7;
+    --gold:#f5c542; --gold2:#caa12f; --red:#ff5a5f; --green:#5bd6a0; --line:#2a3358;
+    --chip:#243056;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);color:var(--ink);min-height:100vh}
+  header{padding:14px 20px 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{font-size:26px}
+  .title{font-weight:800;font-size:20px}
+  .title small{color:var(--sub);font-weight:500;font-size:13px;display:block;margin-top:2px}
+  .grow{flex:1}
+  .prog{display:flex;align-items:center;gap:8px}
+  .homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);color:var(--gold);
+           border:1px solid var(--gold2);border-radius:20px;padding:7px 14px;font-size:12.5px;
+           font-weight:700;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .homebtn:hover{background:var(--gold);color:#1a1a1a;border-color:var(--gold)}
+  .phxlink{display:inline-block;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+           padding:6px 13px;border-radius:20px;font-size:12.5px;text-decoration:none;font-weight:600}
+  .phxlink:hover{background:var(--gold);color:#1a1a1a}
+  .stars{font-size:20px;letter-spacing:2px}
+  .bar{height:8px;width:160px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .globalbar{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+    background:rgba(15,20,36,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+    padding:8px 20px;margin-bottom:6px}
+  .globalbar label{font-size:13px;color:var(--sub);display:flex;gap:6px;align-items:center}
+  .globalbar select,.globalbar input{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+  .globalbar .recnote{margin-left:auto;font-size:12px;color:var(--gold)}
+  nav{display:flex;gap:8px;padding:6px 20px 0;flex-wrap:wrap}
+  nav button{background:var(--panel);color:var(--sub);border:1px solid var(--line);
+    padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;cursor:pointer;font-weight:600}
+  nav button.on{background:var(--panel2);color:var(--ink);border-bottom:2px solid var(--gold)}
+  main{padding:16px 20px 60px;max-width:1100px;margin:0 auto}
+  .tab{display:none}
+  .tab.on{display:block}
+  .beast{background:linear-gradient(135deg,#1b2b4d,#20294a);border:1px solid var(--line);
+    border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin-bottom:16px}
+  .beast .emoji{font-size:54px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+  .beast h2{margin:0 0 4px;font-size:18px}
+  .beast p{margin:2px 0;color:var(--sub);font-size:13px}
+  .grp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+  .grp-tabs button{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .grp-tabs button.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.2s}
+  .card.done{border-color:var(--green)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .w{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .ipa{color:var(--sub);font-size:13px;font-style:italic}
+  .badges{display:flex;gap:6px;margin:6px 0}
+  .badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--chip);color:var(--sub)}
+  .badge.pos{background:#2b3a6b;color:#bcd0ff}
+  .badge.band{background:#3a2f12;color:var(--gold)}
+  .def{font-size:14px;margin:4px 0;line-height:1.5}
+  .phrase{font-size:13px;color:var(--gold);margin:4px 0}
+  .ex{font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px;margin:6px 0;cursor:pointer}
+  .ex .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .ex .cn.hide{display:none}
+  .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .acts button{flex:1;border:none;border-radius:9px;padding:8px;font-size:13px;cursor:pointer;font-weight:600;min-width:60px}
+  .b-play{background:var(--chip);color:var(--ink)}
+  .b-shadow{background:var(--gold);color:#1a1a1a}
+  .b-master{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
+  .b-master.mastered{background:var(--green);color:#06281c}
+  .b-err{color:var(--gold);border:1px solid var(--gold2);flex:none;min-width:0;padding:8px 10px}
+  .mini{display:inline-flex;gap:4px;align-items:center}
+  .spk{background:none;border:none;color:var(--gold);font-size:18px;cursor:pointer;padding:0 4px}
+  .toggle{cursor:pointer;color:var(--gold)}
+  .sense{border-left:3px solid var(--line);padding:4px 0 4px 10px;margin:6px 0}
+  .sense.hiddenSense{display:none}
+  .defline{font-size:14px;line-height:1.5;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .exbox{display:none;margin-top:6px;font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px}
+  .exbox .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:12px;cursor:pointer;margin-top:6px;font-weight:600}
+  .player{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .player .now{font-size:18px;font-weight:700;margin-bottom:6px}
+  .player .nowcn{color:var(--sub);font-size:14px;margin-bottom:12px}
+  /* 跟读提示条：英文 + 中文译文同一横行，一眼看完 */
+  .nowrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:11px 14px;border:1px solid var(--gold2);border-radius:10px;background:rgba(245,197,66,.06);margin-bottom:12px}
+  .nowrow .now,.nowrow .nowcn{margin-bottom:0}
+  .nowrow .now{font-size:18px;font-weight:700}
+  .nowrow .nowcn{font-size:14px;color:var(--sub)}
+  .recbox{min-height:8px;margin:10px 0}
+  .recbox audio{width:100%}
+  .rec-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .ctr{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ctr button{background:var(--gold);color:#1a1a1a;border:none;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .ctr .ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .ctr button.recording{background:var(--red);color:#fff}
+  .coll{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .cbox .e{font-size:38px}
+  .cbox .n{font-weight:700;margin:6px 0 2px}
+  .cbox .s{color:var(--gold);font-size:14px;letter-spacing:1px}
+  .cbox.lock{opacity:.45;filter:grayscale(1)}
+  .hint{color:var(--sub);font-size:12px;margin-top:10px;line-height:1.6;width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word}
+  .streak{color:var(--gold);font-weight:700}
+  .banner{background:#2a1f12;border:1px solid var(--gold2);color:var(--gold);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:12px;display:none}
+  .subtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .subtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .turn{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}
+  .turn.recording{border-color:var(--red)}
+  .turn .role{font-weight:800;font-size:13px;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;flex:none}
+  .role-A{background:#2b3a6b;color:#bcd0ff}
+  .role-B{background:#3a2f12;color:var(--gold)}
+  .turn-text{flex:1;font-size:15px}
+  .turn-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  .turn-acts{display:flex;gap:6px;flex:none}
+  .turn-acts button{border:none;border-radius:8px;padding:7px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .turn-acts .b-play{background:var(--chip);color:var(--ink)}
+  .turn-acts .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  /* 录音提示/回放整行横向铺满，绝不被 flex 压成竖条 */
+  .turn-rec{display:block;width:100%;min-width:0;margin-top:8px;clear:both}
+  .turn-rec audio{width:100%}
+  .turn-rec .hint{white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.6;margin-top:0}
+  .exchange{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:10px;background:var(--panel2)}
+  .qa{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .qa-text{flex:1;min-width:170px;font-size:15px}
+  /* 中文译文与英文同行，形成横向长条，便于一次性扫读 */
+  .qa-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  /* 回应行：标签 + 句子 + 按钮全部同一横行 */
+  .resp{margin-top:8px;padding:8px 10px;border-left:3px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 8px 8px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .resp-label{font-size:12px;color:var(--gold);font-weight:700;flex:none}
+  .resp .qa-text{flex:1;min-width:180px}
+  .resp-acts{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .resp-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .resp-acts .b-play{background:var(--chip);color:var(--ink)}
+  .resp-acts .b-drill{background:var(--gold);color:#1a1a1a}
+  .q-opt.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  /* 阅读·听力 */
+  .rd-tip{color:var(--sub);font-size:12px;margin-bottom:8px}
+  .rd-playall{margin-bottom:10px}
+  .rd-sents{display:flex;flex-direction:column;gap:8px}
+  .rd-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .rd-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .rd-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .rd-sent .b-play,.rd-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .rd-sent .b-play{background:var(--chip);color:var(--ink)}
+  .rd-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .rd-qtitle{font-weight:700;margin:16px 0 8px;color:var(--gold)}
+  .art-para{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .art-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .art-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .art-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .art-sent .b-play,.art-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .art-sent .b-play{background:var(--chip);color:var(--ink)}
+  .art-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .art-zh{width:100%;color:var(--sub);font-size:13px;line-height:1.6}
+  .rdtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .rdtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .rd-en.ls-masked{color:transparent;background:var(--panel2);border-radius:6px;user-select:none}
+  .listen-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .ls-tip{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:10px}
+  .ghostbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .ghostbtn:hover{border-color:var(--gold)}
+  .q{margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .q-q{font-size:14px;margin-bottom:6px}
+  .q-opts{display:flex;gap:8px;flex-wrap:wrap}
+  .q-opt{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);cursor:pointer;font-size:13px}
+  .q-fb{margin-top:6px;font-size:13px}
+  /* 拼读 */
+  /* 元音手掌握图 */
+  .hand-wrap{display:flex;gap:18px;flex-wrap:wrap;align-items:stretch;margin-bottom:6px}
+  .hand-palm{flex:1;min-width:280px;background:var(--panel);border:1px solid var(--gold2);border-radius:14px;padding:14px}
+  .hand-title{font-weight:800;color:var(--gold);font-size:14px;margin-bottom:4px}
+  .hand-hint{font-size:12px;color:var(--sub);line-height:1.6;margin-bottom:10px}
+  .hand-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0;border-top:1px dashed var(--line)}
+  .hand-row:first-of-type{border-top:none}
+  .finger{flex:1;min-width:52px;text-align:center;background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 4px;cursor:pointer;transition:transform .1s}
+  .finger:hover{transform:translateY(-2px);border-color:var(--gold2)}
+  .finger .fpos{font-size:10px;color:var(--sub)}
+  .finger .fipa{font-size:17px;font-weight:800;color:var(--gold);margin:2px 0}
+  .finger .fsay{font-size:11px;color:var(--ink)}
+  .palm-vowels{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pv{flex:1;min-width:56px;text-align:center;background:rgba(245,197,66,.08);border:1px solid var(--gold2);border-radius:10px;padding:8px 4px;cursor:pointer}
+  .pv:hover{transform:translateY(-2px)}
+  .pv .pipa{font-size:17px;font-weight:800;color:var(--gold)}
+  .pv .psay{font-size:11px;color:var(--sub)}
+  .hand-words{font-size:12px;color:var(--ink);margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .hand-words .cn{color:var(--sub);font-size:11px}
+  .hand-words b{color:var(--gold);font-weight:700}
+  .phx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+  .phx-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .phx-card .ps{font-size:26px;font-weight:800;color:var(--gold)}
+  .phx-card .pn{font-size:14px;font-weight:700;margin:4px 0}
+  .phx-card .ptip{font-size:12px;color:var(--sub);margin:6px 0 8px;line-height:1.5}
+  .phx-words{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  /* 例词做成独立可点击块：学生一眼看出「每个词都能单独点」 */
+  .phx-words span,.hand-words span{display:inline-block;background:var(--chip);border:1px solid var(--line);
+    border-radius:8px;padding:5px 12px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;
+    transition:transform .1s,border-color .15s,background .15s}
+  .phx-words span:hover,.hand-words span:hover{border-color:var(--gold);background:rgba(245,197,66,.12);color:var(--gold)}
+  .phx-words span:active,.hand-words span:active{transform:scale(.94)}
+  .phx-phrase{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(245,197,66,.07);
+    border:1px solid var(--gold2);border-radius:10px;padding:9px 11px;margin:2px 0 8px}
+  .phx-phrase .pl{font-size:11px;color:var(--gold);font-weight:700;flex:none}
+  .phx-phrase .pe{font-size:15px;font-weight:600;flex:1;min-width:150px}
+  .phx-phrase .pc{font-size:12px;color:var(--sub);flex-basis:100%}
+  .phx-tip{color:var(--sub);font-size:12px;line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:9px 12px;margin:0 0 12px}
+  .phx-tip b{color:var(--ink)}
+  /* ---------- 情绪语调卡（intonation）：把「音调走向」画出来 ---------- */
+  .itn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .itn{border:1px solid var(--line);border-radius:12px;padding:13px;background:var(--panel);
+    display:flex;flex-direction:column;gap:8px}
+  .itn-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .itn-arrow{font-size:26px;font-weight:700;line-height:1;min-width:44px;text-align:center;
+    background:var(--panel2);border:1px solid var(--gold2);border-radius:10px;padding:6px 8px;color:var(--gold)}
+  .itn-w{font-size:19px;font-weight:700}
+  .itn-ipa{font-size:13px;color:var(--sub)}
+  .itn-tone{font-size:11px;color:var(--gold);font-weight:700;background:rgba(245,197,66,.12);
+    border-radius:20px;padding:3px 10px}
+  /* 音高曲线：把 ↗ / → / ↘ 画成折线，孩子一眼看懂"往上走/往下掉" */
+  .itn-pitch{width:100%;height:56px;display:block}
+  .itn-pitch .base{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+  .itn-pitch .path{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .itn-pitch .dot{fill:var(--gold)}
+  .itn-sent{font-size:15px;font-weight:600;line-height:1.5}
+  .itn-sentcn{font-size:12px;color:var(--sub)}
+  .itn-tip{font-size:12px;color:var(--sub);line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:8px 10px}
+  .itn-acts{display:flex;gap:8px;flex-wrap:wrap}
+  .itn-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .itn-acts .b-real{background:var(--green);color:#06281c}
+  .itn-acts .b-rec{background:var(--gold);color:#1a1a1a}
+  .rec-slot{margin-top:8px}
+  .rec-slot audio{width:100%;height:36px}
+  .itnp-side .itn-acts button{padding:5px 9px;font-size:11px}
+  .itn-q{border:1px dashed var(--gold2);border-radius:8px;padding:6px 10px;font-size:12px;color:var(--sub)}
+  .itn-q b{color:var(--gold);font-weight:600}
+  /* 同句异调对照 */
+  .itnp{border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:12px;background:var(--panel)}
+  .itnp-vs{display:grid;grid-template-columns:1fr 44px 1fr;gap:10px;align-items:center}
+  .itnp-side{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel2)}
+  .itnp-side .lbl{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:5px}
+  .itnp-side .itn-pitch{height:40px;margin-bottom:6px}
+  .itnp-side .en{font-size:14px;font-weight:600;line-height:1.5}
+  .itnp-side .cn{font-size:11px;color:var(--sub);margin-bottom:6px}
+  .itnp-mid{text-align:center;font-size:11px;color:var(--sub);font-weight:700}
+  .itnp-q{font-size:13px;font-weight:600;margin-top:10px}
+  .itnp-a{font-size:12px;color:var(--sub);line-height:1.7;margin-top:6px;padding:9px 11px;
+    background:rgba(245,197,66,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0}
+  .itnp-a.hide{filter:blur(4px);cursor:pointer;user-select:none}
+  /* 反义情绪对 */
+  .apo{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:10px;background:var(--panel2)}
+  .apo-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .apo-w{font-size:16px;font-weight:700;padding:3px 10px;border-radius:8px;background:var(--chip)}
+  .apo-vs{color:var(--gold);font-weight:700;font-size:13px}
+  .apo-cn{font-size:12px;color:var(--sub)}
+  .pair{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--panel)}
+  .pair .pt{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .pair .pc{flex:1;min-width:140px}
+  .pair .pc .pw{font-size:18px;font-weight:800}
+  .pair .pc .pi{color:var(--sub);font-size:13px;font-style:italic}
+  .pair-acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .pair-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .pair-acts .b-play{background:var(--chip);color:var(--ink)}
+  .pair-acts .b-ok{background:var(--green);color:#06281c}
+  .pair-acts .b-bad{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+  .pair .ptip{font-size:12px;color:var(--gold);margin-top:6px}
+  .quiz-prompt{font-size:16px;margin:6px 0 10px}
+  .quiz-prompt .big{font-size:24px;font-weight:800}
+  .quiz-prompt .tag{display:inline-block;margin-left:8px;font-size:11px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:1px 8px;vertical-align:middle}
+  /* 可点发音的词块：全局统一靠 data-say 绑定 */
+  .wchip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--gold);border-radius:9px;padding:3px 10px;font-weight:800;cursor:pointer;color:var(--ink)}
+  .wchip b{font-size:12px;color:var(--gold);font-weight:700}
+  .wchip:hover{background:var(--chip)}
+  .wchip.big{font-size:24px;padding:6px 14px}
+  .wchip.big b{font-size:15px}
+  /* 预学词：来自后面单元，本单元只练发音不记意思 */
+  [data-pre="1"]{border-style:dashed;border-color:var(--sub);opacity:.95}
+  .pre-tag{font-size:10px;color:var(--sub);font-weight:700;border:1px solid var(--line);border-radius:5px;padding:0 4px;margin-left:2px}
+  .q-prog{height:8px;width:100%;background:var(--panel2);border-radius:6px;overflow:hidden;margin:8px 0}
+  .q-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .q-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:10px 0}
+  .q-opt{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;cursor:pointer;font-weight:600}
+  .q-opt:hover{border-color:var(--gold)}
+  .q-opt.ok{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-opt.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fb{font-size:14px;font-weight:700;min-height:20px;margin:8px 0}
+  /* 2026-10-16 听力填空题：输入框 + 检查按钮（KET 听力有填空题，原来只有单选） */
+  .q-fill{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;font-weight:600;min-width:0;outline:none}
+  .q-fill:focus{border-color:var(--gold)}
+  .q-fill.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-fill.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fillbtn{flex:0 0 auto}
+  .q-fillbtn:disabled{opacity:.5;cursor:default}
+  .err-type{font-weight:800;color:var(--gold);margin:14px 0 8px;font-size:15px}
+  .err-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+  .err-meta{font-size:13px;color:var(--sub);margin-bottom:4px}
+  .err-line{font-size:14px;margin:2px 0}
+  .err-btns{display:flex;gap:8px;margin-top:8px}
+  .err-btns button{border:none;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .err-btns .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line)}
+  .err-btns .err-del{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+
+  /* ---- 本单元语法 tab（联动语法练习页） ---- */
+  .gramwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:4px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+         display:flex;flex-direction:column;gap:7px;transition:.15s}
+  .gcard:hover{border-color:var(--gold2);transform:translateY(-2px)}
+  .gcard .gi{font-size:22px;line-height:1}
+  .gcard .gname{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4}
+  .gcard .gdesc{font-size:12px;color:var(--sub);line-height:1.6}
+  .gcard .ggo{margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+              background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+              border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:700;
+              text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .gcard .ggo:hover{background:var(--gold);color:#1a1a1a}
+  .gcard .gdone{font-size:11px;color:var(--green)}
+  .gramhead{color:var(--sub);font-size:12.5px;line-height:1.75;margin-bottom:12px}
+  .gramhead b{color:var(--gold)}
+  .gramfoot{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .art-hl{color:var(--gold,#c9a227);font-weight:700}
+  .artmark{font-size:12px;margin-left:6px;opacity:.95}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🐉</div>
+  <div class="title">英语跟读学院 · A1
+    <small id="subtitle"></small>
+  </div>
+  <a class="homebtn" href="index.html" title="返回 A1 学习网络主页">🏠 回主页</a>
+  <div class="grow"></div>
+  <div class="prog">
+    <span class="stars" id="starTop">☆☆☆</span>
+    <div class="bar"><i id="barTop"></i></div>
+    <span id="pctTop" style="color:var(--sub);font-size:13px">0%</span>
+  </div>
+</header>
+<div class="globalbar">
+  <label>音色 <select id="voiceSel"><option>默认</option></select></label>
+  <label>语速 <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.95"> <span id="rateVal">0.95×</span></label>
+  <span class="recnote" id="recNote"></span>
+</div>
+<nav>
+  <button data-tab="learn">📘 学习 B</button>
+  <button data-tab="review">🔁 复习 C</button>
+  <button data-tab="shadow">🎤 跟读·对话</button>
+  <button data-tab="reading">📖 阅读·听力</button>
+  <button data-tab="article" class="on">📰 单元文章</button>
+  <button data-tab="grammar">✍️ 本单元语法</button>
+  <button data-tab="phonics">🅰️ 拼读</button>
+  <button data-tab="quiz">📝 小测</button>
+  <button data-tab="errors">🩹 错题</button>
+  <button data-tab="codex">📜 图鉴</button>
+</nav>
+<main>
+  <!-- 学习 B -->
+  <section class="tab" id="learn">
+    <div class="beast">
+      <div class="emoji">🌍</div>
+      <div>
+        <h2 id="beastName"></h2>
+        <p id="beastDesc"></p>
+        <p>打卡进度：<span class="streak" id="beastStreak"></span></p>
+      </div>
+    </div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnLearn">👁 开</span></label>
+    </div>
+    <div class="grp-tabs" id="grpLearn"></div>
+    <div class="grid" id="gridLearn"></div>
+    <div class="hint">双击例句可慢速（0.6×）跟读；点 🔊 听单词。卡片「🎤 跟读打卡」跳到单句跟读页并定位该词，「❌ 记一笔」把没记住的收进错题本。</div>
+  </section>
+
+  <!-- 复习 C -->
+  <section class="tab" id="review">
+    <div class="banner" id="revBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">自测模式 <span class="toggle" id="tgHideCn">🙈 隐藏中文</span></label>
+      <span style="color:var(--sub);font-size:12px">一词义一例句，点「看例句」展开；多义词点「更多 ▾」继续；每句可 🎤 跟读。</span>
+    </div>
+    <div class="grp-tabs" id="grpReview"></div>
+    <div class="grid" id="gridReview"></div>
+    <div class="hint">C 版释义已加厚：含【词性】+ 近义/反义 + 更完整场景。自测时隐藏中文，看英文回想起全部信息即过关。例句下的 🎤 跟读会跳到单句跟读页并定位该句。</div>
+  </section>
+
+  <!-- 跟读·对话 -->
+  <section class="tab" id="shadow">
+    <div class="banner" id="shBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-sh="dialog">💬 对话跟读</button>
+      <button class="subtab" data-sh="single">📝 单句跟读</button>
+      <span style="color:var(--sub);font-size:12px">对话跟读＝听问句→看回应句→录你自己的回答；单句跟读可打卡升星。</span>
+    </div>
+    <div id="shDialog"></div>
+    <div id="shSingle" style="display:none">
+      <div class="player">
+        <div class="nowrow" style="display:none">
+          <div class="now" id="shNow">准备开始…</div>
+          <div class="nowcn" id="shNowCn"></div>
+        </div>
+        <div class="hint" id="shProg" style="margin:0 0 12px">👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这里会出现回放音轨，和原声对比。</div>
+        <div class="recbox" id="shRecBox"></div>
+        <div class="ctr">
+          <button id="shPlay">▶ 听原声</button>
+          <button id="shRec">● 开始录音</button>
+          <button id="shStop" class="ghost">■ 停止</button>
+          <button id="shCheck" class="ghost">✓ 我已跟读打卡</button>
+          <button id="shPrev" class="ghost">⏮ 上一句</button>
+          <button id="shNext" class="ghost">⏭ 下一句</button>
+          <button id="shAuto" class="ghost">🔁 自动连播</button>
+          <label style="color:var(--sub);font-size:13px">跟读留白
+            <select id="shGap">
+              <option value="1500">1.5 秒</option>
+              <option value="2500" selected>2.5 秒</option>
+              <option value="4000">4 秒</option>
+              <option value="-1">手动</option>
+            </select>
+          </label>
+        </div>
+        <div class="hint" id="shHint">跟读流程：▶ 听原声 → ● 开始录音（读完后点 ■ 停止可回放对比）→ ✓ 打卡。连续打卡积累神兽星级。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本单元语法（联动语法练习页） -->
+  <section class="tab" id="grammar">
+    <div class="gramhead" id="gramHead"></div>
+    <div class="gramwrap" id="gramList"></div>
+    <div class="gramfoot">
+      <a class="phxlink" id="gramAll" target="_blank" rel="noopener">✍️ 打开英语语法练习全册 →</a>
+      <span class="hint" style="margin-top:0">点任一关，直接跳到语法练习里<b>这一个点</b>的知识卡（一次只学一个点）。练完回来，跟读这边会自动记一笔。</span>
+    </div>
+  </section>
+
+  <!-- 拼读 -->
+  <!-- 阅读·听力 -->
+  <section class="tab" id="reading">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="rdtab on" data-rd="read">📖 阅读</button>
+      <button class="rdtab" data-rd="listen">🎧 听力</button>
+      <span style="color:var(--sub);font-size:12px">阅读＝看文本做小题；<b style="color:var(--gold)">听力＝先盲听、再答题</b>，听不懂可调慢顶部语速或点「👀 看文本」。<b style="color:var(--gold)">🇨🇳</b> ＝中国主题篇。</span>
+    </div>
+
+    <div id="rdReadWrap">
+      <div class="banner" id="rdBanner"></div>
+      <div class="grp-tabs" id="rdPassages" style="margin-bottom:10px"></div>
+      <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+        <span id="rdHint" style="color:var(--sub);font-size:12px"></span>
+      </div>
+      <div id="rdText"></div>
+      <div id="rdQuiz"></div>
+    </div>
+
+    <div id="rdListenWrap" style="display:none">
+      <div class="banner" id="lsBanner"></div>
+      <div class="grp-tabs" id="lsPassages" style="margin-bottom:10px"></div>
+      <div class="listen-box">
+        <div class="ls-tip">🎧 <b>盲听三步</b>：① 点「▶ 听全篇」（顶部语速可调慢）→ ② 做下面小题 → ③ 不会就点「👀 看文本」对照，再听一遍。每句都可单点 🔊 重听、🎤 跟读。答错自动进错题本。</div>
+        <div class="rd-playall" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="b-play" id="lsPlayAll">▶ 听全篇</button>
+          <button id="lsReplay" class="ghostbtn">🔁 再听一遍</button>
+          <button id="lsReveal" class="ghostbtn">👀 看文本</button>
+        </div>
+        <div class="rd-sents" id="lsSents"></div>
+      </div>
+      <div id="lsQuiz"></div>
+    </div>
+  </section>
+
+  <!-- 单元文章（A1＋A2 例句同源） -->
+  <section class="tab on" id="article">
+    <div class="banner" id="artBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="b-play" id="artPlayAll">🔊 听全篇</button>
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnArt">👁 开</span></label>
+      <label style="font-size:13px;color:var(--sub)">高亮生词 <span class="toggle" id="tgArtHL">👁 开</span></label>
+      <span style="color:var(--sub);font-size:12px">本单元单词卡上的例句，全部出自这篇故事。点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。</span>
+    </div>
+    <div id="artBody"></div>
+  </section>
+
+  <section class="tab" id="phonics">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-phx="cards">🔤 音素卡</button>
+      <button class="subtab" data-phx="pairs">🔁 最小对立对</button>
+      <button class="subtab" data-phx="listen">🎧 听音选词</button>
+      <button class="subtab" data-phx="intonation">🎵 情绪语调</button>
+ <button class="subtab" data-phx="antonym">↔️ 反义情绪对</button>
+      <span style="color:var(--sub);font-size:12px">A1 拼读轨道：建立 letter-sound 对应，否则跟读只是模仿不可迁移。中国学生易错音（θ / sh / ch）已优先纳入。</span>
+      <a class="phxlink" href="../英语音标48音训练.html" target="_blank" title="48 个音标的系统训练：本站 4 个音 + 全 48 音渐进路线（新窗口打开）">🔊 48 音系统训练 ↗</a>
+    </div>
+    <div id="phxHand"></div>
+    <div class="phx-tip">💡 <b>例词块</b>（蓝底方块）可以<b>逐个单独点</b>发音；<b>🔗 短语连读</b>是把含这个音的词连成一句来听——单词里听得清，句子里才知道它怎么和其他音连起来。建议把顶部语速调慢后听两遍。<br>
+      带<b>虚线框 + 「预学」标签</b>的词来自后面单元：本单元<b>只要求读准，不要求记意思</b>，占比控制在 30% 以内。</div>
+    <div id="phxCards"></div>
+    <div id="phxPairs" style="display:none"></div>
+    <div id="phxListen" style="display:none"></div>
+    <div id="phxIntonation" style="display:none"></div>
+    <div id="phxAntonym" style="display:none"></div>
+  </section>
+
+  <!-- 小测 -->
+  <section class="tab" id="quiz">
+    <div class="hint" style="margin-bottom:10px">主动回忆：听音选义 / 看词选义 / 看义选词 三类随机混出，答错自动记入「🩹 错题」。每轮覆盖本单元全部词。</div>
+    <div id="quizBox"></div>
+  </section>
+
+  <!-- 错题 -->
+  <section class="tab" id="errors">
+    <div class="hint" style="margin-bottom:10px">统一错误池（schema：话题/层级/类型/原文/标准答/学生答/时间）。词卡「记一笔」或「小测答错」自动汇总到这里，按类型聚合，可重练或删除。</div>
+    <div id="errList"></div>
+  </section>
+
+  <!-- 神兽图鉴 -->
+  <section class="tab" id="codex">
+    <div class="coll" id="codexGrid"></div>
+    <div class="hint">12 单元 = 12 只神兽。本单元神兽已解锁，掌握度越高星级越多。其余神兽可从 <a href="index.html" style="color:var(--gold)">目录</a> 进入对应单元解锁。</div>
+  </section>
+</main>
+
+<script>
+const DATA = {"unit":9,"title":"WOULD YOU LIKE DESSERT","subtitle":"三餐与菜品 · 点餐用语 · must/mustn't","beast_emoji":"🍰","beast_name":"甜蜜之灵","groups":[{"name":"三餐与菜品","words":[{"word":"breakfast","ipa":"ˈbrek.fəst","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"早餐","phrase":"for breakfast","phraseDef":"作为早餐","ex":"After breakfast, Dad goes to work.","exCn":"早饭后，爸爸去上班。","defC":"早餐","senses":[{"def":"早餐","ex":"After breakfast, Dad goes to work.","exCn":"早饭后，爸爸去上班。","syn":"—","ant":"—"}],"inArt":1},{"word":"lunch","ipa":"lʌntʃ","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"午餐","phrase":"for lunch","phraseDef":"作为午餐","ex":"I have a snack after lunch.","exCn":"午饭后我吃点心。","defC":"午餐","senses":[{"def":"午餐","ex":"I have a snack after lunch.","exCn":"午饭后我吃点心。","syn":"—","ant":"—"}],"inArt":1},{"word":"dinner","ipa":"ˈdɪn.ə","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"晚餐","phrase":"for dinner","phraseDef":"作为晚餐","ex":"We wash up after dinner.","exCn":"晚饭后我们洗碗。","defC":"晚餐","senses":[{"def":"晚餐","ex":"We wash up after dinner.","exCn":"晚饭后我们洗碗。","syn":"—","ant":"—"}],"inArt":1},{"word":"starter","ipa":"ˈstɑː.tə","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"前菜","phrase":"for starters","phraseDef":"作为前菜","ex":"The starter is hot soup.","exCn":"开胃菜是热汤。","defC":"前菜","senses":[{"def":"前菜","ex":"The starter is hot soup.","exCn":"开胃菜是热汤。","syn":"—","ant":"—"}],"inArt":1},{"word":"main course","ipa":"ˈmeɪn ˌkɔːs","pos":"noun","cef":"A2","band":"极高频(Top1000)","defB":"主菜","phrase":"for my main course","phraseDef":"作为我的主菜","ex":"The main course is steak with a potato.","exCn":"主菜是牛排配一个土豆。","defC":"主菜","senses":[{"def":"主菜","ex":"The main course is steak with a potato.","exCn":"主菜是牛排配一个土豆。","syn":"—","ant":"—"}],"inArt":1},{"word":"dessert","ipa":"dɪˈzɜːt","pos":"noun","cef":"A2","band":"中频(3000-5000)","defB":"甜点","phrase":"a dessert","phraseDef":"一份甜点","ex":"For dessert, I have ice cream.","exCn":"甜点我吃冰淇淋。","defC":"甜点","senses":[{"def":"甜点","ex":"For dessert, I have ice cream.","exCn":"甜点我吃冰淇淋。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"食物","words":[{"word":"apple","ipa":"ˈæp.l̩","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"苹果","phrase":"apple juice","phraseDef":"苹果汁","ex":"I have an apple and an orange.","exCn":"我吃一个苹果和一个橙子。","defC":"苹果","senses":[{"def":"苹果","ex":"I have an apple and an orange.","exCn":"我吃一个苹果和一个橙子。","syn":"—","ant":"—"}],"inArt":1},{"word":"banana","ipa":"bəˈnɑː.nə","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"香蕉","phrase":"a banana","phraseDef":"一根香蕉","ex":"I eat cereal with milk and a banana.","exCn":"我吃麦片，加牛奶和一根香蕉。","defC":"香蕉","senses":[{"def":"香蕉","ex":"I eat cereal with milk and a banana.","exCn":"我吃麦片，加牛奶和一根香蕉。","syn":"—","ant":"—"}],"inArt":1},{"word":"orange","ipa":"ˈɒr.ɪndʒ","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"橙子；橙色","phrase":"orange juice","phraseDef":"橙汁","ex":"I have an apple and an orange.","exCn":"我吃一个苹果和一个橙子。","defC":"橙子；橙色","senses":[{"def":"橙子；橙色","ex":"I have an apple and an orange.","exCn":"我吃一个苹果和一个橙子。","syn":"—","ant":"—"}],"inArt":1},{"word":"strawberry","ipa":"ˈstrɔː.bər.i","pos":"noun","cef":"A2","band":"中频(3000-5000)","defB":"草莓","phrase":"strawberry ice cream","phraseDef":"草莓冰淇淋","ex":"The strawberry is red and sweet.","exCn":"草莓又红又甜。","defC":"草莓","senses":[{"def":"草莓","ex":"The strawberry is red and sweet.","exCn":"草莓又红又甜。","syn":"—","ant":"—"}],"inArt":1},{"word":"bread","ipa":"bred","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"面包","phrase":"a slice of bread","phraseDef":"一片面包","ex":"I put a bit of jam on my bread.","exCn":"我在面包上抹一点果酱。","defC":"面包","senses":[{"def":"面包","ex":"I put a bit of jam on my bread.","exCn":"我在面包上抹一点果酱。","syn":"—","ant":"—"}],"inArt":1},{"word":"beef","ipa":"biːf","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"牛肉","phrase":"roast beef","phraseDef":"烤牛肉","ex":"We roast the beef on Sunday.","exCn":"我们周日烤牛肉。","defC":"牛肉","senses":[{"def":"牛肉","ex":"We roast the beef on Sunday.","exCn":"我们周日烤牛肉。","syn":"—","ant":"—"}],"inArt":1},{"word":"chicken","ipa":"ˈtʃɪk.ɪn","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"鸡肉","phrase":"chicken sandwich","phraseDef":"鸡肉三明治","ex":"She fries the chicken, and the fried chicken is hot.","exCn":"她炸鸡，炸鸡很烫。","defC":"鸡肉","senses":[{"def":"鸡肉","ex":"She fries the chicken, and the fried chicken is hot.","exCn":"她炸鸡，炸鸡很烫。","syn":"—","ant":"—"}],"inArt":1},{"word":"egg","ipa":"eg","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"蛋","phrase":"a boiled egg","phraseDef":"一个煮蛋","ex":"I eat a sandwich with an egg.","exCn":"我吃一个鸡蛋三明治。","defC":"蛋","senses":[{"def":"蛋","ex":"I eat a sandwich with an egg.","exCn":"我吃一个鸡蛋三明治。","syn":"—","ant":"—"}],"inArt":1},{"word":"potato","ipa":"pəˈteɪ.təʊ","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"土豆","phrase":"roast potatoes","phraseDef":"烤土豆","ex":"The main course is steak with a potato.","exCn":"主菜是牛排配一个土豆。","defC":"土豆","senses":[{"def":"土豆","ex":"The main course is steak with a potato.","exCn":"主菜是牛排配一个土豆。","syn":"—","ant":"—"}],"inArt":1},{"word":"tomato","ipa":"təˈmɑː.təʊ","pos":"noun","cef":"A1","band":"中频(3000-5000)","defB":"番茄","phrase":"tomato sauce","phraseDef":"番茄酱","ex":"The salad has a tomato, a carrot and a pepper.","exCn":"沙拉里有一个西红柿、一根胡萝卜和一个辣椒。","defC":"番茄","senses":[{"def":"番茄","ex":"The salad has a tomato, a carrot and a pepper.","exCn":"沙拉里有一个西红柿、一根胡萝卜和一个辣椒。","syn":"—","ant":"—"}],"inArt":1},{"word":"carrot","ipa":"ˈkær.ət","pos":"noun","cef":"A2","band":"中频(3000-5000)","defB":"胡萝卜","phrase":"carrot cake","phraseDef":"胡萝卜蛋糕","ex":"The salad has a tomato, a carrot and a pepper.","exCn":"沙拉里有一个西红柿、一根胡萝卜和一个辣椒。","defC":"胡萝卜","senses":[{"def":"胡萝卜","ex":"The salad has a tomato, a carrot and a pepper.","exCn":"沙拉里有一个西红柿、一根胡萝卜和一个辣椒。","syn":"—","ant":"—"}],"inArt":1},{"word":"pepper","ipa":"ˈpep.ə","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"胡椒；青椒","phrase":"cut the peppers","phraseDef":"切青椒","ex":"The salad has a tomato, a carrot and a pepper.","exCn":"沙拉里有一个西红柿、一根胡萝卜和一个辣椒。","defC":"胡椒；青椒","senses":[{"def":"胡椒；青椒","ex":"The salad has a tomato, a carrot and a pepper.","exCn":"沙拉里有一个西红柿、一根胡萝卜和一个辣椒。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"饮品与熟食","words":[{"word":"coffee","ipa":"ˈkɒf.i","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"咖啡","phrase":"some coffee","phraseDef":"一些咖啡","ex":"\"Yes, please. Coffee, tea, juice and cola.\"","exCn":"“好的。请来咖啡、茶、果汁和可乐。”","defC":"咖啡","senses":[{"def":"咖啡","ex":"\"Yes, please. Coffee, tea, juice and cola.\"","exCn":"“好的。请来咖啡、茶、果汁和可乐。”","syn":"—","ant":"—"}],"inArt":1},{"word":"tea","ipa":"tiː","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"茶","phrase":"coffee and tea","phraseDef":"咖啡和茶","ex":"In the kitchen, Anna can boil water for tea.","exCn":"厨房里，安娜能烧水泡茶。","defC":"茶","senses":[{"def":"茶","ex":"In the kitchen, Anna can boil water for tea.","exCn":"厨房里，安娜能烧水泡茶。","syn":"—","ant":"—"}],"inArt":1},{"word":"juice","ipa":"dʒuːs","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"果汁","phrase":"orange juice","phraseDef":"橙汁","ex":"The orange juice is cold and delicious.","exCn":"橙汁又凉又美味。","defC":"果汁","senses":[{"def":"果汁","ex":"The orange juice is cold and delicious.","exCn":"橙汁又凉又美味。","syn":"—","ant":"—"}],"inArt":1},{"word":"milk","ipa":"mɪlk","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"牛奶","phrase":"a glass of milk","phraseDef":"一杯牛奶","ex":"I drink a cup of tea with milk.","exCn":"我喝一杯加奶的茶。","defC":"牛奶","senses":[{"def":"牛奶","ex":"I drink a cup of tea with milk.","exCn":"我喝一杯加奶的茶。","syn":"—","ant":"—"}],"inArt":1},{"word":"drink","ipa":"drɪŋk","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"饮料；喝","phrase":"a drink of water","phraseDef":"一杯水","ex":"\"Would you like a drink?\" asks Lily.","exCn":"“您想喝点什么吗？”莉莉问。","defC":"饮料；喝","senses":[{"def":"饮料；喝","ex":"\"Would you like a drink?\" asks Lily.","exCn":"“您想喝点什么吗？”莉莉问。","syn":"—","ant":"—"}],"inArt":1},{"word":"cake","ipa":"keɪk","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"蛋糕","phrase":"carrot cake","phraseDef":"胡萝卜蛋糕","ex":"The cream is on the cake.","exCn":"奶油在蛋糕上。","defC":"蛋糕","senses":[{"def":"蛋糕","ex":"The cream is on the cake.","exCn":"奶油在蛋糕上。","syn":"—","ant":"—"}],"inArt":1},{"word":"burger","ipa":"ˈbɜː.gə","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"汉堡","phrase":"a burger and chips","phraseDef":"汉堡配薯条","ex":"I order a burger and chips.","exCn":"我点了一个汉堡和薯条。","defC":"汉堡","senses":[{"def":"汉堡","ex":"I order a burger and chips.","exCn":"我点了一个汉堡和薯条。","syn":"—","ant":"—"}],"inArt":1},{"word":"salad","ipa":"ˈsæl.əd","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"沙拉","phrase":"make salads","phraseDef":"做沙拉","ex":"I put salt and oil on the salad.","exCn":"我在沙拉上放盐和油。","defC":"沙拉","senses":[{"def":"沙拉","ex":"I put salt and oil on the salad.","exCn":"我在沙拉上放盐和油。","syn":"—","ant":"—"}],"inArt":1},{"word":"soup","ipa":"suːp","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"汤","phrase":"tomato soup","phraseDef":"番茄汤","ex":"The starter is hot soup.","exCn":"开胃菜是热汤。","defC":"汤","senses":[{"def":"汤","ex":"The starter is hot soup.","exCn":"开胃菜是热汤。","syn":"—","ant":"—"}],"inArt":1},{"word":"steak","ipa":"steɪk","pos":"noun","cef":"A2","band":"中频(3000-5000)","defB":"牛排","phrase":"make steak","phraseDef":"做牛排","ex":"The main course is steak with a potato.","exCn":"主菜是牛排配一个土豆。","defC":"牛排","senses":[{"def":"牛排","ex":"The main course is steak with a potato.","exCn":"主菜是牛排配一个土豆。","syn":"—","ant":"—"}],"inArt":1},{"word":"omelette","ipa":"ˈɒm.lət","pos":"noun","cef":"A2","band":"低频(10000+)","defB":"煎蛋卷","phrase":"excellent omelettes","phraseDef":"很棒的煎蛋卷","ex":"The omelette has mushrooms in it.","exCn":"煎蛋卷里有蘑菇。","defC":"煎蛋卷","senses":[{"def":"煎蛋卷","ex":"The omelette has mushrooms in it.","exCn":"煎蛋卷里有蘑菇。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"餐厅与点餐","words":[{"word":"chef","ipa":"ʃef","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"厨师","phrase":"a star chef","phraseDef":"名厨","ex":"The chef makes a cake for my birthday.","exCn":"厨师为我的生日做一个蛋糕。","defC":"厨师","senses":[{"def":"厨师","ex":"The chef makes a cake for my birthday.","exCn":"厨师为我的生日做一个蛋糕。","syn":"—","ant":"—"}],"inArt":1},{"word":"menu","ipa":"ˈmen.juː","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"菜单","phrase":"the menus","phraseDef":"那些菜单","ex":"The student waiter brings them a menu.","exCn":"学生服务员给他们拿来菜单。","defC":"菜单","senses":[{"def":"菜单","ex":"The student waiter brings them a menu.","exCn":"学生服务员给他们拿来菜单。","syn":"—","ant":"—"}],"inArt":1},{"word":"order","ipa":"ˈɔː.də","pos":"verb","cef":"A2","band":"极高频(Top1000)","defB":"点（餐）；命令","phrase":"order food","phraseDef":"点餐","ex":"I order a burger and chips.","exCn":"我点了一个汉堡和薯条。","defC":"点（餐）；命令","senses":[{"def":"点（餐）；命令","ex":"I order a burger and chips.","exCn":"我点了一个汉堡和薯条。","syn":"—","ant":"—"}],"inArt":1},{"word":"plate","ipa":"pleɪt","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"盘子","phrase":"hot plates","phraseDef":"热盘子","ex":"\"Be careful — the plate is hot!\" calls Anna.","exCn":"“小心——盘子很烫！”安娜喊道。","defC":"盘子","senses":[{"def":"盘子","ex":"\"Be careful — the plate is hot!\" calls Anna.","exCn":"“小心——盘子很烫！”安娜喊道。","syn":"—","ant":"—"}],"inArt":1},{"word":"a bit of","ipa":"ə ˈbɪt əv","pos":"phrase","cef":"A1","band":"极高频(Top1000)","defB":"一点","phrase":"a bit of cheese","phraseDef":"一点奶酪","ex":"I put a bit of jam on my bread.","exCn":"我在面包上抹一点果酱。","defC":"一点","senses":[{"def":"一点","ex":"I put a bit of jam on my bread.","exCn":"我在面包上抹一点果酱。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"厨房与情态","words":[{"word":"cooking","ipa":"ˈkʊk.ɪŋ","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"烹饪","phrase":"likes cooking","phraseDef":"喜欢烹饪","ex":"The chef is Anna, and she loves cooking.","exCn":"厨师是安娜，她热爱烹饪。","defC":"烹饪","senses":[{"def":"烹饪","ex":"The chef is Anna, and she loves cooking.","exCn":"厨师是安娜，她热爱烹饪。","syn":"—","ant":"—"}],"inArt":1},{"word":"fruit","ipa":"fruːt","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"水果","phrase":"eat fruit","phraseDef":"吃水果","ex":"The picnic has sandwiches, fruit and candy.","exCn":"野餐有三明治、水果和糖果。","defC":"水果","senses":[{"def":"水果","ex":"The picnic has sandwiches, fruit and candy.","exCn":"野餐有三明治、水果和糖果。","syn":"—","ant":"—"}],"inArt":1},{"word":"vegetable","ipa":"ˈvedʒ.tə.bl̩","pos":"noun","cef":"A1","band":"中频(3000-5000)","defB":"蔬菜","phrase":"vegetable soup","phraseDef":"蔬菜汤","ex":"Every vegetable is fresh and clean.","exCn":"每一种蔬菜都新鲜干净。","defC":"蔬菜","senses":[{"def":"蔬菜","ex":"Every vegetable is fresh and clean.","exCn":"每一种蔬菜都新鲜干净。","syn":"—","ant":"—"}],"inArt":1},{"word":"yoghurt","ipa":"ˈjɒgət","pos":"noun","cef":"A1","band":"中低频(5000-10000)","defB":"酸奶","phrase":"strawberry yoghurt","phraseDef":"草莓酸奶","ex":"The yoghurt is in the fridge.","exCn":"酸奶在冰箱里。","defC":"酸奶","senses":[{"def":"酸奶","ex":"The yoghurt is in the fridge.","exCn":"酸奶在冰箱里。","syn":"—","ant":"—"}],"inArt":1},{"word":"jam","ipa":"dʒæm","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"果酱","phrase":"strawberry jam","phraseDef":"草莓酱","ex":"I put a bit of jam on my bread.","exCn":"我在面包上抹一点果酱。","defC":"果酱","senses":[{"def":"果酱","ex":"I put a bit of jam on my bread.","exCn":"我在面包上抹一点果酱。","syn":"—","ant":"—"}],"inArt":1},{"word":"honey","ipa":"ˈhʌn.i","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"蜂蜜","phrase":"toast with honey","phraseDef":"蜂蜜吐司","ex":"Mum makes toast with butter and honey.","exCn":"妈妈做黄油蜂蜜吐司。","defC":"蜂蜜","senses":[{"def":"蜂蜜","ex":"Mum makes toast with butter and honey.","exCn":"妈妈做黄油蜂蜜吐司。","syn":"—","ant":"—"}],"inArt":1},{"word":"butter","ipa":"ˈbʌt.ə","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"黄油","phrase":"bread and butter","phraseDef":"面包黄油","ex":"Mum makes toast with butter and honey.","exCn":"妈妈做黄油蜂蜜吐司。","defC":"黄油","senses":[{"def":"黄油","ex":"Mum makes toast with butter and honey.","exCn":"妈妈做黄油蜂蜜吐司。","syn":"—","ant":"—"}],"inArt":1},{"word":"cereal","ipa":"ˈsɪə.ri.əl","pos":"noun","cef":"A2","band":"中频(3000-5000)","defB":"麦片","phrase":"a bowl of cereal","phraseDef":"一碗麦片","ex":"I eat cereal with milk and a banana.","exCn":"我吃麦片，加牛奶和一根香蕉。","defC":"麦片","senses":[{"def":"麦片","ex":"I eat cereal with milk and a banana.","exCn":"我吃麦片，加牛奶和一根香蕉。","syn":"—","ant":"—"}],"inArt":1},{"word":"must","ipa":"mʌst","pos":"verb","cef":"A2","band":"极高频(Top1000)","defB":"必须","phrase":"must do","phraseDef":"必须做","ex":"I must eat fruit every day.","exCn":"我必须每天吃水果。","defC":"必须","senses":[{"def":"必须","ex":"I must eat fruit every day.","exCn":"我必须每天吃水果。","syn":"—","ant":"—"}],"inArt":1},{"word":"mustn't","ipa":"ˈmʌs.ənt","pos":"verb","cef":"A2","band":"低频(10000+)","defB":"禁止；不能","phrase":"mustn't put","phraseDef":"不能放","ex":"I mustn't eat too much sugar.","exCn":"我不能吃太多糖。","defC":"禁止；不能","senses":[{"def":"禁止；不能","ex":"I mustn't eat too much sugar.","exCn":"我不能吃太多糖。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"🟠 拓展·食物与饮品","words":[{"word":"food","ipa":"/fuːd/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"食物","phrase":"fast food","phraseDef":"快餐","ex":"I cut the food with a knife and fork.","exCn":"我用刀叉切食物。","defC":"食物","senses":[{"def":"食物","ex":"I cut the food with a knife and fork.","exCn":"我用刀叉切食物。","syn":"—","ant":"—"}],"inArt":1},{"word":"eat","ipa":"/iːt/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"吃","phrase":"eat breakfast","phraseDef":"吃早餐","ex":"I must eat fruit every day.","exCn":"我必须每天吃水果。","defC":"吃","senses":[{"def":"吃","ex":"I must eat fruit every day.","exCn":"我必须每天吃水果。","syn":"—","ant":"—"}],"inArt":1},{"word":"ice","ipa":"/aɪs/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"冰","phrase":"ice cream","phraseDef":"冰淇淋","ex":"For dessert, I have ice cream.","exCn":"甜点我吃冰淇淋。","defC":"冰","senses":[{"def":"冰","ex":"For dessert, I have ice cream.","exCn":"甜点我吃冰淇淋。","syn":"—","ant":"—"}],"inArt":1},{"word":"fish","ipa":"/fɪʃ/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"鱼","phrase":"fresh fish","phraseDef":"鲜鱼","ex":"My brother orders fish and rice.","exCn":"我弟弟点了鱼和米饭。","defC":"鱼","senses":[{"def":"鱼","ex":"My brother orders fish and rice.","exCn":"我弟弟点了鱼和米饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"sugar","ipa":"/ˈʃʊɡə(r)/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"糖","phrase":"a spoon of sugar","phraseDef":"一勺糖","ex":"I mustn't eat too much sugar.","exCn":"我不能吃太多糖。","defC":"糖","senses":[{"def":"糖","ex":"I mustn't eat too much sugar.","exCn":"我不能吃太多糖。","syn":"—","ant":"—"}],"inArt":1},{"word":"cream","ipa":"/kriːm/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"奶油；霜","phrase":"ice cream","phraseDef":"冰淇淋","ex":"The cream is on the cake.","exCn":"奶油在蛋糕上。","defC":"奶油；霜","senses":[{"def":"奶油；霜","ex":"The cream is on the cake.","exCn":"奶油在蛋糕上。","syn":"—","ant":"—"}],"inArt":1},{"word":"rice","ipa":"/raɪs/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"米饭","phrase":"a bowl of rice","phraseDef":"一碗米饭","ex":"My brother orders fish and rice.","exCn":"我弟弟点了鱼和米饭。","defC":"米饭","senses":[{"def":"米饭","ex":"My brother orders fish and rice.","exCn":"我弟弟点了鱼和米饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"meal","ipa":"/miːl/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"一餐","phrase":"a big meal","phraseDef":"一顿大餐","ex":"The meal is delicious.","exCn":"这顿饭很美味。","defC":"一餐","senses":[{"def":"一餐","ex":"The meal is delicious.","exCn":"这顿饭很美味。","syn":"—","ant":"—"}],"inArt":1},{"word":"ice cream","ipa":"/ˌaɪs ˈkriːm/","pos":"phrase","cef":"A2","band":"中频(3000-4000)","defB":"冰淇淋","phrase":"an ice cream","phraseDef":"一个冰淇淋","ex":"For dessert, I have ice cream.","exCn":"甜点我吃冰淇淋。","defC":"冰淇淋","senses":[{"def":"冰淇淋","ex":"For dessert, I have ice cream.","exCn":"甜点我吃冰淇淋。","syn":"—","ant":"—"}],"inArt":1},{"word":"delicious","ipa":"/dɪˈlɪʃəs/","pos":"adjective","cef":"A2","band":"中频(3000-4000)","defB":"美味的","phrase":"delicious food","phraseDef":"美味的食物","ex":"The orange juice is cold and delicious.","exCn":"橙汁又凉又美味。","defC":"美味的","senses":[{"def":"美味的","ex":"The orange juice is cold and delicious.","exCn":"橙汁又凉又美味。","syn":"—","ant":"—"}],"inArt":1},{"word":"chips","ipa":"/tʃɪps/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"炸薯条","phrase":"fish and chips","phraseDef":"炸鱼薯条","ex":"I order a burger and chips.","exCn":"我点了一个汉堡和薯条。","defC":"炸薯条","senses":[{"def":"炸薯条","ex":"I order a burger and chips.","exCn":"我点了一个汉堡和薯条。","syn":"—","ant":"—"}],"inArt":1},{"word":"cola","ipa":"/ˈkəʊlə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"可乐","phrase":"a can of cola","phraseDef":"一罐可乐","ex":"\"Yes, please. Coffee, tea, juice and cola.\"","exCn":"“好的。请来咖啡、茶、果汁和可乐。”","defC":"可乐","senses":[{"def":"可乐","ex":"\"Yes, please. Coffee, tea, juice and cola.\"","exCn":"“好的。请来咖啡、茶、果汁和可乐。”","syn":"—","ant":"—"}],"inArt":1},{"word":"cut","ipa":"/kʌt/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"切；割","phrase":"cut the cake","phraseDef":"切蛋糕","ex":"I cut the food with a knife and fork.","exCn":"我用刀叉切食物。","defC":"切；割","senses":[{"def":"切；割","ex":"I cut the food with a knife and fork.","exCn":"我用刀叉切食物。","syn":"—","ant":"—"}],"inArt":1},{"word":"break","ipa":"/breɪk/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"打碎；休息","phrase":"break a cup","phraseDef":"打碎杯子","ex":"At three o'clock, the staff take a break.","exCn":"三点钟，员工们休息。","defC":"打碎；休息","senses":[{"def":"打碎；休息","ex":"At three o'clock, the staff take a break.","exCn":"三点钟，员工们休息。","syn":"—","ant":"—"}],"inArt":1},{"word":"cup","ipa":"/kʌp/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"杯子","phrase":"a cup of tea","phraseDef":"一杯茶","ex":"I drink a cup of tea with milk.","exCn":"我喝一杯加奶的茶。","defC":"杯子","senses":[{"def":"杯子","ex":"I drink a cup of tea with milk.","exCn":"我喝一杯加奶的茶。","syn":"—","ant":"—"}],"inArt":1},{"word":"oil","ipa":"/ɔɪl/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"油","phrase":"cooking oil","phraseDef":"食用油","ex":"I put salt and oil on the salad.","exCn":"我在沙拉上放盐和油。","defC":"油","senses":[{"def":"油","ex":"I put salt and oil on the salad.","exCn":"我在沙拉上放盐和油。","syn":"—","ant":"—"}],"inArt":1},{"word":"box","ipa":"/bɒks/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"盒子；箱","phrase":"a box of books","phraseDef":"一箱书","ex":"The box is full of biscuits.","exCn":"盒子里装满了饼干。","defC":"盒子；箱","senses":[{"def":"盒子；箱","ex":"The box is full of biscuits.","exCn":"盒子里装满了饼干。","syn":"—","ant":"—"}],"inArt":1},{"word":"sweet","ipa":"/swiːt/","pos":"adjective","cef":"A2","band":"中高频(2000-3000)","defB":"甜的；糖果","phrase":"sweet food","phraseDef":"甜食","ex":"The strawberry is red and sweet.","exCn":"草莓又红又甜。","defC":"甜的；糖果","senses":[{"def":"甜的；糖果","ex":"The strawberry is red and sweet.","exCn":"草莓又红又甜。","syn":"—","ant":"—"}],"inArt":1},{"word":"glass","ipa":"/ɡlɑːs/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"玻璃杯；玻璃","phrase":"a glass of water","phraseDef":"一杯水","ex":"I put a slice of lemon in my glass of water.","exCn":"我在那杯水里放了一片柠檬。","defC":"玻璃杯；玻璃","senses":[{"def":"玻璃杯；玻璃","ex":"I put a slice of lemon in my glass of water.","exCn":"我在那杯水里放了一片柠檬。","syn":"—","ant":"—"}],"inArt":1},{"word":"cook","ipa":"/kʊk/","pos":"verb","cef":"A2","band":"中高频(2000-3000)","defB":"烹饪；厨师","phrase":"cook dinner","phraseDef":"做晚饭","ex":"Being a cook is a good occupation.","exCn":"当厨师是一份好职业。","defC":"烹饪；厨师","senses":[{"def":"烹饪；厨师","ex":"Being a cook is a good occupation.","exCn":"当厨师是一份好职业。","syn":"—","ant":"—"}],"inArt":1},{"word":"bowl","ipa":"/bəʊl/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"碗","phrase":"a bowl of rice","phraseDef":"一碗米饭","ex":"The bowl is for the soup, and the plate is for the steak.","exCn":"碗是用来盛汤的，盘子是用来盛牛排的。","defC":"碗","senses":[{"def":"碗","ex":"The bowl is for the soup, and the plate is for the steak.","exCn":"碗是用来盛汤的，盘子是用来盛牛排的。","syn":"—","ant":"—"}],"inArt":1},{"word":"salt","ipa":"/sɔːlt/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"盐","phrase":"a little salt","phraseDef":"一点盐","ex":"I put salt and oil on the salad.","exCn":"我在沙拉上放盐和油。","defC":"盐","senses":[{"def":"盐","ex":"I put salt and oil on the salad.","exCn":"我在沙拉上放盐和油。","syn":"—","ant":"—"}],"inArt":1},{"word":"bottle","ipa":"/ˈbɒtl/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"瓶子","phrase":"a bottle of water","phraseDef":"一瓶水","ex":"The sauce is in the bottle.","exCn":"酱汁在瓶子里。","defC":"瓶子","senses":[{"def":"瓶子","ex":"The sauce is in the bottle.","exCn":"酱汁在瓶子里。","syn":"—","ant":"—"}],"inArt":1},{"word":"cheese","ipa":"/tʃiːz/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"奶酪","phrase":"some cheese","phraseDef":"一些奶酪","ex":"The cheese is on the pizza.","exCn":"奶酪在披萨上。","defC":"奶酪","senses":[{"def":"奶酪","ex":"The cheese is on the pizza.","exCn":"奶酪在披萨上。","syn":"—","ant":"—"}],"inArt":1},{"word":"chocolate","ipa":"/ˈtʃɒklət/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"巧克力","phrase":"a bar of chocolate","phraseDef":"一块巧克力","ex":"The chocolate biscuit is delicious.","exCn":"巧克力饼干很好吃。","defC":"巧克力","senses":[{"def":"巧克力","ex":"The chocolate biscuit is delicious.","exCn":"巧克力饼干很好吃。","syn":"—","ant":"—"}],"inArt":1},{"word":"wash up","ipa":"/ˌwɒʃ ˈʌp/","pos":"phrase","cef":"A2","band":"中频(3000-4000)","defB":"洗餐具","phrase":"wash up after dinner","phraseDef":"晚饭后洗餐具","ex":"We wash up after dinner.","exCn":"晚饭后我们洗碗。","defC":"洗餐具","senses":[{"def":"洗餐具","ex":"We wash up after dinner.","exCn":"晚饭后我们洗碗。","syn":"—","ant":"—"}],"inArt":1},{"word":"pizza","ipa":"/ˈpiːtsə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"比萨","phrase":"a cheese pizza","phraseDef":"奶酪比萨","ex":"The cheese is on the pizza.","exCn":"奶酪在披萨上。","defC":"比萨","senses":[{"def":"比萨","ex":"The cheese is on the pizza.","exCn":"奶酪在披萨上。","syn":"—","ant":"—"}],"inArt":1},{"word":"piece of cake","ipa":"/ˌpiːs əv ˈkeɪk/","pos":"phrase","cef":"A2","band":"中频(3000-4000)","defB":"小菜一碟；一块蛋糕","phrase":"a piece of cake","phraseDef":"一块蛋糕","ex":"I eat a piece of cake too.","exCn":"我还吃了一块蛋糕。","defC":"小菜一碟；一块蛋糕","senses":[{"def":"小菜一碟；一块蛋糕","ex":"I eat a piece of cake too.","exCn":"我还吃了一块蛋糕。","syn":"—","ant":"—"}],"inArt":1},{"word":"knife","ipa":"/naɪf/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"刀","phrase":"a sharp knife","phraseDef":"快刀","ex":"I cut the food with a knife and fork.","exCn":"我用刀叉切食物。","defC":"刀","senses":[{"def":"刀","ex":"I cut the food with a knife and fork.","exCn":"我用刀叉切食物。","syn":"—","ant":"—"}],"inArt":1},{"word":"sauce","ipa":"/sɔːs/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"酱；调味汁","phrase":"tomato sauce","phraseDef":"番茄酱","ex":"The sauce is in the bottle.","exCn":"酱汁在瓶子里。","defC":"酱；调味汁","senses":[{"def":"酱；调味汁","ex":"The sauce is in the bottle.","exCn":"酱汁在瓶子里。","syn":"—","ant":"—"}],"inArt":1},{"word":"candy","ipa":"/ˈkændi/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"糖果","phrase":"a sweet candy","phraseDef":"一颗糖","ex":"The candy is very sweet.","exCn":"糖果很甜。","defC":"糖果","senses":[{"def":"糖果","ex":"The candy is very sweet.","exCn":"糖果很甜。","syn":"—","ant":"—"}],"inArt":1},{"word":"dish","ipa":"/dɪʃ/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"菜；盘子","phrase":"a hot dish","phraseDef":"一道热菜","ex":"Anna can cook many dishes, and every dish is delicious.","exCn":"安娜会做很多菜，每一道都很美味。","defC":"菜；盘子","senses":[{"def":"菜；盘子","ex":"Anna can cook many dishes, and every dish is delicious.","exCn":"安娜会做很多菜，每一道都很美味。","syn":"—","ant":"—"}],"inArt":1},{"word":"sandwich","ipa":"/ˈsænwɪdʒ/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"三明治","phrase":"a cheese sandwich","phraseDef":"奶酪三明治","ex":"I eat a sandwich with an egg.","exCn":"我吃一个鸡蛋三明治。","defC":"三明治","senses":[{"def":"三明治","ex":"I eat a sandwich with an egg.","exCn":"我吃一个鸡蛋三明治。","syn":"—","ant":"—"}],"inArt":1},{"word":"lemon","ipa":"/ˈlemən/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"柠檬","phrase":"a yellow lemon","phraseDef":"黄柠檬","ex":"The lemonade is cold, and the lemon is yellow.","exCn":"柠檬水很凉，柠檬是黄色的。","defC":"柠檬","senses":[{"def":"柠檬","ex":"The lemonade is cold, and the lemon is yellow.","exCn":"柠檬水很凉，柠檬是黄色的。","syn":"—","ant":"—"}],"inArt":1},{"word":"cafe","ipa":"/ˈkæfeɪ/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"咖啡馆","phrase":"a small cafe","phraseDef":"小咖啡馆","ex":"The thing is, the cafe is very busy today.","exCn":"问题是，咖啡馆今天非常忙。","defC":"咖啡馆","senses":[{"def":"咖啡馆","ex":"The thing is, the cafe is very busy today.","exCn":"问题是，咖啡馆今天非常忙。","syn":"—","ant":"—"}],"inArt":1},{"word":"fried","ipa":"/fraɪd/","pos":"adjective","cef":"A2","band":"中频(3000-4000)","defB":"油炸的","phrase":"fried chicken","phraseDef":"炸鸡","ex":"She fries the chicken, and the fried chicken is hot.","exCn":"她炸鸡，炸鸡很烫。","defC":"油炸的","senses":[{"def":"油炸的","ex":"She fries the chicken, and the fried chicken is hot.","exCn":"她炸鸡，炸鸡很烫。","syn":"—","ant":"—"}],"inArt":1},{"word":"fork","ipa":"/fɔːk/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"叉子","phrase":"a clean fork","phraseDef":"干净的叉子","ex":"I cut the food with a knife and fork.","exCn":"我用刀叉切食物。","defC":"叉子","senses":[{"def":"叉子","ex":"I cut the food with a knife and fork.","exCn":"我用刀叉切食物。","syn":"—","ant":"—"}],"inArt":1},{"word":"mineral water","ipa":"/ˈmɪnərəl ˌwɔːtə/","pos":"phrase","cef":"A2","band":"中频(3000-4000)","defB":"矿泉水","phrase":"a bottle of mineral water","phraseDef":"一瓶矿泉水","ex":"The mineral water is very cold.","exCn":"矿泉水很凉。","defC":"矿泉水","senses":[{"def":"矿泉水","ex":"The mineral water is very cold.","exCn":"矿泉水很凉。","syn":"—","ant":"—"}],"inArt":1},{"word":"slice","ipa":"/slaɪs/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"薄片","phrase":"a slice of bread","phraseDef":"一片面包","ex":"I put a slice of lemon in my glass of water.","exCn":"我在那杯水里放了一片柠檬。","defC":"薄片","senses":[{"def":"薄片","ex":"I put a slice of lemon in my glass of water.","exCn":"我在那杯水里放了一片柠檬。","syn":"—","ant":"—"}],"inArt":1},{"word":"toast","ipa":"/təʊst/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"吐司","phrase":"butter on toast","phraseDef":"涂黄油的吐司","ex":"Mum makes toast with butter and honey.","exCn":"妈妈做黄油蜂蜜吐司。","defC":"吐司","senses":[{"def":"吐司","ex":"Mum makes toast with butter and honey.","exCn":"妈妈做黄油蜂蜜吐司。","syn":"—","ant":"—"}],"inArt":1},{"word":"curry","ipa":"/ˈkʌri/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"咖喱","phrase":"a hot curry","phraseDef":"辣的咖喱","ex":"The curry is hot but delicious.","exCn":"咖喱很辣但很好吃。","defC":"咖喱","senses":[{"def":"咖喱","ex":"The curry is hot but delicious.","exCn":"咖喱很辣但很好吃。","syn":"—","ant":"—"}],"inArt":1},{"word":"garlic","ipa":"/ˈɡɑːlɪk/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"蒜","phrase":"some garlic","phraseDef":"一些蒜","ex":"The garlic and the onion are in the sauce.","exCn":"大蒜和洋葱在酱汁里。","defC":"蒜","senses":[{"def":"蒜","ex":"The garlic and the onion are in the sauce.","exCn":"大蒜和洋葱在酱汁里。","syn":"—","ant":"—"}],"inArt":1},{"word":"pasta","ipa":"/ˈpæstə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"意面","phrase":"pasta with sauce","phraseDef":"拌酱意面","ex":"I eat pasta with curry and chilli.","exCn":"我吃配咖喱和辣椒的意面。","defC":"意面","senses":[{"def":"意面","ex":"I eat pasta with curry and chilli.","exCn":"我吃配咖喱和辣椒的意面。","syn":"—","ant":"—"}],"inArt":1},{"word":"bake","ipa":"/beɪk/","pos":"verb","cef":"A2","band":"中频(3000-4000)","defB":"烘烤","phrase":"bake a cake","phraseDef":"烤蛋糕","ex":"I bake a cake for dessert.","exCn":"我烤一个蛋糕当甜点。","defC":"烘烤","senses":[{"def":"烘烤","ex":"I bake a cake for dessert.","exCn":"我烤一个蛋糕当甜点。","syn":"—","ant":"—"}],"inArt":1},{"word":"snack","ipa":"/snæk/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"零食","phrase":"a healthy snack","phraseDef":"健康零食","ex":"I have a snack after lunch.","exCn":"午饭后我吃点心。","defC":"零食","senses":[{"def":"零食","ex":"I have a snack after lunch.","exCn":"午饭后我吃点心。","syn":"—","ant":"—"}],"inArt":1},{"word":"onion","ipa":"/ˈʌnjən/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"洋葱","phrase":"a red onion","phraseDef":"红洋葱","ex":"The garlic and the onion are in the sauce.","exCn":"大蒜和洋葱在酱汁里。","defC":"洋葱","senses":[{"def":"洋葱","ex":"The garlic and the onion are in the sauce.","exCn":"大蒜和洋葱在酱汁里。","syn":"—","ant":"—"}],"inArt":1},{"word":"roast","ipa":"/rəʊst/","pos":"adjective","cef":"A2","band":"中频(3000-4000)","defB":"烤制的","phrase":"roast chicken","phraseDef":"烤鸡","ex":"We roast the beef on Sunday.","exCn":"我们周日烤牛肉。","defC":"烤制的","senses":[{"def":"烤制的","ex":"We roast the beef on Sunday.","exCn":"我们周日烤牛肉。","syn":"—","ant":"—"}],"inArt":1},{"word":"boil","ipa":"/bɔɪl/","pos":"verb","cef":"A2","band":"中频(3000-4000)","defB":"煮沸","phrase":"boil water","phraseDef":"把水烧开","ex":"In the kitchen, Anna can boil water for tea.","exCn":"厨房里，安娜能烧水泡茶。","defC":"煮沸","senses":[{"def":"煮沸","ex":"In the kitchen, Anna can boil water for tea.","exCn":"厨房里，安娜能烧水泡茶。","syn":"—","ant":"—"}],"inArt":1},{"word":"picnic","ipa":"/ˈpɪknɪk/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"野餐","phrase":"have a picnic","phraseDef":"去野餐","ex":"On Sunday, we have a picnic in the park.","exCn":"星期天，我们去公园野餐。","defC":"野餐","senses":[{"def":"野餐","ex":"On Sunday, we have a picnic in the park.","exCn":"星期天，我们去公园野餐。","syn":"—","ant":"—"}],"inArt":1},{"word":"sausage","ipa":"/ˈsɒsɪdʒ/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"香肠","phrase":"a hot sausage","phraseDef":"热香肠","ex":"She grills the sausages, and the grilled sausage is my favourite.","exCn":"她烤香肠，烤香肠是我的最爱。","defC":"香肠","senses":[{"def":"香肠","ex":"She grills the sausages, and the grilled sausage is my favourite.","exCn":"她烤香肠，烤香肠是我的最爱。","syn":"—","ant":"—"}],"inArt":1},{"word":"grilled","ipa":"/ɡrɪld/","pos":"adjective","cef":"A2","band":"中频(3000-4000)","defB":"烤的","phrase":"grilled fish","phraseDef":"烤鱼","ex":"She grills the sausages, and the grilled sausage is my favourite.","exCn":"她烤香肠，烤香肠是我的最爱。","defC":"烤的","senses":[{"def":"烤的","ex":"She grills the sausages, and the grilled sausage is my favourite.","exCn":"她烤香肠，烤香肠是我的最爱。","syn":"—","ant":"—"}],"inArt":1},{"word":"grape","ipa":"/ɡreɪp/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"葡萄","phrase":"some green grapes","phraseDef":"一些青葡萄","ex":"The grape is small and sweet.","exCn":"葡萄又小又甜。","defC":"葡萄","senses":[{"def":"葡萄","ex":"The grape is small and sweet.","exCn":"葡萄又小又甜。","syn":"—","ant":"—"}],"inArt":1},{"word":"boiled","ipa":"/bɔɪld/","pos":"adjective","cef":"A2","band":"中频(3000-4000)","defB":"煮熟的","phrase":"boiled eggs","phraseDef":"煮鸡蛋","ex":"The boiled fish is delicious.","exCn":"煮鱼很好吃。","defC":"煮熟的","senses":[{"def":"煮熟的","ex":"The boiled fish is delicious.","exCn":"煮鱼很好吃。","syn":"—","ant":"—"}],"inArt":1},{"word":"mushroom","ipa":"/ˈmʌʃrʊm/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"蘑菇","phrase":"fresh mushrooms","phraseDef":"鲜蘑菇","ex":"The pizza has cheese, meat and one mushroom.","exCn":"披萨上有奶酪、肉和一个蘑菇。","defC":"蘑菇","senses":[{"def":"蘑菇","ex":"The pizza has cheese, meat and one mushroom.","exCn":"披萨上有奶酪、肉和一个蘑菇。","syn":"—","ant":"—"}],"inArt":1},{"word":"barbecue","ipa":"/ˈbɑːbɪkjuː/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"烧烤","phrase":"have a barbecue","phraseDef":"办烧烤","ex":"We barbecue the sausages in the garden.","exCn":"我们在花园里烤香肠。","defC":"烧烤","senses":[{"def":"烧烤","ex":"We barbecue the sausages in the garden.","exCn":"我们在花园里烤香肠。","syn":"—","ant":"—"}],"inArt":1},{"word":"waiter","ipa":"/ˈweɪtə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"男服务员","phrase":"ask the waiter","phraseDef":"问服务员","ex":"Our young waiter, Tom, runs to the kitchen.","exCn":"我们年轻的服务员汤姆跑向厨房。","defC":"男服务员","senses":[{"def":"男服务员","ex":"Our young waiter, Tom, runs to the kitchen.","exCn":"我们年轻的服务员汤姆跑向厨房。","syn":"—","ant":"—"}],"inArt":1},{"word":"waitress","ipa":"/ˈweɪtrəs/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"女服务员","phrase":"a young waitress","phraseDef":"年轻的女服务员","ex":"The waiter is Tom, and the waitress is Lily.","exCn":"服务员是汤姆，女服务员是莉莉。","defC":"女服务员","senses":[{"def":"女服务员","ex":"The waiter is Tom, and the waitress is Lily.","exCn":"服务员是汤姆，女服务员是莉莉。","syn":"—","ant":"—"}],"inArt":1},{"word":"pear","ipa":"/peə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"梨","phrase":"a sweet pear","phraseDef":"甜梨","ex":"The melon and the pear are sweet.","exCn":"瓜和梨很甜。","defC":"梨","senses":[{"def":"梨","ex":"The melon and the pear are sweet.","exCn":"瓜和梨很甜。","syn":"—","ant":"—"}],"inArt":1},{"word":"biscuit","ipa":"/ˈbɪskɪt/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"饼干","phrase":"a chocolate biscuit","phraseDef":"巧克力饼干","ex":"The chocolate biscuit is delicious.","exCn":"巧克力饼干很好吃。","defC":"饼干","senses":[{"def":"饼干","ex":"The chocolate biscuit is delicious.","exCn":"巧克力饼干很好吃。","syn":"—","ant":"—"}],"inArt":1},{"word":"cafeteria","ipa":"/ˌkæfəˈtɪəriə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"自助餐厅","phrase":"the school cafeteria","phraseDef":"学校自助餐厅","ex":"Dad's job is at a small cafe near the school cafeteria.","exCn":"爸爸的工作在学校自助餐厅旁的一家小咖啡馆。","defC":"自助餐厅","senses":[{"def":"自助餐厅","ex":"Dad's job is at a small cafe near the school cafeteria.","exCn":"爸爸的工作在学校自助餐厅旁的一家小咖啡馆。","syn":"—","ant":"—"}],"inArt":1},{"word":"lemonade","ipa":"/ˌleməˈneɪd/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"柠檬汽水","phrase":"a glass of lemonade","phraseDef":"一杯柠檬汽水","ex":"The lemonade is cold, and the lemon is yellow.","exCn":"柠檬水很凉，柠檬是黄色的。","defC":"柠檬汽水","senses":[{"def":"柠檬汽水","ex":"The lemonade is cold, and the lemon is yellow.","exCn":"柠檬水很凉，柠檬是黄色的。","syn":"—","ant":"—"}],"inArt":1},{"word":"melon","ipa":"/ˈmelən/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"瓜","phrase":"a piece of melon","phraseDef":"一块瓜","ex":"The melon and the pear are sweet.","exCn":"瓜和梨很甜。","defC":"瓜","senses":[{"def":"瓜","ex":"The melon and the pear are sweet.","exCn":"瓜和梨很甜。","syn":"—","ant":"—"}],"inArt":1},{"word":"chilli","ipa":"/ˈtʃɪli/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"辣椒","phrase":"a hot chilli","phraseDef":"辣椒","ex":"I eat pasta with curry and chilli.","exCn":"我吃配咖喱和辣椒的意面。","defC":"辣椒","senses":[{"def":"辣椒","ex":"I eat pasta with curry and chilli.","exCn":"我吃配咖喱和辣椒的意面。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"🟠 拓展·工作与职业","words":[{"word":"work","ipa":"/wɜːk/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"工作","phrase":"go to work","phraseDef":"去上班","ex":"After breakfast, Dad goes to work.","exCn":"早饭后，爸爸去上班。","defC":"工作","senses":[{"def":"工作","ex":"After breakfast, Dad goes to work.","exCn":"早饭后，爸爸去上班。","syn":"—","ant":"—"}],"inArt":1},{"word":"company","ipa":"/ˈkʌmpəni/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"公司","phrase":"a big company","phraseDef":"大公司","ex":"The company is small, but the business is good.","exCn":"这家公司很小，但生意很好。","defC":"公司","senses":[{"def":"公司","ex":"The company is small, but the business is good.","exCn":"这家公司很小，但生意很好。","syn":"—","ant":"—"}],"inArt":1},{"word":"business","ipa":"/ˈbɪznəs/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"生意；商务","phrase":"a family business","phraseDef":"家族生意","ex":"The company is small, but the business is good.","exCn":"这家公司很小，但生意很好。","defC":"生意；商务","senses":[{"def":"生意；商务","ex":"The company is small, but the business is good.","exCn":"这家公司很小，但生意很好。","syn":"—","ant":"—"}],"inArt":1},{"word":"job","ipa":"/dʒɒb/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"工作","phrase":"a good job","phraseDef":"好工作","ex":"Dad's job is at a small cafe near the school cafeteria.","exCn":"爸爸的工作在学校自助餐厅旁的一家小咖啡馆。","defC":"工作","senses":[{"def":"工作","ex":"Dad's job is at a small cafe near the school cafeteria.","exCn":"爸爸的工作在学校自助餐厅旁的一家小咖啡馆。","syn":"—","ant":"—"}],"inArt":1},{"word":"staff","ipa":"/stɑːf/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"员工（总称）","phrase":"the hotel staff","phraseDef":"酒店员工","ex":"At three o'clock, the staff take a break.","exCn":"三点钟，员工们休息。","defC":"员工（总称）","senses":[{"def":"员工（总称）","ex":"At three o'clock, the staff take a break.","exCn":"三点钟，员工们休息。","syn":"—","ant":"—"}],"inArt":1},{"word":"student","ipa":"/ˈstjuːdnt/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"学生","phrase":"a new student","phraseDef":"新学生","ex":"The student waiter brings them a menu.","exCn":"学生服务员给他们拿来菜单。","defC":"学生","senses":[{"def":"学生","ex":"The student waiter brings them a menu.","exCn":"学生服务员给他们拿来菜单。","syn":"—","ant":"—"}],"inArt":1},{"word":"manager","ipa":"/ˈmænɪdʒə/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"经理","phrase":"a shop manager","phraseDef":"店经理","ex":"Dad is the manager of the cafe.","exCn":"爸爸是这家咖啡馆的经理。","defC":"经理","senses":[{"def":"经理","ex":"Dad is the manager of the cafe.","exCn":"爸爸是这家咖啡馆的经理。","syn":"—","ant":"—"}],"inArt":1},{"word":"secretary","ipa":"/ˈsekrətri/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"秘书","phrase":"a busy secretary","phraseDef":"忙碌的秘书","ex":"The secretary answers the phone.","exCn":"秘书负责接电话。","defC":"秘书","senses":[{"def":"秘书","ex":"The secretary answers the phone.","exCn":"秘书负责接电话。","syn":"—","ant":"—"}],"inArt":1},{"word":"teacher","ipa":"/ˈtiːtʃə/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"老师","phrase":"my teacher","phraseDef":"我的老师","ex":"The teacher has lunch here on Friday.","exCn":"老师周五在这里吃午饭。","defC":"老师","senses":[{"def":"老师","ex":"The teacher has lunch here on Friday.","exCn":"老师周五在这里吃午饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"police officer","ipa":"/pəˈliːs ˌɒfɪsə/","pos":"phrase","cef":"A2","band":"中高频(2000-3000)","defB":"警察","phrase":"a young police officer","phraseDef":"年轻的警察","ex":"The police officer eats here too.","exCn":"警察也在这里吃饭。","defC":"警察","senses":[{"def":"警察","ex":"The police officer eats here too.","exCn":"警察也在这里吃饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"artist","ipa":"/ˈɑːtɪst/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"艺术家","phrase":"a young artist","phraseDef":"年轻艺术家","ex":"The artist draws beautiful pictures for the menu.","exCn":"艺术家为菜单画漂亮的画。","defC":"艺术家","senses":[{"def":"艺术家","ex":"The artist draws beautiful pictures for the menu.","exCn":"艺术家为菜单画漂亮的画。","syn":"—","ant":"—"}],"inArt":1},{"word":"boss","ipa":"/bɒs/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"老板","phrase":"a kind boss","phraseDef":"和善的老板","ex":"The boss is happy today.","exCn":"老板今天很高兴。","defC":"老板","senses":[{"def":"老板","ex":"The boss is happy today.","exCn":"老板今天很高兴。","syn":"—","ant":"—"}],"inArt":1},{"word":"guide","ipa":"/ɡaɪd/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"向导；指南","phrase":"a tour guide","phraseDef":"导游","ex":"The guide brings tourists to the cafe for a meal.","exCn":"导游带游客来咖啡馆吃饭。","defC":"向导；指南","senses":[{"def":"向导；指南","ex":"The guide brings tourists to the cafe for a meal.","exCn":"导游带游客来咖啡馆吃饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"earn","ipa":"/ɜːn/","pos":"verb","cef":"A2","band":"中频(3000-4000)","defB":"赚（钱）","phrase":"earn money","phraseDef":"赚钱","ex":"People earn money for their work.","exCn":"人们靠工作挣钱。","defC":"赚（钱）","senses":[{"def":"赚（钱）","ex":"People earn money for their work.","exCn":"人们靠工作挣钱。","syn":"—","ant":"—"}],"inArt":1},{"word":"worker","ipa":"/ˈwɜːkə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"工人","phrase":"a factory worker","phraseDef":"工厂工人","ex":"The staff are friendly, and every worker is kind.","exCn":"员工们很友好，每个工作人员都和善。","defC":"工人","senses":[{"def":"工人","ex":"The staff are friendly, and every worker is kind.","exCn":"员工们很友好，每个工作人员都和善。","syn":"—","ant":"—"}],"inArt":1},{"word":"journalist","ipa":"/ˈdʒɜːnəlɪst/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"记者","phrase":"a TV journalist","phraseDef":"电视台记者","ex":"The journalist writes about the cafe.","exCn":"记者写关于这家咖啡馆的报道。","defC":"记者","senses":[{"def":"记者","ex":"The journalist writes about the cafe.","exCn":"记者写关于这家咖啡馆的报道。","syn":"—","ant":"—"}],"inArt":1},{"word":"instructions","ipa":"/ɪnˈstrʌkʃnz/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"说明；指示","phrase":"read the instructions","phraseDef":"看说明","ex":"The instructions say: \"Wash your hands before you eat.\"","exCn":"说明上写着：“吃东西前要洗手。”","defC":"说明；指示","senses":[{"def":"说明；指示","ex":"The instructions say: \"Wash your hands before you eat.\"","exCn":"说明上写着：“吃东西前要洗手。”","syn":"—","ant":"—"}],"inArt":1},{"word":"occupation","ipa":"/ˌɒkjuˈpeɪʃn/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"职业","phrase":"write your occupation","phraseDef":"写下你的职业","ex":"Being a cook is a good occupation.","exCn":"当厨师是一份好职业。","defC":"职业","senses":[{"def":"职业","ex":"Being a cook is a good occupation.","exCn":"当厨师是一份好职业。","syn":"—","ant":"—"}],"inArt":1},{"word":"farmer","ipa":"/ˈfɑːmə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"农民","phrase":"a young farmer","phraseDef":"年轻农民","ex":"The farmer brings fresh vegetables to the cafe.","exCn":"农民给咖啡馆送来新鲜蔬菜。","defC":"农民","senses":[{"def":"农民","ex":"The farmer brings fresh vegetables to the cafe.","exCn":"农民给咖啡馆送来新鲜蔬菜。","syn":"—","ant":"—"}],"inArt":1},{"word":"businessman","ipa":"/ˈbɪznəsmæn/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"商人","phrase":"a busy businessman","phraseDef":"忙碌的商人","ex":"A businessman and a businesswoman come for lunch.","exCn":"一位男商人和一位女商人来吃午饭。","defC":"商人","senses":[{"def":"商人","ex":"A businessman and a businesswoman come for lunch.","exCn":"一位男商人和一位女商人来吃午饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"cleaner","ipa":"/ˈkliːnə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"清洁工","phrase":"an office cleaner","phraseDef":"办公室清洁工","ex":"The cleaner is Mr Green, and the receptionist is Sue.","exCn":"清洁工是格林先生，接待员是休。","defC":"清洁工","senses":[{"def":"清洁工","ex":"The cleaner is Mr Green, and the receptionist is Sue.","exCn":"清洁工是格林先生，接待员是休。","syn":"—","ant":"—"}],"inArt":1},{"word":"footballer","ipa":"/ˈfʊtbɔːlə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"足球运动员","phrase":"a famous footballer","phraseDef":"著名足球运动员","ex":"The footballer loves our pizza.","exCn":"这位足球运动员喜爱我们的披萨。","defC":"足球运动员","senses":[{"def":"足球运动员","ex":"The footballer loves our pizza.","exCn":"这位足球运动员喜爱我们的披萨。","syn":"—","ant":"—"}],"inArt":1},{"word":"receptionist","ipa":"/rɪˈsepʃənɪst/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"接待员","phrase":"a hotel receptionist","phraseDef":"酒店接待员","ex":"The cleaner is Mr Green, and the receptionist is Sue.","exCn":"清洁工是格林先生，接待员是休。","defC":"接待员","senses":[{"def":"接待员","ex":"The cleaner is Mr Green, and the receptionist is Sue.","exCn":"清洁工是格林先生，接待员是休。","syn":"—","ant":"—"}],"inArt":1},{"word":"businesswoman","ipa":"/ˈbɪznəswʊmən/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"女商人","phrase":"a rich businesswoman","phraseDef":"富有的女商人","ex":"A businessman and a businesswoman come for lunch.","exCn":"一位男商人和一位女商人来吃午饭。","defC":"女商人","senses":[{"def":"女商人","ex":"A businessman and a businesswoman come for lunch.","exCn":"一位男商人和一位女商人来吃午饭。","syn":"—","ant":"—"}],"inArt":1}]}],"dialogues":[{"title":"① 您想来点什么？","turns":[{"role":"A","en":"Would you like some tea?","cn":"您想喝点茶吗？"},{"role":"B","en":"Yes, please.","cn":"好的，谢谢。"},{"role":"A","en":"Would you like a starter?","cn":"您要来份前菜吗？"},{"role":"B","en":"No, thank you. Just the main course.","cn":"不了，谢谢，只要主菜。"},{"role":"A","en":"What would you like for dessert?","cn":"甜点您想要什么？"},{"role":"B","en":"Cake, please. A bit of ice cream, too.","cn":"蛋糕，再来一点冰淇淋。"}]},{"title":"② 饮食规矩","turns":[{"role":"A","en":"You must eat vegetables.","cn":"你必须吃蔬菜。"},{"role":"B","en":"I know. But I mustn't eat too much sugar.","cn":"我知道，但不能吃太多糖。"},{"role":"A","en":"You must drink milk every day.","cn":"你必须每天喝牛奶。"},{"role":"B","en":"And I must wash my hands before dinner.","cn":"饭前还必须洗手。"},{"role":"A","en":"You mustn't waste food.","cn":"你不准浪费食物。"},{"role":"B","en":"OK, I finish my plate.","cn":"好，我吃完。"}]},{"title":"③ 厨师在做什么？","turns":[{"role":"A","en":"What is the chef cooking?","cn":"厨师在煮什么？"},{"role":"B","en":"He is cooking soup and steak.","cn":"他在煮汤和煎牛排。"},{"role":"A","en":"Is there egg in the salad?","cn":"沙拉里有蛋吗？"},{"role":"B","en":"Yes, and there is tomato and carrot.","cn":"有，还有番茄和胡萝卜。"},{"role":"A","en":"Can I see the menu?","cn":"我能看下菜单吗？"},{"role":"B","en":"Of course. Here it is.","cn":"当然，给您。"}]},{"title":"④ 早餐吃什么","turns":[{"role":"A","en":"What do you have for breakfast?","cn":"你早餐吃什么？"},{"role":"B","en":"I have cereal with milk and fruit.","cn":"我吃麦片配牛奶和水果。"},{"role":"A","en":"Do you eat bread, too?","cn":"你也吃面包吗？"},{"role":"B","en":"Yes, with butter and jam.","cn":"吃，配黄油和果酱。"},{"role":"A","en":"What do you drink?","cn":"你喝什么？"},{"role":"B","en":"Orange juice. Sometimes coffee.","cn":"橙汁，有时咖啡。"}]}],"phonics":{"hand_anchor":{"title":"🖐 元音手掌握图（按口型位置记元音）","hint":"把手张开：拇指→小指，对应 5 个长元音的口型位置；掌心是短元音。跟着手指读一遍，就能记住嘴型。","long":[{"pos":"小指","ipa":"/iː/","say":"ee——","words":["see","eat","green"],"cn":"看见 / 吃 / 绿色"},{"pos":"无名指","ipa":"/eɪ/","say":"诶——","words":["name","day","play"],"cn":"名字 / 天 / 玩"},{"pos":"中指","ipa":"/aɪ/","say":"爱——","words":["I","my","time"],"cn":"我 / 我的 / 时间"},{"pos":"食指","ipa":"/ɔː/","say":"哦——","words":["four","sport","door"],"cn":"四 / 运动 / 门"},{"pos":"拇指","ipa":"/uː/","say":"乌——","words":["food","blue","school"],"cn":"食物 / 蓝色 / 学校"}],"short":[{"ipa":"/ɪ/","words":["sit","big","fish"],"cn":"坐 / 大 / 鱼","say":"短促的 i"},{"ipa":"/e/","words":["bed","red","ten"],"cn":"床 / 红 / 十","say":"短促的 e"},{"ipa":"/æ/","words":["bag","cat","hand"],"cn":"包 / 猫 / 手","say":"嘴张大"},{"ipa":"/ɒ/","words":["dog","box","hot"],"cn":"狗 / 盒子 / 热","say":"嘴圆"},{"ipa":"/ʌ/","words":["cup","bus","country"],"cn":"杯 / 巴士 / 国家","say":"松嘴短 u"}]},"sound_cards":[{"sound":"/uː/","name":"长元音（juice / fruit / menu）","words":["juice","fruit","menu","soup"],"phrase_en":"The fruit juice is on the menu.","phrase_cn":"果汁在菜单上。","tip":"嘴唇收圆、声音拉长——/uː/ 是长的「乌」，别读成短 /ʊ/"},{"sound":"/ɔː/","name":"长元音（order / four / door）","words":["order","four","door","more"],"phrase_en":"We order four plates, please.","phrase_cn":"我们要四个盘子，谢谢。","tip":"嘴圆张开、声音拉长——英式 /ɔː/ 比美式 /ɑː/ 更圆"}],"min_pairs":[{"a":"food","a_ipa":"/fuːd/","b":"foot","b_ipa":"/fʊt/","tip":"/uː/ 长而圆（food 食物），/ʊ/ 短而松（foot 脚）"},{"a":"tea","a_ipa":"/tiː/","b":"ten","b_ipa":"/ten/","tip":"/iː/ 嘴角拉紧拉长，/e/ 短促嘴张小"},{"a":"apple","a_ipa":"/ˈæpl/","b":"able","b_ipa":"/ˈeɪbl/","tip":"/æ/ 嘴张大往前，/eɪ/ 从 /e/ 滑到 /ɪ/"}],"intonation_cards":[{"word":"would","ipa":"/wʊd/","cn":"愿意","arrow":"↗","tone":"升调","sent":"Would you like some tea?","sent_cn":"您想喝点茶吗？","tip":"Would you like…? 礼貌提供，尾音上扬 ↗ 显得客气。","pair":{"en":"I would like some tea.","cn":"我想要点茶。"}},{"word":"like","ipa":"/laɪk/","cn":"想要","arrow":"↘","tone":"降调","sent":"I'd like the steak, please.","sent_cn":"我要牛排，谢谢。","tip":"点餐是「决定」，句末往下 ↘ 干脆利落。","pair":{"en":"Would you like steak?","cn":"您想要牛排吗？"}}],"intonation_pairs":[{"left":{"en":"Would you like tea?","cn":"您想喝茶吗？（提供）","arrow":"↗","tone":"升调"},"right":{"en":"You would like tea.","cn":"您想喝茶。（降调）","arrow":"↘","tone":"降调"},"ask":"哪句是服务员会说的？","answer":"↗ 升调是真心提供选择；↘ 降调变成替对方下结论，不礼貌——提供服务永远用升调。"}],"antonym_pairs":[{"a":"eat","b":"drink","cn_a":"吃","cn_b":"喝","sent":"We eat bread and drink milk.","sent_cn":"我们吃面包、喝牛奶。"},{"a":"young","b":"old","cn_a":"年轻","cn_b":"老","sent":"The chef is young, but his recipes are old.","sent_cn":"厨师年轻，但他的菜谱很老。"},{"a":"must","b":"mustn't","cn_a":"必须","cn_b":"不准","sent":"We must eat vegetables, but we mustn't waste food.","sent_cn":"我们必须吃蔬菜，但不准浪费食物。"}]},"reading":[{"title":"At the Restaurant","focus":"点餐 · would like","meta":"A1 受控原创（句长≤8词）","sentences":["We are at a restaurant.","The menu is very big.","I order soup for the starter.","My dad orders steak for the main course.","For dessert, we have cake.","The food is delicious!","The waiter brings us water first.","My mother orders green tea.","The soup is hot and delicious.","The steak is a bit big for me.","We share a dessert.","The bill is fifty yuan altogether.","We all feel full and happy."],"questions":[{"q":"What is the starter?","opts":["soup","steak","cake"],"answer":0},{"q":"What do they have for dessert?","opts":["ice cream","cake","fruit"],"answer":1},{"q":"Where are we?","opts":["at a restaurant","in the garden","in the kitchen"],"answer":0}]},{"title":"My Breakfast","focus":"三餐 · 食物名词","meta":"A1 受控原创（句长≤8词）","sentences":["Breakfast is my favourite meal.","I eat cereal and fruit.","I drink milk and orange juice.","Sometimes I have an omelette.","My brother has bread and jam.","Breakfast gives us energy.","I never skip breakfast.","Cereal, an egg and a glass of milk.","I eat fruit at school in the morning.","My mother says breakfast is the most important meal.","Now I feel hungry by ten o'clock.","Breakfast gives us energy for the morning."],"questions":[{"q":"What does the writer eat?","opts":["cereal and fruit","bread and jam","steak"],"answer":0},{"q":"What does the brother have?","opts":["cereal","an omelette","bread and jam"],"answer":2},{"q":"What is Breakfast?","opts":["my favourite meal","my friend","my home"],"answer":0}]},{"title":"A Healthy Lunch","focus":"蔬菜 · must/mustn't","meta":"A1 受控原创（句长≤8词）","sentences":["Lunch is at twelve o'clock.","We must eat vegetables every day.","Carrots, tomatoes and peppers are healthy.","We mustn't eat too much sugar.","I drink water and juice, not cola.","Healthy food makes us strong.","Fruit is good for us.","We mustn't drink cola for lunch.","Fish and vegetables are better.","Good food makes us grow strong."],"questions":[{"q":"What must we eat every day?","opts":["sugar","vegetables","cola"],"answer":1},{"q":"What mustn't we eat too much of?","opts":["vegetables","sugar","water"],"answer":1},{"q":"When is Lunch?","opts":["at twelve o'clock","in the garden","in the kitchen"],"answer":0}]},{"title":"The Chef","focus":"烹饪 · 职业","meta":"A1 受控原创（句长≤8词）","sentences":["My mum is a chef.","She cooks dinner for our family.","Today she is cooking chicken and potatoes.","She makes a salad, too.","We all love her food.","Dinner is ready!","My mum is a chef in a small restaurant.","She starts work at six in the morning.","She makes a salad with tomatoes.","She must taste everything carefully.","Her customers always come back."],"questions":[{"q":"What is the mum's job?","opts":["a chef","a doctor","a teacher"],"answer":0},{"q":"What is she cooking today?","opts":["soup and steak","chicken and potatoes","fish and rice"],"answer":1},{"q":"What do We all love?","opts":["her food","her cat","his dog"],"answer":0}]},{"title":"Food Around the World","focus":"食物文化 · 形容词","meta":"A1 受控原创（句长≤8词）","sentences":["Every country has special food.","In Italy, people eat a lot of bread.","In Japan, fish and rice are popular.","In England, fish and chips are famous.","In India, many people are vegetarian.","Food tells us about culture.","In Mexico people eat rice and beans.","In Thailand people love spicy food.","In China rice is our main food.","In France people eat bread every day.","Every family has its own food story.","Food is a part of culture."],"questions":[{"q":"What is famous in England?","opts":["sushi","fish and chips","tacos"],"answer":1},{"q":"What is popular in Japan?","opts":["bread","fish and rice","cheese"],"answer":1},{"q":"What does Every country have?","opts":["special food","her cat","his dog"],"answer":0}]},{"title":"Dumplings for Dinner","focus":"would like · 食物 · 三餐","china":1,"meta":"A1 中国主题 · 原创","sentences":["Would you like dumplings for dinner?","Yes, please! I love them.","We eat them at the Spring Festival.","They are hot.","They are delicious!","My grandma makes dumplings every year.","We put meat and vegetables inside.","The children make funny shapes.","Mine look like small boats.","We eat them with soy sauce.","Nobody wants to stop."],"questions":[{"q":"What does the writer want for dinner?","opts":["dumplings","burgers","salad"],"answer":0},{"q":"When do they eat dumplings?","opts":["at Christmas","on his birthday","at the Spring Festival"],"answer":2},{"q":"How are the dumplings?","opts":["hot and delicious","cold and bad","cheap and old"],"answer":0}]},{"title":"Hot Pot in Chengdu","focus":"食物 · must · 城市","china":1,"meta":"A1 中国主题 · 原创","sentences":["Hot pot is famous in Chengdu.","You must be careful.","I like hot pot.","The soup is very hot and spicy.","You must be careful with the pot.","There are many vegetables and meat.","We cook them and eat them at once.","Everyone eats until they cannot eat more."],"questions":[{"q":"Where is hot pot famous?","opts":["in Beijing","in Shanghai","in Chengdu"],"answer":2},{"q":"What must you do?","opts":["be careful","eat fast","drink coffee"],"answer":0},{"q":"How is the soup?","opts":["very hot","very cold","a bit cold"],"answer":0}]},{"title":"Breakfast, Lunch, Dinner","focus":"三餐 · 时间表达 · 食物名词","meta":"A1 受控原创（句长≤8词 · 高频≥85% · 生词≤5%）","sentences":["I get up at seven and have breakfast at half past seven.","Breakfast is bread, an egg and hot milk.","I have lunch at twelve at school.","Lunch is rice, fish and green vegetables.","I have dinner at six in the evening with my family.","Dinner is usually noodles or soup.","I never skip a meal.","Which meal is your favourite?"],"questions":[{"q":"What time is breakfast?","opts":["At seven","At half past seven","At twelve"],"answer":1},{"q":"Where does the writer have lunch?","opts":["At school","At home","In a restaurant"],"answer":0},{"q":"What is dinner usually?","opts":["Bread and milk","Rice and fish","Noodles or soup"],"answer":2}]},{"title":"Street Food in Chengdu","focus":"点餐 · would like · 比较 · 城市","meta":"A1 受控原创（句长≤8词 · 高频≥85% · 生词≤5%）","sentences":["Chengdu is famous for its street food.","In the evening the streets are full of people.","Would you like to try some street food?","Yes, please. I would like some kebabs.","The kebabs here are hotter than the ones in my city.","They are also cheaper.","You must be careful, they are very hot.","I eat them with my cousin."],"questions":[{"q":"What does the writer order?","opts":["Kebabs","Rice","Soup"],"answer":0},{"q":"How are the kebabs different?","opts":["Hotter and cheaper","Colder and more expensive","Bigger and slower"],"answer":0},{"q":"What must you be careful about?","opts":["The price","The hot temperature","The queue"],"answer":1}]}],"listening":[{"title":"At a Chinese Restaurant","focus":"点餐 · would like","china":1,"meta":"A1 听力 · 中国主题","sentences":["Welcome to our restaurant.","Would you like some tea?","Yes, please.","Would you like rice or noodles?","Rice, please.","Rice, please, and some chicken.","Thank you. It smells very good."],"questions":[{"q":"What does the waiter offer first?","opts":["some tea","some coffee","some milk"],"answer":0},{"q":"What does the writer order?","opts":["noodles","bread","rice"],"answer":2},{"q":"Where are they?","opts":["at a restaurant","at home","at school"],"answer":0}]},{"title":"My Breakfast in China","focus":"三餐 · 食物","china":1,"meta":"A1 听力 · 中国主题","sentences":["I eat breakfast at seven.","I eat congee and an egg.","I drink a glass of milk.","The congee is hot and good.","I like breakfast a lot.","I go to school at seven forty."],"questions":[{"q":"What does the writer eat?","opts":["cereal and yoghurt","bread and jam","congee and an egg"],"answer":2},{"q":"What does he drink?","opts":["milk","tea","coffee"],"answer":0},{"q":"When does he eat breakfast?","opts":["at seven","at eight","at six"],"answer":0}]},{"title":"Mooncakes","focus":"节日食物 · 季节","china":1,"meta":"A1 听力 · 中国主题","sentences":["We eat mooncakes in autumn.","The festival is in September or October.","The moon is big and round too.","I love mooncakes.","Mooncakes are round and heavy.","They have nuts inside.","My family eats them together."],"questions":[{"q":"When do they eat mooncakes?","opts":["in spring","in summer","in autumn"],"answer":2},{"q":"What shape are mooncakes?","opts":["square","triangular","round"],"answer":2},{"q":"What is the moon like?","opts":["big and round","small and square","big and long"],"answer":0}]},{"title":"Tea Time","focus":"饮品 · 频率 · must","china":1,"meta":"A1 听力 · 中国主题","sentences":["Chinese tea is famous.","The tea is very hot.","Grandpa is careful.","I like tea too.","My grandpa drinks green tea every day.","Chinese tea is famous in the world.","He drinks it slowly.","Grandpa says tea is good for the heart."],"questions":[{"q":"What does grandpa drink every day?","opts":["tea","coffee","juice"],"answer":0},{"q":"How is the tea?","opts":["very cold","a bit cold","very hot"],"answer":2},{"q":"What is famous?","opts":["Chinese tea","Chinese food","Chinese kung fu"],"answer":0}]},{"title":"A Healthy Lunch","focus":"must/mustn't · 健康","meta":"A1 听力 · 盲听训练","sentences":["You mustn't eat too much candy.","Fruit is good for lunch.","You must eat vegetables every day.","You must drink enough water.","Milk and eggs are good, too.","I eat a healthy lunch at school."],"questions":[{"q":"What must you eat?","opts":["vegetables","candy","cake"],"answer":0},{"q":"What mustn't you eat?","opts":["too much fruit","too much water","too much candy"],"answer":2},{"q":"What is good for lunch?","opts":["candy","fruit","cake"],"answer":1}]},{"title":"At the Cafe","focus":"would like · 礼貌点单","meta":"A2 听力 · 单选 + 填空","sentences":["Good morning. What would you like to drink?","I would like a cup of green tea, please.","Would you like anything to eat?","Yes, I would like a piece of cake.","That will be twenty yuan altogether.","Is that all? Yes, thank you."],"questions":[{"q":"What does she want to drink?","opts":["green tea","coffee","milk"],"answer":0},{"q":"How much is it altogether?","opts":["twenty yuan","twelve yuan","thirty yuan"],"answer":0},{"q":"She would like a piece of ___.","type":"fill","answer":"cake","hint":"甜点"}]},{"title":"Ordering Food","focus":"交际小品 · 比较级","china":1,"meta":"A2 听力 · 中国主题","sentences":["Excuse me, could I see the menu, please?","Of course. Here you are.","We have noodles, rice and dumplings today.","The dumplings are more popular than the noodles.","I will take a bowl of beef noodles.","Are they spicy? Not very."],"questions":[{"q":"What does he want to see first?","opts":["the menu","the bill","the kitchen"],"answer":0},{"q":"Which food is more popular today?","opts":["the dumplings","the noodles","the rice"],"answer":0},{"q":"He will take a bowl of ___ noodles.","type":"fill","answer":"beef","hint":"一种肉"}]},{"title":"A Lunch Box","focus":"食物 · must/mustn't · 数量","meta":"A1 听力 · 盲听训练","sentences":["I have a lunch box every day at school.","It has got rice, chicken and carrots.","I must eat all the vegetables.","I mustn't drink cola for lunch.","My mother puts an apple in my box too.","After lunch I feel strong.","I never feel hungry in class."],"questions":[{"q":"What is NOT in the lunch box?","opts":["Rice","Cola","An apple"],"answer":1},{"q":"What must the writer eat?","opts":["All the vegetables","Only rice","Candy"],"answer":0},{"q":"How does the writer feel after lunch?","opts":["Strong","Hungry","Sleepy"],"answer":0}]},{"title":"Would You Like Some Tea?","focus":"点餐 · 礼貌用语 · would like","meta":"A1 听力 · 盲听训练","sentences":["Good afternoon. What would you like to order?","I would like the beef noodles, please.","Would you like something to drink?","Yes, I would like a cup of tea.","Anything else?","No, thank you. That's all.","It is twenty-eight yuan."],"questions":[{"q":"What does the writer order first?","opts":["Beef noodles","A cup of tea","Rice"],"answer":0},{"q":"Does the writer want anything else?","opts":["Yes, a cake","No, that's all","A second cup"],"answer":1},{"q":"How much is it?","opts":["Twenty yuan","Twenty-eight yuan","Thirty yuan"],"answer":1}]}],"grammar":[{"pid":"a1-wouldlike","name":"would like 想要","desc":"Would you like…? 礼貌地问要不要"},{"pid":"a1-someany","name":"some / any：肯定用 some，否问用 any","desc":"一些 / 任何"},{"pid":"a1-likeing","name":"like / love / hate + doing","desc":"喜欢 / 爱 / 讨厌做某事"}],"article":{"title":"Saturday at the Cafe","paras":[[["On Saturday we have breakfast at nine o'clock.","星期六我们九点吃早饭。"],["I eat cereal with milk and a banana.","我吃麦片，加牛奶和一根香蕉。"],["I put a bit of jam on my bread.","我在面包上抹一点果酱。"],["Mum makes toast with butter and honey.","妈妈做黄油蜂蜜吐司。"],["I must eat fruit every day.","我必须每天吃水果。"],["I mustn't eat too much sugar.","我不能吃太多糖。"],["I have an apple and an orange.","我吃一个苹果和一个橙子。"]],[["After breakfast, Dad goes to work.","早饭后，爸爸去上班。"],["Dad's job is at a small cafe near the school cafeteria.","爸爸的工作在学校自助餐厅旁的一家小咖啡馆。"],["Dad is the manager of the cafe.","爸爸是这家咖啡馆的经理。"],["The company is small, but the business is good.","这家公司很小，但生意很好。"],["The boss is happy today.","老板今天很高兴。"],["The staff are friendly, and every worker is kind.","员工们很友好，每个工作人员都和善。"],["The chef is Anna, and she loves cooking.","厨师是安娜，她热爱烹饪。"],["Anna can cook many dishes, and every dish is delicious.","安娜会做很多菜，每一道都很美味。"],["The waiter is Tom, and the waitress is Lily.","服务员是汤姆，女服务员是莉莉。"],["The cleaner is Mr Green, and the receptionist is Sue.","清洁工是格林先生，接待员是休。"],["The secretary answers the phone.","秘书负责接电话。"],["A businessman and a businesswoman come for lunch.","一位男商人和一位女商人来吃午饭。"],["The student waiter brings them a menu.","学生服务员给他们拿来菜单。"],["The farmer brings fresh vegetables to the cafe.","农民给咖啡馆送来新鲜蔬菜。"],["Every vegetable is fresh and clean.","每一种蔬菜都新鲜干净。"],["The artist draws beautiful pictures for the menu.","艺术家为菜单画漂亮的画。"],["The journalist writes about the cafe.","记者写关于这家咖啡馆的报道。"],["The guide brings tourists to the cafe for a meal.","导游带游客来咖啡馆吃饭。"],["The teacher has lunch here on Friday.","老师周五在这里吃午饭。"],["The police officer eats here too.","警察也在这里吃饭。"],["The footballer loves our pizza.","这位足球运动员喜爱我们的披萨。"],["People earn money for their work.","人们靠工作挣钱。"],["Being a cook is a good occupation.","当厨师是一份好职业。"]],[["At one o'clock, a family comes into the cafe.","一点钟，一家人走进咖啡馆。"],["\"Would you like a drink?\" asks Lily.","“您想喝点什么吗？”莉莉问。"],["\"Yes, please. Coffee, tea, juice and cola.\"","“好的。请来咖啡、茶、果汁和可乐。”"],["The orange juice is cold and delicious.","橙汁又凉又美味。"],["I order a burger and chips.","我点了一个汉堡和薯条。"],["My brother orders fish and rice.","我弟弟点了鱼和米饭。"],["The starter is hot soup.","开胃菜是热汤。"],["The main course is steak with a potato.","主菜是牛排配一个土豆。"],["For dessert, I have ice cream.","甜点我吃冰淇淋。"],["The ice cream is cold and sweet.","冰淇淋又凉又甜。"],["The cream is on the cake.","奶油在蛋糕上。"],["I eat a piece of cake too.","我还吃了一块蛋糕。"],["The salad has a tomato, a carrot and a pepper.","沙拉里有一个西红柿、一根胡萝卜和一个辣椒。"],["I put a slice of lemon in my glass of water.","我在那杯水里放了一片柠檬。"],["The mineral water is very cold.","矿泉水很凉。"],["I drink a cup of tea with milk.","我喝一杯加奶的茶。"],["The bowl is for the soup, and the plate is for the steak.","碗是用来盛汤的，盘子是用来盛牛排的。"],["I cut the food with a knife and fork.","我用刀叉切食物。"],["The cheese is on the pizza.","奶酪在披萨上。"],["The chocolate biscuit is delicious.","巧克力饼干很好吃。"],["The candy is very sweet.","糖果很甜。"],["I eat a sandwich with an egg.","我吃一个鸡蛋三明治。"],["The omelette has mushrooms in it.","煎蛋卷里有蘑菇。"],["I put salt and oil on the salad.","我在沙拉上放盐和油。"],["The garlic and the onion are in the sauce.","大蒜和洋葱在酱汁里。"],["The sauce is in the bottle.","酱汁在瓶子里。"],["The strawberry is red and sweet.","草莓又红又甜。"],["The meal is delicious.","这顿饭很美味。"]],[["In the kitchen, Anna can boil water for tea.","厨房里，安娜能烧水泡茶。"],["We boil the fish for five minutes.","我们把鱼煮五分钟。"],["The boiled fish is delicious.","煮鱼很好吃。"],["She fries the chicken, and the fried chicken is hot.","她炸鸡，炸鸡很烫。"],["She grills the sausages, and the grilled sausage is my favourite.","她烤香肠，烤香肠是我的最爱。"],["We barbecue the sausages in the garden.","我们在花园里烤香肠。"],["I bake a cake for dessert.","我烤一个蛋糕当甜点。"],["We roast the beef on Sunday.","我们周日烤牛肉。"],["I eat pasta with curry and chilli.","我吃配咖喱和辣椒的意面。"],["The curry is hot but delicious.","咖喱很辣但很好吃。"],["The lemonade is cold, and the lemon is yellow.","柠檬水很凉，柠檬是黄色的。"],["The melon and the pear are sweet.","瓜和梨很甜。"],["The grape is small and sweet.","葡萄又小又甜。"],["The yoghurt is in the fridge.","酸奶在冰箱里。"],["I have a snack after lunch.","午饭后我吃点心。"],["The box is full of biscuits.","盒子里装满了饼干。"],["At three o'clock, the staff take a break.","三点钟，员工们休息。"],["We wash up after dinner.","晚饭后我们洗碗。"],["The instructions say: \"Wash your hands before you eat.\"","说明上写着：“吃东西前要洗手。”"],["On Sunday, we have a picnic in the park.","星期天，我们去公园野餐。"],["The picnic has sandwiches, fruit and candy.","野餐有三明治、水果和糖果。"]],[["The thing is, the cafe is very busy today.","问题是，咖啡馆今天非常忙。"],["Our young waiter, Tom, runs to the kitchen.","我们年轻的服务员汤姆跑向厨房。"],["\"Of course!\" says Dad with a smile.","“当然！”爸爸微笑着说。"],["\"Be careful — the plate is hot!\" calls Anna.","“小心——盘子很烫！”安娜喊道。"],["The pizza has cheese, meat and one mushroom.","披萨上有奶酪、肉和一个蘑菇。"],["The chef makes a cake for my birthday.","厨师为我的生日做一个蛋糕。"]]]},"artForms":["breakfast","lunch","dinner","starter","main course","dessert","apple","banana","orange","strawberry","bread","beef","chicken","egg","potato","tomato","carrot","pepper","coffee","tea","juice","milk","drink","cake","burger","salad","soup","steak","omelette","chef","menu","order","plate","a bit of","cooking","fruit","vegetable","yoghurt","jam","honey","butter","cereal","must","mustn't","food","eat","ice","fish","sugar","cream","rice","meal","ice cream","delicious","chips","cola","cut","break","cup","oil","box","sweet","glass","cook","bowl","salt","bottle","cheese","chocolate","wash up","pizza","piece of cake","knife","sauce","candy","dish","sandwich","lemon","cafe","fried","fork","mineral water","slice","toast","curry","garlic","pasta","bake","snack","onion","roast","boil","picnic","sausage","grilled","grape","mushroom","barbecue","waiter","waitress","pear","biscuit","cafeteria","lemonade","melon","chilli","work","company","business","job","staff","student","manager","secretary","teacher","police officer","artist","boss","guide","earn","journalist","instructions","occupation","farmer","businessman","cleaner","footballer","receptionist","businesswoman","orders","vegetables","eats","dishes","sandwiches","boiled","sausages","mushrooms","biscuits","worker"]};
+const STORE_KEY = "a1_unit"+DATA.unit+"_state_v4";
+const CHECK_KEY = "a1_checkin_dates_v4";  // 全局共享打卡 streak（跨单元）
+const ERR_KEY = "a1_unit"+DATA.unit+"_errors_v4";
+const BEASTS = [
+  {u:1,e:"🌍",n:"世界之灵",d:"国家·国籍·疑问词·be"},
+  {u:2,e:"😊",n:"欢欣兽",d:"场所·感受·代词"},
+  {u:3,e:"👪",n:"家脉兽",d:"家庭·房间·指示代词"},
+  {u:4,e:"🏙️",n:"城巡兽",d:"城市地点·介词·数字"},
+  {u:5,e:"🎮",n:"闲趣兽",d:"休闲·频率·设备·星期"},
+  {u:6,e:"🤝",n:"挚友兽",d:"身体·外貌·问候"},
+  {u:7,e:"⚽",n:"竞跃兽",d:"运动·can·时间·月份"},
+  {u:8,e:"🎵",n:"律动兽",d:"音乐·衣物·进行时"},
+  {u:9,e:"🍰",n:"飨宴兽",d:"食物·餐饮·must"},
+  {u:10,e:"🚀",n:"凌云兽",d:"成就·天气·过去式"},
+  {u:11,e:"🐾",n:"百兽灵",d:"动物·过去式·形容词"},
+  {u:12,e:"🚆",n:"远行兽",d:"交通·地点·比较级"},
+];
+
+let state = loadState();
+let checkins = loadCheckins();
+let errors = loadErrors();
+let curGroupLearn = 0, curGroupReview = 0;
+let shIdx = 0, shQueue = [], shAuto = false, shTimer = null;
+let rec = {mr:null, recording:false, url:null, stopBtn:null, stopLabel:null, containerEl:null};
+
+function loadState(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}} }
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function loadCheckins(){ try{return JSON.parse(localStorage.getItem(CHECK_KEY))||[]}catch(e){return[]} }
+function loadErrors(){ try{return JSON.parse(localStorage.getItem(ERR_KEY))||[]}catch(e){return[]} }
+function saveErrors(){ localStorage.setItem(ERR_KEY, JSON.stringify(errors)); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ---------- 语音（全局） ---------- */
+let voices=[], voice=null;
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const sel=document.getElementById('voiceSel');
+  const PREF=['en-GB','en-AU','en-IE','en-US'];
+  sel.innerHTML='';
+  voices = voices.slice().sort(function(a,b){function rank(v){if(/en-GB/i.test(v.lang||''))return (/Libby/i.test(v.name)?0:1);if(/en-AU/i.test(v.lang||''))return 2;if(/en-IE/i.test(v.lang||''))return 3;if(/en-US/i.test(v.lang||''))return 4;return 9;}return rank(a)-rank(b);});
+  let prefV=null;
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    o.value=i; o.textContent=v.name+(v.localService?' · 离线':' · 在线');
+    sel.appendChild(o);
+    if((/en-GB/i.test(v.lang||'')&&/Libby/i.test(v.name)&&!prefV)){ prefV=v; o.selected=true; }if(!prefV){ for(const p of PREF){ if(v.lang===p){ prefV=v; o.selected=true; break; } } }
+  });
+  voice = prefV || voices[0] || null;
+  if(prefV){ sel.value = voices.indexOf(prefV); }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function getVoice(){ const i=document.getElementById('voiceSel').value; return voices[i]||null; }
+function rateVal(){ return parseFloat(document.getElementById('rate').value); }
+function speak(text, opt){
+  opt=opt||{};
+  if(!('speechSynthesis' in window)){ if(opt.onend)opt.onend(); return; }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const v=getVoice(); if(v)u.voice=v;
+  u.rate = rateVal()*(opt.slow?0.6:1); u.pitch=1; u.volume=1;
+  u.onend = opt.onend||function(){};
+  u.onerror = opt.onend||function(){};
+  speechSynthesis.speak(u);
+  if(speechSynthesis.paused) speechSynthesis.resume();
+}
+
+/* ---------- 工具 ---------- */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* 可发音词块：任何带 data-say 的元素点一下就朗读（全局事件委托，一次绑定全页生效）
+   suppressSay：作答的那一次点击只算「选择」，不当成「点词发音」，避免中文选英文时
+   点一下选项既答题又泄题听感 */
+let suppressSay=false;
+document.addEventListener('click', function(e){
+  const t=e.target.closest('[data-say]');
+  if(t && !suppressSay && !e.target.closest('[data-nsay]')){ e.preventDefault(); e.stopPropagation(); speak(t.getAttribute('data-say')); }
+});
+function sayChip(text, cls){ return '<span class="wchip '+(cls||'')+'" data-say="'+esc(text)+'">'+esc(text)+'<b>🔊</b></span>'; }
+/* 功能词/专名/缩写：不算「预学新词」（它们不是需要记忆的实义词） */
+const FUNCWORDS=new Set(("a an the is are am was were be been being do does did have has had "+
+"i you he she it we they me him her us them my your his its our their this that these those "+
+"what where who why how when in on at to for from of with and but or so not no yes "+
+"very too also can could will would shall may might must there here my one two three now "+
+"hello hi ok okay oh right thanks thank please let's im it's how's what's who's he's she's "+
+"that's there's we're they're don't doesn't isn't aren't wasn't weren't can't couldn't "+
+"wouldn't shouldn't i've i'll you're you've name fine good").split(/\s+/));
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function allWords(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w.word))); return a; }
+function allWordObjs(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w))); return a; }
+function masteredCount(){ return allWords().filter(w=>(state[w]||{}).mastered).length; }
+function shadowedCount(){ return allWords().filter(w=>(state[w]||{}).shadowed).length; }
+function updateProgress(){
+  const total=allWords().length;
+  const m=masteredCount();
+  const pct=Math.round(m/total*100);
+  document.getElementById('pctTop').textContent=pct+'%';
+  document.getElementById('barTop').style.width=pct+'%';
+  let stars = pct>=80?3:pct>=50?2:pct>=20?1:0;
+  document.getElementById('starTop').textContent = '★'.repeat(stars)+'☆'.repeat(3-stars);
+  document.getElementById('beastStreak').textContent=`已跟读 ${shadowedCount()}/${total} · 已掌握 ${m}/${total} · 错题 ${errors.length}`;
+}
+function flash(msg){ const t=document.createElement('div'); t.textContent=msg;
+  t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--gold);color:#1a1a1a;padding:8px 16px;border-radius:10px;font-weight:700;z-index:99';
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1400); }
+
+/* ---------- 统一录音（单句 & 对话共用） ---------- */
+function noteShadow(msg){ const n=document.getElementById('shBanner'); if(msg){ n.style.display='block'; n.textContent=msg; } else { n.style.display='none'; } }
+function startRec(text, container, stopBtn, stopLabel){
+  if(rec.recording && rec.stopBtn===stopBtn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音；现在可用「听原声」模式。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你的跟读录音，对比原声找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=stopBtn; rec.stopLabel=stopLabel||'● 开始录音';
+    rec.containerEl=container.parentElement; if(rec.containerEl) rec.containerEl.classList.add('recording');
+    stopBtn.textContent='■ 停止';
+    speak(text);
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可改用「听原声」模式。'); });
+}
+function stopRec(){
+  if(rec.recording && rec.mr){ rec.mr.stop(); rec.recording=false;
+    if(rec.stopBtn) rec.stopBtn.textContent = rec.stopLabel||'● 开始录音';
+    if(rec.containerEl) rec.containerEl.classList.remove('recording');
+    rec.stopBtn=null; rec.containerEl=null; }
+}
+/* 只录不放（用于"我来回应"——先看清/听问句，再录自己的回答） */
+function startRecRaw(text, container, btn){
+  if(rec.recording && rec.stopBtn===btn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你回应的录音，对比示范找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=btn; rec.stopLabel=btn.textContent;
+    rec.containerEl = btn.closest('.exchange')||container.parentElement;
+    if(rec.containerEl) rec.containerEl.classList.add('recording');
+    btn.textContent='■ 停止（说完点这）';
+    container.innerHTML='<div class="hint"><span class="rec-dot"></span> 请说出回应：'+esc(text)+'</div>';
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可先点「🔊 听示范回应」模仿。'); });
+}
+function addError(obj){
+  obj.time=Date.now(); obj.unit=DATA.unit;
+  errors.push(obj); saveErrors(); renderErrors(); updateProgress();
+}
+
+/* ---------- 渲染：学习 B ---------- */
+function renderLearn(){
+  const grpTabs=document.getElementById('grpLearn');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupLearn)b.className='on';
+    b.onclick=()=>{curGroupLearn=i; renderLearn();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridLearn'); grid.innerHTML='';
+  DATA.groups[curGroupLearn].words.forEach((w)=>{
+    const st=state[w.word]||{};
+    const card=document.createElement('div'); card.className='card'+(st.mastered?' done':'');
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      <div class="def"><span class="cnLearn">${esc(w.defB)}</span></div>
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <div class="ex" data-ex="${esc(w.ex)}">${esc(w.ex)}<span class="cn cnLearn">${esc(w.exCn||'')}</span></div>
+      <div class="acts">
+        <button class="b-play" data-word="${esc(w.word)}">🔊 单词</button>
+        <button class="b-shadow" data-word="${esc(w.word)}">🎤 跟读打卡</button>
+        <button class="b-master ${st.mastered?'mastered':''}" data-word="${esc(w.word)}">${st.mastered?'✅ 已掌握':'☆ 掌握'}</button>
+        <button class="b-err" data-word="${esc(w.word)}">❌ 记一笔</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.ex').forEach(el=>{
+    el.onclick=()=>speak(el.getAttribute('data-ex'));
+    el.ondblclick=()=>speak(el.getAttribute('data-ex'),{slow:true});
+  });
+  grid.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-shadow').forEach(b=>b.onclick=()=>goShadowWord(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-master').forEach(b=>b.onclick=()=>toggleMaster(b.getAttribute('data-word'),b));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'词卡标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 渲染：复习 C（渐进式） ---------- */
+function renderReview(){
+  const grpTabs=document.getElementById('grpReview');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupReview)b.className='on';
+    b.onclick=()=>{curGroupReview=i; renderReview();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridReview'); grid.innerHTML='';
+  const hide=document.getElementById('tgHideCn').dataset.hide==='1';
+  DATA.groups[curGroupReview].words.forEach(w=>{
+    const card=document.createElement('div'); card.className='card';
+    let sensesHtml='';
+    w.senses.forEach((s,i)=>{
+      const hidden = i>0 ? ' hiddenSense' : '';
+      const synAnt = (s.syn&&s.syn!=='—'?'近义 '+esc(s.syn)+' ':'') + (s.ant&&s.ant!=='—'?'反义 '+esc(s.ant):'');
+      const ex = s.ex||''; const exCn = s.exCn||'';
+      sensesHtml += `
+      <div class="sense${hidden}">
+        <div class="defline">${esc(s.def)}
+          <button class="spk" data-text="${esc(w.word)}">🔊</button>
+          ${synAnt?`<span style="color:var(--sub);font-size:12px">（${synAnt}）</span>`:''}
+        </div>
+        <button class="morebtn act-ex">💡 看例句</button>
+        <div class="exbox" data-ex="${esc(ex)}">${esc(ex)}<span class="cn">${esc(exCn)}</span>
+          ${ex?`<button class="morebtn act-shadow" data-text="${esc(ex)}">🎤 跟读这句</button>`:''}
+        </div>
+      </div>`;
+    });
+    const moreBtn = w.senses.length>1 ? `<button class="morebtn act-more">更多 ▾（还有 ${w.senses.length-1} 个义项）</button>` : '';
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      ${sensesHtml}
+      ${moreBtn}
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <button class="morebtn b-err" data-word="${esc(w.word)}">❌ 记一笔（没记住）</button>`;
+    grid.appendChild(card);
+  });
+  if(hide){ grid.querySelectorAll('.cn').forEach(e=>e.style.display='none'); }
+  grid.querySelectorAll('.act-ex').forEach(b=>b.onclick=()=>{
+    const box=b.parentElement.querySelector('.exbox');
+    const open = box.style.display==='block';
+    box.style.display = open?'none':'block';
+    b.textContent = open?'💡 看例句':'🔼 收起例句';
+    if(!open){ const ex=box.getAttribute('data-ex'); if(ex) speak(ex); }
+  });
+  grid.querySelectorAll('.act-more').forEach(b=>b.onclick=()=>{
+    const card=b.closest('.card');
+    const next=card.querySelector('.sense.hiddenSense');
+    if(next){ next.classList.remove('hiddenSense');
+      const exb=next.querySelector('.exbox'); if(exb.getAttribute('data-ex')) speak(exb.getAttribute('data-ex'));
+    }
+    if(!card.querySelector('.sense.hiddenSense')) b.style.display='none';
+  });
+  grid.querySelectorAll('.spk').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  grid.querySelectorAll('.act-shadow').forEach(b=>b.onclick=()=>goShadowText(b.getAttribute('data-text')));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'复习标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 神兽/图鉴 ---------- */
+function renderCodex(){
+  const grid=document.getElementById('codexGrid'); grid.innerHTML='';
+  BEASTS.forEach(b=>{
+    const box=document.createElement('div');
+    const active = b.u===DATA.unit;
+    box.className='cbox'+(active?'':' lock');
+    let stars=0;
+    if(active){ const pct=Math.round(masteredCount()/allWords().length*100); stars=pct>=80?3:pct>=50?2:pct>=20?1:0; }
+    box.innerHTML=`<div class="e">${b.e}</div><div class="n">${b.n}</div>
+      <div class="s">${active?'★'.repeat(stars)+'☆'.repeat(3-stars):'🔒 未解锁'}</div>
+      <div style="color:var(--sub);font-size:12px;margin-top:4px">${b.d}</div>`;
+    grid.appendChild(box);
+  });
+}
+
+/* ---------- 交互 ---------- */
+function toggleMaster(w, btn){
+  if(!state[w]) state[w]={};
+  state[w].mastered=!state[w].mastered;
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  saveState();
+  btn.classList.toggle('mastered', state[w].mastered);
+  btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
+  updateProgress(); renderCodex();
+}
+function checkIn(w){
+  const d=today();
+  if(!state[w]) state[w]={};
+  state[w].shadowed=d;
+  saveState();
+  if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
+  updateProgress(); renderCodex();
+}
+function switchSub(which){
+  document.querySelectorAll('.subtab').forEach(x=>x.classList.toggle('on', x.dataset.sh===which));
+  document.getElementById('shDialog').style.display = which==='dialog'?'block':'none';
+  document.getElementById('shSingle').style.display = which==='single'?'block':'none';
+}
+function goShadowWord(word){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.word===word);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到「'+word+'」'); }
+}
+function goShadowText(text){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.en===text);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到该句'); }
+}
+function goReviewWord(word){
+  document.querySelector('nav button[data-tab="review"]').click();
+  DATA.groups.forEach((g,i)=>{ if(g.words.some(w=>w.word===word)){ curGroupReview=i; renderReview(); flash('🔁 已定位复习：'+word); } });
+}
+
+/* ---------- 跟读队列（含复习例句） + 单句跟读 ---------- */
+function buildQueue(){
+  shQueue=[]; const seen=new Set();
+  DATA.groups.forEach(g=>g.words.forEach(w=>{
+    if(w.ex && !seen.has(w.ex)){ seen.add(w.ex); shQueue.push({en:w.ex,cn:w.exCn,word:w.word}); }
+    (w.senses||[]).forEach(s=>{ if(s.ex && !seen.has(s.ex)){ seen.add(s.ex); shQueue.push({en:s.ex,cn:s.exCn,word:w.word}); } });
+  }));
+}
+function renderShadowCurrent(){
+  const it=shQueue[shIdx]; if(!it)return;
+  document.getElementById('shProg').textContent='第 '+(shIdx+1)+' / '+shQueue.length+' 句 · 👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这块会出现回放音轨，和原声对比。';
+  document.getElementById('shNow').textContent=(shIdx+1)+'/'+shQueue.length+'  '+it.en;
+  document.getElementById('shNowCn').textContent=it.cn||'';
+}
+function shPlay(){ const it=shQueue[shIdx]; if(it) speak(it.en); }
+function shGo(dir){ shIdx=(shIdx+dir+shQueue.length)%shQueue.length; renderShadowCurrent(); }
+function shCheck(){
+  const it=shQueue[shIdx]; if(!it)return;
+  checkIn(it.word); flash('🎤 已跟读打卡：'+it.word);
+}
+function shAutoPlay(){
+  if(!shQueue.length)return;
+  const it=shQueue[shIdx];
+  const gap=parseInt(document.getElementById('shGap').value,10);
+  speak(it.en,{onend:()=>{
+    if(gap>0){ shTimer=setTimeout(()=>{ if(shAuto){ shIdx=(shIdx+1)%shQueue.length; renderShadowCurrent(); shAutoPlay(); } }, gap); }
+  }});
+}
+function initShadow(){
+  buildQueue(); if(shIdx>=shQueue.length) shIdx=0; renderShadowCurrent();
+  document.getElementById('shPlay').onclick=shPlay;
+  document.getElementById('shNext').onclick=()=>shGo(1);
+  document.getElementById('shPrev').onclick=()=>shGo(-1);
+  document.getElementById('shRec').onclick=function(){
+    if(rec.recording && rec.stopBtn===this){ stopRec(); }
+    else { startRec(shQueue[shIdx].en, document.getElementById('shRecBox'), this); }
+  };
+  document.getElementById('shStop').onclick=stopRec;
+  document.getElementById('shCheck').onclick=shCheck;
+  document.getElementById('shAuto').onclick=function(){ shAuto=!shAuto; this.textContent=shAuto?'⏹ 停止连播':'🔁 自动连播'; if(shAuto)shAutoPlay(); else {clearTimeout(shTimer); speechSynthesis.cancel();} };
+}
+
+/* ---------- 对话跟读（call-response 结构） ---------- */
+function renderDialogues(){
+  const list=document.getElementById('shDialog'); list.innerHTML='';
+  DATA.dialogues.forEach(d=>{
+    const box=document.createElement('div'); box.className='player';
+    let html='';
+    const turns=d.turns;
+    let i=0;
+    while(i<turns.length){
+      const t=turns[i];
+      if(t.role==='A' && i+1<turns.length && turns[i+1].role==='B'){
+        const q=t, r=turns[i+1];
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-A">A</span>
+            <div class="qa-text">${esc(q.en)}<span class="cn">${esc(q.cn)}</span></div>
+            <button class="b-play" data-text="${esc(q.en)}">🔊 听问句</button>
+          </div>
+          <div class="resp">
+            <div class="resp-label">👉 你要回应的句子（B）：先听示范，再录你自己的</div>
+            <div class="qa-text">${esc(r.en)}<span class="cn">${esc(r.cn)}</span></div>
+            <div class="resp-acts">
+              <button class="b-play" data-text="${esc(r.en)}">🔊 听示范回应</button>
+              <button class="b-drill" data-text="${esc(r.en)}">🎤 我来回应</button>
+            </div>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=2;
+      } else {
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-${t.role}">${t.role}</span>
+            <div class="qa-text">${esc(t.en)}<span class="cn">${esc(t.cn)}</span></div>
+            <button class="b-play" data-text="${esc(t.en)}">🔊 原声</button>
+            <button class="b-turn-rec" data-text="${esc(t.en)}">🎤 跟读</button>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=1;
+      }
+    }
+    box.innerHTML=`<div class="now" style="font-size:16px">💬 ${esc(d.title)}</div>
+      <div class="nowcn" style="margin-bottom:10px">蓝字＝A 的问句（点「🔊 听问句」）；黄框＝<b>你要回应的句子，始终显示</b>，先点「🔊 听示范回应」模仿，再点「🎤 我来回应」录下你自己的回答。回放对比原声。</div>${html}`;
+    list.appendChild(box);
+  });
+  list.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  list.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); }
+    else { startRec(b.getAttribute('data-text'), container, b); }
+  });
+  list.querySelectorAll('.b-drill').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    startRecRaw(b.getAttribute('data-text'), container, b);
+  });
+}
+let rdIdx = 0;
+function renderReading(){
+  const list = DATA.reading;
+  const ptabs = document.getElementById('rdPassages'); ptabs.innerHTML='';
+  list.forEach((rd,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(rd.title)+(rd.china?' 🇨🇳':'');
+    if(i===rdIdx) b.className='on';
+    b.onclick=()=>{ rdIdx=i; renderReading(); };
+    ptabs.appendChild(b);
+  });
+  document.getElementById('rdHint').textContent=list.length+' 篇受控短文：读 → 听（TTS）→ 跟读 → 做小题，一文多吃。词汇 / 短语 / 句式在不同情境重复出现，形成螺旋。🇨🇳 ＝中国主题篇。';
+  renderReadingContent();
+}
+function renderReadingContent(){
+  const rd=DATA.reading[rdIdx];
+  const rdb=document.getElementById('rdBanner');
+  rdb.style.display='block';
+  rdb.innerHTML='📖 <b>'+esc(rd.title)+'</b>'+(rd.china?' <span style="font-size:12px">🇨🇳</span>':'')+' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(rd.focus||'')+'</span> · <span style="color:var(--sub);font-size:12px">'+esc(rd.meta||'')+'</span>';
+  const txt=document.getElementById('rdText');
+  txt.innerHTML='<div class="rd-tip">点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。先读一遍，再点「🔊 听整篇」做听力，最后做下面小题。</div>'
+    +'<div class="rd-playall"><button class="b-play" id="rdPlayAll">🔊 听整篇</button></div>'
+    +'<div class="rd-sents"></div>';
+  const sents=txt.querySelector('.rd-sents');
+  rd.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    sents.appendChild(d);
+  });
+  txt.querySelector('#rdPlayAll').onclick=()=>{ speakSeq(rd.sentences, 600); };
+  sents.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  sents.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  sents.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const qz=document.getElementById('rdQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 理解小题（答错自动进错题本）</div>';
+  rd.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'阅读', original:'阅读小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+
+/* ---------- 听力子模式：盲听 → 答题 → 看文本 ---------- */
+let lsIdx = 0, lsRevealed = false;
+function renderListening(){
+  const list = DATA.listening || [];
+  const ptabs = document.getElementById('lsPassages'); ptabs.innerHTML='';
+  list.forEach((ls,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(ls.title)+(ls.china?' 🇨🇳':'');
+    if(i===lsIdx) b.className='on';
+    b.onclick=()=>{ lsIdx=i; renderListening(); };
+    ptabs.appendChild(b);
+  });
+  renderListeningContent();
+}
+function renderListeningContent(){
+  const ls=(DATA.listening||[])[lsIdx]; if(!ls) return;
+  const lsb=document.getElementById('lsBanner');
+  lsb.style.display='block';
+  lsb.innerHTML='🎧 <b>'+esc(ls.title)+'</b>'+(ls.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(ls.focus||'')+'</span>'
+    +' · <span style="color:var(--sub);font-size:12px">'+esc(ls.meta||'')+'</span>';
+  const box=document.getElementById('lsSents'); box.innerHTML=''; lsRevealed=false;
+  ls.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en ls-masked" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    box.appendChild(d);
+  });
+  box.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  box.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  box.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  document.getElementById('lsPlayAll').onclick=()=>speakSeq(ls.sentences,600);
+  document.getElementById('lsReplay').onclick=()=>speakSeq(ls.sentences,600);
+  const revealBtn=document.getElementById('lsReveal');
+  revealBtn.textContent='👀 看文本';
+  revealBtn.onclick=()=>{
+    lsRevealed=!lsRevealed;
+    box.querySelectorAll('.rd-en').forEach(e=>e.classList.toggle('ls-masked', !lsRevealed));
+    revealBtn.textContent = lsRevealed ? '🙈 收起文本' : '👀 看文本';
+  };
+  const qz=document.getElementById('lsQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 听力小题（答错自动进错题本）</div>';
+  ls.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    /* 2026-10-16 新增填空题（type:'fill'）：KET 听力有填空，原来只有单选。
+       answer 是字符串（填空例外，不是 int —— 单选题的 answer 仍是 int，别混）。
+       判题忽略大小写与首尾空格；accept 数组可收多个可接受答案。 */
+    if(q.type==='fill'){
+      const acc=(q.accept && q.accept.length) ? q.accept : [String(q.answer||'')];
+      d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+(q.hint?'　<span style="color:var(--sub);font-size:12px">（'+esc(q.hint)+'）</span>':'')+'</div>'
+        +'<div class="q-opts"><input class="q-fill" type="text" autocomplete="off" spellcheck="false" placeholder="在这里写答案">'
+        +'<button class="q-opt q-fillbtn">检查</button></div><div class="q-fb"></div>';
+      const inp=d.querySelector('.q-fill'), btn=d.querySelector('.q-fillbtn');
+      const check=()=>{
+        if(d.dataset.answered) return;
+        const val=(inp.value||'').trim(); if(!val) return;
+        d.dataset.answered='1';
+        const ok=acc.some(a=>String(a).trim().toLowerCase()===val.toLowerCase());
+        if(ok){ inp.classList.add('good'); inp.disabled=true; btn.disabled=true;
+          d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { inp.classList.add('bad'); inp.disabled=true; btn.disabled=true;
+          d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(acc[0])+'</span>';
+          addError({word:q.q, type:'听力填空', original:'听力填空小题', standard:acc[0], student:val}); }
+      };
+      btn.onclick=check;
+      inp.onkeydown=e=>{ if(e.key==='Enter') check(); };
+      qz.appendChild(d); return;
+    }
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'听力', original:'听力小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+function switchRd(which){
+  document.querySelectorAll('[data-rd]').forEach(x=>x.classList.toggle('on', x.dataset.rd===which));
+  document.getElementById('rdReadWrap').style.display = which==='read' ? '' : 'none';
+  document.getElementById('rdListenWrap').style.display = which==='listen' ? '' : 'none';
+  if(which==='listen') renderListening();
+}
+
+/* ---------- 拼读轨道 ---------- */
+/* TTS 不能直接念音标（/iː/ 去斜杠后会被当单词乱读）→ 「点音素」改为依次朗读该音的例词 */
+function speakSeq(words, gap, onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const arr=(words||[]).filter(Boolean);
+  let i=0;
+  (function next(){
+    if(i>=arr.length){ if(onDone)onDone(); return; }
+    const w=arr[i++];
+    speak(w, {onend:()=>setTimeout(next, gap||550)});
+  })();
+}
+function switchPhx(which){
+  document.querySelectorAll('[data-phx]').forEach(x=>x.classList.toggle('on', x.dataset.phx===which));
+  /* 手掌握图 + 顶部两条提示只属于「音素卡」视图：切到其他子 tab 时一并隐藏，
+     否则用户会看到"切过去了还是音素内容"。
+     注意选择器用 `> .phx-tip`（仅直接子级）——语调/反义区内部的提示是那些视图自己的内容，不能藏。 */
+  document.getElementById('phxHand').style.display = which==='cards'?'block':'none';
+  document.querySelectorAll('#phonics > .phx-tip').forEach(x=>x.style.display = which==='cards'?'block':'none');
+  document.getElementById('phxCards').style.display = which==='cards'?'block':'none';
+  document.getElementById('phxPairs').style.display = which==='pairs'?'block':'none';
+  document.getElementById('phxListen').style.display = which==='listen'?'block':'none';
+  document.getElementById('phxIntonation').style.display = which==='intonation'?'block':'none';
+  document.getElementById('phxAntonym').style.display = which==='antonym'?'block':'none';
+}
+function renderPhonics(){
+  /* ---- 预学词标记 ----
+     音素练习的目的是「练发音」，所以例词允许少量来自后面单元的词（虚线框 + 预学标签），
+     但必须 ≤30%，且本单元词优先。规则：不在本单元词库里的词自动标为「预学」。 */
+  const BANK=new Set(allWordObjs().map(w=>w.word.trim().toLowerCase()));
+  function isPre(w){
+    const s=String(w).toLowerCase().replace(/[.,!?]/g,'').trim();
+    if(BANK.has(s)) return false;                 // 词库以短语整条收录
+    return !s.split(/\s+/).filter(Boolean).every(p=>BANK.has(p)||FUNCWORDS.has(p));
+  }
+  let preTotal=0, allTotal=0;
+  function preWord(w){
+    allTotal++;
+    const pre=isPre(w); if(pre) preTotal++;
+    return `<span data-say-word="${esc(w)}"${pre?' data-pre="1"':''}>${esc(w)}${pre?'<i class="pre-tag">预学</i>':''}</span>`;
+  }
+  function preRatio(){ return allTotal? Math.round(preTotal/allTotal*100):0; }
+  // 元音手掌握图
+  const hand=document.getElementById('phxHand');
+  const ha=DATA.phonics.hand_anchor;
+  const fingerHtml=ha.long.map(f=>
+    `<div class="finger" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+      <div class="fpos">${esc(f.pos)}</div><div class="fipa">${esc(f.ipa)}</div><div class="fsay">${esc(f.say)}</div>
+      <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+    </div>`).join('');
+  const palmHtml=ha.short.map(f=>
+    `<div class="pv" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+      <div class="pipa">${esc(f.ipa)}</div><div class="psay">${esc(f.say)}</div>
+      <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+    </div>`).join('');
+  hand.innerHTML=`<div class="hand-wrap">
+    <div class="hand-palm">
+      <div class="hand-title">${esc(ha.title)}</div>
+      <div class="hand-hint">${esc(ha.hint)}</div>
+      <div class="hand-row">${fingerHtml}</div>
+      <div class="hand-row"><div style="font-size:11px;color:var(--gold);font-weight:700;width:100%;margin-bottom:2px">掌心＝短元音（短促）</div></div>
+      <div class="palm-vowels">${palmHtml}</div>
+      <div class="hand-hint" style="margin-top:10px">👆 <b>每个例词都是独立可点的块</b>，点哪个词就单独读哪个词；点卡片空白处会连读全部例词。</div>
+    </div>
+  </div>`;
+  hand.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  hand.querySelectorAll('.finger,.pv').forEach(c=>c.onclick=()=>speakSeq(c.dataset.words.split(' ')));
+  // 音素卡
+  const cards=document.getElementById('phxCards'); cards.innerHTML='<div class="phx-grid"></div>';
+  const cg=cards.querySelector('.phx-grid');
+  DATA.phonics.sound_cards.forEach(sc=>{
+    const d=document.createElement('div'); d.className='phx-card';
+    d.innerHTML=`<div class="ps">${esc(sc.sound)}</div><div class="pn">${esc(sc.name)}</div>
+      <div class="ptip">${esc(sc.tip)}</div>
+      <div class="phx-words">${sc.words.map(preWord).join('')}</div>
+      ${sc.phrase_en?`<div class="phx-phrase"><span class="pl">🔗 短语连读</span><span class="pe">${esc(sc.phrase_en)}</span>
+        <button class="b-play" data-phrase="${esc(sc.phrase_en)}">🔊 听短语</button>
+        <span class="pc">${esc(sc.phrase_cn||'')}</span></div>`:''}`;
+    cg.appendChild(d);
+  });
+  cards.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  cards.querySelectorAll('[data-phrase]').forEach(b=>b.onclick=e=>{e.stopPropagation();speak(b.dataset.phrase);});
+  cards.querySelectorAll('.phx-card').forEach(c=>c.addEventListener('click',e=>{
+    if(e.target.closest('[data-say-word]')||e.target.closest('button')) return;
+    speakSeq(Array.from(c.querySelectorAll('[data-say-word]')).map(x=>x.dataset.sayWord));
+  }));
+  /* 预学词占比提示：练发音可以带一点外单元新词，但控制在 30% 以内 */
+  const pct=preRatio();
+  const note=document.createElement('div');
+  note.className='phx-tip';
+  note.innerHTML=`📊 本单元拼读例词里 <b>${preTotal}</b> 个是后面单元的词（虚线框「预学」标签），占比 <b>${pct}%</b>。
+    ${pct>30?'<span style="color:var(--red)">⚠️ 超过 30%，需要替换为本单元词。</span>':'✅ 在 30% 以内 —— 这些词<b>只要求你会读出来</b>，不要求现在记住意思。'}`;
+  cards.appendChild(note);
+  /* ---------- 情绪语调（本单元专属维度：教材 U8/U9 语调） ----------
+   浏览器 TTS 无法真正控制语调，这里做两件事：
+   ① 用 SVG 折线把「音高走向」画出来（↗ 上扬/ → 平/ ↘ 下降），让视觉先建立概念
+   ② 用 pitch 参数近似：升调调高 pitch、降调调低 pitch，让学生能听出差别        */
+function pitchSvg(arrow){
+  // 起点(12,44) 终点(228,10)；按箭头决定控制点，画出上扬/平/下降
+  let pts;
+  if(arrow.indexOf('↑')>=0)      pts='12,46 60,40 120,26 180,10 228,4';   // 强升调
+  else if(arrow.indexOf('↗')>=0) pts='12,46 70,40 140,28 228,12';       // 升调
+  else if(arrow.indexOf('↓')>=0) pts='12,12 70,20 140,32 228,44';       // 平后微降
+  else if(arrow.indexOf('↘')>=0) pts='12,12 70,22 140,34 228,46';       // 降调
+  else                            pts='12,29 80,27 150,30 228,28';       // 平调
+  return `<svg class="itn-pitch" viewBox="0 0 240 56" preserveAspectRatio="none">
+    <line class="base" x1="6" y1="28" x2="234" y2="28"></line>
+    <polyline class="path" points="${pts}"></polyline>
+    <circle class="dot" cx="228" cy="${pts.split(' ').pop().split(',')[1]}" r="3.5"></circle>
+  </svg>`;
+}
+function tonePitch(arrow){
+  if(arrow.indexOf('↑')>=0) return 1.5;
+  if(arrow.indexOf('↗')>=0) return 1.25;
+  if(arrow.indexOf('↘')>=0) return 0.72;
+  if(arrow.indexOf('↓')>=0) return 0.85;
+  return 1.0;
+}
+/* ---------- 语调朗读：为什么不能直接调 pitch ----------
+   SpeechSynthesis 的 u.pitch 只是「整句音高缩放」，不改变句内音高走向。
+   所以同一句话设 pitch=1.25（↗）和 pitch=0.72（↘）听起来完全一样 —— 骗不了学生。
+   可行做法：把句子切成 [前半 + 末段] 两段，末段按语调方向给不同音高，
+   这样「句末往上走」还是「句末往下落」在合成音里真的能听出来。
+   仍然要诚实标注：这是电脑合成的近似语调，真语调必须听真人（老师/家长/录音）。 */
+function contourSegs(text, arrow){
+  const s=String(text||'').trim();
+  const toks=s.split(/\s+/).filter(Boolean);
+  if(toks.length<2) return [{t:s, p:tonePitch(arrow)}];
+  const head=toks.slice(0,-1).join(' '), tail=toks[toks.length-1];
+  let end;
+  if(arrow.indexOf('↑')>=0)      end=1.75;   // 强升调：末段明显抬高
+  else if(arrow.indexOf('↗')>=0) end=1.45;   // 升调
+  else if(arrow.indexOf('↘')>=0) end=0.55;   // 降调：末段明显压低
+  else if(arrow.indexOf('↓')>=0) end=0.8;    // 平后微降
+  else                            end=1.0;    // 平调
+  return [{t:head,p:1.0},{t:tail,p:end}];
+}
+function speakTone(text,arrow,rate,onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const segs=contourSegs(text,arrow);
+  let i=0;
+  (function next(){
+    if(i>=segs.length){ if(onDone)onDone(); return; }
+    const s=segs[i++];
+    const u=new SpeechSynthesisUtterance(s.t);
+    const v=getVoice(); if(v)u.voice=v;
+    u.rate=(typeof rateVal==='function'?rateVal():0.9);
+    u.pitch=s.p; u.volume=1; u.lang=(v&&v.lang)||'en-GB';
+    u.onend=()=>setTimeout(next,80);
+    u.onerror=()=>setTimeout(next,80);
+    speechSynthesis.speak(u);
+  })();
+}
+function renderIntonation(){
+  const box=document.getElementById('phxIntonation');
+  const cards=(DATA.phonics.intonation_cards)||[];
+  const pairs =(DATA.phonics.intonation_pairs)||[];
+  if(!cards.length && !pairs.length){ box.innerHTML='<div class="hint">本单元暂无语调卡。</div>'; return; }
+  let html='';
+  if(cards.length){
+    html+=`<div class="phx-tip">🎵 <b>语调 = 句子的情绪体温</b>。同一句话，音调走的方向不同，意思就完全不同：
+<b>↗ 上扬</b>（开心/疑问/惊讶）｜ <b>↘ 下降</b>（难过/肯定/结束）｜ <b>→ 平直</b>（无聊/累/敷衍）。
+折线图告诉你的就是「音高往哪走」。
+<br><br>⚠️ <b>关于「听」的一句实话</b>：电脑合成音<b>做不出真正的语调</b>——它只能把整句话整体调高或调低（像花栗鼠和低音炮），
+<b>走不出「句末往上挑」的旋律线</b>。所以「🔊 音高示意」只是把句末那一段<b>刻意抬高或压低</b>的近似演示，不是真人语调。
+<br>👉 <b>真正能听出语调的，只有你自己的声音。</b>点「🎤 我来念」录一遍，回放对比——那才是真语调。</div>`;
+    html+='<div class="itn-grid"></div>';
+  }
+  box.innerHTML=html;
+  if(cards.length){
+    const cg=box.querySelector('.itn-grid');
+    cards.forEach(ic=>{
+      const d=document.createElement('div'); d.className='itn';
+      d.innerHTML=`<div class="itn-top">
+          <div class="itn-arrow">${esc(ic.arrow)}</div>
+          <div><div class="itn-w">${esc(ic.word)}</div><div class="itn-ipa">${esc(ic.ipa)} · ${esc(ic.cn)}</div></div>
+          <div class="itn-tone">${esc(ic.tone)}</div>
+        </div>
+        ${pitchSvg(ic.arrow)}
+        <div class="itn-sent">${esc(ic.sent)}</div>
+        <div class="itn-sentcn">${esc(ic.sent_cn)}</div>
+        <div class="itn-tip">${esc(ic.tip)}</div>
+        <div class="itn-q">再练一句：<b>${esc(ic.pair.en)}</b> <span style="color:var(--sub)">${esc(ic.pair.cn)}</span></div>
+        <div class="itn-acts">
+          ${ic.audio?'<button class="b-real" data-audio="'+esc(ic.audio)+'">🎧 真人示范</button>':''}
+          <button class="b-play" data-t="${esc(ic.sent)}" data-a="${esc(ic.arrow)}">🔊 音高示意</button>
+          <button class="ghost" data-t="${esc(ic.pair.en)}" data-a="${esc(ic.arrow)}">🔊 再练一句</button>
+          <button class="b-rec" data-rec-t="${esc(ic.sent)}" data-rec-a="${esc(ic.arrow)}">🎤 我来念</button>
+        </div>
+        <div class="rec-slot"></div>`;
+      cg.appendChild(d);
+    });
+    box.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+  // 同句异调：从「听辨」改为「自己念两种，自己比」
+  if(pairs.length){
+    const box2=document.createElement('div');
+    box2.innerHTML=`<div class="phx-tip" style="margin-top:16px">🎤 <b>同句异调 · 自己念、自己比</b>：下面每一组<b>文字完全一样</b>，只有语调不同。
+<b>别指望用合成音听出区别（它听不出来）</b>——正确练法是：<b>照着曲线自己念一遍↗，再自己念一遍↘，录下来回放对比</b>。
+你自己的声音里有真语调，一比就知道差在哪。</div>`;
+    box.appendChild(box2);
+    pairs.forEach((p,i)=>{
+      const d=document.createElement('div'); d.className='itnp';
+      d.innerHTML=`<div class="itnp-vs">
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.left.arrow)} ${esc(p.left.tone)}</div>
+            ${pitchSvg(p.left.arrow)}
+            <div class="en">${esc(p.left.en)}</div><div class="cn">${esc(p.left.cn)}</div>
+            <div class="itn-acts">
+              ${p.left.audio?'<button class="b-real" data-audio="'+esc(p.left.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.left.en)}" data-a="${esc(p.left.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.left.en)}" data-rec-a="${esc(p.left.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+          <div class="itnp-mid">VS</div>
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.right.arrow)} ${esc(p.right.tone)}</div>
+            ${pitchSvg(p.right.arrow)}
+            <div class="en">${esc(p.right.en)}</div><div class="cn">${esc(p.right.cn)}</div>
+            <div class="itn-acts">
+              ${p.right.audio?'<button class="b-real" data-audio="'+esc(p.right.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.right.en)}" data-a="${esc(p.right.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.right.en)}" data-rec-a="${esc(p.right.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+        </div>
+        <div class="itnp-q">Q${i+1}. ${esc(p.ask)}</div>
+        <div class="itnp-a hide" data-a="${esc(p.answer)}">${esc(p.answer)}</div>`;
+      box2.appendChild(d);
+    });
+    box.querySelectorAll('.itnp-a').forEach(x=>x.onclick=()=>x.classList.toggle('hide'));
+    box2.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box2.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box2.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+}
+/* 真人示范音频（老师录制后填 audio 字段即可，没有就只显示合成音） */
+let realAudioEl=null;
+function playAudio(src){
+  try{
+    if(realAudioEl){ realAudioEl.pause(); }
+    realAudioEl=new Audio(src); realAudioEl.play();
+  }catch(e){ speak(src); }
+}
+/* 语调录音：学生自己念 → 回放对比（这才是真语调） */
+function toneRec(btn, text, arrow){
+  const card = btn.closest('.itn') || btn.closest('.itnp-side');
+  const slot = card ? card.querySelector('.rec-slot') : null;
+  if(!slot) return;
+  if(toneRecState.mr){ toneRecState.stop(); return; }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 双击文件打开时无法录音。请用本地服务地址打开本页（见首页说明）。</div>';
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const chunks=[];
+    const mr=new MediaRecorder(stream);
+    mr.ondataavailable=e=>{ if(e.data.size) chunks.push(e.data); };
+    mr.onstop=()=>{
+      const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'});
+      const url=URL.createObjectURL(blob);
+      slot.innerHTML='<audio controls src="'+url+'"></audio>'
+        +'<div class="hint">🎧 上面是<b>你自己的声音</b>——回放听句末是往上还是往下，跟上面的曲线对一下。</div>';
+      stream.getTracks().forEach(t=>t.stop());
+      toneRecState.mr=null; btn.textContent=toneRecState.label;
+    };
+    mr.start();
+    toneRecState.mr=mr; toneRecState.btn=btn; toneRecState.label=btn.textContent;
+    toneRecState.stop=function(){ mr.stop(); };
+    btn.textContent='■ 停止';
+    slot.innerHTML='<div class="hint"><span class="rec-dot"></span> 请念：<b>'+esc(text)+'</b>　'
+      +(arrow.indexOf('↗')>=0||arrow.indexOf('↑')>=0?'（句末<b>往上挑</b>）':(arrow.indexOf('↘')>=0||arrow.indexOf('↓')>=0?'（句末<b>往下落</b>）':'（<b>平平的</b>）'))
+      +'</div>';
+  }).catch(err=>{
+    slot.innerHTML='<div class="hint" style="color:var(--red)">无法录音：'+esc(err.message)+'</div>';
+  });
+}
+let toneRecState={mr:null,btn:null,label:'',stop:function(){}};
+/* ---------- 反义情绪对（本单元专属词，语义对立 + 语调对比） ---------- */
+function renderAntonym(){
+  const box=document.getElementById('phxAntonym');
+  const list=(DATA.phonics.antonym_pairs)||[];
+  if(!list.length){ box.innerHTML='<div class="hint">本单元暂无反义情绪对。</div>'; return; }
+  let html=`<div class="phx-tip">↔️ <b>反义情绪对</b>：两词意思相反，<b>说话时的情绪也相反</b>。
+先各听一次单词，再听整句。<b>注意</b>：这里的句子是<b>平读</b>的——合成音做不出情绪语调，
+真正的情绪语调要靠你自己念（去「🎤 语调」那栏录一遍），或听真人示范。</div>`;
+  list.forEach(p=>{
+    html+=`<div class="apo">
+      <div class="apo-top">
+        <span class="apo-w">${esc(p.a)}</span><span class="apo-vs">↔ 意思相反 →</span><span class="apo-w">${esc(p.b)}</span>
+        <span class="apo-cn">${esc(p.cn_a)} / ${esc(p.cn_b)}</span>
+      </div>
+      <div style="font-size:14px;font-weight:600;line-height:1.6;margin-bottom:7px">${esc(p.sent)}</div>
+      <div class="apo-cn" style="margin-bottom:8px">${esc(p.sent_cn)}</div>
+      <div class="itn-acts">
+        <button class="b-play" data-w2="${esc(p.a)}">🔊 ${esc(p.a)}</button>
+        <button class="b-play" data-w2="${esc(p.b)}">🔊 ${esc(p.b)}</button>
+        <button class="b-play" data-t2="${esc(p.sent)}">🔊 听整句</button>
+      </div>
+    </div>`;
+  });
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w2]').forEach(b=>b.onclick=()=>speak(b.dataset.w2));
+  box.querySelectorAll('[data-t2]').forEach(b=>b.onclick=()=>speak(b.dataset.t2));
+}
+  // 最小对立对
+  const pairs=document.getElementById('phxPairs'); pairs.innerHTML='';
+  DATA.phonics.min_pairs.forEach(mp=>{
+    const d=document.createElement('div'); d.className='pair';
+    d.innerHTML=`<div class="pt">
+        <div class="pc"><div class="pw">${esc(mp.a)}</div><div class="pi">${esc(mp.a_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.a)}">🔊 ${esc(mp.a)}</button></div></div>
+        <div class="pc"><div class="pw">${esc(mp.b)}</div><div class="pi">${esc(mp.b_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.b)}">🔊 ${esc(mp.b)}</button></div></div>
+      </div>
+      <div class="ptip">${esc(mp.tip)}</div>
+      <div class="pair-acts">
+        <button class="b-ok" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">✅ 我能区分</button>
+        <button class="b-bad" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">❌ 我还混</button>
+      </div>`;
+    pairs.appendChild(d);
+  });
+  pairs.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.dataset.text));
+  pairs.querySelectorAll('.b-ok').forEach(b=>b.onclick=()=>flash('👍 已标记：能区分'));
+  pairs.querySelectorAll('.b-bad').forEach(b=>b.onclick=()=>{ addError({word:b.dataset.a+' / '+b.dataset.b,type:'拼读',original:'最小对立对',standard:b.dataset.a+' '+b.dataset.b,student:'未区分'}); flash('🩹 已记入错题'); });
+  // 听音选词（运行时生成）
+  const lis=document.getElementById('phxListen');
+  lis.innerHTML=`<div class="player"><div class="now">🎧 听音选词</div>
+    <div class="nowcn">听发音，从 4 个选项里选出你听到的词。答错自动入错题本。</div>
+    <div id="phxListenBox"></div></div>`;
+  phxListenNext();
+  /* 语调 / 反义情绪对两个视图的内容在这里渲染（否则 div 是空的，用户切过去一片空白） */
+  renderIntonation();
+  renderAntonym();
+}
+function phxListenNext(){
+  const box=document.getElementById('phxListenBox'); if(!box) return;
+  const words=allWordObjs();
+  const correct=words[Math.floor(Math.random()*words.length)];
+  const distract=shuffle(words.filter(w=>w.word!==correct.word)).slice(0,3);
+  const opts=shuffle([correct,...distract]);
+  box.innerHTML=`<div class="ctr"><button id="phxPlay" class="b-play">▶ 播放发音</button></div>
+    <div class="q-opts">${opts.map((o,i)=>`<button class="q-opt" data-word="${esc(o.word)}">${esc(o.word)}</button>`).join('')}</div>
+    <div class="q-fb" id="phxFb"></div>
+    <div class="ctr"><button id="phxNext" class="ghost">⏭ 下一题</button></div>`;
+  let answered=false;
+  document.getElementById('phxPlay').onclick=()=>speak(correct.word);
+  setTimeout(()=>speak(correct.word),300);
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    if(b.dataset.word===correct.word){ b.classList.add('ok'); document.getElementById('phxFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('phxFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：'+esc(correct.word)+'</span>';
+      addError({word:correct.word,type:'拼读',original:'听音选词',standard:correct.word,student:b.dataset.word});
+      box.querySelectorAll('.q-opt').forEach(bb=>{ if(bb.dataset.word===correct.word) bb.classList.add('ok'); }); }
+    document.getElementById('phxNext').onclick=phxListenNext;
+  });
+}
+
+/* ---------- 小测 ---------- */
+let quizQueue=[], quizIdx=0, quizScore=0, quizTotal=0, quizDone=false;
+function cnOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.defB)).slice(0,3);
+  return shuffle([{label:w.defB,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function enOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.word)).slice(0,3);
+  return shuffle([{label:w.word,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function buildQuiz(){
+  const words=shuffle(allWordObjs());
+  quizQueue=[];
+  words.forEach(w=>{
+    const r=Math.random();
+    if(r<0.30){ const opts=cnOpts(w); quizQueue.push({kind:'listen',word:w.word,cn:w.defB,opts}); }
+    else if(r<0.60){ const opts=cnOpts(w); quizQueue.push({kind:'en2cn',word:w.word,cn:w.defB,opts}); }
+    else { const opts=enOpts(w); quizQueue.push({kind:'cn2en',word:w.word,cn:w.defB,opts}); }
+  });
+  quizIdx=0; quizScore=0; quizTotal=quizQueue.length; quizDone=false; renderQuiz();
+}
+function renderQuiz(){
+  const box=document.getElementById('quizBox');
+  if(quizDone){ box.innerHTML=`<div class="player"><div class="now">🎉 本轮完成！</div>
+    <div class="nowcn">答对 ${quizScore} / ${quizTotal}。答错的已自动记入「🩹 错题」，去错题本重练。</div>
+    <div class="ctr"><button id="quizAgain">🔁 再来一轮</button></div></div>`;
+    document.getElementById('quizAgain').onclick=buildQuiz; return; }
+  const q=quizQueue[quizIdx];
+  /* 三种题面都把「英文」做成可点发音块：
+     listen — 不直接露词，只有播放钮
+     en2cn — 题干英文可点（听音不影响作答，帮助记发音）
+     cn2en — 选完后英文选项立刻变成可点发音块；作答前点选项＝选择，不发音 */
+  let promptHtml='';
+  if(q.kind==='listen') promptHtml=`<div class="quiz-prompt">🔊 听发音，选出中文意思
+      <button class="b-play" id="qPlay">▶ 播放</button>
+      <button class="ghost" id="qPeek">👀 看单词</button></div>`;
+  else if(q.kind==='en2cn') promptHtml=`<div class="quiz-prompt">${sayChip(q.word,'big')}
+      <span class="tag">点单词听发音</span><div style="color:var(--sub);font-size:13px">选出中文意思</div></div>`;
+  else promptHtml=`<div class="quiz-prompt"><span class="big">「${esc(q.cn)}」</span>
+      <div style="color:var(--sub);font-size:13px">对应的英文是？<span class="tag">选完后点选项可再听发音</span></div></div>`;
+  let opts='';
+  q.opts.forEach((o,i)=>{ opts+=`<button class="q-opt" data-i="${i}">${esc(o.label)}</button>`; });
+  box.innerHTML=`<div class="player"><div class="now">📝 小测 ${quizIdx+1}/${quizTotal}</div>${promptHtml}
+    <div class="q-prog"><div class="bar"><i style="width:${Math.round(quizIdx/quizTotal*100)}%"></i></div></div>
+    <div class="q-opts">${opts}</div><div class="q-fb" id="qFb"></div>
+    <div class="ctr"><button id="qNext" class="ghost">⏭ 下一题</button></div></div>`;
+  if(q.kind==='listen'){
+    document.getElementById('qPlay').onclick=()=>speak(q.word);
+    document.getElementById('qPeek').onclick=()=>{ speak(q.word); flash('🔊 单词是：'+q.word); };
+    setTimeout(()=>speak(q.word),250);
+  }
+  if(q.kind==='en2cn') setTimeout(()=>speak(q.word),250);   // 题干可点，也可自动听一次
+  /* 作答后：把正确英文自动读一遍 + 给所有英文选项装上发音块（连排多次，强化记忆） */
+  function afterAnswer(){
+    const fb=document.getElementById('qFb');
+    const tail=' <span style="font-weight:600;color:var(--sub)">点单词再听：</span>';
+    if(q.kind==='cn2en') fb.innerHTML += tail+sayChip(q.word)+' '+sayChip(q.word);
+    else fb.innerHTML += tail+sayChip(q.word);
+    box.querySelectorAll('.q-opt').forEach((bb,j)=>{
+      const lab=q.opts[j].label;
+      if(/^[A-Za-z' -]+$/.test(lab)){ bb.setAttribute('data-say',lab); bb.insertAdjacentHTML('beforeend','<span style="font-size:11px;color:var(--gold)"> 🔊</span>'); }
+    });
+    setTimeout(()=>speak(q.word), 260);
+  }
+  let answered=false;
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    suppressSay=true;                       // 本次点击只算作答，不触发词块发音
+    setTimeout(()=>{ suppressSay=false; },0);
+    const o=q.opts[+b.dataset.i];
+    if(o.ok){ quizScore++; b.classList.add('ok'); document.getElementById('qFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('qFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：</span>'+sayChip(q.word);
+      addError({word:q.word,type:'小测',original:'小测题',standard:q.word,student:o.label});
+      box.querySelectorAll('.q-opt').forEach((bb,j)=>{ if(q.opts[j].ok) bb.classList.add('ok'); }); }
+    afterAnswer();
+    document.getElementById('qNext').onclick=()=>{ quizIdx++; if(quizIdx>=quizTotal){quizDone=true;} renderQuiz(); };
+  });
+}
+
+/* ---------- 错题池 ---------- */
+function renderErrors(){
+  const box=document.getElementById('errList');
+  if(!errors.length){ box.innerHTML='<div class="hint">还没有错题。小测答错、或在词卡/复习点「❌ 记一笔」会自动收集到这里，按类型聚合，方便专项重练。</div>'; return; }
+  const byType={};
+  errors.forEach((e,i)=>{ (byType[e.type]=byType[e.type]||[]).push({...e,idx:i}); });
+  const labels={词汇:'📘 词汇没记住',拼读:'🅰️ 拼读没区分',小测:'📝 小测答错'};
+  let html='';
+  for(const t in byType){
+    html+=`<div class="err-type">${labels[t]||t}（${byType[t].length}）</div>`;
+    byType[t].forEach(e=>{
+      html+=`<div class="err-item"><div class="err-meta"><b>${esc(e.word)}</b> · ${new Date(e.time).toLocaleDateString()} ${new Date(e.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</div>
+        <div class="err-line">标准：<span style="color:var(--green)">${esc(e.standard)}</span></div>
+        ${e.student&&e.student!==e.standard?`<div class="err-line">你的：<span style="color:var(--red)">${esc(e.student)}</span></div>`:''}
+        <div class="err-btns"><button class="morebtn" data-w="${esc(e.word)}">🔁 重练</button><button class="err-del" data-i="${e.idx}">🗑 删除</button></div></div>`;
+    });
+  }
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>goReviewWord(b.dataset.w));
+  box.querySelectorAll('.err-del').forEach(b=>b.onclick=()=>{ errors.splice(+b.dataset.i,1); saveErrors(); renderErrors(); updateProgress(); });
+}
+
+/* ---------- 本单元语法：跳到语法练习的具体知识点 ---------- */
+const GRAM_PAGE = "../语法练习_A1-A2-B1-B2.html";
+const GRAM_KEY  = "a1_gram_done_v1";
+function loadGram(){ try{return JSON.parse(localStorage.getItem(GRAM_KEY))||{}}catch(e){return{}} }
+function saveGram(g){ localStorage.setItem(GRAM_KEY, JSON.stringify(g)); }
+/* 只记一笔「点过」，真正的跳转交给 <a href target=_blank> —— 避免 window.open 与新标签重复开两次 */
+function markGrammar(pid){
+  var g=loadGram();
+  var u=DATA.unit;
+  g[u]=g[u]||[]; if(g[u].indexOf(pid)<0){ g[u].push(pid); saveGram(g); }
+  setTimeout(renderGrammar,60);
+}
+function renderGrammar(){
+  var list=(DATA.grammar||[]), box=document.getElementById('gramList'), head=document.getElementById('gramHead');
+  var all=document.getElementById('gramAll');
+  if(all) all.href=GRAM_PAGE;
+  if(!head||!box) return;
+  var done=(loadGram()[DATA.unit]||[]);
+  head.innerHTML='Unit '+DATA.unit+' 学 <b>'+list.length+' 个语法点</b>。'
+    + '跟读是「听进来」，语法是「写出来」—— 本单元的句子会用到这些点，'
+    + '点一下就跳到语法练习里对应的那一关（已完成 '+done.length+' / '+list.length+'）。';
+  if(!list.length){
+    box.innerHTML='<div class="hint">本单元还没配语法点。</div>'; return;
+  }
+  box.innerHTML=list.map(function(it,i){
+    var ok=done.indexOf(it.pid)>=0;
+    return '<div class="gcard">'
+      + '<div class="gi">'+(ok?'✅':'✍️')+'</div>'
+      + '<div class="gname">'+esc(it.name)+'</div>'
+      + '<div class="gdesc">'+esc(it.desc||'')+'<br><span style="opacity:.6">pid: '+esc(it.pid)+'</span></div>'
+      + (ok?'<div class="gdone">已练过</div>':'')
+      + '<a class="ggo" href="'+GRAM_PAGE+'?p='+encodeURIComponent(it.pid)+'&u='+DATA.unit+'"'
+      +   ' target="_blank" rel="noopener" onclick="markGrammar(\'' + it.pid + '\')">去练这一点 →</a>'
+      + '</div>';
+  }).join('');
+}
+
+/* ---------- 单元文章（例句同源：A1＋A2 词的例句都出自本文） ---------- */
+/* ---------- 单元文章：把本单元生词织进一个语境 ---------- */
+function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
+function artHL(text){
+  const fs = DATA.artForms || [];
+  const out = esc(text);
+  if(!fs.length) return out;
+  try{
+    const re = new RegExp('(?<![a-zA-Z])(' + fs.map(f=>f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|') + ')(?![a-zA-Z])','gi');
+    return out.replace(re,'<span class="art-hl">$1</span>');
+  }catch(e){ return out; }
+}
+function renderArticle(){
+  const a=DATA.article;
+  const body=document.getElementById('artBody');
+  const banner=document.getElementById('artBanner');
+  if(!a || !a.paras || !a.paras.length){
+    banner.style.display='none';
+    body.innerHTML='<div class="hint">本单元暂无文章。</div>';
+    return;
+  }
+  const total=a.paras.reduce((s,p)=>s+p.length,0);
+  const hlEl=document.getElementById('tgArtHL');
+  const hl=!hlEl || hlEl.dataset.hide!=='1';
+  let nArt=0, nAll=0;
+  (DATA.groups||[]).forEach(g=>g.words.forEach(w=>{ nAll++; if(w.inArt) nArt++; }));
+  banner.style.display='block';
+  banner.innerHTML='📰 <b>'+esc(a.title)+'</b> · <span style="font-weight:700;font-size:12px">'+total+' 句</span> · <span style="font-size:12px">本单元 '+nArt+'/'+nAll+' 个生词织进这篇短文，金色高亮</span>';
+  body.innerHTML='';
+  let gi=0;
+  const all=[];
+  a.paras.forEach(para=>{
+    const pd=document.createElement('div'); pd.className='art-para';
+    para.forEach(s=>{
+      gi++; all.push(s[0]);
+      const d=document.createElement('div'); d.className='art-sent';
+      d.innerHTML='<span class="art-idx">'+gi+'</span>'
+        +'<span class="art-en" data-text="'+escAttr(s[0])+'">'+(hl?artHL(s[0]):esc(s[0]))+'</span>'
+        +'<button class="b-play" data-text="'+escAttr(s[0])+'">🔊</button>'
+        +'<button class="b-turn-rec" data-text="'+escAttr(s[0])+'">🎤</button>'
+        +'<div class="turn-rec"></div>'
+        +'<div class="art-zh cnArt">'+esc(s[1]||'')+'</div>';
+      pd.appendChild(d);
+    });
+    body.appendChild(pd);
+  });
+  body.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  body.querySelectorAll('.art-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  body.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.art-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const pa=document.getElementById('artPlayAll');
+  if(pa) pa.onclick=()=>{ speakSeq(all, 600); };
+}
+
+
+/* ---------- tab 切换 ---------- */
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.tab).classList.add('on');
+    if(b.dataset.tab==='shadow') initShadow();
+    if(b.dataset.tab==='codex') renderCodex();
+    if(b.dataset.tab==='review') renderReview();
+    if(b.dataset.tab==='phonics') renderPhonics();
+    if(b.dataset.tab==='quiz') buildQuiz();
+    if(b.dataset.tab==='errors') renderErrors();
+    if(b.dataset.tab==='reading') renderReading();
+    if(b.dataset.tab==='grammar') renderGrammar();
+    if(b.dataset.tab==='article') renderArticle();
+  };
+});
+document.querySelectorAll('.subtab').forEach(b=>b.onclick=()=>switchSub(b.dataset.sh));
+document.querySelectorAll('[data-phx]').forEach(b=>b.onclick=()=>switchPhx(b.dataset.phx));
+document.querySelectorAll('[data-rd]').forEach(b=>b.onclick=()=>switchRd(b.dataset.rd));
+(function(){
+  const r=(DATA.reading||[]).length, l=(DATA.listening||[]).length;
+  const rb=document.querySelector('[data-rd="read"]'), lb=document.querySelector('[data-rd="listen"]');
+  if(rb) rb.innerHTML='📖 阅读 '+r+' 篇';
+  if(lb){ if(!l){ lb.style.display='none'; } else lb.innerHTML='🎧 听力 '+l+' 篇'; }
+})();
+document.getElementById('tgCnLearn').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnLearn').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgHideCn').onclick=function(){
+  const hide=this.dataset.hide!=='1'; this.dataset.hide=hide?'1':'';
+  this.textContent=hide?'👁 显示中文':'🙈 隐藏中文'; renderReview();
+};
+document.getElementById('tgCnArt').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnArt').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgArtHL').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  renderArticle();
+};
+document.getElementById('rate').oninput=function(){ document.getElementById('rateVal').textContent=this.value+'×'; };
+document.getElementById('voiceSel').onchange=function(){ voice=getVoice(); };
+
+/* ---------- 初始化 ---------- */
+document.getElementById('subtitle').textContent='Unit '+DATA.unit+' · '+DATA.title+' — '+DATA.subtitle;
+document.getElementById('beastName').textContent=(DATA.beast_emoji||'🐾')+' '+(DATA.beast_name||'英语跟读')+'（Unit '+DATA.unit+' '+DATA.title+'）';
+document.getElementById('beastDesc').textContent=DATA.subtitle;
+buildQueue(); renderDialogues();
+renderLearn(); renderReview(); updateProgress(); renderCodex();
+</script>
+</body>
+</html>

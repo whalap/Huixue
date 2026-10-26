@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 4 · 身体与脸 My Body &amp; Face</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.unit({
+  n: 4,
+  emo: '🧍',
+  beast: '身体精灵',
+  en: 'My Body & Face',
+  cn: '身体与脸',
+  goal: '14 个身体部位认全，会指着自己说 This is my…，也听得懂 Touch your… 的指令。',
+  tip: '这一单元有两个「不规则复数」要记：<b>tooth → teeth</b>（牙）和 <b>foot → feet</b>（脚）。' +
+       '刷牙、跺脚说的都是<b>两只以上</b>，所以平时用到的几乎都是 teeth 和 feet。',
+  vocab: [
+    {g:'头面部', w:'head', ipa:'/hed/', cn:'头', ex:'This is my head.', excn:'这是我的头。'},
+    {g:'头面部', w:'hair', ipa:'/heə/', cn:'头发', ex:'My hair is black.', excn:'我的头发是黑色的。'},
+    {g:'头面部', w:'face', ipa:'/feɪs/', cn:'脸', ex:'Wash your face.', excn:'洗洗脸。'},
+    {g:'头面部', w:'eye', ipa:'/aɪ/', cn:'眼睛', ex:'I have two eyes.', excn:'我有两只眼睛。'},
+    {g:'头面部', w:'ear', ipa:'/ɪə/', cn:'耳朵', ex:'Touch your ears.', excn:'摸摸你的耳朵。'},
+    {g:'头面部', w:'nose', ipa:'/nəʊz/', cn:'鼻子', ex:'This is my nose.', excn:'这是我的鼻子。'},
+    {g:'头面部', w:'mouth', ipa:'/maʊθ/', cn:'嘴', ex:'Open your mouth.', excn:'张开嘴。'},
+    {g:'头面部', w:'tooth / teeth', ipa:'/tuːθ/ /tiːθ/', cn:'牙齿（单 / 复）', ex:'Brush your teeth.', excn:'刷牙。'},
+
+    {g:'身体与四肢', w:'body', ipa:'/ˈbɒdi/', cn:'身体', ex:'This is my body.', excn:'这是我的身体。'},
+    {g:'身体与四肢', w:'arm', ipa:'/ɑːm/', cn:'手臂', ex:'Wave your arms.', excn:'挥挥手臂。'},
+    {g:'身体与四肢', w:'hand', ipa:'/hænd/', cn:'手', ex:'Clap your hands.', excn:'拍拍手。'},
+    {g:'身体与四肢', w:'finger', ipa:'/ˈfɪŋgə/', cn:'手指', ex:'I have ten fingers.', excn:'我有十根手指。'},
+    {g:'身体与四肢', w:'leg', ipa:'/leg/', cn:'腿', ex:'Move your legs.', excn:'动动腿。'},
+    {g:'身体与四肢', w:'foot / feet', ipa:'/fʊt/ /fiːt/', cn:'脚（单 / 复）', ex:'Stamp your feet.', excn:'跺跺脚。'}
+  ],
+  sents: [
+    {en:'This is my nose.', cn:'这是我的鼻子。'},
+    {en:'Touch your ears.', cn:'摸摸你的耳朵。'},
+    {en:'I have two eyes.', cn:'我有两只眼睛。'},
+    {en:'My hair is black.', cn:'我的头发是黑色的。'},
+    {en:'Clap your hands.', cn:'拍拍手。'},
+    {en:'Brush your teeth.', cn:'刷牙。'},
+    {en:'What is this?', cn:'这是什么？'},
+    {en:"It's my hand.", cn:'这是我的手。'}
+  ],
+  drill: {
+    h: '听单词，选出中文意思（头面部和四肢混着来）',
+    items: [
+      {say:'ear', opts:['耳朵','眼睛','鼻子','嘴'], a:0},
+      {say:'eye', opts:['眼睛','耳朵','眉毛','脸'], a:0},
+      {say:'nose', opts:['鼻子','嘴','牙齿','下巴'], a:0},
+      {say:'mouth', opts:['嘴','鼻子','舌头','喉咙'], a:0},
+      {say:'teeth', opts:['牙齿','脚','手指','头发'], a:0, tip:'tooth 是「一颗牙」，teeth 是「很多牙」——刷牙用 teeth。'},
+      {say:'hand', opts:['手','手臂','手指','肩膀'], a:0},
+      {say:'finger', opts:['手指','脚趾','手腕','手掌'], a:0},
+      {say:'leg', opts:['腿','脚','膝盖','手臂'], a:0},
+      {say:'feet', opts:['脚（多于一只）','脚（一只）','腿','手指'], a:0, tip:'foot 一只脚，feet 两只或更多；tooth → teeth 同理。'},
+      {say:'hair', opts:['头发','头','脸','眉毛'], a:0, tip:'hair 一般当不可数名词用，不说 a hair。'}
+    ]
+  },
+  quiz: [
+    {q:'“Touch your ears.” 让你做什么？', opts:['摸耳朵','摸鼻子','摸头发','摸脚'], a:0},
+    {q:'“Brush your teeth.” 是在做什么？', opts:['刷牙','洗手','梳头','洗脚'], a:0},
+    {q:'“I have two eyes.” 的意思是？', opts:['我有两只眼睛。','我有两只耳朵。','我有两个鼻子。','我有两只手。'], a:0},
+    {q:'foot 的复数形式是？', opts:['feet','foots','feets','foot'], a:0},
+    {q:'“head” 是身体的哪个部位？', opts:['头','手','腿','脸'], a:0},
+    {q:'“Clap your hands.” 让你做什么？', opts:['拍手','挥手','洗手','举手'], a:0},
+    {q:'下面哪一组单复数变化是正确的？', opts:['tooth → teeth','tooth → tooths','foot → foots','hair → hairs'], a:0},
+    {q:'“What is this? — It is my hand.” 这两句在做什么？', opts:['问这是什么，回答是手','问你是谁','问它在哪里','问它多大'], a:0}
+  ],
+  proj: 'Pre-A1 Unit4 身体翻翻书项目.html',
+  projName: '身体翻翻书',
+  prev: 'Pre-A1 Unit3 英语跟读.html',
+  next: 'Pre-A1 Unit5 英语跟读.html'
+});
+</script>
+</body>
+</html>

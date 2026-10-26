@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1 英语跟读 · Unit 3 ME AND MY FAMILY</title>
+<style>
+  :root{
+    --bg:#0f1424; --panel:#171d33; --panel2:#1f2742; --ink:#eef2ff; --sub:#9aa6c7;
+    --gold:#f5c542; --gold2:#caa12f; --red:#ff5a5f; --green:#5bd6a0; --line:#2a3358;
+    --chip:#243056;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);color:var(--ink);min-height:100vh}
+  header{padding:14px 20px 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{font-size:26px}
+  .title{font-weight:800;font-size:20px}
+  .title small{color:var(--sub);font-weight:500;font-size:13px;display:block;margin-top:2px}
+  .grow{flex:1}
+  .prog{display:flex;align-items:center;gap:8px}
+  .homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);color:var(--gold);
+           border:1px solid var(--gold2);border-radius:20px;padding:7px 14px;font-size:12.5px;
+           font-weight:700;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .homebtn:hover{background:var(--gold);color:#1a1a1a;border-color:var(--gold)}
+  .phxlink{display:inline-block;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+           padding:6px 13px;border-radius:20px;font-size:12.5px;text-decoration:none;font-weight:600}
+  .phxlink:hover{background:var(--gold);color:#1a1a1a}
+  .stars{font-size:20px;letter-spacing:2px}
+  .bar{height:8px;width:160px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .globalbar{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+    background:rgba(15,20,36,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+    padding:8px 20px;margin-bottom:6px}
+  .globalbar label{font-size:13px;color:var(--sub);display:flex;gap:6px;align-items:center}
+  .globalbar select,.globalbar input{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+  .globalbar .recnote{margin-left:auto;font-size:12px;color:var(--gold)}
+  nav{display:flex;gap:8px;padding:6px 20px 0;flex-wrap:wrap}
+  nav button{background:var(--panel);color:var(--sub);border:1px solid var(--line);
+    padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;cursor:pointer;font-weight:600}
+  nav button.on{background:var(--panel2);color:var(--ink);border-bottom:2px solid var(--gold)}
+  main{padding:16px 20px 60px;max-width:1100px;margin:0 auto}
+  .tab{display:none}
+  .tab.on{display:block}
+  .beast{background:linear-gradient(135deg,#1b2b4d,#20294a);border:1px solid var(--line);
+    border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin-bottom:16px}
+  .beast .emoji{font-size:54px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+  .beast h2{margin:0 0 4px;font-size:18px}
+  .beast p{margin:2px 0;color:var(--sub);font-size:13px}
+  .grp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+  .grp-tabs button{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .grp-tabs button.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.2s}
+  .card.done{border-color:var(--green)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .w{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .ipa{color:var(--sub);font-size:13px;font-style:italic}
+  .badges{display:flex;gap:6px;margin:6px 0}
+  .badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--chip);color:var(--sub)}
+  .badge.pos{background:#2b3a6b;color:#bcd0ff}
+  .badge.band{background:#3a2f12;color:var(--gold)}
+  .def{font-size:14px;margin:4px 0;line-height:1.5}
+  .phrase{font-size:13px;color:var(--gold);margin:4px 0}
+  .ex{font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px;margin:6px 0;cursor:pointer}
+  .ex .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .ex .cn.hide{display:none}
+  .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .acts button{flex:1;border:none;border-radius:9px;padding:8px;font-size:13px;cursor:pointer;font-weight:600;min-width:60px}
+  .b-play{background:var(--chip);color:var(--ink)}
+  .b-shadow{background:var(--gold);color:#1a1a1a}
+  .b-master{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
+  .b-master.mastered{background:var(--green);color:#06281c}
+  .b-err{color:var(--gold);border:1px solid var(--gold2);flex:none;min-width:0;padding:8px 10px}
+  .mini{display:inline-flex;gap:4px;align-items:center}
+  .spk{background:none;border:none;color:var(--gold);font-size:18px;cursor:pointer;padding:0 4px}
+  .toggle{cursor:pointer;color:var(--gold)}
+  .sense{border-left:3px solid var(--line);padding:4px 0 4px 10px;margin:6px 0}
+  .sense.hiddenSense{display:none}
+  .defline{font-size:14px;line-height:1.5;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .exbox{display:none;margin-top:6px;font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px}
+  .exbox .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:12px;cursor:pointer;margin-top:6px;font-weight:600}
+  .player{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .player .now{font-size:18px;font-weight:700;margin-bottom:6px}
+  .player .nowcn{color:var(--sub);font-size:14px;margin-bottom:12px}
+  /* 跟读提示条：英文 + 中文译文同一横行，一眼看完 */
+  .nowrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:11px 14px;border:1px solid var(--gold2);border-radius:10px;background:rgba(245,197,66,.06);margin-bottom:12px}
+  .nowrow .now,.nowrow .nowcn{margin-bottom:0}
+  .nowrow .now{font-size:18px;font-weight:700}
+  .nowrow .nowcn{font-size:14px;color:var(--sub)}
+  .recbox{min-height:8px;margin:10px 0}
+  .recbox audio{width:100%}
+  .rec-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .ctr{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ctr button{background:var(--gold);color:#1a1a1a;border:none;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .ctr .ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .ctr button.recording{background:var(--red);color:#fff}
+  .coll{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .cbox .e{font-size:38px}
+  .cbox .n{font-weight:700;margin:6px 0 2px}
+  .cbox .s{color:var(--gold);font-size:14px;letter-spacing:1px}
+  .cbox.lock{opacity:.45;filter:grayscale(1)}
+  .hint{color:var(--sub);font-size:12px;margin-top:10px;line-height:1.6;width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word}
+  .streak{color:var(--gold);font-weight:700}
+  .banner{background:#2a1f12;border:1px solid var(--gold2);color:var(--gold);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:12px;display:none}
+  .subtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .subtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .turn{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}
+  .turn.recording{border-color:var(--red)}
+  .turn .role{font-weight:800;font-size:13px;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;flex:none}
+  .role-A{background:#2b3a6b;color:#bcd0ff}
+  .role-B{background:#3a2f12;color:var(--gold)}
+  .turn-text{flex:1;font-size:15px}
+  .turn-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  .turn-acts{display:flex;gap:6px;flex:none}
+  .turn-acts button{border:none;border-radius:8px;padding:7px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .turn-acts .b-play{background:var(--chip);color:var(--ink)}
+  .turn-acts .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  /* 录音提示/回放整行横向铺满，绝不被 flex 压成竖条 */
+  .turn-rec{display:block;width:100%;min-width:0;margin-top:8px;clear:both}
+  .turn-rec audio{width:100%}
+  .turn-rec .hint{white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.6;margin-top:0}
+  .exchange{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:10px;background:var(--panel2)}
+  .qa{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .qa-text{flex:1;min-width:170px;font-size:15px}
+  /* 中文译文与英文同行，形成横向长条，便于一次性扫读 */
+  .qa-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  /* 回应行：标签 + 句子 + 按钮全部同一横行 */
+  .resp{margin-top:8px;padding:8px 10px;border-left:3px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 8px 8px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .resp-label{font-size:12px;color:var(--gold);font-weight:700;flex:none}
+  .resp .qa-text{flex:1;min-width:180px}
+  .resp-acts{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .resp-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .resp-acts .b-play{background:var(--chip);color:var(--ink)}
+  .resp-acts .b-drill{background:var(--gold);color:#1a1a1a}
+  .q-opt.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  /* 阅读·听力 */
+  .rd-tip{color:var(--sub);font-size:12px;margin-bottom:8px}
+  .rd-playall{margin-bottom:10px}
+  .rd-sents{display:flex;flex-direction:column;gap:8px}
+  .rd-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .rd-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .rd-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .rd-sent .b-play,.rd-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .rd-sent .b-play{background:var(--chip);color:var(--ink)}
+  .rd-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .rd-qtitle{font-weight:700;margin:16px 0 8px;color:var(--gold)}
+  .art-para{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .art-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .art-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .art-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .art-sent .b-play,.art-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .art-sent .b-play{background:var(--chip);color:var(--ink)}
+  .art-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .art-zh{width:100%;color:var(--sub);font-size:13px;line-height:1.6}
+  .rdtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .rdtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .rd-en.ls-masked{color:transparent;background:var(--panel2);border-radius:6px;user-select:none}
+  .listen-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .ls-tip{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:10px}
+  .ghostbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .ghostbtn:hover{border-color:var(--gold)}
+  .q{margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .q-q{font-size:14px;margin-bottom:6px}
+  .q-opts{display:flex;gap:8px;flex-wrap:wrap}
+  .q-opt{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);cursor:pointer;font-size:13px}
+  .q-fb{margin-top:6px;font-size:13px}
+  /* 拼读 */
+  /* 元音手掌握图 */
+  .hand-wrap{display:flex;gap:18px;flex-wrap:wrap;align-items:stretch;margin-bottom:6px}
+  .hand-palm{flex:1;min-width:280px;background:var(--panel);border:1px solid var(--gold2);border-radius:14px;padding:14px}
+  .hand-title{font-weight:800;color:var(--gold);font-size:14px;margin-bottom:4px}
+  .hand-hint{font-size:12px;color:var(--sub);line-height:1.6;margin-bottom:10px}
+  .hand-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0;border-top:1px dashed var(--line)}
+  .hand-row:first-of-type{border-top:none}
+  .finger{flex:1;min-width:52px;text-align:center;background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 4px;cursor:pointer;transition:transform .1s}
+  .finger:hover{transform:translateY(-2px);border-color:var(--gold2)}
+  .finger .fpos{font-size:10px;color:var(--sub)}
+  .finger .fipa{font-size:17px;font-weight:800;color:var(--gold);margin:2px 0}
+  .finger .fsay{font-size:11px;color:var(--ink)}
+  .palm-vowels{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pv{flex:1;min-width:56px;text-align:center;background:rgba(245,197,66,.08);border:1px solid var(--gold2);border-radius:10px;padding:8px 4px;cursor:pointer}
+  .pv:hover{transform:translateY(-2px)}
+  .pv .pipa{font-size:17px;font-weight:800;color:var(--gold)}
+  .pv .psay{font-size:11px;color:var(--sub)}
+  .hand-words{font-size:12px;color:var(--ink);margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .hand-words .cn{color:var(--sub);font-size:11px}
+  .hand-words b{color:var(--gold);font-weight:700}
+  .phx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+  .phx-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .phx-card .ps{font-size:26px;font-weight:800;color:var(--gold)}
+  .phx-card .pn{font-size:14px;font-weight:700;margin:4px 0}
+  .phx-card .ptip{font-size:12px;color:var(--sub);margin:6px 0 8px;line-height:1.5}
+  .phx-words{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  /* 例词做成独立可点击块：学生一眼看出「每个词都能单独点」 */
+  .phx-words span,.hand-words span{display:inline-block;background:var(--chip);border:1px solid var(--line);
+    border-radius:8px;padding:5px 12px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;
+    transition:transform .1s,border-color .15s,background .15s}
+  .phx-words span:hover,.hand-words span:hover{border-color:var(--gold);background:rgba(245,197,66,.12);color:var(--gold)}
+  .phx-words span:active,.hand-words span:active{transform:scale(.94)}
+  .phx-phrase{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(245,197,66,.07);
+    border:1px solid var(--gold2);border-radius:10px;padding:9px 11px;margin:2px 0 8px}
+  .phx-phrase .pl{font-size:11px;color:var(--gold);font-weight:700;flex:none}
+  .phx-phrase .pe{font-size:15px;font-weight:600;flex:1;min-width:150px}
+  .phx-phrase .pc{font-size:12px;color:var(--sub);flex-basis:100%}
+  .phx-tip{color:var(--sub);font-size:12px;line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:9px 12px;margin:0 0 12px}
+  .phx-tip b{color:var(--ink)}
+  /* ---------- 情绪语调卡（intonation）：把「音调走向」画出来 ---------- */
+  .itn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .itn{border:1px solid var(--line);border-radius:12px;padding:13px;background:var(--panel);
+    display:flex;flex-direction:column;gap:8px}
+  .itn-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .itn-arrow{font-size:26px;font-weight:700;line-height:1;min-width:44px;text-align:center;
+    background:var(--panel2);border:1px solid var(--gold2);border-radius:10px;padding:6px 8px;color:var(--gold)}
+  .itn-w{font-size:19px;font-weight:700}
+  .itn-ipa{font-size:13px;color:var(--sub)}
+  .itn-tone{font-size:11px;color:var(--gold);font-weight:700;background:rgba(245,197,66,.12);
+    border-radius:20px;padding:3px 10px}
+  /* 音高曲线：把 ↗ / → / ↘ 画成折线，孩子一眼看懂"往上走/往下掉" */
+  .itn-pitch{width:100%;height:56px;display:block}
+  .itn-pitch .base{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+  .itn-pitch .path{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .itn-pitch .dot{fill:var(--gold)}
+  .itn-sent{font-size:15px;font-weight:600;line-height:1.5}
+  .itn-sentcn{font-size:12px;color:var(--sub)}
+  .itn-tip{font-size:12px;color:var(--sub);line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:8px 10px}
+  .itn-acts{display:flex;gap:8px;flex-wrap:wrap}
+  .itn-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .itn-acts .b-real{background:var(--green);color:#06281c}
+  .itn-acts .b-rec{background:var(--gold);color:#1a1a1a}
+  .rec-slot{margin-top:8px}
+  .rec-slot audio{width:100%;height:36px}
+  .itnp-side .itn-acts button{padding:5px 9px;font-size:11px}
+  .itn-q{border:1px dashed var(--gold2);border-radius:8px;padding:6px 10px;font-size:12px;color:var(--sub)}
+  .itn-q b{color:var(--gold);font-weight:600}
+  /* 同句异调对照 */
+  .itnp{border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:12px;background:var(--panel)}
+  .itnp-vs{display:grid;grid-template-columns:1fr 44px 1fr;gap:10px;align-items:center}
+  .itnp-side{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel2)}
+  .itnp-side .lbl{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:5px}
+  .itnp-side .itn-pitch{height:40px;margin-bottom:6px}
+  .itnp-side .en{font-size:14px;font-weight:600;line-height:1.5}
+  .itnp-side .cn{font-size:11px;color:var(--sub);margin-bottom:6px}
+  .itnp-mid{text-align:center;font-size:11px;color:var(--sub);font-weight:700}
+  .itnp-q{font-size:13px;font-weight:600;margin-top:10px}
+  .itnp-a{font-size:12px;color:var(--sub);line-height:1.7;margin-top:6px;padding:9px 11px;
+    background:rgba(245,197,66,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0}
+  .itnp-a.hide{filter:blur(4px);cursor:pointer;user-select:none}
+  /* 反义情绪对 */
+  .apo{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:10px;background:var(--panel2)}
+  .apo-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .apo-w{font-size:16px;font-weight:700;padding:3px 10px;border-radius:8px;background:var(--chip)}
+  .apo-vs{color:var(--gold);font-weight:700;font-size:13px}
+  .apo-cn{font-size:12px;color:var(--sub)}
+  .pair{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--panel)}
+  .pair .pt{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .pair .pc{flex:1;min-width:140px}
+  .pair .pc .pw{font-size:18px;font-weight:800}
+  .pair .pc .pi{color:var(--sub);font-size:13px;font-style:italic}
+  .pair-acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .pair-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .pair-acts .b-play{background:var(--chip);color:var(--ink)}
+  .pair-acts .b-ok{background:var(--green);color:#06281c}
+  .pair-acts .b-bad{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+  .pair .ptip{font-size:12px;color:var(--gold);margin-top:6px}
+  .quiz-prompt{font-size:16px;margin:6px 0 10px}
+  .quiz-prompt .big{font-size:24px;font-weight:800}
+  .quiz-prompt .tag{display:inline-block;margin-left:8px;font-size:11px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:1px 8px;vertical-align:middle}
+  /* 可点发音的词块：全局统一靠 data-say 绑定 */
+  .wchip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--gold);border-radius:9px;padding:3px 10px;font-weight:800;cursor:pointer;color:var(--ink)}
+  .wchip b{font-size:12px;color:var(--gold);font-weight:700}
+  .wchip:hover{background:var(--chip)}
+  .wchip.big{font-size:24px;padding:6px 14px}
+  .wchip.big b{font-size:15px}
+  /* 预学词：来自后面单元，本单元只练发音不记意思 */
+  [data-pre="1"]{border-style:dashed;border-color:var(--sub);opacity:.95}
+  .pre-tag{font-size:10px;color:var(--sub);font-weight:700;border:1px solid var(--line);border-radius:5px;padding:0 4px;margin-left:2px}
+  .q-prog{height:8px;width:100%;background:var(--panel2);border-radius:6px;overflow:hidden;margin:8px 0}
+  .q-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .q-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:10px 0}
+  .q-opt{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;cursor:pointer;font-weight:600}
+  .q-opt:hover{border-color:var(--gold)}
+  .q-opt.ok{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-opt.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fb{font-size:14px;font-weight:700;min-height:20px;margin:8px 0}
+  /* 2026-10-16 听力填空题：输入框 + 检查按钮（KET 听力有填空题，原来只有单选） */
+  .q-fill{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;font-weight:600;min-width:0;outline:none}
+  .q-fill:focus{border-color:var(--gold)}
+  .q-fill.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-fill.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fillbtn{flex:0 0 auto}
+  .q-fillbtn:disabled{opacity:.5;cursor:default}
+  .err-type{font-weight:800;color:var(--gold);margin:14px 0 8px;font-size:15px}
+  .err-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+  .err-meta{font-size:13px;color:var(--sub);margin-bottom:4px}
+  .err-line{font-size:14px;margin:2px 0}
+  .err-btns{display:flex;gap:8px;margin-top:8px}
+  .err-btns button{border:none;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .err-btns .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line)}
+  .err-btns .err-del{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+
+  /* ---- 本单元语法 tab（联动语法练习页） ---- */
+  .gramwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:4px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+         display:flex;flex-direction:column;gap:7px;transition:.15s}
+  .gcard:hover{border-color:var(--gold2);transform:translateY(-2px)}
+  .gcard .gi{font-size:22px;line-height:1}
+  .gcard .gname{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4}
+  .gcard .gdesc{font-size:12px;color:var(--sub);line-height:1.6}
+  .gcard .ggo{margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+              background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+              border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:700;
+              text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .gcard .ggo:hover{background:var(--gold);color:#1a1a1a}
+  .gcard .gdone{font-size:11px;color:var(--green)}
+  .gramhead{color:var(--sub);font-size:12.5px;line-height:1.75;margin-bottom:12px}
+  .gramhead b{color:var(--gold)}
+  .gramfoot{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .art-hl{color:var(--gold,#c9a227);font-weight:700}
+  .artmark{font-size:12px;margin-left:6px;opacity:.95}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🐉</div>
+  <div class="title">英语跟读学院 · A1
+    <small id="subtitle"></small>
+  </div>
+  <a class="homebtn" href="index.html" title="返回 A1 学习网络主页">🏠 回主页</a>
+  <div class="grow"></div>
+  <div class="prog">
+    <span class="stars" id="starTop">☆☆☆</span>
+    <div class="bar"><i id="barTop"></i></div>
+    <span id="pctTop" style="color:var(--sub);font-size:13px">0%</span>
+  </div>
+</header>
+<div class="globalbar">
+  <label>音色 <select id="voiceSel"><option>默认</option></select></label>
+  <label>语速 <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.95"> <span id="rateVal">0.95×</span></label>
+  <span class="recnote" id="recNote"></span>
+</div>
+<nav>
+  <button data-tab="learn">📘 学习 B</button>
+  <button data-tab="review">🔁 复习 C</button>
+  <button data-tab="shadow">🎤 跟读·对话</button>
+  <button data-tab="reading">📖 阅读·听力</button>
+  <button data-tab="article" class="on">📰 单元文章</button>
+  <button data-tab="grammar">✍️ 本单元语法</button>
+  <button data-tab="phonics">🅰️ 拼读</button>
+  <button data-tab="quiz">📝 小测</button>
+  <button data-tab="errors">🩹 错题</button>
+  <button data-tab="codex">📜 图鉴</button>
+</nav>
+<main>
+  <!-- 学习 B -->
+  <section class="tab" id="learn">
+    <div class="beast">
+      <div class="emoji">🌍</div>
+      <div>
+        <h2 id="beastName"></h2>
+        <p id="beastDesc"></p>
+        <p>打卡进度：<span class="streak" id="beastStreak"></span></p>
+      </div>
+    </div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnLearn">👁 开</span></label>
+    </div>
+    <div class="grp-tabs" id="grpLearn"></div>
+    <div class="grid" id="gridLearn"></div>
+    <div class="hint">双击例句可慢速（0.6×）跟读；点 🔊 听单词。卡片「🎤 跟读打卡」跳到单句跟读页并定位该词，「❌ 记一笔」把没记住的收进错题本。</div>
+  </section>
+
+  <!-- 复习 C -->
+  <section class="tab" id="review">
+    <div class="banner" id="revBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">自测模式 <span class="toggle" id="tgHideCn">🙈 隐藏中文</span></label>
+      <span style="color:var(--sub);font-size:12px">一词义一例句，点「看例句」展开；多义词点「更多 ▾」继续；每句可 🎤 跟读。</span>
+    </div>
+    <div class="grp-tabs" id="grpReview"></div>
+    <div class="grid" id="gridReview"></div>
+    <div class="hint">C 版释义已加厚：含【词性】+ 近义/反义 + 更完整场景。自测时隐藏中文，看英文回想起全部信息即过关。例句下的 🎤 跟读会跳到单句跟读页并定位该句。</div>
+  </section>
+
+  <!-- 跟读·对话 -->
+  <section class="tab" id="shadow">
+    <div class="banner" id="shBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-sh="dialog">💬 对话跟读</button>
+      <button class="subtab" data-sh="single">📝 单句跟读</button>
+      <span style="color:var(--sub);font-size:12px">对话跟读＝听问句→看回应句→录你自己的回答；单句跟读可打卡升星。</span>
+    </div>
+    <div id="shDialog"></div>
+    <div id="shSingle" style="display:none">
+      <div class="player">
+        <div class="nowrow" style="display:none">
+          <div class="now" id="shNow">准备开始…</div>
+          <div class="nowcn" id="shNowCn"></div>
+        </div>
+        <div class="hint" id="shProg" style="margin:0 0 12px">👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这里会出现回放音轨，和原声对比。</div>
+        <div class="recbox" id="shRecBox"></div>
+        <div class="ctr">
+          <button id="shPlay">▶ 听原声</button>
+          <button id="shRec">● 开始录音</button>
+          <button id="shStop" class="ghost">■ 停止</button>
+          <button id="shCheck" class="ghost">✓ 我已跟读打卡</button>
+          <button id="shPrev" class="ghost">⏮ 上一句</button>
+          <button id="shNext" class="ghost">⏭ 下一句</button>
+          <button id="shAuto" class="ghost">🔁 自动连播</button>
+          <label style="color:var(--sub);font-size:13px">跟读留白
+            <select id="shGap">
+              <option value="1500">1.5 秒</option>
+              <option value="2500" selected>2.5 秒</option>
+              <option value="4000">4 秒</option>
+              <option value="-1">手动</option>
+            </select>
+          </label>
+        </div>
+        <div class="hint" id="shHint">跟读流程：▶ 听原声 → ● 开始录音（读完后点 ■ 停止可回放对比）→ ✓ 打卡。连续打卡积累神兽星级。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本单元语法（联动语法练习页） -->
+  <section class="tab" id="grammar">
+    <div class="gramhead" id="gramHead"></div>
+    <div class="gramwrap" id="gramList"></div>
+    <div class="gramfoot">
+      <a class="phxlink" id="gramAll" target="_blank" rel="noopener">✍️ 打开英语语法练习全册 →</a>
+      <span class="hint" style="margin-top:0">点任一关，直接跳到语法练习里<b>这一个点</b>的知识卡（一次只学一个点）。练完回来，跟读这边会自动记一笔。</span>
+    </div>
+  </section>
+
+  <!-- 拼读 -->
+  <!-- 阅读·听力 -->
+  <section class="tab" id="reading">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="rdtab on" data-rd="read">📖 阅读</button>
+      <button class="rdtab" data-rd="listen">🎧 听力</button>
+      <span style="color:var(--sub);font-size:12px">阅读＝看文本做小题；<b style="color:var(--gold)">听力＝先盲听、再答题</b>，听不懂可调慢顶部语速或点「👀 看文本」。<b style="color:var(--gold)">🇨🇳</b> ＝中国主题篇。</span>
+    </div>
+
+    <div id="rdReadWrap">
+      <div class="banner" id="rdBanner"></div>
+      <div class="grp-tabs" id="rdPassages" style="margin-bottom:10px"></div>
+      <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+        <span id="rdHint" style="color:var(--sub);font-size:12px"></span>
+      </div>
+      <div id="rdText"></div>
+      <div id="rdQuiz"></div>
+    </div>
+
+    <div id="rdListenWrap" style="display:none">
+      <div class="banner" id="lsBanner"></div>
+      <div class="grp-tabs" id="lsPassages" style="margin-bottom:10px"></div>
+      <div class="listen-box">
+        <div class="ls-tip">🎧 <b>盲听三步</b>：① 点「▶ 听全篇」（顶部语速可调慢）→ ② 做下面小题 → ③ 不会就点「👀 看文本」对照，再听一遍。每句都可单点 🔊 重听、🎤 跟读。答错自动进错题本。</div>
+        <div class="rd-playall" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="b-play" id="lsPlayAll">▶ 听全篇</button>
+          <button id="lsReplay" class="ghostbtn">🔁 再听一遍</button>
+          <button id="lsReveal" class="ghostbtn">👀 看文本</button>
+        </div>
+        <div class="rd-sents" id="lsSents"></div>
+      </div>
+      <div id="lsQuiz"></div>
+    </div>
+  </section>
+
+  <!-- 单元文章（A1＋A2 例句同源） -->
+  <section class="tab on" id="article">
+    <div class="banner" id="artBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="b-play" id="artPlayAll">🔊 听全篇</button>
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnArt">👁 开</span></label>
+      <label style="font-size:13px;color:var(--sub)">高亮生词 <span class="toggle" id="tgArtHL">👁 开</span></label>
+      <span style="color:var(--sub);font-size:12px">本单元单词卡上的例句，全部出自这篇故事。点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。</span>
+    </div>
+    <div id="artBody"></div>
+  </section>
+
+  <section class="tab" id="phonics">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-phx="cards">🔤 音素卡</button>
+      <button class="subtab" data-phx="pairs">🔁 最小对立对</button>
+      <button class="subtab" data-phx="listen">🎧 听音选词</button>
+      <button class="subtab" data-phx="intonation">🎵 情绪语调</button>
+ <button class="subtab" data-phx="antonym">↔️ 反义情绪对</button>
+      <span style="color:var(--sub);font-size:12px">A1 拼读轨道：建立 letter-sound 对应，否则跟读只是模仿不可迁移。中国学生易错音（θ / sh / ch）已优先纳入。</span>
+      <a class="phxlink" href="../英语音标48音训练.html" target="_blank" title="48 个音标的系统训练：本站 4 个音 + 全 48 音渐进路线（新窗口打开）">🔊 48 音系统训练 ↗</a>
+    </div>
+    <div id="phxHand"></div>
+    <div class="phx-tip">💡 <b>例词块</b>（蓝底方块）可以<b>逐个单独点</b>发音；<b>🔗 短语连读</b>是把含这个音的词连成一句来听——单词里听得清，句子里才知道它怎么和其他音连起来。建议把顶部语速调慢后听两遍。<br>
+      带<b>虚线框 + 「预学」标签</b>的词来自后面单元：本单元<b>只要求读准，不要求记意思</b>，占比控制在 30% 以内。</div>
+    <div id="phxCards"></div>
+    <div id="phxPairs" style="display:none"></div>
+    <div id="phxListen" style="display:none"></div>
+    <div id="phxIntonation" style="display:none"></div>
+    <div id="phxAntonym" style="display:none"></div>
+  </section>
+
+  <!-- 小测 -->
+  <section class="tab" id="quiz">
+    <div class="hint" style="margin-bottom:10px">主动回忆：听音选义 / 看词选义 / 看义选词 三类随机混出，答错自动记入「🩹 错题」。每轮覆盖本单元全部词。</div>
+    <div id="quizBox"></div>
+  </section>
+
+  <!-- 错题 -->
+  <section class="tab" id="errors">
+    <div class="hint" style="margin-bottom:10px">统一错误池（schema：话题/层级/类型/原文/标准答/学生答/时间）。词卡「记一笔」或「小测答错」自动汇总到这里，按类型聚合，可重练或删除。</div>
+    <div id="errList"></div>
+  </section>
+
+  <!-- 神兽图鉴 -->
+  <section class="tab" id="codex">
+    <div class="coll" id="codexGrid"></div>
+    <div class="hint">12 单元 = 12 只神兽。本单元神兽已解锁，掌握度越高星级越多。其余神兽可从 <a href="index.html" style="color:var(--gold)">目录</a> 进入对应单元解锁。</div>
+  </section>
+</main>
+
+<script>
+const DATA = {"unit":3,"title":"ME AND MY FAMILY","subtitle":"家庭成员 · 物主与指示代词 · 家里的房间","beast_emoji":"👨‍👩‍👧","beast_name":"亲情之灵","groups":[{"name":"家庭成员","words":[{"word":"family","ipa":"ˈfæm.əl.i","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"家庭；家人","phrase":"Emma's family","phraseDef":"艾玛一家","ex":"We are a happy family.","exCn":"我们是幸福的一家人。","defC":"家庭；家人","senses":[{"def":"家庭；家人","ex":"We are a happy family.","exCn":"我们是幸福的一家人。","syn":"—","ant":"—"}],"inArt":1},{"word":"father","ipa":"ˈfɑː.ðə","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"父亲","phrase":"—","phraseDef":"—","ex":"Jack's father is David, and I am the mother of Jack and Emily.","exCn":"杰克的父亲是大卫，我是杰克和埃米莉的母亲。","defC":"父亲","senses":[{"def":"父亲","ex":"Jack's father is David, and I am the mother of Jack and Emily.","exCn":"杰克的父亲是大卫，我是杰克和埃米莉的母亲。","syn":"—","ant":"—"}],"inArt":1},{"word":"mother","ipa":"ˈmʌð.ə","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"母亲","phrase":"—","phraseDef":"—","ex":"Jack's father is David, and I am the mother of Jack and Emily.","exCn":"杰克的父亲是大卫，我是杰克和埃米莉的母亲。","defC":"母亲","senses":[{"def":"母亲","ex":"Jack's father is David, and I am the mother of Jack and Emily.","exCn":"杰克的父亲是大卫，我是杰克和埃米莉的母亲。","syn":"—","ant":"—"}],"inArt":1},{"word":"brother","ipa":"ˈbrʌð.ə","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"兄弟","phrase":"—","phraseDef":"—","ex":"My brother Ben is their uncle.","exCn":"我弟弟本是他们的叔叔。","defC":"兄弟","senses":[{"def":"兄弟","ex":"My brother Ben is their uncle.","exCn":"我弟弟本是他们的叔叔。","syn":"—","ant":"—"}],"inArt":1},{"word":"sister","ipa":"ˈsɪs.tə","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"姐妹","phrase":"—","phraseDef":"—","ex":"My sister Lucy is their aunt.","exCn":"我妹妹露西是他们的阿姨。","defC":"姐妹","senses":[{"def":"姐妹","ex":"My sister Lucy is their aunt.","exCn":"我妹妹露西是他们的阿姨。","syn":"—","ant":"—"}],"inArt":1},{"word":"son","ipa":"sʌn","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"儿子","phrase":"—","phraseDef":"—","ex":"My son is Jack, and my daughter is Emily.","exCn":"我儿子是杰克，我女儿是埃米莉。","defC":"儿子","senses":[{"def":"儿子","ex":"My son is Jack, and my daughter is Emily.","exCn":"我儿子是杰克，我女儿是埃米莉。","syn":"—","ant":"—"}],"inArt":1},{"word":"daughter","ipa":"ˈdɔː.tə","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"女儿","phrase":"—","phraseDef":"—","ex":"My son is Jack, and my daughter is Emily.","exCn":"我儿子是杰克，我女儿是埃米莉。","defC":"女儿","senses":[{"def":"女儿","ex":"My son is Jack, and my daughter is Emily.","exCn":"我儿子是杰克，我女儿是埃米莉。","syn":"—","ant":"—"}],"inArt":1},{"word":"grandfather","ipa":"ˈgræn.fɑː.ðə","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"祖父；外公","phrase":"—","phraseDef":"—","ex":"Their grandfather is very old.","exCn":"他们的祖父年纪很大。","defC":"祖父；外公","senses":[{"def":"祖父；外公","ex":"Their grandfather is very old.","exCn":"他们的祖父年纪很大。","syn":"—","ant":"—"}],"inArt":1},{"word":"grandmother","ipa":"ˈgræn.mʌð.ə","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"祖母；外婆","phrase":"—","phraseDef":"—","ex":"Their grandmother is very kind.","exCn":"他们的祖母非常和善。","defC":"祖母；外婆","senses":[{"def":"祖母；外婆","ex":"Their grandmother is very kind.","exCn":"他们的祖母非常和善。","syn":"—","ant":"—"}],"inArt":1},{"word":"aunt","ipa":"ɑːnt","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"阿姨；姑妈；舅妈","phrase":"—","phraseDef":"—","ex":"My sister Lucy is their aunt.","exCn":"我妹妹露西是他们的阿姨。","defC":"阿姨；姑妈；舅妈","senses":[{"def":"阿姨；姑妈；舅妈","ex":"My sister Lucy is their aunt.","exCn":"我妹妹露西是他们的阿姨。","syn":"—","ant":"—"}],"inArt":1},{"word":"uncle","ipa":"ˈʌŋ.kl̩","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"叔叔；舅舅；伯父","phrase":"—","phraseDef":"—","ex":"My brother Ben is their uncle.","exCn":"我弟弟本是他们的叔叔。","defC":"叔叔；舅舅；伯父","senses":[{"def":"叔叔；舅舅；伯父","ex":"My brother Ben is their uncle.","exCn":"我弟弟本是他们的叔叔。","syn":"—","ant":"—"}],"inArt":1},{"word":"cousin","ipa":"ˈkʌz.ən","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"表/堂兄弟姐妹","phrase":"—","phraseDef":"—","ex":"My cousin is a teenager.","exCn":"我的表妹是个青少年。","defC":"表/堂兄弟姐妹","senses":[{"def":"表/堂兄弟姐妹","ex":"My cousin is a teenager.","exCn":"我的表妹是个青少年。","syn":"—","ant":"—"}],"inArt":1},{"word":"wife","ipa":"waɪf","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"妻子","phrase":"—","phraseDef":"—","ex":"I am David's wife, and he is my husband.","exCn":"我是大卫的妻子，他是我的丈夫。","defC":"妻子","senses":[{"def":"妻子","ex":"I am David's wife, and he is my husband.","exCn":"我是大卫的妻子，他是我的丈夫。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"物主代词","words":[{"word":"my","ipa":"maɪ","pos":"determiner","cef":"A1","band":"极高频(Top1000)","defB":"我的","phrase":"My name's…","phraseDef":"我叫…","ex":"My surname is Brown.","exCn":"我姓布朗。","defC":"我的","senses":[{"def":"我的","ex":"My surname is Brown.","exCn":"我姓布朗。","syn":"—","ant":"—"}],"inArt":1},{"word":"your","ipa":"jɔː","pos":"determiner","cef":"A1","band":"极高频(Top1000)","defB":"你的；你们的","phrase":"What's your name?","phraseDef":"你叫什么名字？","ex":"His name is Jack, and your name is Emily.","exCn":"他叫杰克，你叫埃米莉。","defC":"你的；你们的","senses":[{"def":"你的；你们的","ex":"His name is Jack, and your name is Emily.","exCn":"他叫杰克，你叫埃米莉。","syn":"—","ant":"—"}],"inArt":1},{"word":"his","ipa":"hɪz","pos":"determiner","cef":"A1","band":"极高频(Top1000)","defB":"他的","phrase":"his favourite team","phraseDef":"他最喜欢的队","ex":"His name is Jack, and your name is Emily.","exCn":"他叫杰克，你叫埃米莉。","defC":"他的","senses":[{"def":"他的","ex":"His name is Jack, and your name is Emily.","exCn":"他叫杰克，你叫埃米莉。","syn":"—","ant":"—"}],"inArt":1},{"word":"her","ipa":"hɜː","pos":"determiner","cef":"A1","band":"极高频(Top1000)","defB":"她的","phrase":"with her mother","phraseDef":"和她妈妈一起","ex":"Ms Green is my friend, and Miss Bell is her friend.","exCn":"格林女士是我的朋友，贝尔小姐是她的朋友。","defC":"她的","senses":[{"def":"她的","ex":"Ms Green is my friend, and Miss Bell is her friend.","exCn":"格林女士是我的朋友，贝尔小姐是她的朋友。","syn":"—","ant":"—"}],"inArt":1},{"word":"its","ipa":"ɪts","pos":"determiner","cef":"A1","band":"极高频(Top1000)","defB":"它的","phrase":"its paws","phraseDef":"它的爪子","ex":"The cat is in the garden; its name is Bella.","exCn":"猫在花园里，它的名字叫贝拉。","defC":"它的","senses":[{"def":"它的","ex":"The cat is in the garden; its name is Bella.","exCn":"猫在花园里，它的名字叫贝拉。","syn":"—","ant":"—"}],"inArt":1},{"word":"our","ipa":"aʊə","pos":"determiner","cef":"A1","band":"极高频(Top1000)","defB":"我们的","phrase":"our first language","phraseDef":"我们的母语","ex":"The roof of our flat is red.","exCn":"我们公寓的屋顶是红色的。","defC":"我们的","senses":[{"def":"我们的","ex":"The roof of our flat is red.","exCn":"我们公寓的屋顶是红色的。","syn":"—","ant":"—"}],"inArt":1},{"word":"their","ipa":"ðeə","pos":"determiner","cef":"A1","band":"极高频(Top1000)","defB":"他们的","phrase":"their names","phraseDef":"他们的名字","ex":"Their grandfather is very old.","exCn":"他们的祖父年纪很大。","defC":"他们的","senses":[{"def":"他们的","ex":"Their grandfather is very old.","exCn":"他们的祖父年纪很大。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"指示代词","words":[{"word":"this","ipa":"ðɪs","pos":"pronoun","cef":"A1","band":"极高频(Top1000)","defB":"这（个）","phrase":"This is…","phraseDef":"这是…","ex":"This is my family.","exCn":"这是我的家人。","defC":"这（个）","senses":[{"def":"这（个）","ex":"This is my family.","exCn":"这是我的家人。","syn":"—","ant":"—"}],"inArt":1},{"word":"that","ipa":"ðæt","pos":"pronoun","cef":"A1","band":"极高频(Top1000)","defB":"那（个）","phrase":"That's…","phraseDef":"那是…","ex":"This is the living room, and that is the kitchen.","exCn":"这是客厅，那是厨房。","defC":"那（个）","senses":[{"def":"那（个）","ex":"This is the living room, and that is the kitchen.","exCn":"这是客厅，那是厨房。","syn":"—","ant":"—"}],"inArt":1},{"word":"these","ipa":"ðiːz","pos":"pronoun","cef":"A1","band":"极高频(Top1000)","defB":"这些","phrase":"These are…","phraseDef":"这些是…","ex":"These are the bedrooms, and those are the bathrooms.","exCn":"这些是卧室，那些是浴室。","defC":"这些","senses":[{"def":"这些","ex":"These are the bedrooms, and those are the bathrooms.","exCn":"这些是卧室，那些是浴室。","syn":"—","ant":"—"}],"inArt":1},{"word":"those","ipa":"ðəʊz","pos":"pronoun","cef":"A1","band":"极高频(Top1000)","defB":"那些","phrase":"Those are…","phraseDef":"那些是…","ex":"These are the bedrooms, and those are the bathrooms.","exCn":"这些是卧室，那些是浴室。","defC":"那些","senses":[{"def":"那些","ex":"These are the bedrooms, and those are the bathrooms.","exCn":"这些是卧室，那些是浴室。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"家里的房间","words":[{"word":"home","ipa":"həʊm","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"家","phrase":"an apartment home","phraseDef":"公寓里的家","ex":"Our home is a flat in London.","exCn":"我们的家是伦敦的一套公寓。","defC":"家","senses":[{"def":"家","ex":"Our home is a flat in London.","exCn":"我们的家是伦敦的一套公寓。","syn":"—","ant":"—"}],"inArt":1},{"word":"apartment","ipa":"əˈpɑːt.mənt","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"公寓","phrase":"—","phraseDef":"—","ex":"Our address is apartment 1A, King's Road.","exCn":"我们的地址是国王路 1A 公寓。","defC":"公寓","senses":[{"def":"公寓","ex":"Our address is apartment 1A, King's Road.","exCn":"我们的地址是国王路 1A 公寓。","syn":"—","ant":"—"}],"inArt":1},{"word":"kitchen","ipa":"ˈkɪtʃ.ən","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"厨房","phrase":"in the kitchen","phraseDef":"在厨房","ex":"The floor is clean, and the oven is in the kitchen.","exCn":"地板很干净，烤箱在厨房里。","defC":"厨房","senses":[{"def":"厨房","ex":"The floor is clean, and the oven is in the kitchen.","exCn":"地板很干净，烤箱在厨房里。","syn":"—","ant":"—"}],"inArt":1},{"word":"bedroom","ipa":"ˈbed.rʊm","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"卧室","phrase":"on the bedroom wall","phraseDef":"在卧室墙上","ex":"Our bedroom is upstairs, next to my room.","exCn":"我们的卧室在楼上，挨着我的房间。","defC":"卧室","senses":[{"def":"卧室","ex":"Our bedroom is upstairs, next to my room.","exCn":"我们的卧室在楼上，挨着我的房间。","syn":"—","ant":"—"}],"inArt":1},{"word":"bathroom","ipa":"ˈbɑːθ.rʊm","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"浴室","phrase":"an ensuite bathroom","phraseDef":"带独立卫浴的浴室","ex":"The toilet is next to the bathroom.","exCn":"马桶在浴室旁边。","defC":"浴室","senses":[{"def":"浴室","ex":"The toilet is next to the bathroom.","exCn":"马桶在浴室旁边。","syn":"—","ant":"—"}],"inArt":1},{"word":"living room","ipa":"ˈlɪv.ɪŋ ˌrʊm","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"客厅","phrase":"in the living room","phraseDef":"在客厅","ex":"This is the living room, and that is the kitchen.","exCn":"这是客厅，那是厨房。","defC":"客厅","senses":[{"def":"客厅","ex":"This is the living room, and that is the kitchen.","exCn":"这是客厅，那是厨房。","syn":"—","ant":"—"}],"inArt":1},{"word":"hall","ipa":"hɔːl","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"门厅；走廊","phrase":"in the hall","phraseDef":"在门厅","ex":"There is a box of toys in the hall.","exCn":"门厅里有一箱玩具。","defC":"门厅；走廊","senses":[{"def":"门厅；走廊","ex":"There is a box of toys in the hall.","exCn":"门厅里有一箱玩具。","syn":"—","ant":"—"}],"inArt":1},{"word":"garden","ipa":"ˈgɑː.dən","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"花园","phrase":"in Tom's garden","phraseDef":"在汤姆的花园","ex":"The gate is in the garden.","exCn":"大门在花园里。","defC":"花园","senses":[{"def":"花园","ex":"The gate is in the garden.","exCn":"大门在花园里。","syn":"—","ant":"—"}],"inArt":1},{"word":"garage","ipa":"ˈgær.ɑːʒ","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"车库","phrase":"in the garage","phraseDef":"在车库","ex":"The hall is long, and the garage is big.","exCn":"门厅很长，车库很大。","defC":"车库","senses":[{"def":"车库","ex":"The hall is long, and the garage is big.","exCn":"门厅很长，车库很大。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"家具与物品","words":[{"word":"bed","ipa":"bed","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"床","phrase":"like your bed","phraseDef":"喜欢你的床","ex":"The drawer is under the bed.","exCn":"抽屉在床底下。","defC":"床","senses":[{"def":"床","ex":"The drawer is under the bed.","exCn":"抽屉在床底下。","syn":"—","ant":"—"}],"inArt":1},{"word":"sofa","ipa":"ˈsəʊ.fə","pos":"noun","cef":"A2","band":"中频(3000-5000)","defB":"沙发","phrase":"on the sofa","phraseDef":"在沙发上","ex":"There is a bed, a sofa and an armchair in my room.","exCn":"我的房间里有一张床、一个沙发和一把扶手椅。","defC":"沙发","senses":[{"def":"沙发","ex":"There is a bed, a sofa and an armchair in my room.","exCn":"我的房间里有一张床、一个沙发和一把扶手椅。","syn":"—","ant":"—"}],"inArt":1},{"word":"armchair","ipa":"ˈɑːm.tʃeə","pos":"noun","cef":"A2","band":"中低频(5000-10000)","defB":"扶手椅","phrase":"sit in the armchair","phraseDef":"坐在扶手椅上","ex":"There is a bed, a sofa and an armchair in my room.","exCn":"我的房间里有一张床、一个沙发和一把扶手椅。","defC":"扶手椅","senses":[{"def":"扶手椅","ex":"There is a bed, a sofa and an armchair in my room.","exCn":"我的房间里有一张床、一个沙发和一把扶手椅。","syn":"—","ant":"—"}],"inArt":1},{"word":"fridge","ipa":"frɪdʒ","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"冰箱","phrase":"in the kitchen","phraseDef":"在厨房里","ex":"The fridge is in the kitchen, next to the cooker.","exCn":"冰箱在厨房里，挨着炉灶。","defC":"冰箱","senses":[{"def":"冰箱","ex":"The fridge is in the kitchen, next to the cooker.","exCn":"冰箱在厨房里，挨着炉灶。","syn":"—","ant":"—"}],"inArt":1},{"word":"cooker","ipa":"ˈkʊk.ə","pos":"noun","cef":"A2","band":"中低频(5000-10000)","defB":"炉灶","phrase":"an electric cooker","phraseDef":"电炉灶","ex":"The gas cooker is hot.","exCn":"煤气炉很烫。","defC":"炉灶","senses":[{"def":"炉灶","ex":"The gas cooker is hot.","exCn":"煤气炉很烫。","syn":"—","ant":"—"}],"inArt":1},{"word":"toilet","ipa":"ˈtɔɪ.lət","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"厕所","phrase":"in the bathroom","phraseDef":"在浴室里","ex":"The toilet is next to the bathroom.","exCn":"马桶在浴室旁边。","defC":"厕所","senses":[{"def":"厕所","ex":"The toilet is next to the bathroom.","exCn":"马桶在浴室旁边。","syn":"—","ant":"—"}],"inArt":1},{"word":"shower","ipa":"ʃaʊə","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"淋浴","phrase":"sing in the shower","phraseDef":"洗澡时唱歌","ex":"We wash in the bathroom: the shower and the bath.","exCn":"我们在浴室洗漱：淋浴和浴缸。","defC":"淋浴","senses":[{"def":"淋浴","ex":"We wash in the bathroom: the shower and the bath.","exCn":"我们在浴室洗漱：淋浴和浴缸。","syn":"—","ant":"—"}],"inArt":1},{"word":"bath","ipa":"bɑːθ","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"浴缸；洗澡","phrase":"in the bathroom","phraseDef":"在浴室里","ex":"We wash in the bathroom: the shower and the bath.","exCn":"我们在浴室洗漱：淋浴和浴缸。","defC":"浴缸；洗澡","senses":[{"def":"浴缸；洗澡","ex":"We wash in the bathroom: the shower and the bath.","exCn":"我们在浴室洗漱：淋浴和浴缸。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"🟠 拓展·房屋与家居","words":[{"word":"room","ipa":"/ruːm/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"房间","phrase":"a big room","phraseDef":"大房间","ex":"My room is upstairs.","exCn":"我的房间在楼上。","defC":"房间","senses":[{"def":"房间","ex":"My room is upstairs.","exCn":"我的房间在楼上。","syn":"—","ant":"—"}],"inArt":1},{"word":"chair","ipa":"/tʃeə/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"椅子","phrase":"a soft chair","phraseDef":"软椅子","ex":"We have a chair at the desk and a chair at the table.","exCn":"我们在书桌旁和餐桌旁各有一把椅子。","defC":"椅子","senses":[{"def":"椅子","ex":"We have a chair at the desk and a chair at the table.","exCn":"我们在书桌旁和餐桌旁各有一把椅子。","syn":"—","ant":"—"}],"inArt":1},{"word":"live","ipa":"/lɪv/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"居住；生活","phrase":"live in Beijing","phraseDef":"住在北京","ex":"My husband David and I live here with our children.","exCn":"我丈夫大卫和孩子们住在这里。","defC":"居住；生活","senses":[{"def":"居住；生活","ex":"My husband David and I live here with our children.","exCn":"我丈夫大卫和孩子们住在这里。","syn":"—","ant":"—"}],"inArt":1},{"word":"door","ipa":"/dɔː(r)/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"门","phrase":"open the door","phraseDef":"开门","ex":"The key is in the door.","exCn":"钥匙在门上。","defC":"门","senses":[{"def":"门","ex":"The key is in the door.","exCn":"钥匙在门上。","syn":"—","ant":"—"}],"inArt":1},{"word":"gas","ipa":"/ɡæs/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"煤气；气体","phrase":"gas stove","phraseDef":"煤气炉","ex":"The gas cooker is hot.","exCn":"煤气炉很烫。","defC":"煤气；气体","senses":[{"def":"煤气；气体","ex":"The gas cooker is hot.","exCn":"煤气炉很烫。","syn":"—","ant":"—"}],"inArt":1},{"word":"floor","ipa":"/flɔː(r)/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"地板；楼层","phrase":"on the floor","phraseDef":"在地板上","ex":"The floor is clean, and the oven is in the kitchen.","exCn":"地板很干净，烤箱在厨房里。","defC":"地板；楼层","senses":[{"def":"地板；楼层","ex":"The floor is clean, and the oven is in the kitchen.","exCn":"地板很干净，烤箱在厨房里。","syn":"—","ant":"—"}],"inArt":1},{"word":"address","ipa":"/əˈdres/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"地址","phrase":"home address","phraseDef":"家庭地址","ex":"Our address is apartment 1A, King's Road.","exCn":"我们的地址是国王路 1A 公寓。","defC":"地址","senses":[{"def":"地址","ex":"Our address is apartment 1A, King's Road.","exCn":"我们的地址是国王路 1A 公寓。","syn":"—","ant":"—"}],"inArt":1},{"word":"sitting room","ipa":"/ˈsɪtɪŋ ruːm/","pos":"phrase","cef":"A2","band":"中高频(2000-3000)","defB":"客厅","phrase":"in the sitting room","phraseDef":"在客厅里","ex":"We watch a DVD in the sitting room.","exCn":"我们在客厅看 DVD。","defC":"客厅","senses":[{"def":"客厅","ex":"We watch a DVD in the sitting room.","exCn":"我们在客厅看 DVD。","syn":"—","ant":"—"}],"inArt":1},{"word":"flat","ipa":"/flæt/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"公寓","phrase":"a small flat","phraseDef":"小公寓","ex":"Our home is a flat in London.","exCn":"我们的家是伦敦的一套公寓。","defC":"公寓","senses":[{"def":"公寓","ex":"Our home is a flat in London.","exCn":"我们的家是伦敦的一套公寓。","syn":"—","ant":"—"}],"inArt":1},{"word":"roof","ipa":"/ruːf/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"屋顶","phrase":"a red roof","phraseDef":"红屋顶","ex":"The roof of our flat is red.","exCn":"我们公寓的屋顶是红色的。","defC":"屋顶","senses":[{"def":"屋顶","ex":"The roof of our flat is red.","exCn":"我们公寓的屋顶是红色的。","syn":"—","ant":"—"}],"inArt":1},{"word":"gate","ipa":"/ɡeɪt/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"大门","phrase":"open the gate","phraseDef":"打开大门","ex":"The gate is in the garden.","exCn":"大门在花园里。","defC":"大门","senses":[{"def":"大门","ex":"The gate is in the garden.","exCn":"大门在花园里。","syn":"—","ant":"—"}],"inArt":1},{"word":"desk","ipa":"/desk/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"书桌","phrase":"a clean desk","phraseDef":"干净的书桌","ex":"My computer is on the desk.","exCn":"我的电脑在书桌上。","defC":"书桌","senses":[{"def":"书桌","ex":"My computer is on the desk.","exCn":"我的电脑在书桌上。","syn":"—","ant":"—"}],"inArt":1},{"word":"entrance","ipa":"/ˈentrəns/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"入口","phrase":"the main entrance","phraseDef":"主入口","ex":"The entrance is at the front.","exCn":"入口在前面。","defC":"入口","senses":[{"def":"入口","ex":"The entrance is at the front.","exCn":"入口在前面。","syn":"—","ant":"—"}],"inArt":1},{"word":"furniture","ipa":"/ˈfɜːnɪtʃə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"家具","phrase":"new furniture","phraseDef":"新家具","ex":"The furniture is old but comfortable.","exCn":"家具旧但舒服。","defC":"家具","senses":[{"def":"家具","ex":"The furniture is old but comfortable.","exCn":"家具旧但舒服。","syn":"—","ant":"—"}],"inArt":1},{"word":"bin","ipa":"/bɪn/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"垃圾箱","phrase":"empty the bin","phraseDef":"倒垃圾箱","ex":"The bin is full of rubbish.","exCn":"垃圾桶里装满了垃圾。","defC":"垃圾箱","senses":[{"def":"垃圾箱","ex":"The bin is full of rubbish.","exCn":"垃圾桶里装满了垃圾。","syn":"—","ant":"—"}],"inArt":1},{"word":"sink","ipa":"/sɪŋk/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"水槽","phrase":"wash in the sink","phraseDef":"在水槽里洗","ex":"The cupboard is next to the sink.","exCn":"橱柜在水槽旁边。","defC":"水槽","senses":[{"def":"水槽","ex":"The cupboard is next to the sink.","exCn":"橱柜在水槽旁边。","syn":"—","ant":"—"}],"inArt":1},{"word":"carpet","ipa":"/ˈkɑːpɪt/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"地毯","phrase":"a soft carpet","phraseDef":"软地毯","ex":"The carpet is soft, and the curtains are clean.","exCn":"地毯很软，窗帘很干净。","defC":"地毯","senses":[{"def":"地毯","ex":"The carpet is soft, and the curtains are clean.","exCn":"地毯很软，窗帘很干净。","syn":"—","ant":"—"}],"inArt":1},{"word":"heating","ipa":"/ˈhiːtɪŋ/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"供暖","phrase":"central heating","phraseDef":"中央供暖","ex":"The heating is on, and there is a blanket on the bed.","exCn":"暖气开着，床上有一条毯子。","defC":"供暖","senses":[{"def":"供暖","ex":"The heating is on, and there is a blanket on the bed.","exCn":"暖气开着，床上有一条毯子。","syn":"—","ant":"—"}],"inArt":1},{"word":"dining room","ipa":"/ˈdaɪnɪŋ ruːm/","pos":"phrase","cef":"A2","band":"中频(3000-4000)","defB":"餐厅","phrase":"in the dining room","phraseDef":"在餐厅里","ex":"We eat in the dining room.","exCn":"我们在餐厅吃饭。","defC":"餐厅","senses":[{"def":"餐厅","ex":"We eat in the dining room.","exCn":"我们在餐厅吃饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"blanket","ipa":"/ˈblæŋkɪt/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"毯子","phrase":"a warm blanket","phraseDef":"暖毯子","ex":"The heating is on, and there is a blanket on the bed.","exCn":"暖气开着，床上有一条毯子。","defC":"毯子","senses":[{"def":"毯子","ex":"The heating is on, and there is a blanket on the bed.","exCn":"暖气开着，床上有一条毯子。","syn":"—","ant":"—"}],"inArt":1},{"word":"lamp","ipa":"/læmp/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"台灯","phrase":"a desk lamp","phraseDef":"台灯","ex":"We have a lamp on the shelf and a lamp on the desk.","exCn":"我们在架子上和书桌上各有一盏台灯。","defC":"台灯","senses":[{"def":"台灯","ex":"We have a lamp on the shelf and a lamp on the desk.","exCn":"我们在架子上和书桌上各有一盏台灯。","syn":"—","ant":"—"}],"inArt":1},{"word":"oven","ipa":"/ˈʌvn/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"烤箱","phrase":"a hot oven","phraseDef":"热的烤箱","ex":"The floor is clean, and the oven is in the kitchen.","exCn":"地板很干净，烤箱在厨房里。","defC":"烤箱","senses":[{"def":"烤箱","ex":"The floor is clean, and the oven is in the kitchen.","exCn":"地板很干净，烤箱在厨房里。","syn":"—","ant":"—"}],"inArt":1},{"word":"shelf","ipa":"/ʃelf/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"架子","phrase":"a bookshelf","phraseDef":"书架","ex":"We have a lamp on the shelf and a lamp on the desk.","exCn":"我们在架子上和书桌上各有一盏台灯。","defC":"架子","senses":[{"def":"架子","ex":"We have a lamp on the shelf and a lamp on the desk.","exCn":"我们在架子上和书桌上各有一盏台灯。","syn":"—","ant":"—"}],"inArt":1},{"word":"pillow","ipa":"/ˈpɪləʊ/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"枕头","phrase":"a soft pillow","phraseDef":"软枕头","ex":"The curtain is new, and the pillow is soft.","exCn":"窗帘是新的，枕头是软的。","defC":"枕头","senses":[{"def":"枕头","ex":"The curtain is new, and the pillow is soft.","exCn":"窗帘是新的，枕头是软的。","syn":"—","ant":"—"}],"inArt":1},{"word":"towel","ipa":"/ˈtaʊəl/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"毛巾","phrase":"a clean towel","phraseDef":"干净的毛巾","ex":"There is a pillow on the bed and a towel in the bathroom.","exCn":"床上有一个枕头，浴室里有一条毛巾。","defC":"毛巾","senses":[{"def":"毛巾","ex":"There is a pillow on the bed and a towel in the bathroom.","exCn":"床上有一个枕头，浴室里有一条毛巾。","syn":"—","ant":"—"}],"inArt":1},{"word":"rubbish","ipa":"/ˈrʌbɪʃ/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"垃圾","phrase":"take out the rubbish","phraseDef":"倒垃圾","ex":"The bin is full of rubbish.","exCn":"垃圾桶里装满了垃圾。","defC":"垃圾","senses":[{"def":"垃圾","ex":"The bin is full of rubbish.","exCn":"垃圾桶里装满了垃圾。","syn":"—","ant":"—"}],"inArt":1},{"word":"curtain","ipa":"/ˈkɜːtn/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"窗帘","phrase":"close the curtains","phraseDef":"拉上窗帘","ex":"The curtain is new, and the pillow is soft.","exCn":"窗帘是新的，枕头是软的。","defC":"窗帘","senses":[{"def":"窗帘","ex":"The curtain is new, and the pillow is soft.","exCn":"窗帘是新的，枕头是软的。","syn":"—","ant":"—"}],"inArt":1},{"word":"drawer","ipa":"/drɔː/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"抽屉","phrase":"a desk drawer","phraseDef":"书桌抽屉","ex":"The drawer is under the bed.","exCn":"抽屉在床底下。","defC":"抽屉","senses":[{"def":"抽屉","ex":"The drawer is under the bed.","exCn":"抽屉在床底下。","syn":"—","ant":"—"}],"inArt":1},{"word":"downstairs","ipa":"/ˌdaʊnˈsteəz/","pos":"adverb","cef":"A2","band":"中频(3000-4000)","defB":"楼下","phrase":"run downstairs","phraseDef":"跑下楼","ex":"Jack runs downstairs to the garden.","exCn":"杰克跑下楼去花园。","defC":"楼下","senses":[{"def":"楼下","ex":"Jack runs downstairs to the garden.","exCn":"杰克跑下楼去花园。","syn":"—","ant":"—"}],"inArt":1},{"word":"refrigerator","ipa":"/rɪˈfrɪdʒəreɪtə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"冰箱","phrase":"open the refrigerator","phraseDef":"打开冰箱","ex":"The refrigerator is big and white.","exCn":"冰箱又大又白。","defC":"冰箱","senses":[{"def":"冰箱","ex":"The refrigerator is big and white.","exCn":"冰箱又大又白。","syn":"—","ant":"—"}],"inArt":1},{"word":"cupboard","ipa":"/ˈkʌbəd/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"橱柜","phrase":"a kitchen cupboard","phraseDef":"厨房橱柜","ex":"The cupboard is next to the sink.","exCn":"橱柜在水槽旁边。","defC":"橱柜","senses":[{"def":"橱柜","ex":"The cupboard is next to the sink.","exCn":"橱柜在水槽旁边。","syn":"—","ant":"—"}],"inArt":1},{"word":"bookshelf","ipa":"/ˈbʊkʃelf/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"书架","phrase":"a full bookshelf","phraseDef":"满书的书架","ex":"The bookshelf and the bookcase are full of books.","exCn":"书架和书柜里装满了书。","defC":"书架","senses":[{"def":"书架","ex":"The bookshelf and the bookcase are full of books.","exCn":"书架和书柜里装满了书。","syn":"—","ant":"—"}],"inArt":1},{"word":"bookcase","ipa":"/ˈbʊkkeɪs/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"书柜","phrase":"a big bookcase","phraseDef":"大书柜","ex":"The bookshelf and the bookcase are full of books.","exCn":"书架和书柜里装满了书。","defC":"书柜","senses":[{"def":"书柜","ex":"The bookshelf and the bookcase are full of books.","exCn":"书架和书柜里装满了书。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"🟠 拓展·家庭与朋友","words":[{"word":"mr","ipa":"/ˈmɪstə(r)/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"先生（称呼）","phrase":"Mr Smith","phraseDef":"史密斯先生","ex":"Mr and Mrs Smith are our neighbours too.","exCn":"史密斯夫妇也是我们的邻居。","defC":"先生（称呼）","senses":[{"def":"先生（称呼）","ex":"Mr and Mrs Smith are our neighbours too.","exCn":"史密斯夫妇也是我们的邻居。","syn":"—","ant":"—"}],"inArt":1},{"word":"group","ipa":"/ɡruːp/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"组；群","phrase":"a group of friends","phraseDef":"一群朋友","ex":"A group of friends comes to our home.","exCn":"一群朋友来到我们家。","defC":"组；群","senses":[{"def":"组；群","ex":"A group of friends comes to our home.","exCn":"一群朋友来到我们家。","syn":"—","ant":"—"}],"inArt":1},{"word":"guy","ipa":"/ɡaɪ/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"家伙；小伙子（口语）","phrase":"a nice guy","phraseDef":"好小伙","ex":"Our neighbour is a friendly guy.","exCn":"我们的邻居是个友好的人。","defC":"家伙；小伙子（口语）","senses":[{"def":"家伙；小伙子（口语）","ex":"Our neighbour is a friendly guy.","exCn":"我们的邻居是个友好的人。","syn":"—","ant":"—"}],"inArt":1},{"word":"girl","ipa":"/ɡɜːl/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"女孩","phrase":"a little girl","phraseDef":"小女孩","ex":"Jack is a boy, and Emily is a girl.","exCn":"杰克是男孩，埃米莉是女孩。","defC":"女孩","senses":[{"def":"女孩","ex":"Jack is a boy, and Emily is a girl.","exCn":"杰克是男孩，埃米莉是女孩。","syn":"—","ant":"—"}],"inArt":1},{"word":"friend","ipa":"/frend/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"朋友","phrase":"best friend","phraseDef":"最好的朋友","ex":"Ms Green is my friend, and Miss Bell is her friend.","exCn":"格林女士是我的朋友，贝尔小姐是她的朋友。","defC":"朋友","senses":[{"def":"朋友","ex":"Ms Green is my friend, and Miss Bell is her friend.","exCn":"格林女士是我的朋友，贝尔小姐是她的朋友。","syn":"—","ant":"—"}],"inArt":1},{"word":"child","ipa":"/tʃaɪld/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"孩子（单）","phrase":"a young child","phraseDef":"小孩","ex":"Every parent and every child loves the garden.","exCn":"每位父母和孩子都爱这个花园。","defC":"孩子（单）","senses":[{"def":"孩子（单）","ex":"Every parent and every child loves the garden.","exCn":"每位父母和孩子都爱这个花园。","syn":"—","ant":"—"}],"inArt":1},{"word":"miss","ipa":"/mɪs/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"小姐（称呼）；想念；错过（车等）","phrase":"miss the train","phraseDef":"错过火车","ex":"Ms Green is my friend, and Miss Bell is her friend.","exCn":"格林女士是我的朋友，贝尔小姐是她的朋友。","defC":"小姐（称呼）；想念；错过（车等）","senses":[{"def":"小姐（称呼）；想念；错过（车等）","ex":"Ms Green is my friend, and Miss Bell is her friend.","exCn":"格林女士是我的朋友，贝尔小姐是她的朋友。","syn":"—","ant":"—"}],"inArt":1},{"word":"boy","ipa":"/bɔɪ/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"男孩","phrase":"a small boy","phraseDef":"小男孩","ex":"Jack is a boy, and Emily is a girl.","exCn":"杰克是男孩，埃米莉是女孩。","defC":"男孩","senses":[{"def":"男孩","ex":"Jack is a boy, and Emily is a girl.","exCn":"杰克是男孩，埃米莉是女孩。","syn":"—","ant":"—"}],"inArt":1},{"word":"married","ipa":"/ˈmærid/","pos":"adjective","cef":"A2","band":"高频(1000-2000)","defB":"已婚的","phrase":"get married","phraseDef":"结婚","ex":"My parents are married, and so are we.","exCn":"我的父母已婚，我们也是。","defC":"已婚的","senses":[{"def":"已婚的","ex":"My parents are married, and so are we.","exCn":"我的父母已婚，我们也是。","syn":"—","ant":"—"}],"inArt":1},{"word":"dad","ipa":"/dæd/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"爸爸（口语）","phrase":"my dad","phraseDef":"我爸","ex":"My mum and dad visit us on Sunday.","exCn":"我爸爸妈妈周日来看我们。","defC":"爸爸（口语）","senses":[{"def":"爸爸（口语）","ex":"My mum and dad visit us on Sunday.","exCn":"我爸爸妈妈周日来看我们。","syn":"—","ant":"—"}],"inArt":1},{"word":"mrs","ipa":"/ˈmɪsɪz/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"太太（称呼）","phrase":"Mrs Brown","phraseDef":"布朗太太","ex":"Mr and Mrs Smith are our neighbours too.","exCn":"史密斯夫妇也是我们的邻居。","defC":"太太（称呼）","senses":[{"def":"太太（称呼）","ex":"Mr and Mrs Smith are our neighbours too.","exCn":"史密斯夫妇也是我们的邻居。","syn":"—","ant":"—"}],"inArt":1},{"word":"ms","ipa":"/mɪz/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"女士（称呼，婚姻不明）","phrase":"Ms White","phraseDef":"怀特女士","ex":"Ms Green is my friend, and Miss Bell is her friend.","exCn":"格林女士是我的朋友，贝尔小姐是她的朋友。","defC":"女士（称呼，婚姻不明）","senses":[{"def":"女士（称呼，婚姻不明）","ex":"Ms Green is my friend, and Miss Bell is her friend.","exCn":"格林女士是我的朋友，贝尔小姐是她的朋友。","syn":"—","ant":"—"}],"inArt":1},{"word":"guest","ipa":"/ɡest/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"客人","phrase":"a house guest","phraseDef":"家里客人","ex":"We have a guest for dinner.","exCn":"我们有一位客人来吃晚饭。","defC":"客人","senses":[{"def":"客人","ex":"We have a guest for dinner.","exCn":"我们有一位客人来吃晚饭。","syn":"—","ant":"—"}],"inArt":1},{"word":"parent","ipa":"/ˈpeərənt/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"父母（单）","phrase":"my parents","phraseDef":"我的父母","ex":"Every parent and every child loves the garden.","exCn":"每位父母和孩子都爱这个花园。","defC":"父母（单）","senses":[{"def":"父母（单）","ex":"Every parent and every child loves the garden.","exCn":"每位父母和孩子都爱这个花园。","syn":"—","ant":"—"}],"inArt":1},{"word":"mum","ipa":"/mʌm/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"妈妈（口语）","phrase":"my mum","phraseDef":"我妈","ex":"My mum and dad visit us on Sunday.","exCn":"我爸爸妈妈周日来看我们。","defC":"妈妈（口语）","senses":[{"def":"妈妈（口语）","ex":"My mum and dad visit us on Sunday.","exCn":"我爸爸妈妈周日来看我们。","syn":"—","ant":"—"}],"inArt":1},{"word":"grandma","ipa":"/ˈɡrænmɑː/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"奶奶／外婆（口语）","phrase":"my grandma","phraseDef":"我奶奶","ex":"My grandma and grandpa live near us.","exCn":"我奶奶和爷爷住得离我们很近。","defC":"奶奶／外婆（口语）","senses":[{"def":"奶奶／外婆（口语）","ex":"My grandma and grandpa live near us.","exCn":"我奶奶和爷爷住得离我们很近。","syn":"—","ant":"—"}],"inArt":1},{"word":"teenager","ipa":"/ˈtiːneɪdʒə(r)/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"青少年","phrase":"a happy teenager","phraseDef":"快乐的青少年","ex":"My cousin is a teenager.","exCn":"我的表妹是个青少年。","defC":"青少年","senses":[{"def":"青少年","ex":"My cousin is a teenager.","exCn":"我的表妹是个青少年。","syn":"—","ant":"—"}],"inArt":1},{"word":"grandson","ipa":"/ˈɡrændsʌn/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"孙子；外孙","phrase":"her grandson","phraseDef":"她的孙子","ex":"Jack is my parents' grandson, and Emily is my parents' granddaughter.","exCn":"杰克是我父母的孙子，埃米莉是我父母的外孙女。","defC":"孙子；外孙","senses":[{"def":"孙子；外孙","ex":"Jack is my parents' grandson, and Emily is my parents' granddaughter.","exCn":"杰克是我父母的孙子，埃米莉是我父母的外孙女。","syn":"—","ant":"—"}],"inArt":1},{"word":"grandpa","ipa":"/ˈɡrænpɑː/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"爷爷；外公（口语）","phrase":"my grandpa","phraseDef":"我爷爷","ex":"My grandma and grandpa live near us.","exCn":"我奶奶和爷爷住得离我们很近。","defC":"爷爷；外公（口语）","senses":[{"def":"爷爷；外公（口语）","ex":"My grandma and grandpa live near us.","exCn":"我奶奶和爷爷住得离我们很近。","syn":"—","ant":"—"}],"inArt":1},{"word":"neighbour","ipa":"/ˈneɪbə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"邻居","phrase":"a kind neighbour","phraseDef":"好心的邻居","ex":"Our neighbour is a friendly guy.","exCn":"我们的邻居是个友好的人。","defC":"邻居","senses":[{"def":"邻居","ex":"Our neighbour is a friendly guy.","exCn":"我们的邻居是个友好的人。","syn":"—","ant":"—"}],"inArt":1},{"word":"granny","ipa":"/ˈɡræni/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"奶奶；外婆（口语）","phrase":"visit granny","phraseDef":"去看望奶奶","ex":"My grandad and granny are our grandparents.","exCn":"我的爷爷和奶奶是我们的祖父母。","defC":"奶奶；外婆（口语）","senses":[{"def":"奶奶；外婆（口语）","ex":"My grandad and granny are our grandparents.","exCn":"我的爷爷和奶奶是我们的祖父母。","syn":"—","ant":"—"}],"inArt":1},{"word":"granddaughter","ipa":"/ˈɡrændɔːtə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"孙女；外孙女","phrase":"his granddaughter","phraseDef":"他的孙女","ex":"Jack is my parents' grandson, and Emily is my parents' granddaughter.","exCn":"杰克是我父母的孙子，埃米莉是我父母的外孙女。","defC":"孙女；外孙女","senses":[{"def":"孙女；外孙女","ex":"Jack is my parents' grandson, and Emily is my parents' granddaughter.","exCn":"杰克是我父母的孙子，埃米莉是我父母的外孙女。","syn":"—","ant":"—"}],"inArt":1},{"word":"surname","ipa":"/ˈsɜːneɪm/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"姓","phrase":"my surname","phraseDef":"我的姓","ex":"My surname is Brown.","exCn":"我姓布朗。","defC":"姓","senses":[{"def":"姓","ex":"My surname is Brown.","exCn":"我姓布朗。","syn":"—","ant":"—"}],"inArt":1},{"word":"grandchild","ipa":"/ˈɡræntʃaɪld/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"孙辈孩子","phrase":"a young grandchild","phraseDef":"年幼的孙辈","ex":"My parents' grandchild writes to a penfriend in Japan.","exCn":"我父母的孙辈给日本的一位笔友写信。","defC":"孙辈孩子","senses":[{"def":"孙辈孩子","ex":"My parents' grandchild writes to a penfriend in Japan.","exCn":"我父母的孙辈给日本的一位笔友写信。","syn":"—","ant":"—"}],"inArt":1},{"word":"grandad","ipa":"/ˈɡrænæd/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"爷爷；外公（口语）","phrase":"my grandad","phraseDef":"我外公","ex":"My grandad and granny are our grandparents.","exCn":"我的爷爷和奶奶是我们的祖父母。","defC":"爷爷；外公（口语）","senses":[{"def":"爷爷；外公（口语）","ex":"My grandad and granny are our grandparents.","exCn":"我的爷爷和奶奶是我们的祖父母。","syn":"—","ant":"—"}],"inArt":1},{"word":"grandparent","ipa":"/ˈɡrænpeərənt/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"祖父母之一","phrase":"my grandparent","phraseDef":"我的祖辈","ex":"Every grandparent in our family is kind.","exCn":"我们家的每位祖辈都很和善。","defC":"祖父母之一","senses":[{"def":"祖父母之一","ex":"Every grandparent in our family is kind.","exCn":"我们家的每位祖辈都很和善。","syn":"—","ant":"—"}],"inArt":1},{"word":"penfriend","ipa":"/ˈpenfrend/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"笔友","phrase":"write to a penfriend","phraseDef":"给笔友写信","ex":"My parents' grandchild writes to a penfriend in Japan.","exCn":"我父母的孙辈给日本的一位笔友写信。","defC":"笔友","senses":[{"def":"笔友","ex":"My parents' grandchild writes to a penfriend in Japan.","exCn":"我父母的孙辈给日本的一位笔友写信。","syn":"—","ant":"—"}],"inArt":1}]}],"dialogues":[{"title":"① 这是我的家庭","turns":[{"role":"A","en":"Hi! This is my family.","cn":"嗨！这是我的家庭。"},{"role":"B","en":"Wow, it is a big family!","cn":"哇，好大的家庭！"},{"role":"A","en":"Yes. This is my father, and this is my mother.","cn":"是的。这是我父亲，这是我母亲。"},{"role":"B","en":"Is this your brother?","cn":"这是你兄弟吗？"},{"role":"A","en":"Yes, it is. And that is my sister.","cn":"是的。那是我姐妹。"},{"role":"B","en":"Your family is great!","cn":"你家真棒！"}]},{"title":"② 那是谁？","turns":[{"role":"A","en":"Who is that?","cn":"那是谁？"},{"role":"B","en":"That is my grandfather.","cn":"那是我祖父。"},{"role":"A","en":"And who is she?","cn":"那她是谁？"},{"role":"B","en":"She is my grandmother.","cn":"她是我祖母。"},{"role":"A","en":"Is the man your uncle?","cn":"那个男人是你叔叔吗？"},{"role":"B","en":"No, he isn't. He is my father.","cn":"不，他不是。他是我父亲。"}]},{"title":"③ 这是还是那是？","turns":[{"role":"A","en":"Is this your room?","cn":"这是你的房间吗？"},{"role":"B","en":"No, this is my brother's room.","cn":"不，这是我兄弟的房间。"},{"role":"A","en":"Is that your room?","cn":"那是你的房间吗？"},{"role":"B","en":"Yes, that is my room. It is small.","cn":"是的，那是我的房间。它很小。"},{"role":"A","en":"Are these your books?","cn":"这些是你的书吗？"},{"role":"B","en":"Yes, they are. Those are my pens.","cn":"是的，它们是。那些是我的笔。"}]},{"title":"④ 家里有什么？","turns":[{"role":"A","en":"Is there a sofa in your living room?","cn":"你客厅里有沙发吗？"},{"role":"B","en":"Yes, there is. It is very comfortable.","cn":"有，非常舒服。"},{"role":"A","en":"Is the fridge in the kitchen?","cn":"冰箱在厨房里吗？"},{"role":"B","en":"Yes, it is. The bathroom is next to my bedroom.","cn":"是的。浴室在我卧室旁边。"},{"role":"A","en":"Is there a garden?","cn":"有花园吗？"},{"role":"B","en":"No, there isn't. But there is a garage.","cn":"没有。但有一个车库。"}]}],"phonics":{"hand_anchor":{"title":"🖐 元音手掌握图（按口型位置记元音·Unit 3）","hint":"把手张开：拇指→小指，对应 5 个长元音的口型位置；掌心是短元音。例词都是本单元的家庭词和房间词。","long":[{"pos":"小指","ipa":"/iː/","say":"ee——","words":["she","he"],"cn":"她 / 他"},{"pos":"无名指","ipa":"/eɪ/","say":"诶——","words":["they","their"],"cn":"他们 / 他们的"},{"pos":"中指","ipa":"/aɪ/","say":"爱——","words":["wife","my"],"cn":"妻子 / 我的"},{"pos":"食指","ipa":"/ɔː/","say":"哦——","words":["hall","door"],"cn":"门厅 / 门"},{"pos":"拇指","ipa":"/uː/","say":"乌——","words":["room","kitchen"],"cn":"房间 / 厨房"}],"short":[{"ipa":"/ɪ/","words":["sister","his"],"cn":"姐妹 / 他的","say":"短促的 i"},{"ipa":"/e/","words":["bedroom","bed"],"cn":"卧室 / 床","say":"短促的 e"},{"ipa":"/æ/","words":["family","apartment"],"cn":"家庭 / 公寓","say":"嘴张大"},{"ipa":"/ɒ/","words":["watch","what"],"cn":"手表 / 什么","say":"嘴圆"},{"ipa":"/ʌ/","words":["cousin","son"],"cn":"表亲 / 儿子","say":"松嘴短 u"}]},"sound_cards":[{"sound":"/ð/","name":"咬舌浊音（this / that / the）","words":["this","that","the","their","father","mother","brother"],"phrase_en":"This is my father, and that is my brother.","phrase_cn":"这是我父亲，那是我兄弟。","tip":"舌尖轻放上下齿之间送气，声带要振动——/ð/ 是「有声音的 th」，不是 /θ/"},{"sound":"/ʃ/","name":"嘘气音（she / shower / shoe）","words":["sister","shower","shoes","English"],"phrase_en":"My sister is in the shower.","phrase_cn":"我姐妹在洗澡。","tip":"嘴唇收圆往前送气，像让人安静——「嘘——」，但声带不振动"}],"min_pairs":[{"a":"think","a_ipa":"/θɪŋk/","b":"this","b_ipa":"/ðɪs/","tip":"都是咬舌 th：/θ/ 声带不振动（think），/ð/ 声带振动（this）——摸喉咙感受"},{"a":"see","a_ipa":"/siː/","b":"she","b_ipa":"/ʃiː/","tip":"/s/ 还是 /ʃ/？嘴唇收圆才是 she"},{"a":"sister","a_ipa":"/ˈsɪstə/","b":"thirsty","b_ipa":"/ˈθɜːsti/","tip":"/s/ 与 /θ/ 只差一个咬舌动作"}],"intonation_cards":[{"word":"this","ipa":"/ðɪs/","cn":"这（个）","arrow":"↘","tone":"降调","sent":"This is my room.","sent_cn":"这是我的房间。","tip":"陈述句句末往下压 ↘ —— 告诉别人一件事，语气要肯定。","pair":{"en":"Is this your room?","cn":"这是你的房间吗？"}},{"word":"that","ipa":"/ðæt/","cn":"那（个）","arrow":"↗","tone":"升调","sent":"Is that your pen?","sent_cn":"那是你的笔吗？","tip":"一般疑问句句末往上扬 ↗ —— 问「是不是」，把选择权交给对方。","pair":{"en":"That is my pen.","cn":"那是我的笔。"}}],"intonation_pairs":[{"left":{"en":"This is my room.","cn":"这是我的房间。","arrow":"↘","tone":"降调"},"right":{"en":"This is my room?","cn":"这是我的房间？（升调）","arrow":"↗","tone":"升调"},"ask":"同一个句子，只改语调，意思差在哪？","answer":"↘ 降调是陈述「这是我的房间」；↗ 升调变成怀疑/反问「这真是我的房间？」——意思由语调决定，不是词。"}],"antonym_pairs":[{"a":"big","b":"small","cn_a":"大","cn_b":"小","sent":"Their house is big, but my room is small.","sent_cn":"他们的房子大，但我的房间小。"},{"a":"new","b":"old","cn_a":"新","cn_b":"旧","sent":"My bag is new, but my shoes are old.","sent_cn":"我的包是新的，但我的鞋是旧的。"},{"a":"clean","b":"dirty","cn_a":"干净","cn_b":"脏","sent":"The kitchen is clean, but the garage is dirty.","sent_cn":"厨房干净，但车库脏。"}]},"reading":[{"title":"My Family","focus":"家庭称谓 · this is","meta":"A1 受控原创（句长≤8词）","sentences":["This is my family.","My father is a doctor.","My mother is a teacher.","I have one brother and one sister.","My grandmother is in the garden.","There are five people in my family.","My grandmother is 68 years old.","We often have dinner together.","I love my family very much."],"questions":[{"q":"What is the father?","opts":["a doctor","a teacher","a student"],"answer":0},{"q":"Where is the grandmother?","opts":["in the kitchen","in the garden","in the car"],"answer":1},{"q":"What is This?","opts":["my family","my friend","my home"],"answer":0}]},{"title":"Emma's Home","focus":"房间名词 · 方位","meta":"A1 受控原创（句长≤8词）","sentences":["Emma's home is an apartment.","The kitchen is big.","There is a fridge in the kitchen.","Her bedroom is next to the bathroom.","There is no garden, but there is a garage.","Emma likes her home.","There are two bedrooms in the house.","My bedroom is small but clean.","My sister's room is bigger.","The kitchen is next to the living room.","There is a big window in my room.","We often watch TV in the living room."],"questions":[{"q":"What is Emma's home?","opts":["a house","an apartment","a palace"],"answer":1},{"q":"Is there a garden?","opts":["Yes, there is.","No, there isn't.","There is a garage."],"answer":1},{"q":"What is there?","opts":["a fridge in the kitchen","a park","a library"],"answer":0}]},{"title":"My Bedroom","focus":"家具名词 · 指示代词","meta":"A1 受控原创（句长≤8词）","sentences":["This is my bedroom.","That is my bed.","These are my books.","Those are my sister's pens.","There is a chair next to the bed.","My bedroom is small but nice.","There is a desk and a chair in my room.","My books are on the desk.","This is my school bag, and that is my bed.","My room is small, but it is clean.","I like my bedroom very much."],"questions":[{"q":"What is that?","opts":["a bed","a sofa","a fridge"],"answer":0},{"q":"Are these the sister's books?","opts":["Yes, they are.","No, they are mine.","They are pens."],"answer":1},{"q":"What is This?","opts":["my bedroom","my friend","my home"],"answer":0}]},{"title":"My Cousins","focus":"亲属称谓 · 形容词性物主","meta":"A1 受控原创（句长≤8词）","sentences":["I have two cousins.","Their names are Alex and Ricky.","Alex is my uncle's son.","Ricky is my aunt's daughter.","Their home is near my home.","My cousin Li Na is ten years old.","Her home is in Shanghai.","She has got a big room.","She is kind and funny.","We often play together in the park.","She is my best cousin."],"questions":[{"q":"Who is Alex?","opts":["the aunt's son","the uncle's son","the writer's brother"],"answer":1},{"q":"Where do they play?","opts":["at school","in the park","in the garage"],"answer":1},{"q":"What does the writer have?","opts":["two cousins","her cat","his dog"],"answer":0}]},{"title":"In the Living Room","focus":"房间物品 · There is/are","meta":"A1 受控原创（句长≤8词）","sentences":["We are in the living room.","There is a big sofa.","There are two armchairs.","The television is on the table.","My sister is reading a book.","Our living room is comfortable.","There are two sofas in the living room.","There is a big TV on the wall.","There are some flowers on the table.","My family watches TV here after dinner.","The room is warm and clean."],"questions":[{"q":"How many armchairs?","opts":["one","two","three"],"answer":1},{"q":"What is the sister doing?","opts":["watching TV","reading a book","sleeping"],"answer":1},{"q":"Where are we?","opts":["in the living room","in the garden","in the kitchen"],"answer":0}]},{"title":"My Family in Beijing","focus":"家庭称谓 · this is · 城市","china":1,"meta":"A1 中国主题 · 原创","sentences":["This is my family.","We live in Beijing.","My grandfather is old.","My sister is five.","I love my family.","My uncle is a doctor in Beijing.","His home is small but clean.","There is a park near his home.","We visit him every summer.","We walk in the park with his dog."],"questions":[{"q":"Where does the family live?","opts":["London","Beijing","Tokyo"],"answer":1},{"q":"How is the grandfather?","opts":["old","small","new"],"answer":0},{"q":"How old is the sister?","opts":["five","six","seven"],"answer":0}]},{"title":"The Spring Festival Dinner","focus":"there is/are · 房间 · 节日","china":1,"meta":"A1 中国主题 · 原创","sentences":["Today we have a big dinner.","We are in the living room.","There is a big table.","There are many dumplings.","My family is very happy.","There are many people in my home today.","There is a big table in the living room.","There are dumplings and fish on the table.","My grandmother is cooking in the kitchen.","We are all very happy tonight."],"questions":[{"q":"Where are they?","opts":["in the living room","in the kitchen","in the garden"],"answer":0},{"q":"What is there?","opts":["many beds","many books","many dumplings"],"answer":2},{"q":"How is the family?","opts":["happy","sad","tired"],"answer":0}]},{"title":"Two Homes, One Family","focus":"家庭成员 · there is/are · 房间 · 比较","meta":"A1 受控原创（句长≤8词 · 高频≥85% · 生词≤5%）","sentences":["There are two homes in my family.","In the city home there is a small garden.","In the village home there are three rooms.","My grandmother lives in the village.","Her home is smaller, but it is warmer.","She keeps a dog and twenty hens.","Every summer we go there together.","Which home do you like best?"],"questions":[{"q":"What is in the city home?","opts":["A small garden","Three rooms","A dog"],"answer":0},{"q":"Who lives in the village?","opts":["The writer's grandmother","The writer's mother","The writer"],"answer":0},{"q":"How is the village home?","opts":["Bigger and colder","Smaller but warmer","New and noisy"],"answer":1}]},{"title":"Who Lives in My House?","focus":"人物与代词 · 职业 · 房间物品 · 连词 and","meta":"A1 受控原创（句长≤8词 · 高频≥85% · 生词≤5%）","sentences":["There are four people in my house.","My father is an engineer and he works in the city.","My mother is a nurse and she works at night.","My little brother is only five.","There are many toys in his room.","I am the oldest child in the house.","We are busy, but we are happy.","How many people are there in your house?"],"questions":[{"q":"What is the writer's mother?","opts":["A nurse","An engineer","A teacher"],"answer":0},{"q":"How old is the little brother?","opts":["Four","Five","Six"],"answer":1},{"q":"Who is the oldest child?","opts":["The father","The little brother","The writer"],"answer":2}]}],"listening":[{"title":"My Grandparents' Home","focus":"there is/are · 家具","meta":"A1 听力 · 盲听训练","sentences":["My grandparents' home is big.","There is a small garden.","There are two armchairs.","The sofa is old.","I like their home.","There is a small garden behind their home.","There are many flowers in the garden.","There is also a cat under the tree.","My grandfather works in the garden.","I help him in the afternoon.","I love my grandparents' home."],"questions":[{"q":"How is the home?","opts":["big","small","new"],"answer":0},{"q":"What is in the garden?","opts":["a fridge","two beds","two armchairs"],"answer":2},{"q":"How is the sofa?","opts":["new","old","clean"],"answer":1}]},{"title":"A Big Family Dinner","focus":"家庭 · 食物 · be","china":1,"meta":"A1 听力 · 中国主题","sentences":["Today is a special day.","My family is at home.","There is a lot of food.","We eat together.","Everyone is happy.","There are eight people at the table.","There are many dishes on the table.","The fish is very big.","My grandmother cooks it very well.","We all say thank you.","The dinner is delicious."],"questions":[{"q":"Where is the family?","opts":["at home","at school","at the park"],"answer":0},{"q":"What is there?","opts":["a lot of beds","a lot of books","a lot of food"],"answer":2},{"q":"How is everyone?","opts":["happy","sad","tired"],"answer":0}]},{"title":"My Room Is Small","focus":"bedroom · big/small · 指示代词","meta":"A1 听力 · 盲听训练","sentences":["This is my bedroom.","It is small but clean.","That is my bed.","These are my books.","I love my room.","This is my room, and it is small.","There is a bed, a desk and a chair.","My school bag is on the chair.","My books are on the desk.","The window is behind the desk.","I feel happy in my small room."],"questions":[{"q":"How is the bedroom?","opts":["big and dirty","small but clean","new and small"],"answer":1},{"q":"What are these?","opts":["my books","my beds","my baths"],"answer":0},{"q":"What is that?","opts":["the sofa","the bed","the fridge"],"answer":1}]},{"title":"Where Is My Bag?","focus":"方位 · 疑问","meta":"A1 听力 · 盲听训练","sentences":["Where is my bag?","It is in the hall.","I found it!","Where is my bag? It is not here.","Is it under the bed? No, it is not.","Is it on the sofa? No, it is not.","Is it in the kitchen? Yes, it is.","My mother puts it there.","Thank you, Mum!"],"questions":[{"q":"Where is the bag?","opts":["on the sofa","in the kitchen","behind the sofa"],"answer":2},{"q":"Did the writer find it?","opts":["Yes","No","Maybe"],"answer":0},{"q":"Where is the bag first?","opts":["in the hall","in the garden","in the garage"],"answer":0}]},{"title":"My Cousin Li Na","focus":"亲属 · 形容词性物主 · 城市","china":1,"meta":"A1 听力 · 中国主题","sentences":["This is my cousin, Li Na.","Her home is in Shanghai.","Her room is beautiful.","Our family visits her.","She is very happy.","My cousin Li Na is ten years old.","She lives in Shanghai with her parents.","She has got a big room and a small dog.","She is kind and funny.","She often visits us in the summer.","We are good friends."],"questions":[{"q":"Who is Li Na?","opts":["the writer's cousin","the writer's mother","the writer's teacher"],"answer":0},{"q":"Where is her home?","opts":["in Beijing","in Shanghai","in the hall"],"answer":1},{"q":"How is her room?","opts":["dirty","small","beautiful"],"answer":2}]},{"title":"My Bigger Bedroom","focus":"比较级 · 物主代词","meta":"A2 听力 · 单选 + 填空","sentences":["My bedroom is bigger than my brother's.","His room is smaller but very tidy.","Our house has got a small garden.","The garden is nicer in summer.","My grandmother lives with us too.","My bedroom is smaller than my sister's.","Her room is bigger and brighter.","She has got more books than me.","I have got a better view of the park.","Sometimes we swap rooms.","We both like our rooms."],"questions":[{"q":"Whose bedroom is bigger?","opts":["mine","my brother's","my grandmother's"],"answer":0},{"q":"When is the garden nicer?","opts":["in summer","in winter","in spring"],"answer":0},{"q":"My ___ lives with us too.","type":"fill","answer":"grandmother","hint":"家里的一位长辈"}]},{"title":"Family Dinner","focus":"比较级 better · 日常","china":1,"meta":"A2 听力 · 中国主题","sentences":["We usually have dinner together at seven.","My father cooks better than my mother.","My sister helps him in the kitchen.","We talk about our day at the table.","After dinner we wash the dishes together.","Dinner is better than lunch.","My mother cooks fish and vegetables.","My father is late today.","We wait for him at the table.","Then we all eat together.","Family dinner is the best part of my day."],"questions":[{"q":"Who cooks better in the family?","opts":["my father","my mother","my sister"],"answer":0},{"q":"What do they do after dinner?","opts":["wash the dishes","watch TV","go out"],"answer":0},{"q":"They usually have dinner together at ___.","type":"fill","answer":"seven","hint":"钟点"}]},{"title":"My Grandparents' House","focus":"there be · 房间 · 花园","meta":"A1 听力 · 盲听训练","sentences":["There is a small garden behind my grandparents' house.","There are many flowers in it.","There is also a cat under the big tree.","My grandfather works in the garden every morning.","I help him on Saturday.","I love that old house very much."],"questions":[{"q":"What is behind the house?","opts":["A small garden","A big park","A river"],"answer":0},{"q":"What is under the tree?","opts":["A cat","A dog","A bird"],"answer":0},{"q":"When does the writer help his grandfather?","opts":["On Saturday","Every morning","On Sunday"],"answer":0}]},{"title":"Where Is Everybody?","focus":"房间 · 方位 · there be · 疑问","meta":"A1 听力 · 盲听训练","sentences":["Where is everybody today?","My father is in the living room.","He is watching the football match.","My mother is in the kitchen.","She is cooking dinner for us.","My brother is in his bedroom.","He is doing his homework.","I am in my room, and I am reading."],"questions":[{"q":"What is the father doing?","opts":["Watching a football match","Cooking dinner","Doing homework"],"answer":0},{"q":"Where is the mother?","opts":["In the kitchen","In the bedroom","In the living room"],"answer":0},{"q":"What is the writer doing?","opts":["Reading","Cooking","Playing"],"answer":0}]}],"grammar":[{"pid":"a1-poss","name":"所有格 's：……的","desc":"Emma's home · my sister's pens"},{"pid":"10-3","name":"形容词性物主代词 my/your/his","desc":"my/your/his/her 后必须跟名词"},{"pid":"10-4","name":"名词性物主代词 mine/yours","desc":"They are mine. 不再重复名词"},{"pid":"10-6","name":"代词对照表（速查）","desc":"主格·宾格·物主一眼对照"}],"article":{"title":"Emma's Family and Home","paras":[[["This is my family.","这是我的家人。"],["My name is Emma, and this is my home.","我叫艾玛，这是我的家。"],["Our home is a flat in London.","我们的家是伦敦的一套公寓。"],["My husband David and I live here with our children.","我丈夫大卫和孩子们住在这里。"],["My son is Jack, and my daughter is Emily.","我儿子是杰克，我女儿是埃米莉。"],["Jack is a boy, and Emily is a girl.","杰克是男孩，埃米莉是女孩。"],["My brother Ben is their uncle.","我弟弟本是他们的叔叔。"],["My sister Lucy is their aunt.","我妹妹露西是他们的阿姨。"],["Their grandmother is very kind.","他们的祖母非常和善。"],["Their grandfather is very old.","他们的祖父年纪很大。"],["My mum and dad visit us on Sunday.","我爸爸妈妈周日来看我们。"],["My grandma and grandpa live near us.","我奶奶和爷爷住得离我们很近。"],["Our neighbour is a friendly guy.","我们的邻居是个友好的人。"],["Mr and Mrs Smith are our neighbours too.","史密斯夫妇也是我们的邻居。"],["Ms Green is my friend, and Miss Bell is her friend.","格林女士是我的朋友，贝尔小姐是她的朋友。"],["My parents are married, and so are we.","我的父母已婚，我们也是。"],["I am David's wife, and he is my husband.","我是大卫的妻子，他是我的丈夫。"],["My cousin is a teenager.","我的表妹是个青少年。"],["Jack is my parents' grandson, and Emily is my parents' granddaughter.","杰克是我父母的孙子，埃米莉是我父母的外孙女。"],["My parents' grandchild writes to a penfriend in Japan.","我父母的孙辈给日本的一位笔友写信。"],["My grandad and granny are our grandparents.","我的爷爷和奶奶是我们的祖父母。"],["My surname is Brown.","我姓布朗。"],["Our address is apartment 1A, King's Road.","我们的地址是国王路 1A 公寓。"]],[["This is the living room, and that is the kitchen.","这是客厅，那是厨房。"],["These are the bedrooms, and those are the bathrooms.","这些是卧室，那些是浴室。"],["My room is upstairs.","我的房间在楼上。"],["There is a bed, a sofa and an armchair in my room.","我的房间里有一张床、一个沙发和一把扶手椅。"],["The fridge is in the kitchen, next to the cooker.","冰箱在厨房里，挨着炉灶。"],["We eat in the dining room.","我们在餐厅吃饭。"],["The hall is long, and the garage is big.","门厅很长，车库很大。"],["Our garden is small but beautiful.","我们的花园小但漂亮。"],["We have a chair at the desk and a chair at the table.","我们在书桌旁和餐桌旁各有一把椅子。"],["My computer is on the desk.","我的电脑在书桌上。"],["The clock on the wall is new.","墙上的钟是新的。"],["We have a lamp on the shelf and a lamp on the desk.","我们在架子上和书桌上各有一盏台灯。"],["The bookshelf and the bookcase are full of books.","书架和书柜里装满了书。"],["The cupboard is next to the sink.","橱柜在水槽旁边。"],["There is a bowl on the table.","桌上有一个碗。"],["We wash in the bathroom: the shower and the bath.","我们在浴室洗漱：淋浴和浴缸。"],["The toilet is next to the bathroom.","马桶在浴室旁边。"],["There is a box of toys in the hall.","门厅里有一箱玩具。"],["The key is in the door.","钥匙在门上。"],["Turn on the light, please.","请把灯打开。"],["The gas cooker is hot.","煤气炉很烫。"],["The heating is on, and there is a blanket on the bed.","暖气开着，床上有一条毯子。"],["The carpet is soft, and the curtains are clean.","地毯很软，窗帘很干净。"],["There is a pillow on the bed and a towel in the bathroom.","床上有一个枕头，浴室里有一条毛巾。"],["The bin is full of rubbish.","垃圾桶里装满了垃圾。"],["The drawer is under the bed.","抽屉在床底下。"],["Jack runs downstairs to the garden.","杰克跑下楼去花园。"],["The roof of our flat is red.","我们公寓的屋顶是红色的。"],["The gate is in the garden.","大门在花园里。"],["The entrance is at the front.","入口在前面。"],["The sitting room is our favourite room.","客厅是我们最喜欢的房间。"],["The furniture is old but comfortable.","家具旧但舒服。"],["We watch a DVD in the sitting room.","我们在客厅看 DVD。"],["The refrigerator is big and white.","冰箱又大又白。"],["The cat is in the garden; its name is Bella.","猫在花园里，它的名字叫贝拉。"],["Let's go to the garden!","我们去花园吧！"],["Oh, right. Really? Just a minute.","哦，好的。真的吗？等一下。"],["A group of friends comes to our home.","一群朋友来到我们家。"],["Jack's father is David, and I am the mother of Jack and Emily.","杰克的父亲是大卫，我是杰克和埃米莉的母亲。"],["His name is Jack, and your name is Emily.","他叫杰克，你叫埃米莉。"],["Our bedroom is upstairs, next to my room.","我们的卧室在楼上，挨着我的房间。"],["The floor is clean, and the oven is in the kitchen.","地板很干净，烤箱在厨房里。"],["We have a guest for dinner.","我们有一位客人来吃晚饭。"],["Every parent and every child loves the garden.","每位父母和孩子都爱这个花园。"],["Every grandparent in our family is kind.","我们家的每位祖辈都很和善。"],["The curtain is new, and the pillow is soft.","窗帘是新的，枕头是软的。"],["We are a happy family.","我们是幸福的一家人。"]]]},"artForms":["family","father","mother","brother","sister","son","daughter","grandfather","grandmother","aunt","uncle","cousin","wife","my","your","his","her","its","our","their","this","that","these","those","home","apartment","kitchen","bedroom","bathroom","living room","hall","garden","garage","bed","sofa","armchair","fridge","cooker","toilet","shower","bath","room","chair","live","door","gas","floor","address","sitting room","flat","roof","gate","desk","entrance","furniture","bin","sink","carpet","heating","dining room","blanket","lamp","oven","shelf","pillow","towel","rubbish","curtain","drawer","downstairs","refrigerator","cupboard","bookshelf","bookcase","mr","group","guy","girl","friend","child","miss","boy","married","dad","ms","guest","parent","mum","grandma","teenager","grandson","grandpa","neighbour","granny","granddaughter","surname","grandchild","grandad","grandparent","penfriend","bedrooms","bathrooms","living","curtains","mrs","friends","parents","neighbours","grandparents"]};
+const STORE_KEY = "a1_unit"+DATA.unit+"_state_v4";
+const CHECK_KEY = "a1_checkin_dates_v4";  // 全局共享打卡 streak（跨单元）
+const ERR_KEY = "a1_unit"+DATA.unit+"_errors_v4";
+const BEASTS = [
+  {u:1,e:"🌍",n:"世界之灵",d:"国家·国籍·疑问词·be"},
+  {u:2,e:"😊",n:"欢欣兽",d:"场所·感受·代词"},
+  {u:3,e:"👪",n:"家脉兽",d:"家庭·房间·指示代词"},
+  {u:4,e:"🏙️",n:"城巡兽",d:"城市地点·介词·数字"},
+  {u:5,e:"🎮",n:"闲趣兽",d:"休闲·频率·设备·星期"},
+  {u:6,e:"🤝",n:"挚友兽",d:"身体·外貌·问候"},
+  {u:7,e:"⚽",n:"竞跃兽",d:"运动·can·时间·月份"},
+  {u:8,e:"🎵",n:"律动兽",d:"音乐·衣物·进行时"},
+  {u:9,e:"🍰",n:"飨宴兽",d:"食物·餐饮·must"},
+  {u:10,e:"🚀",n:"凌云兽",d:"成就·天气·过去式"},
+  {u:11,e:"🐾",n:"百兽灵",d:"动物·过去式·形容词"},
+  {u:12,e:"🚆",n:"远行兽",d:"交通·地点·比较级"},
+];
+
+let state = loadState();
+let checkins = loadCheckins();
+let errors = loadErrors();
+let curGroupLearn = 0, curGroupReview = 0;
+let shIdx = 0, shQueue = [], shAuto = false, shTimer = null;
+let rec = {mr:null, recording:false, url:null, stopBtn:null, stopLabel:null, containerEl:null};
+
+function loadState(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}} }
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function loadCheckins(){ try{return JSON.parse(localStorage.getItem(CHECK_KEY))||[]}catch(e){return[]} }
+function loadErrors(){ try{return JSON.parse(localStorage.getItem(ERR_KEY))||[]}catch(e){return[]} }
+function saveErrors(){ localStorage.setItem(ERR_KEY, JSON.stringify(errors)); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ---------- 语音（全局） ---------- */
+let voices=[], voice=null;
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const sel=document.getElementById('voiceSel');
+  const PREF=['en-GB','en-AU','en-IE','en-US'];
+  sel.innerHTML='';
+  voices = voices.slice().sort(function(a,b){function rank(v){if(/en-GB/i.test(v.lang||''))return (/Libby/i.test(v.name)?0:1);if(/en-AU/i.test(v.lang||''))return 2;if(/en-IE/i.test(v.lang||''))return 3;if(/en-US/i.test(v.lang||''))return 4;return 9;}return rank(a)-rank(b);});
+  let prefV=null;
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    o.value=i; o.textContent=v.name+(v.localService?' · 离线':' · 在线');
+    sel.appendChild(o);
+    if((/en-GB/i.test(v.lang||'')&&/Libby/i.test(v.name)&&!prefV)){ prefV=v; o.selected=true; }if(!prefV){ for(const p of PREF){ if(v.lang===p){ prefV=v; o.selected=true; break; } } }
+  });
+  voice = prefV || voices[0] || null;
+  if(prefV){ sel.value = voices.indexOf(prefV); }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function getVoice(){ const i=document.getElementById('voiceSel').value; return voices[i]||null; }
+function rateVal(){ return parseFloat(document.getElementById('rate').value); }
+function speak(text, opt){
+  opt=opt||{};
+  if(!('speechSynthesis' in window)){ if(opt.onend)opt.onend(); return; }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const v=getVoice(); if(v)u.voice=v;
+  u.rate = rateVal()*(opt.slow?0.6:1); u.pitch=1; u.volume=1;
+  u.onend = opt.onend||function(){};
+  u.onerror = opt.onend||function(){};
+  speechSynthesis.speak(u);
+  if(speechSynthesis.paused) speechSynthesis.resume();
+}
+
+/* ---------- 工具 ---------- */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* 可发音词块：任何带 data-say 的元素点一下就朗读（全局事件委托，一次绑定全页生效）
+   suppressSay：作答的那一次点击只算「选择」，不当成「点词发音」，避免中文选英文时
+   点一下选项既答题又泄题听感 */
+let suppressSay=false;
+document.addEventListener('click', function(e){
+  const t=e.target.closest('[data-say]');
+  if(t && !suppressSay && !e.target.closest('[data-nsay]')){ e.preventDefault(); e.stopPropagation(); speak(t.getAttribute('data-say')); }
+});
+function sayChip(text, cls){ return '<span class="wchip '+(cls||'')+'" data-say="'+esc(text)+'">'+esc(text)+'<b>🔊</b></span>'; }
+/* 功能词/专名/缩写：不算「预学新词」（它们不是需要记忆的实义词） */
+const FUNCWORDS=new Set(("a an the is are am was were be been being do does did have has had "+
+"i you he she it we they me him her us them my your his its our their this that these those "+
+"what where who why how when in on at to for from of with and but or so not no yes "+
+"very too also can could will would shall may might must there here my one two three now "+
+"hello hi ok okay oh right thanks thank please let's im it's how's what's who's he's she's "+
+"that's there's we're they're don't doesn't isn't aren't wasn't weren't can't couldn't "+
+"wouldn't shouldn't i've i'll you're you've name fine good").split(/\s+/));
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function allWords(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w.word))); return a; }
+function allWordObjs(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w))); return a; }
+function masteredCount(){ return allWords().filter(w=>(state[w]||{}).mastered).length; }
+function shadowedCount(){ return allWords().filter(w=>(state[w]||{}).shadowed).length; }
+function updateProgress(){
+  const total=allWords().length;
+  const m=masteredCount();
+  const pct=Math.round(m/total*100);
+  document.getElementById('pctTop').textContent=pct+'%';
+  document.getElementById('barTop').style.width=pct+'%';
+  let stars = pct>=80?3:pct>=50?2:pct>=20?1:0;
+  document.getElementById('starTop').textContent = '★'.repeat(stars)+'☆'.repeat(3-stars);
+  document.getElementById('beastStreak').textContent=`已跟读 ${shadowedCount()}/${total} · 已掌握 ${m}/${total} · 错题 ${errors.length}`;
+}
+function flash(msg){ const t=document.createElement('div'); t.textContent=msg;
+  t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--gold);color:#1a1a1a;padding:8px 16px;border-radius:10px;font-weight:700;z-index:99';
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1400); }
+
+/* ---------- 统一录音（单句 & 对话共用） ---------- */
+function noteShadow(msg){ const n=document.getElementById('shBanner'); if(msg){ n.style.display='block'; n.textContent=msg; } else { n.style.display='none'; } }
+function startRec(text, container, stopBtn, stopLabel){
+  if(rec.recording && rec.stopBtn===stopBtn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音；现在可用「听原声」模式。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你的跟读录音，对比原声找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=stopBtn; rec.stopLabel=stopLabel||'● 开始录音';
+    rec.containerEl=container.parentElement; if(rec.containerEl) rec.containerEl.classList.add('recording');
+    stopBtn.textContent='■ 停止';
+    speak(text);
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可改用「听原声」模式。'); });
+}
+function stopRec(){
+  if(rec.recording && rec.mr){ rec.mr.stop(); rec.recording=false;
+    if(rec.stopBtn) rec.stopBtn.textContent = rec.stopLabel||'● 开始录音';
+    if(rec.containerEl) rec.containerEl.classList.remove('recording');
+    rec.stopBtn=null; rec.containerEl=null; }
+}
+/* 只录不放（用于"我来回应"——先看清/听问句，再录自己的回答） */
+function startRecRaw(text, container, btn){
+  if(rec.recording && rec.stopBtn===btn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你回应的录音，对比示范找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=btn; rec.stopLabel=btn.textContent;
+    rec.containerEl = btn.closest('.exchange')||container.parentElement;
+    if(rec.containerEl) rec.containerEl.classList.add('recording');
+    btn.textContent='■ 停止（说完点这）';
+    container.innerHTML='<div class="hint"><span class="rec-dot"></span> 请说出回应：'+esc(text)+'</div>';
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可先点「🔊 听示范回应」模仿。'); });
+}
+function addError(obj){
+  obj.time=Date.now(); obj.unit=DATA.unit;
+  errors.push(obj); saveErrors(); renderErrors(); updateProgress();
+}
+
+/* ---------- 渲染：学习 B ---------- */
+function renderLearn(){
+  const grpTabs=document.getElementById('grpLearn');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupLearn)b.className='on';
+    b.onclick=()=>{curGroupLearn=i; renderLearn();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridLearn'); grid.innerHTML='';
+  DATA.groups[curGroupLearn].words.forEach((w)=>{
+    const st=state[w.word]||{};
+    const card=document.createElement('div'); card.className='card'+(st.mastered?' done':'');
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      <div class="def"><span class="cnLearn">${esc(w.defB)}</span></div>
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <div class="ex" data-ex="${esc(w.ex)}">${esc(w.ex)}<span class="cn cnLearn">${esc(w.exCn||'')}</span></div>
+      <div class="acts">
+        <button class="b-play" data-word="${esc(w.word)}">🔊 单词</button>
+        <button class="b-shadow" data-word="${esc(w.word)}">🎤 跟读打卡</button>
+        <button class="b-master ${st.mastered?'mastered':''}" data-word="${esc(w.word)}">${st.mastered?'✅ 已掌握':'☆ 掌握'}</button>
+        <button class="b-err" data-word="${esc(w.word)}">❌ 记一笔</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.ex').forEach(el=>{
+    el.onclick=()=>speak(el.getAttribute('data-ex'));
+    el.ondblclick=()=>speak(el.getAttribute('data-ex'),{slow:true});
+  });
+  grid.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-shadow').forEach(b=>b.onclick=()=>goShadowWord(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-master').forEach(b=>b.onclick=()=>toggleMaster(b.getAttribute('data-word'),b));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'词卡标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 渲染：复习 C（渐进式） ---------- */
+function renderReview(){
+  const grpTabs=document.getElementById('grpReview');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupReview)b.className='on';
+    b.onclick=()=>{curGroupReview=i; renderReview();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridReview'); grid.innerHTML='';
+  const hide=document.getElementById('tgHideCn').dataset.hide==='1';
+  DATA.groups[curGroupReview].words.forEach(w=>{
+    const card=document.createElement('div'); card.className='card';
+    let sensesHtml='';
+    w.senses.forEach((s,i)=>{
+      const hidden = i>0 ? ' hiddenSense' : '';
+      const synAnt = (s.syn&&s.syn!=='—'?'近义 '+esc(s.syn)+' ':'') + (s.ant&&s.ant!=='—'?'反义 '+esc(s.ant):'');
+      const ex = s.ex||''; const exCn = s.exCn||'';
+      sensesHtml += `
+      <div class="sense${hidden}">
+        <div class="defline">${esc(s.def)}
+          <button class="spk" data-text="${esc(w.word)}">🔊</button>
+          ${synAnt?`<span style="color:var(--sub);font-size:12px">（${synAnt}）</span>`:''}
+        </div>
+        <button class="morebtn act-ex">💡 看例句</button>
+        <div class="exbox" data-ex="${esc(ex)}">${esc(ex)}<span class="cn">${esc(exCn)}</span>
+          ${ex?`<button class="morebtn act-shadow" data-text="${esc(ex)}">🎤 跟读这句</button>`:''}
+        </div>
+      </div>`;
+    });
+    const moreBtn = w.senses.length>1 ? `<button class="morebtn act-more">更多 ▾（还有 ${w.senses.length-1} 个义项）</button>` : '';
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      ${sensesHtml}
+      ${moreBtn}
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <button class="morebtn b-err" data-word="${esc(w.word)}">❌ 记一笔（没记住）</button>`;
+    grid.appendChild(card);
+  });
+  if(hide){ grid.querySelectorAll('.cn').forEach(e=>e.style.display='none'); }
+  grid.querySelectorAll('.act-ex').forEach(b=>b.onclick=()=>{
+    const box=b.parentElement.querySelector('.exbox');
+    const open = box.style.display==='block';
+    box.style.display = open?'none':'block';
+    b.textContent = open?'💡 看例句':'🔼 收起例句';
+    if(!open){ const ex=box.getAttribute('data-ex'); if(ex) speak(ex); }
+  });
+  grid.querySelectorAll('.act-more').forEach(b=>b.onclick=()=>{
+    const card=b.closest('.card');
+    const next=card.querySelector('.sense.hiddenSense');
+    if(next){ next.classList.remove('hiddenSense');
+      const exb=next.querySelector('.exbox'); if(exb.getAttribute('data-ex')) speak(exb.getAttribute('data-ex'));
+    }
+    if(!card.querySelector('.sense.hiddenSense')) b.style.display='none';
+  });
+  grid.querySelectorAll('.spk').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  grid.querySelectorAll('.act-shadow').forEach(b=>b.onclick=()=>goShadowText(b.getAttribute('data-text')));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'复习标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 神兽/图鉴 ---------- */
+function renderCodex(){
+  const grid=document.getElementById('codexGrid'); grid.innerHTML='';
+  BEASTS.forEach(b=>{
+    const box=document.createElement('div');
+    const active = b.u===DATA.unit;
+    box.className='cbox'+(active?'':' lock');
+    let stars=0;
+    if(active){ const pct=Math.round(masteredCount()/allWords().length*100); stars=pct>=80?3:pct>=50?2:pct>=20?1:0; }
+    box.innerHTML=`<div class="e">${b.e}</div><div class="n">${b.n}</div>
+      <div class="s">${active?'★'.repeat(stars)+'☆'.repeat(3-stars):'🔒 未解锁'}</div>
+      <div style="color:var(--sub);font-size:12px;margin-top:4px">${b.d}</div>`;
+    grid.appendChild(box);
+  });
+}
+
+/* ---------- 交互 ---------- */
+function toggleMaster(w, btn){
+  if(!state[w]) state[w]={};
+  state[w].mastered=!state[w].mastered;
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  saveState();
+  btn.classList.toggle('mastered', state[w].mastered);
+  btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
+  updateProgress(); renderCodex();
+}
+function checkIn(w){
+  const d=today();
+  if(!state[w]) state[w]={};
+  state[w].shadowed=d;
+  saveState();
+  if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
+  updateProgress(); renderCodex();
+}
+function switchSub(which){
+  document.querySelectorAll('.subtab').forEach(x=>x.classList.toggle('on', x.dataset.sh===which));
+  document.getElementById('shDialog').style.display = which==='dialog'?'block':'none';
+  document.getElementById('shSingle').style.display = which==='single'?'block':'none';
+}
+function goShadowWord(word){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.word===word);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到「'+word+'」'); }
+}
+function goShadowText(text){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.en===text);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到该句'); }
+}
+function goReviewWord(word){
+  document.querySelector('nav button[data-tab="review"]').click();
+  DATA.groups.forEach((g,i)=>{ if(g.words.some(w=>w.word===word)){ curGroupReview=i; renderReview(); flash('🔁 已定位复习：'+word); } });
+}
+
+/* ---------- 跟读队列（含复习例句） + 单句跟读 ---------- */
+function buildQueue(){
+  shQueue=[]; const seen=new Set();
+  DATA.groups.forEach(g=>g.words.forEach(w=>{
+    if(w.ex && !seen.has(w.ex)){ seen.add(w.ex); shQueue.push({en:w.ex,cn:w.exCn,word:w.word}); }
+    (w.senses||[]).forEach(s=>{ if(s.ex && !seen.has(s.ex)){ seen.add(s.ex); shQueue.push({en:s.ex,cn:s.exCn,word:w.word}); } });
+  }));
+}
+function renderShadowCurrent(){
+  const it=shQueue[shIdx]; if(!it)return;
+  document.getElementById('shProg').textContent='第 '+(shIdx+1)+' / '+shQueue.length+' 句 · 👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这块会出现回放音轨，和原声对比。';
+  document.getElementById('shNow').textContent=(shIdx+1)+'/'+shQueue.length+'  '+it.en;
+  document.getElementById('shNowCn').textContent=it.cn||'';
+}
+function shPlay(){ const it=shQueue[shIdx]; if(it) speak(it.en); }
+function shGo(dir){ shIdx=(shIdx+dir+shQueue.length)%shQueue.length; renderShadowCurrent(); }
+function shCheck(){
+  const it=shQueue[shIdx]; if(!it)return;
+  checkIn(it.word); flash('🎤 已跟读打卡：'+it.word);
+}
+function shAutoPlay(){
+  if(!shQueue.length)return;
+  const it=shQueue[shIdx];
+  const gap=parseInt(document.getElementById('shGap').value,10);
+  speak(it.en,{onend:()=>{
+    if(gap>0){ shTimer=setTimeout(()=>{ if(shAuto){ shIdx=(shIdx+1)%shQueue.length; renderShadowCurrent(); shAutoPlay(); } }, gap); }
+  }});
+}
+function initShadow(){
+  buildQueue(); if(shIdx>=shQueue.length) shIdx=0; renderShadowCurrent();
+  document.getElementById('shPlay').onclick=shPlay;
+  document.getElementById('shNext').onclick=()=>shGo(1);
+  document.getElementById('shPrev').onclick=()=>shGo(-1);
+  document.getElementById('shRec').onclick=function(){
+    if(rec.recording && rec.stopBtn===this){ stopRec(); }
+    else { startRec(shQueue[shIdx].en, document.getElementById('shRecBox'), this); }
+  };
+  document.getElementById('shStop').onclick=stopRec;
+  document.getElementById('shCheck').onclick=shCheck;
+  document.getElementById('shAuto').onclick=function(){ shAuto=!shAuto; this.textContent=shAuto?'⏹ 停止连播':'🔁 自动连播'; if(shAuto)shAutoPlay(); else {clearTimeout(shTimer); speechSynthesis.cancel();} };
+}
+
+/* ---------- 对话跟读（call-response 结构） ---------- */
+function renderDialogues(){
+  const list=document.getElementById('shDialog'); list.innerHTML='';
+  DATA.dialogues.forEach(d=>{
+    const box=document.createElement('div'); box.className='player';
+    let html='';
+    const turns=d.turns;
+    let i=0;
+    while(i<turns.length){
+      const t=turns[i];
+      if(t.role==='A' && i+1<turns.length && turns[i+1].role==='B'){
+        const q=t, r=turns[i+1];
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-A">A</span>
+            <div class="qa-text">${esc(q.en)}<span class="cn">${esc(q.cn)}</span></div>
+            <button class="b-play" data-text="${esc(q.en)}">🔊 听问句</button>
+          </div>
+          <div class="resp">
+            <div class="resp-label">👉 你要回应的句子（B）：先听示范，再录你自己的</div>
+            <div class="qa-text">${esc(r.en)}<span class="cn">${esc(r.cn)}</span></div>
+            <div class="resp-acts">
+              <button class="b-play" data-text="${esc(r.en)}">🔊 听示范回应</button>
+              <button class="b-drill" data-text="${esc(r.en)}">🎤 我来回应</button>
+            </div>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=2;
+      } else {
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-${t.role}">${t.role}</span>
+            <div class="qa-text">${esc(t.en)}<span class="cn">${esc(t.cn)}</span></div>
+            <button class="b-play" data-text="${esc(t.en)}">🔊 原声</button>
+            <button class="b-turn-rec" data-text="${esc(t.en)}">🎤 跟读</button>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=1;
+      }
+    }
+    box.innerHTML=`<div class="now" style="font-size:16px">💬 ${esc(d.title)}</div>
+      <div class="nowcn" style="margin-bottom:10px">蓝字＝A 的问句（点「🔊 听问句」）；黄框＝<b>你要回应的句子，始终显示</b>，先点「🔊 听示范回应」模仿，再点「🎤 我来回应」录下你自己的回答。回放对比原声。</div>${html}`;
+    list.appendChild(box);
+  });
+  list.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  list.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); }
+    else { startRec(b.getAttribute('data-text'), container, b); }
+  });
+  list.querySelectorAll('.b-drill').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    startRecRaw(b.getAttribute('data-text'), container, b);
+  });
+}
+let rdIdx = 0;
+function renderReading(){
+  const list = DATA.reading;
+  const ptabs = document.getElementById('rdPassages'); ptabs.innerHTML='';
+  list.forEach((rd,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(rd.title)+(rd.china?' 🇨🇳':'');
+    if(i===rdIdx) b.className='on';
+    b.onclick=()=>{ rdIdx=i; renderReading(); };
+    ptabs.appendChild(b);
+  });
+  document.getElementById('rdHint').textContent=list.length+' 篇受控短文：读 → 听（TTS）→ 跟读 → 做小题，一文多吃。词汇 / 短语 / 句式在不同情境重复出现，形成螺旋。🇨🇳 ＝中国主题篇。';
+  renderReadingContent();
+}
+function renderReadingContent(){
+  const rd=DATA.reading[rdIdx];
+  const rdb=document.getElementById('rdBanner');
+  rdb.style.display='block';
+  rdb.innerHTML='📖 <b>'+esc(rd.title)+'</b>'+(rd.china?' <span style="font-size:12px">🇨🇳</span>':'')+' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(rd.focus||'')+'</span> · <span style="color:var(--sub);font-size:12px">'+esc(rd.meta||'')+'</span>';
+  const txt=document.getElementById('rdText');
+  txt.innerHTML='<div class="rd-tip">点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。先读一遍，再点「🔊 听整篇」做听力，最后做下面小题。</div>'
+    +'<div class="rd-playall"><button class="b-play" id="rdPlayAll">🔊 听整篇</button></div>'
+    +'<div class="rd-sents"></div>';
+  const sents=txt.querySelector('.rd-sents');
+  rd.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    sents.appendChild(d);
+  });
+  txt.querySelector('#rdPlayAll').onclick=()=>{ speakSeq(rd.sentences, 600); };
+  sents.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  sents.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  sents.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const qz=document.getElementById('rdQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 理解小题（答错自动进错题本）</div>';
+  rd.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'阅读', original:'阅读小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+
+/* ---------- 听力子模式：盲听 → 答题 → 看文本 ---------- */
+let lsIdx = 0, lsRevealed = false;
+function renderListening(){
+  const list = DATA.listening || [];
+  const ptabs = document.getElementById('lsPassages'); ptabs.innerHTML='';
+  list.forEach((ls,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(ls.title)+(ls.china?' 🇨🇳':'');
+    if(i===lsIdx) b.className='on';
+    b.onclick=()=>{ lsIdx=i; renderListening(); };
+    ptabs.appendChild(b);
+  });
+  renderListeningContent();
+}
+function renderListeningContent(){
+  const ls=(DATA.listening||[])[lsIdx]; if(!ls) return;
+  const lsb=document.getElementById('lsBanner');
+  lsb.style.display='block';
+  lsb.innerHTML='🎧 <b>'+esc(ls.title)+'</b>'+(ls.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(ls.focus||'')+'</span>'
+    +' · <span style="color:var(--sub);font-size:12px">'+esc(ls.meta||'')+'</span>';
+  const box=document.getElementById('lsSents'); box.innerHTML=''; lsRevealed=false;
+  ls.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en ls-masked" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    box.appendChild(d);
+  });
+  box.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  box.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  box.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  document.getElementById('lsPlayAll').onclick=()=>speakSeq(ls.sentences,600);
+  document.getElementById('lsReplay').onclick=()=>speakSeq(ls.sentences,600);
+  const revealBtn=document.getElementById('lsReveal');
+  revealBtn.textContent='👀 看文本';
+  revealBtn.onclick=()=>{
+    lsRevealed=!lsRevealed;
+    box.querySelectorAll('.rd-en').forEach(e=>e.classList.toggle('ls-masked', !lsRevealed));
+    revealBtn.textContent = lsRevealed ? '🙈 收起文本' : '👀 看文本';
+  };
+  const qz=document.getElementById('lsQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 听力小题（答错自动进错题本）</div>';
+  ls.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    /* 2026-10-16 新增填空题（type:'fill'）：KET 听力有填空，原来只有单选。
+       answer 是字符串（填空例外，不是 int —— 单选题的 answer 仍是 int，别混）。
+       判题忽略大小写与首尾空格；accept 数组可收多个可接受答案。 */
+    if(q.type==='fill'){
+      const acc=(q.accept && q.accept.length) ? q.accept : [String(q.answer||'')];
+      d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+(q.hint?'　<span style="color:var(--sub);font-size:12px">（'+esc(q.hint)+'）</span>':'')+'</div>'
+        +'<div class="q-opts"><input class="q-fill" type="text" autocomplete="off" spellcheck="false" placeholder="在这里写答案">'
+        +'<button class="q-opt q-fillbtn">检查</button></div><div class="q-fb"></div>';
+      const inp=d.querySelector('.q-fill'), btn=d.querySelector('.q-fillbtn');
+      const check=()=>{
+        if(d.dataset.answered) return;
+        const val=(inp.value||'').trim(); if(!val) return;
+        d.dataset.answered='1';
+        const ok=acc.some(a=>String(a).trim().toLowerCase()===val.toLowerCase());
+        if(ok){ inp.classList.add('good'); inp.disabled=true; btn.disabled=true;
+          d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { inp.classList.add('bad'); inp.disabled=true; btn.disabled=true;
+          d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(acc[0])+'</span>';
+          addError({word:q.q, type:'听力填空', original:'听力填空小题', standard:acc[0], student:val}); }
+      };
+      btn.onclick=check;
+      inp.onkeydown=e=>{ if(e.key==='Enter') check(); };
+      qz.appendChild(d); return;
+    }
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'听力', original:'听力小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+function switchRd(which){
+  document.querySelectorAll('[data-rd]').forEach(x=>x.classList.toggle('on', x.dataset.rd===which));
+  document.getElementById('rdReadWrap').style.display = which==='read' ? '' : 'none';
+  document.getElementById('rdListenWrap').style.display = which==='listen' ? '' : 'none';
+  if(which==='listen') renderListening();
+}
+
+/* ---------- 拼读轨道 ---------- */
+/* TTS 不能直接念音标（/iː/ 去斜杠后会被当单词乱读）→ 「点音素」改为依次朗读该音的例词 */
+function speakSeq(words, gap, onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const arr=(words||[]).filter(Boolean);
+  let i=0;
+  (function next(){
+    if(i>=arr.length){ if(onDone)onDone(); return; }
+    const w=arr[i++];
+    speak(w, {onend:()=>setTimeout(next, gap||550)});
+  })();
+}
+function switchPhx(which){
+  document.querySelectorAll('[data-phx]').forEach(x=>x.classList.toggle('on', x.dataset.phx===which));
+  /* 手掌握图 + 顶部两条提示只属于「音素卡」视图：切到其他子 tab 时一并隐藏，
+     否则用户会看到"切过去了还是音素内容"。
+     注意选择器用 `> .phx-tip`（仅直接子级）——语调/反义区内部的提示是那些视图自己的内容，不能藏。 */
+  document.getElementById('phxHand').style.display = which==='cards'?'block':'none';
+  document.querySelectorAll('#phonics > .phx-tip').forEach(x=>x.style.display = which==='cards'?'block':'none');
+  document.getElementById('phxCards').style.display = which==='cards'?'block':'none';
+  document.getElementById('phxPairs').style.display = which==='pairs'?'block':'none';
+  document.getElementById('phxListen').style.display = which==='listen'?'block':'none';
+  document.getElementById('phxIntonation').style.display = which==='intonation'?'block':'none';
+  document.getElementById('phxAntonym').style.display = which==='antonym'?'block':'none';
+}
+function renderPhonics(){
+  /* ---- 预学词标记 ----
+     音素练习的目的是「练发音」，所以例词允许少量来自后面单元的词（虚线框 + 预学标签），
+     但必须 ≤30%，且本单元词优先。规则：不在本单元词库里的词自动标为「预学」。 */
+  const BANK=new Set(allWordObjs().map(w=>w.word.trim().toLowerCase()));
+  function isPre(w){
+    const s=String(w).toLowerCase().replace(/[.,!?]/g,'').trim();
+    if(BANK.has(s)) return false;                 // 词库以短语整条收录
+    return !s.split(/\s+/).filter(Boolean).every(p=>BANK.has(p)||FUNCWORDS.has(p));
+  }
+  let preTotal=0, allTotal=0;
+  function preWord(w){
+    allTotal++;
+    const pre=isPre(w); if(pre) preTotal++;
+    return `<span data-say-word="${esc(w)}"${pre?' data-pre="1"':''}>${esc(w)}${pre?'<i class="pre-tag">预学</i>':''}</span>`;
+  }
+  function preRatio(){ return allTotal? Math.round(preTotal/allTotal*100):0; }
+  // 元音手掌握图
+  const hand=document.getElementById('phxHand');
+  const ha=DATA.phonics.hand_anchor;
+  const fingerHtml=ha.long.map(f=>
+    `<div class="finger" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+      <div class="fpos">${esc(f.pos)}</div><div class="fipa">${esc(f.ipa)}</div><div class="fsay">${esc(f.say)}</div>
+      <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+    </div>`).join('');
+  const palmHtml=ha.short.map(f=>
+    `<div class="pv" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+      <div class="pipa">${esc(f.ipa)}</div><div class="psay">${esc(f.say)}</div>
+      <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+    </div>`).join('');
+  hand.innerHTML=`<div class="hand-wrap">
+    <div class="hand-palm">
+      <div class="hand-title">${esc(ha.title)}</div>
+      <div class="hand-hint">${esc(ha.hint)}</div>
+      <div class="hand-row">${fingerHtml}</div>
+      <div class="hand-row"><div style="font-size:11px;color:var(--gold);font-weight:700;width:100%;margin-bottom:2px">掌心＝短元音（短促）</div></div>
+      <div class="palm-vowels">${palmHtml}</div>
+      <div class="hand-hint" style="margin-top:10px">👆 <b>每个例词都是独立可点的块</b>，点哪个词就单独读哪个词；点卡片空白处会连读全部例词。</div>
+    </div>
+  </div>`;
+  hand.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  hand.querySelectorAll('.finger,.pv').forEach(c=>c.onclick=()=>speakSeq(c.dataset.words.split(' ')));
+  // 音素卡
+  const cards=document.getElementById('phxCards'); cards.innerHTML='<div class="phx-grid"></div>';
+  const cg=cards.querySelector('.phx-grid');
+  DATA.phonics.sound_cards.forEach(sc=>{
+    const d=document.createElement('div'); d.className='phx-card';
+    d.innerHTML=`<div class="ps">${esc(sc.sound)}</div><div class="pn">${esc(sc.name)}</div>
+      <div class="ptip">${esc(sc.tip)}</div>
+      <div class="phx-words">${sc.words.map(preWord).join('')}</div>
+      ${sc.phrase_en?`<div class="phx-phrase"><span class="pl">🔗 短语连读</span><span class="pe">${esc(sc.phrase_en)}</span>
+        <button class="b-play" data-phrase="${esc(sc.phrase_en)}">🔊 听短语</button>
+        <span class="pc">${esc(sc.phrase_cn||'')}</span></div>`:''}`;
+    cg.appendChild(d);
+  });
+  cards.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  cards.querySelectorAll('[data-phrase]').forEach(b=>b.onclick=e=>{e.stopPropagation();speak(b.dataset.phrase);});
+  cards.querySelectorAll('.phx-card').forEach(c=>c.addEventListener('click',e=>{
+    if(e.target.closest('[data-say-word]')||e.target.closest('button')) return;
+    speakSeq(Array.from(c.querySelectorAll('[data-say-word]')).map(x=>x.dataset.sayWord));
+  }));
+  /* 预学词占比提示：练发音可以带一点外单元新词，但控制在 30% 以内 */
+  const pct=preRatio();
+  const note=document.createElement('div');
+  note.className='phx-tip';
+  note.innerHTML=`📊 本单元拼读例词里 <b>${preTotal}</b> 个是后面单元的词（虚线框「预学」标签），占比 <b>${pct}%</b>。
+    ${pct>30?'<span style="color:var(--red)">⚠️ 超过 30%，需要替换为本单元词。</span>':'✅ 在 30% 以内 —— 这些词<b>只要求你会读出来</b>，不要求现在记住意思。'}`;
+  cards.appendChild(note);
+  /* ---------- 情绪语调（本单元专属维度：教材 U8/U9 语调） ----------
+   浏览器 TTS 无法真正控制语调，这里做两件事：
+   ① 用 SVG 折线把「音高走向」画出来（↗ 上扬/ → 平/ ↘ 下降），让视觉先建立概念
+   ② 用 pitch 参数近似：升调调高 pitch、降调调低 pitch，让学生能听出差别        */
+function pitchSvg(arrow){
+  // 起点(12,44) 终点(228,10)；按箭头决定控制点，画出上扬/平/下降
+  let pts;
+  if(arrow.indexOf('↑')>=0)      pts='12,46 60,40 120,26 180,10 228,4';   // 强升调
+  else if(arrow.indexOf('↗')>=0) pts='12,46 70,40 140,28 228,12';       // 升调
+  else if(arrow.indexOf('↓')>=0) pts='12,12 70,20 140,32 228,44';       // 平后微降
+  else if(arrow.indexOf('↘')>=0) pts='12,12 70,22 140,34 228,46';       // 降调
+  else                            pts='12,29 80,27 150,30 228,28';       // 平调
+  return `<svg class="itn-pitch" viewBox="0 0 240 56" preserveAspectRatio="none">
+    <line class="base" x1="6" y1="28" x2="234" y2="28"></line>
+    <polyline class="path" points="${pts}"></polyline>
+    <circle class="dot" cx="228" cy="${pts.split(' ').pop().split(',')[1]}" r="3.5"></circle>
+  </svg>`;
+}
+function tonePitch(arrow){
+  if(arrow.indexOf('↑')>=0) return 1.5;
+  if(arrow.indexOf('↗')>=0) return 1.25;
+  if(arrow.indexOf('↘')>=0) return 0.72;
+  if(arrow.indexOf('↓')>=0) return 0.85;
+  return 1.0;
+}
+/* ---------- 语调朗读：为什么不能直接调 pitch ----------
+   SpeechSynthesis 的 u.pitch 只是「整句音高缩放」，不改变句内音高走向。
+   所以同一句话设 pitch=1.25（↗）和 pitch=0.72（↘）听起来完全一样 —— 骗不了学生。
+   可行做法：把句子切成 [前半 + 末段] 两段，末段按语调方向给不同音高，
+   这样「句末往上走」还是「句末往下落」在合成音里真的能听出来。
+   仍然要诚实标注：这是电脑合成的近似语调，真语调必须听真人（老师/家长/录音）。 */
+function contourSegs(text, arrow){
+  const s=String(text||'').trim();
+  const toks=s.split(/\s+/).filter(Boolean);
+  if(toks.length<2) return [{t:s, p:tonePitch(arrow)}];
+  const head=toks.slice(0,-1).join(' '), tail=toks[toks.length-1];
+  let end;
+  if(arrow.indexOf('↑')>=0)      end=1.75;   // 强升调：末段明显抬高
+  else if(arrow.indexOf('↗')>=0) end=1.45;   // 升调
+  else if(arrow.indexOf('↘')>=0) end=0.55;   // 降调：末段明显压低
+  else if(arrow.indexOf('↓')>=0) end=0.8;    // 平后微降
+  else                            end=1.0;    // 平调
+  return [{t:head,p:1.0},{t:tail,p:end}];
+}
+function speakTone(text,arrow,rate,onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const segs=contourSegs(text,arrow);
+  let i=0;
+  (function next(){
+    if(i>=segs.length){ if(onDone)onDone(); return; }
+    const s=segs[i++];
+    const u=new SpeechSynthesisUtterance(s.t);
+    const v=getVoice(); if(v)u.voice=v;
+    u.rate=(typeof rateVal==='function'?rateVal():0.9);
+    u.pitch=s.p; u.volume=1; u.lang=(v&&v.lang)||'en-GB';
+    u.onend=()=>setTimeout(next,80);
+    u.onerror=()=>setTimeout(next,80);
+    speechSynthesis.speak(u);
+  })();
+}
+function renderIntonation(){
+  const box=document.getElementById('phxIntonation');
+  const cards=(DATA.phonics.intonation_cards)||[];
+  const pairs =(DATA.phonics.intonation_pairs)||[];
+  if(!cards.length && !pairs.length){ box.innerHTML='<div class="hint">本单元暂无语调卡。</div>'; return; }
+  let html='';
+  if(cards.length){
+    html+=`<div class="phx-tip">🎵 <b>语调 = 句子的情绪体温</b>。同一句话，音调走的方向不同，意思就完全不同：
+<b>↗ 上扬</b>（开心/疑问/惊讶）｜ <b>↘ 下降</b>（难过/肯定/结束）｜ <b>→ 平直</b>（无聊/累/敷衍）。
+折线图告诉你的就是「音高往哪走」。
+<br><br>⚠️ <b>关于「听」的一句实话</b>：电脑合成音<b>做不出真正的语调</b>——它只能把整句话整体调高或调低（像花栗鼠和低音炮），
+<b>走不出「句末往上挑」的旋律线</b>。所以「🔊 音高示意」只是把句末那一段<b>刻意抬高或压低</b>的近似演示，不是真人语调。
+<br>👉 <b>真正能听出语调的，只有你自己的声音。</b>点「🎤 我来念」录一遍，回放对比——那才是真语调。</div>`;
+    html+='<div class="itn-grid"></div>';
+  }
+  box.innerHTML=html;
+  if(cards.length){
+    const cg=box.querySelector('.itn-grid');
+    cards.forEach(ic=>{
+      const d=document.createElement('div'); d.className='itn';
+      d.innerHTML=`<div class="itn-top">
+          <div class="itn-arrow">${esc(ic.arrow)}</div>
+          <div><div class="itn-w">${esc(ic.word)}</div><div class="itn-ipa">${esc(ic.ipa)} · ${esc(ic.cn)}</div></div>
+          <div class="itn-tone">${esc(ic.tone)}</div>
+        </div>
+        ${pitchSvg(ic.arrow)}
+        <div class="itn-sent">${esc(ic.sent)}</div>
+        <div class="itn-sentcn">${esc(ic.sent_cn)}</div>
+        <div class="itn-tip">${esc(ic.tip)}</div>
+        <div class="itn-q">再练一句：<b>${esc(ic.pair.en)}</b> <span style="color:var(--sub)">${esc(ic.pair.cn)}</span></div>
+        <div class="itn-acts">
+          ${ic.audio?'<button class="b-real" data-audio="'+esc(ic.audio)+'">🎧 真人示范</button>':''}
+          <button class="b-play" data-t="${esc(ic.sent)}" data-a="${esc(ic.arrow)}">🔊 音高示意</button>
+          <button class="ghost" data-t="${esc(ic.pair.en)}" data-a="${esc(ic.arrow)}">🔊 再练一句</button>
+          <button class="b-rec" data-rec-t="${esc(ic.sent)}" data-rec-a="${esc(ic.arrow)}">🎤 我来念</button>
+        </div>
+        <div class="rec-slot"></div>`;
+      cg.appendChild(d);
+    });
+    box.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+  // 同句异调：从「听辨」改为「自己念两种，自己比」
+  if(pairs.length){
+    const box2=document.createElement('div');
+    box2.innerHTML=`<div class="phx-tip" style="margin-top:16px">🎤 <b>同句异调 · 自己念、自己比</b>：下面每一组<b>文字完全一样</b>，只有语调不同。
+<b>别指望用合成音听出区别（它听不出来）</b>——正确练法是：<b>照着曲线自己念一遍↗，再自己念一遍↘，录下来回放对比</b>。
+你自己的声音里有真语调，一比就知道差在哪。</div>`;
+    box.appendChild(box2);
+    pairs.forEach((p,i)=>{
+      const d=document.createElement('div'); d.className='itnp';
+      d.innerHTML=`<div class="itnp-vs">
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.left.arrow)} ${esc(p.left.tone)}</div>
+            ${pitchSvg(p.left.arrow)}
+            <div class="en">${esc(p.left.en)}</div><div class="cn">${esc(p.left.cn)}</div>
+            <div class="itn-acts">
+              ${p.left.audio?'<button class="b-real" data-audio="'+esc(p.left.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.left.en)}" data-a="${esc(p.left.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.left.en)}" data-rec-a="${esc(p.left.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+          <div class="itnp-mid">VS</div>
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.right.arrow)} ${esc(p.right.tone)}</div>
+            ${pitchSvg(p.right.arrow)}
+            <div class="en">${esc(p.right.en)}</div><div class="cn">${esc(p.right.cn)}</div>
+            <div class="itn-acts">
+              ${p.right.audio?'<button class="b-real" data-audio="'+esc(p.right.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.right.en)}" data-a="${esc(p.right.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.right.en)}" data-rec-a="${esc(p.right.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+        </div>
+        <div class="itnp-q">Q${i+1}. ${esc(p.ask)}</div>
+        <div class="itnp-a hide" data-a="${esc(p.answer)}">${esc(p.answer)}</div>`;
+      box2.appendChild(d);
+    });
+    box.querySelectorAll('.itnp-a').forEach(x=>x.onclick=()=>x.classList.toggle('hide'));
+    box2.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box2.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box2.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+}
+/* 真人示范音频（老师录制后填 audio 字段即可，没有就只显示合成音） */
+let realAudioEl=null;
+function playAudio(src){
+  try{
+    if(realAudioEl){ realAudioEl.pause(); }
+    realAudioEl=new Audio(src); realAudioEl.play();
+  }catch(e){ speak(src); }
+}
+/* 语调录音：学生自己念 → 回放对比（这才是真语调） */
+function toneRec(btn, text, arrow){
+  const card = btn.closest('.itn') || btn.closest('.itnp-side');
+  const slot = card ? card.querySelector('.rec-slot') : null;
+  if(!slot) return;
+  if(toneRecState.mr){ toneRecState.stop(); return; }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 双击文件打开时无法录音。请用本地服务地址打开本页（见首页说明）。</div>';
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const chunks=[];
+    const mr=new MediaRecorder(stream);
+    mr.ondataavailable=e=>{ if(e.data.size) chunks.push(e.data); };
+    mr.onstop=()=>{
+      const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'});
+      const url=URL.createObjectURL(blob);
+      slot.innerHTML='<audio controls src="'+url+'"></audio>'
+        +'<div class="hint">🎧 上面是<b>你自己的声音</b>——回放听句末是往上还是往下，跟上面的曲线对一下。</div>';
+      stream.getTracks().forEach(t=>t.stop());
+      toneRecState.mr=null; btn.textContent=toneRecState.label;
+    };
+    mr.start();
+    toneRecState.mr=mr; toneRecState.btn=btn; toneRecState.label=btn.textContent;
+    toneRecState.stop=function(){ mr.stop(); };
+    btn.textContent='■ 停止';
+    slot.innerHTML='<div class="hint"><span class="rec-dot"></span> 请念：<b>'+esc(text)+'</b>　'
+      +(arrow.indexOf('↗')>=0||arrow.indexOf('↑')>=0?'（句末<b>往上挑</b>）':(arrow.indexOf('↘')>=0||arrow.indexOf('↓')>=0?'（句末<b>往下落</b>）':'（<b>平平的</b>）'))
+      +'</div>';
+  }).catch(err=>{
+    slot.innerHTML='<div class="hint" style="color:var(--red)">无法录音：'+esc(err.message)+'</div>';
+  });
+}
+let toneRecState={mr:null,btn:null,label:'',stop:function(){}};
+/* ---------- 反义情绪对（本单元专属词，语义对立 + 语调对比） ---------- */
+function renderAntonym(){
+  const box=document.getElementById('phxAntonym');
+  const list=(DATA.phonics.antonym_pairs)||[];
+  if(!list.length){ box.innerHTML='<div class="hint">本单元暂无反义情绪对。</div>'; return; }
+  let html=`<div class="phx-tip">↔️ <b>反义情绪对</b>：两词意思相反，<b>说话时的情绪也相反</b>。
+先各听一次单词，再听整句。<b>注意</b>：这里的句子是<b>平读</b>的——合成音做不出情绪语调，
+真正的情绪语调要靠你自己念（去「🎤 语调」那栏录一遍），或听真人示范。</div>`;
+  list.forEach(p=>{
+    html+=`<div class="apo">
+      <div class="apo-top">
+        <span class="apo-w">${esc(p.a)}</span><span class="apo-vs">↔ 意思相反 →</span><span class="apo-w">${esc(p.b)}</span>
+        <span class="apo-cn">${esc(p.cn_a)} / ${esc(p.cn_b)}</span>
+      </div>
+      <div style="font-size:14px;font-weight:600;line-height:1.6;margin-bottom:7px">${esc(p.sent)}</div>
+      <div class="apo-cn" style="margin-bottom:8px">${esc(p.sent_cn)}</div>
+      <div class="itn-acts">
+        <button class="b-play" data-w2="${esc(p.a)}">🔊 ${esc(p.a)}</button>
+        <button class="b-play" data-w2="${esc(p.b)}">🔊 ${esc(p.b)}</button>
+        <button class="b-play" data-t2="${esc(p.sent)}">🔊 听整句</button>
+      </div>
+    </div>`;
+  });
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w2]').forEach(b=>b.onclick=()=>speak(b.dataset.w2));
+  box.querySelectorAll('[data-t2]').forEach(b=>b.onclick=()=>speak(b.dataset.t2));
+}
+  // 最小对立对
+  const pairs=document.getElementById('phxPairs'); pairs.innerHTML='';
+  DATA.phonics.min_pairs.forEach(mp=>{
+    const d=document.createElement('div'); d.className='pair';
+    d.innerHTML=`<div class="pt">
+        <div class="pc"><div class="pw">${esc(mp.a)}</div><div class="pi">${esc(mp.a_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.a)}">🔊 ${esc(mp.a)}</button></div></div>
+        <div class="pc"><div class="pw">${esc(mp.b)}</div><div class="pi">${esc(mp.b_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.b)}">🔊 ${esc(mp.b)}</button></div></div>
+      </div>
+      <div class="ptip">${esc(mp.tip)}</div>
+      <div class="pair-acts">
+        <button class="b-ok" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">✅ 我能区分</button>
+        <button class="b-bad" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">❌ 我还混</button>
+      </div>`;
+    pairs.appendChild(d);
+  });
+  pairs.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.dataset.text));
+  pairs.querySelectorAll('.b-ok').forEach(b=>b.onclick=()=>flash('👍 已标记：能区分'));
+  pairs.querySelectorAll('.b-bad').forEach(b=>b.onclick=()=>{ addError({word:b.dataset.a+' / '+b.dataset.b,type:'拼读',original:'最小对立对',standard:b.dataset.a+' '+b.dataset.b,student:'未区分'}); flash('🩹 已记入错题'); });
+  // 听音选词（运行时生成）
+  const lis=document.getElementById('phxListen');
+  lis.innerHTML=`<div class="player"><div class="now">🎧 听音选词</div>
+    <div class="nowcn">听发音，从 4 个选项里选出你听到的词。答错自动入错题本。</div>
+    <div id="phxListenBox"></div></div>`;
+  phxListenNext();
+  /* 语调 / 反义情绪对两个视图的内容在这里渲染（否则 div 是空的，用户切过去一片空白） */
+  renderIntonation();
+  renderAntonym();
+}
+function phxListenNext(){
+  const box=document.getElementById('phxListenBox'); if(!box) return;
+  const words=allWordObjs();
+  const correct=words[Math.floor(Math.random()*words.length)];
+  const distract=shuffle(words.filter(w=>w.word!==correct.word)).slice(0,3);
+  const opts=shuffle([correct,...distract]);
+  box.innerHTML=`<div class="ctr"><button id="phxPlay" class="b-play">▶ 播放发音</button></div>
+    <div class="q-opts">${opts.map((o,i)=>`<button class="q-opt" data-word="${esc(o.word)}">${esc(o.word)}</button>`).join('')}</div>
+    <div class="q-fb" id="phxFb"></div>
+    <div class="ctr"><button id="phxNext" class="ghost">⏭ 下一题</button></div>`;
+  let answered=false;
+  document.getElementById('phxPlay').onclick=()=>speak(correct.word);
+  setTimeout(()=>speak(correct.word),300);
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    if(b.dataset.word===correct.word){ b.classList.add('ok'); document.getElementById('phxFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('phxFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：'+esc(correct.word)+'</span>';
+      addError({word:correct.word,type:'拼读',original:'听音选词',standard:correct.word,student:b.dataset.word});
+      box.querySelectorAll('.q-opt').forEach(bb=>{ if(bb.dataset.word===correct.word) bb.classList.add('ok'); }); }
+    document.getElementById('phxNext').onclick=phxListenNext;
+  });
+}
+
+/* ---------- 小测 ---------- */
+let quizQueue=[], quizIdx=0, quizScore=0, quizTotal=0, quizDone=false;
+function cnOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.defB)).slice(0,3);
+  return shuffle([{label:w.defB,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function enOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.word)).slice(0,3);
+  return shuffle([{label:w.word,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function buildQuiz(){
+  const words=shuffle(allWordObjs());
+  quizQueue=[];
+  words.forEach(w=>{
+    const r=Math.random();
+    if(r<0.30){ const opts=cnOpts(w); quizQueue.push({kind:'listen',word:w.word,cn:w.defB,opts}); }
+    else if(r<0.60){ const opts=cnOpts(w); quizQueue.push({kind:'en2cn',word:w.word,cn:w.defB,opts}); }
+    else { const opts=enOpts(w); quizQueue.push({kind:'cn2en',word:w.word,cn:w.defB,opts}); }
+  });
+  quizIdx=0; quizScore=0; quizTotal=quizQueue.length; quizDone=false; renderQuiz();
+}
+function renderQuiz(){
+  const box=document.getElementById('quizBox');
+  if(quizDone){ box.innerHTML=`<div class="player"><div class="now">🎉 本轮完成！</div>
+    <div class="nowcn">答对 ${quizScore} / ${quizTotal}。答错的已自动记入「🩹 错题」，去错题本重练。</div>
+    <div class="ctr"><button id="quizAgain">🔁 再来一轮</button></div></div>`;
+    document.getElementById('quizAgain').onclick=buildQuiz; return; }
+  const q=quizQueue[quizIdx];
+  /* 三种题面都把「英文」做成可点发音块：
+     listen — 不直接露词，只有播放钮
+     en2cn — 题干英文可点（听音不影响作答，帮助记发音）
+     cn2en — 选完后英文选项立刻变成可点发音块；作答前点选项＝选择，不发音 */
+  let promptHtml='';
+  if(q.kind==='listen') promptHtml=`<div class="quiz-prompt">🔊 听发音，选出中文意思
+      <button class="b-play" id="qPlay">▶ 播放</button>
+      <button class="ghost" id="qPeek">👀 看单词</button></div>`;
+  else if(q.kind==='en2cn') promptHtml=`<div class="quiz-prompt">${sayChip(q.word,'big')}
+      <span class="tag">点单词听发音</span><div style="color:var(--sub);font-size:13px">选出中文意思</div></div>`;
+  else promptHtml=`<div class="quiz-prompt"><span class="big">「${esc(q.cn)}」</span>
+      <div style="color:var(--sub);font-size:13px">对应的英文是？<span class="tag">选完后点选项可再听发音</span></div></div>`;
+  let opts='';
+  q.opts.forEach((o,i)=>{ opts+=`<button class="q-opt" data-i="${i}">${esc(o.label)}</button>`; });
+  box.innerHTML=`<div class="player"><div class="now">📝 小测 ${quizIdx+1}/${quizTotal}</div>${promptHtml}
+    <div class="q-prog"><div class="bar"><i style="width:${Math.round(quizIdx/quizTotal*100)}%"></i></div></div>
+    <div class="q-opts">${opts}</div><div class="q-fb" id="qFb"></div>
+    <div class="ctr"><button id="qNext" class="ghost">⏭ 下一题</button></div></div>`;
+  if(q.kind==='listen'){
+    document.getElementById('qPlay').onclick=()=>speak(q.word);
+    document.getElementById('qPeek').onclick=()=>{ speak(q.word); flash('🔊 单词是：'+q.word); };
+    setTimeout(()=>speak(q.word),250);
+  }
+  if(q.kind==='en2cn') setTimeout(()=>speak(q.word),250);   // 题干可点，也可自动听一次
+  /* 作答后：把正确英文自动读一遍 + 给所有英文选项装上发音块（连排多次，强化记忆） */
+  function afterAnswer(){
+    const fb=document.getElementById('qFb');
+    const tail=' <span style="font-weight:600;color:var(--sub)">点单词再听：</span>';
+    if(q.kind==='cn2en') fb.innerHTML += tail+sayChip(q.word)+' '+sayChip(q.word);
+    else fb.innerHTML += tail+sayChip(q.word);
+    box.querySelectorAll('.q-opt').forEach((bb,j)=>{
+      const lab=q.opts[j].label;
+      if(/^[A-Za-z' -]+$/.test(lab)){ bb.setAttribute('data-say',lab); bb.insertAdjacentHTML('beforeend','<span style="font-size:11px;color:var(--gold)"> 🔊</span>'); }
+    });
+    setTimeout(()=>speak(q.word), 260);
+  }
+  let answered=false;
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    suppressSay=true;                       // 本次点击只算作答，不触发词块发音
+    setTimeout(()=>{ suppressSay=false; },0);
+    const o=q.opts[+b.dataset.i];
+    if(o.ok){ quizScore++; b.classList.add('ok'); document.getElementById('qFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('qFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：</span>'+sayChip(q.word);
+      addError({word:q.word,type:'小测',original:'小测题',standard:q.word,student:o.label});
+      box.querySelectorAll('.q-opt').forEach((bb,j)=>{ if(q.opts[j].ok) bb.classList.add('ok'); }); }
+    afterAnswer();
+    document.getElementById('qNext').onclick=()=>{ quizIdx++; if(quizIdx>=quizTotal){quizDone=true;} renderQuiz(); };
+  });
+}
+
+/* ---------- 错题池 ---------- */
+function renderErrors(){
+  const box=document.getElementById('errList');
+  if(!errors.length){ box.innerHTML='<div class="hint">还没有错题。小测答错、或在词卡/复习点「❌ 记一笔」会自动收集到这里，按类型聚合，方便专项重练。</div>'; return; }
+  const byType={};
+  errors.forEach((e,i)=>{ (byType[e.type]=byType[e.type]||[]).push({...e,idx:i}); });
+  const labels={词汇:'📘 词汇没记住',拼读:'🅰️ 拼读没区分',小测:'📝 小测答错'};
+  let html='';
+  for(const t in byType){
+    html+=`<div class="err-type">${labels[t]||t}（${byType[t].length}）</div>`;
+    byType[t].forEach(e=>{
+      html+=`<div class="err-item"><div class="err-meta"><b>${esc(e.word)}</b> · ${new Date(e.time).toLocaleDateString()} ${new Date(e.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</div>
+        <div class="err-line">标准：<span style="color:var(--green)">${esc(e.standard)}</span></div>
+        ${e.student&&e.student!==e.standard?`<div class="err-line">你的：<span style="color:var(--red)">${esc(e.student)}</span></div>`:''}
+        <div class="err-btns"><button class="morebtn" data-w="${esc(e.word)}">🔁 重练</button><button class="err-del" data-i="${e.idx}">🗑 删除</button></div></div>`;
+    });
+  }
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>goReviewWord(b.dataset.w));
+  box.querySelectorAll('.err-del').forEach(b=>b.onclick=()=>{ errors.splice(+b.dataset.i,1); saveErrors(); renderErrors(); updateProgress(); });
+}
+
+/* ---------- 本单元语法：跳到语法练习的具体知识点 ---------- */
+const GRAM_PAGE = "../语法练习_A1-A2-B1-B2.html";
+const GRAM_KEY  = "a1_gram_done_v1";
+function loadGram(){ try{return JSON.parse(localStorage.getItem(GRAM_KEY))||{}}catch(e){return{}} }
+function saveGram(g){ localStorage.setItem(GRAM_KEY, JSON.stringify(g)); }
+/* 只记一笔「点过」，真正的跳转交给 <a href target=_blank> —— 避免 window.open 与新标签重复开两次 */
+function markGrammar(pid){
+  var g=loadGram();
+  var u=DATA.unit;
+  g[u]=g[u]||[]; if(g[u].indexOf(pid)<0){ g[u].push(pid); saveGram(g); }
+  setTimeout(renderGrammar,60);
+}
+function renderGrammar(){
+  var list=(DATA.grammar||[]), box=document.getElementById('gramList'), head=document.getElementById('gramHead');
+  var all=document.getElementById('gramAll');
+  if(all) all.href=GRAM_PAGE;
+  if(!head||!box) return;
+  var done=(loadGram()[DATA.unit]||[]);
+  head.innerHTML='Unit '+DATA.unit+' 学 <b>'+list.length+' 个语法点</b>。'
+    + '跟读是「听进来」，语法是「写出来」—— 本单元的句子会用到这些点，'
+    + '点一下就跳到语法练习里对应的那一关（已完成 '+done.length+' / '+list.length+'）。';
+  if(!list.length){
+    box.innerHTML='<div class="hint">本单元还没配语法点。</div>'; return;
+  }
+  box.innerHTML=list.map(function(it,i){
+    var ok=done.indexOf(it.pid)>=0;
+    return '<div class="gcard">'
+      + '<div class="gi">'+(ok?'✅':'✍️')+'</div>'
+      + '<div class="gname">'+esc(it.name)+'</div>'
+      + '<div class="gdesc">'+esc(it.desc||'')+'<br><span style="opacity:.6">pid: '+esc(it.pid)+'</span></div>'
+      + (ok?'<div class="gdone">已练过</div>':'')
+      + '<a class="ggo" href="'+GRAM_PAGE+'?p='+encodeURIComponent(it.pid)+'&u='+DATA.unit+'"'
+      +   ' target="_blank" rel="noopener" onclick="markGrammar(\'' + it.pid + '\')">去练这一点 →</a>'
+      + '</div>';
+  }).join('');
+}
+
+/* ---------- 单元文章（例句同源：A1＋A2 词的例句都出自本文） ---------- */
+/* ---------- 单元文章：把本单元生词织进一个语境 ---------- */
+function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
+function artHL(text){
+  const fs = DATA.artForms || [];
+  const out = esc(text);
+  if(!fs.length) return out;
+  try{
+    const re = new RegExp('(?<![a-zA-Z])(' + fs.map(f=>f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|') + ')(?![a-zA-Z])','gi');
+    return out.replace(re,'<span class="art-hl">$1</span>');
+  }catch(e){ return out; }
+}
+function renderArticle(){
+  const a=DATA.article;
+  const body=document.getElementById('artBody');
+  const banner=document.getElementById('artBanner');
+  if(!a || !a.paras || !a.paras.length){
+    banner.style.display='none';
+    body.innerHTML='<div class="hint">本单元暂无文章。</div>';
+    return;
+  }
+  const total=a.paras.reduce((s,p)=>s+p.length,0);
+  const hlEl=document.getElementById('tgArtHL');
+  const hl=!hlEl || hlEl.dataset.hide!=='1';
+  let nArt=0, nAll=0;
+  (DATA.groups||[]).forEach(g=>g.words.forEach(w=>{ nAll++; if(w.inArt) nArt++; }));
+  banner.style.display='block';
+  banner.innerHTML='📰 <b>'+esc(a.title)+'</b> · <span style="font-weight:700;font-size:12px">'+total+' 句</span> · <span style="font-size:12px">本单元 '+nArt+'/'+nAll+' 个生词织进这篇短文，金色高亮</span>';
+  body.innerHTML='';
+  let gi=0;
+  const all=[];
+  a.paras.forEach(para=>{
+    const pd=document.createElement('div'); pd.className='art-para';
+    para.forEach(s=>{
+      gi++; all.push(s[0]);
+      const d=document.createElement('div'); d.className='art-sent';
+      d.innerHTML='<span class="art-idx">'+gi+'</span>'
+        +'<span class="art-en" data-text="'+escAttr(s[0])+'">'+(hl?artHL(s[0]):esc(s[0]))+'</span>'
+        +'<button class="b-play" data-text="'+escAttr(s[0])+'">🔊</button>'
+        +'<button class="b-turn-rec" data-text="'+escAttr(s[0])+'">🎤</button>'
+        +'<div class="turn-rec"></div>'
+        +'<div class="art-zh cnArt">'+esc(s[1]||'')+'</div>';
+      pd.appendChild(d);
+    });
+    body.appendChild(pd);
+  });
+  body.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  body.querySelectorAll('.art-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  body.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.art-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const pa=document.getElementById('artPlayAll');
+  if(pa) pa.onclick=()=>{ speakSeq(all, 600); };
+}
+
+
+/* ---------- tab 切换 ---------- */
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.tab).classList.add('on');
+    if(b.dataset.tab==='shadow') initShadow();
+    if(b.dataset.tab==='codex') renderCodex();
+    if(b.dataset.tab==='review') renderReview();
+    if(b.dataset.tab==='phonics') renderPhonics();
+    if(b.dataset.tab==='quiz') buildQuiz();
+    if(b.dataset.tab==='errors') renderErrors();
+    if(b.dataset.tab==='reading') renderReading();
+    if(b.dataset.tab==='grammar') renderGrammar();
+    if(b.dataset.tab==='article') renderArticle();
+  };
+});
+document.querySelectorAll('.subtab').forEach(b=>b.onclick=()=>switchSub(b.dataset.sh));
+document.querySelectorAll('[data-phx]').forEach(b=>b.onclick=()=>switchPhx(b.dataset.phx));
+document.querySelectorAll('[data-rd]').forEach(b=>b.onclick=()=>switchRd(b.dataset.rd));
+(function(){
+  const r=(DATA.reading||[]).length, l=(DATA.listening||[]).length;
+  const rb=document.querySelector('[data-rd="read"]'), lb=document.querySelector('[data-rd="listen"]');
+  if(rb) rb.innerHTML='📖 阅读 '+r+' 篇';
+  if(lb){ if(!l){ lb.style.display='none'; } else lb.innerHTML='🎧 听力 '+l+' 篇'; }
+})();
+document.getElementById('tgCnLearn').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnLearn').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgHideCn').onclick=function(){
+  const hide=this.dataset.hide!=='1'; this.dataset.hide=hide?'1':'';
+  this.textContent=hide?'👁 显示中文':'🙈 隐藏中文'; renderReview();
+};
+document.getElementById('tgCnArt').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnArt').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgArtHL').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  renderArticle();
+};
+document.getElementById('rate').oninput=function(){ document.getElementById('rateVal').textContent=this.value+'×'; };
+document.getElementById('voiceSel').onchange=function(){ voice=getVoice(); };
+
+/* ---------- 初始化 ---------- */
+document.getElementById('subtitle').textContent='Unit '+DATA.unit+' · '+DATA.title+' — '+DATA.subtitle;
+document.getElementById('beastName').textContent=(DATA.beast_emoji||'🐾')+' '+(DATA.beast_name||'英语跟读')+'（Unit '+DATA.unit+' '+DATA.title+'）';
+document.getElementById('beastDesc').textContent=DATA.subtitle;
+buildQueue(); renderDialogues();
+renderLearn(); renderReview(); updateProgress(); renderCodex();
+</script>
+</body>
+</html>

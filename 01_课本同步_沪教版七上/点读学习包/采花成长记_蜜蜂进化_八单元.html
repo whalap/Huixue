@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>采花成长记 · 蜜蜂进化（沪教版 2024 广州新版 七上）</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { height:100%; overflow:hidden; font-family:'PingFang SC','Microsoft YaHei',Arial,sans-serif; }
+  #app { height:100%; display:flex; flex-direction:column; }
+  header { background:rgba(255,255,255,0.95); padding:6px 12px 9px; box-shadow:0 2px 10px rgba(0,0,0,0.12); z-index:20; }
+  .title { font-size:15px; font-weight:700; color:#2E8B57; display:flex; align-items:center; gap:8px; }
+  .title small { font-size:10.5px; color:#888; font-weight:400; }
+  .row { display:flex; align-items:center; gap:6px; margin-top:6px; flex-wrap:wrap; }
+  .row label { font-size:12px; color:#666; white-space:nowrap; }
+  .unit-nav { display:flex; align-items:center; gap:2px; background:#E8F5E9; border-radius:999px; padding:1px 6px; }
+  .unit-nav button { background:none; border:none; font-size:17px; color:#2E8B57; cursor:pointer; min-width:36px; min-height:36px; line-height:1; }
+  .unit-nav .u-name { font-weight:700; color:#2E8B57; font-size:13px; max-width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .beast-btn { border:1.5px solid #F0C75E; background:#FFF8E1; color:#B8860B; border-radius:999px; padding:4px 12px;
+               font-size:12.5px; cursor:pointer; min-height:34px; display:inline-flex; align-items:center; gap:4px; }
+  .op-btn { border:none; border-radius:999px; padding:7px 16px; font-size:13.5px; font-weight:700; cursor:pointer; min-height:38px; }
+  #startBtn { background:linear-gradient(135deg,#FFB347,#FF8C42); color:#fff; }
+  #startBtn:disabled { opacity:0.55; }
+  #pauseBtn { background:#EEE; color:#555; display:none; }
+  #pauseBtn.on { background:#FFD54F; color:#7A5200; }
+  #stopBtn { background:#EEE; color:#555; display:none; }
+  #replayBtn { background:#E8F5E9; color:#2E8B57; }
+  .home-btn { border:1.5px solid #B8DCC0; background:#fff; color:#2E8B57; border-radius:999px; padding:4px 12px;
+              font-size:12.5px; font-weight:700; cursor:pointer; min-height:34px; display:inline-flex; align-items:center;
+              gap:4px; text-decoration:none; }
+  .home-btn:hover { background:#2E8B57; color:#fff; border-color:#2E8B57; }
+  #status { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:6px;
+            background:#F1F8F1; border:1px solid #D7E8D7; border-radius:12px; padding:6px 10px; }
+  #status .anim { font-size:26px; line-height:1; }
+  #status .lv { font-size:13px; font-weight:700; color:#2E8B57; }
+  #status .zh { font-size:15px; font-weight:800; color:#B8860B; background:#FFF8E1; border-radius:8px; padding:2px 10px; }
+  #status .bar { flex:1; min-width:120px; height:10px; background:#E4E3DD; border-radius:999px; overflow:hidden; }
+  #status .bar i { display:block; height:100%; background:linear-gradient(90deg,#7ED957,#2E8B57); border-radius:999px; transition:width .3s; }
+  #status .p { font-size:12px; color:#666; white-space:nowrap; }
+  select { border:1.5px solid #C9A7E8; background:#fff; color:#5B3A8E; border-radius:999px; padding:5px 10px; font-size:12.5px; min-height:34px; max-width:200px; }
+  .voice-row { display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:6px; }
+  #voiceHint { font-size:11px; color:#999; flex:1; min-width:170px; line-height:1.5; }
+  #stage { flex:1; position:relative; overflow:hidden; touch-action:none; background:linear-gradient(#8ED6FF 0%, #C9F0FF 30%, #E8FFD9 72%, #7EC850 100%); cursor:default; }
+  #animal { position:absolute; z-index:6; transform:translate(0,0); text-align:center; user-select:none; pointer-events:none; transition:none; }
+  #animal .emo { line-height:1; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.25)); animation:beepulse 2.4s ease-in-out infinite; }
+  @keyframes beepulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.09);} }
+  #animal .bub { position:absolute; left:50%; bottom:100%; transform:translateX(-50%); background:rgba(255,255,255,0.95);
+                 border:2px solid #F0C75E; color:#B8860B; font-weight:800; font-size:16px; border-radius:999px;
+                 padding:2px 12px; white-space:nowrap; box-shadow:0 3px 8px rgba(0,0,0,0.15); margin-bottom:4px; }
+  #animal .nm { font-size:11px; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.6); font-weight:700; margin-top:2px; }
+  .flower { position:absolute; z-index:5; transform:translate(-50%,-50%); text-align:center; user-select:none;
+            cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .flower .petal { width:74px; height:74px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+                   border:2.5px solid rgba(255,255,255,0.8); box-shadow:0 4px 12px rgba(0,0,0,0.18),
+                   inset 0 -6px 12px rgba(0,0,0,0.12), inset 0 6px 10px rgba(255,255,255,0.5); }
+  .flower .petal span { font-weight:800; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.4); font-size:14px; white-space:nowrap; padding:0 6px; }
+  .flower .tag { font-size:10px; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,0.5); margin-top:2px; }
+  .picked { animation:pick .3s forwards; }
+  @keyframes pick { 0%{transform:translate(-50%,-50%) scale(1);opacity:1;} 100%{transform:translate(-50%,-50%) scale(1.9);opacity:0;} }
+  #hud { position:absolute; top:8px; left:8px; right:8px; display:flex; justify-content:space-between; z-index:10; pointer-events:none; }
+  .pill { background:rgba(255,255,255,0.92); border-radius:999px; padding:4px 12px; font-size:13.5px; font-weight:700; color:#333; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+  .pill b { color:#FF8C42; }
+  #float { position:absolute; top:22%; left:50%; transform:translateX(-50%); font-size:22px; font-weight:800; z-index:9;
+           color:#fff; text-shadow:0 2px 6px rgba(0,0,0,0.5); pointer-events:none; text-align:center; }
+  #float.good { color:#52E06E; }
+  #float.bad { color:#FF6B6B; }
+  .foot { position:absolute; bottom:4px; left:0; right:0; text-align:center; font-size:10.5px; color:rgba(255,255,255,0.8); z-index:8; pointer-events:none; text-shadow:0 1px 2px rgba(0,0,0,0.4); }
+  #overlay { position:absolute; inset:0; background:rgba(20,25,45,0.6); display:flex; align-items:center; justify-content:center; z-index:30; }
+  #overlay.hide { display:none; }
+  .panel { background:#fff; border-radius:20px; padding:20px 22px; width:min(92vw,440px); max-height:88vh; overflow:auto;
+           text-align:center; box-shadow:0 10px 40px rgba(0,0,0,0.3); }
+  .panel h2 { color:#2E8B57; font-size:20px; margin-bottom:4px; }
+  .panel .sub { color:#888; font-size:12.5px; margin-bottom:12px; }
+  .big-emo { font-size:64px; line-height:1.2; }
+  .big-score { font-size:44px; font-weight:900; color:#FF8C42; line-height:1; }
+  .btn { border:none; border-radius:999px; padding:10px 24px; font-size:15px; font-weight:700; cursor:pointer; margin:4px 6px; }
+  .btn.primary { background:linear-gradient(135deg,#FFB347,#FF8C42); color:#fff; }
+  .btn.ghost2 { background:#eee; color:#555; }
+  .beast-grid { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px; }
+  .beast-cell { width:76px; border:1px solid #E4E3DD; border-radius:12px; padding:8px 4px; text-align:center; background:#FAFAF7; }
+  .beast-cell.off { opacity:0.38; filter:grayscale(1); }
+  .beast-cell .be { font-size:30px; line-height:1.2; }
+  .beast-cell .bn { font-size:11px; color:#666; margin-top:2px; }
+  .rank-list { text-align:left; margin-top:12px; }
+  .rank-item { display:flex; align-items:center; gap:8px; padding:6px 8px; border-bottom:1px dashed #eee; font-size:13px; }
+  .rank-item .sc { margin-left:auto; font-weight:800; color:#FF8C42; }
+  .rank-item .meta { color:#999; font-size:11px; }
+  .empty { color:#bbb; font-size:13px; padding:14px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="title">🐝 采花成长记 <small>蜜蜂采花 · 每单元五级进化 · 收集神兽（沪教版 2024 广州新版 七上）</small></div>
+    <div class="row">
+      <label>单元</label>
+      <div class="unit-nav">
+        <button id="prevU" type="button">◀</button>
+        <span class="u-name" id="uName">Unit 1 Friendship</span>
+        <button id="nextU" type="button">▶</button>
+      </div>
+      <button class="beast-btn" id="beastBtn" type="button">🐉 神兽图鉴 <b id="beastCount">0/8</b></button>
+      <button id="startBtn" class="op-btn" type="button">▶ 开始采花</button>
+      <button id="pauseBtn" class="op-btn" type="button">⏸ 暂停</button>
+      <button id="stopBtn" class="op-btn" type="button">⏹ 停止</button>
+      <button id="replayBtn" class="op-btn" type="button">🔊 再听</button>
+      <a class="home-btn" href="../../index.html">🏠 返回首页</a>
+    </div>
+    <div id="status">
+      <span class="anim" id="animEmo">🐝</span>
+      <span class="lv" id="lvName">蜜蜂</span>
+      <span class="zh" id="zhTarget">—</span>
+      <span class="p" id="progTxt">0/8</span>
+      <span class="bar"><i id="progBar" style="width:0%"></i></span>
+      <span class="p">得分 <b id="score" style="color:#FF8C42;">0</b></span>
+    </div>
+    <div class="voice-row">
+      <label>发音</label>
+      <select id="ttsEngine">
+        <option value="sys">系统语音（本机音色）</option>
+        <option value="online">在线发音（云端 AI，需联网）</option>
+      </select>
+      <select id="ttsVoice"></select>
+      <select id="ttsOnline"><option value="1">英音</option><option value="2">美音</option></select>
+      <span id="voiceHint">蜜蜂停在左上角，吃到正确单词会慢慢变大；<b>点击</b>下方与蜜蜂头顶中文意思对应的那朵花即可采蜜，点错会扣分。</span>
+    </div>
+  </header>
+  <div id="stage">
+    <div id="hud"><div class="pill">🌸 <b id="fCount">0</b> 朵花</div></div>
+    <div id="animal">
+      <div class="bub" id="animalZh">—</div>
+      <div class="emo" id="animalEmo">🐝</div>
+      <div class="nm" id="animalNm">蜜蜂</div>
+    </div>
+    <div id="float"></div>
+    <div class="foot">本游戏为教师整理的配套学习工具，不代表上海教育出版社出品或授权 · 发音：系统语音 / 在线发音（需联网）可选</div>
+    <div id="overlay" class="hide"><div class="panel" id="panel"></div></div>
+  </div>
+</div>
+<script>
+var BALLDATA = {"1":{"en":"友谊","words":[{"w":"guitar","ipa":"/ɡɪˈtɑː(r)/","pos":"n.","zh":"吉他"},{"w":"honest","ipa":"/ˈɒnɪst/","pos":"adj.","zh":"诚实的"},{"w":"patient","ipa":"/ˈpeɪʃnt/","pos":"adj.","zh":"有耐心的"},{"w":"improve","ipa":"/ɪmˈpruːv/","pos":"v.","zh":"改进；改善"},{"w":"confident","ipa":"/ˈkɒnfɪdənt/","pos":"adj.","zh":"自信的"},{"w":"courage","ipa":"/ˈkʌrɪdʒ/","pos":"n.","zh":"勇气；胆量"},{"w":"friendship","ipa":"/ˈfrendʃɪp/","pos":"n.","zh":"友谊"},{"w":"admiration","ipa":"/ˌædməˈreɪʃn/","pos":"n.","zh":"钦佩；赞赏"},{"w":"respect","ipa":"/rɪˈspekt/","pos":"n.","zh":"尊敬；尊重"},{"w":"support","ipa":"/səˈpɔːt/","pos":"n.","zh":"支持；鼓励"},{"w":"trust","ipa":"/trʌst/","pos":"n.","zh":"信任；信赖"},{"w":"survey","ipa":"/ˈsɜːveɪ/","pos":"n.","zh":"调查"},{"w":"personal","ipa":"/ˈpɜːsənl/","pos":"adj.","zh":"个人的"},{"w":"quality","ipa":"/ˈkwɒləti/","pos":"n.","zh":"品质；品德"},{"w":"caring","ipa":"/ˈkeərɪŋ/","pos":"adj.","zh":"关心他人的"},{"w":"describe","ipa":"/dɪˈskraɪb/","pos":"v.","zh":"描述；形容"},{"w":"appearance","ipa":"/əˈpɪərəns/","pos":"n.","zh":"外貌"},{"w":"straight","ipa":"/streɪt/","pos":"adj.","zh":"直的"},{"w":"dark","ipa":"/dɑːk/","pos":"adj.","zh":"褐色的；乌黑的"},{"w":"same","ipa":"/seɪm/","pos":"adj.","zh":"同一的；相同的"},{"w":"basic","ipa":"/ˈbeɪsɪk/","pos":"adj.","zh":"基本的"},{"w":"thought","ipa":"/θɔːt/","pos":"n.","zh":"想法"},{"w":"however","ipa":"/haʊˈevə(r)/","pos":"adv.","zh":"然而；不过"},{"w":"glad","ipa":"/ɡlæd/","pos":"adj.","zh":"高兴的"},{"w":"rise","ipa":"/raɪz/","pos":"v.","zh":"上升"},{"w":"end","ipa":"/end/","pos":"n.","zh":"结局"},{"w":"heart","ipa":"/hɑːt/","pos":"n.","zh":"心"},{"w":"friendly","ipa":"/ˈfrendli/","pos":"adj.","zh":"友好的"},{"w":"hard-working","ipa":"/ˌhɑːdˈwɜːkɪŋ/","pos":"adj.","zh":"勤奋的"},{"w":"helpful","ipa":"/ˈhelpfl/","pos":"adj.","zh":"乐于助人的"},{"w":"kind","ipa":"/kaɪnd/","pos":"adj.","zh":"善良的"},{"w":"polite","ipa":"/pəˈlaɪt/","pos":"adj.","zh":"有礼貌的"},{"w":"funny","ipa":"/ˈfʌni/","pos":"adj.","zh":"有趣的"},{"w":"supportive","ipa":"/səˈpɔːtɪv/","pos":"adj.","zh":"给予支持的"},{"w":"tall","ipa":"/tɔːl/","pos":"adj.","zh":"高的"},{"w":"short","ipa":"/ʃɔːt/","pos":"adj.","zh":"矮的；短的"},{"w":"curly","ipa":"/ˈkɜːli/","pos":"adj.","zh":"卷曲的"},{"w":"medium","ipa":"/ˈmiːdiəm/","pos":"adj.","zh":"中等的"},{"w":"hobby","ipa":"/ˈhɒbi/","pos":"n.","zh":"爱好"},{"w":"modern","ipa":"/ˈmɒdn/","pos":"adj.","zh":"现代的"},{"w":"dance","ipa":"/dɑːns/","pos":"v.","zh":"跳舞"},{"w":"swim","ipa":"/swɪm/","pos":"v.","zh":"游泳"},{"w":"paint","ipa":"/peɪnt/","pos":"v.","zh":"绘画"},{"w":"player","ipa":"/ˈpleɪə(r)/","pos":"n.","zh":"运动员；选手"},{"w":"singer","ipa":"/ˈsɪŋə(r)/","pos":"n.","zh":"歌手"}],"phrs":[{"p":"be good at","zh":"擅长……"},{"p":"turn to somebody for help","zh":"求助于某人"},{"p":"after school","zh":"放学后"},{"p":"be willing to do something","zh":"愿意做某事"},{"p":"thanks to","zh":"幸亏；由于；因为"},{"p":"count on","zh":"依靠（某人做某事）"},{"p":"medium height","zh":"中等身高"},{"p":"modern dance","zh":"现代舞"},{"p":"take care of","zh":"照顾；照料"},{"p":"watch over","zh":"照管；监督"},{"p":"rise into","zh":"上升到"},{"p":"cry out","zh":"大叫；叫喊"},{"p":"cry oneself to sleep","zh":"哭着入睡"},{"p":"wake up","zh":"醒；醒来"},{"p":"come and go","zh":"来去"},{"p":"take somebody's place","zh":"替代某人"},{"p":"come along","zh":"出现"}],"passage":["I love my new school! I have made a lot of new friends there. Li Hua is one of them.","Li Hua is helpful and patient. He is also good at maths.","When I meet difficult maths problems, I turn to him for help.","When something interesting happens to me, I share my happiness with him.","When one of us feels sad, we tell the other one and this makes us feel better.","We really like doing things together.","Li Hua loves playing ping-pong with me after school.","\"It\\'s fun to play with a good player like you,\" he says.","With his help, my maths has improved a lot.","I am also more confident now, and I have the courage to try new things.","My parents also tell me that I am more open and willing to help than before.","I think this is all thanks to Li Hua.","Close friends can really help us in our lives!","My friendship with Li Hua teaches me that friends count on each other for love, admiration, respect and support.","Friendships are not only about having fun, but also about love, honesty, understanding and trust."],"sentences":["I love my new school! I have made a lot of new friends there. Li Hua is one of them.","Li Hua is helpful and patient. He is also good at maths.","When I meet difficult maths problems, I turn to him for help.","When something interesting happens to me, I share my happiness with him.","When one of us feels sad, we tell the other one and this makes us feel better.","We really like doing things together.","Li Hua loves playing ping-pong with me after school.","\"It\\'s fun to play with a good player like you,\" he says.","With his help, my maths has improved a lot.","I am also more confident now, and I have the courage to try new things.","My parents also tell me that I am more open and willing to help than before.","I think this is all thanks to Li Hua.","Close friends can really help us in our lives!","My friendship with Li Hua teaches me that friends count on each other for love, admiration, respect and support.","Friendships are not only about having fun, but also about love, honesty, understanding and trust.","Tom plays the guitar after dinner.","Jerry is honest and tells the truth.","Our teacher is patient with us.","Lily wants to improve her English.","Ben feels confident today.","Ada had the courage to try again.","Friendship is important to David.","Tom looked at the photo with admiration.","We respect our teachers.","My family gives me a lot of support.","Good friends trust each other.","We did a survey in class today.","This is my personal notebook.","Honesty is a good quality.","Eva is a caring friend.","Can you describe your room?","I like her nice appearance.","Jerry has short straight hair.","Ben wears a dark blue coat.","Lily and I go to the same school.","Let's learn the basic words first.","That's an interesting thought.","It is cold; however, we still go out.","I am glad to see you.","The sun rises in the east.","The film has a happy end.","She speaks from the heart.","Our neighbours are very friendly.","David is a hard-working student.","Tom is helpful at home.","That's very kind of you.","Please be polite to others.","Jerry told a funny story.","My parents are very supportive.","Ben is tall and strong.","Ada is shorter than Lily.","Eva has curly hair.","He is of medium height.","Reading is my hobby.","The library has a modern look.","Lily likes to dance with her friends.","We swim in the pool on Sundays.","David can paint very well.","Tom is a good football player.","Ada wants to be a singer.","Jerry is good at drawing.","When I am lost, I turn to Tom for help.","We play basketball after school.","Lily is willing to help me.","Thanks to Ben, we found the way.","You can count on David.","My brother is of medium height.","Eva takes a modern dance class.","Jerry helps take care of his sister.","A cat watches over its babies.","Smoke rose into the sky.","Tom cried out when he saw the dog.","The tired child cried herself to sleep.","I wake up at six every day.","Cars come and go on this road.","David took Tom's place in the game.","A good idea came along at last."]},"2":{"en":"校园生活","words":[{"w":"geography","ipa":"/dʒɪˈɒɡrəfi/","pos":"n.","zh":"地理（学）"},{"w":"corner","ipa":"/ˈkɔːnə(r)/","pos":"n.","zh":"角；墙角"},{"w":"activity","ipa":"/ækˈtɪvəti/","pos":"n.","zh":"活动"},{"w":"club","ipa":"/klʌb/","pos":"n.","zh":"社团"},{"w":"practise","ipa":"/ˈpræktɪs/","pos":"v.","zh":"练习；训练"},{"w":"solve","ipa":"/sɒlv/","pos":"v.","zh":"解答"},{"w":"develop","ipa":"/dɪˈveləp/","pos":"v.","zh":"加强；增强"},{"w":"skill","ipa":"/skɪl/","pos":"n.","zh":"技术；技能"},{"w":"teen","ipa":"/tiːn/","pos":"adj.","zh":"青少年的"},{"w":"magazine","ipa":"/ˌmæɡəˈziːn/","pos":"n.","zh":"杂志"},{"w":"teenager","ipa":"/ˈtiːneɪdʒə(r)/","pos":"n.","zh":"青少年"},{"w":"greeting","ipa":"/ˈɡriːtɪŋ/","pos":"n.","zh":"问候；招呼"},{"w":"grade","ipa":"/ɡreɪd/","pos":"n.","zh":"年级"},{"w":"energy","ipa":"/ˈenədʒi/","pos":"n.","zh":"精力；活力"},{"w":"drama","ipa":"/ˈdrɑːmə/","pos":"n.","zh":"戏；剧"},{"w":"sincerely","ipa":"/sɪnˈsɪəli/","pos":"adv.","zh":"真诚地；诚实地"},{"w":"diary","ipa":"/ˈdaɪəri/","pos":"n.","zh":"日记；日记簿"},{"w":"project","ipa":"/ˈprɒdʒekt/","pos":"n.","zh":"课题"},{"w":"poster","ipa":"/ˈpəʊstə(r)/","pos":"n.","zh":"海报"},{"w":"realize","ipa":"/ˈriːəlaɪz/","pos":"v.","zh":"意识到"},{"w":"luckily","ipa":"/ˈlʌkɪli/","pos":"adv.","zh":"幸运地；幸好"},{"w":"just","ipa":"/dʒʌst/","pos":"adv.","zh":"恰好"},{"w":"presentation","ipa":"/ˌprezənˈteɪʃn/","pos":"n.","zh":"演示"},{"w":"mood","ipa":"/muːd/","pos":"n.","zh":"情绪；心情"},{"w":"mind","ipa":"/maɪnd/","pos":"v.","zh":"介意"},{"w":"pack","ipa":"/pæk/","pos":"v.","zh":"（把……）打包"},{"w":"celebrate","ipa":"/ˈselɪbreɪt/","pos":"v.","zh":"庆祝；庆贺"},{"w":"success","ipa":"/səkˈses/","pos":"n.","zh":"成功"},{"w":"rocky","ipa":"/ˈrɒki/","pos":"adj.","zh":"困难的"},{"w":"start","ipa":"/stɑːt/","pos":"v.","zh":"开始"},{"w":"subject","ipa":"/ˈsʌbdʒɪkt/","pos":"n.","zh":"科目；学科"},{"w":"break","ipa":"/breɪk/","pos":"n.","zh":"休息"},{"w":"exercise","ipa":"/ˈeksəsaɪz/","pos":"n.","zh":"锻炼；运动"},{"w":"canteen","ipa":"/kænˈtiːn/","pos":"n.","zh":"食堂"},{"w":"choose","ipa":"/tʃuːz/","pos":"v.","zh":"选择"},{"w":"read","ipa":"/riːd/","pos":"v.","zh":"阅读"},{"w":"plan","ipa":"/plæn/","pos":"v.","zh":"计划"},{"w":"match","ipa":"/mætʃ/","pos":"n.","zh":"比赛"},{"w":"member","ipa":"/ˈmembə(r)/","pos":"n.","zh":"成员"},{"w":"exciting","ipa":"/ɪkˈsaɪtɪŋ/","pos":"adj.","zh":"令人兴奋的"},{"w":"junior","ipa":"/ˈdʒuːniə(r)/","pos":"adj.","zh":"初级的"},{"w":"ocean","ipa":"/ˈəʊʃn/","pos":"n.","zh":"海洋"},{"w":"homework","ipa":"/ˈhəʊmwɜːk/","pos":"n.","zh":"家庭作业"},{"w":"student","ipa":"/ˈstjuːdnt/","pos":"n.","zh":"学生"},{"w":"food","ipa":"/fuːd/","pos":"n.","zh":"食物"},{"w":"interesting","ipa":"/ˈɪntrəstɪŋ/","pos":"adj.","zh":"有趣的"},{"w":"ground","ipa":"/ɡraʊnd/","pos":"n.","zh":"场地"}],"phrs":[{"p":"take part in","zh":"参与；参加"},{"p":"look forward to","zh":"期待；盼望"},{"p":"get up","zh":"起床"},{"p":"go to bed","zh":"上床睡觉"},{"p":"go to school on foot","zh":"步行上学"},{"p":"do one's homework","zh":"做作业"},{"p":"play a ball game","zh":"打球"},{"p":"do some morning exercise","zh":"做早操"},{"p":"have a good time","zh":"玩得开心"},{"p":"after-school activities","zh":"课后活动"},{"p":"junior high school","zh":"初中"},{"p":"sports ground","zh":"运动场"},{"p":"book corner","zh":"图书角"},{"p":"have a lunch break","zh":"午休"},{"p":"eat out","zh":"外出就餐"},{"p":"get to school","zh":"到校"},{"p":"in time","zh":"及时"}],"passage":["My name is Li Hua. I started junior high school this September.","I have a lot to say about my time there!","Classes start at 8:00 a.m. I have seven classes each day, four in the morning and three in the afternoon.","Geography is a new subject in junior high. The teacher sometimes teaches us by playing games.","It\\'s a great way to learn.","Morning break starts at 9:40 a.m., and I run to the sports ground.","I often do some morning exercise or play a ball game with my friends.","The break ends at 10:10 a.m. How short it is!","We have a lunch break from 12:00 p.m. to 2:00 p.m. We go to the canteen for lunch.","There are different foods I can choose from. I really enjoy eating there!","After that, I usually go to the book corner in the classroom.","I can always find something interesting to read.","Classes end at 4:25 p.m., and many students take part in after-school activities.","I go to the Ping-pong Club with my friend Chen Ming.","We plan to take part in the school ping-pong game next month.","We look forward to it and will practise very hard.","It\\'s exciting to be a junior high student.","I have a good time at school, and I enjoy every minute of it."],"sentences":["My name is Li Hua. I started junior high school this September.","I have a lot to say about my time there!","Classes start at 8:00 a.m. I have seven classes each day, four in the morning and three in the afternoon.","Geography is a new subject in junior high. The teacher sometimes teaches us by playing games.","It\\'s a great way to learn.","Morning break starts at 9:40 a.m., and I run to the sports ground.","I often do some morning exercise or play a ball game with my friends.","The break ends at 10:10 a.m. How short it is!","We have a lunch break from 12:00 p.m. to 2:00 p.m. We go to the canteen for lunch.","There are different foods I can choose from. I really enjoy eating there!","After that, I usually go to the book corner in the classroom.","I can always find something interesting to read.","Classes end at 4:25 p.m., and many students take part in after-school activities.","I go to the Ping-pong Club with my friend Chen Ming.","We plan to take part in the school ping-pong game next month.","We look forward to it and will practise very hard.","It\\'s exciting to be a junior high student.","I have a good time at school, and I enjoy every minute of it.","We have geography on Tuesday.","Let's have a break now.","The bell rings at eight.","My favourite subject is art.","We do many activities in class.","Look at the timetable on the wall.","I joined the reading club.","Our school uniform is blue.","The library is open after school.","I write new words in my notebook.","This dictionary is very useful.","The exam is next Monday.","This term we have a new teacher.","She is in Grade Seven.","He is a junior high student.","My sister is a senior high student.","We talk with friends at breaktime.","Today's topic is animals.","It is a fact that fish can swim.","Read the instructions carefully.","We are doing a science project.","They did some research on plants.","We watched an interesting experiment.","Ben gave a short report.","Let's discuss the question.","Please read the next paragraph.","We learn new vocabulary every day.","Grammar is not too hard.","Listen and check your pronunciation.","Our timetable changes every term.","I eat a snack at breaktime.","We have lunch in the dining hall.","The gym is next to the library.","Children run on the playground.","The headteacher knows every student.","My classmates are very nice.","I finish my homework before dinner.","Open your textbook to page ten.","I need a ruler for this line.","Do you have a rubber?","My pencil case is red.","My schoolbag is heavy today.","We play badminton after class.","They like playing volleyball.","David and Ben play chess at lunch.","Our drama club meets on Friday.","We had a debate in class.","We do morning exercises at school.","I go to school on foot.","We clean the room after class.","Lily will take part in the race.","Please pay attention to the teacher.","You made great progress this term.","Tom gets on well with his classmate.","We can learn from each other.","Please hand in your homework.","Let's go over the new words.","At the moment, I am reading.","Write down the new words.","You can look up the word in a dictionary.","We put up our pictures on the wall.","It is good to take notes in class.","Everyone can join in the game.","We get ready for the trip."]},"3":{"en":"四季","words":[{"w":"footprint","ipa":"/ˈfʊtprɪnt/","pos":"n.","zh":"脚印；足迹"},{"w":"wet","ipa":"/wet/","pos":"adj.","zh":"潮湿的"},{"w":"deep","ipa":"/diːp/","pos":"adj.","zh":"深的"},{"w":"sandy","ipa":"/ˈsændi/","pos":"adj.","zh":"铺满沙子的；含沙的"},{"w":"kick","ipa":"/kɪk/","pos":"v.","zh":"踢；踹"},{"w":"town","ipa":"/taʊn/","pos":"n.","zh":"镇；市镇"},{"w":"feature","ipa":"/ˈfiːtʃə(r)/","pos":"n.","zh":"特色；特征"},{"w":"south","ipa":"/saʊθ/","pos":"n.","zh":"南；南方"},{"w":"clear","ipa":"/klɪə(r)/","pos":"adj.","zh":"晴朗的"},{"w":"loudly","ipa":"/ˈlaʊdli/","pos":"adv.","zh":"喧闹地；响亮地"},{"w":"thunder","ipa":"/ˈθʌndə(r)/","pos":"n.","zh":"雷"},{"w":"lightning","ipa":"/ˈlaɪtnɪŋ/","pos":"n.","zh":"闪电"},{"w":"fresh","ipa":"/freʃ/","pos":"adj.","zh":"新鲜的"},{"w":"gather","ipa":"/ˈɡæðə(r)/","pos":"v.","zh":"采集（植物、水果等）"},{"w":"peaceful","ipa":"/ˈpiːsfl/","pos":"adj.","zh":"安静的；平静的"},{"w":"snake","ipa":"/sneɪk/","pos":"n.","zh":"蛇"},{"w":"through","ipa":"/θruː/","pos":"prep.","zh":"自始至终；从头到尾"},{"w":"part","ipa":"/pɑːt/","pos":"n.","zh":"区域；地区"},{"w":"article","ipa":"/ˈɑːtɪkl/","pos":"n.","zh":"文章"},{"w":"reason","ipa":"/ˈriːzn/","pos":"n.","zh":"原因；理由"},{"w":"alive","ipa":"/əˈlaɪv/","pos":"adj.","zh":"有生气；有活力"},{"w":"sandcastle","ipa":"/ˈsændkɑːsl/","pos":"n.","zh":"沙堡"},{"w":"follow","ipa":"/ˈfɒləʊ/","pos":"v.","zh":"按……方式发展"},{"w":"divide","ipa":"/dɪˈvaɪd/","pos":"v.","zh":"（使）分开"},{"w":"decide","ipa":"/dɪˈsaɪd/","pos":"v.","zh":"对……作出抉择；决定"},{"w":"crop","ipa":"/krɒp/","pos":"n.","zh":"庄稼；作物"},{"w":"culture","ipa":"/ˈkʌltʃə(r)/","pos":"n.","zh":"文化；文明"},{"w":"local","ipa":"/ˈləʊkl/","pos":"adj.","zh":"地方的；当地的"},{"w":"tradition","ipa":"/trəˈdɪʃn/","pos":"n.","zh":"传统"},{"w":"continue","ipa":"/kənˈtɪnjuː/","pos":"v.","zh":"持续；继续存在"},{"w":"weather","ipa":"/ˈweðə(r)/","pos":"n.","zh":"天气"},{"w":"snowy","ipa":"/ˈsnəʊi/","pos":"adj.","zh":"下雪的"},{"w":"rainy","ipa":"/ˈreɪni/","pos":"adj.","zh":"多雨的"},{"w":"cloudy","ipa":"/ˈklaʊdi/","pos":"adj.","zh":"多云的"},{"w":"windy","ipa":"/ˈwɪndi/","pos":"adj.","zh":"有风的"},{"w":"temperature","ipa":"/ˈtemprətʃə(r)/","pos":"n.","zh":"温度"},{"w":"beach","ipa":"/biːtʃ/","pos":"n.","zh":"海滩"},{"w":"countryside","ipa":"/ˈkʌntrisaɪd/","pos":"n.","zh":"乡村；农村"},{"w":"swimming","ipa":"/ˈswɪmɪŋ/","pos":"n.","zh":"游泳"},{"w":"skiing","ipa":"/ˈskiːɪŋ/","pos":"n.","zh":"滑雪"},{"w":"harvest","ipa":"/ˈhɑːvɪst/","pos":"n.","zh":"收获"},{"w":"leaves","ipa":"/liːvz/","pos":"n.","zh":"树叶（leaf 的复数）"},{"w":"squirrel","ipa":"/ˈskwɪrəl/","pos":"n.","zh":"松鼠"},{"w":"cicada","ipa":"/sɪˈkɑːdə/","pos":"n.","zh":"蝉"},{"w":"farmer","ipa":"/ˈfɑːmə(r)/","pos":"n.","zh":"农民"},{"w":"outdoors","ipa":"/ˌaʊtˈdɔːz/","pos":"adv.","zh":"在户外"},{"w":"outing","ipa":"/ˈaʊtɪŋ/","pos":"n.","zh":"远足；郊游"},{"w":"ice cream","ipa":"/ˌaɪs ˈkriːm/","pos":"n.","zh":"冰淇淋"}],"phrs":[{"p":"have picnics","zh":"野餐"},{"p":"take a trip","zh":"去旅行"},{"p":"work one's land","zh":"耕种土地"},{"p":"solar term","zh":"节气"},{"p":"in fact","zh":"事实上"},{"p":"be divided into","zh":"被划分成……"},{"p":"be based on","zh":"基于……"},{"p":"play an important part in","zh":"在……上发挥重要作用"},{"p":"wake up","zh":"醒来；唤醒"},{"p":"come back","zh":"回来"},{"p":"go to the beach","zh":"去海滩"},{"p":"swim in the sea","zh":"在海里游泳"},{"p":"eat ice cream","zh":"吃冰淇淋"},{"p":"play in the snow","zh":"玩雪"},{"p":"go on a family outing","zh":"家庭出游"},{"p":"outdoor activities","zh":"户外活动"},{"p":"in the countryside","zh":"在乡村"}],"passage":["There are four seasons in a year, and each season has its special features.","Life begins again in spring. The snow melts, and nature wakes up after the long winter.","Warm rain falls on the forests and fields.","Plants start to grow, and birds come back from the south.","Farmers begin to work their land.","It is a time of new life and new hope.","It is exciting to take a trip in the countryside in springtime.","Summer is bright and noisy. The weather is hot.","The sun shines brightly in the clear, blue sky.","Cicadas sing loudly. There is often thunder and lightning in the afternoon.","Many people like to go to the beach and swim in the sea.","It is nice to eat ice cream or fresh fruit in summer.","Autumn is beautiful and full of colour. The weather is cool and dry.","In autumn, everything changes. Leaves turn brown, red or yellow and start falling from the trees.","Squirrels gather food for the cold winter.","Farmers are busy with the harvest.","It is great to go on a family outing at this time of year.","Winter is peaceful and fun. It is cold and snowy in many places.","Bears and snakes find warm places to sleep through the winter.","Children love winter because they love to play in the snow."],"sentences":["There are four seasons in a year, and each season has its special features.","Life begins again in spring. The snow melts, and nature wakes up after the long winter.","Warm rain falls on the forests and fields.","Plants start to grow, and birds come back from the south.","Farmers begin to work their land.","It is a time of new life and new hope.","It is exciting to take a trip in the countryside in springtime.","Summer is bright and noisy. The weather is hot.","The sun shines brightly in the clear, blue sky.","Cicadas sing loudly. There is often thunder and lightning in the afternoon.","Many people like to go to the beach and swim in the sea.","It is nice to eat ice cream or fresh fruit in summer.","Autumn is beautiful and full of colour. The weather is cool and dry.","In autumn, everything changes. Leaves turn brown, red or yellow and start falling from the trees.","Squirrels gather food for the cold winter.","Farmers are busy with the harvest.","It is great to go on a family outing at this time of year.","Winter is peaceful and fun. It is cold and snowy in many places.","Bears and snakes find warm places to sleep through the winter.","Children love winter because they love to play in the snow.","We saw a footprint in the snow.","There are four seasons in a year.","Flowers come out in spring.","It is hot in summer.","The leaves fall in autumn.","We make snowmen in winter.","The weather is nice today.","The temperature is low today.","It is ten degrees outside.","It is a sunny day.","It is cloudy and grey.","It is too windy to fly a kite.","It is rainy in the afternoon.","The road is snowy and wet.","The storm passed quickly.","We heard the thunder far away.","Lightning lit up the sky.","Take an umbrella with you.","She put on her raincoat.","This sweater keeps me warm.","He wears a red scarf.","My gloves are in my pocket.","We sit in the shade of a tree.","The tree has a long shadow.","Water freezes at zero degrees.","The snow begins to melt.","The sun shines brightly today.","The wind blows the leaves away.","It pours with rain outside.","The forecast says it will be sunny.","Let's have a picnic in the park.","The cat sleeps in the sunshine.","We saw a rainbow after the rain.","It is foggy in the morning.","The air is humid today.","A cool breeze feels nice.","There will be a shower this evening.","There is frost on the grass.","Hail hit the car roof.","We feel warmth from the fire.","The heat in summer is strong.","A chill is in the autumn air.","Snow covers the branch.","The kids jump in the puddle.","We watch the sunrise together.","The sunset is beautiful today.","The sea is calm in the morning.","My socks are wet.","We go hiking in spring.","At the moment it is raining.","The trees turn green in April.","The flowers come out in May.","The air cools down at night.","The room warms up quickly.","Put on your coat; it is cold.","Take off your shoes indoors.","We stay in when it rains.","Let's go out for a walk.","The sky clears up after lunch.","The wet road dries up soon.","The rain turns into snow.","It looks like a rainy day.","We wait for the rain to stop.","The dog runs after a bird.","We get together in autumn."]},"4":{"en":"地球","words":[{"w":"amazing","ipa":"/əˈmeɪzɪŋ/","pos":"adj.","zh":"令人大为惊奇的"},{"w":"planet","ipa":"/ˈplænɪt/","pos":"n.","zh":"行星"},{"w":"area","ipa":"/ˈeəriə/","pos":"n.","zh":"地区；区域"},{"w":"equator","ipa":"/ɪˈkweɪtə(r)/","pos":"n.","zh":"赤道"},{"w":"freezing","ipa":"/ˈfriːzɪŋ/","pos":"adj.","zh":"极冷的"},{"w":"pole","ipa":"/pəʊl/","pos":"n.","zh":"（行星的）极；地极"},{"w":"field","ipa":"/fiːld/","pos":"n.","zh":"田野；田地"},{"w":"mountain","ipa":"/ˈmaʊntən/","pos":"n.","zh":"山；高山"},{"w":"forest","ipa":"/ˈfɒrɪst/","pos":"n.","zh":"森林"},{"w":"desert","ipa":"/ˈdezət/","pos":"n.","zh":"沙漠；荒漠"},{"w":"sea","ipa":"/siː/","pos":"n.","zh":"海；海洋"},{"w":"level","ipa":"/ˈlevl/","pos":"n.","zh":"水平；高度"},{"w":"deep","ipa":"/diːp/","pos":"adj.","zh":"深的"},{"w":"plant","ipa":"/plɑːnt/","pos":"n.","zh":"植物"},{"w":"reach","ipa":"/riːtʃ/","pos":"v.","zh":"达到；到达"},{"w":"height","ipa":"/haɪt/","pos":"n.","zh":"高度"},{"w":"grain","ipa":"/ɡreɪn/","pos":"n.","zh":"谷粒"},{"w":"whale","ipa":"/weɪl/","pos":"n.","zh":"鲸"},{"w":"butterfly","ipa":"/ˈbʌtəflaɪ/","pos":"n.","zh":"蝴蝶"},{"w":"seahorse","ipa":"/ˈsiːhɔːs/","pos":"n.","zh":"海马"},{"w":"provide","ipa":"/prəˈvaɪd/","pos":"v.","zh":"提供；供应"},{"w":"energy","ipa":"/ˈenədʒi/","pos":"n.","zh":"能量；能源"},{"w":"support","ipa":"/səˈpɔːt/","pos":"v.","zh":"支撑；供养"},{"w":"explore","ipa":"/ɪkˈsplɔː(r)/","pos":"v.","zh":"探索；探究"},{"w":"pollution","ipa":"/pəˈluːʃn/","pos":"n.","zh":"污染"},{"w":"protect","ipa":"/prəˈtekt/","pos":"v.","zh":"保护"},{"w":"plastic","ipa":"/ˈplæstɪk/","pos":"n.","zh":"塑料"},{"w":"harmful","ipa":"/ˈhɑːmfl/","pos":"adj.","zh":"有害的"},{"w":"disappear","ipa":"/ˌdɪsəˈpɪə(r)/","pos":"v.","zh":"消失；不见"},{"w":"ocean","ipa":"/ˈəʊʃn/","pos":"n.","zh":"海洋"},{"w":"system","ipa":"/ˈsɪstəm/","pos":"n.","zh":"系统"},{"w":"file","ipa":"/faɪl/","pos":"n.","zh":"档案"},{"w":"cover","ipa":"/ˈkʌvə(r)/","pos":"v.","zh":"覆盖"},{"w":"surface","ipa":"/ˈsɜːfɪs/","pos":"n.","zh":"表面；表层"},{"w":"burn","ipa":"/bɜːn/","pos":"v.","zh":"燃烧；烧"},{"w":"chemical","ipa":"/ˈkemɪkl/","pos":"n.","zh":"化学制品"},{"w":"gas","ipa":"/ɡæs/","pos":"n.","zh":"天然气"},{"w":"oil","ipa":"/ɔɪl/","pos":"n.","zh":"石油；原油"},{"w":"pollute","ipa":"/pəˈluːt/","pos":"v.","zh":"污染"},{"w":"rubbish","ipa":"/ˈrʌbɪʃ/","pos":"n.","zh":"垃圾"},{"w":"recycle","ipa":"/ˌriːˈsaɪkl/","pos":"v.","zh":"回收利用"},{"w":"environment","ipa":"/ɪnˈvaɪrənmənt/","pos":"n.","zh":"环境"},{"w":"nature","ipa":"/ˈneɪtʃə(r)/","pos":"n.","zh":"大自然"},{"w":"danger","ipa":"/ˈdeɪndʒə(r)/","pos":"n.","zh":"危险"},{"w":"living","ipa":"/ˈlɪvɪŋ/","pos":"adj.","zh":"活着的"},{"w":"life","ipa":"/laɪf/","pos":"n.","zh":"生命"},{"w":"land","ipa":"/lænd/","pos":"n.","zh":"陆地；土地"},{"w":"sky","ipa":"/skaɪ/","pos":"n.","zh":"天空"}],"phrs":[{"p":"the solar system","zh":"太阳系"},{"p":"the North Pole","zh":"北极"},{"p":"the South Pole","zh":"南极"},{"p":"sea level","zh":"海平面"},{"p":"be covered by","zh":"被……覆盖"},{"p":"more than","zh":"超过；多于"},{"p":"as far as we know","zh":"据我们所知"},{"p":"as small as","zh":"和……一样小"},{"p":"be home to","zh":"是……的家园"},{"p":"provide ... with ...","zh":"为……提供……"},{"p":"and what's more","zh":"而且；更重要的是"},{"p":"such as","zh":"例如"},{"p":"plastic pollution","zh":"塑料污染"},{"p":"in danger","zh":"处于危险中"},{"p":"cut down","zh":"砍倒"},{"p":"take care of","zh":"照顾；照料"},{"p":"in the air","zh":"在空气中"}],"passage":["The Earth is an amazing planet!","Some places are very hot, like the areas near the equator.","Some are freezing cold, like the North and South Poles.","There are fields and mountains, rivers and seas, forests and deserts.","The highest mountain on Earth is over 8,800 metres above sea level.","And the deepest part of the sea is more than 10,000 metres down.","The plants on Earth are wonderful in many different ways.","The tallest trees in the world can reach over 100 metres in height.","The smallest plant is as small as a grain of rice.","The Earth is home to millions of animals.","Some, like tigers and lions, live on land.","Other animals, like birds, enjoy the wide open sky.","Big blue whales call the sea home, along with many amazing fish.","From bears to birds, from butterflies to seahorses, animals make our planet lovely and interesting.","And what\\'s more, the Earth provides us with all the things we need, such as food, water, air and energy.","It is our home and the only planet we know that supports life.","Let\\'s explore, learn about and take care of our home."],"sentences":["The Earth is an amazing planet!","Some places are very hot, like the areas near the equator.","Some are freezing cold, like the North and South Poles.","There are fields and mountains, rivers and seas, forests and deserts.","The highest mountain on Earth is over 8,800 metres above sea level.","And the deepest part of the sea is more than 10,000 metres down.","The plants on Earth are wonderful in many different ways.","The tallest trees in the world can reach over 100 metres in height.","The smallest plant is as small as a grain of rice.","The Earth is home to millions of animals.","Some, like tigers and lions, live on land.","Other animals, like birds, enjoy the wide open sky.","Big blue whales call the sea home, along with many amazing fish.","From bears to birds, from butterflies to seahorses, animals make our planet lovely and interesting.","And what\\'s more, the Earth provides us with all the things we need, such as food, water, air and energy.","It is our home and the only planet we know that supports life.","Let\\'s explore, learn about and take care of our home.","The view from the hill is amazing.","Earth is our home planet.","We live on the earth.","The sun gives us light.","The moon is bright tonight.","We count the stars at night.","Birds fly in the sky.","The ocean is very deep.","A river runs through the town.","We climbed the mountain.","Many animals live in the forest.","A camel walks in the desert.","The valley is green and quiet.","They live on a small island.","We walk along the beach.","The stone is heavy and grey.","We sat on a big rock.","The sand is hot today.","Ice covers the surface.","We should protect nature.","The environment is very important.","Water is a useful resource.","The sun gives us energy.","We must protect the animals.","Factories pollute the river.","We recycle paper and plastic.","Please put the rubbish in the bin.","We use less plastic now.","Let's save water every day.","We hope for a clean future.","Most of the land is green.","Cows are in the field.","This table is made of wood.","We burn coal for heat.","Oil comes from under the ground.","We use gas to cook.","This ring is made of metal.","The glass bottle is empty.","Her dress is made of cotton.","This sweater is made of wool.","Pots are made from clay.","The path is full of mud.","Bears sleep in a cave.","Ducks swim in the pond.","A stream runs by the house.","We row a boat on the lake.","Waves roll onto the beach.","Fish hide near the reef.","We look after the garden.","Pick up the rubbish, please.","Do not throw away old paper.","Turn off the light when you leave.","Turn on the tap to wash your hands.","We care about our planet.","Make sure the window is closed.","We ran out of clean water.","Plastic takes years to break down.","We should not cut down trees.","Trees give out fresh air.","Please take away your bag.","Do not use up all the water.","They set up a bird house.","The path is easy to get lost on.","We must take action now.","Small things make a difference."]},"5":{"en":"遨游太空","words":[{"w":"spaceship","ipa":"/ˈspeɪsʃɪp/","pos":"n.","zh":"宇宙飞船"},{"w":"space","ipa":"/speɪs/","pos":"n.","zh":"太空"},{"w":"spacesuit","ipa":"/ˈspeɪssuːt/","pos":"n.","zh":"航天服；宇航服"},{"w":"travel","ipa":"/ˈtrævl/","pos":"v.","zh":"旅行；行进"},{"w":"leave","ipa":"/liːv/","pos":"v.","zh":"离开；出发"},{"w":"kilometre","ipa":"/ˈkɪləmiːtə(r)/","pos":"n.","zh":"千米；公里"},{"w":"gravity","ipa":"/ˈɡrævəti/","pos":"n.","zh":"重力；引力"},{"w":"weak","ipa":"/wiːk/","pos":"adj.","zh":"弱的；无力的"},{"w":"float","ipa":"/fləʊt/","pos":"v.","zh":"漂浮；浮动"},{"w":"sleep","ipa":"/sliːp/","pos":"v.","zh":"睡觉"},{"w":"tie","ipa":"/taɪ/","pos":"v.","zh":"（用线、绳等）拴"},{"w":"away","ipa":"/əˈweɪ/","pos":"adv.","zh":"离开；不在"},{"w":"body","ipa":"/ˈbɒdi/","pos":"n.","zh":"身体"},{"w":"exercise","ipa":"/ˈeksəsaɪz/","pos":"n.","zh":"锻炼；运动"},{"w":"arrive","ipa":"/əˈraɪv/","pos":"v.","zh":"到达"},{"w":"weigh","ipa":"/weɪ/","pos":"v.","zh":"有……重；重"},{"w":"jump","ipa":"/dʒʌmp/","pos":"v.","zh":"跳；跳跃"},{"w":"wear","ipa":"/weə(r)/","pos":"v.","zh":"穿；戴"},{"w":"breathe","ipa":"/briːð/","pos":"v.","zh":"呼吸"},{"w":"sound","ipa":"/saʊnd/","pos":"n.","zh":"声音"},{"w":"strange","ipa":"/streɪndʒ/","pos":"adj.","zh":"奇怪的；陌生的"},{"w":"mysterious","ipa":"/mɪˈstɪəriəs/","pos":"adj.","zh":"神秘的"},{"w":"photo","ipa":"/ˈfəʊtəʊ/","pos":"n.","zh":"照片"},{"w":"wonderful","ipa":"/ˈwʌndəfl/","pos":"adj.","zh":"精彩的；绝妙的"},{"w":"future","ipa":"/ˈfjuːtʃə(r)/","pos":"n.","zh":"未来；将来"},{"w":"plan","ipa":"/plæn/","pos":"n.","zh":"计划"},{"w":"trip","ipa":"/trɪp/","pos":"n.","zh":"旅行"},{"w":"astronaut","ipa":"/ˈæstrənɔːt/","pos":"n.","zh":"宇航员"},{"w":"mission","ipa":"/ˈmɪʃn/","pos":"n.","zh":"任务；使命"},{"w":"land","ipa":"/lænd/","pos":"v.","zh":"着陆；降落"},{"w":"orbit","ipa":"/ˈɔːbɪt/","pos":"n.","zh":"轨道"},{"w":"satellite","ipa":"/ˈsætəlaɪt/","pos":"n.","zh":"卫星"},{"w":"rocket","ipa":"/ˈrɒkɪt/","pos":"n.","zh":"火箭"},{"w":"lander","ipa":"/ˈlændə/","pos":"n.","zh":"着陆器"},{"w":"universe","ipa":"/ˈjuːnɪvɜːs/","pos":"n.","zh":"宇宙"},{"w":"kilogram","ipa":"/ˈkɪləɡræm/","pos":"n.","zh":"千克；公斤"},{"w":"pass","ipa":"/pɑːs/","pos":"v.","zh":"沿某方向前进"},{"w":"low","ipa":"/ləʊ/","pos":"adj.","zh":"低于通常的"},{"w":"weightless","ipa":"/ˈweɪtləs/","pos":"adj.","zh":"失重的"},{"w":"dream","ipa":"/driːm/","pos":"n.","zh":"梦想"},{"w":"test","ipa":"/test/","pos":"n.","zh":"试验；测试"},{"w":"station","ipa":"/ˈsteɪʃn/","pos":"n.","zh":"站；台"},{"w":"view","ipa":"/vjuː/","pos":"n.","zh":"景色；视野"},{"w":"surface","ipa":"/ˈsɜːfɪs/","pos":"n.","zh":"表面；表层"},{"w":"rock","ipa":"/rɒk/","pos":"n.","zh":"岩石"},{"w":"star","ipa":"/stɑː(r)/","pos":"n.","zh":"恒星；星星"},{"w":"journey","ipa":"/ˈdʒɜːni/","pos":"n.","zh":"旅程；旅行"},{"w":"return","ipa":"/rɪˈtɜːn/","pos":"v.","zh":"返回；回来"}],"phrs":[{"p":"space station","zh":"空间站"},{"p":"get into orbit","zh":"进入轨道"},{"p":"travel into space","zh":"进入太空旅行"},{"p":"one of the first students","zh":"首批学生之一"},{"p":"can't wait","zh":"迫不及待"},{"p":"in space","zh":"在太空"},{"p":"sleeping bag","zh":"睡袋"},{"p":"float away","zh":"飘走"},{"p":"do exercise","zh":"做锻炼"},{"p":"walk on the Moon","zh":"在月球上行走"},{"p":"wear a spacesuit","zh":"穿航天服"},{"p":"take photos","zh":"拍照"},{"p":"as many as","zh":"尽可能多的"},{"p":"look forward to","zh":"期待"},{"p":"in the future","zh":"在未来"},{"p":"travel back to","zh":"返回……"},{"p":"a wonderful trip","zh":"一次精彩的旅行"}],"passage":["I\\'m so happy! Tomorrow I\\'ll be one of the first students to travel into space.","The spaceship will leave the Earth at 9:00 a.m.","It\\'ll take us to the Moon. I can\\'t wait!","The Moon is around 380,000 kilometres from the Earth, so it\\'ll take us about three days to get there.","The gravity in space is very weak, so we\\'ll all be floating around in the spaceship.","And we won\\'t sleep in beds—we\\'ll sleep in sleeping bags.","We need to tie the sleeping bag to the wall so that we won\\'t float away in our sleep!","Because of the low gravity, our bodies may get weak, so we\\'ll have to do exercise every day.","When we arrive, I\\'m going to walk on the Moon.","The Moon has much weaker gravity than the Earth.","A person weighs much less on the Moon, so we can jump very high.","I\\'ll have to wear a spacesuit to help me breathe because there\\'s no air on the Moon.","That also means there is no sound there.","We can only hear the sounds inside our spacesuits.","The Moon is a strange and mysterious place.","I\\'m going to take as many photos as I can.","I\\'m sure that it\\'ll be a wonderful trip!"],"sentences":["I\\'m so happy! Tomorrow I\\'ll be one of the first students to travel into space.","The spaceship will leave the Earth at 9:00 a.m.","It\\'ll take us to the Moon. I can\\'t wait!","The Moon is around 380,000 kilometres from the Earth, so it\\'ll take us about three days to get there.","The gravity in space is very weak, so we\\'ll all be floating around in the spaceship.","And we won\\'t sleep in beds—we\\'ll sleep in sleeping bags.","We need to tie the sleeping bag to the wall so that we won\\'t float away in our sleep!","Because of the low gravity, our bodies may get weak, so we\\'ll have to do exercise every day.","When we arrive, I\\'m going to walk on the Moon.","The Moon has much weaker gravity than the Earth.","A person weighs much less on the Moon, so we can jump very high.","I\\'ll have to wear a spacesuit to help me breathe because there\\'s no air on the Moon.","That also means there is no sound there.","We can only hear the sounds inside our spacesuits.","The Moon is a strange and mysterious place.","I\\'m going to take as many photos as I can.","I\\'m sure that it\\'ll be a wonderful trip!","A spaceship flies into space.","Stars fill the space above us.","The rocket goes up fast.","The astronaut walks in space.","Mars is a red planet.","A satellite goes around the earth.","The universe is so big.","Our galaxy has many stars.","The solar system has eight planets.","The moon orbits the earth.","Gravity keeps us on the ground.","There is no weight in space.","Things float in the spaceship.","We travel to the moon in books.","The journey takes many days.","The space mission is a success.","We look at stars through a telescope.","The lens makes things look bigger.","Astronauts need oxygen to breathe.","There is air inside the ship.","The moon has many craters.","A crater is a big hole.","There is dust on the floor.","The ground is hard and dry.","This machine is for science.","We use a tool to fix it.","Press the red button.","Read the words on the screen.","The signal is strong here.","The engine makes a loud noise.","A meteor crosses the sky.","A comet has a long tail.","Starlight is very dim.","Darkness covers the land.","The screen glows in the dark.","Stars shine far away.","The flight to the moon is long.","The pilot flies the ship.","The space suit is big and white.","He puts on his helmet.","His boots are heavy.","Space gloves are hard to use.","The tank holds the air.","A cable connects the two parts.","He opens the control panel.","The launch is at six a.m.","The ship will land at noon.","The astronaut does a moonwalk.","One day Tom hopes to go into space.","Astronauts look for water on Mars.","We want to find out how stars form.","The rocket lifts off at sunrise.","The spaceship takes off with a loud sound.","The crew comes back in five days.","How long does it take to get to Mars?","The ship arrives at the space station.","Planets move around the sun.","A comet flies past the earth.","The rover lands on the red ground.","Ben points to the bright star.","Look at the moon through the lens.","We listen to the signal from space.","We wait for the launch together.","She puts on her space suit.","David thinks about life on other planets."]},"6":{"en":"亚洲之旅","words":[{"w":"guide","ipa":"/ɡaɪd/","pos":"n.","zh":"指南；手册"},{"w":"east","ipa":"/iːst/","pos":"n.","zh":"东；东方"},{"w":"west","ipa":"/west/","pos":"n.","zh":"西；西方"},{"w":"meet","ipa":"/miːt/","pos":"v.","zh":"相遇；会合"},{"w":"tradition","ipa":"/trəˈdɪʃn/","pos":"n.","zh":"传统"},{"w":"modernity","ipa":"/məˈdɜːnəti/","pos":"n.","zh":"现代；现代性"},{"w":"visit","ipa":"/ˈvɪzɪt/","pos":"v.","zh":"参观；游览"},{"w":"explore","ipa":"/ɪkˈsplɔː(r)/","pos":"v.","zh":"探索；探究"},{"w":"famous","ipa":"/ˈfeɪməs/","pos":"adj.","zh":"著名的"},{"w":"tourist","ipa":"/ˈtʊərɪst/","pos":"n.","zh":"游客；观光客"},{"w":"spot","ipa":"/spɒt/","pos":"n.","zh":"地点；场所"},{"w":"building","ipa":"/ˈbɪldɪŋ/","pos":"n.","zh":"建筑物"},{"w":"century","ipa":"/ˈsentʃəri/","pos":"n.","zh":"世纪"},{"w":"mix","ipa":"/mɪks/","pos":"n.","zh":"混合"},{"w":"style","ipa":"/staɪl/","pos":"n.","zh":"风格"},{"w":"popular","ipa":"/ˈpɒpjələ(r)/","pos":"adj.","zh":"受欢迎的"},{"w":"restaurant","ipa":"/ˈrestrɒnt/","pos":"n.","zh":"餐馆；饭店"},{"w":"museum","ipa":"/mjuˈziːəm/","pos":"n.","zh":"博物馆"},{"w":"history","ipa":"/ˈhɪstri/","pos":"n.","zh":"历史"},{"w":"skyscraper","ipa":"/ˈskaɪskreɪpə(r)/","pos":"n.","zh":"摩天大楼"},{"w":"light","ipa":"/laɪt/","pos":"v.","zh":"点亮；照亮"},{"w":"sky","ipa":"/skaɪ/","pos":"n.","zh":"天空"},{"w":"garden","ipa":"/ˈɡɑːdn/","pos":"n.","zh":"花园"},{"w":"centre","ipa":"/ˈsentə(r)/","pos":"n.","zh":"中心"},{"w":"culture","ipa":"/ˈkʌltʃə(r)/","pos":"n.","zh":"文化"},{"w":"traditional","ipa":"/trəˈdɪʃənl/","pos":"adj.","zh":"传统的"},{"w":"local","ipa":"/ˈləʊkl/","pos":"adj.","zh":"当地的"},{"w":"gift","ipa":"/ɡɪft/","pos":"n.","zh":"礼物"},{"w":"western","ipa":"/ˈwestən/","pos":"adj.","zh":"西方的"},{"w":"view","ipa":"/vjuː/","pos":"n.","zh":"景色；风景"},{"w":"guidebook","ipa":"/ˈɡaɪdbʊk/","pos":"n.","zh":"旅游指南"},{"w":"landmark","ipa":"/ˈlændmɑːk/","pos":"n.","zh":"地标"},{"w":"temple","ipa":"/ˈtempl/","pos":"n.","zh":"寺庙"},{"w":"tower","ipa":"/ˈtaʊə(r)/","pos":"n.","zh":"塔"},{"w":"bridge","ipa":"/brɪdʒ/","pos":"n.","zh":"桥"},{"w":"river","ipa":"/ˈrɪvə(r)/","pos":"n.","zh":"河；江"},{"w":"harbour","ipa":"/ˈhɑːbə(r)/","pos":"n.","zh":"港湾；港口"},{"w":"island","ipa":"/ˈaɪlənd/","pos":"n.","zh":"岛"},{"w":"ancient","ipa":"/ˈeɪnʃənt/","pos":"adj.","zh":"古代的；古老的"},{"w":"modern","ipa":"/ˈmɒdn/","pos":"adj.","zh":"现代的"},{"w":"crowded","ipa":"/ˈkraʊdɪd/","pos":"adj.","zh":"拥挤的"},{"w":"delicious","ipa":"/dɪˈlɪʃəs/","pos":"adj.","zh":"美味的"},{"w":"recommend","ipa":"/ˌrekəˈmend/","pos":"v.","zh":"推荐"},{"w":"suggestion","ipa":"/səˈdʒestʃən/","pos":"n.","zh":"建议；提议"},{"w":"design","ipa":"/dɪˈzaɪn/","pos":"n.","zh":"设计"},{"w":"wonder","ipa":"/ˈwʌndə(r)/","pos":"n.","zh":"奇迹；奇观"},{"w":"abroad","ipa":"/əˈbrɔːd/","pos":"adv.","zh":"在国外"},{"w":"welcome","ipa":"/ˈwelkəm/","pos":"v.","zh":"欢迎"}],"phrs":[{"p":"tourist spot","zh":"旅游景点"},{"p":"travel guide","zh":"旅游指南"},{"p":"East meets West","zh":"东西方交汇"},{"p":"be famous for","zh":"因……而闻名"},{"p":"a mix of ... and ...","zh":"……与……的融合"},{"p":"in the centre of","zh":"在……的中心"},{"p":"light up","zh":"点亮；照亮"},{"p":"look east","zh":"向东看"},{"p":"across the river","zh":"河对岸"},{"p":"in the 19th century","zh":"在 19 世纪"},{"p":"the Site of the First National Congress of the CPC","zh":"中共一大会址"},{"p":"learn about","zh":"了解"},{"p":"buy local food and gifts","zh":"买当地美食和礼物"},{"p":"enjoy history and culture","zh":"享受历史文化"},{"p":"the Bund","zh":"外滩"},{"p":"the Huangpu River","zh":"黄浦江"},{"p":"Yu Garden","zh":"豫园"}],"passage":["In Shanghai, East meets West, and tradition meets modernity.","When you visit the city, you can explore famous places and see China\\'s past and present.","Here are three of Shanghai\\'s best tourist spots.","Xintiandi is famous for its shikumen buildings from the 19th century.","These buildings are a mix of traditional Chinese and Western styles.","Today, the area is a very popular tourist spot, with lots of restaurants and shops.","You can also visit the Site of the First National Congress of the CPC in Xintiandi, and there is a large museum there.","You can learn a lot about the history of the CPC if you go inside.","The Bund is where old meets new.","Look west, and you will see many old Western-style buildings.","Look east across the Huangpu River, and you will see skyscrapers.","At night, these tall buildings light up the sky.","Yu Garden, or Yuyuan, is in the centre of the old city.","This garden is over 400 years old.","If you enjoy history and culture, you will love this place.","Inside, there are many beautiful traditional buildings.","You can also buy local food and gifts there."],"sentences":["In Shanghai, East meets West, and tradition meets modernity.","When you visit the city, you can explore famous places and see China\\'s past and present.","Here are three of Shanghai\\'s best tourist spots.","Xintiandi is famous for its shikumen buildings from the 19th century.","These buildings are a mix of traditional Chinese and Western styles.","Today, the area is a very popular tourist spot, with lots of restaurants and shops.","You can also visit the Site of the First National Congress of the CPC in Xintiandi, and there is a large museum there.","You can learn a lot about the history of the CPC if you go inside.","The Bund is where old meets new.","Look west, and you will see many old Western-style buildings.","Look east across the Huangpu River, and you will see skyscrapers.","At night, these tall buildings light up the sky.","Yu Garden, or Yuyuan, is in the centre of the old city.","This garden is over 400 years old.","If you enjoy history and culture, you will love this place.","Inside, there are many beautiful traditional buildings.","You can also buy local food and gifts there.","Our guide knows the city well.","Asia is the largest continent.","China is a big country.","Beijing is the capital of China.","Shanghai is a modern city.","We stayed in a small town.","The village is near a river.","We visited an old temple.","The palace is very beautiful.","The museum has many old things.","We crossed the long bridge.","The tower stands by the river.","We walked along the old wall.","The gate opens at eight.","People meet in the square.","The market sells fresh fruit.","The festival lasts three days.","We learn about Chinese culture.","This is an old tradition.","It is a local custom to give tea.","The city has a long history.","Long ago, a king lived here.","The queen loved the garden.","This wall was built in an old dynasty.","Our trip was short but nice.","We took a tour of the old town.","I bought two tickets.","Do not forget your passport.","Check the map before you go.","Bring your camera with you.","We stay in a small hotel.","The restaurant is near the square.","The menu has many dishes.","This dish is very popular.","Let's share a snack.","I bought a small souvenir.","Send me a postcard, please.","This stamp is very old.","Our luggage is heavy.","She opens her suitcase.","The passenger is waiting for the train.","The train journey is four hours.","We wait on platform three.","We cross the border by bus.","The flag flies over the square.","Change your money at the bank.","Try the local food.","He is a foreign visitor.","We go on a trip every summer.","Take a photo of the old tower.","How do we get to the museum?","We arrive in Beijing at noon.","Check in at the hotel first.","We check out after breakfast.","We look around the old town.","Get off the bus at the square.","Get on the train now.","I pay for the two tickets.","Ask the guide for help.","We wait for the next bus.","I look forward to our trip.","Write to me from Tokyo.","I heard from Lily yesterday.","David shows us around the city.","The guide points out the old gate."]},"7":{"en":"课外之趣","words":[{"w":"literature","ipa":"/ˈlɪtrətʃə(r)/","pos":"n.","zh":"文学；文学作品"},{"w":"act","ipa":"/ækt/","pos":"v.","zh":"扮演"},{"w":"join","ipa":"/dʒɔɪn/","pos":"v.","zh":"成为……的一员；参加"},{"w":"definitely","ipa":"/ˈdefɪnətli/","pos":"adv.","zh":"肯定；当然"},{"w":"fair","ipa":"/feə(r)/","pos":"n.","zh":"集市"},{"w":"rocket","ipa":"/ˈrɒkɪt/","pos":"n.","zh":"火箭"},{"w":"launch","ipa":"/lɔːntʃ/","pos":"v.","zh":"发射"},{"w":"shout","ipa":"/ʃaʊt/","pos":"v.","zh":"大声说；叫"},{"w":"power","ipa":"/ˈpaʊə(r)/","pos":"n.","zh":"力量；能量"},{"w":"moment","ipa":"/ˈməʊmənt/","pos":"n.","zh":"片刻；瞬间"},{"w":"member","ipa":"/ˈmembə(r)/","pos":"n.","zh":"成员"},{"w":"shape","ipa":"/ʃeɪp/","pos":"n.","zh":"形状；外形"},{"w":"hike","ipa":"/haɪk/","pos":"v.","zh":"去……远足"},{"w":"recently","ipa":"/ˈriːsntli/","pos":"adv.","zh":"不久前；最近"},{"w":"attend","ipa":"/əˈtend/","pos":"v.","zh":"出席；参加"},{"w":"charity","ipa":"/ˈtʃærəti/","pos":"n.","zh":"慈善机构"},{"w":"sale","ipa":"/seɪl/","pos":"n.","zh":"出售；销售"},{"w":"snack","ipa":"/snæk/","pos":"n.","zh":"点心；小吃"},{"w":"decorate","ipa":"/ˈdekəreɪt/","pos":"v.","zh":"装饰；装潢"},{"w":"difference","ipa":"/ˈdɪfrəns/","pos":"n.","zh":"差别；差异"},{"w":"compete","ipa":"/kəmˈpiːt/","pos":"v.","zh":"参加比赛"},{"w":"event","ipa":"/ɪˈvent/","pos":"n.","zh":"公开活动"},{"w":"spoon","ipa":"/spuːn/","pos":"n.","zh":"勺；匙"},{"w":"annual","ipa":"/ˈænjuəl/","pos":"adj.","zh":"每年的；一年一次的"},{"w":"fantastic","ipa":"/fænˈtæstɪk/","pos":"adj.","zh":"极好的；了不起的"},{"w":"equipment","ipa":"/ɪˈkwɪpmənt/","pos":"n.","zh":"设备；器材"},{"w":"club","ipa":"/klʌb/","pos":"n.","zh":"社团"},{"w":"paper-cut","ipa":"/ˈpeɪpəkʌt/","pos":"n.","zh":"剪纸"},{"w":"experiment","ipa":"/ɪkˈsperɪmənt/","pos":"n.","zh":"实验"},{"w":"surprise","ipa":"/səˈpraɪz/","pos":"n.","zh":"惊奇；意外之事"},{"w":"appreciate","ipa":"/əˈpriːʃieɪt/","pos":"v.","zh":"欣赏；赏识"},{"w":"baking","ipa":"/ˈbeɪkɪŋ/","pos":"n.","zh":"烘焙"},{"w":"craft","ipa":"/krɑːft/","pos":"n.","zh":"工艺；手艺"},{"w":"drama","ipa":"/ˈdrɑːmə/","pos":"n.","zh":"戏剧"},{"w":"science","ipa":"/ˈsaɪəns/","pos":"n.","zh":"科学"},{"w":"poster","ipa":"/ˈpəʊstə(r)/","pos":"n.","zh":"海报"},{"w":"competition","ipa":"/ˌkɒmpəˈtɪʃn/","pos":"n.","zh":"比赛；竞赛"},{"w":"raise","ipa":"/reɪz/","pos":"v.","zh":"筹集（钱）"},{"w":"dollar","ipa":"/ˈdɒlə(r)/","pos":"n.","zh":"元（货币单位）"},{"w":"pie","ipa":"/paɪ/","pos":"n.","zh":"果馅饼"},{"w":"machine","ipa":"/məˈʃiːn/","pos":"n.","zh":"机器"},{"w":"sun","ipa":"/sʌn/","pos":"n.","zh":"太阳"},{"w":"ground","ipa":"/ɡraʊnd/","pos":"n.","zh":"地面；场地"},{"w":"fun","ipa":"/fʌn/","pos":"adj.","zh":"有趣的"},{"w":"exciting","ipa":"/ɪkˈsaɪtɪŋ/","pos":"adj.","zh":"令人兴奋的"},{"w":"hobby","ipa":"/ˈhɒbi/","pos":"n.","zh":"爱好"},{"w":"volunteer","ipa":"/ˌvɒlənˈtɪə(r)/","pos":"v.","zh":"自愿做"},{"w":"playground","ipa":"/ˈpleɪɡraʊnd/","pos":"n.","zh":"操场；运动场"}],"phrs":[{"p":"clubs fair","zh":"社团招募展"},{"p":"solar power","zh":"太阳能"},{"p":"of course","zh":"当然"},{"p":"remote control","zh":"遥控器"},{"p":"turn around","zh":"转身"},{"p":"make a difference","zh":"有作用；有影响"},{"p":"primary school","zh":"小学"},{"p":"fall off","zh":"掉落"},{"p":"take part in","zh":"参加"},{"p":"after-school activities","zh":"课外活动"},{"p":"take off","zh":"起飞"},{"p":"watch out","zh":"当心；小心"},{"p":"fly past","zh":"飞过"},{"p":"sports ground","zh":"运动场"},{"p":"have a try","zh":"试一试"},{"p":"sign up","zh":"报名"},{"p":"put on a play","zh":"上演戏剧"}],"passage":["Li Na and Liu Wei are new students at Yangguang Junior High School.","Last month, they went to the Clubs Fair.","The fair was very crowded, but it was also a lot of fun.","First, Li Na and Liu Wei learnt about the Rocket Club.","\"Our club will teach you how to design and build rockets,\" a boy said.","He took a rocket and launched it into the sky.","The rocket took off and disappeared. Li Na and Liu Wei were very surprised.","A girl suddenly shouted, \"Watch out!\"","A moment later, a toy plane quickly flew past them.","\"I\\'m so sorry! It runs on solar power,\" said the girl.","\"It\\'s amazing! Which club are you in?\" asked Li Na.","\"The Solar Power Club, of course! We build all kinds of wonderful machines.\"","The girl then passed the remote control to Li Na.","\"It is fun to fly the plane around the sports ground!\" said Li Na.","\"Wow, look at those beautiful paper-cuts over there,\" Liu Wei said excitedly.","A member of the Craft Club told them, \"If you join our club, you will learn how to cut paper into many different pretty shapes.\"","Li Na and Liu Wei were very excited. \"I want to join all the clubs!\" said Li Na. \"Me too!\" said Liu Wei."],"sentences":["Li Na and Liu Wei are new students at Yangguang Junior High School.","Last month, they went to the Clubs Fair.","The fair was very crowded, but it was also a lot of fun.","First, Li Na and Liu Wei learnt about the Rocket Club.","\"Our club will teach you how to design and build rockets,\" a boy said.","He took a rocket and launched it into the sky.","The rocket took off and disappeared. Li Na and Liu Wei were very surprised.","A girl suddenly shouted, \"Watch out!\"","A moment later, a toy plane quickly flew past them.","\"I\\'m so sorry! It runs on solar power,\" said the girl.","\"It\\'s amazing! Which club are you in?\" asked Li Na.","\"The Solar Power Club, of course! We build all kinds of wonderful machines.\"","The girl then passed the remote control to Li Na.","\"It is fun to fly the plane around the sports ground!\" said Li Na.","\"Wow, look at those beautiful paper-cuts over there,\" Liu Wei said excitedly.","A member of the Craft Club told them, \"If you join our club, you will learn how to cut paper into many different pretty shapes.\"","Li Na and Liu Wei were very excited. \"I want to join all the clubs!\" said Li Na. \"Me too!\" said Liu Wei.","We read great literature in class.","Reading is my favourite hobby.","Drawing is a useful skill.","She has a talent for music.","My interest is in old films.","The game is so much fun.","We enjoy the party a lot.","I relax by listening to music.","Practice makes you better.","Ben is a member of the club.","Our team won the game.","She is the captain of the team.","The competition starts at three.","He won the first prize.","The medal is made of metal.","Our school is the champion.","Tom is a big fan of basketball.","The audience claps loudly.","The singer walks onto the stage.","They perform a short play.","Lily acts in the school play.","David plays the role of a king.","We sing a song together.","He plays three instruments.","The drum is very loud.","She plays the piano well.","The violin has a sweet sound.","Ada paints a picture of a cat.","Jerry draws a picture of a dog.","Take a photo of the team.","Our school has a music band.","The choir sings at the festival.","Eva takes ballet lessons.","Lily does yoga on Sundays.","They skate in the park.","We ski in the mountains.","Ben rides his bike to school.","A red kite flies high.","We play skipping at break.","Kids play with marbles.","Tom does a puzzle after school.","David builds a house with lego.","We made a small robot.","Jerry shows us a magic trick.","We watch a cartoon on Friday.","Ada collects old stamps.","Ben has a box of coins.","We collect shells at the beach.","We have fun at the party.","Enjoy yourself at the club.","Jerry takes up drawing this term.","Do not give up so easily.","A joke can cheer you up.","We dress up for the show.","Warm up before the match.","Try out for the school team.","Do not show off your skills.","We work out in the gym.","Act out the story in groups.","We play against their team today.","This guitar belongs to Tom.","Many students take part in the show.","I look forward to the match.","Lily is fond of painting.","Ben is interested in robots."]},"8":{"en":"收藏之乐","words":[{"w":"collection","ipa":"/kəˈlekʃn/","pos":"n.","zh":"收集物；收藏品"},{"w":"collect","ipa":"/kəˈlekt/","pos":"v.","zh":"收集；收藏"},{"w":"hobby","ipa":"/ˈhɒbi/","pos":"n.","zh":"爱好"},{"w":"stamp","ipa":"/stæmp/","pos":"n.","zh":"邮票"},{"w":"own","ipa":"/əʊn/","pos":"v.","zh":"拥有"},{"w":"thousand","ipa":"/ˈθaʊznd/","pos":"n.","zh":"一千"},{"w":"valuable","ipa":"/ˈvæljuəbl/","pos":"adj.","zh":"贵重的；宝贵的"},{"w":"care","ipa":"/keə(r)/","pos":"n.","zh":"照料；小心"},{"w":"protect","ipa":"/prəˈtekt/","pos":"v.","zh":"保护"},{"w":"glove","ipa":"/ɡlʌv/","pos":"n.","zh":"手套"},{"w":"envelope","ipa":"/ˈenvələʊp/","pos":"n.","zh":"信封"},{"w":"postcard","ipa":"/ˈpəʊstkɑːd/","pos":"n.","zh":"明信片"},{"w":"story","ipa":"/ˈstɔːri/","pos":"n.","zh":"故事"},{"w":"lesson","ipa":"/ˈlesn/","pos":"n.","zh":"课；教训"},{"w":"absolutely","ipa":"/ˈæbsəluːtli/","pos":"adv.","zh":"绝对地；完全地"},{"w":"favourite","ipa":"/ˈfeɪvərɪt/","pos":"adj.","zh":"最喜欢的"},{"w":"impossible","ipa":"/ɪmˈpɒsəbl/","pos":"adj.","zh":"不可能的"},{"w":"nail","ipa":"/neɪl/","pos":"n.","zh":"钉子"},{"w":"explain","ipa":"/ɪkˈspleɪn/","pos":"v.","zh":"解释；说明"},{"w":"bit","ipa":"/bɪt/","pos":"n.","zh":"少量；一点"},{"w":"palace","ipa":"/ˈpæləs/","pos":"n.","zh":"宫殿"},{"w":"interested","ipa":"/ˈɪntrəstɪd/","pos":"adj.","zh":"感兴趣的"},{"w":"similar","ipa":"/ˈsɪmələ(r)/","pos":"adj.","zh":"相似的"},{"w":"country","ipa":"/ˈkʌntri/","pos":"n.","zh":"国家"},{"w":"treasure","ipa":"/ˈtreʒə(r)/","pos":"n.","zh":"珍宝；宝物"},{"w":"shell","ipa":"/ʃel/","pos":"n.","zh":"贝壳"},{"w":"coin","ipa":"/kɔɪn/","pos":"n.","zh":"硬币"},{"w":"key ring","ipa":"/ˈkiː rɪŋ/","pos":"n.","zh":"钥匙扣"},{"w":"model","ipa":"/ˈmɒdl/","pos":"n.","zh":"模型"},{"w":"wrapper","ipa":"/ˈræpə(r)/","pos":"n.","zh":"包装纸"},{"w":"collector","ipa":"/kəˈlektə(r)/","pos":"n.","zh":"收藏家"},{"w":"discover","ipa":"/dɪˈskʌvə(r)/","pos":"v.","zh":"发现"},{"w":"curious","ipa":"/ˈkjʊəriəs/","pos":"adj.","zh":"好奇的"},{"w":"pattern","ipa":"/ˈpætn/","pos":"n.","zh":"图案；花样"},{"w":"unusual","ipa":"/ʌnˈjuːʒuəl/","pos":"adj.","zh":"不寻常的"},{"w":"memory","ipa":"/ˈmeməri/","pos":"n.","zh":"回忆；记忆"},{"w":"box","ipa":"/bɒks/","pos":"n.","zh":"盒子"},{"w":"album","ipa":"/ˈælbəm/","pos":"n.","zh":"集邮册；相册"},{"w":"shelf","ipa":"/ʃelf/","pos":"n.","zh":"架子"},{"w":"drawer","ipa":"/drɔː(r)/","pos":"n.","zh":"抽屉"},{"w":"sticker","ipa":"/ˈstɪkə(r)/","pos":"n.","zh":"贴纸"},{"w":"paper clip","ipa":"/ˈpeɪpə klɪp/","pos":"n.","zh":"回形针"},{"w":"badge","ipa":"/bædʒ/","pos":"n.","zh":"徽章"},{"w":"doll","ipa":"/dɒl/","pos":"n.","zh":"洋娃娃"},{"w":"toy","ipa":"/tɔɪ/","pos":"n.","zh":"玩具"},{"w":"card","ipa":"/kɑːd/","pos":"n.","zh":"卡片"},{"w":"eraser","ipa":"/ɪˈreɪzə(r)/","pos":"n.","zh":"橡皮"},{"w":"pencil","ipa":"/ˈpensl/","pos":"n.","zh":"铅笔"}],"phrs":[{"p":"stamp collection","zh":"集邮"},{"p":"all over the world","zh":"全世界"},{"p":"pocket money","zh":"零花钱"},{"p":"thanks to","zh":"多亏；由于"},{"p":"take care of","zh":"照顾；保管"},{"p":"with great care","zh":"非常小心地"},{"p":"add ... to ...","zh":"把……加入……"},{"p":"take ... from ...","zh":"从……取下……"},{"p":"a history lesson","zh":"一堂历史课"},{"p":"the Palace Museum","zh":"故宫博物院"},{"p":"hundreds of years ago","zh":"几百年前"},{"p":"a single nail","zh":"一颗钉子"},{"p":"become interested in","zh":"对……产生兴趣"},{"p":"more and more","zh":"越来越多"},{"p":"chocolate wrappers","zh":"巧克力包装纸"},{"p":"sweet memories","zh":"甜蜜的回忆"},{"p":"paper money","zh":"纸币"}],"passage":["Today, I\\'m going to talk about my hobby.","Some people play sports and others build models, but my hobby is collecting stamps.","I love stamps because they are very beautiful.","They can also teach me about the history and culture of different countries.","I developed this hobby thanks to my grandpa.","He is a stamp collector, and he owns thousands of stamps.","Some of them are valuable, so he always handles them with great care.","He even wears white gloves to protect his stamps!","Every Sunday my grandpa adds new ones to his collection, and I sometimes help him take old stamps from envelopes and postcards.","It is almost like a history lesson.","Let me show you an absolutely wonderful stamp of the Palace Museum.","It is my favourite because it was my first one.","\"They built these buildings hundreds of years ago. It may seem impossible, but they built them without using a single nail!\" he explained.","My grandpa also shared many other interesting bits of history about the old palace.","Thanks to this stamp, I became interested in traditional Chinese buildings.","I started to collect similar stamps. Now I have over a hundred of them.","I am learning more and more about Chinese history and culture."],"sentences":["Today, I\\'m going to talk about my hobby.","Some people play sports and others build models, but my hobby is collecting stamps.","I love stamps because they are very beautiful.","They can also teach me about the history and culture of different countries.","I developed this hobby thanks to my grandpa.","He is a stamp collector, and he owns thousands of stamps.","Some of them are valuable, so he always handles them with great care.","He even wears white gloves to protect his stamps!","Every Sunday my grandpa adds new ones to his collection, and I sometimes help him take old stamps from envelopes and postcards.","It is almost like a history lesson.","Let me show you an absolutely wonderful stamp of the Palace Museum.","It is my favourite because it was my first one.","\"They built these buildings hundreds of years ago. It may seem impossible, but they built them without using a single nail!\" he explained.","My grandpa also shared many other interesting bits of history about the old palace.","Thanks to this stamp, I became interested in traditional Chinese buildings.","I started to collect similar stamps. Now I have over a hundred of them.","I am learning more and more about Chinese history and culture.","His stamp collection is huge.","I collect old coins.","Collecting is a quiet hobby.","This coin is a real treasure.","The book is very valuable.","What is the price of this toy?","The card cost me five yuan.","These postcards are quite cheap.","That old watch is expensive.","This is a special box.","Stones are very common.","This stamp is very rare.","My grandpa keeps old photos.","Look at my new comic.","I have a card from every city.","We keep the tickets as souvenirs.","The box is full of shells.","Put the books on the shelf.","This photo album is for Lily.","Turn the page and look.","The cover of the book is blue.","The shop is round the corner.","We find old things at the market.","The shop sells toys and cards.","I want to buy a new notebook.","She sells her old comics.","Keep your collection safe.","We store the boxes in the room.","I remember my first coin.","Share your hobby with a friend.","Sort the cards by colour.","We group the shells by size.","Put the books in order.","Make a list of your things.","Number the pages, please.","Count how many you have.","We trade cards at school.","Swap your comic for my toy.","Can I borrow your album?","Lend me your pen, please.","Return the book next week.","Dad can repair the box.","Clean your collection every month.","We polish the old coins.","She puts the photo in a frame.","Display your shells on the shelf.","The museum has a small exhibition.","We see old toys at the museum.","David collects stamps from Asia.","I have a set of toy cards.","He has all kinds of coins.","I look for old postcards online.","Pick out your favourite one.","Take out your collection.","Put away your cards after class.","Add this coin to your box.","Take care of your collection.","The shelf is full of books.","The box is made of wood.","Eva is interested in old photos.","Ben takes pride in his shells.","This song reminds me of home.","We learn about old China.","Search for rare coins online.","Do not show off your things."]}};
+var PER_LEVEL = 8;                       /* 每级采对 8 朵晋级 */
+var INIT_FLOWERS = 8;                    /* 场上同时 8 朵花 */
+var ANIMALS = [
+  { e:'🐝', n:'蜜蜂',   s:0.72 },
+  { e:'🦜', n:'鹦鹉',   s:0.95 },
+  { e:'🦅', n:'老鹰',   s:1.18 },
+  { e:'🦉', n:'猫头鹰', s:1.42 },
+  { e:'🐦🔥', n:'凤凰', s:1.7 }
+];
+var BEASTS = [
+  { u:'1', e:'🐉',  n:'青龙' },
+  { u:'2', e:'🐯',  n:'白虎' },
+  { u:'3', e:'🐢',  n:'玄武' },
+  { u:'4', e:'🦅',  n:'朱雀' },
+  { u:'5', e:'🦄',  n:'麒麟' },
+  { u:'6', e:'🦊',  n:'九尾狐' },
+  { u:'7', e:'🐲',  n:'应龙' },
+  { u:'8', e:'🦚',  n:'凤凰·神' }
+];
+var RK = 'flower_rank';
+var BK = 'beast_coll';
+
+/* ========== 语音（系统 / 在线可选） ========== */
+var voices = [];
+var TTS = { engine:'sys', voiceURI:'', online:2 };
+var curAudio = null;
+function loadTTS(){
+  try { var o = JSON.parse(localStorage.getItem('shooting_tts') || '{}');
+    if (o.engine) TTS.engine = o.engine; if (o.voiceURI) TTS.voiceURI = o.voiceURI; if (o.online) TTS.online = o.online;
+  } catch (e) {}
+}
+function saveTTS(){ try { localStorage.setItem('shooting_tts', JSON.stringify(TTS)); } catch (e) {} }
+function loadVoices(){ voices = window.speechSynthesis ? speechSynthesis.getVoices() : []; populateVoices(); }
+if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+function getVoice(){
+  var enGB = voices.filter(function(v){ return /en[-_]GB/i.test(v.lang); });
+  var en = voices.filter(function(v){ return /^en/i.test(v.lang); });
+  return (enGB[0] || en[0] || voices[0] || null);
+}
+function populateVoices(){
+  var sel = document.getElementById('ttsVoice');
+  if (!sel) return;
+  var en = voices.filter(function(v){ return /^en/i.test(v.lang); });
+  if (!en.length) { sel.innerHTML = '<option value="">未找到英语音色，请用在线发音</option>'; return; }
+  en.sort(function(a, b){
+    var ag = /en[-_]GB/i.test(a.lang) ? 0 : 1, bg = /en[-_]GB/i.test(b.lang) ? 0 : 1;
+    return (ag - bg) || a.lang.localeCompare(b.lang);
+  });
+  var html = '';
+  en.forEach(function(v){
+    html += '<option value="' + esc(v.voiceURI) + '"' + (TTS.voiceURI === v.voiceURI ? ' selected' : '') + '>' + esc(v.name + '（' + v.lang + '）') + '</option>';
+  });
+  sel.innerHTML = html;
+}
+function speak(text, rate){
+  if (TTS.engine === 'online') {
+    try {
+      if (curAudio) { curAudio.pause(); curAudio = null; }
+      var a = new Audio('https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=' + TTS.online);
+      curAudio = a; a.play().catch(function(){});
+    } catch (e) {}
+    return;
+  }
+  if (!window.speechSynthesis) return;
+  try { if (speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel(); } catch (e) {}
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB';
+  var v = null;
+  if (TTS.voiceURI) v = voices.filter(function(x){ return x.voiceURI === TTS.voiceURI; })[0] || null;
+  if (!v) v = getVoice();
+  if (v) u.voice = v;
+  u.rate = rate || 0.8; u.pitch = 1.05;
+  speechSynthesis.speak(u);
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+var actx = null;
+function sfx(kind){
+  try {
+    if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)();
+    var t = actx.currentTime;
+    if (kind === 'hit') {
+      var o = actx.createOscillator(); o.type = 'sine';
+      o.frequency.setValueAtTime(660, t); o.frequency.exponentialRampToValueAtTime(1320, t + 0.15);
+      var g = actx.createGain(); g.gain.setValueAtTime(0.22, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+      o.connect(g); g.connect(actx.destination); o.start(); o.stop(t + 0.2);
+    } else if (kind === 'miss') {
+      var o2 = actx.createOscillator(); o2.type = 'sawtooth';
+      o2.frequency.setValueAtTime(300, t); o2.frequency.exponentialRampToValueAtTime(120, t + 0.25);
+      var g2 = actx.createGain(); g2.gain.setValueAtTime(0.12, t); g2.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+      o2.connect(g2); g2.connect(actx.destination); o2.start(); o2.stop(t + 0.25);
+    } else if (kind === 'up') {
+      var o3 = actx.createOscillator(); o3.type = 'triangle';
+      o3.frequency.setValueAtTime(523, t); o3.frequency.setValueAtTime(659, t + 0.12); o3.frequency.setValueAtTime(784, t + 0.24);
+      var g3 = actx.createGain(); g3.gain.setValueAtTime(0.22, t); g3.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+      o3.connect(g3); g3.connect(actx.destination); o3.start(); o3.stop(t + 0.4);
+    } else if (kind === 'end') {
+      var o4 = actx.createOscillator(); o4.type = 'sine';
+      o4.frequency.setValueAtTime(523, t); o4.frequency.setValueAtTime(659, t + 0.15); o4.frequency.setValueAtTime(784, t + 0.3); o4.frequency.setValueAtTime(1046, t + 0.45);
+      var g4 = actx.createGain(); g4.gain.setValueAtTime(0.25, t); g4.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+      o4.connect(g4); g4.connect(actx.destination); o4.start(); o4.stop(t + 0.6);
+    }
+  } catch (e) {}
+}
+/* ========== 状态 ========== */
+var S = { unit:'1', running:false, paused:false, level:1, progress:0, score:0, combo:0,
+          cur:null, used:{}, flowers:[], raf:null };
+var stage = document.getElementById('stage');
+var overlay = document.getElementById('overlay');
+var panel = document.getElementById('panel');
+var animalEl = document.getElementById('animal');
+var px = 0, py = 0, tx = 0, ty = 0;   /* 动物位置与目标指针位置 */
+var FCOLORS = ['#FF6B9D','#FF9F43','#F6C344','#2ECC71','#3DB4F2','#9B59D0','#FF7BA9','#26C6DA','#7ED957','#E84393'];
+
+function words(){ return BALLDATA[S.unit].words; }
+function showFloat(txt, kind){
+  var f = document.getElementById('float');
+  f.textContent = txt; f.className = kind; f.style.opacity = 1; f.style.transition = 'none';
+  setTimeout(function(){ f.style.transition = 'opacity .5s'; f.style.opacity = 0; }, 700);
+}
+function setAnimalUI(){
+  var a = ANIMALS[S.level - 1];
+  document.getElementById('animalEmo').textContent = a.e;
+  document.getElementById('animalNm').textContent = a.n;
+  document.getElementById('animEmo').textContent = a.e;
+  document.getElementById('lvName').textContent = '第 ' + S.level + ' 级 · ' + a.n;
+  var sc = a.s * (1 + S.progress * 0.07);
+  document.getElementById('animalEmo').style.fontSize = (66 * sc) + 'px';
+}
+function setZhUI(){
+  document.getElementById('animalZh').textContent = S.cur ? S.cur.zh : '—';
+  document.getElementById('zhTarget').textContent = S.cur ? S.cur.zh : '—';
+}
+function setProg(){
+  document.getElementById('progTxt').textContent = S.progress + '/' + PER_LEVEL;
+  document.getElementById('progBar').style.width = (S.progress / PER_LEVEL * 100) + '%';
+}
+function setScore(){ document.getElementById('score').textContent = S.score; }
+
+/* ========== 花朵 ========== */
+function flowerColor(){ return FCOLORS[Math.floor(Math.random() * FCOLORS.length)]; }
+/* 花朵占位半径：花瓣 74px + 下方标签，浮动幅度 ±5px，取 52 保证互不覆盖 */
+var FLOWER_R = 52;
+function tooClose(x, y, r){
+  for (var i = 0; i < S.flowers.length; i++){
+    var f = S.flowers[i];
+    var dx = f.x - x, dy = f.y - y;
+    if (Math.sqrt(dx * dx + dy * dy) < r + FLOWER_R) return true;
+  }
+  return false;
+}
+/* 找一个与现有花朵都不重叠的位置；找不到就按网格兜底 */
+function freeSpot(w, h){
+  var tries = 0, x, y;
+  while (tries < 80){
+    tries++;
+    x = 58 + Math.random() * Math.max(10, w - 116);
+    y = 76 + Math.random() * Math.max(10, h * 0.5);
+    if (!tooClose(x, y, FLOWER_R)) return { x: x, y: y };
+  }
+  var cols = Math.max(2, Math.floor((w - 100) / (FLOWER_R * 2)));
+  var rows = Math.max(2, Math.floor((h * 0.55) / (FLOWER_R * 2)));
+  for (var r = 0; r < rows; r++){
+    for (var c = 0; c < cols; c++){
+      var gx = 58 + (w - 116) * (c + 0.5) / cols;
+      var gy = 76 + (h * 0.5) * (r + 0.5) / rows;
+      if (!tooClose(gx, gy, FLOWER_R)) return { x: gx, y: gy };
+    }
+  }
+  return { x: 58 + Math.random() * Math.max(10, w - 116), y: 76 + Math.random() * Math.max(10, h * 0.5) };
+}
+function spawnFlower(it, isT){
+  var el = document.createElement('div');
+  el.className = 'flower' + (isT ? ' tgt' : '');
+  var col = flowerColor();
+  var txt = it.w;
+  var fs = Math.min(15, Math.max(11, (70 - 8) / Math.max(txt.length, 1) * 1.5));
+  el.innerHTML = '<div class="petal" style="background:radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55), ' + col + ' 70%);"><span style="font-size:' + fs + 'px;">' + esc(txt) + '</span></div>' +
+                 '<div class="tag">🌸</div>';
+  var w = stage.clientWidth || 900, h = stage.clientHeight || 470;
+  var pos = freeSpot(w, h);
+  var x = pos.x, y = pos.y;
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  var sp = 0.25 + Math.random() * 0.35;
+  var ang = Math.random() * Math.PI * 2;
+  stage.appendChild(el);
+  var f = { el: el, it: it, isT: isT, x: x, y: y, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, ph: Math.random() * 6.28 };
+  S.flowers.push(f);
+  document.getElementById('fCount').textContent = S.flowers.length;
+  return f;
+}
+function removeFlower(f){
+  f.el.classList.add('picked');
+  setTimeout(function(){ if (f.el.parentNode) f.el.parentNode.removeChild(f.el); }, 300);
+  S.flowers = S.flowers.filter(function(x){ return x !== f; });
+  document.getElementById('fCount').textContent = S.flowers.length;
+}
+function pickDistractor(){
+  var ws = words(), guard = 0, it, on = onScreenWords();
+  do { it = ws[Math.floor(Math.random() * ws.length)]; guard++; }
+  while (guard < 200 && (it === S.cur || on[it.w]));
+  return it;
+}
+/* 屏幕上已显示的单词：同一时刻不出现两个相同的词，避免玩家分不清 */
+function onScreenWords(){
+  var m = {};
+  for (var i = 0; i < S.flowers.length; i++){ if (S.flowers[i].it) m[S.flowers[i].it.w] = true; }
+  return m;
+}
+function ensureTargetFlower(){
+  var has = S.flowers.some(function(f){ return f.isT; });
+  if (has) return;
+  var f = S.flowers[0];
+  if (!f) return;
+  f.isT = true; f.it = S.cur;
+  f.el.className = 'flower tgt';
+  var txt = S.cur.w;
+  var fs = Math.min(15, Math.max(11, (70 - 8) / Math.max(txt.length, 1) * 1.5));
+  var col = flowerColor();
+  f.el.innerHTML = '<div class="petal" style="background:radial-gradient(circle at 30% 25%, rgba(255,255,255,0.55), ' + col + ' 70%);"><span style="font-size:' + fs + 'px;">' + esc(txt) + '</span></div><div class="tag">🌸</div>';
+}
+function nextTarget(){
+  var ws = words();
+  var on = onScreenWords();
+  /* 跳过还在场上（还没被采走消失）的词，避免同一个词同时开两朵花导致误判 */
+  var cand = ws.filter(function(x){ return !S.used[x.w] && !on[x.w]; });
+  if (!cand.length) cand = ws.filter(function(x){ return !S.used[x.w]; });
+  if (!cand.length) { levelUp(); return; }
+  S.cur = cand[Math.floor(Math.random() * cand.length)];
+  setZhUI();
+  ensureTargetFlower();
+  speak(S.cur.w, 0.8);
+}
+function pickFlower(f){
+  speak(f.it.w, 0.8);                     /* 碰到花就发音 */
+  removeFlower(f);
+  /* 以「花上的词是否等于当前目标词」判定，避免标记过期导致误判 */
+  if (f.isT && f.it.w === S.cur.w) {
+    S.combo++;
+    var gain = 10 + Math.min(10, (S.combo - 1) * 3);
+    S.score += gain; sfx('hit'); setScore();
+    S.used[f.it.w] = true;
+    S.progress++;
+    setProg();
+    setAnimalUI();
+    showFloat('🌸 采对了 +' + gain + '！', 'good');
+    if (S.progress >= PER_LEVEL) { levelUp(); return; }
+    nextTarget();
+  } else {
+    S.combo = 0;
+    S.score = Math.max(0, S.score - 3); sfx('miss'); setScore();
+    showFloat('❌ 这是 ' + f.it.w + '，要找「' + S.cur.zh + '」', 'bad');
+  }
+  spawnFlower(pickDistractor(), false);   /* 补一朵干扰花，保持场上数量 */
+}
+/* ========== 晋级 / 通关 ========== */
+function levelUp(){
+  S.level++;
+  if (S.level > 5) { unitClear(); return; }
+  S.progress = 0; S.used = {};
+  S.flowers.forEach(function(f){ if (f.el.parentNode) f.el.parentNode.removeChild(f.el); });
+  S.flowers = [];
+  var a = ANIMALS[S.level - 1];
+  setAnimalUI(); setProg();
+  sfx('up');
+  showFloat('🎉 晋级！你变成了 ' + a.n + '！', 'good');
+  nextTarget();
+  for (var i = S.flowers.length; i < INIT_FLOWERS; i++) spawnFlower(pickDistractor(), false);
+  ensureTargetFlower();
+}
+function unitClear(){
+  S.running = false;
+  if (S.raf) { cancelAnimationFrame(S.raf); S.raf = null; }
+  unlockBeast(S.unit);
+  sfx('end');
+  saveRank();
+  renderClearPanel();
+}
+function unlockBeast(u){
+  var arr = [];
+  try { arr = JSON.parse(localStorage.getItem(BK) || '[]'); } catch (e) {}
+  if (arr.indexOf(String(u)) < 0) { arr.push(String(u)); try { localStorage.setItem(BK, JSON.stringify(arr)); } catch (e) {} }
+  updateBeastCount();
+}
+function getBeasts(){ try { return JSON.parse(localStorage.getItem(BK) || '[]'); } catch (e) { return []; } }
+function updateBeastCount(){ document.getElementById('beastCount').textContent = getBeasts().length + '/8'; }
+function saveRank(){
+  try {
+    var ranks = JSON.parse(localStorage.getItem(RK) || '[]');
+    ranks.push({ t: Date.now(), u: 'U' + S.unit + ' ' + BALLDATA[S.unit].en, l: S.level, s: S.score, b: getBeasts().length });
+    ranks.sort(function(a, b){ return b.s - a.s; });
+    ranks = ranks.slice(0, 20);
+    localStorage.setItem(RK, JSON.stringify(ranks));
+  } catch (e) {}
+}
+/* ========== 主循环 ========== */
+function startGame(){
+  if (S.running) return;
+  S.running = true; S.paused = false;
+  S.level = 1; S.progress = 0; S.score = 0; S.combo = 0; S.used = {};
+  S.flowers.forEach(function(f){ if (f.el.parentNode) f.el.parentNode.removeChild(f.el); });
+  S.flowers = [];
+  var w = stage.clientWidth || 900, h = stage.clientHeight || 470;
+  px = 34; py = 78; tx = px; ty = py;
+  animalEl.style.left = px + 'px'; animalEl.style.top = py + 'px';
+  setAnimalUI(); setZhUI(); setProg(); setScore();
+  document.getElementById('startBtn').textContent = '采花中…';
+  document.getElementById('startBtn').disabled = true;
+  document.getElementById('pauseBtn').style.display = 'inline-block';
+  document.getElementById('stopBtn').style.display = 'inline-block';
+  overlay.classList.add('hide');
+  nextTarget();
+  for (var i = 0; i < INIT_FLOWERS; i++) spawnFlower(pickDistractor(), false);
+  ensureTargetFlower();
+  if (!S.raf) S.raf = requestAnimationFrame(loop);
+}
+function loop(){
+  if (!S.running) { S.raf = null; return; }
+  if (S.paused) { S.raf = requestAnimationFrame(loop); return; }
+  /* 蜜蜂固定左上角，不随鼠标移动；花朵轻轻浮动，点击采集 */
+  S.flowers.forEach(function(f){
+    f.ph += 0.03;
+    f.el.style.left = f.x + 'px';
+    f.el.style.top = (f.y + Math.sin(f.ph) * 5) + 'px';
+  });
+  S.raf = requestAnimationFrame(loop);
+}
+function togglePause(){
+  if (!S.running) return;
+  S.paused = !S.paused;
+  var pb = document.getElementById('pauseBtn');
+  if (S.paused) { pb.textContent = '▶ 继续'; pb.classList.add('on'); }
+  else { pb.textContent = '⏸ 暂停'; pb.classList.remove('on'); }
+}
+function stopGame(){ if (S.running) { S.running = false; S.paused = false; if (S.raf) { cancelAnimationFrame(S.raf); S.raf = null; }
+  document.getElementById('startBtn').textContent = '▶ 再来一局'; document.getElementById('startBtn').disabled = false;
+  document.getElementById('pauseBtn').style.display = 'none'; document.getElementById('stopBtn').style.display = 'none'; } }
+/* ========== 面板 ========== */
+function renderClearPanel(){
+  var b = BEASTS.filter(function(x){ return x.u === S.unit; })[0];
+  var n = getBeasts().length;
+  var html = '<h2>🏆 单元通关！</h2><div class="sub">' + 'U' + S.unit + ' ' + BALLDATA[S.unit].en + ' · 采完 5 级全部花朵</div>';
+  html += '<div class="big-emo">' + b.e + '</div>';
+  html += '<div style="font-size:17px;font-weight:800;color:#B8860B;margin:6px 0;">解锁神兽 · ' + b.n + '</div>';
+  html += '<div class="big-score">' + S.score + '</div><div class="sub">分</div>';
+  html += '<div style="font-size:13px;color:#666;margin:6px 0;">🐉 神兽图鉴已收集 <b style="color:#B8860B;">' + n + '/8</b></div>';
+  html += '<button class="btn primary" onclick="startGame()">再采一轮（换一批花）</button>';
+  html += '<a class="btn ghost2" href="../../index.html" style="text-decoration:none;display:inline-block;">🏠 返回首页</a>';
+  html += '<button class="btn ghost2" onclick="closePanel()">关闭</button>';
+  html += renderBeastGrid();
+  html += '<div class="rank-list"><div style="font-weight:700;color:#2E8B57;margin:10px 0 4px;">🏆 采花排行榜（Top 10）</div>';
+  var ranks = [];
+  try { ranks = JSON.parse(localStorage.getItem(RK) || '[]'); } catch (e) {}
+  if (!ranks.length) html += '<div class="empty">还没有记录，快来采第一朵花吧！</div>';
+  else ranks.slice(0, 10).forEach(function(r, i){
+    html += '<div class="rank-item"><span style="color:#999;">' + (i + 1) + '.</span><span><b>' + r.s + '</b> 分</span>' +
+            '<span class="meta">' + r.u + ' · 采到第 ' + r.l + ' 级 · 神兽 ' + r.b + '/8</span><span class="sc">' + r.b + '🐉</span></div>';
+  });
+  html += '<div style="text-align:center;margin-top:8px;"><button class="btn ghost2" style="font-size:12px;padding:6px 14px;" onclick="clearRank()">清空记录</button></div></div>';
+  panel.innerHTML = html;
+  overlay.classList.remove('hide');
+}
+function renderBeastGrid(){
+  var owned = getBeasts();
+  var html = '<div class="beast-grid">';
+  BEASTS.forEach(function(b){
+    var on = owned.indexOf(b.u) >= 0;
+    html += '<div class="beast-cell' + (on ? '' : ' off') + '"><div class="be">' + (on ? b.e : '❓') + '</div>' +
+            '<div class="bn">' + (on ? b.n : '未解锁') + '</div><div class="bn" style="color:#bbb;">Unit ' + b.u + '</div></div>';
+  });
+  html += '</div>';
+  return html;
+}
+function showBeastPanel(){
+  var n = getBeasts().length;
+  var html = '<h2>🐉 神兽图鉴</h2><div class="sub">收集 <b style="color:#B8860B;">' + n + '/8</b> · 每通关一个单元解锁一只神兽</div>';
+  html += renderBeastGrid();
+  html += '<div style="font-size:12.5px;color:#888;line-height:1.7;margin-top:10px;text-align:left;background:#F9F9F5;border-radius:10px;padding:10px 12px;">' +
+          '🐝 蜜蜂 → 🦜 鹦鹉 → 🦅 老鹰 → 🦉 猫头鹰 → 🐦🔥 凤凰，体型越来越大<br>' +
+          '采对 8 朵花升一级，采完 5 级通关本单元，解锁对应神兽！</div>';
+  html += '<button class="btn primary" onclick="closePanel()">好的</button>';
+  panel.innerHTML = html;
+  overlay.classList.remove('hide');
+}
+function closePanel(){ overlay.classList.add('hide'); }
+function clearRank(){
+  try { localStorage.removeItem(RK); } catch (e) {}
+  renderClearPanel();
+}
+/* ========== UI ========== */
+function setUnit(u){
+  S.unit = String(u);
+  document.getElementById('uName').textContent = 'Unit ' + u + ' ' + BALLDATA[u].en;
+}
+function bindStage(){
+  /* 点击采集：蜜蜂停在左上角，玩家点击花朵（像气球射击一样点），不再拖动蜜蜂 */
+  stage.addEventListener('click', function(e){
+    var fl = e.target.closest ? e.target.closest('.flower') : null;
+    if (!fl) return;
+    for (var i = 0; i < S.flowers.length; i++) {
+      if (S.flowers[i].el === fl) { pickFlower(S.flowers[i]); break; }
+    }
+  });
+}
+(function initUI(){
+  document.getElementById('prevU').onclick = function(){ var u = +S.unit - 1; if (u < 1) u = 8; setUnit(u); };
+  document.getElementById('nextU').onclick = function(){ var u = +S.unit + 1; if (u > 8) u = 1; setUnit(u); };
+  document.getElementById('startBtn').onclick = startGame;
+  document.getElementById('pauseBtn').onclick = togglePause;
+  document.getElementById('stopBtn').onclick = stopGame;
+  document.getElementById('replayBtn').onclick = function(){ if (S.running && S.cur) speak(S.cur.w, 0.8); };
+  document.getElementById('beastBtn').onclick = showBeastPanel;
+  loadTTS();
+  document.getElementById('ttsEngine').value = TTS.engine;
+  document.getElementById('ttsOnline').value = String(TTS.online);
+  populateVoices();
+  document.getElementById('ttsEngine').onchange = function(){ TTS.engine = this.value; saveTTS(); };
+  document.getElementById('ttsVoice').onchange = function(){ TTS.voiceURI = this.value; saveTTS(); };
+  document.getElementById('ttsOnline').onchange = function(){ TTS.online = +this.value; saveTTS(); };
+  bindStage();
+  updateBeastCount();
+  px = 34; py = 78;
+  animalEl.style.left = px + 'px'; animalEl.style.top = py + 'px';
+})();
+</script>
+<style>
+.pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
+.pgnav .pg-h{margin:0 0 8px;font-size:12.5px;color:#6B6359;letter-spacing:.6px;}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.pgnav a{text-decoration:none;font-size:13px;color:#2B2620;background:#fff;border:1px solid #EFE6DA;border-radius:999px;padding:6px 13px;}
+.pgnav a:hover{border-color:#E8552D;color:#E8552D;}
+.pgnav a.up{background:#E8552D;border-color:#E8552D;color:#fff;}
+.pgnav a.up:hover{background:#D64520;color:#fff;}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff;}
+.pgnav a.gr:hover{background:#0B7369;color:#fff;}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff;}
+.pgnav a.bl:hover{background:#245A94;color:#fff;}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">七上课本同步线</p>
+    <div class="pg-row">
+      <a class="up" href="Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
+      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="Unit1_Friendship_点读学习页.html">📖 Unit1–8 点读学习页</a>
+      <a href="../单元习题与测试/Unit1_习题与测试.html">📝 单元习题与测试</a>
+      <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
+      <a href="游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
+    </div>
+    <p class="pg-h">其他三条线 · 全站跳转</p>
+    <div class="pg-row">
+      <a class="gr" href="../../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+      <a class="bl" href="../../E听说练习/index.html">🎤 中考 E 听说</a>
+      <a class="up" href="../../index.html">🏠 返回慧学首页</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

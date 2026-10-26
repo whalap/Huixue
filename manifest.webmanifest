@@ -1,0 +1,17 @@
+{
+  "name": "慧学学习网络 · Jerry 慧学",
+  "short_name": "慧学学习",
+  "description": "课本同步点读 · 语法 · 原声跟读 · 中考 E 听说 四线合一的离线学习网络（沪教版七上 / A1–B1）。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#14110c",
+  "theme_color": "#14110c",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "icon-192.png",      "sizes": "192x192",   "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png",      "sizes": "512x512",   "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

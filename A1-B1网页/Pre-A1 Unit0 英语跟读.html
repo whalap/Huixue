@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 0 · 字母与发音 Alphabet &amp; Sounds</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.unit({
+  n: 0,
+  emo: '🔤',
+  beast: '字母精灵',
+  en: 'Alphabet & Sounds',
+  cn: '字母与发音',
+  goal: '26 个字母：先听清「字母音」，再开口说例词。',
+  tip: '零基础第一步不是背拼写，是<b>把声音和字母对上</b>：听到 /æ/ 能想到 apple，看到 A 能读出 /eɪ/。' +
+       '卡片上的 <b>金色小标</b>是字母在单词里的发音（字母音），斜体是念字母表时的读法（字母名）——两者不一样，先抓字母音。',
+  vocab: [
+    {g:'A–G', w:'Aa', ipa:'/eɪ/', snd:'/æ/', cn:'字母 A · 例词 apple（苹果）', ex:'A is for apple.', excn:'A 代表 apple（苹果）。'},
+    {g:'A–G', w:'Bb', ipa:'/biː/', snd:'/b/', cn:'字母 B · 例词 ball（球）', ex:'B is for ball.', excn:'B 代表 ball（球）。'},
+    {g:'A–G', w:'Cc', ipa:'/siː/', snd:'/k/', cn:'字母 C · 例词 cat（猫）', ex:'C is for cat.', excn:'C 代表 cat（猫）。'},
+    {g:'A–G', w:'Dd', ipa:'/diː/', snd:'/d/', cn:'字母 D · 例词 dog（狗）', ex:'D is for dog.', excn:'D 代表 dog（狗）。'},
+    {g:'A–G', w:'Ee', ipa:'/iː/', snd:'/e/', cn:'字母 E · 例词 egg（鸡蛋）', ex:'E is for egg.', excn:'E 代表 egg（鸡蛋）。'},
+    {g:'A–G', w:'Ff', ipa:'/ef/', snd:'/f/', cn:'字母 F · 例词 fish（鱼）', ex:'F is for fish.', excn:'F 代表 fish（鱼）。'},
+    {g:'A–G', w:'Gg', ipa:'/dʒiː/', snd:'/g/', cn:'字母 G · 例词 girl（女孩）', ex:'G is for girl.', excn:'G 代表 girl（女孩）。'},
+
+    {g:'H–N', w:'Hh', ipa:'/eɪtʃ/', snd:'/h/', cn:'字母 H · 例词 hat（帽子）', ex:'H is for hat.', excn:'H 代表 hat（帽子）。'},
+    {g:'H–N', w:'Ii', ipa:'/aɪ/', snd:'/ɪ/', cn:'字母 I · 例词 ink（墨水）', ex:'I is for ink.', excn:'I 代表 ink（墨水）。'},
+    {g:'H–N', w:'Jj', ipa:'/dʒeɪ/', snd:'/dʒ/', cn:'字母 J · 例词 jam（果酱）', ex:'J is for jam.', excn:'J 代表 jam（果酱）。'},
+    {g:'H–N', w:'Kk', ipa:'/keɪ/', snd:'/k/', cn:'字母 K · 例词 kite（风筝）', ex:'K is for kite.', excn:'K 代表 kite（风筝）。'},
+    {g:'H–N', w:'Ll', ipa:'/el/', snd:'/l/', cn:'字母 L · 例词 leg（腿）', ex:'L is for leg.', excn:'L 代表 leg（腿）。'},
+    {g:'H–N', w:'Mm', ipa:'/em/', snd:'/m/', cn:'字母 M · 例词 moon（月亮）', ex:'M is for moon.', excn:'M 代表 moon（月亮）。'},
+    {g:'H–N', w:'Nn', ipa:'/en/', snd:'/n/', cn:'字母 N · 例词 nose（鼻子）', ex:'N is for nose.', excn:'N 代表 nose（鼻子）。'},
+
+    {g:'O–T', w:'Oo', ipa:'/əʊ/', snd:'/ɒ/', cn:'字母 O · 例词 orange（橙子）', ex:'O is for orange.', excn:'O 代表 orange（橙子）。'},
+    {g:'O–T', w:'Pp', ipa:'/piː/', snd:'/p/', cn:'字母 P · 例词 pen（钢笔）', ex:'P is for pen.', excn:'P 代表 pen（钢笔）。'},
+    {g:'O–T', w:'Qq', ipa:'/kjuː/', snd:'/kw/', cn:'字母 Q · 例词 queen（女王）', ex:'Q is for queen.', excn:'Q 代表 queen（女王）。'},
+    {g:'O–T', w:'Rr', ipa:'/ɑː/', snd:'/r/', cn:'字母 R · 例词 rabbit（兔子）', ex:'R is for rabbit.', excn:'R 代表 rabbit（兔子）。'},
+    {g:'O–T', w:'Ss', ipa:'/es/', snd:'/s/', cn:'字母 S · 例词 sun（太阳）', ex:'S is for sun.', excn:'S 代表 sun（太阳）。'},
+    {g:'O–T', w:'Tt', ipa:'/tiː/', snd:'/t/', cn:'字母 T · 例词 tiger（老虎）', ex:'T is for tiger.', excn:'T 代表 tiger（老虎）。'},
+
+    {g:'U–Z', w:'Uu', ipa:'/juː/', snd:'/ʌ/', cn:'字母 U · 例词 umbrella（雨伞）', ex:'U is for umbrella.', excn:'U 代表 umbrella（雨伞）。'},
+    {g:'U–Z', w:'Vv', ipa:'/viː/', snd:'/v/', cn:'字母 V · 例词 van（货车）', ex:'V is for van.', excn:'V 代表 van（货车）。'},
+    {g:'U–Z', w:'Ww', ipa:'/ˈdʌbljuː/', snd:'/w/', cn:'字母 W · 例词 water（水）', ex:'W is for water.', excn:'W 代表 water（水）。'},
+    {g:'U–Z', w:'Xx', ipa:'/eks/', snd:'/ks/', cn:'字母 X · 例词 box（盒子，词尾）', ex:'X is for box.', excn:'box 里的 X 读作 /ks/。'},
+    {g:'U–Z', w:'Yy', ipa:'/waɪ/', snd:'/j/', cn:'字母 Y · 例词 yellow（黄色）', ex:'Y is for yellow.', excn:'Y 代表 yellow（黄色）。'},
+    {g:'U–Z', w:'Zz', ipa:'/zed/', snd:'/z/', cn:'字母 Z · 例词 zoo（动物园）', ex:'Z is for zoo.', excn:'Z 代表 zoo（动物园）。'}
+  ],
+  sents: [
+    {en:'What letter is it?', cn:'它是什么字母？'},
+    {en:"It's A.", cn:'是 A。'},
+    {en:'A is for apple.', cn:'A 代表 apple（苹果）。'},
+    {en:'Can you say the alphabet?', cn:'你会念字母表吗？'},
+    {en:'A, B, C, D, E, F, G.', cn:'A、B、C、D、E、F、G。'},
+    {en:'Very good! Now try again.', cn:'很好！再试一次。'},
+    {en:'Listen and point.', cn:'听一听，指一指。'},
+    {en:'Say it after me.', cn:'跟我读。'}
+  ],
+  drill: {
+    h: '听字母音，选出对应的字母（例词能帮你定位）',
+    items: [
+      {say:'apple — /æ/', sayCn:'苹果', opts:['Aa','Ee','Ii','Oo'], a:0},
+      {say:'ball — /b/', sayCn:'球', opts:['Bb','Dd','Pp','Vv'], a:0},
+      {say:'cat — /k/', sayCn:'猫', opts:['Kk','Cc','Ss','Gg'], a:1},
+      {say:'dog — /d/', sayCn:'狗', opts:['Tt','Bb','Dd','Gg'], a:2},
+      {say:'egg — /e/', sayCn:'鸡蛋', opts:['Aa','Ee','Ii','Uu'], a:1},
+      {say:'fish — /f/', sayCn:'鱼', opts:['Ff','Vv','Hh','Ss'], a:0},
+      {say:'jam — /dʒ/', sayCn:'果酱', opts:['Gg','Jj','Yy','Zz'], a:1},
+      {say:'sun — /s/', sayCn:'太阳', opts:['Zz','Cc','Ss','Xx'], a:2},
+      {say:'rabbit — /r/', sayCn:'兔子', opts:['Ll','Rr','Ww','Yy'], a:1, tip:'/r/ 和中文「日」不一样，舌尖要卷起来但不碰上颚。'},
+      {say:'zoo — /z/', sayCn:'动物园', opts:['Ss','Cc','Zz','Xx'], a:2, tip:'/z/ 有声带振动，/s/ 没有。'}
+    ]
+  },
+  quiz: [
+    {q:'“A is for apple.” 是什么意思？', opts:['A 代表 apple（苹果）。','苹果是一个 A。','我有一个苹果。','A 是红色的。'], a:0},
+    {q:'下面哪个字母的例词是 cat？', opts:['Kk','Cc','Ss','Tt'], a:1},
+    {q:'“/b/” 是哪个字母在单词里的发音？', opts:['Pp','Bb','Dd','Vv'], a:1, tip:'ball 的开头就是 /b/。'},
+    {q:'字母表里 Hh 的后面是哪一个？', opts:['Gg','Ii','Jj','Kk'], a:1},
+    {q:'“zoo” 是哪个字母的例词？', opts:['Ss','Zz','Cc','Xx'], a:1},
+    {q:'下面哪个是「字母名」而不是「字母音」？', opts:['/æ/','/b/','/eɪ/','/m/'], a:2, tip:'字母名是念字母表时的读法（A 读作 /eɪ/），字母音是它在单词里的读音（apple 里的 /æ/）。'},
+    {q:'“orange” 是哪一个字母的例词？', opts:['Oo','Uu','Aa','Ee'], a:0},
+    {q:'字母 Xx 在单词里通常读什么？', opts:['/z/','/ks/','/j/','/w/'], a:1, tip:'box 的结尾：b-o-x，读作 /bɒks/。'}
+  ],
+  proj: 'Pre-A1 Unit0 字母小书项目.html',
+  projName: '我的字母小书',
+  prev: null,
+  next: 'Pre-A1 Unit1 英语跟读.html'
+});
+</script>
+</body>
+</html>

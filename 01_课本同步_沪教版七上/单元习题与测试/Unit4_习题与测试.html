@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 4 The Earth · 习题与测试（沪教版七上）</title>
+<style>
+:root{
+  --ink:#2b2118; --ink2:#5c4f42; --muted:#8a7c6b;
+  --paper:#faf6ee; --card:#ffffff; --line:#e6dcc8;
+  --gold:#b8860b; --gold-soft:#d4a933; --red:#c0392b; --ok:#1e8449;
+  --brand:#1a1410;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:var(--paper); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.75; font-size:15px}
+.wrap{max-width:860px; margin:0 auto; padding:0 18px 90px}
+
+/* ---------- 顶部 ---------- */
+.hero{background:linear-gradient(135deg,#1a1410 0%,#2b2118 60%,#3a2c1c 100%); color:#f5ecd7; padding:34px 20px 26px; text-align:center; border-bottom:3px solid var(--gold)}
+.hero .kicker{color:var(--gold-soft); font-size:13px; letter-spacing:3px; margin-bottom:8px}
+.hero h1{font-size:26px; margin-bottom:8px}
+.hero .sub{color:#cbbd9d; font-size:13.5px}
+.hero .meta{margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.hero .meta span{border:1px solid rgba(212,169,51,.45); color:#e8d9ac; border-radius:99px; padding:3px 14px; font-size:12.5px}
+
+/* ---------- 卷子切换 ---------- */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:22px 0 26px; position:sticky; top:0; z-index:20; background:var(--paper); padding:12px 0; border-bottom:1px dashed var(--line)}
+.tabs button{border:1.5px solid var(--line); background:var(--card); color:var(--ink2); border-radius:10px; padding:8px 16px; font-size:14px; cursor:pointer; font-weight:600; transition:.15s}
+.tabs button:hover{border-color:var(--gold-soft)}
+.tabs button.on{background:var(--brand); color:#f0e2b8; border-color:var(--brand)}
+.tabs button .tag{display:block; font-size:11px; font-weight:400; opacity:.75; margin-top:1px}
+
+/* ---------- 卷子主体 ---------- */
+.paper{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:30px 34px; box-shadow:0 2px 14px rgba(43,33,24,.06)}
+.p-head{border-bottom:2px solid var(--brand); padding-bottom:14px; margin-bottom:8px}
+.p-head .pt{font-size:20px; font-weight:800}
+.p-head .ps{font-size:13px; color:var(--muted); margin-top:4px}
+.p-info{display:flex; gap:18px; font-size:13px; color:var(--ink2); margin:10px 0 22px; flex-wrap:wrap}
+.p-info b{color:var(--gold)}
+.sec{margin-bottom:30px}
+.sec>h3{font-size:16px; font-weight:800; color:var(--brand); border-left:4px solid var(--gold); padding-left:10px; margin-bottom:6px}
+.sec .sn{font-size:12.5px; color:var(--muted); margin-bottom:12px}
+.q{padding:12px 14px; border:1px solid var(--line); border-radius:10px; margin-bottom:10px; background:#fffdf8}
+.q .qt{font-weight:600; margin-bottom:8px}
+.q .qt .qn{color:var(--gold); font-weight:800; margin-right:6px}
+.q .qt u{ text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:3px; font-weight:700 }
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.opts.one{grid-template-columns:1fr}
+.opt{border:1px solid var(--line); border-radius:8px; padding:7px 12px; cursor:pointer; font-size:14px; background:#fff; transition:.12s; display:flex; gap:8px; align-items:baseline}
+.opt .lb{font-weight:800; color:var(--muted)}
+.opt:hover{border-color:var(--gold-soft); background:#fffaf0}
+.opt.sel{border-color:var(--gold); background:#fdf3d8}
+.opt.ok{border-color:var(--ok); background:#eafaf0}
+.opt.bad{border-color:var(--red); background:#fdecea}
+.opt .mk{margin-left:auto; font-weight:800}
+.opt.ok .mk{color:var(--ok)} .opt.bad .mk{color:var(--red)}
+.ans-in{border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:14px; width:100%; max-width:340px; background:#fff; font-family:inherit}
+.ans-in:focus{outline:none; border-color:var(--gold)}
+.ans-in.ok{border-color:var(--ok); background:#f2fbf6}
+.ans-in.bad{border-color:var(--red); background:#fdf0ee}
+.tfrow{display:flex; gap:10px}
+.tfrow .opt{min-width:88px; justify-content:center}
+.hint{font-size:12.5px; color:var(--muted); margin-top:4px}
+.wordbank{font-size:13.5px; background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-bottom:12px; color:var(--ink2)}
+.wordbank b{color:var(--gold)}
+textarea.essay{width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:12px; font-size:14px; font-family:inherit; resize:vertical; background:#fff}
+textarea.essay:focus{outline:none; border-color:var(--gold)}
+.checklist{background:#f4f8f4; border:1px solid #cfe3d2; border-radius:10px; padding:12px 16px; margin-top:12px; font-size:13.5px}
+.checklist b{color:var(--ok)}
+.checklist li{margin-left:20px; margin-top:3px}
+details.sample{margin-top:12px; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fffdf6}
+details.sample summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13.5px}
+details.sample .body{margin-top:10px; font-size:14px; line-height:1.9; border-top:1px dashed var(--line); padding-top:10px}
+details.sample .body .en{color:var(--ink)}
+details.sample .body .zh{color:var(--muted); font-size:12.5px}
+
+/* ---------- 阅读原文框 ---------- */
+.rdbox{background:#fffdf6; border:1.5px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px}
+.rdbox .rd-title{font-size:16px; font-weight:800; color:var(--brand); margin-bottom:10px}
+.rdbox .rd-title span{font-size:12px; font-weight:400; color:var(--muted); margin-left:8px}
+.rdbox .rd-body p{font-size:14.5px; line-height:2.05; margin:0 0 4px}
+.rdbox .rd-body p b{color:var(--brand)}
+.rdbox .rdn{display:inline-block; min-width:18px; color:var(--gold); font-weight:800; font-size:12.5px; margin-right:4px}
+.rdbox .kw{background:#fdf0d5; border-bottom:2px solid var(--gold-soft); border-radius:3px; padding:0 2px; font-weight:600}
+.rdbox .rd-note{font-size:12.5px; color:var(--ink2); background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-top:12px}
+details.rdtr{margin-top:12px; border:1px dashed var(--line); border-radius:8px; padding:8px 12px; background:#fff}
+details.rdtr summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13px}
+details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-height:2}
+
+/* ---------- 操作区 ---------- */
+.acts{display:flex; gap:12px; margin:26px 0 10px; flex-wrap:wrap; position:sticky; bottom:0; background:linear-gradient(180deg,transparent, var(--paper) 30%); padding:14px 0}
+.btn{border:none; border-radius:10px; padding:12px 26px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit}
+.btn-go{background:var(--brand); color:#f0e2b8}
+.btn-go:hover{background:#3a2c1c}
+.btn-ghost{background:#fff; color:var(--ink2); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-reset{background:#fff; color:var(--red); border:1.5px solid #ecc9c3}
+.score{display:none; border-radius:12px; padding:18px 22px; margin-top:16px; font-size:15px}
+.score.show{display:block}
+.score.pass{background:#eafaf0; border:1px solid #bfe6cc}
+.score.fail{background:#fdf0ee; border:1px solid #ecc9c3}
+.score .big{font-size:26px; font-weight:800}
+.score.pass .big{color:var(--ok)} .score.fail .big{color:var(--red)}
+.score .adv{font-size:13.5px; color:var(--ink2); margin-top:6px}
+.backhome{display:block; text-align:center; margin:26px auto 0; color:var(--muted); font-size:13px; text-decoration:none}
+.backhome:hover{color:var(--gold)}
+@media (max-width:640px){ .opts{grid-template-columns:1fr} .paper{padding:20px 16px} }
+@media print{
+  .hero,.tabs,.acts,.backhome{display:none!important}
+  body{background:#fff} .paper{border:none; box-shadow:none; padding:0}
+  .opt.sel{border-color:#999; background:#fff}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">沪教版 · 英语七年级上册</div>
+  <h1>Unit 4 The Earth</h1>
+  <div class="sub">习题与单元测试 · 每单元 5 份练习 + 3 套测试卷（在线作答 · 即时批改 · 可打印）</div>
+  <div class="meta">
+    <span>覆盖：本单元词汇 / 短语 / there is / are / 课文 / 中国地理与环保</span>
+    <span>依据：上海教育出版社 英语 七年级上册（2024 广州新版）</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div id="paperHost"></div>
+  <div id="scoreHost"></div>
+  <a class="backhome" href="../点读学习包/Unit0_总目录_点读学习中心.html">← 返回七上点读学习中心</a>
+</div>
+
+<script>
+const PAPERS = [
+  {
+    "id": "p1",
+    "title": "练习一 · 词汇与短语",
+    "time": "20 分钟",
+    "sub": "本单元核心词汇 30 个 + 拓展词 18 个 + 短语 17 个，先认词，再会用。",
+    "sections": [
+    {
+      "name": "一、词汇匹配（选出正确中文意思）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "amazing", "type": "choice", "a": 0, "opts": ["令人大为惊奇的", "行星", "水平；高度", "能量；能源"]},
+        {"stem": "field", "type": "choice", "a": 1, "opts": ["山；高山", "田野；田地", "鲸", "有害的"]},
+        {"stem": "deep", "type": "choice", "a": 2, "opts": ["植物", "探索；探究", "深的", "赤道"]},
+        {"stem": "butterfly", "type": "choice", "a": 3, "opts": ["海马", "海洋", "沙漠；荒漠", "蝴蝶"]},
+        {"stem": "pollution", "type": "choice", "a": 0, "opts": ["污染", "保护", "（行星的）极；地极", "高度"]}
+      ]
+    },
+    {
+      "name": "二、看中文，写英文",
+      "note": "每题 1 分，共 5 分。注意拼写。",
+      "items": [
+        {"stem": "地区；区域", "type": "text", "a": "area", "ph": "拼写注意大小写"},
+        {"stem": "森林", "type": "text", "a": "forest", "ph": "拼写注意大小写"},
+        {"stem": "达到；到达", "type": "text", "a": "reach", "ph": "拼写注意大小写"},
+        {"stem": "提供；供应", "type": "text", "a": "provide", "ph": "拼写注意大小写"},
+        {"stem": "塑料", "type": "text", "a": "plastic", "ph": "拼写注意大小写"}
+      ]
+    },
+    {
+      "name": "三、短语填空（选词填空，注意形式）",
+      "note": "每题 1 分，共 5 分。",
+      "bank": "<b>短语库：</b>As far as we know · provides; with · in danger · the solar system · such as",
+      "items": [
+        {"stem": "____ ____ ____ ____, the Earth is home to millions of animals.", "type": "choice", "a": 0, "opts": ["As far as we know", "More than", "Such as", "In danger"], "explain": "as far as we know 据我们所知；注意句首大写。"},
+        {"stem": "The Earth ____ us ____ food, water and air.", "type": "choice", "a": 0, "opts": ["provides; with", "provides; for", "support; with", "gives; with"], "explain": "provide sb with sth 为某人提供某物。"},
+        {"stem": "Many sea animals are ____ ____ because of plastic pollution.", "type": "choice", "a": 0, "opts": ["in danger", "in the air", "cut down", "take care"], "explain": "in danger 处于危险中。"},
+        {"stem": "The sun is the centre of ____ ____ ____.", "type": "choice", "a": 0, "opts": ["the solar system", "the North Pole", "sea level", "the South Pole"], "explain": "the solar system 太阳系。"},
+        {"stem": "There are many interesting animals in the forest, ____ ____ tigers and monkeys.", "type": "choice", "a": 0, "opts": ["such as", "more than", "as far as", "what's more"], "explain": "such as 例如；用来举例子。"}
+      ]
+    },
+    {
+      "name": "四、单项选择",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "The Amazon is a huge ____. It is full of trees.", "type": "choice", "a": 0, "opts": ["forest", "desert", "ocean", "pole"], "explain": "forest 森林；满是树的是森林。"},
+        {"stem": "Camels can live in the ____. There is little water there.", "type": "choice", "a": 0, "opts": ["desert", "mountain", "sea", "field"], "explain": "desert 沙漠；骆驼生活在沙漠里。"},
+        {"stem": "The blue whale is the largest ____ on Earth.", "type": "choice", "a": 0, "opts": ["animal", "plant", "mountain", "pollution"], "explain": "鲸是动物（animal）。"},
+        {"stem": "We must ____ our Earth. It is our only home.", "type": "choice", "a": 0, "opts": ["protect", "pollute", "disappear", "explore"], "explain": "protect 保护；地球是家园，要保护。"},
+        {"stem": "Plastic bags are ____ to the animals in the sea.", "type": "choice", "a": 0, "opts": ["harmful", "helpful", "harmless", "wonderful"], "explain": "harmful 有害的；塑料袋对海洋动物有害。"}
+      ]
+    },
+    {
+      "name": "五、对划线部分提问",
+      "note": "每题 1 分，共 5 分。用 Wh-word + 一般疑问句语序；动词为实义动词时用 do/does。",
+      "items": [
+        {"stem": "There is <u>a lot of pollution</u> in the air.（对划线部分提问）", "type": "text", "a": "What is there in the air?", "a2": ["What is in the air?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "There are <u>five</u> big oceans on Earth.（对划线部分提问）", "type": "text", "a": "How many big oceans are there on Earth?", "a2": ["How many oceans are there on Earth?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "There is <u>some milk</u> in the fridge.（对划线部分提问）", "type": "text", "a": "What is there in the fridge?", "a2": ["What is in the fridge?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "<u>Birds</u> are in the sky.（对划线部分提问）", "type": "text", "a": "What is in the sky?", "a2": ["What is there in the sky?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "There is a river <u>near my home</u>.（对划线部分提问）", "type": "text", "a": "Where is there a river?", "a2": ["Where is a river near your home?"], "ph": "写完整问句，句末加 ?"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p2",
+    "title": "练习二 · 语法与句型",
+    "time": "20 分钟",
+    "sub": "本单元语法重点：Using there is / are（there be 句型）。",
+    "sections": [
+    {
+      "name": "一、语法选择（单选）",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "There ____ a lot of pollution in the air.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "pollution 是不可数名词 → there is。"},
+        {"stem": "There ____ many animals in this forest.", "type": "choice", "a": 1, "opts": ["is", "are", "am", "be"], "explain": "animals 是复数 → there are。"},
+        {"stem": "____ there any milk in the fridge?", "type": "choice", "a": 0, "opts": ["Is", "Are", "Am", "Be"], "explain": "milk 不可数 → Is there...?"},
+        {"stem": "____ there any students in the classroom?", "type": "choice", "a": 1, "opts": ["Is", "Are", "Am", "Do"], "explain": "students 是复数 → Are there...?"},
+        {"stem": "There ____ five big oceans on Earth.", "type": "choice", "a": 1, "opts": ["is", "are", "am", "be"], "explain": "five oceans 复数 → there are。"},
+        {"stem": "There ____ some rice in the bowl.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "rice 是不可数名词 → there is。"},
+        {"stem": "There ____ two deserts in this area.", "type": "choice", "a": 1, "opts": ["is", "are", "am", "be"], "explain": "two deserts 复数 → there are。"},
+        {"stem": "There isn't ____ water in the glass.", "type": "choice", "a": 1, "opts": ["some", "any", "many", "a"], "explain": "否定句中表示\"一些\"用 any。"},
+        {"stem": "Is there ____ bread on the plate?", "type": "choice", "a": 1, "opts": ["some", "any", "a", "many"], "explain": "疑问句中表示\"一些\"用 any。"},
+        {"stem": "There is ____ apple on the table.", "type": "choice", "a": 1, "opts": ["a", "an", "the", "any"], "explain": "apple 以元音音素开头 → an。"}
+      ]
+    },
+    {
+      "name": "二、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "forest（变成复数）", "type": "text", "a": "forests", "ph": "直接加 -s"},
+        {"stem": "animal（变成复数）", "type": "text", "a": "animals", "ph": "直接加 -s"},
+        {"stem": "butterfly（变成复数）", "type": "text", "a": "butterflies", "ph": "辅音+y → 变 y 为 i 加 -es"},
+        {"stem": "field（变成复数）", "type": "text", "a": "fields", "ph": "直接加 -s"},
+        {"stem": "city（变成复数）", "type": "text", "a": "cities", "ph": "辅音+y → 变 y 为 i 加 -es"}
+      ]
+    },
+    {
+      "name": "三、完成句子（每空一词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "空气中有很多污染。There ____ a lot of pollution ____ the ____.", "type": "text", "a": "is; in; air", "a2": ["is; in; air"]},
+        {"stem": "地球上有很多沙漠。There ____ many ____ on Earth.", "type": "text", "a": "are; deserts", "a2": ["are; deserts"]},
+        {"stem": "冰箱里有牛奶吗？____ there ____ milk in the fridge?", "type": "text", "a": "Is; any", "a2": ["Is; any"]},
+        {"stem": "森林里有成千上万种动物。There are ____ ____ animals in the forest.", "type": "text", "a": "thousands of", "a2": ["thousands of"]},
+        {"stem": "我们必须保护我们的地球。We must ____ our Earth.", "type": "text", "a": "protect", "a2": ["protect"]}
+      ]
+    },
+    {
+      "name": "四、句型转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "There is a river near my home.（改为一般疑问句）", "type": "text", "a": "Is there a river near your home?", "a2": ["Is there a river near your home?"]},
+        {"stem": "There are many trees in the park.（改为否定句）", "type": "text", "a": "There aren't many trees in the park.", "a2": ["There are not many trees in the park."]},
+        {"stem": "There is some water in the bottle.（改为一般疑问句）", "type": "text", "a": "Is there any water in the bottle?", "a2": ["Is there any water in the bottle?"]},
+        {"stem": "There are five oceans on Earth.（对 five 提问）", "type": "text", "a": "How many oceans are there on Earth?", "a2": ["How many oceans are there on Earth?"]},
+        {"stem": "The Earth is home to millions of animals.（改为同义句）", "type": "text", "a": "Millions of animals live on the Earth.", "a2": ["Millions of animals live on the Earth.", "Millions of animals call the Earth home."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p3",
+    "title": "练习三 · 课文与阅读",
+    "time": "25 分钟",
+    "sub": "围绕单元阅读语篇《The amazing planet》——先读原文，再会答。",
+    "sections": [
+    {
+      "name": "一、课文原文《The amazing planet》",
+      "note": "沪教版英语七上 Unit 4 阅读语篇。先读原文，再做后面四道大题；答案都能在原文里找到。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">The amazing planet <span>阅读语篇 · 沪教版 英语 七年级上册 Unit 4</span></div><div class=\"rd-body\"><p><span class=\"rdn\">1</span>The Earth is an amazing planet!</p><p><span class=\"rdn\">2</span>Some places are very hot, like the areas near the equator.</p><p><span class=\"rdn\">3</span>Some are freezing cold, like the North and South Poles.</p><p><span class=\"rdn\">4</span>There are fields and mountains, rivers and seas, forests and deserts.</p><p><span " +
+      "class=\"rdn\">5</span>The highest mountain on Earth is over 8,800 metres above sea level.</p><p><span class=\"rdn\">6</span>And the deepest part of the sea is more than 10,000 metres down.</p><p><span class=\"rdn\">7</span>The plants on Earth are wonderful in many different ways.</p><p><span class=\"rdn\">8</span>The tallest trees in the world can reach over 100 metres in height.</p><p><span class=\"rdn\">9</span>The smallest plant is as small as a grain of rice.</p><p><span class=\"rdn" +
+      "\">10</span>The Earth is home to millions of animals.</p><p><span class=\"rdn\">11</span>Some, like tigers and lions, live on land.</p><p><span class=\"rdn\">12</span>Other animals, like birds, enjoy the wide open sky.</p><p><span class=\"rdn\">13</span>Big blue whales call the sea home, along with many amazing fish.</p><p><span class=\"rdn\">14</span>From bears to birds, from butterflies to seahorses, animals make our planet lovely and interesting.</p><p><span class=\"rdn\">15</span>An" +
+      "d what's more, the Earth provides us with all the things we need, such as food, water, air and energy.</p><p><span class=\"rdn\">16</span>It is our home and the only planet we know that supports life.</p><p><span class=\"rdn\">17</span>Let's explore, learn about and take care of our home.</p></div><details class=\"rdtr\"><summary>中文翻译（点开对照，先自己做题再看）</summary><div class=\"rdzh\"><p>1. 地球是一颗令人大为惊异的行星！</p><p>2. 有些地方非常热，比如赤道附近的地区。</p><p>3. 有些地方极冷，比如北极和南极。</p><p>4. 有田野和高山，有河流和海洋，有森林和沙漠。</p" +
+      "><p>5. 地球上最高的山海拔超过 8,800 米。</p><p>6. 海洋最深处超过 10,000 米。</p><p>7. 地球上的植物在许多方面都很奇妙。</p><p>8. 世界上最高的树能长到 100 米以上。</p><p>9. 最小的植物和一粒米一样小。</p><p>10. 地球是数百万动物的家园。</p><p>11. 有些动物，比如老虎和狮子，生活在陆地上。</p><p>12. 另一些动物，比如鸟类，喜欢广阔的天空。</p><p>13. 巨大的蓝鲸把海洋称作家，还有许多奇妙的鱼类。</p><p>14. 从熊到鸟，从蝴蝶到海马，动物让我们的行星可爱又有趣。</p><p>15. 而且，地球为我们提供我们所需要的一切，比如食物、水、空气和能源。</p><p>16. 它是我们的家园，也是我们所知唯一支撑生命的行星。</p><p>17. 让我们探索、了解并照顾我们的家园吧。</p></div></details><div class=\"rd-note\"><b>阅读策略：</b>读的时候试着找出每个 he / him / us / they 分别" +
+      "指谁，再圈出本单元学过的词汇和短语。</div></div>",
+      "items": [
+        {"stem": "这篇课文主要讲什么？", "type": "choice", "a": 0, "opts": ["地球的地貌、动植物和它给我们的一切", "沙漠里的动物", "如何爬山", "海洋污染"], "explain": "课文介绍了地球的地貌（山、海、沙漠）、动植物，以及地球为我们提供的一切。"}
+      ]
+    },
+    {
+      "name": "二、课文选词填空",
+      "note": "每题 1 分，共 5 分。均出自课文原句。",
+      "items": [
+        {"stem": "The Earth is an ____ planet!", "type": "choice", "a": 0, "opts": ["amazing", "amazed", "amaze", "amazingly"]},
+        {"stem": "Some are ____ cold, like the North and South Poles.", "type": "choice", "a": 0, "opts": ["freezing", "freeze", "frozen", "freezes"]},
+        {"stem": "The highest mountain on Earth is over 8,800 metres above sea ____.", "type": "choice", "a": 0, "opts": ["level", "height", "deep", "area"]},
+        {"stem": "The tallest trees in the world can ____ over 100 metres in height.", "type": "choice", "a": 0, "opts": ["reach", "arrive", "get", "go"]},
+        {"stem": "Big blue whales call the sea ____, along with many amazing fish.", "type": "choice", "a": 0, "opts": ["home", "family", "land", "area"]}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据课文《The amazing planet》判断。",
+      "items": [
+        {"stem": "Some places near the equator are very hot.", "type": "tf", "a": "T"},
+        {"stem": "The highest mountain on Earth is over 8,800 metres above sea level.", "type": "tf", "a": "T"},
+        {"stem": "The smallest plant is as big as a tree.", "type": "tf", "a": "F", "explain": "最小的植物和一粒米一样小（as small as a grain of rice）。"},
+        {"stem": "Tigers and lions live in the sea.", "type": "tf", "a": "F", "explain": "它们 live on land（生活在陆地上）。"},
+        {"stem": "The Earth provides us with food, water, air and energy.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "四、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "Where are some places very hot?", "type": "choice", "a": 0, "opts": ["Near the equator.", "Near the poles.", "In the desert.", "In the forest."]},
+        {"stem": "How high can the tallest trees reach?", "type": "choice", "a": 0, "opts": ["Over 100 metres.", "Over 8,800 metres.", "Over 10,000 metres.", "As small as a grain."]},
+        {"stem": "What do big blue whales call home?", "type": "choice", "a": 0, "opts": ["The sea.", "The sky.", "The land.", "The desert."]},
+        {"stem": "What does the Earth provide us with?", "type": "choice", "a": 0, "opts": ["Food, water, air and energy.", "Only food.", "Plastic and rubbish.", "Toys and games."]}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 4 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What is the Earth?", "type": "text", "a": "An amazing planet", "a2": ["An amazing planet.", "The Earth is an amazing planet.", "An amazing planet."]},
+        {"stem": "How deep is the deepest part of the sea?", "type": "text", "a": "More than 10,000 metres down", "a2": ["More than 10,000 metres down.", "Over 10,000 metres.", "More than 10,000 metres."]},
+        {"stem": "What is as small as a grain of rice?", "type": "text", "a": "The smallest plant", "a2": ["The smallest plant.", "The smallest plant is as small as a grain of rice.", "The smallest plant."]},
+        {"stem": "What should we do for our home?", "type": "text", "a": "Explore, learn about and take care of it", "a2": ["Explore, learn about and take care of it.", "We should explore, learn about and take care of our home.", "Take care of it."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p4",
+    "title": "练习四 · 阅读新篇章",
+    "time": "25 分钟",
+    "sub": "用本单元词汇、短语和句型新写的一篇文章。不翻课本，看看你是否真的理解和掌握了它们。",
+    "sections": [
+    {
+      "name": "一、阅读原文",
+      "note": "先通读全文，再完成下面的题。金色底纹的是本单元词汇短语，读的时候留意它们。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">Our Amazing Earth · 我们惊异的地球 <span>用 Unit 4 词汇与表达新写</span></div><div class=\"rd-body\"><p>Our Earth is an <span class=\"kw\">amazing planet</span>. It is the third <span class=\"kw\">planet</span> in <span class=\"kw\">the solar system</span> and the only one we know that <span class=\"kw\">supports life</span>.</p><p>The Earth is very big. <span class=\"kw\">As far as we know</span>, about 71% of the surface is <span class=\"kw\">covered by</span> w" +
+      "ater. The five <span class=\"kw\">oceans</span> are <span class=\"kw\">home to</span> whales, <span class=\"kw\">seahorses</span> and millions of fish. On land, there are big <span class=\"kw\">forests</span>, wide <span class=\"kw\">deserts</span>, high <span class=\"kw\">mountains</span> and green <span class=\"kw\">fields</span>. The hottest <span class=\"kw\">areas</span> are near the <span class=\"kw\">equator</span>, and the coldest are at the North and South <span class=\"kw\">Poles</span" +
+      ">.</p><p>However, our planet is in trouble. <span class=\"kw\">Plastic pollution</span> is a big problem. Every year, <span class=\"kw\">more than</span> eight million tons of plastic go into the sea. It is <span class=\"kw\">harmful</span> to fish and birds, and many animals are <span class=\"kw\">in danger</span>. People also <span class=\"kw\">cut down</span> forests, so some animals have no home and may <span class=\"kw\">disappear</span>.</p><p>What can we do? We can <span class=\"kw" +
+      "\">recycle</span> plastic bags, save <span class=\"kw\">energy</span> and <span class=\"kw\">protect</span> the <span class=\"kw\">environment</span>. If everyone helps, the Earth will stay beautiful for a long time. Let us <span class=\"kw\">take care of</span> our home!</p></div><div class=\"rd-note\"><b>阅读小任务：</b>读的时候圈出金色底纹的词汇和短语，看看你是不是每个都认识、都会用。</div></div>",
+      "items": [
+        {"stem": "这篇文章主要讲什么？", "type": "choice", "a": 0, "opts": ["地球的概况、面临的污染问题和我们的行动", "太空旅行的历史", "如何养宠物", "沙漠里的植物"], "explain": "文章先介绍地球概况，再讲塑料污染和森林砍伐问题，最后提出行动建议。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据上文判断。",
+      "items": [
+        {"stem": "The Earth is the third planet in the solar system.", "type": "tf", "a": "T"},
+        {"stem": "About 71% of the Earth is covered by water.", "type": "tf", "a": "T"},
+        {"stem": "Plastic pollution is harmful to fish and birds.", "type": "tf", "a": "T"},
+        {"stem": "People plant more forests, so animals are all safe.", "type": "tf", "a": "F", "explain": "人们在砍伐森林（cut down forests），一些动物失去家园。"},
+        {"stem": "We can recycle plastic bags to help the Earth.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "What is the only planet we know that supports life?", "type": "choice", "a": 1, "opts": ["The moon.", "The Earth.", "Mars.", "Jupiter."]},
+        {"stem": "Where are the hottest areas?", "type": "choice", "a": 0, "opts": ["Near the equator.", "At the poles.", "In the forests.", "In the deserts."]},
+        {"stem": "How much plastic goes into the sea every year?", "type": "choice", "a": 0, "opts": ["More than eight million tons.", "About eight hundred tons.", "Ten tons.", "No plastic."]},
+        {"stem": "Why do some animals have no home?", "type": "choice", "a": 0, "opts": ["Because people cut down forests.", "Because the sea is too cold.", "Because they fly away.", "Because they recycle plastic."]},
+        {"stem": "What does \"in danger\" mean in the passage?", "type": "choice", "a": 0, "opts": ["At risk of being harmed or disappearing.", "Very happy.", "Very hungry.", "Very fast."]}
+      ]
+    },
+    {
+      "name": "四、词汇与表达 · 语境理解",
+      "note": "每题 1 分，共 5 分。结合文章语境，判断词汇和短语的意思与用法。",
+      "items": [
+        {"stem": "\"supports life\" 的意思是：", "type": "choice", "a": 0, "opts": ["支撑生命；让生命存在", "破坏生命", "制造生命", "消耗生命"], "explain": "support 支撑；供养；the only planet that supports life 唯一支撑生命的行星。"},
+        {"stem": "\"covered by\" 在文中的意思是：", "type": "choice", "a": 0, "opts": ["被……覆盖", "被……污染", "被……保护", "被……发现"], "explain": "cover 覆盖；be covered by 被……覆盖。"},
+        {"stem": "\"harmful\" 在文中的意思是：", "type": "choice", "a": 1, "opts": ["有益的", "有害的", "无害的", "有用的"], "explain": "harmful 有害的；塑料对鱼和鸟有害。"},
+        {"stem": "\"cut down\" 的意思是：", "type": "choice", "a": 0, "opts": ["砍倒", "种植", "浇水", "燃烧"], "explain": "cut down forests 砍伐森林。"},
+        {"stem": "\"as far as we know\" 的意思是：", "type": "choice", "a": 0, "opts": ["据我们所知", "尽可能远", "只要我们知道", "和……一样远"], "explain": "as far as we know 据我们所知。"}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "How many oceans are there on Earth?", "type": "text", "a": "Five", "a2": ["Five.", "There are five oceans.", "5."]},
+        {"stem": "What is the biggest problem in the passage?", "type": "text", "a": "Plastic pollution", "a2": ["Plastic pollution.", "It is plastic pollution.", "Pollution."]},
+        {"stem": "What can we do to help the Earth?", "type": "text", "a": "Recycle plastic bags, save energy and protect the environment", "a2": ["Recycle plastic bags, save energy and protect the environment.", "We can recycle plastic bags, save energy and protect the environment."]},
+        {"stem": "What is harmful to fish and birds?", "type": "text", "a": "Plastic", "a2": ["Plastic.", "Plastic is harmful to fish and birds.", "It is plastic."]},
+        {"stem": "What will happen if everyone helps?", "type": "text", "a": "The Earth will stay beautiful", "a2": ["The Earth will stay beautiful.", "The Earth will stay beautiful for a long time."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p5",
+    "title": "练习五 · 中国地理与环保",
+    "time": "20 分钟",
+    "sub": "看中国的山河、保护动物和绿色行动，学英语也了解自己的国家。",
+    "sections": [
+    {
+      "name": "一、文化读本（原文）",
+      "note": "三段都围绕本单元主题与中国文化。先通读，再做后面的题。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">Mountains, Rivers and a Green Future · 中国的山河与绿色未来 <span>结合 Unit 4 The Earth</span></div><div class=\"rd-body\"><p><b>A. Mountains and Rivers · 山河</b><br>China is a big country with many <span class=\"kw\">amazing</span> places. The highest <span class=\"kw\">mountain</span> in the world, Qomolangma (珠穆朗玛峰), is 8,848.86 metres above <span class=\"kw\">sea level</span>. The two longest <span class=\"kw\">rivers</span> are the Yangtze (长江) and the " +
+      "Yellow River (黄河). China also has <span class=\"kw\">deserts</span>, <span class=\"kw\">forests</span> and long <span class=\"kw\">coastlines</span> (海岸线). <span class=\"kw\">As far as we know</span>, there <span class=\"kw\">are</span> hundreds of national parks (国家公园) to protect these places.</p><p><b>B. Animals in Danger · 保护动物</b><br>China <span class=\"kw\">is home to</span> many special animals: the giant panda (大熊猫), the golden monkey (金丝猴), the Siberian tiger (东北虎) and the creste" +
+      "d ibis (朱鹮). Some of them were <span class=\"kw\">in danger</span> because people <span class=\"kw\">cut down</span> forests and hunted (捕猎) them. Today, <span class=\"kw\">nature reserves</span> (自然保护区) give them safe homes, and their numbers are going up.</p><p><b>C. Going Green · 绿色行动</b><br>Chinese people are working for a green Earth. Cities ask everyone to sort rubbish (垃圾分类). Many shops no longer give free <span class=\"kw\">plastic</span> bags. Saihanba (塞罕坝) in Hebei is now " +
+      "the largest man-made <span class=\"kw\">forest</span> in the world — people planted trees there for <span class=\"kw\">more than</span> fifty years. And Ant Forest (蚂蚁森林) lets millions of people plant real trees with small steps (脚步). The Earth is our home, and it is our turn to <span class=\"kw\">take care of</span> it.</p></div><div class=\"rd-note\"><b>文化小知识：</b>中国的世界自然遗产地（如九寨沟、黄龙、张家界）都受法律保护。英语里可以说 \"China has one of the largest systems of protected areas in the world\"。</div></div>",
+      "items": [
+        {"stem": "这三段文字共同讲的是什么？", "type": "choice", "a": 0, "opts": ["中国的自然地理与环境保护", "中国的城市建设", "中国的美食", "中国的交通"], "explain": "三段分别讲中国的山河、保护动物和绿色行动，都围绕地理与环保。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 A · 判断正误（T / F）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "Qomolangma is the highest mountain in the world.", "type": "tf", "a": "T"},
+        {"stem": "The Yangtze and the Yellow River are the two longest rivers in China.", "type": "tf", "a": "T"},
+        {"stem": "The giant panda lives in the sea.", "type": "tf", "a": "F", "explain": "大熊猫生活在森林里，不在海里。"},
+        {"stem": "Saihanba is the largest man-made forest in the world.", "type": "tf", "a": "T"},
+        {"stem": "Chinese cities ask people to sort their rubbish.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 B · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "How high is Qomolangma?", "type": "choice", "a": 0, "opts": ["8,848.86 metres.", "8,800 metres.", "10,000 metres.", "1,000 metres."]},
+        {"stem": "Which animal is mentioned in the passage?", "type": "choice", "a": 1, "opts": ["The blue whale.", "The giant panda.", "The camel.", "The seahorse."]},
+        {"stem": "What is Saihanba famous for?", "type": "choice", "a": 0, "opts": ["The largest man-made forest in the world.", "The longest river.", "The highest mountain.", "The biggest desert."]},
+        {"stem": "What do Chinese cities ask people to do?", "type": "choice", "a": 0, "opts": ["Sort rubbish.", "Burn plastic.", "Cut down trees.", "Hunt animals."]}
+      ]
+    },
+    {
+      "name": "四、文化表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What are the two longest rivers in China?", "type": "text", "a": "The Yangtze River and the Yellow River", "a2": ["The Yangtze River and the Yellow River.", "The Yangtze and the Yellow River.", "The Yangtze River and the Yellow River."]},
+        {"stem": "What is the highest mountain in the world?", "type": "text", "a": "Qomolangma", "a2": ["Qomolangma.", "It is Qomolangma.", "Qomolangma (珠穆朗玛峰)."]},
+        {"stem": "Which animals were in danger in China?", "type": "text", "a": "The giant panda, the golden monkey and the Siberian tiger", "a2": ["The giant panda, the golden monkey and the Siberian tiger.", "Pandas, golden monkeys and Siberian tigers."]},
+        {"stem": "What is rubbish sorting in Chinese?", "type": "text", "a": "垃圾分类", "a2": ["It is 垃圾分类 (laji fenlei).", "垃圾分类 (laji fenlei)."]},
+        {"stem": "Why should we protect animals?", "type": "text", "a": "Because the Earth is home to all living things", "a2": ["Because the Earth is home to all living things.", "Because they are our friends.", "Because the Earth is home to them."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t1",
+    "title": "测试卷一 · Unit 4 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型参照本地单元卷：辨音 + 单选 + 语法选择 + 完形 + 阅读 + 回答问题 + 拼写 + 词形转换 + 写作。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>a</u>mazing&nbsp;&nbsp;B. <u>a</u>rea&nbsp;&nbsp;C. c<u>a</u>t&nbsp;&nbsp;D. h<u>a</u>ve", "type": "choice", "a": 0, "opts": ["amazing", "area", "cat", "have"], "explain": "amazing 中 a 发 /eɪ/，area / cat / have 中 a 发 /æ/。"},
+        {"stem": "A. <u>e</u>quator&nbsp;&nbsp;B. b<u>e</u>d&nbsp;&nbsp;C. <u>e</u>lephant&nbsp;&nbsp;D. g<u>e</u>t", "type": "choice", "a": 0, "opts": ["equator", "bed", "elephant", "get"], "explain": "equator 中 e 发 /ɪ/，bed / elephant / get 中 e 发 /e/。"},
+        {"stem": "A. <u>o</u>cean&nbsp;&nbsp;B. p<u>o</u>llution&nbsp;&nbsp;C. pr<u>o</u>tect&nbsp;&nbsp;D. c<u>o</u>ver", "type": "choice", "a": 0, "opts": ["ocean", "pollution", "protect", "cover"], "explain": "ocean 中 o 发 /əʊ/，pollution / protect / cover 中 o 发 /ə/。"},
+        {"stem": "A. <u>s</u>ea&nbsp;&nbsp;B. <u>s</u>upport&nbsp;&nbsp;C. <u>s</u>ugar&nbsp;&nbsp;D. <u>s</u>mile", "type": "choice", "a": 2, "opts": ["sea", "support", "sugar", "smile"], "explain": "sea / support / smile 中 s 发 /s/，sugar 中 s 发 /ʃ/。"},
+        {"stem": "A. wh<u>a</u>le&nbsp;&nbsp;B. <u>a</u>nimal&nbsp;&nbsp;C. m<u>a</u>ke&nbsp;&nbsp;D. l<u>a</u>ke", "type": "choice", "a": 1, "opts": ["whale", "animal", "make", "lake"], "explain": "whale / make / lake 发 /eɪ/，animal 发 /æ/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "There ____ a lot of pollution in the air.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "pollution 不可数 → there is。"},
+        {"stem": "There ____ many deserts on Earth.", "type": "choice", "a": 1, "opts": ["is", "are", "am", "be"], "explain": "deserts 复数 → there are。"},
+        {"stem": "____ there any water in the glass?", "type": "choice", "a": 0, "opts": ["Is", "Are", "Am", "Do"], "explain": "water 不可数 → Is there...?"},
+        {"stem": "The Earth ____ us with food and water.", "type": "choice", "a": 0, "opts": ["provides", "support", "protect", "pollute"], "explain": "provide sb with sth；主语三单 → provides。"},
+        {"stem": "The blue whale is the largest ____ on Earth.", "type": "choice", "a": 0, "opts": ["animal", "plant", "mountain", "ocean"], "explain": "鲸是动物。"},
+        {"stem": "We must ____ our planet.", "type": "choice", "a": 0, "opts": ["protect", "pollute", "disappear", "harm"], "explain": "protect 保护。"},
+        {"stem": "The highest mountain is over 8,800 metres above sea ____.", "type": "choice", "a": 0, "opts": ["level", "height", "deep", "area"], "explain": "sea level 海平面。"},
+        {"stem": "Some animals are in ____ because of pollution.", "type": "choice", "a": 0, "opts": ["danger", "dangerous", "the air", "the sun"], "explain": "in danger 处于危险中。"},
+        {"stem": "It is ____ to throw plastic bags into the sea.", "type": "choice", "a": 0, "opts": ["harmful", "helpful", "wonderful", "careful"], "explain": "harmful 有害的。"},
+        {"stem": "The Earth is the only planet that ____ life.", "type": "choice", "a": 1, "opts": ["support", "supports", "supporting", "supported"], "explain": "that 从句主语 that 代 planet，三单 → supports。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Our Earth is an ____ planet.", "type": "choice", "a": 0, "opts": ["amazing", "amazed", "amaze", "amazingly"], "explain": "修饰 planet 用形容词 amazing。"},
+        {"stem": "There ____ water everywhere on Earth.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "water 不可数 → there is。"},
+        {"stem": "About 71% of the surface ____ covered by water.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "surface 单数 → is。"},
+        {"stem": "There ____ five oceans on Earth.", "type": "choice", "a": 1, "opts": ["is", "are", "am", "be"], "explain": "five oceans 复数 → there are。"},
+        {"stem": "The oceans are home ____ millions of animals.", "type": "choice", "a": 0, "opts": ["to", "for", "with", "of"], "explain": "be home to 是……的家园。"},
+        {"stem": "There ____ many forests and deserts on land.", "type": "choice", "a": 1, "opts": ["is", "are", "am", "be"], "explain": "forests and deserts 复数 → there are。"},
+        {"stem": "The Earth provides us ____ food, water and air.", "type": "choice", "a": 0, "opts": ["with", "for", "to", "of"], "explain": "provide sb with sth。"},
+        {"stem": "However, there ____ a lot of pollution in the air and the sea.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "pollution 不可数 → there is。"},
+        {"stem": "Many animals are ____ danger.", "type": "choice", "a": 0, "opts": ["in", "on", "at", "of"], "explain": "in danger 处于危险中。"},
+        {"stem": "We must ____ our Earth.", "type": "choice", "a": 0, "opts": ["protect", "pollute", "explore", "harm"], "explain": "protect 保护。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Our Earth is an ____ planet. It is our only home.", "type": "choice", "a": 0, "opts": ["amazing", "amazed", "amaze", "amazingly"], "explain": "amazing 令人大为惊奇的。"},
+        {"stem": "There are many ____ on Earth, such as tigers, whales and butterflies.", "type": "choice", "a": 0, "opts": ["animals", "animal", "plants", "mountains"], "explain": "老虎、鲸、蝴蝶都是动物。"},
+        {"stem": "The blue ____ is the largest animal in the world.", "type": "choice", "a": 0, "opts": ["whale", "shark", "dolphin", "turtle"], "explain": "蓝鲸是世界上最大的动物。"},
+        {"stem": "Pandas live in ____ in China.", "type": "choice", "a": 0, "opts": ["forests", "deserts", "oceans", "fields"], "explain": "熊猫生活在森林里。"},
+        {"stem": "The camel is the ship of the ____.", "type": "choice", "a": 0, "opts": ["desert", "sea", "sky", "mountain"], "explain": "ship of the desert 沙漠之舟。"},
+        {"stem": "The highest ____ in the world is Qomolangma.", "type": "choice", "a": 0, "opts": ["mountain", "tree", "building", "river"], "explain": "珠穆朗玛峰是山。"},
+        {"stem": "Plastic ____ is a big problem for the oceans.", "type": "choice", "a": 0, "opts": ["pollution", "pollute", "polluted", "pollutes"], "explain": "plastic pollution 塑料污染。"},
+        {"stem": "Plastic is ____ to fish and birds.", "type": "choice", "a": 0, "opts": ["harmful", "helpful", "harmless", "good"], "explain": "harmful 有害的。"},
+        {"stem": "Many animals are in ____ now.", "type": "choice", "a": 0, "opts": ["danger", "safe", "the sun", "dangerous"], "explain": "in danger 处于危险中。"},
+        {"stem": "We must ____ our Earth and take care of it.", "type": "choice", "a": 0, "opts": ["protect", "pollute", "burn", "waste"], "explain": "protect 保护。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>Earth Day is coming! Our school will have a Green Week from Monday to Friday. On Monday, there will be a talk about protecting the Earth. On Tuesday, we will plant trees in the school garden. On Wednesday, students will collect plastic bottles and old paper for recycling. On Thursday, there will be a photo show of our planet. On Friday, every class will make a poster about the environment. Come and join us — there is something for everyone!<br>What is the talk on Monday about?", "type": "choice", "a": 1, "opts": ["Planting trees.", "Protecting the Earth.", "Making posters.", "Taking photos."]},
+        {"stem": "What will students collect on Wednesday?", "type": "choice", "a": 0, "opts": ["Plastic bottles and old paper.", "Old books.", "Rubbish on the street.", "Seeds and flowers."]},
+        {"stem": "What will every class do on Friday?", "type": "choice", "a": 1, "opts": ["Plant trees.", "Make a poster about the environment.", "Give a talk.", "Have a match."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Last Sunday, Li Hua went to the beach with his classmates. They wanted to help the sea animals. The beach was not clean — there were plastic bags, bottles and boxes everywhere. \"This is terrible,\" said Li Hua. \"Plastic is harmful to fish and birds.\" The students worked for two hours. They filled ten big bags with rubbish. A little seagull (海鸥) watched them the whole time. On the way home, Li Hua saw a small boy throwing a bottle on the ground. He went up and said kindly, \"Our Earth is our home. Please do not litter (乱扔垃圾).\" The boy said sorry and put the bottle in the bin. Li Hua smiled. Small actions can make a big difference.<br>Why did Li Hua and his classmates go to the beach?", "type": "choice", "a": 1, "opts": ["To swim in the sea.", "To help the sea animals.", "To take photos.", "To catch fish."]},
+        {"stem": "How long did the students work?", "type": "choice", "a": 0, "opts": ["For two hours.", "For two days.", "For twenty minutes.", "All day."]},
+        {"stem": "What did Li Hua say to the little boy?", "type": "choice", "a": 1, "opts": ["He said nothing.", "Our Earth is our home and not to litter.", "He shouted at him.", "He gave him a bag."]},
+        {"stem": "What can we learn from the story?", "type": "choice", "a": 1, "opts": ["Beaches are always clean.", "Small actions can make a big difference.", "Plastic is good for birds.", "Boys never listen."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Emma, How are you? I am writing to tell you about my hometown, a small town in the south of China. There is a big lake near my home. There are many kinds of fish in it, and there are lots of trees around it. In spring, birds come back and sing in the trees. In summer, we swim in the cool water. However, last year there was a lot of rubbish in the lake, and the water became dirty. The fish were in danger. Our class started a green club. Every weekend we collect rubbish by the lake and tell people not to throw plastic bags into the water. Now the lake is clean again. There is even more life in it than before. Please come and visit one day! Yours, Chen Yu<br>What is near Chen Yu's hometown?", "type": "choice", "a": 0, "opts": ["A big lake.", "A desert.", "A mountain.", "An ocean."]},
+        {"stem": "What was the problem with the lake last year?", "type": "choice", "a": 1, "opts": ["There was no water.", "There was a lot of rubbish and the water became dirty.", "There were too many fish.", "The trees died."]},
+        {"stem": "What does the green club do every weekend?", "type": "choice", "a": 1, "opts": ["Plants trees.", "Collects rubbish by the lake.", "Swims in the lake.", "Fishes in the lake."]},
+        {"stem": "How is the lake now?", "type": "choice", "a": 1, "opts": ["Still dirty.", "Clean, with more life in it than before.", "Dry.", "Full of plastic."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>The Earth is our home. It is an amazing planet. About 71% of the Earth is covered by water, and there are five oceans. The oceans are home to millions of animals, from the biggest blue whales to the smallest seahorses. On land, there are forests, deserts, mountains and fields. The Earth provides us with food, water, air and energy. But our home is in trouble. There is a lot of plastic pollution in the sea, and many animals are in danger. People cut down forests, too. If we all protect the Earth, it will stay beautiful.<br>How much of the Earth is covered by water?", "type": "text", "a": "About 71%", "a2": ["About 71%.", "About 70%.", "71 percent."]},
+        {"stem": "What is the smallest sea animal mentioned in the passage?", "type": "text", "a": "The seahorse", "a2": ["The seahorse.", "The blue whale.", "The shark.", "The fish."]},
+        {"stem": "What does the Earth provide us with?", "type": "text", "a": "Food, water, air and energy", "a2": ["Food, water, air and energy.", "Only water.", "Plastic and oil.", "Toys."]},
+        {"stem": "Why is our home in trouble?", "type": "text", "a": "Because of plastic pollution and cutting down forests", "a2": ["Because of plastic pollution and cutting down forests.", "Because there is too much water.", "Because animals are too many."]},
+        {"stem": "What will happen if we all protect the Earth?", "type": "text", "a": "It will stay beautiful", "a2": ["It will stay beautiful.", "The Earth will stay beautiful.", "It will be clean and beautiful."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "a____（令人大为惊奇的）", "type": "text", "a": "amazing"},
+        {"stem": "f____（田野；田地）", "type": "text", "a": "field"},
+        {"stem": "（深的）", "type": "text", "a": "deep"},
+        {"stem": "b____（蝴蝶）", "type": "text", "a": "butterfly"},
+        {"stem": "p____（污染）", "type": "text", "a": "pollution"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "forest（变成复数）", "type": "text", "a": "forests", "ph": "森林"},
+        {"stem": "animal（变成复数）", "type": "text", "a": "animals", "ph": "动物"},
+        {"stem": "butterfly（变成复数）", "type": "text", "a": "butterflies", "ph": "蝴蝶"},
+        {"stem": "field（变成复数）", "type": "text", "a": "fields", "ph": "田野；田地"},
+        {"stem": "city（变成复数）", "type": "text", "a": "cities", "ph": "城市"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：How to Protect the Earth（如何保护地球）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 planet, pollution, protect, harmful, plastic, in danger, cut down, recycle, take care of, environment）；③ 注意 there is / are 和句首大写。", "type": "essay", "score": 10, "ph": "How to Protect the Earth\n\nThe Earth is our home...", "check": ["有没有写地球面临的问题（pollution / plastic / cut down）？", "有没有写这些问题为什么有害（harmful / in danger）？", "有没有写具体的行动（recycle / protect / take care of）？", "有没有用 there is / are 造句？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">How to Protect the Earth<br><br>The Earth is our home, but it is in trouble. There is a lot of plastic pollution in the sea. Plastic is harmful to fish and birds, and many animals are in danger. People also cut down too many forests. What can we do? We can recycle plastic bags and bottles, save water and energy, and take care of the environment. If everyone does a little, the Earth will stay beautiful.</div><div class=\"zh\">（参考范文：写了地球的问题、危害、具体行动和期望，用了 home / in trouble / plastic pollution / harmful / in danger / cut down / recycle / save / take care of / environment / stay beautiful 等本单元词汇短语，注意了 there is 和句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t2",
+    "title": "测试卷二 · Unit 4 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与测试卷一相同，题目全部更换（词汇、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>ch</u>emical&nbsp;&nbsp;B. <u>ch</u>ild&nbsp;&nbsp;C. s<u>ch</u>ool&nbsp;&nbsp;D. <u>ch</u>eese", "type": "choice", "a": 2, "opts": ["chemical", "child", "school", "cheese"], "explain": "chemical / child / cheese 中 ch 发 /tʃ/，school 中 ch 发 /k/。"},
+        {"stem": "A. <u>g</u>as&nbsp;&nbsp;B. <u>g</u>iraffe&nbsp;&nbsp;C. <u>g</u>ood&nbsp;&nbsp;D. <u>g</u>rass", "type": "choice", "a": 1, "opts": ["gas", "giraffe", "good", "grass"], "explain": "gas / good / grass 中 g 发 /ɡ/，giraffe 中 g 发 /dʒ/。"},
+        {"stem": "A. l<u>i</u>fe&nbsp;&nbsp;B. p<u>o</u>llution&nbsp;&nbsp;C. d<u>i</u>sappear&nbsp;&nbsp;D. f<u>i</u>sh", "type": "choice", "a": 1, "opts": ["life", "pollution", "disappear", "fish"], "explain": "life / disappear / fish 发 /ɪ/，pollution 发 /ə/。"},
+        {"stem": "A. <u>th</u>ree&nbsp;&nbsp;B. <u>th</u>ink&nbsp;&nbsp;C. <u>th</u>in&nbsp;&nbsp;D. <u>th</u>ose", "type": "choice", "a": 3, "opts": ["three", "think", "thin", "those"], "explain": "three / think / thin 中 th 发 /θ/，those 中 th 发 /ð/。"},
+        {"stem": "A. r<u>e</u>cycle&nbsp;&nbsp;B. <u>e</u>nergy&nbsp;&nbsp;C. b<u>e</u>d&nbsp;&nbsp;D. l<u>e</u>vel", "type": "choice", "a": 0, "opts": ["recycle", "energy", "bed", "level"], "explain": "recycle 中 e 发 /iː/，energy / bed / level 中 e 发 /e/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "There ____ five oceans on Earth.", "type": "choice", "a": 1, "opts": ["is", "are", "am", "be"], "explain": "five oceans 复数 → there are。"},
+        {"stem": "There isn't ____ bread in the fridge.", "type": "choice", "a": 1, "opts": ["some", "any", "many", "a"], "explain": "否定句中用 any。"},
+        {"stem": "The Amazon rainforest is a huge ____.", "type": "choice", "a": 0, "opts": ["forest", "desert", "ocean", "mountain"], "explain": "rainforest 是森林。"},
+        {"stem": "People ____ down forests to make paper.", "type": "choice", "a": 0, "opts": ["cut", "plant", "water", "grow"], "explain": "cut down 砍倒。"},
+        {"stem": "We should take ____ of our Earth.", "type": "choice", "a": 0, "opts": ["care", "part", "place", "photo"], "explain": "take care of 照顾。"},
+        {"stem": "The sun is the centre of ____ ____ ____.", "type": "choice", "a": 0, "opts": ["the solar system", "the North Pole", "sea level", "the Earth"], "explain": "the solar system 太阳系。"},
+        {"stem": "Camels live in the ____.", "type": "choice", "a": 0, "opts": ["desert", "sea", "forest", "field"], "explain": "骆驼生活在沙漠。"},
+        {"stem": "The North Pole is ____ cold.", "type": "choice", "a": 0, "opts": ["freezing", "freeze", "frozen", "freezes"], "explain": "freezing 极冷的；修饰 weather 用形容词。"},
+        {"stem": "____ we know, the Earth is 4.6 billion years old.", "type": "choice", "a": 0, "opts": ["As far as", "So far", "By the way", "What's more"], "explain": "as far as we know 据我们所知。"},
+        {"stem": "Many plants and animals ____ because of pollution.", "type": "choice", "a": 0, "opts": ["disappear", "appear", "protect", "provide"], "explain": "disappear 消失；污染让动植物消失。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "The Earth is the third planet in ____ solar system.", "type": "choice", "a": 2, "opts": ["a", "an", "the", "/"], "explain": "独一无二的事物前用 the。"},
+        {"stem": "There ____ eight planets in the solar system.", "type": "choice", "a": 1, "opts": ["is", "are", "am", "be"], "explain": "eight planets 复数 → there are。"},
+        {"stem": "The hottest areas are near the ____.", "type": "choice", "a": 0, "opts": ["equator", "pole", "sea", "mountain"], "explain": "equator 赤道。"},
+        {"stem": "The coldest places are at the North and South ____.", "type": "choice", "a": 0, "opts": ["Poles", "pole", "areas", "fields"], "explain": "the North and South Poles 南北极。"},
+        {"stem": "There ____ no life on the moon.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "life 此处表示\"生命\"总称 → there is no life。"},
+        {"stem": "The Earth is the only planet that ____ life.", "type": "choice", "a": 1, "opts": ["support", "supports", "supporting", "supported"], "explain": "that 代 planet，三单 → supports。"},
+        {"stem": "People ____ down too many trees.", "type": "choice", "a": 0, "opts": ["cut", "plant", "grow", "water"], "explain": "cut down 砍倒。"},
+        {"stem": "Smoking is harmful ____ your health.", "type": "choice", "a": 0, "opts": ["to", "for", "with", "of"], "explain": "be harmful to 对……有害。"},
+        {"stem": "We should protect animals ____ as pandas and tigers.", "type": "choice", "a": 0, "opts": ["such", "much", "many", "far"], "explain": "such as 例如。"},
+        {"stem": "Let us take care ____ our home.", "type": "choice", "a": 0, "opts": ["of", "for", "to", "with"], "explain": "take care of 照顾。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "The sun is the centre of ____ ____ ____.", "type": "choice", "a": 0, "opts": ["the solar system", "the North Pole", "sea level", "the Earth"], "explain": "太阳是太阳系的中心。"},
+        {"stem": "The Earth goes ____ the sun.", "type": "choice", "a": 0, "opts": ["around", "on", "in", "through"], "explain": "go around 围绕……转。"},
+        {"stem": "The North and South ____ are very cold.", "type": "choice", "a": 0, "opts": ["Poles", "pole", "oceans", "deserts"], "explain": "南北极很冷。"},
+        {"stem": "It is ____ cold at the South Pole.", "type": "choice", "a": 0, "opts": ["freezing", "warm", "hot", "cool"], "explain": "freezing 极冷的。"},
+        {"stem": "The ____ is huge and blue.", "type": "choice", "a": 0, "opts": ["ocean", "desert", "forest", "field"], "explain": "巨大而蓝的是海洋。"},
+        {"stem": "Trees give us clean ____.", "type": "choice", "a": 0, "opts": ["air", "water", "food", "energy"], "explain": "树给我们清洁的空气。"},
+        {"stem": "Water is very important. Nothing can live ____ water.", "type": "choice", "a": 0, "opts": ["without", "with", "in", "on"], "explain": "without 没有。"},
+        {"stem": "We should not ____ down forests.", "type": "choice", "a": 0, "opts": ["cut", "plant", "look", "take"], "explain": "cut down 砍倒。"},
+        {"stem": "We can ____ plastic bottles and paper.", "type": "choice", "a": 0, "opts": ["recycle", "burn", "throw", "waste"], "explain": "recycle 回收利用。"},
+        {"stem": "The Earth will stay ____ if we all help.", "type": "choice", "a": 0, "opts": ["beautiful", "dirty", "dangerous", "harmful"], "explain": "大家一起努力，地球会保持美丽。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（海报）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>海报：</b>GO GREEN! Our school green club is looking for new members. What do we do? We recycle plastic bottles and paper. We plant trees in spring. We tell people not to use plastic bags. We also make posters about the environment. Where do we meet? In Room 105, every Friday after school. There are no fees (费用). Everyone is welcome — come and help the Earth!<br>What does the green club do?", "type": "choice", "a": 1, "opts": ["Sells plastic bags.", "Recycles plastic bottles and paper.", "Cuts down trees.", "Cleans classrooms."]},
+        {"stem": "Where does the club meet?", "type": "choice", "a": 1, "opts": ["In Room 150.", "In Room 105.", "In the library.", "In the garden."]},
+        {"stem": "How much does it cost to join?", "type": "choice", "a": 1, "opts": ["Ten yuan.", "Nothing.", "Five yuan.", "One hundred yuan."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>March 12th is Tree-planting Day in China. This year, Class 7 went to a hill outside the town. The hill used to be green, but people cut down many trees, so it became bare (光秃的). \"We will plant trees here,\" said Miss Li. Each student had a small tree. Li Hua dug a hole (坑) and put the tree in it. Then he filled the hole with earth and watered the tree. It was hard work, and everyone was hot and tired. But they planted over 200 trees that day. \"These trees will grow tall,\" said Miss Li, \"and one day birds will come back to this hill.\" The students smiled. They gave the hill a green future.<br>What is March 12th in China?", "type": "choice", "a": 1, "opts": ["Earth Day.", "Tree-planting Day.", "New Year's Day.", "Children's Day."]},
+        {"stem": "Why did the hill become bare?", "type": "choice", "a": 1, "opts": ["Because there was no rain.", "Because people cut down many trees.", "Because it was too cold.", "Because animals ate the trees."]},
+        {"stem": "How many trees did the class plant that day?", "type": "choice", "a": 1, "opts": ["Over 20.", "Over 200.", "Over 2,000.", "Two."]},
+        {"stem": "What will happen one day, according to Miss Li?", "type": "choice", "a": 1, "opts": ["The hill will become a desert.", "Birds will come back to the hill.", "The trees will disappear.", "People will cut more trees."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Jack, How is Canada? I am writing to tell you about the Earth Day show at our school. Every class made something special. Class 1 made a poster about plastic pollution — there is too much plastic in the sea, and it is harmful to fish. Class 2 showed us how to recycle. They turned old bottles into flower pots (花盆)! Class 3 told us about animals in danger, such as the giant panda and the Siberian tiger. Our class made a short play: the Earth was sick because of pollution, and children helped it get better. At the end, everyone said, \"The Earth is our home. Let us take care of it.\" It was a great day. Yours, Wang Fang<br>What did Class 1 make a poster about?", "type": "choice", "a": 0, "opts": ["Plastic pollution.", "How to recycle.", "Animals in danger.", "Tree planting."]},
+        {"stem": "What did Class 2 turn old bottles into?", "type": "choice", "a": 0, "opts": ["Flower pots.", "Books.", "Trees.", "Bags."]},
+        {"stem": "What was the matter with the Earth in Class 4's play?", "type": "choice", "a": 1, "opts": ["It was too hot.", "It was sick because of pollution.", "It was too small.", "It was hungry."]},
+        {"stem": "What did everyone say at the end?", "type": "choice", "a": 1, "opts": ["The show is over.", "The Earth is our home and we should take care of it.", "Class 1 is the best.", "We are tired."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Look at our planet from space. The Earth looks blue because about 71% of it is covered by water. There are five oceans and seven continents (大洲). The Earth is the third planet from the sun. It is not too hot and not too cold, so there is life here. There are millions of kinds of plants and animals. Forests are home to tigers, monkeys and birds. Oceans are home to whales, seahorses and fish. Deserts are home to camels. The Earth provides us with everything we need: food, water, air and energy. But we must protect it. If we pollute the air and the sea, animals will disappear. Our planet is amazing — let us keep it that way.<br>Why does the Earth look blue from space?", "type": "text", "a": "Because about 71% of it is covered by water", "a2": ["Because the sky is blue.", "Because about 71% of it is covered by water.", "Because there are many oceans."]},
+        {"stem": "Which planet is the Earth from the sun?", "type": "text", "a": "The third", "a2": ["The third.", "It is the third planet.", "Three."]},
+        {"stem": "Where do camels live?", "type": "text", "a": "In deserts", "a2": ["In deserts.", "They live in deserts.", "In the desert."]},
+        {"stem": "What will happen if we pollute the air and the sea?", "type": "text", "a": "Animals will disappear", "a2": ["Animals will disappear.", "The Earth will grow.", "Trees will grow taller.", "Nothing will happen."]},
+        {"stem": "What does the writer ask us to do?", "type": "text", "a": "Protect the Earth", "a2": ["Protect the Earth.", "Keep it amazing.", "Keep our planet amazing."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "p____（行星）", "type": "text", "a": "planet"},
+        {"stem": "m____（山；高山）", "type": "text", "a": "mountain"},
+        {"stem": "p____（植物）", "type": "text", "a": "plant"},
+        {"stem": "s____（海马）", "type": "text", "a": "seahorse"},
+        {"stem": "p____（保护）", "type": "text", "a": "protect"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "sea（变成复数）", "type": "text", "a": "seas", "ph": "海；海洋"},
+        {"stem": "pole（变成复数）", "type": "text", "a": "poles", "ph": "极；地极"},
+        {"stem": "seahorse（变成复数）", "type": "text", "a": "seahorses", "ph": "海马"},
+        {"stem": "leaf（变成复数）", "type": "text", "a": "leaves", "ph": "树叶"},
+        {"stem": "desert（变成复数）", "type": "text", "a": "deserts", "ph": "沙漠；荒漠"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：A Green Club for Our School（我们学校的绿色社团）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 club, recycle, pollution, plastic, protect, environment, take care of, plant, rubbish）；③ 注意 there is / are 和句首大写。", "type": "essay", "score": 10, "ph": "A Green Club for Our School\n\nI want to start a green club...", "check": ["有没有写社团名称和做什么？", "有没有写为什么需要这个社团（pollution / plastic / rubbish）？", "有没有写具体活动（recycle / plant trees）？", "有没有用 there is / are 造句？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">A Green Club for Our School<br><br>I want to start a green club at our school. There is too much plastic rubbish in our classroom and on the playground. Plastic pollution is harmful to the environment. In our club, we recycle plastic bottles and old paper every Friday. We also plant trees in spring and make posters about the Earth. If everyone takes part, there will be less rubbish and more green in our school. Let us take care of our school and our Earth!</div><div class=\"zh\">（参考范文：写了社团名称、成立原因、具体活动和期望，用了 green club / plastic rubbish / plastic pollution / harmful / environment / recycle / plant trees / posters / take care of 等本单元词汇短语，注意了 there is 和句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t3",
+    "title": "测试卷三 · Unit 4 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与前两套相同，题目全部更换（辨音组合、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>a</u>rea&nbsp;&nbsp;B. <u>a</u>nimal&nbsp;&nbsp;C. d<u>a</u>te&nbsp;&nbsp;D. <u>a</u>pple", "type": "choice", "a": 2, "opts": ["area", "animal", "date", "apple"], "explain": "area / animal / apple 中 a 发 /æ/，date 中 a 发 /eɪ/。"},
+        {"stem": "A. d<u>ee</u>p&nbsp;&nbsp;B. s<u>ee</u>&nbsp;&nbsp;C. gr<u>ee</u>n&nbsp;&nbsp;D. br<u>ea</u>d", "type": "choice", "a": 3, "opts": ["deep", "see", "green", "bread"], "explain": "deep / see / green 发 /iː/，bread 发 /e/。"},
+        {"stem": "A. <u>o</u>cean&nbsp;&nbsp;B. <u>o</u>ffice&nbsp;&nbsp;C. <u>o</u>ften&nbsp;&nbsp;D. <u>o</u>nly", "type": "choice", "a": 0, "opts": ["ocean", "office", "often", "only"], "explain": "ocean 中 o 发 /əʊ/，office / often / only 中 o 发 /ɒ/。"},
+        {"stem": "A. p<u>u</u>t&nbsp;&nbsp;B. b<u>u</u>s&nbsp;&nbsp;C. c<u>u</u>p&nbsp;&nbsp;D. s<u>u</u>nny", "type": "choice", "a": 0, "opts": ["put", "bus", "cup", "sunny"], "explain": "put 中 u 发 /ʊ/，bus / cup / sunny 中 u 发 /ʌ/。"},
+        {"stem": "A. <u>u</u>seful&nbsp;&nbsp;B. <u>u</u>se&nbsp;&nbsp;C. c<u>u</u>te&nbsp;&nbsp;D. <u>u</u>ncle", "type": "choice", "a": 3, "opts": ["useful", "use", "cute", "uncle"], "explain": "useful / use / cute 中 u 发 /juː/，uncle 中 u 发 /ʌ/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "—____ is the highest mountain in the world? —Qomolangma.", "type": "choice", "a": 0, "opts": ["What", "Where", "How", "Who"], "explain": "问\"什么\"用 What。"},
+        {"stem": "The Earth is home ____ millions of animals.", "type": "choice", "a": 0, "opts": ["to", "for", "with", "of"], "explain": "be home to 是……的家园。"},
+        {"stem": "There ____ some rice in the bowl.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "rice 不可数 → there is。"},
+        {"stem": "Plastic bags are ____ to sea animals.", "type": "choice", "a": 0, "opts": ["harmful", "helpful", "friendly", "kind"], "explain": "harmful to 对……有害。"},
+        {"stem": "The deepest part of the sea is more ____ 10,000 metres down.", "type": "choice", "a": 0, "opts": ["than", "then", "as", "over"], "explain": "more than 超过。"},
+        {"stem": "Trees ____ us with clean air.", "type": "choice", "a": 0, "opts": ["provide", "support", "protect", "pollute"], "explain": "provide sb with sth。"},
+        {"stem": "We can ____ plastic bottles to help the Earth.", "type": "choice", "a": 0, "opts": ["recycle", "burn", "throw", "drop"], "explain": "recycle 回收利用。"},
+        {"stem": "There ____ a river and two lakes near my home.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "there be 就近原则：近处 a river 单数 → is。"},
+        {"stem": "The Earth goes around the ____.", "type": "choice", "a": 1, "opts": ["moon", "sun", "star", "planet"], "explain": "地球围绕太阳转。"},
+        {"stem": "It is our duty to ____ the environment.", "type": "choice", "a": 0, "opts": ["protect", "pollute", "harm", "waste"], "explain": "protect the environment 保护环境。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "As far ____ we know, the Earth is very old.", "type": "choice", "a": 0, "opts": ["as", "so", "that", "than"], "explain": "as far as we know 据我们所知。"},
+        {"stem": "The Earth is home ____ billions of people.", "type": "choice", "a": 0, "opts": ["to", "for", "with", "of"], "explain": "be home to。"},
+        {"stem": "There ____ more than seven billion people on Earth.", "type": "choice", "a": 1, "opts": ["is", "are", "am", "be"], "explain": "people 复数 → there are。"},
+        {"stem": "About 71% of the Earth ____ covered by water.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "the Earth 单数 → is。"},
+        {"stem": "The highest mountain is over 8,800 metres ____ sea level.", "type": "choice", "a": 0, "opts": ["above", "under", "below", "in"], "explain": "above sea level 海拔。"},
+        {"stem": "The deepest part of the sea is more ____ 10,000 metres down.", "type": "choice", "a": 0, "opts": ["than", "then", "as", "of"], "explain": "more than 超过。"},
+        {"stem": "Whales, seahorses ____ fish live in the sea.", "type": "choice", "a": 0, "opts": ["and", "but", "or", "with"], "explain": "并列用 and。"},
+        {"stem": "There ____ lots of plastic in the ocean.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "plastic 不可数 → there is。"},
+        {"stem": "Plastic is ____ to sea animals.", "type": "choice", "a": 0, "opts": ["harmful", "helpful", "good", "nice"], "explain": "be harmful to 对……有害。"},
+        {"stem": "We must stop ____ down forests.", "type": "choice", "a": 2, "opts": ["cut", "to cut", "cutting", "cuts"], "explain": "stop doing sth. 停止做某事。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "The Earth is the third ____ from the sun.", "type": "choice", "a": 0, "opts": ["planet", "star", "moon", "satellite"], "explain": "地球是第三颗行星。"},
+        {"stem": "There is lots of ____ in the air in big cities.", "type": "choice", "a": 0, "opts": ["pollution", "pollute", "polluted", "pollutes"], "explain": "pollution 污染（名词）。"},
+        {"stem": "Rubbish sorting helps keep our city ____.", "type": "choice", "a": 0, "opts": ["clean", "dirty", "noisy", "crowded"], "explain": "垃圾分类让城市干净。"},
+        {"stem": "Saihanba is a famous ____ forest in China.", "type": "choice", "a": 0, "opts": ["man-made", "natural", "plastic", "deep"], "explain": "man-made forest 人工林。"},
+        {"stem": "The Yangtze is the longest ____ in China.", "type": "choice", "a": 0, "opts": ["river", "mountain", "desert", "lake"], "explain": "长江是河流。"},
+        {"stem": "The Taklamakan is a big ____ in China.", "type": "choice", "a": 0, "opts": ["desert", "forest", "ocean", "field"], "explain": "塔克拉玛干是沙漠。"},
+        {"stem": "Pandas are in ____ because they have fewer homes.", "type": "choice", "a": 0, "opts": ["danger", "safe", "the sky", "dangerous"], "explain": "in danger 处于危险中。"},
+        {"stem": "Cutting down forests makes animals ____.", "type": "choice", "a": 0, "opts": ["disappear", "appear", "grow", "protect"], "explain": "disappear 消失。"},
+        {"stem": "We must take ____ of nature.", "type": "choice", "a": 0, "opts": ["care", "part", "place", "hold"], "explain": "take care of 照顾。"},
+        {"stem": "A green Earth is ____ for everyone.", "type": "choice", "a": 0, "opts": ["good", "bad", "harmful", "dangerous"], "explain": "be good for 对……有好处。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>A Talk: Our Planet in Danger. When: Wednesday, April 23rd, 4:30 p.m. Where: The school hall. Speaker: Dr Ma, a scientist from the city museum. She will talk about plastic pollution in the oceans, animals in danger and what young people can do. After the talk, students can join the school green club in Room 105. There will also be a free book about the Earth for the first fifty students. Please be on time.<br>Who will give the talk?", "type": "choice", "a": 1, "opts": ["A teacher.", "Dr Ma, a scientist.", "A student.", "Dr Wang."]},
+        {"stem": "What will the talk be about?", "type": "choice", "a": 1, "opts": ["How to plant trees.", "Plastic pollution, animals in danger and what young people can do.", "The history of the city.", "Space travel."]},
+        {"stem": "What can the first fifty students get?", "type": "choice", "a": 1, "opts": ["A poster.", "A free book about the Earth.", "A plastic bag.", "A ticket."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Wang Mei is a middle school student in Guangzhou. Every Saturday morning, she goes to the beach near her home with a big bag. She is not looking for shells (贝壳) — she is looking for rubbish! Wang Mei started this work two years ago, after she read a story about a sea bird that died because it ate too much plastic. \"There was so much plastic on the beach,\" she says. \"It is harmful to fish, birds and turtles (海龟).\" At first, she worked alone. Now, more than thirty students join her. Last month, they collected over 200 bags of rubbish. \"The beach is cleaner now,\" Wang Mei says. \"But there is still a lot to do. If everyone takes care of the Earth, our beaches will be beautiful again.\"<br>What does Wang Mei look for on the beach?", "type": "choice", "a": 1, "opts": ["Shells.", "Rubbish.", "Fish.", "Turtles."]},
+        {"stem": "Why did she start this work?", "type": "choice", "a": 1, "opts": ["Because her teacher asked her to.", "Because she read a story about a sea bird that died from eating plastic.", "Because she likes the beach.", "Because she has nothing to do."]},
+        {"stem": "How many students join her now?", "type": "choice", "a": 1, "opts": ["Two.", "More than thirty.", "Over two hundred.", "Nobody."]},
+        {"stem": "What does Wang Mei think of the beach now?", "type": "choice", "a": 1, "opts": ["It is perfect.", "It is cleaner, but there is still a lot to do.", "It is dirtier.", "It is closed."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（日记）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>日记：</b>Saturday, April 22nd, Sunny. Today is Earth Day. In the morning, our class planted ten trees in the school garden. Miss Li told us that trees give us clean air and a home for birds. In the afternoon, I joined the beach clean-up with Wang Mei. There were plastic bags, bottles and boxes on the sand. We worked for two hours and filled eight bags. A little boy asked me, \"Why do you pick up rubbish?\" I said, \"Because the Earth is our home. If there is plastic in the sea, fish and birds will be in danger.\" He thought for a moment and then helped us pick up a bottle. On the way home, I was tired but happy. I wrote in my diary: small hands can change the Earth.<br>What did the class do in the morning?", "type": "choice", "a": 0, "opts": ["Planted ten trees in the school garden.", "Cleaned the beach.", "Picked up bottles.", "Gave a talk."]},
+        {"stem": "What did Miss Li say about trees?", "type": "choice", "a": 0, "opts": ["They give us clean air and a home for birds.", "They make the school noisy.", "They are dangerous.", "They are food for fish."]},
+        {"stem": "How many bags of rubbish did they fill?", "type": "choice", "a": 1, "opts": ["Ten.", "Eight.", "Two.", "Thirty."]},
+        {"stem": "How did the writer feel at the end of the day?", "type": "choice", "a": 1, "opts": ["Angry.", "Tired but happy.", "Bored.", "Sad."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>China is home to many amazing animals. The giant panda is one of them. Pandas live in the forests of Sichuan, Shaanxi and Gansu. They eat bamboo (竹子). Long ago, there were many pandas, but people cut down forests, so pandas had fewer homes and were in danger. Today, China has many nature reserves for pandas. People plant bamboo and stop hunting. The number of pandas is going up. In 2016, the giant panda changed from \"endangered\" (濒危) to \"vulnerable\" (易危). This is good news, but the work is not over. The Earth is home to all of us — animals and people. If we take care of nature, nature will take care of us.<br>What do pandas eat?", "type": "text", "a": "Bamboo", "a2": ["Bamboo.", "They eat bamboo.", "Fish."]},
+        {"stem": "Why did pandas have fewer homes?", "type": "text", "a": "Because people cut down forests", "a2": ["Because people cut down forests.", "Because there were too many pandas.", "Because bamboo grew too fast."]},
+        {"stem": "What does China build for pandas?", "type": "text", "a": "Nature reserves", "a2": ["Nature reserves.", "Many nature reserves.", "Zoos only."]},
+        {"stem": "What happened to the giant panda in 2016?", "type": "text", "a": "It changed from endangered to vulnerable", "a2": ["It changed from endangered to vulnerable.", "It became more endangered.", "It disappeared."]},
+        {"stem": "What does the writer mean by \"If we take care of nature, nature will take care of us\"?", "type": "text", "a": "Protecting nature also helps people", "a2": ["Protecting nature also helps people.", "Nature is dangerous.", "People should hunt animals."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "（地区；区域）", "type": "text", "a": "area"},
+        {"stem": "f____（森林）", "type": "text", "a": "forest"},
+        {"stem": "r____（达到；到达）", "type": "text", "a": "reach"},
+        {"stem": "p____（提供；供应）", "type": "text", "a": "provide"},
+        {"stem": "p____（塑料）", "type": "text", "a": "plastic"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "plant（变成复数）", "type": "text", "a": "plants", "ph": "植物"},
+        {"stem": "whale（变成复数）", "type": "text", "a": "whales", "ph": "鲸"},
+        {"stem": "river（变成复数）", "type": "text", "a": "rivers", "ph": "河流"},
+        {"stem": "life（变成复数）", "type": "text", "a": "lives", "ph": "生命"},
+        {"stem": "mountain（变成复数）", "type": "text", "a": "mountains", "ph": "山；高山"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Plan for a Green Weekend（我的绿色周末计划）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 planet, pollution, plastic, protect, recycle, environment, rubbish, take care of, plant）；③ 注意 there is / are 和句首大写。", "type": "essay", "score": 10, "ph": "My Plan for a Green Weekend\n\nThis weekend, I will...", "check": ["有没有写周末要做的几件环保小事？", "有没有写为什么做这些事（pollution / plastic / rubbish）？", "有没有写对地球的影响（protect / environment）？", "有没有用 there is / are 造句？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">My Plan for a Green Weekend<br><br>This weekend, I will do small things to help the Earth. On Saturday morning, I will collect plastic bottles and old paper and take them to the recycling centre. In the afternoon, I will plant a small tree in our garden, because trees give us clean air. On Sunday, I will not use any plastic bags when I go shopping. There is too much plastic pollution in the sea, and it is harmful to fish and birds. If everyone protects the environment, the Earth will stay beautiful. Taking care of the Earth is taking care of our own home.</div><div class=\"zh\">（参考范文：写了周末的环保行动、原因和影响，用了 plastic bottles / recycling / plant / clean air / plastic bags / plastic pollution / harmful / protects / environment / take care of 等本单元词汇短语，注意了 there is 和句首大写。）</div>"}
+      ]
+    }
+  ]
+  }
+];
+
+const $ = s => document.querySelector(s);
+const host = $('#paperHost'), tabsEl = $('#tabs'), scoreHost = $('#scoreHost');
+let curPaper = null, answers = {};
+
+const store = {
+  key(id){ return 'hx_quiz_' + 'u4' + '_' + id; },
+  save(id, data){ try{ localStorage.setItem(this.key(id), JSON.stringify(data)); }catch(e){} },
+  load(id){ try{ return JSON.parse(localStorage.getItem(this.key(id)) || 'null'); }catch(e){ return null; } },
+  clear(id){ try{ localStorage.removeItem(this.key(id)); }catch(e){} }
+};
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buildTabs(){
+  tabsEl.innerHTML = '';
+  PAPERS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.innerHTML = esc(p.title.split(' · ')[0]) + '<span class="tag">' + esc(p.title.split(' · ')[1] || '') + '</span>';
+    b.onclick = () => selectPaper(i);
+    b.dataset.idx = i;
+    tabsEl.appendChild(b);
+  });
+}
+
+function selectPaper(i){
+  const p = PAPERS[i];
+  curPaper = p;
+  [...tabsEl.children].forEach((b, j) => b.classList.toggle('on', j === i));
+  scoreHost.innerHTML = '';
+  const saved = store.load(p.id);
+  answers = (saved && saved.answers) || {};
+  renderPaper(p, saved && saved.submitted);
+}
+
+function qid(si, qi){ return 'q' + si + '_' + qi; }
+
+function renderPaper(p, submitted){
+  let total = 0;
+  let html = `<div class="paper">
+    <div class="p-head">
+      <div class="pt">${esc(p.title)}</div>
+      <div class="ps">${esc(p.sub || '')}</div>
+    </div>
+    <div class="p-info"><span>建议用时：<b>${esc(p.time || '20 分钟')}</b></span><span>满分：<b id="fullMark">100</b> 分</span><span>范围：<b>Unit 4</b></span></div>`;
+
+  p.sections.forEach((s, si) => {
+    html += `<div class="sec"><h3>${esc(s.name)}</h3>`;
+    if (s.note) html += `<div class="sn">${s.note}</div>`;
+    if (s.bank) html += `<div class="wordbank">${s.bank}</div>`;
+    if (s.passage) html += s.passage;
+    s.items.forEach((it, qi) => {
+      const qq = qid(si, qi);
+      total += (it.score || 1);
+      const ans = answers[qq];
+      const st = submitted && it.type !== 'essay'
+        ? (isRight(it, ans) ? 'ok' : 'bad') : '';
+      html += `<div class="q" id="${qq}"><div class="qt"><span class="qn">${qi + 1}.</span>${it.stem}</div>`;
+      if (it.type === 'choice' || it.type === 'tf'){
+        const opts = it.type === 'choice' ? it.opts : ['T（正确）', 'F（错误）'];
+        const cols = (it.opts && it.opts.length > 4) ? 'one' : '';
+        html += `<div class="opts ${cols}">`;
+        opts.forEach((o, oi) => {
+          const tv = it.type === 'tf' ? (oi === 0 ? 'T' : 'F') : String(oi);
+          const key = it.type === 'tf' ? tv : String.fromCharCode(65 + oi);
+          let cls = 'opt';
+          if (submitted && it.type === 'choice'){
+            if (String(oi) === String(it.a)) cls += ' ok'; else if (tv === String(ans) && String(oi) !== String(it.a)) cls += ' bad';
+          } else if (submitted && it.type === 'tf'){
+            if (tv === it.a) cls += ' ok'; else if (tv === String(ans) && tv !== it.a) cls += ' bad';
+          }
+          if (!submitted && ans !== undefined && String(ans) === tv) cls += ' sel';
+          const mk = (submitted && ((it.type === 'choice' && String(oi) === String(it.a)) || (it.type === 'tf' && tv === it.a))) ? '<span class="mk">✓</span>' : '';
+          html += `<div class="${cls}" data-q="${qq}" data-v="${tv}"><span class="lb">${key}.</span><span>${esc(o)}</span>${mk}</div>`;
+        });
+        html += `</div>`;
+        if (submitted && !isRight(it, ans) && it.explain) html += `<div class="hint">💡 ${it.explain}</div>`;
+      } else if (it.type === 'text'){
+        const cls = submitted ? (st === 'ok' ? 'ok' : 'bad') : '';
+        html += `<input class="ans-in ${cls}" data-q="${qq}" value="${esc(ans || '')}" placeholder="${esc(it.ph || '输入答案')}" ${submitted ? 'disabled' : ''}>`;
+        if (submitted && st !== 'ok') html += `<div class="hint">💡 参考答案：<b>${esc((it.a2 || it.a).join ? (it.a2||it.a).join(' / ') : it.a)}</b></div>`;
+      } else if (it.type === 'essay'){
+        html += `<textarea class="essay" data-q="${qq}" placeholder="${esc(it.ph || '')}">${esc(ans || '')}</textarea>`;
+        html += `<div class="checklist"><b>自查清单：</b><ul>${(it.check||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>`;
+        html += `<details class="sample"><summary>📖 参考范文（写完后展开对照）</summary><div class="body">${it.sample}</div></details>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `</div>
+    <div class="acts">
+      <button class="btn btn-go" id="btnSubmit">${submitted ? '重新作答' : '提交批改'}</button>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 打印 / 存 PDF</button>
+      <button class="btn btn-reset" id="btnReset">清空重做</button>
+    </div>`;
+  host.innerHTML = html;
+  $('#fullMark').textContent = total;
+
+  host.querySelectorAll('.opt').forEach(o => o.onclick = () => {
+    if (submitted) return;
+    answers[o.dataset.q] = o.dataset.v;
+    host.querySelectorAll(`.opt[data-q="${o.dataset.q}"]`).forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+  });
+  host.querySelectorAll('.ans-in').forEach(i => i.oninput = () => { answers[i.dataset.q] = i.value; });
+  host.querySelectorAll('textarea.essay').forEach(t => t.oninput = () => { answers[t.dataset.q] = t.value; });
+  $('#btnSubmit').onclick = () => grade();
+  $('#btnReset').onclick = () => { store.clear(p.id); answers = {}; renderPaper(p, false); };
+  if (submitted) grade(true);
+}
+
+function norm(s){ return String(s||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+function isRight(it, ans){
+  if (ans === undefined || ans === '' || ans === null) return false;
+  if (it.type === 'choice') return String(ans) === String(it.a);
+  if (it.type === 'tf') return String(ans) === it.a;
+  if (it.type === 'text'){
+    const ok = (it.a2 && it.a2.length ? it.a2 : [it.a]).some(a => norm(a) === norm(ans));
+    return ok;
+  }
+  return false;
+}
+
+function grade(resubmit){
+  const p = curPaper; if (!p) return;
+  const submitted = !resubmit;
+  let got = 0, full = 0, wrong = [];
+  p.sections.forEach((s, si) => s.items.forEach((it, qi) => {
+    const v = it.score || 1; full += v;
+    const a = answers[qid(si, qi)];
+    if (it.type === 'essay') return;
+    if (isRight(it, a)) got += v;
+    else wrong.push(si + '-' + qi);
+  }));
+  const pct = Math.round(got / full * 100);
+  const pass = pct >= 60;
+  const advice = wrong.length === 0 ? '全部正确，太棒了！可以进入下一单元。'
+    : wrong.length <= 3 ? '只错 ' + wrong.length + ' 题，把错题的解析看一遍就能全对。'
+    : '错题偏多，建议回到点读页把本单元词汇和课文再过一遍，第二天重做这份卷子。';
+  scoreHost.innerHTML = `<div class="score ${pass ? 'pass' : 'fail'}">
+    <div class="big">${got} / ${full} 分（${pct}%）</div>
+    <div class="adv">${advice}${wrong.length ? ' · 错题已在卷面标红' : ''}</div>
+  </div>`;
+  if (resubmit) return;
+  store.save(p.id, { answers, submitted: true, got, full, pct });
+  renderPaper(p, true);
+}
+
+buildTabs();
+selectPaper(0);
+
+</script>
+<style>
+.pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
+.pgnav .pg-h{margin:0 0 8px;font-size:12.5px;color:#6B6359;letter-spacing:.6px;}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.pgnav a{text-decoration:none;font-size:13px;color:#2B2620;background:#fff;border:1px solid #EFE6DA;border-radius:999px;padding:6px 13px;}
+.pgnav a:hover{border-color:#E8552D;color:#E8552D;}
+.pgnav a.up{background:#E8552D;border-color:#E8552D;color:#fff;}
+.pgnav a.up:hover{background:#D64520;color:#fff;}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff;}
+.pgnav a.gr:hover{background:#0B7369;color:#fff;}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff;}
+.pgnav a.bl:hover{background:#245A94;color:#fff;}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">继续学习</p>
+    <div class="pg-row">
+      <a class="up" href="../点读学习包/Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
+      <a href="Unit3_习题与测试.html">← Unit3 习题</a>
+      <a href="Unit5_习题与测试.html">Unit5 习题 →</a>
+      <a href="../点读学习包/Unit4_The_Earth_点读学习页.html">📖 Unit4 点读学习页</a>
+      <a href="../点读学习包/Unit4_The_Earth_精简练习页.html">✏️ Unit4 精简练习</a>
+      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="../点读学习包/全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
+    </div>
+    <p class="pg-h">其他三条线 · 全站跳转</p>
+    <div class="pg-row">
+      <a class="gr" href="../../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+      <a class="bl" href="../../E听说练习/index.html">🎤 中考 E 听说</a>
+      <a class="up" href="../../index.html">🏠 返回慧学首页</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

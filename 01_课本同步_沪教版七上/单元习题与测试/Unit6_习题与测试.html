@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 6 Travelling around Asia · 习题与测试（沪教版七上）</title>
+<style>
+:root{
+  --ink:#2b2118; --ink2:#5c4f42; --muted:#8a7c6b;
+  --paper:#faf6ee; --card:#ffffff; --line:#e6dcc8;
+  --gold:#b8860b; --gold-soft:#d4a933; --red:#c0392b; --ok:#1e8449;
+  --brand:#1a1410;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:var(--paper); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.75; font-size:15px}
+.wrap{max-width:860px; margin:0 auto; padding:0 18px 90px}
+
+/* ---------- 顶部 ---------- */
+.hero{background:linear-gradient(135deg,#1a1410 0%,#2b2118 60%,#3a2c1c 100%); color:#f5ecd7; padding:34px 20px 26px; text-align:center; border-bottom:3px solid var(--gold)}
+.hero .kicker{color:var(--gold-soft); font-size:13px; letter-spacing:3px; margin-bottom:8px}
+.hero h1{font-size:26px; margin-bottom:8px}
+.hero .sub{color:#cbbd9d; font-size:13.5px}
+.hero .meta{margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.hero .meta span{border:1px solid rgba(212,169,51,.45); color:#e8d9ac; border-radius:99px; padding:3px 14px; font-size:12.5px}
+
+/* ---------- 卷子切换 ---------- */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:22px 0 26px; position:sticky; top:0; z-index:20; background:var(--paper); padding:12px 0; border-bottom:1px dashed var(--line)}
+.tabs button{border:1.5px solid var(--line); background:var(--card); color:var(--ink2); border-radius:10px; padding:8px 16px; font-size:14px; cursor:pointer; font-weight:600; transition:.15s}
+.tabs button:hover{border-color:var(--gold-soft)}
+.tabs button.on{background:var(--brand); color:#f0e2b8; border-color:var(--brand)}
+.tabs button .tag{display:block; font-size:11px; font-weight:400; opacity:.75; margin-top:1px}
+
+/* ---------- 卷子主体 ---------- */
+.paper{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:30px 34px; box-shadow:0 2px 14px rgba(43,33,24,.06)}
+.p-head{border-bottom:2px solid var(--brand); padding-bottom:14px; margin-bottom:8px}
+.p-head .pt{font-size:20px; font-weight:800}
+.p-head .ps{font-size:13px; color:var(--muted); margin-top:4px}
+.p-info{display:flex; gap:18px; font-size:13px; color:var(--ink2); margin:10px 0 22px; flex-wrap:wrap}
+.p-info b{color:var(--gold)}
+.sec{margin-bottom:30px}
+.sec>h3{font-size:16px; font-weight:800; color:var(--brand); border-left:4px solid var(--gold); padding-left:10px; margin-bottom:6px}
+.sec .sn{font-size:12.5px; color:var(--muted); margin-bottom:12px}
+.q{padding:12px 14px; border:1px solid var(--line); border-radius:10px; margin-bottom:10px; background:#fffdf8}
+.q .qt{font-weight:600; margin-bottom:8px}
+.q .qt .qn{color:var(--gold); font-weight:800; margin-right:6px}
+.q .qt u{ text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:3px; font-weight:700 }
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.opts.one{grid-template-columns:1fr}
+.opt{border:1px solid var(--line); border-radius:8px; padding:7px 12px; cursor:pointer; font-size:14px; background:#fff; transition:.12s; display:flex; gap:8px; align-items:baseline}
+.opt .lb{font-weight:800; color:var(--muted)}
+.opt:hover{border-color:var(--gold-soft); background:#fffaf0}
+.opt.sel{border-color:var(--gold); background:#fdf3d8}
+.opt.ok{border-color:var(--ok); background:#eafaf0}
+.opt.bad{border-color:var(--red); background:#fdecea}
+.opt .mk{margin-left:auto; font-weight:800}
+.opt.ok .mk{color:var(--ok)} .opt.bad .mk{color:var(--red)}
+.ans-in{border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:14px; width:100%; max-width:340px; background:#fff; font-family:inherit}
+.ans-in:focus{outline:none; border-color:var(--gold)}
+.ans-in.ok{border-color:var(--ok); background:#f2fbf6}
+.ans-in.bad{border-color:var(--red); background:#fdf0ee}
+.tfrow{display:flex; gap:10px}
+.tfrow .opt{min-width:88px; justify-content:center}
+.hint{font-size:12.5px; color:var(--muted); margin-top:4px}
+.wordbank{font-size:13.5px; background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-bottom:12px; color:var(--ink2)}
+.wordbank b{color:var(--gold)}
+textarea.essay{width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:12px; font-size:14px; font-family:inherit; resize:vertical; background:#fff}
+textarea.essay:focus{outline:none; border-color:var(--gold)}
+.checklist{background:#f4f8f4; border:1px solid #cfe3d2; border-radius:10px; padding:12px 16px; margin-top:12px; font-size:13.5px}
+.checklist b{color:var(--ok)}
+.checklist li{margin-left:20px; margin-top:3px}
+details.sample{margin-top:12px; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fffdf6}
+details.sample summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13.5px}
+details.sample .body{margin-top:10px; font-size:14px; line-height:1.9; border-top:1px dashed var(--line); padding-top:10px}
+details.sample .body .en{color:var(--ink)}
+details.sample .body .zh{color:var(--muted); font-size:12.5px}
+
+/* ---------- 阅读原文框 ---------- */
+.rdbox{background:#fffdf6; border:1.5px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px}
+.rdbox .rd-title{font-size:16px; font-weight:800; color:var(--brand); margin-bottom:10px}
+.rdbox .rd-title span{font-size:12px; font-weight:400; color:var(--muted); margin-left:8px}
+.rdbox .rd-body p{font-size:14.5px; line-height:2.05; margin:0 0 4px}
+.rdbox .rd-body p b{color:var(--brand)}
+.rdbox .rdn{display:inline-block; min-width:18px; color:var(--gold); font-weight:800; font-size:12.5px; margin-right:4px}
+.rdbox .kw{background:#fdf0d5; border-bottom:2px solid var(--gold-soft); border-radius:3px; padding:0 2px; font-weight:600}
+.rdbox .rd-note{font-size:12.5px; color:var(--ink2); background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-top:12px}
+details.rdtr{margin-top:12px; border:1px dashed var(--line); border-radius:8px; padding:8px 12px; background:#fff}
+details.rdtr summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13px}
+details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-height:2}
+
+/* ---------- 操作区 ---------- */
+.acts{display:flex; gap:12px; margin:26px 0 10px; flex-wrap:wrap; position:sticky; bottom:0; background:linear-gradient(180deg,transparent, var(--paper) 30%); padding:14px 0}
+.btn{border:none; border-radius:10px; padding:12px 26px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit}
+.btn-go{background:var(--brand); color:#f0e2b8}
+.btn-go:hover{background:#3a2c1c}
+.btn-ghost{background:#fff; color:var(--ink2); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-reset{background:#fff; color:var(--red); border:1.5px solid #ecc9c3}
+.score{display:none; border-radius:12px; padding:18px 22px; margin-top:16px; font-size:15px}
+.score.show{display:block}
+.score.pass{background:#eafaf0; border:1px solid #bfe6cc}
+.score.fail{background:#fdf0ee; border:1px solid #ecc9c3}
+.score .big{font-size:26px; font-weight:800}
+.score.pass .big{color:var(--ok)} .score.fail .big{color:var(--red)}
+.score .adv{font-size:13.5px; color:var(--ink2); margin-top:6px}
+.backhome{display:block; text-align:center; margin:26px auto 0; color:var(--muted); font-size:13px; text-decoration:none}
+.backhome:hover{color:var(--gold)}
+@media (max-width:640px){ .opts{grid-template-columns:1fr} .paper{padding:20px 16px} }
+@media print{
+  .hero,.tabs,.acts,.backhome{display:none!important}
+  body{background:#fff} .paper{border:none; box-shadow:none; padding:0}
+  .opt.sel{border-color:#999; background:#fff}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">沪教版 · 英语七年级上册</div>
+  <h1>Unit 6 Travelling around Asia</h1>
+  <div class="sub">习题与单元测试 · 每单元 5 份练习 + 3 套测试卷（在线作答 · 即时批改 · 可打印）</div>
+  <div class="meta">
+    <span>覆盖：本单元词汇 / 短语 / 条件句 / 课文 / 中国旅游名城</span>
+    <span>依据：上海教育出版社 英语 七年级上册（2024 广州新版）</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div id="paperHost"></div>
+  <div id="scoreHost"></div>
+  <a class="backhome" href="../点读学习包/Unit0_总目录_点读学习中心.html">← 返回七上点读学习中心</a>
+</div>
+
+<script>
+const PAPERS = [
+  {
+    "id": "p1",
+    "title": "练习一 · 词汇与短语",
+    "time": "20 分钟",
+    "sub": "本单元核心词汇 30 个 + 拓展词 18 个 + 短语 17 个，先认词，再会用。",
+    "sections": [
+    {
+      "name": "一、词汇匹配（选出正确中文意思）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "guide", "type": "choice", "a": 0, "opts": ["指南；手册", "东；东方", "建筑物", "天空"]},
+        {"stem": "visit", "type": "choice", "a": 1, "opts": ["探索；探究", "参观；游览", "博物馆", "礼物"]},
+        {"stem": "century", "type": "choice", "a": 2, "opts": ["混合", "中心", "世纪", "相遇；会合"]},
+        {"stem": "history", "type": "choice", "a": 3, "opts": ["摩天大楼", "景色；风景", "游客；观光客", "历史"]},
+        {"stem": "culture", "type": "choice", "a": 0, "opts": ["文化", "传统的", "现代；现代性", "受欢迎的"]}
+      ]
+    },
+    {
+      "name": "二、看中文，写英文",
+      "note": "每题 1 分，共 5 分。注意拼写。",
+      "items": [
+        {"stem": "西；西方", "type": "text", "a": "west", "ph": "拼写注意大小写"},
+        {"stem": "著名的", "type": "text", "a": "famous", "ph": "拼写注意大小写"},
+        {"stem": "风格", "type": "text", "a": "style", "ph": "拼写注意大小写"},
+        {"stem": "点亮；照亮", "type": "text", "a": "light", "ph": "拼写注意大小写"},
+        {"stem": "当地的", "type": "text", "a": "local", "ph": "拼写注意大小写"}
+      ]
+    },
+    {
+      "name": "三、短语填空（选词填空，注意形式）",
+      "note": "每题 1 分，共 5 分。",
+      "bank": "<b>短语库：</b>for · mix · in the centre of · light up · learn about",
+      "items": [
+        {"stem": "Shanghai is famous ____ its shikumen buildings and delicious food.", "type": "choice", "a": 0, "opts": ["for", "of", "with", "at"], "explain": "be famous for 因……而闻名。"},
+        {"stem": "Xintiandi is a ____ of traditional Chinese and Western styles.", "type": "choice", "a": 0, "opts": ["mix", "style", "tradition", "culture"], "explain": "a mix of ... and ... ……与……的融合。"},
+        {"stem": "Yu Garden is ____ ____ ____ the old city of Shanghai.", "type": "choice", "a": 0, "opts": ["in the centre of", "in the east of", "across the river", "on the river"], "explain": "in the centre of 在……的中心。"},
+        {"stem": "At night, the tall buildings ____ ____ the sky.", "type": "choice", "a": 0, "opts": ["light up", "look east", "look west", "meet west"], "explain": "light up 点亮；照亮。"},
+        {"stem": "You can ____ ____ ____ the history and culture of Shanghai.", "type": "choice", "a": 0, "opts": ["learn about", "learn from", "buy local", "enjoy history"], "explain": "learn about 了解。"}
+      ]
+    },
+    {
+      "name": "四、单项选择",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A ____ is a place where tourists go to visit or see something.", "type": "choice", "a": 0, "opts": ["tourist spot", "restaurant", "garden", "skyscraper"], "explain": "tourist spot 旅游景点；游客去参观的地方。"},
+        {"stem": "Shanghai is a city where East ____ West.", "type": "choice", "a": 0, "opts": ["meets", "hits", "beats", "eats"], "explain": "meet 相遇、交汇；East meets West 东西方交汇。"},
+        {"stem": "Xintiandi is ____ for its shikumen buildings.", "type": "choice", "a": 0, "opts": ["famous", "good", "kind", "full"], "explain": "be famous for 因……而闻名。"},
+        {"stem": "The Bund is where old ____ new.", "type": "choice", "a": 0, "opts": ["meets", "helps", "loves", "opens"], "explain": "old meets new 新旧交汇（the Bund 外滩）。"},
+        {"stem": "Yu Garden is over 400 years ____.", "type": "choice", "a": 0, "opts": ["old", "new", "tall", "big"], "explain": "over 400 years old 有 400 多年历史。"}
+      ]
+    },
+    {
+      "name": "五、对划线部分提问",
+      "note": "每题 1 分，共 5 分。用 Wh-word + 一般疑问句语序；动词为实义动词时用 do/does。",
+      "items": [
+        {"stem": "Shanghai is famous for <u>its shikumen buildings</u>.（对划线部分提问）", "type": "text", "a": "What is Shanghai famous for?", "a2": ["What is Shanghai famous for?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "The Bund is <u>on the Huangpu River</u>.（对划线部分提问）", "type": "text", "a": "Where is the Bund?", "a2": ["Where is the Bund?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "Yu Garden is over <u>400 years</u> old.（对划线部分提问）", "type": "text", "a": "How old is Yu Garden?", "a2": ["How old is Yu Garden?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "You can explore famous places <u>when you visit the city</u>.（对划线部分提问）", "type": "text", "a": "When can you explore famous places?", "a2": ["When can you explore famous places?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "Xintiandi is famous for <u>its shikumen buildings from the 19th century</u>.（对划线部分提问）", "type": "text", "a": "What is Xintiandi famous for?", "a2": ["What is Xintiandi famous for?"], "ph": "写完整问句，句末加 ?"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p2",
+    "title": "练习二 · 语法与句型",
+    "time": "20 分钟",
+    "sub": "本单元语法重点：Conditionals (1)（if 引导的条件句：主句用一般将来时，if 从句用一般现在时，即\"主将从现\"）。",
+    "sections": [
+    {
+      "name": "一、语法选择（单选）",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "If you ____ to Shanghai, you will see the Bund.", "type": "choice", "a": 0, "opts": ["go", "will go", "went", "goes"], "explain": "if 条件句（主将从现）：if 从句用一般现在时 go。"},
+        {"stem": "If it ____ fine, we will visit Yu Garden.", "type": "choice", "a": 0, "opts": ["is", "will be", "was", "be"], "explain": "if 从句主语 it → is。"},
+        {"stem": "You ____ love this place if you enjoy history and culture.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用一般将来时 will + 动词原形。"},
+        {"stem": "If we ____ west, we will see old Western-style buildings.", "type": "choice", "a": 0, "opts": ["look", "will look", "looked", "looks"], "explain": "if 从句用一般现在时 look。"},
+        {"stem": "If they ____ the Huangpu River, they will see skyscrapers.", "type": "choice", "a": 0, "opts": ["cross", "will cross", "crossed", "crosses"], "explain": "if 从句用一般现在时 cross。"},
+        {"stem": "We ____ buy local food and gifts if we go to Yu Garden.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用 will。"},
+        {"stem": "If the buildings ____ up the sky at night, it is beautiful.", "type": "choice", "a": 0, "opts": ["light", "will light", "lit", "lights"], "explain": "if 从句用一般现在时 light。"},
+        {"stem": "If you ____ a travel guide, you will find the best spots.", "type": "choice", "a": 0, "opts": ["have", "will have", "had", "has"], "explain": "if 从句用一般现在时 have。"},
+        {"stem": "If he ____ the city, he will explore famous museums.", "type": "choice", "a": 0, "opts": ["visits", "will visit", "visited", "visit"], "explain": "主语 he → 三单 visits。"},
+        {"stem": "____ you go to Xintiandi, you will learn about its history.", "type": "choice", "a": 0, "opts": ["If", "When", "Because", "And"], "explain": "if 引导条件句：如果你去……"}
+      ]
+    },
+    {
+      "name": "二、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "explore（主句用一般将来时（will + 动词原形））", "type": "text", "a": "will explore", "ph": "will + 动词原形"},
+        {"stem": "buy（主句用一般将来时（will + 动词原形））", "type": "text", "a": "will buy", "ph": "will + 动词原形"},
+        {"stem": "explore（主语为三单，动词加 -s）", "type": "text", "a": "explores", "ph": "动词加 -s"},
+        {"stem": "city（辅音 + y 结尾，变复数把 y 改 i 加 -es）", "type": "text", "a": "cities", "ph": "y 变 -ies"},
+        {"stem": "gift（直接加 -s 变复数）", "type": "text", "a": "gifts", "ph": "名词加 -s"}
+      ]
+    },
+    {
+      "name": "三、完成句子（每空一词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "上海因它的石库门建筑而闻名。Shanghai ____ ____ ____ its shikumen buildings.", "type": "text", "a": "is famous for", "a2": ["is famous for"]},
+        {"stem": "豫园在老城的中心。Yu Garden is ____ ____ ____ ____ the old city.", "type": "text", "a": "in the centre of", "a2": ["in the centre of"]},
+        {"stem": "如果你喜欢历史文化，你会爱上这里。If you enjoy history and culture, you ____ ____ this place.", "type": "text", "a": "will love", "a2": ["will love"]},
+        {"stem": "夜晚高楼照亮天空。At night, tall buildings ____ ____ the sky.", "type": "text", "a": "light up", "a2": ["light up"]},
+        {"stem": "你可以买到当地的食物和礼物。You can ____ ____ ____ ____ ____ there.", "type": "text", "a": "buy local food and gifts", "a2": ["buy local food and gifts"]}
+      ]
+    },
+    {
+      "name": "四、句型转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "If you visit Shanghai, you will see the Bund.（改为一般疑问句）", "type": "text", "a": "Will you see the Bund if you visit Shanghai?", "a2": ["Will you see the Bund if you visit Shanghai?"]},
+        {"stem": "You will love this place if you enjoy history.（对划线部分提问）", "type": "text", "a": "What will you love if you enjoy history?", "a2": ["What will you love if you enjoy history?"]},
+        {"stem": "Shanghai is famous for its food.（改为否定句）", "type": "text", "a": "Shanghai is not famous for its food.", "a2": ["Shanghai is not famous for its food.", "Shanghai isn't famous for its food."]},
+        {"stem": "They will explore famous places.（改为 if 条件句，用 go）", "type": "text", "a": "If they go, they will explore famous places.", "a2": ["If they go, they will explore famous places."]},
+        {"stem": "Yu Garden is in the centre of the old city.（对划线部分提问）", "type": "text", "a": "Where is Yu Garden?", "a2": ["Where is Yu Garden?"]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p3",
+    "title": "练习三 · 课文与阅读",
+    "time": "25 分钟",
+    "sub": "围绕单元阅读语篇《A Guide to Shanghai》——先读原文，再会答。",
+    "sections": [
+    {
+      "name": "一、课文原文《A Guide to Shanghai》",
+      "note": "沪教版英语七上 Unit 6 阅读语篇。先读原文，再做后面四道大题；答案都能在原文里找到。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">A Guide to Shanghai <span>阅读语篇 · 沪教版 英语 七年级上册 Unit 6</span></div><div class=\"rd-body\"><p><span class=\"rdn\">1</span>In Shanghai, East meets West, and tradition meets modernity.</p><p><span class=\"rdn\">2</span>When you visit the city, you can explore famous places and see China's past and present.</p><p><span class=\"rdn\">3</span>Here are three of Shanghai's best tourist spots.</p><p><span class=\"rdn\">4</span>Xintiandi is famous for its s" +
+      "hikumen buildings from the 19th century.</p><p><span class=\"rdn\">5</span>These buildings are a mix of traditional Chinese and Western styles.</p><p><span class=\"rdn\">6</span>Today, the area is a very popular tourist spot, with lots of restaurants and shops.</p><p><span class=\"rdn\">7</span>You can also visit the Site of the First National Congress of the CPC in Xintiandi, and there is a large museum there.</p><p><span class=\"rdn\">8</span>You can learn a lot about the history o" +
+      "f the CPC if you go inside.</p><p><span class=\"rdn\">9</span>The Bund is where old meets new.</p><p><span class=\"rdn\">10</span>Look west, and you will see many old Western-style buildings.</p><p><span class=\"rdn\">11</span>Look east across the Huangpu River, and you will see skyscrapers.</p><p><span class=\"rdn\">12</span>At night, these tall buildings light up the sky.</p><p><span class=\"rdn\">13</span>Yu Garden, or Yuyuan, is in the centre of the old city.</p><p><span class=\"rdn" +
+      "\">14</span>This garden is over 400 years old.</p><p><span class=\"rdn\">15</span>If you enjoy history and culture, you will love this place.</p><p><span class=\"rdn\">16</span>Inside, there are many beautiful traditional buildings.</p><p><span class=\"rdn\">17</span>You can also buy local food and gifts there.</p></div><details class=\"rdtr\"><summary>中文翻译（点开对照，先自己做题再看）</summary><div class=\"rdzh\"><p>1. 在上海，东西方交汇，传统与现代相遇。</p><p>2. 当你游览这座城市时，你可以探索著名的景点，看到中国的过去与现在。</p><p>3. 以下是上海最棒的旅游景点" +
+      "中的三个。</p><p>4. 新天地以 19 世纪的石库门建筑而闻名。</p><p>5. 这些建筑是中国传统与西方风格的融合。</p><p>6. 如今，这一带是非常受欢迎的旅游景点，有许多餐馆和商店。</p><p>7. 你还可以参观新天地里的中共一大会址，那里有一座大型博物馆。</p><p>8. 如果你走进去，可以了解到很多关于中共的历史。</p><p>9. 外滩是新旧交汇的地方。</p><p>10. 向西看，你会看到许多古老的西式建筑。</p><p>11. 向东越过黄浦江看，你会看到摩天大楼。</p><p>12. 夜晚，这些高楼照亮了天空。</p><p>13. 豫园位于老城的中心。</p><p>14. 这座园林有 400 多年的历史。</p><p>15. 如果你喜欢历史和文化，你会爱上这个地方。</p><p>16. 园内有许多美丽的中国传统建筑。</p><p>17. 你还可以在那里买到当地的食物和礼物。</p></div></details><div class=\"rd-note\"><b>阅读策略：</b>读的时候试着找出每个 he / him" +
+      " / us / they 分别指谁，再圈出本单元学过的词汇和短语。</div></div>",
+      "items": [
+        {"stem": "这篇课文主要讲什么？", "type": "choice", "a": 0, "opts": ["上海的三个著名旅游景点：新天地、外滩和豫园", "如何乘坐飞机旅行", "中国的现代建筑", "上海的大学"], "explain": "课文介绍上海三大景点新天地、外滩、豫园。"}
+      ]
+    },
+    {
+      "name": "二、课文选词填空",
+      "note": "每题 1 分，共 5 分。均出自课文原句。",
+      "items": [
+        {"stem": "In Shanghai, East ____ West, and tradition meets modernity.", "type": "choice", "a": 0, "opts": ["meets", "visits", "explores", "lights"]},
+        {"stem": "When you visit the city, you can ____ famous places and see its past and present.", "type": "choice", "a": 0, "opts": ["explore", "build", "light", "buy"]},
+        {"stem": "These houses are a ____ of traditional Chinese and Western styles.", "type": "choice", "a": 0, "opts": ["mix", "style", "tradition", "culture"]},
+        {"stem": "Yu Garden is in the ____ of the old city of Shanghai.", "type": "choice", "a": 0, "opts": ["centre", "east", "west", "garden"]},
+        {"stem": "Many ____ come to Shanghai every year to see these places.", "type": "choice", "a": 0, "opts": ["tourists", "guides", "museums", "restaurants"]}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据课文《A Guide to Shanghai》判断。",
+      "items": [
+        {"stem": "Shanghai is a city where East meets West.", "type": "tf", "a": "T"},
+        {"stem": "Xintiandi is famous for its modern skyscrapers.", "type": "tf", "a": "F", "explain": "新天地以 19 世纪石库门建筑闻名，不是摩天大楼。"},
+        {"stem": "The Bund is where old meets new.", "type": "tf", "a": "T"},
+        {"stem": "Yu Garden is over 400 years old.", "type": "tf", "a": "T"},
+        {"stem": "You can buy local food and gifts in Yu Garden.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "四、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "What is Xintiandi famous for?", "type": "choice", "a": 0, "opts": ["Its shikumen buildings from the 19th century.", "Its skyscrapers.", "Its museums.", "Its restaurants."]},
+        {"stem": "What will you see if you look east across the Huangpu River?", "type": "choice", "a": 0, "opts": ["Skyscrapers.", "Old Western-style buildings.", "A garden.", "A museum."]},
+        {"stem": "How old is Yu Garden?", "type": "choice", "a": 0, "opts": ["Over 400 years old.", "Over 100 years old.", "About 50 years old.", "About 200 years old."]},
+        {"stem": "What can you do in Yu Garden?", "type": "choice", "a": 0, "opts": ["Buy local food and gifts.", "Take a plane.", "Watch a film.", "Ride a rocket."]}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 4 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "Where is Yu Garden?", "type": "text", "a": "In the centre of the old city", "a2": ["In the centre of the old city.", "It is in the centre of the old city.", "In Shanghai's old city."]},
+        {"stem": "What can you see if you look west at the Bund?", "type": "text", "a": "Many old Western-style buildings", "a2": ["Many old Western-style buildings.", "They will see many old Western-style buildings.", "Old buildings."]},
+        {"stem": "Why is Xintiandi famous?", "type": "text", "a": "Because of its shikumen buildings from the 19th century", "a2": ["Because of its shikumen buildings from the 19th century.", "Because it has many shops.", "Because it is new."]},
+        {"stem": "What will you love if you enjoy history and culture?", "type": "text", "a": "Yu Garden / this place", "a2": ["Yu Garden.", "This place (Yu Garden).", "The place."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p4",
+    "title": "练习四 · 阅读新篇章",
+    "time": "25 分钟",
+    "sub": "用本单元词汇、短语和句型新写的一篇文章。不翻课本，看看你是否真的理解和掌握了它们。",
+    "sections": [
+    {
+      "name": "一、阅读原文",
+      "note": "先通读全文，再完成下面的题。金色底纹的是本单元词汇短语，读的时候留意它们。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">A Trip to Beijing · 北京之旅 <span>用 Unit 6 词汇与表达新写</span></div><div class=\"rd-body\"><p>Beijing is a city where <span class=\"kw\">East meets West</span>, and <span class=\"kw\">tradition</span> meets modernity. When you <span class=\"kw\">visit</span> the city, you can <span class=\"kw\">explore</span> famous <span class=\"kw\">tourist spots</span> and see China's long <span class=\"kw\">history</span> and modern life. Here is a <span class=\"kw\">guid" +
+      "e</span> to three of Beijing's best places.</p><p>The Forbidden City (故宫) is <span class=\"kw\">famous</span> for its <span class=\"kw\">traditional</span> Chinese <span class=\"kw\">buildings</span> from the 15th <span class=\"kw\">century</span>. These buildings are a <span class=\"kw\">mix</span> of art and history. Today it is a very <span class=\"kw\">popular</span> <span class=\"kw\">tourist spot</span>, with <span class=\"kw\">museums</span> inside. You can <span class=\"kw\">learn</spa" +
+      "n> a lot about the <span class=\"kw\">history</span> of China <span class=\"kw\">if you go</span> inside.</p><p>At night, the <span class=\"kw\">skyscrapers</span> and old buildings <span class=\"kw\">light up</span> the <span class=\"kw\">sky</span>. <span class=\"kw\">Look west</span>, and you will see modern towers; <span class=\"kw\">look east</span> <span class=\"kw\">across the river</span>, and you will see the old city. <span class=\"kw\">In the centre of</span> the old city, there is " +
+      "a beautiful <span class=\"kw\">garden</span> with <span class=\"kw\">traditional</span> style. The <span class=\"kw\">view</span> is wonderful.</p><p>You can also visit <span class=\"kw\">local</span> <span class=\"kw\">restaurants</span> and <span class=\"kw\">buy local food and gifts</span> there. Beijing is a <span class=\"kw\">mix</span> of <span class=\"kw\">traditional culture</span> and modern style. <span class=\"kw\">If you enjoy history and culture</span>, you will love this city. Ma" +
+      "ny <span class=\"kw\">tourists</span> come to Beijing every year, and they take photos of the wonderful <span class=\"kw\">view</span>.</p></div><div class=\"rd-note\"><b>阅读小任务：</b>读的时候圈出金色底纹的词汇和短语，看看你是不是每个都认识、都会用。</div></div>",
+      "items": [
+        {"stem": "这篇文章主要讲什么？", "type": "choice", "a": 0, "opts": ["北京的三个好去处：历史、夜景与美食礼物", "如何造摩天大楼", "中国的大学", "北京的交通"], "explain": "文章介绍北京的历史景点、夜景与当地美食礼物。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据上文判断。",
+      "items": [
+        {"stem": "Beijing is a city where East meets West.", "type": "tf", "a": "T"},
+        {"stem": "The Forbidden City is famous for its skyscrapers.", "type": "tf", "a": "F", "explain": "故宫以传统建筑闻名，不是摩天大楼。"},
+        {"stem": "You can learn about Chinese history inside the Forbidden City.", "type": "tf", "a": "T"},
+        {"stem": "At night, the buildings light up the sky.", "type": "tf", "a": "T"},
+        {"stem": "You cannot buy gifts in Beijing.", "type": "tf", "a": "F", "explain": "可以在当地商店买礼物。"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "What is the Forbidden City famous for?", "type": "choice", "a": 0, "opts": ["Its traditional Chinese buildings.", "Its skyscrapers.", "Its restaurants.", "Its gardens."]},
+        {"stem": "What will you see if you look west?", "type": "choice", "a": 0, "opts": ["Modern towers.", "Old buildings.", "A garden.", "A museum."]},
+        {"stem": "Where is the beautiful garden?", "type": "choice", "a": 0, "opts": ["In the centre of the old city.", "In the west.", "By the river.", "In a museum."]},
+        {"stem": "What can you do in Beijing besides visiting?", "type": "choice", "a": 0, "opts": ["Buy local food and gifts.", "Take a plane.", "Build towers.", "Light up the sky."]},
+        {"stem": "What does \"view\" mean in the passage?", "type": "choice", "a": 0, "opts": ["景色；风景", "观点", "视野（医学）", "玻璃"]}
+      ]
+    },
+    {
+      "name": "四、词汇与表达 · 语境理解",
+      "note": "每题 1 分，共 5 分。结合文章语境，判断词汇和短语的意思与用法。",
+      "items": [
+        {"stem": "\"East meets West\" 的意思是：", "type": "choice", "a": 0, "opts": ["东西方交汇", "东边见面", "向西走", "向东看"], "explain": "East meets West 东西方交汇；指传统与现代、东方与西方融合。"},
+        {"stem": "\"light up\" 的意思是：", "type": "choice", "a": 0, "opts": ["点亮；照亮", "升空", "相遇", "参观"], "explain": "light up 点亮、照亮；文中指夜晚高楼亮起灯。"},
+        {"stem": "\"tourist spot\" 的意思是：", "type": "choice", "a": 0, "opts": ["旅游景点", "游客", "餐厅", "博物馆"], "explain": "tourist spot 旅游景点；游客去参观的地方。"},
+        {"stem": "\"a mix of ... and ...\" 的意思是：", "type": "choice", "a": 0, "opts": ["……与……的融合", "混合饮料", "混淆", "调音台"], "explain": "a mix of A and B A 与 B 的融合。"},
+        {"stem": "\"be famous for\" 的意思是：", "type": "choice", "a": 0, "opts": ["因……而闻名", "对……友好", "为……付费", "以……为食"], "explain": "be famous for 因……而闻名。"}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What can you explore when you visit Beijing?", "type": "text", "a": "Famous tourist spots", "a2": ["Famous tourist spots.", "They can explore famous tourist spots.", "The city."]},
+        {"stem": "Why is the Forbidden City popular?", "type": "text", "a": "Because of its traditional buildings and museums", "a2": ["Because of its traditional buildings and museums.", "Because it is new.", "Because it has skyscrapers."]},
+        {"stem": "What lights up the sky at night?", "type": "text", "a": "The skyscrapers and old buildings", "a2": ["The skyscrapers and old buildings.", "The gardens.", "The restaurants."]},
+        {"stem": "What can tourists buy in Beijing?", "type": "text", "a": "Local food and gifts", "a2": ["Local food and gifts.", "They can buy local food and gifts.", "Gifts."]},
+        {"stem": "Why will you love Beijing if you enjoy history?", "type": "text", "a": "Because it has a mix of history and culture", "a2": ["Because it has a mix of history and culture.", "Because it is modern.", "Because it has skyscrapers."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p5",
+    "title": "练习五 · 中国旅游名城",
+    "time": "20 分钟",
+    "sub": "从北京到西安，从杭州到更多城市——用英语带你逛中国的旅游名城，边学边看。",
+    "sections": [
+    {
+      "name": "一、文化读本（原文）",
+      "note": "三段都围绕本单元主题与中国文化。先通读，再做后面的题。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">Famous Cities in China · 中国旅游名城 <span>结合 Unit 6 Travelling around Asia</span></div><div class=\"rd-body\"><p><b>A. Beijing · 北京</b><br>Beijing is a city where <span class=\"kw\">East meets West</span>. It is <span class=\"kw\">famous</span> for the Forbidden City (故宫), a <span class=\"kw\">mix</span> of <span class=\"kw\">traditional</span> Chinese style and long <span class=\"kw\">history</span>. The <span class=\"kw\">buildings</span> are hundreds" +
+      " of years old. At night, modern <span class=\"kw\">skyscrapers</span> and old walls <span class=\"kw\">light up</span> the <span class=\"kw\">sky</span>. <span class=\"kw\">If you visit</span> Beijing, you will <span class=\"kw\">enjoy</span> its <span class=\"kw\">history and culture</span>.</p><p><b>B. Xi'an · 西安</b><br>Xi'an is an ancient city in the <span class=\"kw\">west</span> of China. It is <span class=\"kw\">famous</span> for the Terracotta Warriors (兵马俑), a wonder from over 2,000 " +
+      "years ago. In the <span class=\"kw\">museum</span> you can <span class=\"kw\">learn about</span> China's long <span class=\"kw\">history</span>. <span class=\"kw\">Tourists</span> from all over the world come to see this <span class=\"kw\">traditional culture</span>.</p><p><b>C. Hangzhou · 杭州</b><br>Hangzhou is in the <span class=\"kw\">east</span> of China. It is <span class=\"kw\">famous</span> for West Lake (西湖). The lake and <span class=\"kw\">garden</span> give you a wonderful <span class=\"kw\">view</span>. You can take a boat, walk in the park, and <span class=\"kw\">buy local food and gifts</span>. <span class=\"kw\">If you enjoy</span> beauty and culture, you will love Hangzhou.</p></div><div class=\"rd-note\"><b>文化小知识：</b>中国有许多\"旅游名城\"。北京看历史，西安看兵马俑，杭州看西湖——它们都体现了 East meets West（传统与现代交汇）。</div></div>",
+      "items": [
+        {"stem": "这三段文字共同讲的是什么？", "type": "choice", "a": 0, "opts": ["中国的三座旅游名城：北京、西安、杭州", "中国的美食", "中国的语言", "中国的交通"], "explain": "三段分别介绍北京、西安、杭州三座中国旅游名城。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 A · 判断正误（T / F）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "Beijing is famous for the Forbidden City.", "type": "tf", "a": "T"},
+        {"stem": "Xi'an is famous for the Terracotta Warriors.", "type": "tf", "a": "T"},
+        {"stem": "Hangzhou is in the west of China.", "type": "tf", "a": "F", "explain": "杭州在中国东部（east），西安才在西部。"},
+        {"stem": "You can buy local food and gifts in Hangzhou.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 B · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "What is Beijing a mix of?", "type": "choice", "a": 0, "opts": ["Traditional Chinese style and history.", "Modern only.", "Western only.", "Food and drink."]},
+        {"stem": "How old are the Terracotta Warriors?", "type": "choice", "a": 0, "opts": ["Over 2,000 years old.", "About 100 years old.", "About 50 years old.", "Over 1,000 years old."]},
+        {"stem": "What is Hangzhou famous for?", "type": "choice", "a": 0, "opts": ["West Lake.", "The Forbidden City.", "Skyscrapers.", "The museum."]},
+        {"stem": "Where is Xi'an?", "type": "choice", "a": 0, "opts": ["In the west of China.", "In the east of China.", "In the south of China.", "In the centre of China."]}
+      ]
+    },
+    {
+      "name": "四、文化表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What lights up the sky in Beijing at night?", "type": "text", "a": "Modern skyscrapers and old walls", "a2": ["Modern skyscrapers and old walls.", "The lake.", "The gardens."]},
+        {"stem": "Where can you learn about China's long history?", "type": "text", "a": "In the museum in Xi'an", "a2": ["In the museum in Xi'an.", "In a restaurant.", "In a garden."]},
+        {"stem": "What can you do at West Lake?", "type": "text", "a": "Take a boat, walk in the park and buy gifts", "a2": ["Take a boat, walk in the park and buy gifts.", "Climb a skyscraper.", "Visit a museum only."]},
+        {"stem": "What will you love if you enjoy beauty and culture?", "type": "text", "a": "Hangzhou", "a2": ["Hangzhou.", "Beijing.", "Xi'an."]},
+        {"stem": "Why do tourists visit these cities?", "type": "text", "a": "To enjoy history, culture and beautiful views", "a2": ["To enjoy history, culture and beautiful views.", "To buy cars.", "To work."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t1",
+    "title": "测试卷一 · Unit 6 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型参照本地单元卷：辨音 + 单选 + 语法选择 + 完形 + 阅读 + 回答问题 + 拼写 + 词形转换 + 写作。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>ea</u>st&nbsp;&nbsp;B. m<u>ea</u>t&nbsp;&nbsp;C. t<u>ea</u>ch&nbsp;&nbsp;D. br<u>ea</u>d", "type": "choice", "a": 3, "opts": ["east", "meat", "teach", "bread"], "explain": "east / meat / teach 中 ea 发 /iː/，bread 中 ea 发 /e/。"},
+        {"stem": "A. sh<u>ow</u>&nbsp;&nbsp;B. kn<u>ow</u>&nbsp;&nbsp;C. n<u>ow</u>&nbsp;&nbsp;D. gr<u>ow</u>", "type": "choice", "a": 2, "opts": ["show", "know", "now", "grow"], "explain": "show / know / grow 中 ow 发 /əʊ/，now 中 ow 发 /aʊ/。"},
+        {"stem": "A. <u>th</u>ree&nbsp;&nbsp;B. <u>th</u>in&nbsp;&nbsp;C. <u>th</u>ey&nbsp;&nbsp;D. <u>th</u>ank", "type": "choice", "a": 2, "opts": ["three", "thin", "they", "thank"], "explain": "three / thin / thank 中 th 发 /θ/，they 中 th 发 /ð/。"},
+        {"stem": "A. <u>wr</u>ite&nbsp;&nbsp;B. <u>w</u>est&nbsp;&nbsp;C. <u>w</u>elcome&nbsp;&nbsp;D. <u>w</u>onder", "type": "choice", "a": 0, "opts": ["write", "west", "welcome", "wonder"], "explain": "write 中 w 不发音（读 /r/），其余 w 发 /w/。"},
+        {"stem": "A. tr<u>a</u>vel&nbsp;&nbsp;B. f<u>a</u>mous&nbsp;&nbsp;C. p<u>a</u>st&nbsp;&nbsp;D. <u>a</u>cross", "type": "choice", "a": 2, "opts": ["travel", "famous", "past", "across"], "explain": "travel / famous / across 中 a 发 /æ/，past 中 a 发 /ɑː/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "Shanghai is a city where East ____ West.", "type": "choice", "a": 0, "opts": ["meets", "hits", "beats", "eats"], "explain": "meet 相遇、交汇。"},
+        {"stem": "Xintiandi is famous ____ its shikumen buildings.", "type": "choice", "a": 0, "opts": ["for", "of", "with", "at"], "explain": "be famous for 因……而闻名。"},
+        {"stem": "Yu Garden is in the ____ of the old city.", "type": "choice", "a": 0, "opts": ["centre", "east", "west", "north"], "explain": "in the centre of 在……的中心。"},
+        {"stem": "At night, tall buildings ____ up the sky.", "type": "choice", "a": 0, "opts": ["light", "look", "meet", "visit"], "explain": "light up 点亮、照亮。"},
+        {"stem": "If you enjoy history, you ____ love this place.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主将从现：主句用 will。"},
+        {"stem": "The Bund is ____ old meets new.", "type": "choice", "a": 0, "opts": ["where", "what", "when", "which"], "explain": "where 引导地点：新旧交汇之处。"},
+        {"stem": "Many ____ visit Shanghai every year.", "type": "choice", "a": 0, "opts": ["tourists", "guides", "teachers", "students"], "explain": "tourist 游客。"},
+        {"stem": "If it ____ fine, we will go to Yu Garden.", "type": "choice", "a": 0, "opts": ["is", "will be", "was", "be"], "explain": "if 从句用一般现在时 is。"},
+        {"stem": "You can buy local food and ____ there.", "type": "choice", "a": 0, "opts": ["gifts", "gardens", "buildings", "museums"], "explain": "gift 礼物。"},
+        {"stem": "Look east, and you ____ see skyscrapers.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "and 后接 will + 动词原形，表\"就会……\"。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "If you (1)____ to Shanghai, you (2)____ see the Bund.", "type": "choice", "a": 0, "opts": ["go", "went", "will go", "goes"], "explain": "if 从句用一般现在时 go。"},
+        {"stem": "If you go to Shanghai, you (2)____ see the Bund.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用 will。"},
+        {"stem": "The Bund is a very popular tourist (3)____.", "type": "choice", "a": 0, "opts": ["spot", "garden", "centre", "building"], "explain": "tourist spot 旅游景点。"},
+        {"stem": "In Xintiandi, you can (4)____ old shikumen buildings.", "type": "choice", "a": 0, "opts": ["see", "meet", "light", "visit"], "explain": "see 看到。"},
+        {"stem": "They are a (5)____ of Chinese and Western styles.", "type": "choice", "a": 0, "opts": ["mix", "style", "tradition", "culture"], "explain": "a mix of ……与……的融合。"},
+        {"stem": "At night, buildings (6)____ up the sky.", "type": "choice", "a": 0, "opts": ["light", "look", "meet", "visit"], "explain": "light up 点亮。"},
+        {"stem": "Yu Garden is in the (7)____ of the old city.", "type": "choice", "a": 0, "opts": ["centre", "east", "west", "north"], "explain": "in the centre of 在……中心。"},
+        {"stem": "It is over 400 years (8)____.", "type": "choice", "a": 0, "opts": ["old", "new", "tall", "big"], "explain": "over 400 years old 有 400 多年历史。"},
+        {"stem": "If you (9)____ history, you will love it.", "type": "choice", "a": 0, "opts": ["enjoy", "look", "visit", "light"], "explain": "enjoy 喜欢。"},
+        {"stem": "You can also (10)____ local gifts.", "type": "choice", "a": 0, "opts": ["buy", "sell", "take", "meet"], "explain": "buy 买。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Beijing is a city where East (1)____ West.", "type": "choice", "a": 0, "opts": ["meets", "hits", "beats", "eats"], "explain": "East meets West 东西方交汇。"},
+        {"stem": "The Forbidden City is (2)____ for its old buildings.", "type": "choice", "a": 0, "opts": ["famous", "good", "kind", "full"], "explain": "be famous for 因……闻名。"},
+        {"stem": "If you (3)____ inside, you will (4)____ a lot about Chinese history.", "type": "choice", "a": 0, "opts": ["go", "went", "will go", "goes"], "explain": "if 从句用一般现在时 go。"},
+        {"stem": "If you go inside, you will (4)____ a lot about Chinese history.", "type": "choice", "a": 0, "opts": ["learn", "teach", "read", "write"], "explain": "learn about 了解。"},
+        {"stem": "At night, skyscrapers (5)____ up the sky.", "type": "choice", "a": 0, "opts": ["light", "look", "meet", "visit"], "explain": "light up 点亮。"},
+        {"stem": "In the (6)____ of the old city there is a garden.", "type": "choice", "a": 0, "opts": ["centre", "east", "west", "north"], "explain": "in the centre of 在……中心。"},
+        {"stem": "The (7)____ is wonderful.", "type": "choice", "a": 0, "opts": ["view", "food", "gift", "wall"], "explain": "view 景色。"},
+        {"stem": "You can (8)____ local food and (9)____ there.", "type": "choice", "a": 0, "opts": ["buy", "sell", "take", "make"], "explain": "buy 买。"},
+        {"stem": "You can buy local food and (9)____ there.", "type": "choice", "a": 0, "opts": ["gifts", "gardens", "walls", "towers"], "explain": "gifts 礼物。"},
+        {"stem": "Many (10)____ come every year.", "type": "choice", "a": 0, "opts": ["tourists", "guides", "teachers", "workers"], "explain": "tourist 游客。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>SHANGHAI TRIP MEETING. When: Saturday, June 14th, 9:00 a.m. Where: School Gate. What: Our class will visit the Bund and Yu Garden. Please bring a camera, some water and local money. We will learn about Shanghai's history and culture. The bus will leave at 9:30. Parents are welcome to join. Sign up in Room 201 before Friday.<br>Where will the students meet?", "type": "choice", "a": 0, "opts": ["At the school gate.", "At the Bund.", "In Room 201.", "On the bus."]},
+        {"stem": "What will they visit?", "type": "choice", "a": 0, "opts": ["The Bund and Yu Garden.", "A museum.", "A restaurant.", "The Great Wall."]},
+        {"stem": "When will the bus leave?", "type": "choice", "a": 0, "opts": ["At 9:30.", "At 9:00.", "At 10:00.", "On Friday."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Li Ming is from Beijing. Last summer, his family took him to Shanghai. They visited the Bund first. \"Look west,\" said his father, \"and you will see old Western-style buildings. Look east across the Huangpu River, and you will see skyscrapers.\" Li Ming took many photos. The next day, they went to Yu Garden. It is in the centre of the old city and over 400 years old. Li Ming bought some local food and gifts. \"If you enjoy history and culture, you will love this place,\" his mother said. Li Ming agreed. He wants to visit more Chinese cities next year.<br>Where did Li Ming go last summer?", "type": "choice", "a": 0, "opts": ["To Shanghai.", "To Beijing.", "To Xi'an.", "To Hangzhou."]},
+        {"stem": "What did he see when he looked west at the Bund?", "type": "choice", "a": 0, "opts": ["Old Western-style buildings.", "Skyscrapers.", "A garden.", "A museum."]},
+        {"stem": "How old is Yu Garden?", "type": "choice", "a": 0, "opts": ["Over 400 years old.", "Over 100 years old.", "About 50 years old.", "About 200 years old."]},
+        {"stem": "What does Li Ming want to do next year?", "type": "choice", "a": 0, "opts": ["Visit more Chinese cities.", "Go to school.", "Build a tower.", "Take photos only."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Wang Lei, How are you? My family and I are in Hangzhou now. It is a beautiful city in the east of China. We visited West Lake yesterday. The lake and the garden give a wonderful view. We took a boat and walked in the park. My mother bought some local food and gifts. Tomorrow we will go to a museum to learn about Hangzhou's history. If the weather is fine, we will also visit a famous tower. I will send you photos. Write back soon! Yours, Chen Hao<br>Where is Hangzhou?", "type": "choice", "a": 0, "opts": ["In the east of China.", "In the west of China.", "In the south of China.", "In the north of China."]},
+        {"stem": "What did they do at West Lake?", "type": "choice", "a": 0, "opts": ["Took a boat and walked in the park.", "Went to a museum.", "Bought a tower.", "Took a bus."]},
+        {"stem": "What will they do tomorrow?", "type": "choice", "a": 0, "opts": ["Go to a museum.", "Visit a tower.", "Take a boat.", "Buy gifts."]},
+        {"stem": "What will they do if the weather is fine?", "type": "choice", "a": 0, "opts": ["Visit a famous tower.", "Stay at home.", "Go to school.", "Take a bus."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>A Guide to Xi'an. Xi'an is an ancient city in the west of China. It is famous for the Terracotta Warriors, a wonder from over 2,000 years ago. In the museum, you can learn about China's long history. The city wall is also popular. At night, the wall and the towers light up the sky. Many tourists come to Xi'an every year. If you enjoy history and culture, you will love this city. You can also buy local food and gifts there.<br>Where is Xi'an?", "type": "text", "a": "In the west of China", "a2": ["In the west of China.", "It is in the west of China.", "In China's west."]},
+        {"stem": "What is Xi'an famous for?", "type": "text", "a": "The Terracotta Warriors", "a2": ["The Terracotta Warriors.", "The Great Wall.", "West Lake.", "The Bund."]},
+        {"stem": "How old are the Terracotta Warriors?", "type": "text", "a": "Over 2,000 years old", "a2": ["Over 2,000 years old.", "Over 100 years old.", "About 50 years old."]},
+        {"stem": "What lights up the sky at night?", "type": "text", "a": "The wall and the towers", "a2": ["The wall and the towers.", "The lake.", "The gardens."]},
+        {"stem": "Why will you love Xi'an if you enjoy history?", "type": "text", "a": "Because it has long history and culture", "a2": ["Because it has long history and culture.", "Because it has skyscrapers.", "Because it is modern."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "g____（指南；手册）", "type": "text", "a": "guide"},
+        {"stem": "v____（参观；游览）", "type": "text", "a": "visit"},
+        {"stem": "c____（世纪）", "type": "text", "a": "century"},
+        {"stem": "h____（历史）", "type": "text", "a": "history"},
+        {"stem": "c____（文化）", "type": "text", "a": "culture"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "explore（主句用一般将来时（will + 动词原形））", "type": "text", "a": "will explore", "ph": "将会探索"},
+        {"stem": "buy（主句用一般将来时（will + 动词原形））", "type": "text", "a": "will buy", "ph": "将会购买"},
+        {"stem": "explore（主语为三单，动词加 -s）", "type": "text", "a": "explores", "ph": "探索（三单）"},
+        {"stem": "city（辅音 + y 结尾，变复数把 y 改 i 加 -es）", "type": "text", "a": "cities", "ph": "城市（复数）"},
+        {"stem": "gift（直接加 -s 变复数）", "type": "text", "a": "gifts", "ph": "礼物（复数）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Favourite City in China（我最喜欢的中国城市）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 tourist spot, be famous for, a mix of ... and ..., in the centre of, light up, East meets West, history, culture, local food and gifts, traditional）；③ 注意 if 条件句（主将从现）和句首大写。", "type": "essay", "score": 10, "ph": "My Favourite City in China\n\nBeijing is my favourite city...", "check": ["有没有写出城市名字和位置（in the ... of China）？", "有没有用 be famous for 介绍它因什么闻名？", "有没有写夜景或景点（light up / tourist spot）？", "有没有用 if 条件句造句（主将从现）？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">My Favourite City in China<br><br>Beijing is my favourite city in China. It is famous for the Forbidden City, a wonderful tourist spot. The buildings there are a mix of traditional Chinese style and history. At night, the tall buildings light up the sky, and the view is beautiful. If you visit Beijing, you will learn a lot about Chinese history and culture. You can also buy local food and gifts there. I love this city because it is a mix of East and West, tradition and modernity.</div><div class=\"zh\">（参考范文：写了城市、位置、著名景点、夜景和当地美食礼物，用了 be famous for / tourist spot / a mix of ... and ... / light up / history and culture / local food and gifts 等本单元词汇短语，并用 if 条件句（主将从现）造句，注意了句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t2",
+    "title": "测试卷二 · Unit 6 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与测试卷一相同，题目全部更换（词汇、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>ear</u>th&nbsp;&nbsp;B. l<u>ear</u>n&nbsp;&nbsp;C. h<u>ear</u>d&nbsp;&nbsp;D. cl<u>ear</u>", "type": "choice", "a": 3, "opts": ["earth", "learn", "heard", "clear"], "explain": "earth / learn / heard 中 ear 发 /ɜː/，clear 中 ear 发 /ɪə/。"},
+        {"stem": "A. <u>ar</u>t&nbsp;&nbsp;B. c<u>ar</u>d&nbsp;&nbsp;C. w<u>ar</u>m&nbsp;&nbsp;D. p<u>ar</u>k", "type": "choice", "a": 2, "opts": ["art", "card", "warm", "park"], "explain": "art / card / park 中 ar 发 /ɑː/，warm 中 ar 发 /ɔː/。"},
+        {"stem": "A. <u>wh</u>ole&nbsp;&nbsp;B. <u>wh</u>ite&nbsp;&nbsp;C. <u>wh</u>en&nbsp;&nbsp;D. <u>wh</u>ere", "type": "choice", "a": 0, "opts": ["whole", "white", "when", "where"], "explain": "white / when / where 中 wh 发 /w/，whole 中 wh 发 /h/。"},
+        {"stem": "A. d<u>ow</u>n&nbsp;&nbsp;B. t<u>ow</u>n&nbsp;&nbsp;C. sh<u>ow</u>&nbsp;&nbsp;D. br<u>ow</u>n", "type": "choice", "a": 2, "opts": ["down", "town", "show", "brown"], "explain": "down / town / brown 中 ow 发 /aʊ/，show 中 ow 发 /əʊ/。"},
+        {"stem": "A. w<u>e</u>st&nbsp;&nbsp;B. r<u>e</u>st&nbsp;&nbsp;C. b<u>e</u>st&nbsp;&nbsp;D. r<u>e</u>cent", "type": "choice", "a": 3, "opts": ["west", "rest", "best", "recent"], "explain": "west / rest / best 中 e 发 /e/，recent 中 e 发 /iː/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "Yu Garden is over 400 years ____.", "type": "choice", "a": 0, "opts": ["old", "new", "tall", "big"], "explain": "over 400 years old 有 400 多年历史。"},
+        {"stem": "The buildings are a mix ____ Chinese and Western styles.", "type": "choice", "a": 0, "opts": ["of", "with", "and", "for"], "explain": "a mix of A and B A 与 B 的融合。"},
+        {"stem": "If you ____ west, you will see old buildings.", "type": "choice", "a": 0, "opts": ["look", "see", "meet", "light"], "explain": "look west 向西看。"},
+        {"stem": "The Huangpu River is ____ the Bund.", "type": "choice", "a": 0, "opts": ["across", "over", "above", "under"], "explain": "across the river 河对岸。"},
+        {"stem": "You can ____ a lot about Shanghai's history.", "type": "choice", "a": 0, "opts": ["learn", "teach", "read", "write"], "explain": "learn about 了解。"},
+        {"stem": "If they ____ the river, they will see skyscrapers.", "type": "choice", "a": 0, "opts": ["cross", "across", "look", "walk"], "explain": "cross the river 过河。"},
+        {"stem": "Xintiandi is a popular tourist ____.", "type": "choice", "a": 0, "opts": ["spot", "park", "school", "shop"], "explain": "tourist spot 旅游景点。"},
+        {"stem": "We ____ buy local gifts if we go there.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用 will。"},
+        {"stem": "The museum is ____ the Site of the CPC.", "type": "choice", "a": 0, "opts": ["at", "on", "in", "to"], "explain": "at the site 在旧址。"},
+        {"stem": "If you ____ history, you will love Yu Garden.", "type": "choice", "a": 0, "opts": ["enjoy", "look", "visit", "light"], "explain": "enjoy 喜欢。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Hello, everyone! I am your travel (1)____.", "type": "choice", "a": 0, "opts": ["guide", "gift", "garden", "guest"], "explain": "travel guide 旅游指南/导游。"},
+        {"stem": "Shanghai is a city where East (2)____ West.", "type": "choice", "a": 0, "opts": ["meets", "hits", "beats", "eats"], "explain": "East meets West 东西方交汇。"},
+        {"stem": "If you (3)____ the city, you (4)____ explore famous places.", "type": "choice", "a": 0, "opts": ["visit", "visited", "will visit", "visits"], "explain": "if 从句用一般现在时 visit。"},
+        {"stem": "If you visit the city, you (4)____ explore famous places.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用 will。"},
+        {"stem": "Xintiandi is (5)____ for its shikumen buildings.", "type": "choice", "a": 0, "opts": ["famous", "good", "kind", "full"], "explain": "be famous for 因……闻名。"},
+        {"stem": "These buildings are a (6)____ of Chinese and Western styles.", "type": "choice", "a": 0, "opts": ["mix", "style", "tradition", "culture"], "explain": "a mix of ……的融合。"},
+        {"stem": "At night, they (7)____ up the sky.", "type": "choice", "a": 0, "opts": ["light", "look", "meet", "visit"], "explain": "light up 点亮。"},
+        {"stem": "The Bund is (8)____ old meets new.", "type": "choice", "a": 0, "opts": ["where", "what", "when", "which"], "explain": "where 引导地点。"},
+        {"stem": "If you (9)____ east, you will see skyscrapers.", "type": "choice", "a": 0, "opts": ["look", "see", "meet", "light"], "explain": "look east 向东看。"},
+        {"stem": "You can also (10)____ local food and gifts.", "type": "choice", "a": 0, "opts": ["buy", "sell", "take", "make"], "explain": "buy 买。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "My family and I will (1)____ Shanghai next week.", "type": "choice", "a": 0, "opts": ["visit", "visited", "will visit", "visits"], "explain": "will + 动词原形 visit。"},
+        {"stem": "We (2)____ visit the Bund first.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用 will。"},
+        {"stem": "If we (3)____ west, we will see old buildings.", "type": "choice", "a": 0, "opts": ["look", "see", "meet", "light"], "explain": "if 从句用一般现在时 look。"},
+        {"stem": "The Bund is a famous tourist (4)____.", "type": "choice", "a": 0, "opts": ["spot", "park", "school", "shop"], "explain": "tourist spot 旅游景点。"},
+        {"stem": "Then we will go to Yu Garden. It is in the (5)____ of the old city.", "type": "choice", "a": 0, "opts": ["centre", "east", "west", "north"], "explain": "in the centre of 在……中心。"},
+        {"stem": "It is over 400 years (6)____.", "type": "choice", "a": 0, "opts": ["old", "new", "tall", "big"], "explain": "over 400 years old。"},
+        {"stem": "We will (7)____ many photos there.", "type": "choice", "a": 0, "opts": ["take", "make", "do", "get"], "explain": "take photos 拍照。"},
+        {"stem": "If we (8)____ hungry, we will eat local food.", "type": "choice", "a": 0, "opts": ["are", "will be", "were", "be"], "explain": "if 从句用一般现在时 are。"},
+        {"stem": "We can also (9)____ local gifts.", "type": "choice", "a": 0, "opts": ["buy", "sell", "take", "make"], "explain": "buy 买。"},
+        {"stem": "I think we (10)____ love this trip.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用 will。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（海报）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>海报：</b>VISIT BEIJING! A free talk about China's capital. When: Sunday, 3:00 p.m. Where: School Hall. What: photos of the Forbidden City and the Great Wall, a short video about Beijing's history, and a map of the city. You will learn about Beijing's traditional buildings and modern life. East meets West there! All students are welcome. No ticket needed.<br>Where is the talk?", "type": "choice", "a": 0, "opts": ["In the school hall.", "In the Forbidden City.", "On the Great Wall.", "In a museum."]},
+        {"stem": "What will students see?", "type": "choice", "a": 0, "opts": ["Photos of the Forbidden City and the Great Wall.", "A map only.", "Some food.", "A rocket."]},
+        {"stem": "Does the talk cost money?", "type": "choice", "a": 0, "opts": ["No, it is free.", "Yes, ten yuan.", "Yes, fifty yuan.", "One hundred yuan."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Sun Yue is a student in Hangzhou. Last weekend, she took her cousin to West Lake. \"The lake and the garden give a wonderful view,\" she said. They took a boat and walked in the park. Her cousin bought some local food and gifts. In the afternoon, they visited a museum and learned about Hangzhou's history. \"If you enjoy beauty and culture, you will love Hangzhou,\" Sun Yue told her cousin. Her cousin smiled and said, \"I want to come again next year.\"<br>Where did Sun Yue take her cousin?", "type": "choice", "a": 0, "opts": ["To West Lake in Hangzhou.", "To the Forbidden City.", "To Xi'an.", "To a museum only."]},
+        {"stem": "What did they do at the lake?", "type": "choice", "a": 0, "opts": ["Took a boat and walked in the park.", "Climbed a tower.", "Bought a map.", "Went to school."]},
+        {"stem": "What did her cousin buy?", "type": "choice", "a": 0, "opts": ["Some local food and gifts.", "A boat.", "A tower.", "A book."]},
+        {"stem": "What will her cousin do next year?", "type": "choice", "a": 0, "opts": ["Come to Hangzhou again.", "Go to Beijing.", "Stay at home.", "Build a lake."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Lin Tao, Guess where I am! I am in Xi'an, an ancient city in the west of China. It is famous for the Terracotta Warriors. Yesterday I went to the museum and learned about China's long history. The warriors are over 2,000 years old! At night, the city wall and the towers light up the sky. It is beautiful. Tomorrow I will buy some local food and gifts and then take the train home. If you come here, you will love it too. Write soon! Yours, Zhao Min<br>Where is Xi'an?", "type": "choice", "a": 0, "opts": ["In the west of China.", "In the east of China.", "In the south of China.", "In the north of China."]},
+        {"stem": "What is Xi'an famous for?", "type": "choice", "a": 0, "opts": ["The Terracotta Warriors.", "West Lake.", "The Bund.", "The Great Wall."]},
+        {"stem": "How old are the warriors?", "type": "choice", "a": 0, "opts": ["Over 2,000 years old.", "About 100 years old.", "About 50 years old."]},
+        {"stem": "What will Zhao Min do tomorrow?", "type": "choice", "a": 0, "opts": ["Buy local food and gifts and take the train home.", "Visit the warriors again.", "Go to school.", "Take a boat."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Guilin is a famous tourist city in the south of China. It is famous for its mountains and rivers, a mix of nature and beauty. The Li River gives you a wonderful view. You can take a boat and see the green hills. In the centre of the city, there is a beautiful park and a traditional garden. If you visit Guilin, you will enjoy its peace and culture. Many tourists from all over the world come here. You can also buy local food and gifts. At night, the hills and the river light up with colourful lights.<br>Where is Guilin?", "type": "text", "a": "In the south of China", "a2": ["In the south of China.", "It is in the south of China.", "In China's south."]},
+        {"stem": "What is Guilin famous for?", "type": "text", "a": "Its mountains and rivers", "a2": ["Its mountains and rivers.", "Its skyscrapers.", "Its museums.", "Its food only."]},
+        {"stem": "What can you do on the Li River?", "type": "text", "a": "Take a boat and see the green hills", "a2": ["Take a boat and see the green hills.", "Climb a tower.", "Buy gifts only.", "Visit a museum."]},
+        {"stem": "What lights up at night?", "type": "text", "a": "The hills and the river", "a2": ["The hills and the river.", "The museums.", "The gardens."]},
+        {"stem": "Why do tourists come to Guilin?", "type": "text", "a": "To enjoy its beauty, peace and culture", "a2": ["To enjoy its beauty, peace and culture.", "To buy cars.", "To work."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "（东；东方）", "type": "text", "a": "east"},
+        {"stem": "e____（探索；探究）", "type": "text", "a": "explore"},
+        {"stem": "（混合）", "type": "text", "a": "mix"},
+        {"stem": "s____（摩天大楼）", "type": "text", "a": "skyscraper"},
+        {"stem": "t____（传统的）", "type": "text", "a": "traditional"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "light（主句用一般将来时（will + 动词原形））", "type": "text", "a": "will light", "ph": "将会照亮"},
+        {"stem": "go（主句用一般将来时（will + 动词原形））", "type": "text", "a": "will go", "ph": "将会去"},
+        {"stem": "enjoy（以 y 结尾，三单变 -ies）", "type": "text", "a": "enjoys", "ph": "享受（三单）"},
+        {"stem": "building（直接加 -s 变复数）", "type": "text", "a": "buildings", "ph": "建筑物（复数）"},
+        {"stem": "spot（直接加 -s 变复数）", "type": "text", "a": "spots", "ph": "地点（复数）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：A Travel Guide to a Chinese City（中国城市旅游指南）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 tourist spot, be famous for, a mix of ... and ..., in the centre of, light up, East meets West, local food and gifts, traditional, culture）；③ 注意 if 条件句（主将从现）和句首大写。", "type": "essay", "score": 10, "ph": "A Travel Guide to ...\n\nWelcome to ...", "check": ["有没有写出城市名和方位（in the ... of China）？", "有没有用 be famous for 介绍著名之处？", "有没有写景点或夜景（tourist spot / light up）？", "有没有用 if 条件句？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">A Travel Guide to Hangzhou<br><br>Welcome to Hangzhou, a beautiful city in the east of China. It is famous for West Lake, a wonderful tourist spot. The lake and the garden are a mix of nature and beauty. In the centre of the city, there is a traditional park. At night, the hills and the lake light up with colourful lights, and the view is great. If you visit Hangzhou, you will enjoy its culture and buy local food and gifts. I am sure you will love this city.</div><div class=\"zh\">（参考范文：以导游口吻写了城市、位置、著名景点、夜景和当地美食礼物，用了 be famous for / tourist spot / a mix of ... and ... / in the centre of / light up / culture / local food and gifts 等本单元词汇短语，并用 if 条件句造句，注意了句首大写。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t3",
+    "title": "测试卷三 · Unit 6 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与前两套相同，题目全部更换（辨音组合、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. b<u>oo</u>k&nbsp;&nbsp;B. l<u>oo</u>k&nbsp;&nbsp;C. f<u>oo</u>d&nbsp;&nbsp;D. g<u>oo</u>d", "type": "choice", "a": 2, "opts": ["book", "look", "food", "good"], "explain": "book / look / good 中 oo 发 /ʊ/，food 中 oo 发 /uː/。"},
+        {"stem": "A. g<u>ar</u>den&nbsp;&nbsp;B. m<u>ar</u>ket&nbsp;&nbsp;C. w<u>ar</u>m&nbsp;&nbsp;D. p<u>ar</u>k", "type": "choice", "a": 2, "opts": ["garden", "market", "warm", "park"], "explain": "garden / market / park 中 ar 发 /ɑː/，warm 中 ar 发 /ɔː/。"},
+        {"stem": "A. <u>ch</u>air&nbsp;&nbsp;B. <u>ch</u>ina&nbsp;&nbsp;C. s<u>ch</u>ool&nbsp;&nbsp;D. <u>ch</u>eesecake", "type": "choice", "a": 2, "opts": ["chair", "china", "school", "cheesecake"], "explain": "chair / china / cheesecake 中 ch 发 /tʃ/，school 中 ch 发 /k/。"},
+        {"stem": "A. <u>th</u>is&nbsp;&nbsp;B. <u>th</u>at&nbsp;&nbsp;C. <u>th</u>ree&nbsp;&nbsp;D. <u>th</u>ose", "type": "choice", "a": 2, "opts": ["this", "that", "three", "those"], "explain": "this / that / those 中 th 发 /ð/，three 中 th 发 /θ/。"},
+        {"stem": "A. w<u>e</u>st&nbsp;&nbsp;B. r<u>e</u>st&nbsp;&nbsp;C. b<u>e</u>st&nbsp;&nbsp;D. r<u>e</u>cent", "type": "choice", "a": 3, "opts": ["west", "rest", "best", "recent"], "explain": "west / rest / best 中 e 发 /e/，recent 中 e 发 /iː/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "Beijing is a city where East ____ West.", "type": "choice", "a": 0, "opts": ["meets", "hits", "beats", "eats"], "explain": "East meets West 东西方交汇。"},
+        {"stem": "The Forbidden City is famous ____ its buildings.", "type": "choice", "a": 0, "opts": ["for", "of", "with", "at"], "explain": "be famous for 因……闻名。"},
+        {"stem": "If you ____ inside, you will learn about history.", "type": "choice", "a": 0, "opts": ["go", "will go", "went", "goes"], "explain": "if 从句用一般现在时 go。"},
+        {"stem": "At night, the buildings ____ up the sky.", "type": "choice", "a": 0, "opts": ["light", "look", "meet", "visit"], "explain": "light up 点亮。"},
+        {"stem": "You ____ love Hangzhou if you enjoy beauty.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用 will。"},
+        {"stem": "West Lake gives you a wonderful ____.", "type": "choice", "a": 0, "opts": ["view", "food", "gift", "wall"], "explain": "view 景色。"},
+        {"stem": "Xi'an is in the ____ of China.", "type": "choice", "a": 0, "opts": ["west", "east", "south", "north"], "explain": "in the west of 在……西部。"},
+        {"stem": "You can buy local food and ____ there.", "type": "choice", "a": 0, "opts": ["gifts", "gardens", "walls", "towers"], "explain": "gifts 礼物。"},
+        {"stem": "If it ____ fine, we will take a boat.", "type": "choice", "a": 0, "opts": ["is", "will be", "was", "be"], "explain": "if 从句用一般现在时 is。"},
+        {"stem": "Many ____ come to these cities every year.", "type": "choice", "a": 0, "opts": ["tourists", "guides", "teachers", "workers"], "explain": "tourist 游客。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Xi'an is an ancient city in the (1)____ of China.", "type": "choice", "a": 0, "opts": ["west", "east", "south", "north"], "explain": "in the west of 在……西部。"},
+        {"stem": "It is (2)____ for the Terracotta Warriors.", "type": "choice", "a": 0, "opts": ["famous", "good", "kind", "full"], "explain": "be famous for 因……闻名。"},
+        {"stem": "If you (3)____ to Xi'an, you (4)____ see them in a museum.", "type": "choice", "a": 0, "opts": ["go", "went", "will go", "goes"], "explain": "if 从句用一般现在时 go。"},
+        {"stem": "If you go to Xi'an, you (4)____ see them in a museum.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用 will。"},
+        {"stem": "They are over 2,000 years (5)____.", "type": "choice", "a": 0, "opts": ["old", "new", "tall", "big"], "explain": "over 2,000 years old。"},
+        {"stem": "At night, the city wall and the towers (6)____ up the sky.", "type": "choice", "a": 0, "opts": ["light", "look", "meet", "visit"], "explain": "light up 点亮。"},
+        {"stem": "The (7)____ is beautiful.", "type": "choice", "a": 0, "opts": ["view", "food", "gift", "wall"], "explain": "view 景色。"},
+        {"stem": "You can (8)____ about China's long history.", "type": "choice", "a": 0, "opts": ["learn", "teach", "read", "write"], "explain": "learn about 了解。"},
+        {"stem": "If you (9)____ history and culture, you (10)____ love this city.", "type": "choice", "a": 0, "opts": ["enjoy", "look", "visit", "light"], "explain": "enjoy 喜欢。"},
+        {"stem": "If you enjoy history and culture, you (10)____ love this city.", "type": "choice", "a": 0, "opts": ["will", "are", "do", "did"], "explain": "主句用 will。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Hangzhou is in the (1)____ of China.", "type": "choice", "a": 0, "opts": ["east", "west", "south", "north"], "explain": "in the east of 在……东部。"},
+        {"stem": "It is famous (2)____ West Lake.", "type": "choice", "a": 0, "opts": ["for", "of", "with", "at"], "explain": "be famous for 因……闻名。"},
+        {"stem": "The lake and the (3)____ give a wonderful view.", "type": "choice", "a": 0, "opts": ["garden", "building", "wall", "tower"], "explain": "garden 花园。"},
+        {"stem": "You can take a (4)____ and walk in the park.", "type": "choice", "a": 0, "opts": ["boat", "bus", "bike", "tower"], "explain": "take a boat 乘船。"},
+        {"stem": "In the centre of the (5)____, there is a traditional garden.", "type": "choice", "a": 0, "opts": ["city", "lake", "park", "wall"], "explain": "in the centre of the city 在市中心。"},
+        {"stem": "At night, the hills and the lake (6)____ up.", "type": "choice", "a": 0, "opts": ["light", "look", "meet", "visit"], "explain": "light up 点亮。"},
+        {"stem": "If you (7)____ beauty and culture, you will (8)____ Hangzhou.", "type": "choice", "a": 0, "opts": ["enjoy", "look", "visit", "light"], "explain": "enjoy 喜欢。"},
+        {"stem": "If you enjoy beauty and culture, you will (8)____ Hangzhou.", "type": "choice", "a": 0, "opts": ["love", "like", "see", "visit"], "explain": "love 喜爱。"},
+        {"stem": "You can also (9)____ local food and (10)____.", "type": "choice", "a": 0, "opts": ["buy", "sell", "take", "make"], "explain": "buy 买。"},
+        {"stem": "You can also buy local food and (10)____.", "type": "choice", "a": 0, "opts": ["gifts", "gardens", "walls", "towers"], "explain": "gifts 礼物。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>CITY CULTURE SHOW. Our school will have a show about Chinese cities next month. There will be photos of Beijing, Xi'an and Hangzhou. A teacher will talk about each city's history and culture. Students can learn how East meets West in these cities. The show is in the school library. It is free. If you want to join, please tell your class teacher before Friday.<br>Where will the show be?", "type": "choice", "a": 0, "opts": ["In the school library.", "In the school hall.", "At the Bund.", "In a museum."]},
+        {"stem": "What cities are in the photos?", "type": "choice", "a": 0, "opts": ["Beijing, Xi'an and Hangzhou.", "Only Beijing.", "Only Xi'an.", "Only Hangzhou."]},
+        {"stem": "How much does it cost?", "type": "choice", "a": 0, "opts": ["It is free.", "Ten yuan.", "Fifty yuan.", "One hundred yuan."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Wang Fang lives in Shanghai. Last National Day, she took her little brother to Yu Garden. \"This garden is in the centre of the old city and over 400 years old,\" she said. They saw many beautiful traditional buildings. Her brother bought some local food and gifts. In the evening, they went to the Bund. \"Look west,\" said Wang Fang, \"and you will see old Western-style buildings. Look east across the Huangpu River, and you will see skyscrapers.\" The buildings light up the sky. Her brother said, \"Shanghai is a city where East meets West!\"<br>Where did Wang Fang take her brother?", "type": "choice", "a": 0, "opts": ["To Yu Garden and the Bund in Shanghai.", "To Beijing.", "To Xi'an.", "To Hangzhou."]},
+        {"stem": "How old is Yu Garden?", "type": "choice", "a": 0, "opts": ["Over 400 years old.", "Over 100 years old.", "About 50 years old.", "About 200 years old."]},
+        {"stem": "What did they see when they looked east at the Bund?", "type": "choice", "a": 0, "opts": ["Skyscrapers.", "Old Western-style buildings.", "A garden.", "A museum."]},
+        {"stem": "What did her brother say about Shanghai?", "type": "choice", "a": 0, "opts": ["It is a city where East meets West.", "It is very small.", "It has no history.", "It is in the west."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（日记）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>日记：</b>Saturday, October 4th, Sunny. Today my class visited the local museum. We learned about Xi'an and the Terracotta Warriors. Our guide said Xi'an is an ancient city in the west of China. The warriors are over 2,000 years old. They are a wonder! In the afternoon, we made posters about Chinese cities. Mine is about Hangzhou and West Lake. I wrote: \"Hangzhou is famous for its lake. If you go there, you will love the view.\" My teacher said my poster is good. I want to visit Hangzhou next summer.<br>What did the class learn about in the museum?", "type": "choice", "a": 0, "opts": ["Xi'an and the Terracotta Warriors.", "Beijing.", "Hangzhou.", "The Bund."]},
+        {"stem": "How old are the Terracotta Warriors?", "type": "choice", "a": 0, "opts": ["Over 2,000 years old.", "About 100 years old.", "About 50 years old."]},
+        {"stem": "What did the writer put on the poster?", "type": "choice", "a": 0, "opts": ["Hangzhou and West Lake.", "Xi'an only.", "The Forbidden City.", "A map."]},
+        {"stem": "When does the writer want to visit Hangzhou?", "type": "choice", "a": 0, "opts": ["Next summer.", "Next winter.", "Next month.", "Next week."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Chengdu is a famous city in the west of China. It is famous for its food and its cute pandas. The city is a mix of traditional culture and modern life. In the centre of the city, there is a beautiful park. If you visit Chengdu, you will see lovely pandas and eat delicious local food. You can also buy local gifts. At night, the tall buildings light up the sky, and the view is wonderful. Many tourists come to Chengdu every year. If you enjoy food and culture, you will love this city.<br>Where is Chengdu?", "type": "text", "a": "In the west of China", "a2": ["In the west of China.", "It is in the west of China.", "In China's west."]},
+        {"stem": "What is Chengdu famous for?", "type": "text", "a": "Its food and cute pandas", "a2": ["Its food and cute pandas.", "Its skyscrapers.", "Its museums.", "Its lake."]},
+        {"stem": "What can you see if you visit Chengdu?", "type": "text", "a": "Lovely pandas and eat delicious local food", "a2": ["Lovely pandas and eat delicious local food.", "Only museums.", "Only towers.", "Only a lake."]},
+        {"stem": "What lights up at night?", "type": "text", "a": "The tall buildings", "a2": ["The tall buildings.", "The pandas.", "The gardens."]},
+        {"stem": "Why will you love Chengdu if you enjoy food?", "type": "text", "a": "Because you can eat delicious local food and see culture", "a2": ["Because you can eat delicious local food and see culture.", "Because it has skyscrapers.", "Because it is modern."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "（西；西方）", "type": "text", "a": "west"},
+        {"stem": "f____（著名的）", "type": "text", "a": "famous"},
+        {"stem": "s____（风格）", "type": "text", "a": "style"},
+        {"stem": "l____（点亮；照亮）", "type": "text", "a": "light"},
+        {"stem": "l____（当地的）", "type": "text", "a": "local"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "enjoy（主句用一般将来时（will + 动词原形））", "type": "text", "a": "will enjoy", "ph": "将会享受"},
+        {"stem": "visit（主语为 he / she / it，动词变第三人称单数）", "type": "text", "a": "visits", "ph": "参观（三单）"},
+        {"stem": "buy（主语为三单，动词加 -s）", "type": "text", "a": "buys", "ph": "购买（三单）"},
+        {"stem": "tourist（直接加 -s 变复数）", "type": "text", "a": "tourists", "ph": "游客（复数）"},
+        {"stem": "visit（主句用一般将来时（will + 动词原形））", "type": "text", "a": "will visit", "ph": "将会参观"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：If I Visit a Chinese City（如果我去一座中国城市）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 tourist spot, be famous for, in the centre of, light up, East meets West, local food and gifts, traditional, culture, view）；③ 注意 if 条件句（主将从现）和句首大写。", "type": "essay", "score": 10, "ph": "If I Visit a Chinese City\n\nIf I visit ..., I will...", "check": ["有没有写出城市名和方位（in the ... of China）？", "有没有用 be famous for？", "有没有写景点或夜景（light up / view）？", "有没有用 if 条件句（主将从现）？", "句首大写、句末标点了吗？"], "sample": "<div class=\"en\">If I Visit a Chinese City<br><br>If I visit Xi'an, I will go to see the Terracotta Warriors. Xi'an is a famous city in the west of China. It is famous for its long history and traditional culture. In the centre of the city, there is an ancient wall. At night, the wall and the towers light up the sky, and the view is wonderful. If I go there, I will also buy local food and gifts. I am sure I will love this city where East meets West.</div><div class=\"zh\">（参考范文：写了城市、位置、著名之处、夜景和当地美食礼物，用了 be famous for / in the centre of / light up / East meets West / local food and gifts / traditional culture / view 等本单元词汇短语，并用 if 条件句（主将从现）造句，注意了句首大写。）</div>"}
+      ]
+    }
+  ]
+  }
+];
+
+const $ = s => document.querySelector(s);
+const host = $('#paperHost'), tabsEl = $('#tabs'), scoreHost = $('#scoreHost');
+let curPaper = null, answers = {};
+
+const store = {
+  key(id){ return 'hx_quiz_' + 'u6' + '_' + id; },
+  save(id, data){ try{ localStorage.setItem(this.key(id), JSON.stringify(data)); }catch(e){} },
+  load(id){ try{ return JSON.parse(localStorage.getItem(this.key(id)) || 'null'); }catch(e){ return null; } },
+  clear(id){ try{ localStorage.removeItem(this.key(id)); }catch(e){} }
+};
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buildTabs(){
+  tabsEl.innerHTML = '';
+  PAPERS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.innerHTML = esc(p.title.split(' · ')[0]) + '<span class="tag">' + esc(p.title.split(' · ')[1] || '') + '</span>';
+    b.onclick = () => selectPaper(i);
+    b.dataset.idx = i;
+    tabsEl.appendChild(b);
+  });
+}
+
+function selectPaper(i){
+  const p = PAPERS[i];
+  curPaper = p;
+  [...tabsEl.children].forEach((b, j) => b.classList.toggle('on', j === i));
+  scoreHost.innerHTML = '';
+  const saved = store.load(p.id);
+  answers = (saved && saved.answers) || {};
+  renderPaper(p, saved && saved.submitted);
+}
+
+function qid(si, qi){ return 'q' + si + '_' + qi; }
+
+function renderPaper(p, submitted){
+  let total = 0;
+  let html = `<div class="paper">
+    <div class="p-head">
+      <div class="pt">${esc(p.title)}</div>
+      <div class="ps">${esc(p.sub || '')}</div>
+    </div>
+    <div class="p-info"><span>建议用时：<b>${esc(p.time || '20 分钟')}</b></span><span>满分：<b id="fullMark">100</b> 分</span><span>范围：<b>Unit 6</b></span></div>`;
+
+  p.sections.forEach((s, si) => {
+    html += `<div class="sec"><h3>${esc(s.name)}</h3>`;
+    if (s.note) html += `<div class="sn">${s.note}</div>`;
+    if (s.bank) html += `<div class="wordbank">${s.bank}</div>`;
+    if (s.passage) html += s.passage;
+    s.items.forEach((it, qi) => {
+      const qq = qid(si, qi);
+      total += (it.score || 1);
+      const ans = answers[qq];
+      const st = submitted && it.type !== 'essay'
+        ? (isRight(it, ans) ? 'ok' : 'bad') : '';
+      html += `<div class="q" id="${qq}"><div class="qt"><span class="qn">${qi + 1}.</span>${it.stem}</div>`;
+      if (it.type === 'choice' || it.type === 'tf'){
+        const opts = it.type === 'choice' ? it.opts : ['T（正确）', 'F（错误）'];
+        const cols = (it.opts && it.opts.length > 4) ? 'one' : '';
+        html += `<div class="opts ${cols}">`;
+        opts.forEach((o, oi) => {
+          const tv = it.type === 'tf' ? (oi === 0 ? 'T' : 'F') : String(oi);
+          const key = it.type === 'tf' ? tv : String.fromCharCode(65 + oi);
+          let cls = 'opt';
+          if (submitted && it.type === 'choice'){
+            if (String(oi) === String(it.a)) cls += ' ok'; else if (tv === String(ans) && String(oi) !== String(it.a)) cls += ' bad';
+          } else if (submitted && it.type === 'tf'){
+            if (tv === it.a) cls += ' ok'; else if (tv === String(ans) && tv !== it.a) cls += ' bad';
+          }
+          if (!submitted && ans !== undefined && String(ans) === tv) cls += ' sel';
+          const mk = (submitted && ((it.type === 'choice' && String(oi) === String(it.a)) || (it.type === 'tf' && tv === it.a))) ? '<span class="mk">✓</span>' : '';
+          html += `<div class="${cls}" data-q="${qq}" data-v="${tv}"><span class="lb">${key}.</span><span>${esc(o)}</span>${mk}</div>`;
+        });
+        html += `</div>`;
+        if (submitted && !isRight(it, ans) && it.explain) html += `<div class="hint">💡 ${it.explain}</div>`;
+      } else if (it.type === 'text'){
+        const cls = submitted ? (st === 'ok' ? 'ok' : 'bad') : '';
+        html += `<input class="ans-in ${cls}" data-q="${qq}" value="${esc(ans || '')}" placeholder="${esc(it.ph || '输入答案')}" ${submitted ? 'disabled' : ''}>`;
+        if (submitted && st !== 'ok') html += `<div class="hint">💡 参考答案：<b>${esc((it.a2 || it.a).join ? (it.a2||it.a).join(' / ') : it.a)}</b></div>`;
+      } else if (it.type === 'essay'){
+        html += `<textarea class="essay" data-q="${qq}" placeholder="${esc(it.ph || '')}">${esc(ans || '')}</textarea>`;
+        html += `<div class="checklist"><b>自查清单：</b><ul>${(it.check||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>`;
+        html += `<details class="sample"><summary>📖 参考范文（写完后展开对照）</summary><div class="body">${it.sample}</div></details>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `</div>
+    <div class="acts">
+      <button class="btn btn-go" id="btnSubmit">${submitted ? '重新作答' : '提交批改'}</button>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 打印 / 存 PDF</button>
+      <button class="btn btn-reset" id="btnReset">清空重做</button>
+    </div>`;
+  host.innerHTML = html;
+  $('#fullMark').textContent = total;
+
+  host.querySelectorAll('.opt').forEach(o => o.onclick = () => {
+    if (submitted) return;
+    answers[o.dataset.q] = o.dataset.v;
+    host.querySelectorAll(`.opt[data-q="${o.dataset.q}"]`).forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+  });
+  host.querySelectorAll('.ans-in').forEach(i => i.oninput = () => { answers[i.dataset.q] = i.value; });
+  host.querySelectorAll('textarea.essay').forEach(t => t.oninput = () => { answers[t.dataset.q] = t.value; });
+  $('#btnSubmit').onclick = () => grade();
+  $('#btnReset').onclick = () => { store.clear(p.id); answers = {}; renderPaper(p, false); };
+  if (submitted) grade(true);
+}
+
+function norm(s){ return String(s||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+function isRight(it, ans){
+  if (ans === undefined || ans === '' || ans === null) return false;
+  if (it.type === 'choice') return String(ans) === String(it.a);
+  if (it.type === 'tf') return String(ans) === it.a;
+  if (it.type === 'text'){
+    const ok = (it.a2 && it.a2.length ? it.a2 : [it.a]).some(a => norm(a) === norm(ans));
+    return ok;
+  }
+  return false;
+}
+
+function grade(resubmit){
+  const p = curPaper; if (!p) return;
+  const submitted = !resubmit;
+  let got = 0, full = 0, wrong = [];
+  p.sections.forEach((s, si) => s.items.forEach((it, qi) => {
+    const v = it.score || 1; full += v;
+    const a = answers[qid(si, qi)];
+    if (it.type === 'essay') return;
+    if (isRight(it, a)) got += v;
+    else wrong.push(si + '-' + qi);
+  }));
+  const pct = Math.round(got / full * 100);
+  const pass = pct >= 60;
+  const advice = wrong.length === 0 ? '全部正确，太棒了！可以进入下一单元。'
+    : wrong.length <= 3 ? '只错 ' + wrong.length + ' 题，把错题的解析看一遍就能全对。'
+    : '错题偏多，建议回到点读页把本单元词汇和课文再过一遍，第二天重做这份卷子。';
+  scoreHost.innerHTML = `<div class="score ${pass ? 'pass' : 'fail'}">
+    <div class="big">${got} / ${full} 分（${pct}%）</div>
+    <div class="adv">${advice}${wrong.length ? ' · 错题已在卷面标红' : ''}</div>
+  </div>`;
+  if (resubmit) return;
+  store.save(p.id, { answers, submitted: true, got, full, pct });
+  renderPaper(p, true);
+}
+
+buildTabs();
+selectPaper(0);
+
+</script>
+<style>
+.pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
+.pgnav .pg-h{margin:0 0 8px;font-size:12.5px;color:#6B6359;letter-spacing:.6px;}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.pgnav a{text-decoration:none;font-size:13px;color:#2B2620;background:#fff;border:1px solid #EFE6DA;border-radius:999px;padding:6px 13px;}
+.pgnav a:hover{border-color:#E8552D;color:#E8552D;}
+.pgnav a.up{background:#E8552D;border-color:#E8552D;color:#fff;}
+.pgnav a.up:hover{background:#D64520;color:#fff;}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff;}
+.pgnav a.gr:hover{background:#0B7369;color:#fff;}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff;}
+.pgnav a.bl:hover{background:#245A94;color:#fff;}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">继续学习</p>
+    <div class="pg-row">
+      <a class="up" href="../点读学习包/Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
+      <a href="Unit5_习题与测试.html">← Unit5 习题</a>
+      <a href="Unit7_习题与测试.html">Unit7 习题 →</a>
+      <a href="../点读学习包/Unit6_Travelling_around_Asia_点读学习页.html">📖 Unit6 点读学习页</a>
+      <a href="../点读学习包/Unit6_Travelling_around_Asia_精简练习页.html">✏️ Unit6 精简练习</a>
+      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="../点读学习包/全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
+    </div>
+    <p class="pg-h">其他三条线 · 全站跳转</p>
+    <div class="pg-row">
+      <a class="gr" href="../../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+      <a class="bl" href="../../E听说练习/index.html">🎤 中考 E 听说</a>
+      <a class="up" href="../../index.html">🏠 返回慧学首页</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

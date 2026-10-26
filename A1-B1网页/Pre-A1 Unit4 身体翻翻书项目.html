@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 4 项目 · 身体翻翻书</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.proj({
+  n: 4,
+  emo: '🧍',
+  beast: '身体精灵',
+  en: 'My Body Flip Book',
+  cn: '身体翻翻书',
+  make: '画一个自己（或者一只小怪物），在身体各部位贴上能翻开的「小门」：' +
+        '外面写中文，翻开里面是英文单词加一句话。合上是整体，翻开是词汇表。',
+  tip: '翻翻书的好处是 <b>把单词贴在「位置」上</b> —— 鼻子这个词就长在鼻子上，不用另外背。' +
+       '做的过程中你会反复摸到那些部位，身体会帮你记。',
+  steps: [
+    '在一张硬卡纸上<b>画一个跟自己差不多大的小人</b>（画一只小怪物也可以，更放松），只画轮廓就行。',
+    '在<b>头、头发、眼睛、耳朵、鼻子、嘴、牙、身体、手臂、手、手指、腿、脚</b>这些位置上，各贴一小片纸当「翻翻页」，一边用胶条固定，像小门一样能翻开。',
+    '<b>翻页外面写中文</b>（比如「鼻子」），<b>翻开里面写英文 + 一句话</b>：<b>nose — This is my nose.</b>',
+    '至少做 <b>10 个翻翻页</b>，能画多少画多少，本单元 14 个部位尽量覆盖。',
+    '在纸的最下面写<b>三句介绍自己的话</b>：<b>This is me!</b> ／ <b>I have two eyes.</b> ／ <b>My hair is black.</b>（颜色和数量都可以改成你自己的。）',
+    '玩「<b>我说你翻</b>」：家人说英文，你翻开对应的那一块；再反过来 —— 你翻开一块，让对方说出英文。'
+  ],
+  scaffold: {
+    lines: [
+      {en:'This is my head.', cn:'这是我的头。'},
+      {en:'These are my eyes.', cn:'这是我的眼睛。（两样以上用 these are）'},
+      {en:'I have two hands.', cn:'我有两只手。'},
+      {en:'My hair is black.', cn:'我的头发是黑色的。'},
+      {en:'Touch your nose.', cn:'摸摸你的鼻子。'},
+      {en:'This is me!', cn:'这就是我！'}
+    ],
+    words: ['head','hair','face','eye','ear','nose','mouth','tooth','teeth','body','arm','hand','finger','leg','foot','feet','this','these','my','have','touch','me','black','two']
+  },
+  demo: [
+    {t:'翻页 · 外面', en:'鼻子', cn:'（中文，写在小门外侧）'},
+    {t:'翻页 · 里面', en:'nose — This is my nose.', cn:'鼻子 —— 这是我的鼻子。'},
+    {t:'翻页 2 · 外面', en:'脚', cn:'（中文）'},
+    {t:'翻页 2 · 里面', en:'foot / feet — These are my feet.', cn:'脚 —— 这是我的脚（两只）。'},
+    {t:'底部三句话', en:'This is me! I have two eyes. My hair is black.', cn:'这就是我！我有两只眼睛。我的头发是黑色的。'}
+  ],
+  checks: [
+    '画了一个完整的小人（或小怪物）',
+    '做了至少 10 个能翻开的翻翻页',
+    '每个翻页外面中文、里面英文加一句话',
+    '底部写了三句介绍自己的话',
+    '我和家人玩了「我说你翻」的游戏',
+    '14 个部位我都能指出来并说出英文'
+  ],
+  ph: '把你翻翻书里写的英文（部位 + 句子）写在这里，一行一个……写完点保存。',
+  unitFile: 'Pre-A1 Unit4 英语跟读.html',
+  prev: 'Pre-A1 Unit3 课堂指令卡项目.html',
+  next: 'Pre-A1 Unit5 我的书包与家项目.html'
+});
+</script>
+</body>
+</html>

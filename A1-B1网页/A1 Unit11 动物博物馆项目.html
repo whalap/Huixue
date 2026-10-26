@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A1 PBL · Unit 11 动物博物馆 · Class Animal Museum</title>
+<style>
+  :root{--bg:#12100d;--panel:#1c1913;--panel2:#23201a;--chip:#2b2721;--line:#3a352c;
+        --ink:#f0ece4;--sub:#a49c8e;--gold:#f5c542;--gold2:#6b5a22;--red:#e05a4f;--green:#4ec98a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);min-height:100vh}
+  .wrap{max-width:980px;margin:0 auto;padding:20px 16px 60px}
+  a{color:var(--gold)}
+  /* ---------- header ---------- */
+  header{padding:22px 16px 18px;text-align:center;border-bottom:1px solid var(--gold2)}
+  .back{position:absolute;left:14px;top:16px;font-size:12.5px;color:var(--sub);text-decoration:none;
+        border:1px solid var(--line);padding:5px 12px;border-radius:16px;background:var(--panel)}
+  .back:hover{color:var(--gold);border-color:var(--gold2)}
+  header h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:1px}
+  header p{margin:6px 0 0;color:var(--sub);font-size:12.5px}
+  /* ---------- mission ---------- */
+  .mission{position:relative;background:var(--panel);border:1px solid var(--line);
+           border-left:4px solid var(--red);border-radius:16px;padding:20px 20px 16px;margin-top:20px}
+  .m-tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:2px;color:#fff;
+         background:var(--red);padding:3px 10px;border-radius:8px}
+  .m-id{margin-top:12px;font-size:13px;color:var(--gold);font-weight:700;letter-spacing:1px}
+  .m-q{margin:10px 0 4px;font-size:21px;font-weight:800;line-height:1.45}
+  .m-q small{display:block;font-size:13px;color:var(--sub);font-weight:500;margin-top:6px}
+  .m-prods{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+  .prod{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .prod b{font-size:13.5px;color:var(--ink)}
+  .prod span{display:block;font-size:11.5px;color:var(--sub);margin-top:3px;line-height:1.5}
+  .m-meta{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);
+          font-size:12px;color:var(--sub);line-height:1.8}
+  .m-meta b{color:var(--gold);font-weight:600}
+  /* ---------- 启动站 · 成品示例图 ---------- */
+  .exwrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:10px}
+  .exs{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:10px}
+  .exs svg{display:block;width:100%;height:auto}
+  .excap{font-size:11.5px;color:var(--sub);margin-top:7px;line-height:1.7}
+  .excap b{color:var(--gold)}
+  .exfull{grid-column:1/-1}
+  /* ---------- rail ---------- */
+  .rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:22px 0 6px}
+  .rn{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 6px;
+      text-align:center;font-size:11.5px;color:var(--sub);cursor:pointer;transition:border-color .15s}
+  .rn:hover{border-color:var(--gold2)}
+  .rn i{display:block;font-size:18px;font-style:normal;margin-bottom:4px}
+  .rn b{display:block;font-size:11px;color:var(--ink);margin-top:2px}
+  .rn.on{border-color:var(--green)}
+  .rn.on i{filter:drop-shadow(0 0 5px rgba(78,201,138,.6))}
+  /* ---------- station（手风琴：7 站折叠，点头展开） ---------- */
+  .st{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+      padding:0;margin-top:14px}
+  .st-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;list-style:none;
+        cursor:pointer;padding:16px 18px;color:var(--ink);font-weight:500;font-size:14px;
+        background:var(--panel);border-radius:15px}
+  .st-h::-webkit-details-marker{display:none}
+  .st-h::after{content:'▾';margin-left:10px;color:var(--gold);font-size:13px;transition:transform .2s}
+  .st[open]>.st-h{border-bottom:1px solid var(--line);border-radius:15px 15px 0 0;
+        position:sticky;top:0;z-index:5;box-shadow:0 8px 12px -10px rgba(0,0,0,.65)}
+  .st[open]>.st-h::after{transform:rotate(180deg)}
+  .st[open]>*:not(summary){margin-left:18px;margin-right:18px}
+  .st[open]>.ot-intro{margin-top:16px}
+  .st[open]>*:last-child{margin-bottom:16px}
+  .st-no{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--gold);
+         border:1px solid var(--gold2);border-radius:8px;padding:3px 9px}
+  .st-t{font-size:17px;font-weight:800}
+  .st-t small{font-size:12px;color:var(--sub);font-weight:500;margin-left:8px}
+  .st-go{margin-left:auto;font-size:11px;color:var(--sub);display:flex;align-items:center;gap:6px}
+  /* ---------- 并列多开开关 ---------- */
+  .multi-toggle{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;
+      padding:9px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+  .mt-sw{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-size:12.5px;font-weight:700;color:var(--ink)}
+  .mt-sw input{appearance:none;-webkit-appearance:none;width:38px;height:21px;border-radius:21px;
+      background:var(--line);border:1px solid var(--line);position:relative;cursor:pointer;
+      transition:background .18s,border-color .18s;flex:none;margin:0}
+  .mt-sw input::after{content:'';position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;
+      background:var(--sub);transition:transform .18s,background .18s}
+  .mt-sw input:checked{background:var(--gold);border-color:var(--gold)}
+  .mt-sw input:checked::after{transform:translateX(17px);background:#1a1a1a}
+  .mt-hint{font-size:11px;color:var(--sub);line-height:1.5}
+  .blk{margin-top:14px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+  .blk-t{font-size:13.5px;font-weight:700;color:var(--gold);margin-bottom:8px}
+  .blk-t span{font-size:11px;color:var(--sub);font-weight:500;margin-left:6px}
+  .blk p{font-size:12.5px;color:var(--sub);line-height:1.75;margin:6px 0}
+  .blk p b,.blk li b{color:var(--ink)}
+  /* sentence frame */
+  .frame{background:#2a2410;border:1px dashed var(--gold2);border-radius:10px;
+         padding:10px 12px;font-size:14px;line-height:1.9;margin:8px 0}
+  .frame u{color:var(--gold);text-decoration:none;font-weight:700}
+  .eg{font-size:11.5px;color:var(--sub);margin-top:4px}
+  .eg em{color:var(--green);font-style:normal}
+  /* inputs */
+  textarea,input[type=text]{width:100%;background:var(--chip);border:1px solid var(--line);border-radius:10px;
+         color:var(--ink);padding:9px 11px;font-size:13.5px;font-family:inherit;resize:vertical;line-height:1.6}
+  textarea:focus,input:focus{outline:none;border-color:var(--gold2)}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;align-items:center}
+  .btn{border:none;border-radius:9px;padding:8px 14px;font-size:12.5px;font-weight:700;cursor:pointer}
+  .btn-g{background:var(--gold);color:#1a1a1a}
+  .btn-o{background:transparent;border:1px solid var(--gold2);color:var(--gold)}
+  .btn-r{background:var(--red);color:#fff}
+  .btn-s{background:var(--chip);border:1px solid var(--line);color:var(--sub);font-weight:600}
+  .btn:hover{filter:brightness(1.12)}
+  .btn.rec-ing{background:#7a2f28;color:#fff;animation:pulse 1s infinite}
+  @keyframes pulse{50%{opacity:.62}}
+  /* animal picker */
+  .picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:10px}
+  .pick{background:var(--chip);border:2px solid var(--line);border-radius:14px;padding:13px 8px;
+        text-align:center;cursor:pointer;transition:transform .12s,border-color .12s}
+  .pick:hover{transform:translateY(-3px)}
+  .pick i{font-size:34px;font-style:normal;display:block}
+  .pick b{display:block;font-size:13px;margin-top:6px}
+  .pick span{display:block;font-size:10.5px;color:var(--sub);margin-top:2px}
+  .pick.sel{border-color:var(--gold);background:#2a2410}
+  .pick .cn-flag{display:inline-block;font-size:9.5px;background:var(--red);color:#fff;
+                  border-radius:6px;padding:1px 6px;margin-top:5px}
+  /* ---------- roles ---------- */
+  .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+  .role{background:var(--chip);border:2px solid var(--line);border-radius:12px;padding:11px 12px;
+        cursor:pointer;transition:transform .12s,border-color .12s}
+  .role:hover{transform:translateY(-3px)}
+  .role .r-i{font-size:24px}
+  .role .r-n{font-size:13px;font-weight:700;margin-top:4px}
+  .role .r-n small{font-weight:400;color:var(--sub);font-size:11px}
+  .role .r-d{font-size:11px;color:var(--sub);margin-top:4px;line-height:1.5}
+  .role.sel{border-color:var(--gold);background:#2a2410}
+  .role.sel .r-n{color:var(--gold)}
+  /* ---------- role workbenches (专属工作台) ---------- */
+  .rdesk-host{margin-top:14px}
+  .rdesk{margin-top:14px;border-color:var(--gold2)}
+  .rdesk-off{border-style:dashed;opacity:.96}
+  .rdesk-lead{font-size:12px;color:var(--ink);margin:2px 0 9px;line-height:1.65}
+  .rdesk-sec{font-size:12px;color:var(--gold);margin:11px 0 5px;font-weight:700}
+  .rdesk .chk label{font-size:12px}
+  .rdesk textarea{margin-top:4px}
+  .rdesk-hint{font-size:12px;color:var(--sub);line-height:1.7;padding:8px 4px}
+  .rdesk .rd-mode{display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}
+  .rdesk .rd-mode label{font-size:12px;background:var(--panel2);border:1px solid var(--line);
+        border-radius:9px;padding:6px 11px;cursor:pointer;color:var(--ink)}
+  .rdesk .rd-mode input{margin-right:6px}
+  .rdesk .rd-mode label.on{border-color:var(--gold);background:#2a2410;color:var(--gold)}
+  .guide-focus{margin-top:11px;background:#2a2410;border:1px dashed var(--gold2);border-radius:10px;padding:10px 13px}
+  .guide-focus .gf-t{font-size:12px;color:var(--gold);font-weight:700;margin-bottom:6px}
+  .guide-focus textarea{margin-top:4px}
+  #guideBlock.is-mine{border-color:var(--gold)}
+  #guideBlock.is-mine .blk-t b, #guideBlock.is-mine .blk-t{color:var(--gold)}
+  .rsay{margin-top:11px;background:#2a2410;border:1px dashed var(--gold2);border-radius:10px;padding:11px 13px}
+  .rsay .rt{font-size:11.5px;color:var(--gold);margin-bottom:6px}
+  .rsay .ren{font-size:13.5px;font-weight:700;line-height:1.6}
+  .rsay .rcn{font-size:11px;color:var(--sub);margin-top:3px}
+  /* ---------- animal intel cards ---------- */
+  .acard{background:var(--chip);border:1px solid var(--line);border-radius:12px;margin-top:10px;overflow:hidden}
+  .acard>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;
+                 padding:12px 14px;background:var(--panel2)}
+  .acard>summary::-webkit-details-marker{display:none}
+  .acard>summary .a-i{font-size:26px;font-style:normal}
+  .acard>summary .a-n{font-size:15px;font-weight:800}
+  .acard>summary .a-c{font-size:11px;color:var(--sub);margin-left:2px}
+  .acard>summary .a-tag{margin-left:auto;font-size:10px;color:var(--gold);border:1px solid var(--gold2);
+                        border-radius:8px;padding:2px 9px}
+  .acard>summary .a-tag.star{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .acard[open]>summary{border-bottom:1px solid var(--line)}
+  .a-body{padding:6px 14px 13px}
+  .fr{display:grid;grid-template-columns:72px 1fr auto;gap:9px;align-items:start;
+      padding:8px 0;border-bottom:1px dashed var(--line)}
+  .fr:last-of-type{border-bottom:none}
+  .fk{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--gold);background:#2a2410;
+      border:1px solid var(--gold2);border-radius:6px;padding:3px 0;text-align:center;margin-top:2px}
+  .fk.red{color:#ffb4a8;background:#3a1616;border-color:#7a3a32}
+  .fen{font-size:13.5px;line-height:1.6}
+  .fcn{font-size:11px;color:var(--sub);margin-top:2px}
+  .qa{margin-top:10px;background:#2a2410;border:1px solid var(--gold2);border-radius:10px;padding:10px 12px}
+  .qa-t{font-size:11.5px;font-weight:700;color:var(--gold);margin-bottom:7px}
+  .qa-i{font-size:12.5px;line-height:1.6;padding:6px 0;border-top:1px dashed var(--line)}
+  .qa-i b{color:var(--ink)}
+  .qa-a{display:none;margin-top:5px;font-size:12.5px;color:var(--green);line-height:1.6}
+  .qa-a.show{display:block}
+  .src{margin-top:9px;font-size:10.5px;color:var(--sub)}
+  .hint{font-size:11.5px;color:var(--sub);line-height:1.65}
+  /* ---------- facts shadowing player ---------- */
+  .sh-tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:11px}
+  .sh-tab{font-size:12.5px;background:var(--chip);border:1px solid var(--line);border-radius:18px;
+          padding:6px 14px;cursor:pointer;color:var(--sub)}
+  .sh-tab.on{background:var(--gold);color:#1a1a1a;font-weight:700;border-color:var(--gold)}
+  .sh-box{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .sh-prog{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .sh-bar{flex:1;height:8px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .sh-bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .sh-prog span{font-size:11.5px;color:var(--sub);min-width:92px;text-align:right}
+  .sh-now{background:var(--panel2);border:1px dashed var(--gold2);border-radius:10px;
+          padding:16px 14px;text-align:center;min-height:76px}
+  .sh-en{font-size:19px;font-weight:800;line-height:1.5}
+  .sh-sp{display:inline-block;background:var(--gold);color:#1a1a1a;font-size:12px;font-weight:800;border-radius:9px;padding:1px 8px;margin-right:8px;vertical-align:3px}
+  .sh-cn{font-size:12px;color:var(--sub);margin-top:6px}
+  .sh-ctrl{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+  .sh-gap{background:var(--chip);color:var(--sub);border:1px solid var(--line);border-radius:8px;
+          padding:7px 9px;font-size:12px}
+  .sh-dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .sh-dot{width:11px;height:11px;border-radius:50%;background:var(--panel2);border:1px solid var(--line)}
+  .sh-dot.cur{border-color:var(--gold);box-shadow:0 0 0 2px rgba(245,197,66,.25)}
+  .sh-dot.done{background:var(--green);border-color:var(--green)}
+  .rec-meter{height:6px;background:var(--panel2);border-radius:4px;overflow:hidden;margin-top:10px}
+  .rec-meter>i{display:block;height:100%;width:0;
+               background:linear-gradient(90deg,var(--red),var(--gold));transition:width .08s}
+  .sh-note{margin-top:10px;font-size:11px;color:var(--sub);line-height:1.8}
+  .fr-btns{display:flex;gap:5px;flex-wrap:wrap}
+  /* ---------- listening quiz ---------- */
+  .lq-box{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:13px}
+  .lq-top{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:9px}
+  .lq-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px;margin-top:11px}
+  .lq-opt{background:var(--panel2);border:2px solid var(--line);border-radius:12px;padding:13px 8px;
+          text-align:center;cursor:pointer;font-size:14px;font-weight:700;color:var(--ink);transition:transform .12s}
+  .lq-opt:hover{transform:translateY(-2px)}
+  .lq-opt.ok{border-color:var(--green);color:var(--green)}
+  .lq-opt.no{border-color:var(--red);color:var(--red)}
+  .lq-fb{margin-top:11px;font-size:13px;line-height:1.7;min-height:22px}
+  .lq-fb .ok{color:var(--green)}
+  .lq-fb .no{color:var(--red)}
+  /* ---------- grammar-in-context ---------- */
+  .pt{color:var(--gold);border-bottom:2px solid var(--gold2);font-weight:700}
+  .pt-note{margin-top:10px;background:#3a1616;border:1px solid #7a3a32;border-radius:10px;
+           padding:10px 13px;font-size:12.5px;color:#ffd9d2;line-height:1.8}
+  .pt-note b{color:#ffb4a8}
+  .gp-rule{margin-top:7px;font-size:12px;color:var(--ink);background:#2a2410;
+           border:1px solid var(--gold2);border-radius:8px;padding:8px 11px;line-height:1.75}
+  .gp-rule b{color:var(--gold)}
+  .gp-ctx{margin-top:7px;font-size:11.5px;color:var(--gold);background:#2a2410;
+          border:1px dashed var(--gold2);border-radius:8px;padding:7px 11px;line-height:1.7}
+  .dg-tag{font-size:10px;color:var(--gold);border:1px solid var(--gold2);border-radius:8px;
+          padding:2px 8px;font-weight:600}
+  /* ---------- model board ---------- */
+  .mboard{background:var(--panel2);border:1px solid var(--gold2);border-radius:12px;padding:13px 15px;margin-top:10px}
+  .mb-h{font-size:15px;font-weight:800;color:var(--gold);letter-spacing:1px;text-align:center;
+        border-bottom:1px dashed var(--gold2);padding-bottom:9px;margin-bottom:10px}
+  .mb-l{font-size:13px;line-height:1.8;color:var(--ink);padding:4px 0}
+  .mb-l b{color:var(--gold);margin-right:6px}
+  .mb-src{font-size:10.5px;color:var(--sub);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line)}
+  /* ---------- Q&A maker ---------- */
+  .qa-make{margin-top:10px}
+  .qam{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px}
+  .qam-k{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gold);margin:5px 0 3px}
+  .qam-k small{color:var(--sub);font-size:10px}
+  /* ---------- original tracks (双轨) ---------- */
+  .ot-intro{display:flex;gap:10px;align-items:flex-start;background:#2a2410;border:1px dashed var(--gold2);
+            border-radius:10px;padding:11px 13px;font-size:12.5px;color:var(--ink);line-height:1.75}
+  .dlg{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:9px}
+  .dlg-h{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:var(--gold)}
+  .dlg-h .btn{margin-left:auto}
+  .turn{display:grid;grid-template-columns:22px 1fr auto;gap:9px;align-items:center;
+        padding:6px 0;border-bottom:1px dashed var(--line)}
+  .turn:last-child{border-bottom:none}
+  .role{font-size:10px;font-weight:800;color:#1a1a1a;background:var(--gold);border-radius:6px;
+        text-align:center;padding:2px 0}
+  .ten{font-size:13px}
+  .tcn{font-size:10.5px;color:var(--sub);margin-top:1px}
+  .mods{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .mod{font-size:11px;background:var(--chip);border:1px solid var(--line);border-radius:14px;
+       padding:4px 11px;color:var(--sub)}
+  .gp{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-top:9px}
+  .gp-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .gp-h b{font-size:13.5px;color:var(--gold)}
+  .gp-h span{font-size:11px;color:var(--sub)}
+  .gp-ex{display:flex;align-items:center;gap:9px;font-size:13px;background:var(--panel2);
+         border:1px solid var(--line);border-radius:8px;padding:7px 11px;margin-top:7px}
+  .gp-ex .btn{margin-left:auto}
+  .gp-task{font-size:11.5px;color:var(--sub);margin-top:9px}
+  /* ---------- 语法线：分栏标签（点击按钮切换，不堆叠） ---------- */
+  .gptabs{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+  .gptab{font-size:12.5px;background:var(--chip);border:1px solid var(--line);border-radius:18px;
+         padding:7px 16px;cursor:pointer;color:var(--sub);transition:all .12s}
+  .gptab:hover{border-color:var(--gold2)}
+  .gptab.on{background:var(--gold);color:#1a1a1a;font-weight:800;border-color:var(--gold)}
+  .gppanel{margin-top:11px}
+  .gppanel[hidden]{display:none}
+  .dlgpanel{margin-top:11px}
+  .dlgpanel[hidden]{display:none}
+  .rdpanel{margin-top:11px}
+  .rdpanel[hidden]{display:none}
+  .rdesk-empty{font-size:12.5px;color:var(--sub);background:var(--panel2);border:1px dashed var(--line);
+               border-radius:10px;padding:11px 14px;margin-top:10px;line-height:1.7}
+  /* ---------- 驱动问题回看卡 ---------- */
+  .dq{background:linear-gradient(180deg,#2a2410,#211c0c);border:1px solid var(--gold2);border-radius:12px;padding:13px 15px;margin-top:10px}
+  .dq-q{font-size:13.5px;line-height:1.7;color:var(--ink)}
+  .dq-q b{color:var(--gold)}
+  .dq-yes{display:flex;gap:9px;flex-wrap:wrap;margin:10px 0 6px}
+  .dq-yes label{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:6px 12px;font-size:12px;cursor:pointer;transition:all .12s}
+  .dq-yes label.on{border-color:var(--gold);color:var(--gold);background:#2a2410}
+  /* ---------- 四角色工作台：手风琴（像动物情报卡一样可收起） ---------- */
+  .rdesk-det{border:1px solid var(--line);border-radius:12px;margin-top:12px;overflow:hidden;background:var(--panel2)}
+  .rdesk-det>summary{cursor:pointer;list-style:none;padding:11px 14px;display:flex;align-items:center;gap:8px;
+                     font-weight:700;color:var(--gold);user-select:none}
+  .rdesk-det>summary::-webkit-details-marker{display:none}
+  .rdesk-det[open]>summary{border-bottom:1px solid var(--line)}
+  .rdesk-det .rdesk{background:transparent;border:none;margin-top:0;padding:11px 14px}
+  .rdesk-det .rdesk-off{border:none}
+  .rd-i{font-size:16px}
+  .rd-n{font-weight:800;color:var(--gold)}
+  .rd-sub{font-size:11px;color:var(--sub);margin-left:6px}
+  .rd-caret{margin-left:auto;color:var(--sub);font-size:12px;transition:transform .15s}
+  .rdesk-det[open]>summary .rd-caret{transform:rotate(90deg)}
+  /* steps */
+  .steps{display:grid;gap:10px;margin-top:4px}
+  .step{display:flex;gap:12px;background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .step .sn{flex:none;width:44px;height:44px;border-radius:12px;background:#2a2410;border:1px solid var(--gold2);
+            display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--gold)}
+  .step .sb b{font-size:13.5px}
+  .step .sb p{font-size:12px;color:var(--sub);margin:4px 0 0;line-height:1.6}
+  /* china card */
+  .china{background:linear-gradient(135deg,#3a1616,#241414);border:1px solid #7a3a32;border-radius:12px;
+         padding:13px 15px;margin-top:10px}
+  .china .c-t{font-size:13px;font-weight:800;color:#ffb4a8;letter-spacing:1px}
+  .china p{font-size:13px;color:#f0d9d4;line-height:1.8;margin:7px 0 0}
+  .china .say{margin-top:8px;font-size:12.5px;background:rgba(0,0,0,.25);border-radius:8px;padding:8px 11px;color:#ffd9d2}
+  /* banks */
+  .bank{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px}
+  .bank .b-t{font-size:11px;color:var(--sub);margin-bottom:7px;letter-spacing:1px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chipx{font-size:12px;background:var(--panel2);border:1px solid var(--gold2);color:var(--gold);
+         border-radius:14px;padding:4px 11px;cursor:pointer;user-select:none}
+  .chipx:hover{background:#2a2410}
+  .chipx.w{background:var(--panel2);border-color:var(--line);color:var(--ink)}
+  .pat{display:grid;grid-template-columns:auto 1fr auto;gap:2px 9px;align-items:center;
+       padding:7px 0;border-bottom:1px dashed var(--line)}
+  .pat:last-child{border-bottom:none}
+  .chipx.ex{background:transparent;border-color:transparent;color:var(--ink);font-weight:700;
+            font-size:12.5px;padding:2px 3px;text-align:left;line-height:1.5}
+  .chipx.ex:hover{background:#2a2410;border-color:var(--gold2);color:var(--gold)}
+  .pat-cn{grid-column:2;font-size:10.5px;color:var(--sub);line-height:1.4;margin-top:1px}
+  /* label scaffold */
+  .lab{border:2px dashed var(--gold2);border-radius:12px;margin-top:10px;overflow:hidden}
+  .lab .lg{background:#2a2410;padding:7px 13px;font-size:11.5px;color:var(--gold);
+           display:flex;justify-content:space-between;gap:8px}
+  .lab .lg span{color:var(--sub);text-align:right}
+  .lab .lb{padding:11px 13px}
+  .lab .lb textarea{background:var(--chip)}
+  .lb-note{font-size:10.5px;color:var(--sub);margin-top:4px}
+  /* script builder */
+  .script{margin-top:10px;display:grid;gap:8px}
+  .sc{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:start;
+      background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .sc .k{font-size:12px;font-weight:800;color:var(--gold);padding-top:8px}
+  .sc .k small{display:block;font-size:10px;color:var(--sub);font-weight:500}
+  /* checklist */
+  .chk{display:grid;gap:7px;margin-top:8px}
+  .chk label{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--ink);
+             background:var(--chip);border:1px solid var(--line);border-radius:9px;padding:8px 11px;cursor:pointer}
+  .chk input{margin-top:2px;accent-color:var(--gold)}
+  /* feedback card */
+  .fb{background:#f7f3e8;color:#26221a;border-radius:12px;padding:14px 16px;margin-top:10px}
+  .fb .f-t{font-size:13px;font-weight:800;border-bottom:2px solid #d8cfb8;padding-bottom:6px}
+  .fb label{display:block;font-size:11.5px;color:#8a8172;margin:10px 0 4px}
+  .fb textarea,.fb input{background:#fffdf6;border:1px solid #d8cfb8;color:#26221a}
+  .stars-in{font-size:22px;letter-spacing:4px;cursor:pointer;user-select:none;color:#c9c0ab}
+  .stars-in b{font-weight:400;transition:color .1s}
+  .stars-in b.on{color:#e8a81c}
+  /* rubric */
+  .rub{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
+  .rd{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+  .rd b{font-size:13px;color:var(--gold)}
+  .rd .d1{font-size:10.5px;color:var(--sub);margin:3px 0 8px}
+  .rd .lv{font-size:11px;color:var(--sub);line-height:1.9;border-top:1px dashed var(--line);padding-top:7px}
+  .rd .lv b{color:var(--ink);font-size:11.5px}
+  /* teacher notes */
+  details{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 15px}
+  summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--gold);list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";color:var(--sub)}
+  details[open] summary::before{content:"▾ "}
+  details ol{margin:10px 0 0;padding-left:20px}
+  details li{font-size:12px;color:var(--sub);line-height:1.9;margin-bottom:6px}
+  details li b{color:var(--ink)}
+  details li i{color:var(--gold);font-style:normal}
+  /* done banner */
+  .donebar{display:none;margin-top:14px;background:linear-gradient(90deg,#173a2a,#1c1913);
+           border:1px solid var(--green);border-radius:12px;padding:13px 16px;font-size:13px;color:var(--green)}
+  .donebar.show{display:block}
+  footer{margin-top:26px;text-align:center;font-size:11px;color:var(--sub);line-height:1.8}
+  @media (max-width:640px){
+    .m-q{font-size:18px}
+    .back{position:static;display:inline-block;margin-bottom:10px}
+    .fr{grid-template-columns:56px 1fr auto}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="index.html">← 返回 A1 启程线</a>
+  <h1>🏛 CLASS ANIMAL MUSEUM</h1>
+  <p>A1 · Unit 11 A World of Animals · PBL 微项目 + 原有双轨 · 1 周</p>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ MISSION ============ -->
+  <section class="mission">
+    <span class="m-tag">OUR MISSION · 我们的任务</span>
+    <div class="m-id">🔍 ANIMAL EXPERT × 🏛 MUSEUM DESIGNER · 你是动物研究员 + 博物馆设计师</div>
+    <div class="m-q">How can we build a class animal museum to teach others about animals?
+      <small>我们班要开一座「动物博物馆」，向其他同学介绍动物。你不是来做练习册的——你是来建馆的。</small></div>
+    <div class="m-prods">
+      <div class="prod"><b>① Research Board 动物展板</b><span>信息卡 + 图 + 来源，挂在展台上</span></div>
+      <div class="prod"><b>② 30s Ambassador Video 代言视频</b><span>给你的动物拍一段 30 秒「代言」</span></div>
+      <div class="prod"><b>③ Q&amp;A Card 问答卡</b><span>考倒参观者的 3 个小问题</span></div>
+    </div>
+    <div class="m-meta">
+      ⏱ <b>周期</b>：1 周 · 3 站课 + 弹药库（原有双轨随项目调用）&nbsp;&nbsp;
+      👥 <b>真实观众</b>：隔壁班同学 + 家长开放日&nbsp;&nbsp;
+      🗣 <b>用到</b>：说 · 写 · 读 · 听
+    </div>
+  </section>
+
+  <!-- ============ RAIL ============ -->
+  <nav class="rail">
+    <div class="rn" id="rn1"><i>🚀</i><b>启动站</b>LAUNCH</div>
+    <div class="rn" id="rn2"><i>🔍</i><b>探究站</b>RESEARCH</div>
+    <div class="rn" id="rn3"><i>🗣</i><b>跟读站</b>FACTS 跟读</div>
+    <div class="rn" id="rn4"><i>📚</i><b>弹药库</b>原有双轨</div>
+    <div class="rn" id="rn5"><i>🛠</i><b>制作站</b>MAKE</div>
+    <div class="rn" id="rn6"><i>🎤</i><b>展示站</b>SHOW</div>
+    <div class="rn" id="rn7"><i>🌱</i><b>反思站</b>REFLECT</div>
+  </nav>
+
+  <div class="multi-toggle">
+    <label class="mt-sw"><input type="checkbox" id="multiOpen"><span>📌 允许并列多开</span></label>
+    <span class="mt-hint">默认一次只摊开一站（点开的站头会吸顶）；打开后，可钉住「探究站」等几站一起对照——做展板时好用。</span>
+  </div>
+
+  <!-- ============ STATION 1 LAUNCH ============ -->
+  <details class="st" id="s1">
+    <summary class="st-h">
+      <span class="st-no">STATION 1</span>
+      <span class="st-t">启动站 <small>发现与探索 · 看样例 + 定方向 · 约 20 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="1"> 本站完成</label>
+    </summary>
+
+    <div class="blk">
+      <div class="blk-t">🎬 Hook：世界动物奇观 30 秒 <span>先看，别急着读课文</span></div>
+      <p>想象你是一家自然博物馆的<b>建馆成员</b>。馆长给了你一个使命：建一座让参观者「哇」出声的动物博物馆。先看一段 30 秒动物混剪（教师播放或班级素材库），然后回答——</p>
+      <div class="row"><button class="btn btn-g" onclick="speak('Welcome, explorers! Today we are museum creators. Our mission: build an amazing class animal museum.')">🔊 听馆长任务</button></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🖼 先看成品：做出来长这样 <span>上一届班级的样例 · 同一结构，两种内容</span></div>
+      <p>动手之前，先看清楚<b>要做成什么样</b>。下面是三份做好的样例——展板给了<b>两个版本</b>（熊猫版 + 大象版）：<b>结构一模一样，内容全换</b>。<b>不是让你们抄内容，是让你们一眼看出结构</b>。选好明星动物后，制作站有跟着你们组变的活模板，照这个结构把内容换成你们组的。</p>
+      <div class="exwrap">
+        <div>
+          <div class="exs">
+            <svg viewBox="0 0 640 462" role="img" aria-label="示例：做好的动物博物馆展板 · 熊猫版">
+              <rect x="1" y="1" width="638" height="460" rx="14" fill="#1c1913" stroke="#f5c542" stroke-width="1.5"/>
+              <rect x="18" y="18" width="604" height="42" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="45" font-size="16" font-weight="800" fill="#f5c542">🐼 OUR ANIMAL MUSEUM · 动物博物馆展板</text>
+              <text x="606" y="44" text-anchor="end" font-size="11" fill="#a49c8e">样例 · 熊猫版</text>
+              <circle cx="40" cy="88" r="13" fill="#f5c542"/>
+              <text x="40" y="93" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">1</text>
+              <text x="64" y="85" font-size="12" font-weight="700" fill="#f5c542">TOPIC SENTENCE 主题句</text>
+              <text x="64" y="103" font-size="13.5" fill="#f0ece4">This is the panda.</text>
+              <circle cx="40" cy="148" r="13" fill="#f5c542"/>
+              <text x="40" y="153" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">2</text>
+              <text x="64" y="145" font-size="12" font-weight="700" fill="#f5c542">THREE FACTS 三个事实 (What → Food → Home)</text>
+              <text x="64" y="163" font-size="13.5" fill="#f0ece4">It is black and white.</text>
+              <text x="64" y="181" font-size="13.5" fill="#f0ece4">It eats bamboo.</text>
+              <text x="64" y="199" font-size="13.5" fill="#f0ece4">It lives in forests in China.</text>
+              <circle cx="40" cy="226" r="13" fill="#f5c542"/>
+              <text x="40" y="231" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">3</text>
+              <text x="64" y="223" font-size="12" font-weight="700" fill="#f5c542">INTERESTING FACT 有趣事实</text>
+              <text x="64" y="241" font-size="13.5" fill="#f0ece4">A baby panda is pink and as small as butter!</text>
+              <circle cx="40" cy="304" r="13" fill="#f5c542"/>
+              <text x="40" y="309" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">4</text>
+              <text x="64" y="301" font-size="12" font-weight="700" fill="#f5c542">SOURCE 来源</text>
+              <text x="64" y="319" font-size="13.5" fill="#f0ece4">Source: WWF · National Geographic Kids</text>
+              <rect x="18" y="336" width="604" height="64" rx="9" fill="#23201a" stroke="#3a352c" stroke-width="1"/>
+              <text x="34" y="356" font-size="11" font-weight="700" fill="#f5c542">🎨 展板草图：先想好哪里放什么</text>
+              <rect x="40" y="366" width="176" height="26" rx="6" fill="#1c1913" stroke="#6b5a22" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="128" y="383" text-anchor="middle" font-size="11" fill="#a49c8e">📷 一张真照片</text>
+              <rect x="228" y="366" width="176" height="26" rx="6" fill="#1c1913" stroke="#6b5a22" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="316" y="383" text-anchor="middle" font-size="11" fill="#a49c8e">✏️ 你的 4 块文字</text>
+              <rect x="416" y="366" width="176" height="26" rx="6" fill="#1c1913" stroke="#6b5a22" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="504" y="383" text-anchor="middle" font-size="11" fill="#a49c8e">🙋 3 个问题</text>
+              <rect x="18" y="412" width="604" height="34" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="433" font-size="11.5" fill="#a49c8e">💡 语法打卡：<tspan font-weight="700" fill="#f0ece4">A panda is black and white because the colours help it hide.</tspan><tspan fill="#f5c542">（because）</tspan></text>
+            </svg>
+          </div>
+          <div class="excap">① <b>四块结构</b>：主题句 → 三个事实（What → Food → Home）→ 一条有趣事实 → 注明来源。<b>照结构写，内容换成你们组的动物</b>。</div>
+        </div>
+        <div>
+          <div class="exs">
+            <svg viewBox="0 0 640 462" role="img" aria-label="示例：做好的动物博物馆展板 · 大象版">
+              <rect x="1" y="1" width="638" height="460" rx="14" fill="#1c1913" stroke="#f5c542" stroke-width="1.5"/>
+              <rect x="18" y="18" width="604" height="42" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="45" font-size="16" font-weight="800" fill="#f5c542">🐼 OUR ANIMAL MUSEUM · 动物博物馆展板</text>
+              <text x="606" y="44" text-anchor="end" font-size="11" fill="#a49c8e">样例 · 大象版</text>
+              <circle cx="40" cy="88" r="13" fill="#f5c542"/>
+              <text x="40" y="93" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">1</text>
+              <text x="64" y="85" font-size="12" font-weight="700" fill="#f5c542">TOPIC SENTENCE 主题句</text>
+              <text x="64" y="103" font-size="13.5" fill="#f0ece4">This is the elephant.</text>
+              <circle cx="40" cy="148" r="13" fill="#f5c542"/>
+              <text x="40" y="153" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">2</text>
+              <text x="64" y="145" font-size="12" font-weight="700" fill="#f5c542">THREE FACTS 三个事实 (What → Food → Home)</text>
+              <text x="64" y="163" font-size="13.5" fill="#f0ece4">It is the biggest animal on land.</text>
+              <text x="64" y="181" font-size="13.5" fill="#f0ece4">It eats grass, leaves and fruit.</text>
+              <text x="64" y="199" font-size="13.5" fill="#f0ece4">Elephants live in Africa and Asia.</text>
+              <circle cx="40" cy="226" r="13" fill="#f5c542"/>
+              <text x="40" y="231" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">3</text>
+              <text x="64" y="223" font-size="12" font-weight="700" fill="#f5c542">INTERESTING FACT 有趣事实</text>
+              <text x="64" y="241" font-size="13.5" fill="#f0ece4">Elephants never forget — they remember friends for many years!</text>
+              <circle cx="40" cy="304" r="13" fill="#f5c542"/>
+              <text x="40" y="309" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">4</text>
+              <text x="64" y="301" font-size="12" font-weight="700" fill="#f5c542">SOURCE 来源</text>
+              <text x="64" y="319" font-size="13.5" fill="#f0ece4">Source: WWF · National Geographic Kids</text>
+              <rect x="18" y="336" width="604" height="64" rx="9" fill="#23201a" stroke="#3a352c" stroke-width="1"/>
+              <text x="34" y="356" font-size="11" font-weight="700" fill="#f5c542">🎨 展板草图：先想好哪里放什么</text>
+              <rect x="40" y="366" width="176" height="26" rx="6" fill="#1c1913" stroke="#6b5a22" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="128" y="383" text-anchor="middle" font-size="11" fill="#a49c8e">📷 一张真照片</text>
+              <rect x="228" y="366" width="176" height="26" rx="6" fill="#1c1913" stroke="#6b5a22" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="316" y="383" text-anchor="middle" font-size="11" fill="#a49c8e">✏️ 你的 4 块文字</text>
+              <rect x="416" y="366" width="176" height="26" rx="6" fill="#1c1913" stroke="#6b5a22" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="504" y="383" text-anchor="middle" font-size="11" fill="#a49c8e">🙋 3 个问题</text>
+              <rect x="18" y="412" width="604" height="34" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="433" font-size="11.5" fill="#a49c8e">💡 语法打卡：<tspan font-weight="700" fill="#f0ece4">Elephants never forget because they remember their friends.</tspan><tspan fill="#f5c542">（because）</tspan></text>
+            </svg>
+          </div>
+          <div class="excap">② <b>同一结构，换内容</b>：动物换成大象，四块跟着全换——注意底部「语法打卡」，每张卡都要过一遍制作站的检查条。</div>
+        </div>
+        <div class="exfull">
+          <div class="exs">
+            <svg viewBox="0 0 640 300" role="img" aria-label="示例：问答卡">
+              <rect x="1" y="1" width="638" height="298" rx="14" fill="#1c1913" stroke="#f5c542" stroke-width="1.5"/>
+              <rect x="18" y="18" width="604" height="40" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="43" font-size="15" font-weight="800" fill="#f5c542">🙋 ASK ME · 问答卡（3 问）</text>
+              <text x="606" y="42" text-anchor="end" font-size="11" fill="#a49c8e">样例</text>
+              <text x="34" y="88" font-size="13" font-weight="800" fill="#f5c542">Q1</text>
+              <text x="62" y="88" font-size="13.5" fill="#f0ece4">How many hours do pandas eat every day?</text>
+              <rect x="424" y="72" width="188" height="24" rx="6" fill="#23201a" stroke="#f5c542" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="518" y="88" text-anchor="middle" font-size="11" fill="#f5c542">答案折起来 ↺</text>
+              <text x="34" y="138" font-size="13" font-weight="800" fill="#f5c542">Q2</text>
+              <text x="62" y="138" font-size="13.5" fill="#f0ece4">Why are pandas black and white?</text>
+              <rect x="424" y="122" width="188" height="24" rx="6" fill="#23201a" stroke="#f5c542" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="518" y="138" text-anchor="middle" font-size="11" fill="#f5c542">答案折起来 ↺</text>
+              <text x="34" y="188" font-size="13" font-weight="800" fill="#f5c542">Q3</text>
+              <text x="62" y="188" font-size="13.5" fill="#f0ece4">Where do pandas live?</text>
+              <rect x="424" y="172" width="188" height="24" rx="6" fill="#23201a" stroke="#f5c542" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="518" y="188" text-anchor="middle" font-size="11" fill="#f5c542">答案折起来 ↺</text>
+              <line x1="34" y1="218" x2="606" y2="218" stroke="#3a352c" stroke-width="1"/>
+              <text x="34" y="244" font-size="12" fill="#a49c8e">小技巧：问题用 How many / Why / Where 开头最自然；</text>
+              <text x="34" y="264" font-size="12" fill="#a49c8e">开放日把答案折起来，让参观者先猜再翻。</text>
+            </svg>
+          </div>
+          <div class="excap">③ <b>三个小问题 + 折起来的答案</b>——题目从情报卡底部的「参观者可能会问」来，答案先藏着，开放日再翻开。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">💬 Think–Pair–Share：什么让博物馆有趣？ <span>结对讨论 2 分钟</span></div>
+      <div class="frame">A good museum has <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> because <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>.</div>
+      <div class="eg">示例：<em>A good museum has maps because visitors don't get lost.</em></div>
+      <div class="eg"><em>A good museum has fun activities because visitors learn by doing.</em></div>
+      <div class="eg"><em>A good museum has friendly guides because visitors can ask questions.</em></div>
+      <div class="bank">
+        <div class="b-t">💡 点子银行 · 先点下面大框，再点点子插入</div>
+        <div class="chips">
+          <span class="chipx">maps</span><span class="chipx">photos and videos</span><span class="chipx">interesting facts</span>
+          <span class="chipx">fun activities</span><span class="chipx">friendly guides</span><span class="chipx">real objects</span>
+          <span class="chipx">games and quizzes</span><span class="chipx">a gift shop</span>
+        </div>
+        <div class="chips" style="margin-top:7px">
+          <span class="chipx">visitors don't get lost</span><span class="chipx">visitors can see clearly</span>
+          <span class="chipx">visitors want to learn</span><span class="chipx">visitors learn by doing</span>
+          <span class="chipx">visitors can ask questions</span><span class="chipx">visitors can take it home</span>
+        </div>
+      </div>
+      <textarea id="launchAns" rows="2" placeholder="写下你的句子：A good museum has ... because ..."></textarea>
+      <div class="row">
+        <button class="btn btn-o" onclick="speak(document.getElementById('launchAns').value||'A good museum has interesting facts because visitors want to learn.')">🔊 播放我的句子</button>
+        <button class="btn btn-o" onclick="rec(this,'launch')">🎙 录下我的回答</button>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🐼 选出你的明星动物 <span>全班的第一个任务：成为它的专家</span></div>
+      <p>投票选出的动物，就是你整个项目的「代言对象」。<b>注意</b>：won't just read — 我们要像博物馆设计师一样思考。选好后，探究站有它的<b>完整情报卡</b>。</p>
+      <div class="picks" id="picks">
+        <div class="pick" data-a="panda"><i>🐼</i><b>Panda</b><span>黑白 · 吃竹子</span><span class="cn-flag">来自中国 · 国宝</span></div>
+        <div class="pick" data-a="dolphin"><i>🐬</i><b>Dolphin</b><span>聪明 · 会说话</span></div>
+        <div class="pick" data-a="elephant"><i>🐘</i><b>Elephant</b><span>最大 · 记性好</span></div>
+        <div class="pick" data-a="penguin"><i>🐧</i><b>Penguin</b><span>不会飞 · 游得快</span></div>
+      </div>
+      <p style="margin-top:10px">✅ 我们组的明星动物是：<b id="pickName" style="color:var(--gold)">还没选</b></p>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎭 认领你的角色 <span>建馆不是一个人做的 · PBL 里你有选择权</span></div>
+      <p>一座博物馆要四种人。选一个你最想做的——<b>你选了什么，就负责什么</b>，最后量规里「合作参与」看的就是这个。</p>
+      <div class="roles" id="roleBox"></div>
+      <div id="roleSay"></div>
+      <div id="roleDeskBox" class="rdesk-host"></div>
+    </div>
+  </details>
+
+  <!-- ============ STATION 2 RESEARCH ============ -->
+  <details class="st" id="s2">
+    <summary class="st-h">
+      <span class="st-no">STATION 2</span>
+      <span class="st-t">探究站 <small>结构化输入 · 约 25 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="2"> 本站完成</label>
+    </summary>
+
+    <div class="blk">
+      <div class="blk-t">🧭 Look–Scan–Say 三步阅读法 <span>不逐字读，先抓结构</span></div>
+      <div class="steps">
+        <div class="step"><div class="sn">LOOK</div><div class="sb"><b>看</b><p>只看标题和图：What is it? How many parts? 在笔记上写下参观者会问的 3 个问题。</p></div></div>
+        <div class="step"><div class="sn">SCAN</div><div class="sb"><b>扫</b><p>找每段第一个词或粗体词（如 Looks / Food / Home / Problems），画成 4 个分支。</p></div></div>
+        <div class="step"><div class="sn">SAY</div><div class="sb"><b>说</b><p>用一句话说出主旨，写在下面。</p></div></div>
+      </div>
+      <textarea id="scanSay" rows="2" placeholder="This article is about ______."></textarea>
+      <div class="row"><button class="btn btn-o" onclick="speak(document.getElementById('scanSay').value||'This article is about pandas.')">🔊 播放</button></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🗂 动物情报卡 × 4 <span>点开你选的那张 · 信息足够回答参观者的问题</span></div>
+      <p>每张卡都是一份<b>非虚构信息卡</b>：要点、短句、有来源——这就是新教材要的读法。每句都能 🔊 听、🎙 录、▶ 回放（录音与跟读站打通，在情报卡录的句，跟读机里直接回放）。卡底的「参观者可能会问」是你做 Q&amp;A 问答卡的现成素材，参考答案先遮住，想好了再看。</p>
+      <div id="animalCards"></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🇨🇳 中国故事卡 <span>每一种动物都和中国有关 · 用英语讲中国故事</span></div>
+      <p>新教材要的不是「会介绍熊猫」，是<b>能用英语讲中国的事</b>。这一卡跟着你选的动物变——海豚有中华白海豚，大象有云南亚洲象，企鹅有中国南极科考站。</p>
+      <div id="cnBox"></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🐾 中国珍稀动物 · 扩展角 <span>选做 · 讲给外国朋友听</span></div>
+      <p>如果你的展板有空位，挑一只加进去——<b>外国参观者最想听的就是这个</b>。每句都能 🔊 听、🎙 录。</p>
+      <div id="cnRareBox"></div>
+    </div>
+  </details>
+
+  <!-- ============ STATION 3 FACTS SHADOWING ============ -->
+  <details class="st" id="s3">
+    <summary class="st-h">
+      <span class="st-no">STATION 3</span>
+      <span class="st-t">跟读站 · Facts 跟读 <small>PBL 自己的跟读线 · 听 + 说 · 约 15 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="3"> 本站完成</label>
+    </summary>
+
+    <div class="ot-intro">
+      <span style="font-size:19px">🗣</span>
+      <span>情报卡里的 <b>Fun Facts</b> 和弹药库的 <b>4 段对话</b>都是现成的跟读材料——这是 PBL 自己的跟读线。<b>听进去、读出来、录下来、做对比</b>：每句 🔊 听示范 → 🎙 我读（停止自动回放）→ ▶ 回放 → 🔁 A/B 对比，四只动物 + 灭绝动物馆共 <b>39</b> 句 + 4 段对话 <b>24</b> 句。对话跟读练熟后，去弹药库和同伴分 <b>A / B 角色</b>录音。</span>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎧 Facts 跟读机 <span>选动物 · 逐句听 · 逐句录 · 可自动连播</span></div>
+      <div class="sh-tabs" id="shTabs"></div>
+      <div class="sh-box">
+        <div class="sh-prog"><div class="sh-bar"><i id="shBar"></i></div><span id="shNum">0 / 0</span></div>
+        <div class="sh-now">
+          <div class="sh-en" id="shEn">—</div>
+          <div class="sh-cn" id="shCn"></div>
+        </div>
+        <div class="sh-ctrl">
+          <button class="btn btn-s" onclick="shPrev()">⏮ 上一句</button>
+          <button class="btn btn-g" onclick="shPlay()">🔊 听示范</button>
+          <button class="btn btn-r" id="shRecBtn" onclick="rec(this,shKey(),'machine')">🎙 我读</button>
+          <button class="btn btn-o" onclick="shReplay()">▶ 回放我的</button>
+          <button class="btn btn-o" onclick="shCompare()">🔁 A/B 对比</button>
+          <button class="btn btn-s" onclick="shDone()">✓ 我会了</button>
+          <button class="btn btn-s" onclick="shNext()">下一句 ⏭</button>
+          <button class="btn btn-o" id="shAutoBtn" onclick="toggleAuto()">⏩ 自动连播</button>
+          <select id="shGap" class="sh-gap">
+            <option value="1000">间隔 1s</option>
+            <option value="1800" selected>间隔 1.8s</option>
+            <option value="3000">间隔 3s</option>
+          </select>
+        </div>
+        <div class="rec-meter"><i id="recMeter"></i></div>
+        <div class="sh-dots" id="shDots"></div>
+        <div class="sh-note">练句顺序：🔊 听示范 → 🎙 我读（停止后自动回放）→ ▶ 回放我的 → 🔁 A/B 对比（先示范后你）→ ✓ 我会了。🎙 录音存在这一页里，刷新后需要重录；「我会了」的进度会保存。</div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">👂 听力挑战：它是谁？ <span>听一句 Fact，选出是哪只动物 · 5 题一轮</span></div>
+      <div class="lq-box">
+        <div class="lq-top"><span id="lqRound">第 1 / 5 题</span><span id="lqScore">得分 0</span></div>
+        <div class="row">
+          <button class="btn btn-g" id="lqPlay" onclick="lqPlay()">🔊 播放题目（可重听）</button>
+        </div>
+        <div class="lq-opts" id="lqOpts"></div>
+        <div class="lq-fb" id="lqFb"></div>
+        <div class="row"><button class="btn btn-o" id="lqNext" style="display:none" onclick="lqNextBtn()">下一题 →</button></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ STATION 4 ORIGINAL TRACKS ============ -->
+  <details class="st" id="s4">
+    <summary class="st-h">
+      <span class="st-no">STATION 4</span>
+      <span class="st-t">弹药库 · 原有双轨 <small>跟读 = 听进来 · 语法 = 写出来 · 约 20 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="4"> 本站完成</label>
+    </summary>
+
+    <div class="ot-intro">
+      <span style="font-size:19px">📚</span>
+      <span>建馆要弹药。<b>PBL 线</b>给你任务，<b>弹药库</b>给你语言材料——而且每个语法点都长在一个<b>动物知识情境</b>上，不裸教：过去式配灭绝动物、进行时配动物观察站、比较级配动物之最擂台。</span>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">📖 跟读线（原有）· 4 段对话全量 <span>点一句听一句，跟着念</span></div>
+      <div id="dlgBox"></div>
+      <div class="row">
+        <a class="btn btn-g" href="A1 Unit11 英语跟读.html#shadow">🎤 去跟读页完整版 · 对话打卡 + 逐句跟读（带进度）→</a>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🦕 灭绝动物纪念馆 <span>项目特供知识 · 一般过去时的家</span></div>
+      <p>这些动物已经不在这个世界上了——所以说到它们，英语自然而然地走进<b>过去式</b>。金色字都是过去式动词：动物不在了，动词回到过去。</p>
+      <div id="extinctBox"></div>
+      <div class="pt-note">🔬 语法显微镜：<b>lived</b> · <b>disappeared</b> · <b>could</b> · <b>died</b> · <b>had</b> · <b>hunted</b> —— 说「已经不在了」，就用过去式。</div>
+      <div class="row">
+        <button class="btn btn-o" onclick="speak('Dinosaurs lived on Earth for 160 million years. They disappeared about 65 million years ago. The last dodo died in 1662.')">🔊 听整段</button>
+        <button class="btn btn-g" onclick="goShadow('extinct')">🗣 去跟读站练这 10 句 →</button>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">✏️ 语法线 · 每个语法点长在一个动物知识情境上 <span>写展板必须用，不学就做不成</span></div>
+      <div id="gramBox"></div>
+      <p style="margin-top:9px">🧰 做展板要用：<b>The panda is eating bamboo.</b>（现在进行时）· <b>An elephant is bigger than a penguin.</b>（比较级）· <b>...because they are cute.</b>（连词）</p>
+      <p class="hint" style="margin-top:6px">每张卡自带「📐 怎么用」——<b>规则就写在卡上，不跳出去也能照着写展板句</b>。想多练题，再点卡里的「去语法页练这一个点」：一次只开一个知识点的新页，不会在全册里迷路；练完关掉新页，回到这里继续做展板。</p>
+    </div>
+  </details>
+
+  <!-- ============ STATION 5 MAKE ============ -->
+  <details class="st" id="s5">
+    <summary class="st-h">
+      <span class="st-no">STATION 5</span>
+      <span class="st-t">制作站 <small>写作工作坊 · 约 25 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="5"> 本站完成</label>
+    </summary>
+
+    <div class="blk">
+      <div class="blk-t">🖼 先看一张做好的展板 <span>照着这个样子，做你自己的</span></div>
+      <p>动手之前先看<b>成品长什么样</b>。这块展板跟着你选的动物变——换动物，这里也换。</p>
+      <div id="modelBoard"></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎯 回到驱动问题 <span>动手前先确认：我们的展板在回答它吗？</span></div>
+      <div class="dq">
+        <div class="dq-q">我们的任务问题：<b>How can we build a class animal museum to teach others about animals?</b><br><span style="color:var(--sub);font-size:12px">我们班要开一座动物博物馆，向其他同学介绍动物。</span></div>
+        <div class="dq-yes" id="dqYes">
+          <label data-v="yes" onclick="dqPick('yes')">✅ 我的展板回答了它</label>
+          <label data-v="part" onclick="dqPick('part')">🟡 部分回答了</label>
+          <label data-v="no" onclick="dqPick('no')">⚪ 还没</label>
+        </div>
+        <label>为什么？一句话说明你的展板怎样「教别人认识动物」：</label>
+        <textarea id="dqWhy" rows="1" placeholder="Our board teaches visitors 3 facts about the panda and why we should protect it."></textarea>
+        <div class="row" style="margin-top:7px"><button class="btn btn-o" onclick="speak(dqWhy.value||'Our board teaches visitors about animals.')">🔊 播放我的说明</button></div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🏷 展板脚手架 Museum Label <span>四块拼图，缺一不可</span></div>
+      <div class="lab">
+        <div class="lg"><b>① Topic Sentence 主题句</b><span>一句话说清楚这是什么</span></div>
+        <div class="lb"><textarea id="m1" rows="1" placeholder="This is the panda."></textarea></div>
+        <div class="lg"><b>② Three Facts 三个事实</b><span>What → Food → Home</span></div>
+        <div class="lb"><textarea id="m2" rows="3" placeholder="It is black and white. It eats bamboo. It lives in forests in China."></textarea></div>
+        <div class="lg"><b>③ Interesting Fact 有趣事实</b><span>让参观者「哇」的那条</span></div>
+        <div class="lb"><textarea id="m3" rows="1" placeholder="A baby panda is pink and as small as butter!"></textarea></div>
+        <div class="lg"><b>④ Source 来源</b><span>博物馆的规矩：注明出处</span></div>
+        <div class="lb"><textarea id="m4" rows="1" placeholder="Source: WWF"></textarea>
+        <div class="lb-note">✓ 至少用 3 个本单元词 · ✓ 用 1 个 because · ✓ 句子短（参观者边走边读）</div></div>
+      </div>
+      <div class="bank">
+        <div class="b-t">💬 句型银行 · 左边金色＝句型框架（插入后自己填）· 右边例句＝不会写就先插它，再改词</div>
+        <div id="sentBank"></div>
+      </div>
+      <div class="bank">
+        <div class="b-t">📗 词汇银行 · 本单元词</div>
+        <div class="chips" id="wordBank">
+          <span class="chipx w">fur</span><span class="chipx w">bamboo</span><span class="chipx w">forest</span>
+          <span class="chipx w">wild</span><span class="chipx w">climb</span><span class="chipx w">swim</span>
+          <span class="chipx w">cute</span><span class="chipx w">strong</span><span class="chipx w">protect</span>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-o" onclick="speak([m1.value,m2.value,m3.value,m4.value].join(' '))">🔊 播放整块展板</button>
+        <button class="btn btn-s" onclick="saveNow(this)">💾 保存进度</button>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">❓ Q&amp;A 问答卡 <span>第三件产出 · 考倒参观者的 3 个问题</span></div>
+      <p>任务卡里承诺的三件产出，这是第三件。素材现成的——<b>情报卡底部的「参观者可能会问」</b>就是题库。你自己编也行：三个小问题，答案先藏着，开放日再翻开。</p>
+      <div class="qa-make">
+        <div class="qam"><div class="qam-k">Q1<small>问题</small></div><textarea id="q1" rows="1" placeholder="How many hours do pandas eat every day?"></textarea>
+          <div class="qam-k">A1<small>答案（藏着）</small></div><textarea id="qa1" rows="1" placeholder="About 12 hours!"></textarea></div>
+        <div class="qam"><div class="qam-k">Q2<small>问题</small></div><textarea id="q2" rows="1" placeholder="Why are pandas black and white?"></textarea>
+          <div class="qam-k">A2<small>答案（藏着）</small></div><textarea id="qa2" rows="1" placeholder="The colours help them hide in snow and in the forest."></textarea></div>
+        <div class="qam"><div class="qam-k">Q3<small>问题</small></div><textarea id="q3" rows="1" placeholder="Where do pandas live?"></textarea>
+          <div class="qam-k">A3<small>答案（藏着）</small></div><textarea id="qa3" rows="1" placeholder="In mountain forests in China."></textarea></div>
+      </div>
+      <div class="row"><button class="btn btn-o" onclick="speak([q1.value,q2.value,q3.value].join(' '))">🔊 播放我的 3 个问题</button></div>
+      <p class="hint" style="margin-top:6px">小技巧：问题用 <b>How many / Why / Where / Can</b> 开头最自然。开放日把答案折起来，让参观者先猜。</p>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎬 30 秒代言脚本 <span>Point – Fact – Feeling – Come</span></div>
+      <div class="script">
+        <div class="sc"><div class="k">Point<small>主旨</small></div><textarea id="p1" rows="1" placeholder="Hello! I am here to tell you about the panda."></textarea></div>
+        <div class="sc"><div class="k">Fact<small>事实 ×2</small></div><textarea id="p2" rows="2" placeholder="Pandas eat bamboo. They are from China."></textarea></div>
+        <div class="sc"><div class="k">Feeling<small>感受</small></div><textarea id="p3" rows="1" placeholder="I love pandas because they are cute and special."></textarea></div>
+        <div class="sc"><div class="k">Come<small>邀请</small></div><textarea id="p4" rows="1" placeholder="Come and see our panda board!"></textarea></div>
+      </div>
+      <div class="row">
+        <button class="btn btn-g" onclick="speak([p1.value,p2.value,p3.value,p4.value].join(' '))">▶ 播放我的 30 秒脚本</button>
+        <button class="btn btn-o" onclick="rec(this,'video')">🎙 录制代言（30s）</button>
+      </div>
+      <p>拍摄要求：每人都发言 · 至少 1 张图 · 屏幕注明来源 · 用问题或邀请结尾。</p>
+    </div>
+  </details>
+
+  <!-- ============ STATION 6 SHOW ============ -->
+  <details class="st" id="s6">
+    <summary class="st-h">
+      <span class="st-no">STATION 6</span>
+      <span class="st-t">展示站 <small>布展 · 开放日 · 约 20 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="6"> 本站完成</label>
+    </summary>
+
+    <div class="blk" id="guideBlock">
+      <div class="blk-t">🗺 导览员须知 <span id="guideRoleTag">好的导览不是讲，是问和听</span></div>
+      <div class="chk">
+        <label><input type="checkbox"><span><b>Greet</b> — 打招呼：Welcome to our museum!</span></label>
+        <label><input type="checkbox"><span><b>Share</b> — 讲 3 个关键事实（指着展板说）</span></label>
+        <label><input type="checkbox"><span><b>Ask</b> — 问参观者一个问题</span></label>
+        <label><input type="checkbox"><span><b>Guide</b> — 带参观者完成一个互动（投票 / 问答卡）</span></label>
+        <label><input type="checkbox"><span><b>Thank</b> — 致谢并邀请反馈：Thank you! What should we improve?</span></label>
+      </div>
+      <p style="margin-top:9px">🔁 开放日规则：一半人当导览员，一半人当参观者，<b>中途交换</b>。</p>
+      <p style="margin-top:7px;font-size:12px;color:var(--sub);line-height:1.6">🎤 <b>导览员的个人计划</b>在你认领角色后的工作台里——回到「启动站 · 角色工作台」标签即可填写，开放日照这 5 步清单讲。</p>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎤 导览示范脚本 <span>照着练一遍：🔊 听 → 🎙 录 → ▶ 回放对比</span></div>
+      <p>光看清单练不出「说」。下面是一段<b>完整的导览词</b>，跟着你选的动物自动变。五句连起来就是你开口讲的那 30 秒——每句都能听、能录、能回放对比。</p>
+      <div id="guideBox"></div>
+      <div class="row"><button class="btn btn-g" onclick="guidePlayAll()">▶ 听完整段导览</button></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">📝 参观者反馈卡 <span>真实观众的声音，是改进的原料</span></div>
+      <div class="fb">
+        <div class="f-t">MUSEUM EXPLORER CARD</div>
+        <label>One fact I learned 我学到一个事实</label>
+        <input type="text" id="fbFact" placeholder="I learned that pandas eat bamboo.">
+        <label>One question I have 我的一个问题</label>
+        <input type="text" id="fbQ" placeholder="How long do pandas sleep?">
+        <label>One thing to remember 我会记住的一件事</label>
+        <input type="text" id="fbR" placeholder="Pandas are from China!">
+        <label>我的评分</label>
+        <div class="stars-in" id="fbStars"><b>★</b><b>★</b><b>★</b><b>★</b><b>★</b></div>
+      </div>
+    </div>
+
+
+    <div class="blk">
+      <div class="blk-t">🔧 据反馈修订 <span>PBL 最关键的一步：看完反馈，改一处，再来一遍</span></div>
+      <p>反馈卡不是终点，是原料。读完参观者写的话，<b>只改一处</b>——改完再给另一组讲一遍，你会发现第二遍明显不一样。这一步做完，你的项目才真的转了一圈。</p>
+      <div class="script">
+        <div class="sc"><div class="k">Change<small>我要改的一处</small></div><textarea id="rev1" rows="1" placeholder="Visitors said our words were too small. So we will make them bigger."></textarea></div>
+        <div class="sc"><div class="k">New<small>改完后的新句子</small></div><textarea id="rev2" rows="2" placeholder="This is the panda. It is from China. It eats bamboo for 12 hours a day!"></textarea></div>
+      </div>
+      <div class="chk" style="margin-top:9px">
+        <label><input type="checkbox" id="revDone"><span><b>我改完了，并且给另一组又讲了一遍</b> —— 打勾，这一站才算真完成</span></label>
+      </div>
+      <div class="row"><button class="btn btn-o" onclick="speak(rev2.value||rev1.value)">🔊 播放我改后的句子</button></div>
+    </div>
+  </details>
+
+  <!-- ============ STATION 7 REFLECT ============ -->
+  <details class="st" id="s7">
+    <summary class="st-h">
+      <span class="st-no">STATION 7</span>
+      <span class="st-t">反思站 <small>Museum Designer Journal · 约 10 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="7"> 本站完成</label>
+    </summary>
+    <div class="blk">
+      <div class="blk-t">📔 设计师日志</div>
+      <div class="script">
+        <div class="sc"><div class="k">Favorite<small>最喜欢</small></div><textarea id="r1" rows="1" placeholder="My favorite part was ... because ..."></textarea></div>
+        <div class="sc"><div class="k">Hardest<small>最难</small></div><textarea id="r2" rows="1" placeholder="The hardest part was ... because ..."></textarea></div>
+        <div class="sc"><div class="k">Next<small>下次</small></div><textarea id="r3" rows="1" placeholder="Next time, I would ..."></textarea></div>
+      </div>
+      <p>我的英语变强了（可多选）：</p>
+      <div class="chk">
+        <label><input type="checkbox" class="imp" data-v="reading"><span>📖 Reading 读研究</span></label>
+        <label><input type="checkbox" class="imp" data-v="writing"><span>✏️ Writing 写展板</span></label>
+        <label><input type="checkbox" class="imp" data-v="speaking"><span>🗣 Speaking 对参观者说</span></label>
+        <label><input type="checkbox" class="imp" data-v="listening"><span>👂 Listening 听反馈</span></label>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">⭐ 项目量规 <span>第一天就看懂：5 星展板长什么样</span></div>
+      <div class="rub">
+        <div class="rd"><b>内容准确 Facts</b><div class="d1">事实对不对</div>
+          <div class="lv"><b>5 星</b>：多源验证 · 细节准确<br><b>3 星</b>：信息基本准确<br><b>1 星</b>：有明显错误</div></div>
+        <div class="rd"><b>语言清楚 Language</b><div class="d1">句子清不清楚</div>
+          <div class="lv"><b>5 星</b>：句型多样 · 用了单元词<br><b>3 星</b>：简单句能懂<br><b>1 星</b>：难以理解</div></div>
+        <div class="rd"><b>创意有趣 Creative</b><div class="d1">想不想让人看</div>
+          <div class="lv"><b>5 星</b>：有互动 · 有惊喜<br><b>3 星</b>：整洁清楚<br><b>1 星</b>：只有文字</div></div>
+        <div class="rd"><b>合作参与 Teamwork</b><div class="d1">团队怎么样</div>
+          <div class="lv"><b>5 星</b>：人人有分工有贡献<br><b>3 星</b>：完成分配任务<br><b>1 星</b>：有人旁观</div></div>
+      </div>
+    </div>
+
+    <div class="donebar" id="donebar">🏆 项目完成！你不只是英语学习者——你是 museum designer · researcher · educator。</div>
+  </details>
+
+  <details>
+    <summary>👩‍🏫 教师折叠笔记 · 关键 T-Script 问法（来自 PBL 逐字稿设计思路）</summary>
+    <ol>
+      <li><b>启动</b>：<i>"You are museum creators now. A good museum has ___ because ___."</i> — 先给身份，再给句型。</li>
+      <li><b>预测</b>：<i>"Don't read yet. Only look at the title and pictures. What will visitors ask about pandas?"</i> — Top-down 纪律：不许逐字读。</li>
+      <li><b>情报卡</b>：<i>"Read the card. Which fact will visitors love most? Why?"</i> — 训练筛选信息，不是搬运信息。</li>
+      <li><b>段落解剖</b>：<i>"Read the Looks part. How is it organized? Top to bottom?"</i> — 用博物馆标签设计师的视角读段落。</li>
+      <li><b>来源意识</b>：<i>"Where is this from? WWF? Good. Our board must cite sources too."</i> — 非虚构阅读的第一课。</li>
+      <li><b>双轨调用</b>：<i>"Before you write, read the four dialogues aloud. The grammar is your tool: is eating, is bigger than, because."</i> — 跟读和语法是弹药，不是作业。</li>
+      <li><b>Facts 跟读</b>：<i>"Listen, then say it like a guide. Don't read the paper — look at your visitors."</i> — 跟读机的目标是脱口而出，不是念准每一个音。</li>
+      <li><b>对话跟读</b>：<i>"Now change roles. You are A, you are B. Record your dialogue in Station 4."</i> — 跟读机里练熟单句，弹药库里做角色录音：输入输出分开练。</li>
+      <li><b>听力挑战</b>：<i>"Which animal is it? How do you know? Listen for the key word."</i> — 听关键词归类，比听懂每一个词更重要。</li>
+      <li><b>灭绝动物</b>：<i>"These animals are not here anymore. So our verbs travel back in time: lived, died, disappeared."</i> — 用「不在了」讲过去式，不搬时间轴、不背规则表。</li>
+      <li><b>语法情境</b>：<i>"Every grammar point has an animal home. Where does 'because' live? On your museum label."</i> — 语法不裸教，先问「这个点住在哪个动物知识里」。</li>
+      <li><b>同伴反馈</b>：<i>"Now you are museum visitors. What is the clearest part? One suggestion?"</i> — 角色转换为反馈卡。</li>
+      <li><b>角色分工</b>：<i>"You chose your role. So the researcher checks the facts — not me."</i> — 责任到人是合作的第一步，别替学生干活。</li>
+      <li><b>示范展板</b>：<i>"Before you write, read this board. What comes first? What comes last?"</i> — 结构先于内容：先看清骨架，再换自己的动物。</li>
+      <li><b>导览脚本</b>：<i>"Don't read the card. Look at your visitors and say it."</i> — 导览是「说」不是「念」，录下来和示范对比最直观。</li>
+      <li><b>据反馈修订</b>：<i>"One visitor said ___. So we changed ___. Show me the new sentence."</i> — 反馈要变成行动，这一句不能省，省了就不是 PBL。</li>
+      <li><b>中国故事</b>：<i>"If a visitor is from another country, what do they want to hear? Tell them about China."</i> — 每种动物都能接回中国，不只是熊猫。</li>
+      <li><b>收尾</b>：<i>"You didn't just learn English. You used English to build something real."</i> — 点题：用语言做有意义的事。</li>
+    </ol>
+  </details>
+
+  <footer>
+    进度存档于本机浏览器（localStorage · a1net_pbl_u11）· 与跟读 / 语法进度互不覆盖<br>
+    A1 启程线 · PBL 微项目 v14 · 7 站手风琴折叠（点头展开 · 顶部导航可跳转 · 默认展开启动站） + 跟读对话分栏标签 + 四角色工作台合并为启动站分栏标签（认领角色=默认页，其余点击显示认领后解锁） + 语法线分栏标签 + 驱动问题回看卡 + 中国元素 + 导览脚本 + 示范展板 + 问答卡 + 修订闭环 · 黑金皮肤 · 红仅用于任务标签
+  </footer>
+</div>
+
+<script>
+/* ================= 数据 ================= */
+var ANIMALS = {
+  panda:{emo:'🐼',name:'Panda',cn:'大熊猫',facts:[
+    {k:'WHAT',en:'A panda is a big black-and-white bear.',cn:'熊猫是一只黑白相间的大熊。'},
+    {k:'BODY',en:'It has black fur around its eyes and ears.',cn:'它的眼睛和耳朵周围有一圈黑毛。'},
+    {k:'FOOD',en:'It eats bamboo — about 12 hours a day!',cn:'它吃竹子——每天大约12个小时！'},
+    {k:'HOME',en:'It lives in mountain forests in China.',cn:'它住在中国山区的森林里。'},
+    {k:'CAN',en:'It can climb trees, and it can swim.',cn:'它会爬树，也会游泳。'},
+    {k:'FUN',en:'A baby panda is pink and as small as butter!',cn:'熊猫宝宝是粉红色的，小得像一块黄油！'},
+    {k:'CHINA',red:1,en:'Pandas are from China. They are our national treasure.',cn:'熊猫来自中国，是中国的国宝。'},
+    {k:'CARE',red:1,en:'Only about 1,800 pandas live in the wild. We must protect their forests.',cn:'野生大熊猫只有约1800只，我们必须保护它们的森林。'}],
+    src:'SOURCE: WWF · National Geographic Kids',
+    qa:[{q:'Why are pandas black and white?',a:'The colours help them hide in snow and in the forest.'},
+        {q:'How many hours do pandas eat every day?',a:'About 12 hours!'},
+        {q:'Where do pandas live?',a:'In mountain forests in China.'}]},
+  dolphin:{emo:'🐬',name:'Dolphin',cn:'海豚',facts:[
+    {k:'WHAT',en:'A dolphin is a smart sea animal. It is not a fish.',cn:'海豚是聪明的海洋动物，它不是鱼。'},
+    {k:'BODY',en:'It has smooth grey skin and a strong tail.',cn:'它有光滑的灰皮肤和强壮的尾巴。'},
+    {k:'FOOD',en:'It eats fish and squid.',cn:'它吃鱼和鱿鱼。'},
+    {k:'HOME',en:'It lives in the sea. Some dolphins live in rivers, too.',cn:'它住在海里，有些海豚也住在河里。'},
+    {k:'CAN',en:'It can swim fast and jump high out of the water.',cn:'它能游得很快，还能高高跃出水面。'},
+    {k:'FUN',en:'Dolphins have names — each one has its own whistle!',cn:'海豚有"名字"——每一只都有独特的哨声！'},
+    {k:'CARE',red:1,en:'Dolphins need clean water. Plastic in the sea is dangerous for them.',cn:'海豚需要干净的水，海洋里的塑料对它们很危险。'}],
+    src:'SOURCE: National Geographic Kids · WWF',
+    qa:[{q:'Is a dolphin a fish?',a:'No, it is a mammal. It breathes air.'},
+        {q:'What do dolphins eat?',a:'Fish and squid.'},
+        {q:'How do dolphins talk to each other?',a:'They use whistles and clicks.'}]},
+  elephant:{emo:'🐘',name:'Elephant',cn:'大象',facts:[
+    {k:'WHAT',en:'An elephant is the biggest animal on land.',cn:'大象是陆地上最大的动物。'},
+    {k:'BODY',en:'It has huge ears and a long nose called a trunk.',cn:'它有巨大的耳朵和一条长鼻子，叫象鼻。'},
+    {k:'FOOD',en:'It eats grass, leaves and fruit — about 150 kg a day!',cn:'它吃草、树叶和水果——每天大约150公斤！'},
+    {k:'HOME',en:'Elephants live in Africa and Asia.',cn:'大象生活在非洲和亚洲。'},
+    {k:'CAN',en:'It can use its trunk to drink, to wash and to say hello.',cn:'它用象鼻喝水、洗澡、打招呼。'},
+    {k:'FUN',en:'Elephants never forget — they remember friends for many years!',cn:'大象从不忘记——它能记住朋友很多年！'},
+    {k:'CARE',red:1,en:'Elephants need a lot of space. We must protect their land.',cn:'大象需要很大的活动空间，我们必须保护它们的家园。'}],
+    src:'SOURCE: WWF · National Geographic Kids',
+    qa:[{q:"What is an elephant's long nose called?",a:'A trunk.'},
+        {q:'How much food does an elephant eat a day?',a:'About 150 kg!'},
+        {q:'Are elephants clever?',a:"Yes! They never forget."}]},
+  penguin:{emo:'🐧',name:'Penguin',cn:'企鹅',facts:[
+    {k:'WHAT',en:'A penguin is a black-and-white bird, but it cannot fly.',cn:'企鹅是黑白相间的鸟，但它不会飞。'},
+    {k:'BODY',en:'It has thick fat and warm feathers.',cn:'它有厚厚的脂肪和保暖的羽毛。'},
+    {k:'FOOD',en:'It eats small fish and krill.',cn:'它吃小鱼和磷虾。'},
+    {k:'HOME',en:'Most penguins live in the cold south — in Antarctica and on islands near the South Pole.',cn:'大多数企鹅住在寒冷的南方——在南极和南极附近的岛上。'},
+    {k:'CAN',en:'It can swim fast and dive very deep.',cn:'它能游得很快，还能潜得很深。'},
+    {k:'FUN',en:'A penguin can "fly" underwater — it uses its wings like flippers!',cn:'企鹅在水下能"飞翔"——它把翅膀当作桨来用！'},
+    {k:'CARE',red:1,en:'The ice is melting. Penguins need the cold to live.',cn:'冰正在融化，企鹅需要寒冷才能生存。'}],
+    src:'SOURCE: National Geographic Kids · WWF',
+    qa:[{q:'Can penguins fly?',a:"No, but they can swim very well."},
+        {q:'Where do most penguins live?',a:'In Antarctica, the cold South Pole.'},
+        {q:'What do penguins eat?',a:'Small fish and krill.'}]}
+};
+/* 灭绝动物：一般过去时的「家」——动物不在了，动词回到过去 */
+var EXTINCT={emo:'🦕',name:'Extinct',cn:'灭绝动物',facts:[
+  {k:'LIVED',en:'Dinosaurs <b class="pt">lived</b> on Earth for 160 million years.',cn:'恐龙在地球上生活了1.6亿年。'},
+  {k:'END',en:'They <b class="pt">disappeared</b> about 65 million years ago.',cn:'它们在大约6500万年前消失。'},
+  {k:'COULD',en:'Some dinosaurs <b class="pt">could</b> fly, and some <b class="pt">could</b> swim.',cn:'有些恐龙会飞，有些会游泳。'},
+  {k:'DODO',en:'The dodo <b class="pt">lived</b> on an island. It <b class="pt">could</b> not fly.',cn:'渡渡鸟住在一个岛上，它不会飞。'},
+  {k:'END',en:'The last dodo <b class="pt">died</b> in 1662.',cn:'最后一只渡渡鸟死于1662年。'},
+  {k:'ICE',en:'Mammoths <b class="pt">lived</b> in the ice age.',cn:'猛犸象生活在冰河时期。'},
+  {k:'HAD',en:'They <b class="pt">had</b> long hair and big tusks.',cn:'它们有长毛和大象牙。'},
+  {k:'END',en:'They <b class="pt">disappeared</b> about 4,000 years ago.',cn:'它们在大约4000年前消失。'},
+  {k:'TIGER',en:'The sabre-tooth tiger <b class="pt">had</b> two very long teeth.',cn:'剑齿虎有两根特别长的牙。'},
+  {k:'HUNT',en:'It <b class="pt">hunted</b> big animals for food.',cn:'它捕猎大型动物为食。'}
+]};
+/* 跟读机 / 听力挑战的统一素材源 */
+var SH_META={panda:ANIMALS.panda,dolphin:ANIMALS.dolphin,elephant:ANIMALS.elephant,
+             penguin:ANIMALS.penguin,extinct:EXTINCT};
+var DIALOGUES = [
+  {t:'① 在动物园',g:'描述动物',turns:[
+    ['A','What is that animal?','那是什么动物？'],
+    ['B','It is a gorilla. It is from Africa.','是大猩猩，来自非洲。'],
+    ['A','Is it dangerous?','危险吗？'],
+    ['B','No, it is safe behind the glass.','不，玻璃后面很安全。'],
+    ['A','Look at the elephant!','看那头大象！'],
+    ['B','Wow, its ears are huge!','哇，耳朵好大！']]},
+  {t:'② 昨天去动物园',g:'🕰 过去式',turns:[
+    ['A','What did you do yesterday?','你昨天做什么了？'],
+    ['B','We went to the zoo.','我们去了动物园。'],
+    ['A','What did you see there?','你们在那儿看到什么？'],
+    ['B','We saw tigers and bears.','我们看了老虎和熊。'],
+    ['A','Did you take photographs?','你们拍照了吗？'],
+    ['B','Yes, we took hundreds!','拍了几百张！']]},
+  {t:'③ 动物小知识',g:'have got / 描述动物',turns:[
+    ['A','Have snakes got teeth?','蛇有牙吗？'],
+    ['B','Yes, and some are very dangerous.','有，有些很危险。'],
+    ['A','Are elephants clever?','大象聪明吗？'],
+    ['B','Yes, they never forget.','聪明，它们从不忘记。'],
+    ['A','Where do cows live?','奶牛住哪儿？'],
+    ['B','On farms. They are beautiful animals.','农场。它们是很美的动物。']]},
+  {t:'④ 小时候会骑马',g:'🕰 could 过去能力',turns:[
+    ['A','Could you ride a horse when you were five?','你五岁时会骑马吗？'],
+    ['B','Yes, I could. My grandpa taught me.','会，爷爷教我的。'],
+    ['A','Could you swim then?','那时候你会游泳吗？'],
+    ['B',"No, I couldn't. I was scared of water.",'不会，我怕水。'],
+    ['A','When did you learn?','什么时候学的？'],
+    ['B','I was eight. Now I love it.','八岁。现在我喜欢了。']]}
+];
+/* 4 段对话并入跟读机：turns → facts（单一数据源，不复制句子；en 保持纯净供 TTS，sp 仅作显示） */
+DIALOGUES.forEach(function(d,di){
+  SH_META['dlg'+(di+1)]={emo:'🗣',name:d.t,cn:d.g,
+    facts:d.turns.map(function(t){return {k:t[0],sp:t[0],en:t[1],cn:t[2]};})};
+});
+var GRAMMAR = [
+  {n:'现在进行时 am / is / are + doing',sn:'现在进行时',p:'a1-pc',d:'此刻正在发生 · 展板写「正在吃」',rule:'<b>am / is / are + 动词-ing</b>。I 用 am，he / she / it 用 is，you / we / they 用 are。写展板说「此刻正在做什么」时用它。',ctx:'🐼 动物观察站——此刻它们正在做什么？The panda is eating bamboo right now.（配探究站情报卡的「此刻版」）',ex:[
+    'The panda is eating bamboo.','The dolphins are swimming now.'],
+    task:'写一句你的展板要用的「正在做」'},
+  {n:'形容词比较级 + -er / more',sn:'比较级',p:'a1-comp',d:'更大 / 更快 · 展板做对比',rule:'<b>形容词 + -er + than</b>（big → bigger，fast → faster）；长词用 <b>more + 形容词 + than</b>。两个动物比大小、比快慢时用它。',ctx:'🏆 动物之最擂台——谁更大、谁更快？An elephant is bigger than a penguin. A dolphin is faster than a penguin.',ex:[
+    'An elephant is bigger than a penguin.','A dolphin is faster than a penguin.'],
+    task:'写一句你的展板要用的「更…」'},
+  {n:'基础连词 and / but / or / because',sn:'连词',p:'a1-andbutor',d:'把两句话接起来 · 展板讲原因',rule:'<b>and</b> 和（两个都要）· <b>but</b> 但是（转折）· <b>or</b> 或者（二选一）· <b>because</b> 因为（讲原因）。先看两半句是什么关系，再选词。',ctx:'🔗 展板金句——讲清「为什么」。A penguin cannot fly, but it can swim. I like dolphins because they are smart.',ex:[
+    'A penguin cannot fly, but it can swim.','I like dolphins because they are smart.'],
+    task:'写一句带 because 的展板句'},
+  {n:'一般过去时（项目特供）',sn:'过去式',p:'a1-past',d:'已经发生 / 已经不在 · 灭绝动物的语言',rule:'规则动词<b>直接加 -ed</b>（work → worked，live → lived）；不规则要单独记（is → was，have → had，do → did）。说「已经发生、已经做完、已经不在了」时用它。',ctx:'🦕 灭绝动物纪念馆——动物不在了，动词回到过去：Dinosaurs lived... The last dodo died in 1662.（练上方纪念馆卡 + 跟读站 🦕）',ex:[
+    'Dinosaurs lived on Earth for 160 million years.','The last dodo died in 1662.'],
+    task:'写一句灭绝动物的过去式'}
+];
+
+/* ================= 角色分工（PBL：学生发声与选择） ================= */
+var ROLES=[
+  {id:'researcher',emo:'🔍',n:'Researcher',cn:'研究员',d:'找事实 · 核对来源 · 保证信息对',
+   say:'I found three facts about our animal.',sayCn:'我找到了三个关于我们动物的事实。'},
+  {id:'designer',emo:'🎨',n:'Designer',cn:'设计师',d:'排版 · 画图 · 做一个互动',
+   say:'Our board has a voting game because visitors learn by doing.',sayCn:'我们的展板有一个投票游戏，因为参观者边做边学。'},
+  {id:'guide',emo:'🎤',n:'Guide',cn:'导览员',d:'讲解 · 提问 · 带参观者互动',
+   say:'Welcome to our museum! Let me tell you about our animal.',sayCn:'欢迎来到我们的博物馆！让我来介绍我们的动物。'},
+  {id:'recorder',emo:'📝',n:'Recorder',cn:'记录员',d:'记反馈 · 写日志 · 盯进度',
+   say:'Visitors said our board was clear. So we made the words bigger.',sayCn:'参观者说我们的展板很清楚，所以我们把字改大了。'}
+];
+
+/* ================= 导览示范脚本（展示站：把「说出」也做成可练的） ================= */
+/* Greet / Ask / Guide / Thank 固定；Share 与 Ask 会跟随所选动物动态生成 */
+var GUIDE=[
+  {k:'Greet',en:'Welcome to our animal museum! My name is Lin, and I am your guide today.',
+   cn:'欢迎来到我们的动物博物馆！我叫林，今天我是你们的导览员。'},
+  {k:'Share',dyn:1,en:'',cn:'介绍动物：它是什么、吃什么、住哪儿——这是最像「导览」的一段。'},
+  {k:'Ask',dyn:1,en:'',cn:'问参观者一个问题：好的导览不是讲，是问和听。'},
+  {k:'Guide',en:'Let us do one thing together. Please put your sticker on your favourite fact.',
+   cn:'我们一起做一件事：请把贴纸贴在你最喜欢的事实上。'},
+  {k:'Thank',en:'Thank you for coming! What should we improve? Please write it on the card.',
+   cn:'感谢参观！我们哪里可以改进？请写在卡片上。'}
+];
+
+/* ================= 中国连接：每种动物都有，不是只有熊猫 ================= */
+var CN_LINK={
+  panda:{t:'🐼 熊猫的故乡在中国',
+    en:['Pandas are from China. They live in the mountains of Sichuan.','They are our national treasure. People all over the world love them.'],
+    cn:['熊猫来自中国，住在四川的山区。','它们是中国的国宝，全世界的人都喜欢它们。'],
+    task:'用 3 句话向外国朋友介绍熊猫。'},
+  dolphin:{t:'🐬 中国海里的中华白海豚',
+    en:['China has a special dolphin — the Chinese white dolphin.','It lives in the Pearl River and near Xiamen. People call it the panda of the sea.'],
+    cn:['中国有一种特别的海豚——中华白海豚。','它住在珠江口和厦门附近，人们叫它"海上大熊猫"。'],
+    task:'用 3 句话向外国朋友介绍中华白海豚。'},
+  elephant:{t:'🐘 中国云南的亚洲象',
+    en:['China has wild Asian elephants. They live in Yunnan.','China is building protected homes for them.'],
+    cn:['中国有野生亚洲象，它们住在云南。','中国正在为它们建立保护区。'],
+    task:'用 3 句话向外国朋友介绍中国的亚洲象。'},
+  penguin:{t:'🐧 中国在南极的科考站',
+    en:['China has research stations in Antarctica — the Great Wall Station and Zhongshan Station.','Chinese scientists study penguins and the ice there.'],
+    cn:['中国在南极有科考站——长城站和中山站。','中国科学家在那里研究企鹅和冰层。'],
+    task:'用 3 句话向外国朋友介绍中国的南极科考。'}
+};
+
+/* ================= 中国珍稀动物（扩展角 · 讲给外国朋友听） ================= */
+var CN_RARE=[
+  {emo:'🐒',n:'Golden snub-nosed monkey',cnName:'金丝猴',en:'It lives in the mountains of Sichuan. It has golden fur.',cn:'它住在四川的山区，有一身金色的毛。'},
+  {emo:'🐐',n:'Tibetan antelope',cnName:'藏羚羊',en:'It lives on the Tibetan Plateau. It can run very fast.',cn:'它住在青藏高原，跑得非常快。'},
+  {emo:'🐊',n:'Chinese alligator',cnName:'扬子鳄',en:'It lives in the Yangtze River. It is small and shy.',cn:'它住在长江里，个头小又怕人。'},
+  {emo:'🕊️',n:'Crested ibis',cnName:'朱鹮',en:'It lives in Shaanxi. It has white feathers and a red face.',cn:'它住在陕西，羽毛白色、脸是红的。'},
+  {emo:'🐆',n:'Snow leopard',cnName:'雪豹',en:'It lives high in the mountains of China. It is hard to see.',cn:'它住在中国的高山上，很难见到。'}
+];
+
+/* ================= 状态 ================= */
+var KEY='a1net_pbl_u11';
+var S=JSON.parse(localStorage.getItem(KEY)||'{}');
+S.done=S.done||[]; S.fbStars=S.fbStars||0;
+S.rFacts=S.rFacts||{}; S.recBoard=S.recBoard||{};
+if(typeof S.dMode==='undefined')S.dMode=''; if(typeof S.dBig==='undefined')S.dBig=false;
+if(typeof S.dColor==='undefined')S.dColor=false;
+['launchAns','scanSay','m1','m2','m3','m4','p1','p2','p3','p4','r1','r2','r3','fbFact','fbQ','fbR',
+ 'q1','q2','q3','qa1','qa2','qa3','rev1','rev2',
+ 'rSrc','rFun','dLayout','rec1','rec2','rec3','recImprove','gFocus','dqWhy'].forEach(function(id){
+  var el=document.getElementById(id); if(el&&S[id]!=null) el.value=S[id];
+  if(el) el.addEventListener('input',function(){S[id]=el.value;save();});
+});
+function escAttr(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function dqPick(v){S.dqYes=v;save();if(document.getElementById('dqYes'))document.querySelectorAll('#dqYes label').forEach(function(l){l.classList.toggle('on',l.dataset.v===v);});}
+
+/* ================= 渲染：动物情报卡 ================= */
+function renderAnimals(){
+  var box=document.getElementById('animalCards'),h='';
+  Object.keys(ANIMALS).forEach(function(k){
+    var a=ANIMALS[k];
+    var open=(S.animal===k);
+    h+='<details class="acard"'+(open?' open':'')+' data-a="'+k+'">'
+      +'<summary><span class="a-i">'+a.emo+'</span><span><span class="a-n">'+a.name+'</span>'
+      +'<span class="a-c"> '+a.cn+'</span></span>'
+      +'<span class="a-tag'+(open?' star':'')+'">'+(open?'★ 我们的明星':'选它为明星')+'</span></summary>'
+      +'<div class="a-body">';
+    a.facts.forEach(function(f,fi){
+      var k2=k+'#'+fi, recing=(isRec()&&recKey===k2);
+      h+='<div class="fr"><span class="fk'+(f.red?' red':'')+'">'+f.k+'</span>'
+        +'<div><div class="fen">'+f.en+'</div><div class="fcn">'+f.cn+'</div></div>'
+        +'<span class="fr-btns">'
+        +'<button class="btn btn-s" onclick="speak(\''+f.en.replace(/'/g,"\\'")+'\')">🔊</button>'
+        +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k2+'\',\'animal\')">'+(recing?'⏹':(takes[k2]?'🎙 重录':'🎙 我读'))+'</button>'
+        +(takes[k2]?'<button class="btn btn-s" onclick="playTake(\''+k2+'\')">▶ 回放</button>':'')
+        +'</span></div>';
+    });
+    h+='<div class="qa"><div class="qa-t">🙋 参观者可能会问（Q&A 卡素材 · 先想后看）</div>';
+    a.qa.forEach(function(q,i){
+      h+='<div class="qa-i"><b>Q'+(i+1)+': '+q.q+'</b>'
+        +'<button class="btn btn-s" style="margin-left:8px;padding:3px 10px;font-size:11px" onclick="toggleQA(this)">看参考答案</button>'
+        +'<div class="qa-a">A: '+q.a+'</div></div>';
+    });
+    h+='</div><div class="src">'+a.src+'</div>'
+      +'<div class="row"><button class="btn btn-o" onclick="pickAnimal(\''+k+'\')">⭐ 选 '+a.name+' 为我们的明星动物</button></div>'
+      +'</div></details>';
+  });
+  box.innerHTML=h;
+}
+function toggleQA(btn){btn.nextElementSibling.classList.toggle('show');
+  btn.textContent=btn.nextElementSibling.classList.contains('show')?'收起答案':'看参考答案';}
+function pickAnimal(k){
+  document.querySelectorAll('.pick').forEach(function(x){x.classList.toggle('sel',x.dataset.a===k);});
+  S.animal=k; setPick(k); save(); renderAnimals();
+  /* 换动物 → 中国故事卡 / 导览脚本 / 示范展板 / 研究员工作台一起跟着变 */
+  renderCn(); renderGuide(); renderModelBoard(); renderRoleDesks();
+  var card=document.querySelector('.acard[data-a="'+k+'"]');
+  if(card){var s2=document.getElementById('s2');if(s2)s2.open=true;card.scrollIntoView({behavior:'smooth',block:'start'});}
+}
+
+/* ================= 渲染：跟读对话（分栏标签） ================= */
+var dlgActive=0;
+function renderDialogues(){
+  var box=document.getElementById('dlgBox'),h='';
+  h+='<div class="gptabs" id="dlgTabs">';
+  DIALOGUES.forEach(function(dg,di){
+    h+='<button class="gptab'+(di===dlgActive?' on':'')+'" data-i="'+di+'" onclick="dlgTab('+di+')">💬 '+dg.t+'</button>';
+  });
+  h+='</div>';
+  DIALOGUES.forEach(function(dg,di){
+    h+='<div class="dlgpanel" data-i="'+di+'"'+(di===dlgActive?'':' hidden')+'>';
+    h+='<div class="dlg"><div class="dlg-h">'+dg.t+'<span class="dg-tag">'+dg.g+'</span>'
+      +'<button class="btn btn-s" onclick="speak(\''+dg.turns.map(function(t){return t[1];}).join(' ').replace(/'/g,"\\'")+'\')">▶ 整段播放</button></div>';
+    dg.turns.forEach(function(t,ti){
+      var k2='dlg-'+di+'-'+ti, recing=(isRec()&&recKey===k2);
+      h+='<div class="turn"><span class="role">'+t[0]+'</span>'
+        +'<div><div class="ten">'+t[1]+'</div><div class="tcn">'+t[2]+'</div></div>'
+        +'<span class="fr-btns">'
+        +'<button class="btn btn-s" onclick="speak(\''+t[1].replace(/'/g,"\\'")+'\')">🔊</button>'
+        +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k2+'\',\'turn\')">'+(recing?'⏹':(takes[k2]?'🎙 重录':'🎙 我读'))+'</button>'
+        +(takes[k2]?'<button class="btn btn-s" onclick="playTake(\''+k2+'\')">▶ 回放</button>':'')
+        +'</span></div>';
+    });
+    h+='</div></div>';
+  });
+  box.innerHTML=h;
+}
+function dlgTab(i){dlgActive=i;renderDialogues();}
+
+/* ================= 渲染：语法线（分栏标签） ================= */
+function renderGrammar(){
+  var box=document.getElementById('gramBox'),h='';
+  h+='<div class="gptabs" id="gpTabs">';
+  GRAMMAR.forEach(function(g,i){
+    h+='<button class="gptab'+(i===0?' on':'')+'" data-i="'+i+'" onclick="gpTab('+i+')">'+g.sn+'</button>';
+  });
+  h+='</div>';
+  GRAMMAR.forEach(function(g,i){
+    h+='<div class="gppanel" data-i="'+i+'"'+(i===0?'':' hidden')+'>'
+      +'<div class="gp"><div class="gp-h"><b>'+g.n+'</b><span>'+g.d+'</span></div>'
+      +'<div class="gp-rule">📐 怎么用：'+g.rule+'</div>'
+      +'<div class="gp-ctx">📍 动物情境：'+g.ctx+'</div>';
+    g.ex.forEach(function(e){
+      h+='<div class="gp-ex">'+e+'<button class="btn btn-s" onclick="speak(\''+e.replace(/'/g,"\\'")+'\')">🔊</button></div>';
+    });
+    h+='<div class="gp-task">🛠 '+g.task+'（会自动保存）：</div>'
+      +'<textarea id="g'+(i+1)+'" rows="1" placeholder="' + g.ex[0] + '"></textarea>'
+      +'<div class="row" style="margin-top:7px">'
+      +'<a class="btn btn-s" target="_blank" rel="noopener" href="../语法练习_A1-A2-B1-B2.html?p='+g.p+'&u=11">📗 去语法页练「'+g.sn+'」这一个点 →</a>'
+      +'</div></div></div>';
+  });
+  box.innerHTML=h;
+  GRAMMAR.forEach(function(g,i){
+    var el=document.getElementById('g'+(i+1));
+    if(S['g'+(i+1)]!=null) el.value=S['g'+(i+1)];
+    el.addEventListener('input',function(){S['g'+(i+1)]=el.value;save();});
+  });
+}
+function gpTab(i){
+  document.querySelectorAll('#gpTabs .gptab').forEach(function(b){b.classList.toggle('on',(+b.dataset.i)===i);});
+  document.querySelectorAll('.gppanel').forEach(function(p){p.hidden=((+p.dataset.i)!==i);});
+}
+
+/* ================= 渲染：角色分工 ================= */
+function renderRoles(){
+  var box=document.getElementById('roleBox'); if(!box)return;
+  var h='';
+  ROLES.forEach(function(r){
+    h+='<div class="role'+(S.role===r.id?' sel':'')+'" onclick="pickRole(\''+r.id+'\')">'
+      +'<div class="r-i">'+r.emo+'</div>'
+      +'<div class="r-n">'+r.n+' <small>'+r.cn+'</small></div>'
+      +'<div class="r-d">'+r.d+'</div></div>';
+  });
+  box.innerHTML=h;
+  var say=document.getElementById('roleSay'); if(!say)return;
+  var r=null; ROLES.forEach(function(x){if(x.id===S.role)r=x;});
+  if(!r){say.innerHTML='<div class="rsay"><div class="rt">先认领一个角色——认领后这里会出现你这一句「开场白」，点 🎙 可以直接录。</div></div>';return;}
+  var k='role#'+r.id, recing=(isRec()&&recKey===k);
+  say.innerHTML='<div class="rsay"><div class="rt">你的开场白（这是你的活儿，先把这一句练熟）：</div>'
+    +'<div class="ren">'+r.say+'</div><div class="rcn">'+r.sayCn+'</div>'
+    +'<div class="row" style="margin-top:8px">'
+    +'<button class="btn btn-s" onclick="speak(\''+r.say.replace(/'/g,"\\'")+'\')">🔊 听</button>'
+    +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k+'\',\'role\')">'+(recing?'⏹ 停止':(takes[k]?'🎙 重读':'🎙 我读'))+'</button>'
+    +(takes[k]?'<button class="btn btn-s" onclick="playTake(\''+k+'\')">▶ 回放</button>':'')
+    +'</div></div>';
+  renderRoleDesks();
+}
+function pickRole(id){S.role=id;save();renderRoles();}
+
+/* ================= 渲染：四角色专属工作台（合并为启动站分栏标签） ================= */
+var ROLE_NAMES={researcher:'研究员',designer:'设计师',guide:'导览员',recorder:'记录员'};
+var ROLE_DISP={researcher:'🔍 研究员',designer:'🎨 设计师',guide:'🎤 导览员',recorder:'📝 记录员'};
+function renderRoleDesks(){
+  var box=document.getElementById('roleDeskBox'); if(!box)return;
+  if(!S.role){
+    box.innerHTML='<div class="rdesk-empty">👆 先在上面认领一个角色——认领后，下面的标签就是<b>你专属的工作台</b>，点一下即可打开。</div>';
+    return;
+  }
+  /* 认领的角色排在第一页（默认打开），其余为「认领后解锁」 */
+  var order=[S.role].concat(['researcher','designer','guide','recorder'].filter(function(r){return r!==S.role;}));
+  var h='<div class="gptabs" id="rdTabs">';
+  order.forEach(function(rid,oi){
+    h+='<button class="gptab'+(oi===0?' on':'')+'" data-i="'+oi+'" onclick="rdTab('+oi+')">'+ROLE_DISP[rid]+'</button>';
+  });
+  h+='</div>';
+  order.forEach(function(rid,oi){
+    h+='<div class="rdpanel" data-i="'+oi+'"'+(oi===0?'':' hidden')+'>'+roleDeskInner(rid)+'</div>';
+  });
+  box.innerHTML=h;
+  bindRoleInputs(box);
+}
+function rdTab(i){
+  document.querySelectorAll('#rdTabs .gptab').forEach(function(b){b.classList.toggle('on',(+b.dataset.i)===i);});
+  document.querySelectorAll('.rdpanel').forEach(function(p){p.hidden=((+p.dataset.i)!==i);});
+}
+function roleDeskInner(rid){
+  if(rid!==S.role){
+    return '<div class="blk rdesk rdesk-off"><div class="blk-t">'+ROLE_DISP[rid]+' 工作台 <span>专属内容</span></div>'
+      +'<div class="rdesk-hint">这是 <b>'+ROLE_DISP[rid]+'</b> 的专属工作台。认领该角色后，这里会解锁它的专属任务。你当前认领的是 <b>'+ROLE_DISP[S.role]+'</b>。</div></div>';
+  }
+  if(rid==='researcher'){
+    var a=ANIMALS[S.animal]||ANIMALS.panda, fh='';
+    a.facts.slice(0,3).forEach(function(f,i){
+      fh+='<label class="rchk"><input type="checkbox" data-rf="'+i+'"'+(S.rFacts[i]?' checked':'')+'><span>我核实过：'+escAttr(f.en)+'</span></label>';
+    });
+    return '<div class="blk rdesk"><div class="blk-t">🔍 研究员工作台 <span>你的活儿：保证每句话都站得住</span></div>'
+      +'<p class="rdesk-lead">你是研究员。展板上的事实由你负责——别人写，你核实、你注明来源。这一台对应范卡第④块「Source」。</p>'
+      +'<div class="rdesk-sec">① 核对 3 个事实（从情报卡来，勾上你已确认）</div>'
+      +'<div class="chk">'+fh+'</div>'
+      +'<div class="rdesk-sec">② 写来源（一句话）</div>'
+      +'<textarea id="rSrc" rows="1" placeholder="Our facts come from the animal fact card and WWF.">'+escAttr(S.rSrc||'')+'</textarea>'
+      +'<div class="rdesk-sec">③ 挑 1 条最该放进展板的 Fun Fact</div>'
+      +'<textarea id="rFun" rows="1" placeholder="A baby panda is as small as a stick of butter!">'+escAttr(S.rFun||'')+'</textarea>'
+      +'</div>';
+  }
+  if(rid==='designer'){
+    var modes=[['vote','🗳 投票游戏'],['qa','🃏 问答卡'],['sticker','🏷 贴纸墙']];
+    var mh='';
+    modes.forEach(function(m){ mh+='<label class="'+(S.dMode===m[0]?'on':'')+'"><input type="radio" name="dmode" value="'+m[0]+'"'+(S.dMode===m[0]?' checked':'')+'>'+m[1]+'</label>'; });
+    return '<div class="blk rdesk"><div class="blk-t">🎨 设计师工作台 <span>你的活儿：让展板好看、好懂、有互动</span></div>'
+      +'<p class="rdesk-lead">你是设计师。展板的样子由你决定——选一个互动、排好版式、定下字号配色。</p>'
+      +'<div class="rdesk-sec">① 选一个互动方式（开放日让参观者动手）</div>'
+      +'<div class="rd-mode">'+mh+'</div>'
+      +'<div class="rdesk-sec">② 描述你的版面（一句话）</div>'
+      +'<textarea id="dLayout" rows="1" placeholder="Our board has the title at the top, 3 facts in the middle, and a voting game at the bottom.">'+escAttr(S.dLayout||'')+'</textarea>'
+      +'<div class="rdesk-sec">③ 两个设计决定</div>'
+      +'<div class="chk"><label><input type="checkbox" id="dBig"'+(S.dBig?' checked':'')+'><span>字够大，后排也看得清</span></label>'
+      +'<label><input type="checkbox" id="dColor"'+(S.dColor?' checked':'')+'><span>只用黑金，重点用金色（不用花花绿绿）</span></label></div>'
+      +'</div>';
+  }
+  if(rid==='recorder'){
+    var boards=[['board','展板'],['vid','代言视频'],['qa','问答卡'],['rev','据反馈修订']];
+    var bh='';
+    boards.forEach(function(b){ bh+='<label><input type="checkbox" data-rb="'+b[0]+'"'+(S.recBoard[b[0]]?' checked':'')+'><span>'+b[1]+'</span></label>'; });
+    return '<div class="blk rdesk"><div class="blk-t">📝 记录员日志台 <span>你的活儿：把开放日发生的事记下来</span></div>'
+      +'<p class="rdesk-lead">你是记录员。别人做，你记——参观者说了什么、四件产出完成没、今天我们改进了什么。</p>'
+      +'<div class="rdesk-sec">① 开放日记录 3 条参观者原话</div>'
+      +'<textarea id="rec1" rows="1" placeholder="Visitor 1 said: ...">'+escAttr(S.rec1||'')+'</textarea>'
+      +'<textarea id="rec2" rows="1" placeholder="Visitor 2 said: ...">'+escAttr(S.rec2||'')+'</textarea>'
+      +'<textarea id="rec3" rows="1" placeholder="Visitor 3 said: ...">'+escAttr(S.rec3||'')+'</textarea>'
+      +'<div class="rdesk-sec">② 进度看板（四件产出，打勾 = 完成）</div>'
+      +'<div class="chk">'+bh+'</div>'
+      +'<div class="rdesk-sec">③ 写一句：今天我们改进了什么</div>'
+      +'<textarea id="recImprove" rows="1" placeholder="Today we made the words bigger because visitors could not read them.">'+escAttr(S.recImprove||'')+'</textarea>'
+      +'</div>';
+  }
+  /* guide */
+  return '<div class="blk rdesk"><div class="blk-t">🎤 导览员工作台 <span>你的活儿：开口讲 30 秒</span></div>'
+    +'<p class="rdesk-lead">你是导览员。开放日你负责讲 30 秒——下面填你的导览计划，去展示站照着「导览员须知」5 步清单练。</p>'
+    +'<div class="guide-focus"><div class="gf-t">🎤 你的导览计划（开放日前填好）</div>'
+    +'<textarea id="gFocus" rows="2" placeholder="Today I will share 3 facts about our animal, and I will ask: Do you like ___?">'+escAttr(S.gFocus||'')+'</textarea>'
+    +'<div class="row" style="margin-top:7px"><button class="btn btn-s" onclick="speak(gFocus.value||\'Today I will share 3 facts about our animal.\')">🔊 听</button></div></div>'
+    +'</div>';
+}
+/* 给动态生成的工作台绑定输入保存 */
+function bindRoleInputs(host){
+  host.querySelectorAll('[data-rf]').forEach(function(c){
+    c.addEventListener('change',function(){S.rFacts[c.getAttribute('data-rf')]=c.checked;save();});
+  });
+  host.querySelectorAll('[data-rb]').forEach(function(c){
+    c.addEventListener('change',function(){S.recBoard[c.getAttribute('data-rb')]=c.checked;save();});
+  });
+  var dm=host.querySelector('input[name="dmode"]');
+  if(dm)host.querySelectorAll('input[name="dmode"]').forEach(function(r){
+    r.addEventListener('change',function(){ if(r.checked){S.dMode=r.value; renderRoleDesks(); save();} });
+  });
+  ['dBig','dColor'].forEach(function(id){
+    var el=host.querySelector('#'+id);
+    if(el)el.addEventListener('change',function(){ S[id]=el.checked; save(); });
+  });
+  ['rSrc','rFun','dLayout','rec1','rec2','rec3','recImprove','gFocus'].forEach(function(id){
+    var el=host.querySelector('#'+id);
+    if(el&&!el.hasAttribute('data-bound')){ el.setAttribute('data-bound','1');
+      el.addEventListener('input',function(){S[id]=el.value;save();}); }
+  });
+}
+
+/* ================= 通用：按 k 取一条事实（范卡 / 导览脚本用） ================= */
+function factOf(a,k){var f=null;(a.facts||[]).forEach(function(x){if(!f&&x.k===k)f=x;});return f||{en:'',cn:''};}
+
+/* ================= 渲染：中国故事卡（跟随所选动物） ================= */
+function renderCn(){
+  var box=document.getElementById('cnBox'); if(!box)return;
+  var a=S.animal||'panda', c=CN_LINK[a]||CN_LINK.panda;
+  var h='';
+  c.en.forEach(function(s,i){
+    var k='cn'+i, recing=(isRec()&&recKey===k);
+    h+='<div class="fr"><span class="fk red">CHINA</span><div>'
+      +'<div class="fen">'+s+'</div><div class="fcn">'+c.cn[i]+'</div></div>'
+      +'<span class="fr-btns">'
+      +'<button class="btn btn-s" onclick="speak(\''+s.replace(/'/g,"\\'")+'\')">🔊</button>'
+      +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k+'\',\'cn\')">'+(recing?'⏹ 停止':(takes[k]?'🎙 重读':'🎙 我读'))+'</button>'
+      +(takes[k]?'<button class="btn btn-s" onclick="playTake(\''+k+'\')">▶ 回放</button>':'')
+      +'</span></div>';
+  });
+  h+='<div class="china"><div class="c-t">'+c.t+'</div>'
+    +'<div class="say">🎯 你的任务：'+c.task+'<br>'+c.en.join(' ')+'</div></div>';
+  box.innerHTML=h;
+}
+
+/* ================= 渲染：中国珍稀动物 · 扩展角 ================= */
+function renderCnRare(){
+  var box=document.getElementById('cnRareBox'); if(!box)return;
+  var h='';
+  CN_RARE.forEach(function(r,i){
+    var k='rare#'+i, recing=(isRec()&&recKey===k);
+    var full=r.n+'. '+r.en;
+    h+='<div class="fr"><span class="fk">'+r.cnName+'</span><div>'
+      +'<div class="fen">'+r.emo+' <b>'+r.n+'</b> — '+r.en+'</div><div class="fcn">'+r.cn+'</div></div>'
+      +'<span class="fr-btns">'
+      +'<button class="btn btn-s" onclick="speak(\''+full.replace(/'/g,"\\'")+'\')">🔊</button>'
+      +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k+'\',\'rare\')">'+(recing?'⏹ 停止':(takes[k]?'🎙 重读':'🎙 我读'))+'</button>'
+      +(takes[k]?'<button class="btn btn-s" onclick="playTake(\''+k+'\')">▶ 回放</button>':'')
+      +'</span></div>';
+  });
+  box.innerHTML=h;
+}
+
+/* ================= 渲染：导览示范脚本（展示站 · 把「说出」也做成可练的） ================= */
+function guideLines(){
+  var a=ANIMALS[S.animal||'panda'];
+  var nm=a.name.toLowerCase();
+  return GUIDE.map(function(g){
+    if(g.k==='Share') return {k:g.k,en:'This is the '+nm+'. '+factOf(a,'FOOD').en+' '+factOf(a,'HOME').en,cn:g.cn};
+    if(g.k==='Ask')   return {k:g.k,en:'Now my question for you — why do you think '+nm+'s are amazing?',cn:g.cn};
+    return g;
+  });
+}
+function renderGuide(){
+  var box=document.getElementById('guideBox'); if(!box)return;
+  var h='';
+  guideLines().forEach(function(g,i){
+    var k='guide#'+i, recing=(isRec()&&recKey===k);
+    h+='<div class="fr"><span class="fk">'+g.k+'</span><div>'
+      +'<div class="fen">'+g.en+'</div><div class="fcn">'+g.cn+'</div></div>'
+      +'<span class="fr-btns">'
+      +'<button class="btn btn-s" onclick="speak(\''+g.en.replace(/'/g,"\\'")+'\')">🔊</button>'
+      +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k+'\',\'guide\')">'+(recing?'⏹ 停止':(takes[k]?'🎙 重读':'🎙 我读'))+'</button>'
+      +(takes[k]?'<button class="btn btn-s" onclick="playTake(\''+k+'\')">▶ 回放</button>':'')
+      +'</span></div>';
+  });
+  box.innerHTML=h;
+}
+function guidePlayAll(){
+  var t=guideLines().map(function(g){return g.en;}).join(' ');
+  speak(t);
+}
+
+/* ================= 渲染：完整示范展板（范卡） ================= */
+function renderModelBoard(){
+  var box=document.getElementById('modelBoard'); if(!box)return;
+  var a=ANIMALS[S.animal||'panda'];
+  var w=factOf(a,'WHAT').en, fo=factOf(a,'FOOD').en, ho=factOf(a,'HOME').en,
+      ca=factOf(a,'CAN').en, fun=factOf(a,'FUN').en;
+  var spoken=[w,fo,fun].join(' ');
+  box.innerHTML='<div class="mboard">'
+    +'<div class="mb-h">'+a.emo+' THE '+a.name.toUpperCase()+'</div>'
+    +'<div class="mb-l"><b>①</b> '+w+'</div>'
+    +'<div class="mb-l"><b>②</b> '+fo+' '+ho+' '+ca+'</div>'
+    +'<div class="mb-l"><b>③</b> '+fun+'</div>'
+    +'<div class="mb-src">④ '+a.src+'</div></div>'
+    +'<div class="row" style="margin-top:9px">'
+    +'<button class="btn btn-g" onclick="speak(\''+spoken.replace(/'/g,"\\'")+'\')">🔊 听这块展板</button></div>'
+    +'<p class="hint" style="margin-top:7px">看得出结构吗：<b>① 先说这是什么 → ② 三个事实（吃什么／住哪儿／会什么）→ ③ 一条让人「哇」的 → ④ 最后注明来源</b>。照这个样子，把你的动物换进去。</p>';
+}
+
+/* ================= 动物选择 ================= */
+function setPick(a){var names={panda:'🐼 Panda（来自中国的国宝）',dolphin:'🐬 Dolphin',elephant:'🐘 Elephant',penguin:'🐧 Penguin'};
+  document.getElementById('pickName').textContent=names[a]||a;}
+if(S.animal){var pk=document.querySelector('.pick[data-a="'+S.animal+'"]'); if(pk)pk.classList.add('sel'); setPick(S.animal);}
+document.querySelectorAll('.pick').forEach(function(p){
+  p.addEventListener('click',function(){pickAnimal(p.dataset.a);});
+});
+
+/* ================= 星级 ================= */
+function paintStars(n){document.querySelectorAll('#fbStars b').forEach(function(b,i){b.classList.toggle('on',i<n);});}
+paintStars(S.fbStars);
+document.querySelectorAll('#fbStars b').forEach(function(b,i){
+  b.addEventListener('click',function(){S.fbStars=i+1;paintStars(S.fbStars);save();});
+});
+
+/* ================= 站点完成 ================= */
+document.querySelectorAll('.stdone').forEach(function(c){
+  var st=+c.dataset.st;
+  if(S.done.indexOf(st)>=0){c.checked=true;document.getElementById('rn'+st).classList.add('on');}
+  c.addEventListener('change',function(){
+    if(c.checked){if(S.done.indexOf(st)<0)S.done.push(st);document.getElementById('rn'+st).classList.add('on');}
+    else{S.done=S.done.filter(function(x){return x!==st;});document.getElementById('rn'+st).classList.remove('on');}
+    save();checkAll();
+  });
+});
+function checkAll(){document.getElementById('donebar').classList.toggle('show',S.done.length>=7);}
+function save(){localStorage.setItem(KEY,JSON.stringify(S));}
+function saveNow(btn){save();btn.textContent='✓ 已保存';setTimeout(function(){btn.textContent='💾 保存进度';},1200);}
+
+/* ================= 句型/词汇银行 ================= */
+/* 句型框架 + 例句：A1 孩子照框架填空容易填错，所以每个框架都配一句真实例句
+   （取自本单元四种动物的情报卡，插进去改个词就能用） */
+var SENT_PATTERNS=[
+  {f:'It has …', ins:'It has ', ex:'It has black fur around its eyes.', cn:'它的眼睛周围有一圈黑毛。'},
+  {f:'It can …', ins:'It can ', ex:'It can climb trees, and it can swim.', cn:'它会爬树，也会游泳。'},
+  {f:'It eats …', ins:'It eats ', ex:'It eats bamboo — about 12 hours a day!', cn:'它吃竹子，每天大约12小时。'},
+  {f:'It lives in …', ins:'It lives in ', ex:'It lives in mountain forests in China.', cn:'它住在中国山区的森林里。'},
+  {f:'… is bigger than …', ins:'is bigger than ', ex:'An elephant is bigger than a penguin.', cn:'大象比企鹅大。'},
+  {f:'because …', ins:'because ', ex:'I like dolphins because they are smart.', cn:'我喜欢海豚，因为它们很聪明。'},
+  {f:'… is from China.', ins:'Pandas are from China. ', ex:'Pandas are from China. They are our national treasure.', cn:'熊猫来自中国，是中国的国宝。'},
+  {f:'I think …', ins:'I think ', ex:'I think pandas are the cutest animals in the world.', cn:'我觉得熊猫是世界上最可爱的动物。'}
+];
+function renderSentBank(){
+  var box=document.getElementById('sentBank'); if(!box)return;
+  var h='';
+  SENT_PATTERNS.forEach(function(p){
+    h+='<div class="pat">'
+      +'<span class="chipx" data-ins="'+p.ins+'">'+p.f+'</span>'
+      +'<span class="chipx ex">'+p.ex+'</span>'
+      +'<button class="btn btn-s" onclick="speak(\''+p.ex.replace(/'/g,"\\'")+'\')">🔊</button>'
+      +'<span class="pat-cn">'+p.cn+'</span></div>';
+  });
+  box.innerHTML=h;
+}
+var lastTA=null;
+function insChip(c){
+  if(!lastTA){alert('先点一下要填写的大框，再点句型或词语插入。');return;}
+  var t=c.getAttribute('data-ins')||c.textContent;
+  var s=lastTA.selectionStart||lastTA.value.length;
+  lastTA.value=lastTA.value.slice(0,s)+t+lastTA.value.slice(s);
+  lastTA.focus(); lastTA.selectionStart=lastTA.selectionEnd=s+t.length;
+  S[lastTA.id]=lastTA.value; save();
+}
+renderSentBank();
+document.querySelectorAll('textarea').forEach(function(t){t.addEventListener('focus',function(){lastTA=t;});});
+document.querySelectorAll('.chipx').forEach(function(c){
+  c.addEventListener('click',function(){insChip(this);});
+});
+
+/* ================= TTS / 录音 ================= */
+function speak(t,cb){
+  t=(t||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim(); if(!t){if(cb)cb();return;}
+  try{window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=.85;
+    if(cb)u.onend=cb;
+    window.speechSynthesis.speak(u);
+  }catch(e){ if(cb)cb(); }
+}
+/* ================= 统一录音 + A/B 对比 ================= */
+var mediaRec=null,recChunks=[],recBtn=null,recKey=null,micStream=null;
+var meterCtx=null,meterAnalyser=null,meterRAF=null;
+var takes={};   /* key -> 音频 URL（仅本页内存，刷新重录） */
+
+function isRec(){return !!(mediaRec&&mediaRec.state==='recording');}
+function stopMeter(){
+  if(meterRAF)cancelAnimationFrame(meterRAF);
+  meterRAF=null;
+  var m=document.getElementById('recMeter');
+  if(m)m.style.width='0%';
+}
+function startMeter(stream){
+  try{
+    meterCtx=meterCtx||new (window.AudioContext||window.webkitAudioContext)();
+    var src=meterCtx.createMediaStreamSource(stream);
+    meterAnalyser=meterCtx.createAnalyser();
+    meterAnalyser.fftSize=256;
+    src.connect(meterAnalyser);
+    var data=new Uint8Array(meterAnalyser.frequencyBinCount);
+    (function loop(){
+      if(!meterRAF)return;
+      meterRAF=requestAnimationFrame(loop);
+      meterAnalyser.getByteTimeDomainData(data);
+      var peak=0;
+      for(var i=0;i<data.length;i++){var v=Math.abs(data[i]-128)/128;if(v>peak)peak=v;}
+      var m=document.getElementById('recMeter');
+      if(m)m.style.width=Math.min(100,peak*140)+'%';
+    })();
+  }catch(e){}
+}
+/* mode: machine=跟读机 / turn=对话轮次 / extinct=纪念馆卡 / animal=情报卡 / plain=启动站等 */
+function rec(btn,key,mode){
+  mode=mode||'plain';
+  if(isRec()){ mediaRec.stop(); return; }   /* 再点一次=停止；停稳后再点新的一句 */
+  if(!navigator.mediaDevices||!window.MediaRecorder){
+    alert('当前浏览器不支持录音。可以只用「🔊 听示范 + 自己大声读」。');
+    return;
+  }
+  stopAuto();
+  try{window.speechSynthesis.cancel();}catch(e){}
+  recBtn=btn; recKey=key;
+  navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
+    micStream=stream;
+    mediaRec=new MediaRecorder(stream);
+    recChunks=[];
+    mediaRec.ondataavailable=function(e){if(e.data&&e.data.size)recChunks.push(e.data);};
+    mediaRec.onstop=function(){
+      try{micStream.getTracks().forEach(function(t){t.stop();});}catch(e){}
+      stopMeter();
+      var wasBtn=recBtn, wasMode=mode, wasKey=recKey;
+      var mt=(mediaRec&&mediaRec.mimeType)||'audio/webm';
+      mediaRec=null; recBtn=null; recKey=null;
+      if(recChunks.length){
+        var url=URL.createObjectURL(new Blob(recChunks,{type:mt}));
+        takes[wasKey]=url;
+        new Audio(url).play();              /* 停止即自动回放，先听自己 */
+        reRenderAfter(wasMode,wasBtn,true);
+      }else{
+        reRenderAfter(wasMode,wasBtn,false);
+      }
+    };
+    mediaRec.start();
+    btn.classList.add('rec-ing');
+    btn.innerHTML='⏹ 停止';
+    startMeter(micStream);
+  }).catch(function(){
+    alert('麦克风没授权，无法录音。可以先用「🔊 听示范 + 自己大声读」。');
+  });
+}
+/* 录音停止后按 mode 重渲染对应区域（新增 role/cn/rare/guide 四种） */
+function reRenderAfter(mode,btn,got){
+  if(mode==='machine')renderShadow();
+  else if(mode==='turn')renderDialogues();
+  else if(mode==='extinct'){renderExtinct();renderShadow();}
+  else if(mode==='animal'){renderAnimals();renderShadow();}
+  else if(mode==='role')renderRoles();
+  else if(mode==='cn')renderCn();
+  else if(mode==='rare')renderCnRare();
+  else if(mode==='guide')renderGuide();
+  else if(btn){btn.classList.remove('rec-ing');btn.innerHTML=got?'🎙 重读':'🎙 我读';}
+}
+function playTake(key){
+  if(!takes[key])return false;
+  try{window.speechSynthesis.cancel();}catch(e){}
+  new Audio(takes[key]).play();
+  return true;
+}
+
+/* ================= Facts 跟读机 ================= */
+var SH_ANIMALS=['panda','dolphin','elephant','penguin','extinct','dlg1','dlg2','dlg3','dlg4'];
+var shAnimal=S.shAnimal||'panda', shIdx=0, autoTimer=null, autoOn=false;
+S.shadow=S.shadow||{};
+function shDoneCount(a){return (S.shadow[a]||[]).length;}
+function shList(){return SH_META[shAnimal].facts;}
+function renderShTabs(){
+  var h='';
+  SH_ANIMALS.forEach(function(a){
+    h+='<span class="sh-tab'+(a===shAnimal?' on':'')+'" onclick="shSwitch(\''+a+'\')">'
+      +SH_META[a].emo+' '+SH_META[a].name+' '+shDoneCount(a)+'/'+SH_META[a].facts.length+'</span>';
+  });
+  document.getElementById('shTabs').innerHTML=h;
+}
+function shSwitch(a){stopAuto();shAnimal=a;shIdx=0;S.shAnimal=a;save();renderShadow();}
+function renderShadow(){
+  var list=shList();
+  if(shIdx>=list.length)shIdx=list.length-1;
+  if(shIdx<0)shIdx=0;
+  var f=list[shIdx];
+  document.getElementById('shEn').innerHTML=(f.sp?'<span class="sh-sp">'+f.sp+'</span> ':'')+f.en;
+  document.getElementById('shCn').textContent=f.cn;
+  var tot=0,don=0;
+  SH_ANIMALS.forEach(function(a){tot+=SH_META[a].facts.length;don+=shDoneCount(a);});
+  document.getElementById('shBar').style.width=(don/tot*100)+'%';
+  document.getElementById('shNum').textContent='总进度 '+don+' / '+tot+' 句';
+  var done=S.shadow[shAnimal]||[],dh='';
+  list.forEach(function(x,i){dh+='<span class="sh-dot'+(i===shIdx?' cur':'')+(done.indexOf(i)>=0?' done':'')+'"></span>';});
+  document.getElementById('shDots').innerHTML=dh;
+  renderShTabs();
+  var rb=document.getElementById('shRecBtn');
+  if(rb){
+    var recing=isRec()&&recKey===shKey();
+    rb.classList.toggle('rec-ing',recing);
+    rb.innerHTML=recing?'⏹ 停止':(takes[shKey()]?'🎙 重读更棒':'🎙 我读');
+  }
+}
+function shKey(){return shAnimal+'#'+shIdx;}
+function shReplay(){if(!playTake(shKey()))alert('这一句还没录音。先点「🎙 我读」录一版，再回放对比。');}
+function shCompare(){
+  var k=shKey();
+  if(!takes[k]){alert('先点「🎙 我读」录一版，才能和示范 A/B 对比。');return;}
+  speak(shList()[shIdx].en,function(){playTake(k);});
+}
+function shPlay(){var f=shList()[shIdx];if(f)speak(f.en);}
+function shPrev(){stopAuto();shIdx=Math.max(0,shIdx-1);renderShadow();}
+function shNext(){stopAuto();shIdx=Math.min(shList().length-1,shIdx+1);renderShadow();}
+function shDone(){
+  var d=S.shadow[shAnimal]=S.shadow[shAnimal]||[];
+  if(d.indexOf(shIdx)<0)d.push(shIdx);
+  save();renderShadow();
+  if(shIdx<shList().length-1){shIdx++;renderShadow();}
+  else stopAuto();
+}
+function toggleAuto(){
+  if(autoOn){stopAuto();return;}
+  autoOn=true;
+  document.getElementById('shAutoBtn').textContent='⏹ 停止连播';
+  autoStep();
+}
+function autoStep(){
+  if(!autoOn)return;
+  var f=shList()[shIdx];
+  if(!f){stopAuto();return;}
+  try{
+    window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(f.en);u.lang='en-US';u.rate=.8;
+    u.onend=function(){
+      if(!autoOn)return;
+      autoTimer=setTimeout(function(){
+        if(!autoOn)return;
+        if(shIdx<shList().length-1){shIdx++;renderShadow();autoStep();}
+        else stopAuto();
+      },+document.getElementById('shGap').value);
+    };
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+function stopAuto(){
+  autoOn=false;
+  if(autoTimer)clearTimeout(autoTimer);
+  try{window.speechSynthesis.cancel();}catch(e){}
+  var b=document.getElementById('shAutoBtn');
+  if(b)b.textContent='🔁 自动连播';
+}
+
+/* ================= 听力挑战：它是谁 ================= */
+var lqRound=0,lqScore=0,lqCur=null,lqPool=[],lqOver=false;
+function lqStart(){
+  lqRound=0;lqScore=0;lqOver=false;
+  lqPool=[];
+  SH_ANIMALS.forEach(function(a){
+    if(a.indexOf('dlg')===0)return;   /* 对话不属任何动物，不进「它是谁」挑战 */
+    SH_META[a].facts.forEach(function(f){lqPool.push({a:a,en:f.en,cn:f.cn});});
+  });
+  lqNext();
+}
+function lqNext(){
+  lqRound++;
+  document.getElementById('lqNext').style.display='none';
+  document.getElementById('lqFb').innerHTML='';
+  document.getElementById('lqPlay').style.display='inline-block';
+  if(lqRound>5){lqFinish();return;}
+  document.getElementById('lqRound').textContent='第 '+lqRound+' / 5 题';
+  document.getElementById('lqScore').textContent='得分 '+lqScore;
+  lqCur=lqPool.splice(Math.floor(Math.random()*lqPool.length),1)[0];
+  var h='';
+  SH_ANIMALS.forEach(function(a){
+    if(a.indexOf('dlg')===0)return;   /* 选项只列动物 */
+    h+='<div class="lq-opt" onclick="lqAnswer(\''+a+'\',this)">'+SH_META[a].emo+' '+SH_META[a].name+'</div>';
+  });
+  document.getElementById('lqOpts').innerHTML=h;
+}
+function lqPlay(){if(lqCur)speak(lqCur.en);}
+function lqAnswer(a,el){
+  var ok=(a===lqCur.a);
+  document.querySelectorAll('.lq-opt').forEach(function(o){o.style.pointerEvents='none';});
+  el.classList.add(ok?'ok':'no');
+  if(!ok){
+    document.querySelectorAll('.lq-opt').forEach(function(o){
+      if(o.textContent.indexOf(SH_META[lqCur.a].name)>=0)o.classList.add('ok');
+    });
+  }
+  if(ok)lqScore++;
+  document.getElementById('lqFb').innerHTML=ok
+    ?'<span class="ok">✅ 答对了！</span> '+lqCur.en+' <span style="color:var(--sub)">'+lqCur.cn+'</span>'
+    :'<span class="no">❌ 答案是 '+SH_META[lqCur.a].emo+' '+SH_META[lqCur.a].name+'。</span> '+lqCur.en+' <span style="color:var(--sub)">'+lqCur.cn+'</span>';
+  document.getElementById('lqScore').textContent='得分 '+lqScore;
+  var b=document.getElementById('lqNext');
+  b.style.display='inline-block';
+  b.textContent=(lqRound>=5)?'看结果 →':'下一题 →';
+}
+function lqFinish(){
+  lqOver=true;
+  document.getElementById('lqRound').textContent='本轮结束';
+  document.getElementById('lqOpts').innerHTML='';
+  document.getElementById('lqPlay').style.display='none';
+  document.getElementById('lqFb').innerHTML='🏁 5 题得分：<b style="color:var(--gold)">'+lqScore+' / 5</b> — '
+    +(lqScore===5?'满分！你是真正的动物专家 🏆':(lqScore>=3?'不错，再练一轮更稳 💪':'多听几遍 Facts 跟读机，再来 🔁'));
+  var b=document.getElementById('lqNext');
+  b.style.display='inline-block';b.textContent='🔁 再来一轮';
+}
+function lqNextBtn(){ if(lqOver) lqStart(); else lqNext(); }
+
+/* ================= 渲染：灭绝动物纪念馆 ================= */
+function renderExtinct(){
+  var box=document.getElementById('extinctBox'),h='';
+  EXTINCT.facts.forEach(function(f,fi){
+    var k2='extinct#'+fi, recing=(isRec()&&recKey===k2);
+    h+='<div class="fr"><span class="fk red">'+f.k+'</span>'
+      +'<div><div class="fen">'+f.en+'</div><div class="fcn">'+f.cn+'</div></div>'
+      +'<span class="fr-btns">'
+      +'<button class="btn btn-s" onclick="speak(\''+f.en.replace(/'/g,"\\'")+'\')">🔊</button>'
+      +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k2+'\',\'extinct\')">'+(recing?'⏹':(takes[k2]?'🎙 重录':'🎙 我读'))+'</button>'
+      +(takes[k2]?'<button class="btn btn-s" onclick="playTake(\''+k2+'\')">▶ 回放</button>':'')
+      +'</span></div>';
+  });
+  box.innerHTML=h;
+}
+function goShadow(a){
+  shSwitch(a);
+  var s3=document.getElementById('s3'); if(s3)s3.open=true;
+  document.getElementById('s3').scrollIntoView({behavior:'smooth'});
+}
+
+/* ================= 启动渲染 ================= */
+renderAnimals(); renderDialogues(); renderGrammar(); renderExtinct(); renderShadow(); lqStart(); checkAll();
+/* v10：角色分工 / 中国故事卡 / 中国珍稀动物 / 导览脚本 / 示范展板 */
+renderRoles(); renderCn(); renderCnRare(); renderGuide(); renderModelBoard();
+/* 修订勾选项 */
+(function(){
+  var rd=document.getElementById('revDone'); if(!rd)return;
+  if(S.revDone)rd.checked=true;
+  rd.addEventListener('change',function(){S.revDone=rd.checked;save();});
+})();
+/* 驱动问题回看：恢复选中态 */
+if(S.dqYes&&document.getElementById('dqYes'))document.querySelectorAll('#dqYes label').forEach(function(l){l.classList.toggle('on',l.dataset.v===S.dqYes);});
+/* ================= 7 站手风琴：顶部导航跳转 / 默认展开 / 深链 ================= */
+function openStation(n){
+  var d=document.getElementById('s'+n);
+  if(d){ d.open=true; d.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+(function(){
+  /* 📌 并列多开开关：默认关（单开手风琴）；开后不再自动收起其它站 */
+  var allowMulti=false;
+  var moEl=document.getElementById('multiOpen');
+  if(moEl) moEl.addEventListener('change',function(){ allowMulti=moEl.checked; });
+  /* 单开手风琴（true accordion）：展开一站时自动收起其它站（允许并列时跳过） */
+  document.querySelectorAll('details.st').forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if(d.open && !allowMulti){
+        document.querySelectorAll('details.st').forEach(function(o){ if(o!==d && o.open) o.open=false; });
+      }
+    });
+  });
+  /* 顶部导航条：点哪站就展开哪站并滚过去 */
+  var rail=document.querySelector('.rail');
+  if(rail) rail.querySelectorAll('.rn').forEach(function(rn,i){
+    rn.addEventListener('click',function(){ openStation(i+1); });
+  });
+  /* 默认只展开第 1 站；若带 #sN 深链则展开对应站 */
+  var hash=(typeof location!=='undefined'&&location)?location.hash:'';
+  var m=hash.match(/^#s(\d+)$/);
+  if(m){ openStation(+m[1]); }
+  else { var s1=document.getElementById('s1'); if(s1)s1.open=true; }
+})();
+</script>
+</body>
+</html>

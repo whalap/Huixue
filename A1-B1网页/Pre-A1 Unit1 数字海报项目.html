@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 1 项目 · 我的数字海报</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.proj({
+  n: 1,
+  emo: '🔢',
+  beast: '数字精灵',
+  en: 'My Number Poster',
+  cn: '我的数字海报',
+  make: '做一张属于自己的数字海报：1–20 每个数字配对应数量的小图，再加一列「整十」；' +
+        '最后写三句关于你自己的数字（年龄、家里几口人、你的幸运数字）。',
+  tip: '海报的重点不是好看，是 <b>一眼看出「数字 ↔ 数量」</b>。3 后面就画 3 个东西，' +
+       '别画一堆装饰把数字盖住了。念的时候用手指着，一个一个点过去。',
+  steps: [
+    '拿一张 A4（能 A3 更好）的纸横着放，最上面写标题：<b>Numbers 1–20</b>，右下角写你的英文名字。',
+    '把 1–20 排成四行五列，每个数字先写阿拉伯数字、再写英文单词：<b>3 three</b>。',
+    '每个数字后面<b>画对应数量的小图</b>：3 后面画 3 个苹果，7 后面画 7 颗星星 —— 画同一种东西就行，不用变花样。',
+    '海报下方加一列「整十」：<b>20 twenty / 30 thirty / 40 forty / 50 fifty / 60 sixty / 70 seventy / 80 eighty / 90 ninety / 100 one hundred</b>，' +
+    '各画一条小长条，越大的数字条越长。',
+    '写<b>三句关于你自己的数字</b>，用下面的句型（不会的词就查，别空着）：年龄、家里人数、你的幸运数字。',
+    '<b>指着海报念一遍</b>：1 到 20 顺着念，再从 20 倒数回 1。倒着数卡住很正常，卡在哪就从那儿重新开始。'
+  ],
+  scaffold: {
+    lines: [
+      {en:'I am nine years old.', cn:'我九岁。'},
+      {en:'There are four people in my family.', cn:'我家有四口人。'},
+      {en:'My lucky number is seven.', cn:'我的幸运数字是七。'},
+      {en:'I have two pens.', cn:'我有两支钢笔。'},
+      {en:'How many apples? — Three apples.', cn:'有多少个苹果？——三个。'},
+      {en:'Count with me: one, two, three.', cn:'跟我数：一、二、三。'}
+    ],
+    words: ['one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety','hundred','how many','years old','family','lucky number']
+  },
+  demo: [
+    {t:'海报标题', en:'Numbers 1–20 — by Tom', cn:'数字 1–20 —— Tom 制作'},
+    {t:'第一行可以这样排', en:'1 one ●　　2 two ●●　　3 three ●●●　　4 four ●●●●', cn:'数字 + 单词 + 对应数量的点'},
+    {t:'整十那一列', en:'20 twenty ／ 30 thirty ／ 40 forty ／ 50 fifty ／ … ／ 100 one hundred', cn:'整十与一百'},
+    {t:'关于我的三句话', en:'I am nine years old. There are four people in my family. My lucky number is seven.', cn:'我九岁。我家有四口人。我的幸运数字是七。'}
+  ],
+  checks: [
+    '1–20 都写了英文单词（不只是阿拉伯数字）',
+    '每个数字后面画了对应数量的图',
+    '整十那一列写了 twenty 到 ninety 和 one hundred',
+    '写了三句关于我自己的数字',
+    '海报有标题和我的名字',
+    '我能从 1 念到 20，还能从 20 倒数回 1'
+  ],
+  ph: '把海报上的英文写在这里（1–20、整十、关于你的三句话）……写完点保存。',
+  unitFile: 'Pre-A1 Unit1 英语跟读.html',
+  prev: 'Pre-A1 Unit0 字母小书项目.html',
+  next: 'Pre-A1 Unit2 颜色拼贴项目.html'
+});
+</script>
+</body>
+</html>

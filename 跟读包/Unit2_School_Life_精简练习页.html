@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 2 School life · 点读学习页（沪教版 七上）</title>
+<style>
+  :root{
+    --bg:#FFF8F0; --card:#FFFFFF; --ink:#2B2620; --sub:#6B6359;
+    --line:#EFE6DA; --coral:#E8552D; --teal:#0F8A7D; --amber:#B57A00;
+    --coral-soft:#FDEBE3; --teal-soft:#E2F3F0; --amber-soft:#FBF0DC;
+    --blue:#2E6FB7; --blue-soft:#E8F1FA; --green:#2E8B57; --red:#D64545;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif;
+       background:var(--bg); color:var(--ink); line-height:1.6;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 16px;}
+
+  /* ===== Hero ===== */
+  .hero{background:linear-gradient(135deg,#FF7A45 0%,#FFA63D 55%,#FFC14D 100%);
+        color:#fff; padding:34px 0 30px;}
+  .hero .badge{display:inline-block; background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.45);
+        border-radius:999px; padding:4px 14px; font-size:13px; letter-spacing:.5px;}
+  .hero h1{font-size:34px; margin:14px 0 4px; line-height:1.2;}
+  .hero h1 em{font-style:normal; border-bottom:3px solid rgba(255,255,255,.85);}
+  .hero .kq{margin:6px 0 0; font-size:15px; opacity:.96;}
+  .hero .kq small{display:block; font-size:13px; opacity:.85; margin-top:2px;}
+
+  /* ===== 学习地图 ===== */
+  .map-card{background:var(--card); border:1px solid var(--line); border-radius:16px;
+            margin:20px 0 6px; padding:16px 12px 10px; box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  .map-card h3{margin:0 0 8px; font-size:15px; color:var(--sub); font-weight:600;}
+  .map-card svg{width:100%; height:auto; display:block;}
+
+  /* ===== 使用说明 ===== */
+  .tips{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0;}
+  .tip{background:var(--teal-soft); border:1px solid #B7DED6; color:#0B5F55;
+       border-radius:10px; padding:6px 12px; font-size:13px;}
+
+  /* ===== 工具栏 ===== */
+  .toolbar{position:sticky; top:0; z-index:50; background:rgba(255,248,240,.94);
+       backdrop-filter:blur(6px); border-bottom:1px solid var(--line); padding:10px 0;}
+  .toolbar .row{display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; font-size:13px; color:var(--sub);}
+  .toolbar select{font-size:14px; padding:6px 8px; border:1px solid #D8CDBF; border-radius:8px; background:#fff; color:var(--ink);}
+  .toolbar label{display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--ink);}
+  .toolbar input[type=checkbox]{width:17px; height:17px; accent-color:var(--teal);}
+  .toolbar button{border:none; background:var(--coral); color:#fff; font-size:14px;
+       padding:7px 16px; border-radius:999px; cursor:pointer;}
+  .toolbar button:hover{background:#D64520;}
+
+  /* ===== 导航 ===== */
+  nav.secnav{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 4px;}
+  nav.secnav a{text-decoration:none; font-size:14px; color:var(--ink); background:#fff;
+       border:1px solid var(--line); padding:7px 14px; border-radius:999px;}
+  nav.secnav a:hover{border-color:var(--coral); color:var(--coral);}
+
+  /* ===== 区块 ===== */
+  section.block{margin:26px 0;}
+  .sec-head{display:flex; align-items:center; gap:10px; margin:0 0 14px;}
+  .sec-head .no{background:var(--coral); color:#fff; border-radius:10px; width:34px; height:34px;
+       display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; flex:0 0 34px;}
+  .sec-head h2{margin:0; font-size:21px;}
+  .sec-head p{margin:0; font-size:13px; color:var(--sub);}
+  .count-badge{margin-left:auto; background:var(--teal-soft); color:#0B5F55; font-size:13px;
+       border-radius:999px; padding:4px 12px; white-space:nowrap;}
+
+  /* ===== 单词卡片 ===== */
+  .word-grid{display:flex; flex-wrap:wrap; gap:12px;}
+  .wcard{flex:1 1 215px; min-width:0; background:var(--card); border:1px solid var(--line);
+       border-radius:14px; padding:14px 14px 10px; cursor:pointer; position:relative;
+       transition:transform .12s, box-shadow .12s;}
+  .wcard:hover{transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.08);}
+  .wcard.speaking{border-color:var(--teal); box-shadow:0 0 0 2px var(--teal-soft);}
+  .wcard .wd{font-size:23px; font-weight:700; letter-spacing:.3px; color:var(--ink); display:flex; flex-wrap:wrap; align-items:baseline;}
+  .wcard .wd .syl{cursor:pointer; border-radius:6px; padding:0 1px;}
+  .wcard .wd .syl:hover{background:var(--amber-soft);}
+  .wcard .wd .sep{color:#C9BBA8; font-weight:400; margin:0 1px;}
+  .wcard .wd .stress{font-size:15px; color:var(--coral); font-weight:600; margin-right:1px;}
+  .wcard .ipa{color:var(--sub); font-size:14px; margin-top:3px; font-family:'Segoe UI',Arial,sans-serif;}
+  .wcard .meta{display:flex; align-items:center; margin-top:6px; gap:8px;}
+  .wcard .pos{background:var(--blue-soft); color:var(--blue); border-radius:6px; font-size:12px; padding:1px 7px;}
+  .wcard .zh{font-size:14px; color:var(--ink);}
+  .wcard .play{margin-left:auto; border:none; background:var(--coral-soft); color:var(--coral);
+       border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; flex:0 0 34px;}
+  .wcard .play:hover{background:var(--coral); color:#fff;}
+  .wcard .play svg{width:16px; height:16px; fill:currentColor;}
+  .wcard .lbl{position:absolute; top:8px; right:10px; font-size:11px; color:#C0B3A0;}
+
+  /* ===== 短语 ===== */
+  .phrase-list{display:flex; flex-wrap:wrap; gap:10px;}
+  .pchip{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 14px;
+       cursor:pointer; display:inline-flex; align-items:center; gap:8px; flex:1 1 250px; min-width:0;}
+  .pchip:hover{border-color:var(--teal);}
+  .pchip.speaking{border-color:var(--teal); background:var(--teal-soft);}
+  .pchip .pt{font-weight:600; font-size:16px;}
+  .pchip .pz{color:var(--sub); font-size:13px; margin-left:auto; text-align:right;}
+
+  /* ===== 课文 ===== */
+  .passage-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 20px 12px;}
+  .post-head{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .avatar{width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,#8FD3B9,#4AAE96);
+       color:#fff; font-weight:700; font-size:18px; display:flex; align-items:center; justify-content:center;}
+  .post-head .nm{font-weight:700;}
+  .post-head .dt{font-size:12px; color:var(--sub);}
+  .read-all{margin-left:auto; border:none; background:var(--teal); color:#fff; font-size:14px;
+       padding:8px 16px; border-radius:999px; cursor:pointer;}
+  .read-all:hover{background:#0B6B5F;}
+  .sent{position:relative; margin:0 0 14px; padding:8px 52px 8px 14px; border-left:4px solid transparent;
+       border-radius:8px; font-size:17.5px; line-height:1.9;}
+  .sent.active{background:var(--amber-soft); border-left-color:var(--amber);}
+  .sent .w{cursor:pointer; border-radius:5px; padding:0 1px; transition:background .1s;}
+  .sent .w:hover{background:var(--teal-soft); color:#0B5F55;}
+  .sent .w.speaking{background:var(--amber); color:#fff;}
+  .sent-btn{position:absolute; right:6px; top:50%; transform:translateY(-50%); border:none;
+       background:var(--coral-soft); color:var(--coral); width:38px; height:38px; border-radius:50%;
+       cursor:pointer; display:flex; align-items:center; justify-content:center;}
+  .sent-btn:hover{background:var(--coral); color:#fff;}
+  .sent-btn svg{width:16px; height:16px; fill:currentColor;}
+  .reading-note{margin-top:16px; background:var(--teal-soft); border-radius:12px; padding:12px 16px; font-size:14px; color:#0B5F55;}
+  .reading-note b{color:#08493F;}
+
+  /* ===== 语音 ===== */
+  .phon-grid{display:flex; flex-wrap:wrap; gap:12px;}
+  .phon{flex:1 1 300px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px;}
+  .phon .ph{font-size:26px; font-weight:700; color:var(--coral); font-family:'Segoe UI',Arial,sans-serif;}
+  .phon .pw{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+  .phon .pw span{background:var(--amber-soft); border-radius:8px; padding:4px 12px; font-size:16px; cursor:pointer;}
+  .phon .pw span:hover{background:var(--amber); color:#fff;}
+  .phon .ps{margin-top:8px; font-size:14px; color:var(--sub); cursor:pointer;}
+
+  /* ===== 语法 ===== */
+  .grammar-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .wh-list{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
+  .wh-chip{background:var(--blue-soft); border:1px solid #C6DCF2; border-radius:10px; padding:8px 14px;
+       cursor:pointer; font-size:15px; color:var(--blue);}
+  .wh-chip:hover{background:var(--blue); color:#fff;}
+  .rule{margin-top:14px; background:var(--amber-soft); border-radius:12px; padding:12px 16px; font-size:14px; color:#7A5200;}
+
+  /* ===== 小测 ===== */
+  .quiz-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .q-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .q-play{border:none; background:var(--teal); color:#fff; width:52px; height:52px; border-radius:50%;
+       cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 52px;}
+  .q-play:hover{background:#0B6B5F;}
+  .q-play svg{width:22px; height:22px; fill:currentColor;}
+  .q-word{font-size:22px; font-weight:700; color:var(--sub); letter-spacing:.5px;}
+  .q-hint{font-size:13px; color:var(--sub);}
+  .q-opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-top:16px;}
+  .q-opt{border:1.5px solid var(--line); background:#fff; border-radius:12px; padding:14px 16px;
+       font-size:16px; cursor:pointer; text-align:left; color:var(--ink); min-height:48px;}
+  .q-opt:hover{border-color:var(--teal);}
+  .q-opt.correct{border-color:var(--green); background:#EAF6EF; color:var(--green); font-weight:600;}
+  .q-opt.wrong{border-color:var(--red); background:#FCEBEB; color:var(--red);}
+  .q-feedback{margin-top:14px; min-height:24px; font-size:15px;}
+  .q-score{font-size:15px; font-weight:600; color:var(--teal);}
+  .q-next{margin-top:12px; border:none; background:var(--coral); color:#fff; font-size:15px;
+       padding:9px 22px; border-radius:999px; cursor:pointer; display:none;}
+  .q-done{margin-top:12px; display:none; background:var(--teal-soft); border-radius:12px; padding:14px 18px; font-size:16px; color:#0B5F55;}
+
+  /* ===== 小测分组与课文填空 ===== */
+  .q-tabs{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;}
+  .q-tab{border:1.5px solid var(--line); background:#fff; color:var(--sub); font-size:14px;
+       padding:8px 16px; border-radius:999px; cursor:pointer;}
+  .q-tab:hover{border-color:var(--teal); color:var(--teal);}
+  .q-tab.active{background:var(--teal); border-color:var(--teal); color:#fff; font-weight:600;}
+  .q-modes{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;}
+  .q-modes .q-tab.active{background:var(--coral); border-color:var(--coral); color:#fff; font-weight:600;}
+  .cloze-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .clz-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:6px;}
+  .clz-progress{font-size:14px; color:var(--sub);}
+  .clz-sent{font-size:19px; line-height:1.9; margin:14px 0; min-height:46px;}
+  .clz-blank{background:var(--amber-soft); color:var(--amber); border-bottom:2px solid var(--amber);
+       border-radius:6px; padding:0 10px; font-weight:700; letter-spacing:3px;}
+  .clz-fill{color:var(--green); font-weight:800; border-bottom:2px solid var(--green);}
+  .clz-w{cursor:pointer; border-bottom:1px dotted #C9BFAF; border-radius:4px; padding:0 2px;}
+  .clz-w:hover{background:var(--amber-soft); color:#7A5200;}
+  .clz-w.fill{color:var(--green); font-weight:800; border-bottom:2px solid var(--green); background:transparent;}
+  .clz-w.fill:hover{background:var(--amber-soft); color:#7A5200;}
+  .clz-opts{display:flex; flex-wrap:wrap; gap:10px;}
+  .clz-opts .q-opt{flex:1 1 130px;}
+  .clz-line{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+  .clz-listen{border:none; background:var(--teal-soft); color:var(--teal); width:40px; height:40px;
+       border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 40px;}
+  .clz-listen:hover{background:var(--teal); color:#fff;}
+  .clz-listen svg{width:17px; height:17px; fill:currentColor;}
+
+  /* ===== 语法 · 对话匹配 ===== */
+  .gm-box{background:#FDF9F3; border:1px dashed #E2D5C4; border-radius:12px; padding:16px; margin-top:16px;}
+  .gm-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:10px;}
+  .gm-q{display:flex; align-items:center; gap:12px; background:var(--blue-soft); border-radius:14px; padding:12px 16px; margin-bottom:12px;}
+  .gm-play{border:none; background:var(--blue); color:#fff; width:44px; height:44px; border-radius:50%;
+       cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 44px;}
+  .gm-play:hover{background:#245C9C;}
+  .gm-play svg{width:19px; height:19px; fill:currentColor;}
+  .gm-qtext{font-size:19px; font-weight:700; color:var(--blue); cursor:pointer; line-height:1.5;}
+  .gm-qtext:hover{text-decoration:underline;}
+  .gm-label{font-size:13px; color:var(--sub); margin-bottom:10px;}
+  .gm-opts{display:flex; flex-direction:column; gap:10px;}
+  .gm-opt{display:flex; align-items:center; gap:10px; border:1.5px solid var(--line); background:#fff;
+       border-radius:12px; padding:12px 14px; cursor:pointer; font-size:16px; color:var(--ink); text-align:left;}
+  .gm-opt:hover{border-color:var(--teal);}
+  .gm-opt .txt{flex:1;}
+  .gm-opt .lstn{border:none; background:var(--teal-soft); color:var(--teal); width:38px; height:38px;
+       border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 38px;}
+  .gm-opt .lstn:hover{background:var(--teal); color:#fff;}
+  .gm-opt .lstn svg{width:16px; height:16px; fill:currentColor;}
+  .gm-opt.correct{border-color:var(--green); background:#EAF6EF;}
+  .gm-opt.wrong{border-color:var(--red); background:#FCEBEB;}
+  .gm-pair{display:none; margin-top:12px;}
+  .gm-pair.show{display:block;}
+  .gm-bubbles{display:flex; flex-direction:column; gap:8px; margin-bottom:10px;}
+  .gm-bub{max-width:88%; border-radius:14px; padding:10px 14px; font-size:16px; line-height:1.6;}
+  .gm-bub.q{background:var(--blue-soft); color:var(--blue); align-self:flex-start;}
+  .gm-bub.a{background:var(--teal-soft); color:#0B5F55; align-self:flex-end;}
+  .gm-repeat{border:none; background:var(--amber); color:#fff; font-size:14px; padding:9px 18px;
+       border-radius:999px; cursor:pointer;}
+  .gm-repeat:hover{background:#9A6A00;}
+
+  footer{margin:36px 0 20px; text-align:center; font-size:13px; color:var(--sub);}
+    @media (max-width:600px){
+    .hero h1{font-size:27px;}
+    .sent{font-size:16.5px;}
+    .wcard{flex:1 1 160px;}
+    /* 触控目标加大（>=44px，适配手机/iPad） */
+    .wcard .play{width:44px;height:44px;flex-basis:44px;}
+    .sent-btn{width:44px;height:44px;}
+    .gm-play{width:48px;height:48px;flex-basis:48px;}
+    .gm-opt .lstn,.clz-listen{width:44px;height:44px;flex-basis:44px;}
+    .q-play{width:56px;height:56px;flex-basis:56px;}
+    .q-opt{padding:16px 18px;min-height:52px;font-size:16.5px;}
+    .toolbar select{font-size:16px;padding:8px 10px;min-height:42px;}
+    .toolbar button{padding:9px 18px;font-size:15px;}
+    .toolbar input[type=checkbox]{width:20px;height:20px;}
+    nav.secnav a{padding:9px 16px;font-size:15px;}
+    .q-tab{padding:10px 18px;font-size:15px;}
+    .sec-head h2{font-size:19px;}
+    .tip{padding:8px 12px;font-size:13.5px;}
+    .phon .pw span{padding:7px 14px;font-size:16.5px;}
+  }
+
+  /* ===== 移动端优化 ===== */
+  .mob-note{max-width:700px;margin:22px auto 0;background:var(--blue-soft);border:1px solid #C6DCF2;
+       border-radius:12px;padding:10px 16px;font-size:13.5px;color:var(--blue);text-align:left;line-height:1.7;}
+  .to-top{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;
+       background:var(--coral);color:#fff;border:none;font-size:20px;line-height:1;cursor:pointer;
+       box-shadow:0 3px 10px rgba(0,0,0,.18);z-index:60;display:none;align-items:center;justify-content:center;}
+  .to-top:hover{background:#D64520;}
+</style>
+</head>
+<body>
+
+<!-- ================= Hero ================= -->
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">适用人群：使用《沪教版》（2024 广州新版）七年级上册的学生</span>
+    <h1>Unit 2 <em>School life</em> · 校园生活</h1>
+    <p class="kq">本页为配套听写练习，词表与例句由教师独立整理，不代表上海教育出版社出品或授权。</p>
+
+    <div class="tips"><span class="tip">点击任意单词 / 音节，即可听到标准发音</span><span class="tip">点句子可听完整例句，点选项可听发音</span><span class="tip">支持切换语速与发音人</span><span class="tip">听音选词 + 句子填空双练习</span></div>
+  </div>
+</header>
+
+<!-- ================= 工具栏 ================= -->
+<div class="toolbar">
+  <div class="wrap row">
+    <label>语速
+      <select id="rateSel">
+        <option value="0.6">慢速 0.6×</option>
+        <option value="0.8">较慢 0.8×</option>
+        <option value="1" selected>正常 1×</option>
+      </select>
+    </label>
+    <label>发音人 <select id="voiceSel"></select></label>
+    <label><input type="checkbox" id="sylMode"> 逐音节跟读</label>
+    <label><input type="checkbox" id="stressShow" checked> 显示重音 ˈ</label>
+    <button id="stopBtn" type="button">■ 停止朗读</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="secnav"><a href="#words">① 单词卡</a><a href="#phrases">② 短语</a><a href="#quiz">③ 小测</a><a href="#cloze">④ 填空</a></nav>
+
+  <!-- ================= 单词 ================= -->
+  <section class="block" id="words">
+    <div class="sec-head">
+      <div class="no">1</div>
+      <h2>核心单词</h2>
+      <p>点击卡片朗读整词，点击分色音节逐音节跟读</p>
+      <span class="count-badge">本单元词汇表 · 29 词</span>
+    </div>
+    <div class="word-grid" id="wordGrid"></div>
+
+    <div class="sec-head" style="margin-top:26px;">
+      <div class="no" style="background:var(--teal);">+</div>
+      <h2>单元补充词汇</h2>
+      <p>校园生活 · 作息 · 活动（课文与听说活动）</p>
+      <span class="count-badge">18 词</span>
+    </div>
+    <div class="word-grid" id="extraGrid"></div>
+  </section>
+
+  <!-- ================= 短语 ================= -->
+  <section class="block" id="phrases">
+    <div class="sec-head">
+      <div class="no">2</div>
+      <h2>重点短语</h2>
+      <p>来自单元词汇表，点击即可点读</p>
+      <span class="count-badge">17 个</span>
+    </div>
+    <div class="phrase-list" id="phraseList"></div>
+  </section>
+
+        <!-- ================= 小测 ================= -->
+  <section class="block" id="quiz">
+    <div class="sec-head">
+      <div class="no">3</div>
+      <h2>听音选词 · 听力小测</h2>
+      <p>三组词汇 · 听音选义 + 听音选英语双题型</p>
+      <span class="count-badge" id="quizBadge"></span>
+    </div>
+    <div class="quiz-box">
+      <div class="q-tabs" id="qTabs"></div>
+      <div class="q-modes" id="qModes">
+        <button class="q-tab active" id="modeEnBtn" type="button">听音选英语</button>
+        <button class="q-tab" id="modeZhBtn" type="button">听音选义（中文）</button>
+      </div>
+      <div class="q-top">
+        <button class="q-play" id="qPlay" type="button" aria-label="播放单词">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div>
+          <div class="q-word" id="qWord">—</div>
+          <div class="q-hint" id="qHint">第 1 / 8 题 · 点击左侧播放按钮听单词</div>
+        </div>
+        <div class="q-score" id="qScore">得分：0</div>
+      </div>
+      <div class="q-opts" id="qOpts"></div>
+      <div class="q-feedback" id="qFb"></div>
+      <button class="q-next" id="qNext" type="button">下一题 →</button>
+      <div class="q-done" id="qDone"></div>
+    </div>
+  </section>
+
+    <section class="block" id="cloze">
+    <div class="sec-head">
+      <div class="no" style="background:var(--teal);">4</div>
+      <h2>句子填空 · A1 独立例句</h2>
+      <p>例句由教师按单元主题独立编写，点句子听完整发音，点选单词填空</p>
+      <span class="count-badge" id="clzBadge"></span>
+    </div>
+    <div class="q-tabs" id="clzTabs"></div>
+      <div class="cloze-box">
+      <div class="clz-top">
+        <div class="clz-progress" id="clzHint">第 1 / 12 题</div>
+        <div class="q-score" id="clzScore">得分：0</div>
+      </div>
+      <div class="clz-sent" id="clzSent"></div>
+      <div class="clz-dict" id="clzDict" style="display:none;margin-top:10px;padding:10px 14px;background:#FDF9F3;border:1px solid #EAD9AC;border-radius:12px;font-size:15px;color:#7A5200;"></div>
+      <div class="clz-opts" id="clzOpts"></div>
+      <div class="q-feedback" id="clzFb"></div>
+      <button class="q-next" id="clzNext" type="button">下一题 →</button>
+      <div class="q-done" id="clzDone"></div>
+    </div>
+  </section>
+
+    <footer>
+    <p>本页为配套听写练习，词表与例句由教师独立整理，不代表上海教育出版社出品或授权</p>
+    <p>点读功能基于浏览器语音合成（Web Speech API），建议使用 Chrome / Edge 浏览器打开体验最佳</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var SPK = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
+
+  /* ========== 数据 ========== */
+  var WORDS = [
+    {w:'geography', syl:['ge','og','ra','phy'], st:1, ipa:'/dʒɪˈɒɡrəfi/', pos:'n.', zh:'地理（学）'},
+    {w:'corner', syl:['cor','ner'], st:0, ipa:'/ˈkɔːnə(r)/', pos:'n.', zh:'角；墙角'},
+    {w:'activity', syl:['ac','ti','vi','ty'], st:1, ipa:'/ækˈtɪvəti/', pos:'n.', zh:'活动'},
+    {w:'club', syl:['club'], st:0, ipa:'/klʌb/', pos:'n.', zh:'社团'},
+    {w:'practise', syl:['prac','tise'], st:0, ipa:'/ˈpræktɪs/', pos:'v.', zh:'练习；训练'},
+    {w:'solve', syl:['solve'], st:0, ipa:'/sɒlv/', pos:'v.', zh:'解答'},
+    {w:'develop', syl:['de','vel','op'], st:1, ipa:'/dɪˈveləp/', pos:'v.', zh:'加强；增强'},
+    {w:'skill', syl:['skill'], st:0, ipa:'/skɪl/', pos:'n.', zh:'技术；技能'},
+    {w:'teen', syl:['teen'], st:0, ipa:'/tiːn/', pos:'adj.', zh:'青少年的'},
+    {w:'magazine', syl:['mag','a','zine'], st:2, ipa:'/ˌmæɡəˈziːn/', pos:'n.', zh:'杂志'},
+    {w:'teenager', syl:['teen','ag','er'], st:0, ipa:'/ˈtiːneɪdʒə(r)/', pos:'n.', zh:'青少年'},
+    {w:'greeting', syl:['greet','ing'], st:0, ipa:'/ˈɡriːtɪŋ/', pos:'n.', zh:'问候；招呼'},
+    {w:'grade', syl:['grade'], st:0, ipa:'/ɡreɪd/', pos:'n.', zh:'年级'},
+    {w:'energy', syl:['en','er','gy'], st:0, ipa:'/ˈenədʒi/', pos:'n.', zh:'精力；活力'},
+    {w:'drama', syl:['dra','ma'], st:0, ipa:'/ˈdrɑːmə/', pos:'n.', zh:'戏；剧'},
+    {w:'sincerely', syl:['sin','cere','ly'], st:1, ipa:'/sɪnˈsɪəli/', pos:'adv.', zh:'真诚地；诚实地'},
+    {w:'diary', syl:['di','a','ry'], st:0, ipa:'/ˈdaɪəri/', pos:'n.', zh:'日记；日记簿'},
+    {w:'project', syl:['proj','ect'], st:0, ipa:'/ˈprɒdʒekt/', pos:'n.', zh:'课题'},
+    {w:'poster', syl:['post','er'], st:0, ipa:'/ˈpəʊstə(r)/', pos:'n.', zh:'海报'},
+    {w:'realize', syl:['re','al','ize'], st:0, ipa:'/ˈriːəlaɪz/', pos:'v.', zh:'意识到'},
+    {w:'luckily', syl:['luck','i','ly'], st:0, ipa:'/ˈlʌkɪli/', pos:'adv.', zh:'幸运地；幸好'},
+    {w:'just', syl:['just'], st:0, ipa:'/dʒʌst/', pos:'adv.', zh:'恰好'},
+    {w:'presentation', syl:['pre','sen','ta','tion'], st:2, ipa:'/ˌprezənˈteɪʃn/', pos:'n.', zh:'演示'},
+    {w:'mood', syl:['mood'], st:0, ipa:'/muːd/', pos:'n.', zh:'情绪；心情'},
+    {w:'mind', syl:['mind'], st:0, ipa:'/maɪnd/', pos:'v.', zh:'介意'},
+    {w:'pack', syl:['pack'], st:0, ipa:'/pæk/', pos:'v.', zh:'（把……）打包'},
+    {w:'celebrate', syl:['cel','e','brate'], st:0, ipa:'/ˈselɪbreɪt/', pos:'v.', zh:'庆祝；庆贺'},
+    {w:'success', syl:['suc','cess'], st:1, ipa:'/səkˈses/', pos:'n.', zh:'成功'},
+    {w:'rocky', syl:['rock','y'], st:0, ipa:'/ˈrɒki/', pos:'adj.', zh:'困难的'}
+  ];
+  var EXTRAS = [
+    {w:'start', syl:['start'], st:0, ipa:'/stɑːt/', pos:'v.', zh:'开始'},
+    {w:'subject', syl:['sub','ject'], st:0, ipa:'/ˈsʌbdʒɪkt/', pos:'n.', zh:'科目；学科'},
+    {w:'break', syl:['break'], st:0, ipa:'/breɪk/', pos:'n.', zh:'休息'},
+    {w:'exercise', syl:['ex','er','cise'], st:0, ipa:'/ˈeksəsaɪz/', pos:'n.', zh:'锻炼；运动'},
+    {w:'canteen', syl:['can','teen'], st:1, ipa:'/kænˈtiːn/', pos:'n.', zh:'食堂'},
+    {w:'choose', syl:['choose'], st:0, ipa:'/tʃuːz/', pos:'v.', zh:'选择'},
+    {w:'read', syl:['read'], st:0, ipa:'/riːd/', pos:'v.', zh:'阅读'},
+    {w:'plan', syl:['plan'], st:0, ipa:'/plæn/', pos:'v.', zh:'计划'},
+    {w:'match', syl:['match'], st:0, ipa:'/mætʃ/', pos:'n.', zh:'比赛'},
+    {w:'member', syl:['mem','ber'], st:0, ipa:'/ˈmembə(r)/', pos:'n.', zh:'成员'},
+    {w:'exciting', syl:['ex','cit','ing'], st:1, ipa:'/ɪkˈsaɪtɪŋ/', pos:'adj.', zh:'令人兴奋的'},
+    {w:'junior', syl:['ju','ni','or'], st:0, ipa:'/ˈdʒuːniə(r)/', pos:'adj.', zh:'初级的'},
+    {w:'ocean', syl:['o','cean'], st:0, ipa:'/ˈəʊʃn/', pos:'n.', zh:'海洋'},
+    {w:'homework', syl:['home','work'], st:0, ipa:'/ˈhəʊmwɜːk/', pos:'n.', zh:'家庭作业'},
+    {w:'student', syl:['stu','dent'], st:0, ipa:'/ˈstjuːdnt/', pos:'n.', zh:'学生'},
+    {w:'food', syl:['food'], st:0, ipa:'/fuːd/', pos:'n.', zh:'食物'},
+    {w:'interesting', syl:['in','ter','est','ing'], st:0, ipa:'/ˈɪntrəstɪŋ/', pos:'adj.', zh:'有趣的'},
+    {w:'ground', syl:['ground'], st:0, ipa:'/ɡraʊnd/', pos:'n.', zh:'场地'}
+  ];
+  var PHRASES = [
+    {p:'take part in', zh:'参与；参加'},
+    {p:'look forward to', zh:'期待；盼望'},
+    {p:'get up', zh:'起床'},
+    {p:'go to bed', zh:'上床睡觉'},
+    {p:'go to school on foot', zh:'步行上学'},
+    {p:'do one\'s homework', zh:'做作业'},
+    {p:'play a ball game', zh:'打球'},
+    {p:'do some morning exercise', zh:'做早操'},
+    {p:'have a good time', zh:'玩得开心'},
+    {p:'after-school activities', zh:'课后活动'},
+    {p:'junior high school', zh:'初中'},
+    {p:'sports ground', zh:'运动场'},
+    {p:'book corner', zh:'图书角'},
+    {p:'have a lunch break', zh:'午休'},
+    {p:'eat out', zh:'外出就餐'},
+    {p:'get to school', zh:'到校'},
+    {p:'in time', zh:'及时'}
+  ];
+  var QUIZ = [
+    {w:'geography', zh:'地理（学）', opts:['活动','社团','课题']},
+    {w:'corner', zh:'角；墙角', opts:['海报','日记','杂志']},
+    {w:'activity', zh:'活动', opts:['技术；技能','精力；活力','年级']},
+    {w:'club', zh:'社团', opts:['活动','杂志','课题']},
+    {w:'practise', zh:'练习；训练', opts:['解答','庆祝；庆贺','打包']},
+    {w:'solve', zh:'解答', opts:['练习；训练','意识到','打包']},
+    {w:'develop', zh:'加强；增强', opts:['庆祝；庆贺','解答','意识到']},
+    {w:'skill', zh:'技术；技能', opts:['精力；活力','活动','成功']},
+    {w:'teen', zh:'青少年的', opts:['真诚地；诚实地','幸运地；幸好','恰好']},
+    {w:'magazine', zh:'杂志', opts:['海报','课题','日记']},
+    {w:'teenager', zh:'青少年', opts:['年级','精力；活力','海报']},
+    {w:'greeting', zh:'问候；招呼', opts:['杂志','日记','海报']},
+    {w:'grade', zh:'年级', opts:['海报','活动','技术；技能']},
+    {w:'energy', zh:'精力；活力', opts:['技术；技能','成功','情绪；心情']},
+    {w:'drama', zh:'戏；剧', opts:['课题','杂志','海报']},
+    {w:'sincerely', zh:'真诚地；诚实地', opts:['幸运地；幸好','恰好','困难地']},
+    {w:'diary', zh:'日记；日记簿', opts:['杂志','海报','课题']},
+    {w:'project', zh:'课题', opts:['杂志','海报','日记；日记簿']},
+    {w:'poster', zh:'海报', opts:['日记；日记簿','课题','杂志']},
+    {w:'realize', zh:'意识到', opts:['打包','庆祝；庆贺','介意']},
+    {w:'luckily', zh:'幸运地；幸好', opts:['真诚地；诚实地','恰好','介意']},
+    {w:'just', zh:'恰好', opts:['幸运地；幸好','真诚地；诚实地','青少年的']},
+    {w:'presentation', zh:'演示', opts:['课题','海报','成功']},
+    {w:'mood', zh:'情绪；心情', opts:['精力；活力','成功','问候；招呼']},
+    {w:'mind', zh:'介意', opts:['打包','庆祝；庆贺','意识到']},
+    {w:'pack', zh:'（把……）打包', opts:['庆祝；庆贺','意识到','解答']},
+    {w:'celebrate', zh:'庆祝；庆贺', opts:['打包','介意','解答']},
+    {w:'success', zh:'成功', opts:['情绪；心情','精力；活力','技术；技能']},
+    {w:'rocky', zh:'困难的', opts:['高兴的','安静的','幸运的']}
+  ];
+  var QUIZ_EXTRA = [
+    {w:'start', zh:'开始', opts:['结束','停止','打开']},
+    {w:'subject', zh:'科目；学科', opts:['课题','项目','作业']},
+    {w:'break', zh:'休息', opts:['开始','结束','计划']},
+    {w:'exercise', zh:'锻炼；运动', opts:['家庭作业','比赛','食物']},
+    {w:'canteen', zh:'食堂', opts:['教室','图书馆','办公室']},
+    {w:'choose', zh:'选择', opts:['烹饪','购买','阅读']},
+    {w:'read', zh:'阅读', opts:['写','说','跑']},
+    {w:'plan', zh:'计划', opts:['比赛','成员','场地']},
+    {w:'match', zh:'比赛', opts:['计划','成员','场地']},
+    {w:'member', zh:'成员', opts:['计划','比赛','场地']},
+    {w:'exciting', zh:'令人兴奋的', opts:['有趣的','无聊的','困难的']},
+    {w:'junior', zh:'初级的', opts:['高级的','中等的','基础的']},
+    {w:'ocean', zh:'海洋', opts:['天空','森林','河流']},
+    {w:'homework', zh:'家庭作业', opts:['锻炼；运动','比赛','阅读']},
+    {w:'student', zh:'学生', opts:['老师','医生','工人']},
+    {w:'food', zh:'食物', opts:['水','书','球']},
+    {w:'interesting', zh:'有趣的', opts:['无聊的','困难的','安静的']},
+    {w:'ground', zh:'场地', opts:['房间','大厅','角落']}
+  ];
+  var QUIZ_PHRASE = [
+    {w:'take part in', zh:'参与；参加', opts:['期待；盼望','起床','上床睡觉']},
+    {w:'look forward to', zh:'期待；盼望', opts:['参与；参加','步行上学','做作业']},
+    {w:'get up', zh:'起床', opts:['上床睡觉','外出就餐','到校']},
+    {w:'go to bed', zh:'上床睡觉', opts:['起床','外出就餐','到校']},
+    {w:'go to school on foot', zh:'步行上学', opts:['骑车上学','坐公交上学','到校']},
+    {w:'do one\'s homework', zh:'做作业', opts:['做早操','打球','整理床铺']},
+    {w:'play a ball game', zh:'打球', opts:['做早操','做作业','吃午餐']},
+    {w:'do some morning exercise', zh:'做早操', opts:['打球','做作业','外出就餐']},
+    {w:'have a good time', zh:'玩得开心', opts:['及时','到校','参与；参加']},
+    {w:'after-school activities', zh:'课后活动', opts:['初中','运动场','图书角']},
+    {w:'junior high school', zh:'初中', opts:['课后活动','运动场','图书角']},
+    {w:'sports ground', zh:'运动场', opts:['图书角','课后活动','初中']},
+    {w:'book corner', zh:'图书角', opts:['运动场','初中','午休']},
+    {w:'have a lunch break', zh:'午休', opts:['吃午餐','图书角','到校']},
+    {w:'eat out', zh:'外出就餐', opts:['上床睡觉','起床','做作业']},
+    {w:'get to school', zh:'到校', opts:['起床','外出就餐','步行上学']},
+    {w:'in time', zh:'及时', opts:['迟到','匆忙','意外']}
+  ];
+
+  /* 音节发音小词典（个别音节按自然拼读读法处理） */
+  var SYL_SPEAK = {
+    'tion':'shun','tient':'shent','tive':'tiv','ture':'cher','sure':'zher',
+    'cious':'shus','ge':'j','gi':'ji','ce':'s','ci':'si','ea':'ee','eau':'oh',
+    'ight':'ite','ough':'uff','augh':'aw','tion':'shun','ph':'f','wh':'w'
+  };
+  function sylSpeak(syl){
+    var k = syl.toLowerCase();
+    return SYL_SPEAK[k] || syl;
+  }
+
+  /* ========== 语音引擎 ========== */
+  var synth = window.speechSynthesis;
+  var voices = [];
+  var voiceSel = document.getElementById('voiceSel');
+  var rateSel = document.getElementById('rateSel');
+
+  function loadVoices(){
+    if (!synth) return;
+    voices = synth.getVoices();
+    var en = voices.filter(function(v){ return /^en/i.test(v.lang); });
+    voiceSel.innerHTML = '';
+    if (en.length === 0) { voiceSel.innerHTML = '<option value="">使用默认发音</option>'; return; }
+    en.forEach(function(v){
+      var o = document.createElement('option');
+      o.value = v.name;
+      o.textContent = v.name + ' (' + v.lang + ')';
+      voiceSel.appendChild(o);
+    });
+    /* 优先英式发音（教材以英式英语为标准） */
+    var prefer = en.filter(function(v){ return /^en-GB/i.test(v.lang); });
+    var pick = (prefer.length ? prefer : en)[0];
+    voiceSel.value = pick.name;
+  }
+  if (synth) {
+    loadVoices();
+    if (typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = loadVoices;
+  }
+
+  function getVoice(){
+    if (!synth) return null;
+    var name = voiceSel.value;
+    for (var i = 0; i < voices.length; i++) if (voices[i].name === name) return voices[i];
+    var en = voices.filter(function(v){ return /^en/i.test(v.lang); });
+    return en.length ? en[0] : null;
+  }
+
+  function speak(text, rate, onend){
+    if (!synth) { alert('当前浏览器不支持语音合成（Web Speech API），建议使用 Chrome 或 Edge。'); return; }
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    var v = getVoice();
+    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-GB'; }
+    u.rate = rate || parseFloat(rateSel.value) || 1;
+    u.pitch = 1;
+    u.onend = onend || null;
+    synth.speak(u);
+  }
+
+  function stopSpeak(){
+    if (synth) synth.cancel();
+    var els = document.querySelectorAll('.speaking');
+    for (var i = 0; i < els.length; i++) els[i].classList.remove('speaking');
+  }
+
+  function sylModeOn(){
+    var c = document.getElementById('sylMode');
+    return c && c.checked;
+  }
+  function stressShowOn(){
+    var c = document.getElementById('stressShow');
+    return !c || c.checked;
+  }
+  document.getElementById('stopBtn').addEventListener('click', stopSpeak);
+
+  /* ========== 单词卡片 ========== */
+  function renderWords(arr, containerId){
+    var box = document.getElementById(containerId);
+    arr.forEach(function(item, idx){
+      var card = document.createElement('div');
+      card.className = 'wcard';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', item.w + '，' + item.zh);
+
+      var wd = document.createElement('div');
+      wd.className = 'wd';
+      item.syl.forEach(function(s, i){
+        if (stressShowOn() && i === item.st && item.syl.length > 1) {
+          var st = document.createElement('span');
+          st.className = 'stress';
+          st.textContent = 'ˈ';
+          wd.appendChild(st);
+        }
+        var sp = document.createElement('span');
+        sp.className = 'syl';
+        sp.textContent = s;
+        if (i === item.st) sp.style.fontWeight = '800';
+        sp.style.color = ['#E8552D','#0F8A7D','#B57A00'][i % 3];
+        sp.title = '点击跟读音节 ' + s;
+        sp.addEventListener('click', function(e){
+          e.stopPropagation();
+          speak(sylSpeak(s), undefined);
+        });
+        wd.appendChild(sp);
+        if (i < item.syl.length - 1) {
+          var sep = document.createElement('span');
+          sep.className = 'sep';
+          sep.textContent = '·';
+          wd.appendChild(sep);
+        }
+      });
+      card.appendChild(wd);
+
+      var ipa = document.createElement('div');
+      ipa.className = 'ipa';
+      ipa.textContent = item.ipa;
+      card.appendChild(ipa);
+
+      var meta = document.createElement('div');
+      meta.className = 'meta';
+      var pos = document.createElement('span');
+      pos.className = 'pos';
+      pos.textContent = item.pos;
+      var zh = document.createElement('span');
+      zh.className = 'zh';
+      zh.textContent = item.zh;
+      var play = document.createElement('button');
+      play.className = 'play';
+      play.type = 'button';
+      play.setAttribute('aria-label', '朗读 ' + item.w);
+      play.innerHTML = SPK;
+      play.addEventListener('click', function(e){
+        e.stopPropagation();
+        speak(item.w);
+      });
+      meta.appendChild(pos);
+      meta.appendChild(zh);
+      meta.appendChild(play);
+      card.appendChild(meta);
+
+      var lbl = document.createElement('span');
+      lbl.className = 'lbl';
+      lbl.textContent = String(idx + 1).padStart(2, '0');
+      card.appendChild(lbl);
+
+      function playWord(){
+        if (sylModeOn()) {
+          /* 逐音节连读 */
+          if (!synth) return;
+          synth.cancel();
+          var syls = item.syl.slice();
+          var i = 0;
+          function next(){
+            if (i >= syls.length) { card.classList.remove('speaking'); return; }
+            card.classList.add('speaking');
+            var u = new SpeechSynthesisUtterance(sylSpeak(syls[i]));
+            var v = getVoice();
+            if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-GB'; }
+            u.rate = parseFloat(rateSel.value) || 1;
+            u.onend = function(){ i++; setTimeout(next, 140); };
+            synth.speak(u);
+          }
+          next();
+        } else {
+          card.classList.add('speaking');
+          speak(item.w, undefined, function(){ card.classList.remove('speaking'); });
+        }
+      }
+      card.addEventListener('click', playWord);
+      card.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playWord(); }
+      });
+      box.appendChild(card);
+    });
+  }
+  renderWords(WORDS, 'wordGrid');
+  renderWords(EXTRAS, 'extraGrid');
+
+  /* ========== 短语 ========== */
+  var phraseList = document.getElementById('phraseList');
+  PHRASES.forEach(function(item){
+    var chip = document.createElement('div');
+    chip.className = 'pchip';
+    chip.setAttribute('role', 'button');
+    chip.setAttribute('tabindex', '0');
+    chip.setAttribute('aria-label', item.p + '，' + item.zh);
+    var pt = document.createElement('span');
+    pt.className = 'pt';
+    pt.textContent = item.p;
+    var pz = document.createElement('span');
+    pz.className = 'pz';
+    pz.textContent = item.zh;
+    chip.appendChild(pt);
+    chip.appendChild(pz);
+    function play(){
+      chip.classList.add('speaking');
+      speak(item.p, undefined, function(){ chip.classList.remove('speaking'); });
+    }
+    chip.addEventListener('click', play);
+    chip.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+    });
+    phraseList.appendChild(chip);
+  });
+
+  /* ========== 课文 ========== */
+  /* ========== 听音选词小测（三组 × 双题型） ========== */
+  var qi = 0, score = 0, answered = false, setIdx = 0;
+  var quizMode = 1; /* 0 = 听音选义（中文），1 = 听音选英语 */
+  var current = null;
+  var qPlay = document.getElementById('qPlay');
+  var qWord = document.getElementById('qWord');
+  var qHint = document.getElementById('qHint');
+  var qScore = document.getElementById('qScore');
+  var qOpts = document.getElementById('qOpts');
+  var qFb = document.getElementById('qFb');
+  var qNext = document.getElementById('qNext');
+  var qDone = document.getElementById('qDone');
+  var qTabs = document.getElementById('qTabs');
+  var qBadge = document.getElementById('quizBadge');
+  var modeZhBtn = document.getElementById('modeZhBtn');
+  var modeEnBtn = document.getElementById('modeEnBtn');
+  var QUIZ_SETS = [
+    {name:'核心单词', data:QUIZ},
+    {name:'补充词汇', data:QUIZ_EXTRA},
+    {name:'重点短语', data:QUIZ_PHRASE}
+  ];
+  function curQuiz(){ return QUIZ_SETS[setIdx].data; }
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function setQuizMode(m){
+    if (quizMode === m) return;
+    quizMode = m;
+    qi = 0; score = 0; answered = false;
+    qScore.textContent = '得分：0';
+    qDone.style.display = 'none';
+    qDone.textContent = '';
+    qFb.textContent = '';
+    modeZhBtn.classList.toggle('active', m === 0);
+    modeEnBtn.classList.toggle('active', m === 1);
+    loadQuestion();
+  }
+  modeZhBtn.addEventListener('click', function(){ setQuizMode(0); });
+  modeEnBtn.addEventListener('click', function(){ setQuizMode(1); });
+
+  function engOpts(w){
+    var pool = curQuiz().filter(function(it){ return it.w !== w; });
+    return shuffle(pool).slice(0, 3).map(function(it){ return it.w; }).concat([w]);
+  }
+
+  function loadQuestion(){
+    answered = false;
+    current = curQuiz()[qi];
+    var isPhrase = (setIdx === 2);
+    qWord.textContent = isPhrase ? '听一听：这是哪个短语？' : '听一听：这是哪个单词？';
+    qHint.textContent = '第 ' + (qi + 1) + ' / ' + curQuiz().length + ' 题 · ' +
+      (quizMode === 0 ? '点击左侧播放按钮听发音' : '听发音，选出对应的' + (isPhrase ? '英语短语' : '英语单词'));
+    qFb.textContent = '';
+    qNext.style.display = 'none';
+    qNext.textContent = '下一题 →';
+    qOpts.innerHTML = '';
+    var opts = (quizMode === 0) ? shuffle(current.opts.concat([current.zh])) : shuffle(engOpts(current.w));
+    var target = (quizMode === 0) ? current.zh : current.w;
+    opts.forEach(function(o){
+      var b = document.createElement('button');
+      b.className = 'q-opt';
+      b.type = 'button';
+      b.textContent = o;
+      b.addEventListener('click', function(){
+        if (answered) return;
+        answered = true;
+        var correct = (o === target);
+        if (correct) {
+          score++;
+          b.classList.add('correct');
+          qFb.innerHTML = (quizMode === 0)
+            ? '答对啦！<b>' + current.w + '</b> 的意思是「' + current.zh + '」'
+            : '答对啦！「' + current.zh + '」的英语是 <b>' + current.w + '</b>';
+          qFb.style.color = 'var(--green)';
+        } else {
+          b.classList.add('wrong');
+          var okBtn = null;
+          var bs = qOpts.querySelectorAll('.q-opt');
+          for (var k = 0; k < bs.length; k++) {
+            if (bs[k].textContent === target) { okBtn = bs[k]; break; }
+          }
+          if (okBtn) okBtn.classList.add('correct');
+          qFb.innerHTML = (quizMode === 0)
+            ? '再听一遍！<b>' + current.w + '</b> 的意思是「' + current.zh + '」'
+            : '再听一遍！「' + current.zh + '」的英语是 <b>' + current.w + '</b>';
+          qFb.style.color = 'var(--red)';
+        }
+        qScore.textContent = '得分：' + score;
+        /* 自动播放正确答案，增加听力输入 */
+        setTimeout(function(){ speak(target, 0.8); }, 400);
+        if (qi < curQuiz().length - 1) {
+          qNext.style.display = 'inline-block';
+        } else {
+          qNext.style.display = 'inline-block';
+          qNext.textContent = '再来一轮';
+          qDone.style.display = 'block';
+          qDone.textContent = '完成！共 ' + curQuiz().length + ' 题，答对 ' + score + ' 题。' +
+            (score === curQuiz().length ? ' 太棒了，全部正确！' : (score >= curQuiz().length * 0.6 ? ' 很好，继续加油！' : ' 建议回到单词卡再多听几遍。'));
+        }
+      });
+      qOpts.appendChild(b);
+    });
+  }
+  qPlay.addEventListener('click', function(){
+    if (!current) return;
+    speak(current.w, 0.75);
+  });
+  qNext.addEventListener('click', function(){
+    if (qi >= curQuiz().length - 1) {
+      qi = 0;
+      score = 0;
+      qScore.textContent = '得分：0';
+      qDone.style.display = 'none';
+      qDone.textContent = '';
+    } else {
+      qi++;
+    }
+    loadQuestion();
+  });
+  QUIZ_SETS.forEach(function(s, idx){
+    var tb = document.createElement('button');
+    tb.type = 'button';
+    tb.className = 'q-tab' + (idx === 0 ? ' active' : '');
+    tb.textContent = s.name + '（' + s.data.length + ' 题）';
+    tb.addEventListener('click', function(){
+      if (setIdx === idx) return;
+      setIdx = idx;
+      qi = 0; score = 0; answered = false;
+      qScore.textContent = '得分：0';
+      qDone.style.display = 'none';
+      qDone.textContent = '';
+      qFb.textContent = '';
+      var tabs = qTabs.querySelectorAll('.q-tab');
+      for (var k = 0; k < tabs.length; k++) tabs[k].classList.remove('active');
+      tb.classList.add('active');
+      qBadge.textContent = s.name + ' · ' + s.data.length + ' 题';
+      loadQuestion();
+    });
+    qTabs.appendChild(tb);
+  });
+  qBadge.textContent = QUIZ_SETS[0].name + ' · ' + QUIZ_SETS[0].data.length + ' 题';
+  loadQuestion();
+
+  /* ========== 课文选词填空 ========== */
+  var CLOZE_CORE = [{s:"We have ____ on Tuesday.", ans:"geography", opts:["geography","timetable","breaktime","paragraph"], d:{"geography":"地理（学）","timetable":"看墙上的课程表。","breaktime":"课间我们和朋友聊天。","paragraph":"请读下一段。"}},{s:"Let's have a ____ now.", ans:"break", opts:["break","bell","grade","breaktime"], d:{"break":"休息","bell":"八点钟声响起。","grade":"年级","breaktime":"课间我们和朋友聊天。"}},{s:"The ____ rings at eight.", ans:"bell", opts:["bell","break","club","exam"], d:{"bell":"八点钟声响起。","break":"休息","club":"社团","exam":"考试在下周一。"}},{s:"My favourite ____ is art.", ans:"subject", opts:["subject","senior","uniform","library"], d:{"subject":"科目；学科","senior":"我姐姐是一名高中生。","uniform":"我们的校服是蓝色的。","library":"放学后图书馆是开放的。"}},{s:"We do many ____ in class.", ans:"activity", opts:["activity","notebook","research","geography"], d:{"activity":"活动","notebook":"我把新单词写在笔记本上。","research":"他们做了一些关于植物的研究。","geography":"地理（学）"}},{s:"Look at the ____ on the wall.", ans:"timetable", opts:["timetable","geography","breaktime","paragraph"], d:{"timetable":"看墙上的课程表。","geography":"地理（学）","breaktime":"课间我们和朋友聊天。","paragraph":"请读下一段。"}},{s:"I joined the reading ____.", ans:"club", opts:["club","bell","exam","term"], d:{"club":"社团","bell":"八点钟声响起。","exam":"考试在下周一。","term":"这学期我们有一位新老师。"}},{s:"Our school ____ is blue.", ans:"uniform", opts:["uniform","subject","library","project"], d:{"uniform":"我们的校服是蓝色的。","subject":"科目；学科","library":"放学后图书馆是开放的。","project":"课题"}},{s:"The ____ is open after school.", ans:"library", opts:["library","subject","uniform","project"], d:{"library":"放学后图书馆是开放的。","subject":"科目；学科","uniform":"我们的校服是蓝色的。","project":"课题"}},{s:"I write new words in my ____.", ans:"notebook", opts:["notebook","activity","research","geography"], d:{"notebook":"我把新单词写在笔记本上。","activity":"活动","research":"他们做了一些关于植物的研究。","geography":"地理（学）"}},{s:"This ____ is very useful.", ans:"dictionary", opts:["dictionary","discuss","experiment","vocabulary"], d:{"dictionary":"这本字典很有用。","discuss":"我们讨论一下这个问题吧。","experiment":"我们观看了一个有趣的实验。","vocabulary":"我们每天都学新词汇。"}},{s:"The ____ is next Monday.", ans:"exam", opts:["exam","bell","club","term"], d:{"exam":"考试在下周一。","bell":"八点钟声响起。","club":"社团","term":"这学期我们有一位新老师。"}},{s:"This ____ we have a new teacher.", ans:"term", opts:["term","topic","bell","club"], d:{"term":"这学期我们有一位新老师。","topic":"今天的话题是动物。","bell":"八点钟声响起。","club":"社团"}},{s:"She is in ____ Seven.", ans:"grade", opts:["grade","grammar","break","topic"], d:{"grade":"年级","grammar":"语法不太难。","break":"休息","topic":"今天的话题是动物。"}},{s:"He is a ____ high student.", ans:"junior", opts:["junior","senior","report","break"], d:{"junior":"初级的","student":"学生","senior":"我姐姐是一名高中生。","report":"本做了一个简短的报告。","break":"休息"}},{s:"My sister is a ____ high student.", ans:"senior", opts:["senior","subject","junior","report"], d:{"senior":"我姐姐是一名高中生。","student":"学生","subject":"科目；学科","junior":"初级的","report":"本做了一个简短的报告。"}},{s:"We talk with friends at ____.", ans:"breaktime", opts:["breaktime","geography","break","timetable"], d:{"breaktime":"课间我们和朋友聊天。","geography":"地理（学）","break":"休息","timetable":"看墙上的课程表。"}},{s:"Today's ____ is animals.", ans:"topic", opts:["topic","term","break","grade"], d:{"topic":"今天的话题是动物。","term":"这学期我们有一位新老师。","break":"休息","grade":"年级"}},{s:"It is a ____ that fish can swim.", ans:"fact", opts:["fact","bell","club","exam"], d:{"fact":"鱼会游泳，这是事实。","bell":"八点钟声响起。","club":"社团","exam":"考试在下周一。"}},{s:"Read the ____s carefully.", ans:"instruction", opts:["instruction","dictionary","experiment","vocabulary"], d:{"read":"阅读","instruction":"请仔细阅读说明。","dictionary":"这本字典很有用。","experiment":"我们观看了一个有趣的实验。","vocabulary":"我们每天都学新词汇。"}},{s:"We are doing a science ____.", ans:"project", opts:["project","subject","uniform","library"], d:{"project":"课题","subject":"科目；学科","uniform":"我们的校服是蓝色的。","library":"放学后图书馆是开放的。"}},{s:"They did some ____ on plants.", ans:"research", opts:["research","report","activity","notebook"], d:{"research":"他们做了一些关于植物的研究。","report":"本做了一个简短的报告。","activity":"活动","notebook":"我把新单词写在笔记本上。"}},{s:"We watched an interesting ____.", ans:"experiment", opts:["experiment","dictionary","vocabulary","geography"], d:{"interesting":"有趣的","experiment":"我们观看了一个有趣的实验。","dictionary":"这本字典很有用。","vocabulary":"我们每天都学新词汇。","geography":"地理（学）"}},{s:"Ben gave a short ____.", ans:"report", opts:["report","research","junior","senior"], d:{"report":"本做了一个简短的报告。","research":"他们做了一些关于植物的研究。","junior":"初级的","senior":"我姐姐是一名高中生。"}},{s:"Let's ____ the question.", ans:"discuss", opts:["discuss","dictionary","subject","uniform"], d:{"discuss":"我们讨论一下这个问题吧。","dictionary":"这本字典很有用。","subject":"科目；学科","uniform":"我们的校服是蓝色的。"}},{s:"Please read the next ____.", ans:"paragraph", opts:["paragraph","geography","timetable","breaktime"], d:{"read":"阅读","paragraph":"请读下一段。","geography":"地理（学）","timetable":"看墙上的课程表。","breaktime":"课间我们和朋友聊天。"}},{s:"We learn new ____ every day.", ans:"vocabulary", opts:["vocabulary","dictionary","experiment","geography"], d:{"vocabulary":"我们每天都学新词汇。","dictionary":"这本字典很有用。","experiment":"我们观看了一个有趣的实验。","geography":"地理（学）"}},{s:"____ is not too hard.", ans:"grammar", opts:["grammar","grade","geography","subject"], d:{"grammar":"语法不太难。","grade":"年级","geography":"地理（学）","subject":"科目；学科"}},{s:"Listen and check your ____.", ans:"pronunciation", opts:["pronunciation","instruction","project","paragraph"], d:{"pronunciation":"听一听，检查你的发音。","instruction":"请仔细阅读说明。","project":"课题","paragraph":"请读下一段。"}}];
+  var CLOZE_EXT = [{s:"Our ____ changes every term.", ans:"timetable", opts:["timetable","textbook","breaktime","classmate"], d:{"timetable":"看墙上的课程表。","term":"这学期我们有一位新老师。","textbook":"把课本翻到第10页。","breaktime":"课间我们和朋友聊天。","classmate":"我的同学都很好。"}},{s:"I eat a snack at ____.", ans:"breaktime", opts:["breaktime","badminton","timetable","classmate"], d:{"breaktime":"课间我们和朋友聊天。","badminton":"课后我们打羽毛球。","timetable":"看墙上的课程表。","classmate":"我的同学都很好。"}},{s:"We have lunch in the dining ____.", ans:"hall", opts:["hall","gym","ruler","chess"], d:{"hall":"我们在食堂吃午饭。","gym":"体育馆在图书馆旁边。","ruler":"我需要一把尺子画这条线。","chess":"大卫和本午餐时下棋。"}},{s:"The ____ is next to the library.", ans:"gym", opts:["gym","hall","ruler","chess"], d:{"gym":"体育馆在图书馆旁边。","library":"放学后图书馆是开放的。","hall":"我们在食堂吃午饭。","ruler":"我需要一把尺子画这条线。","chess":"大卫和本午餐时下棋。"}},{s:"Children run on the ____.", ans:"playground", opts:["playground","pencil case","volleyball","timetable"], d:{"playground":"孩子们在操场上奔跑。","pencil case":"我的铅笔盒是红色的。","volleyball":"他们喜欢打排球。","timetable":"看墙上的课程表。"}},{s:"The ____ knows every student.", ans:"headteacher", opts:["headteacher","pencil case","playground","homework"], d:{"headteacher":"校长认识每一个学生。","student":"学生","pencil case":"我的铅笔盒是红色的。","playground":"孩子们在操场上奔跑。","homework":"家庭作业"}},{s:"My ____s are very nice.", ans:"classmate", opts:["classmate","timetable","breaktime","schoolbag"], d:{"classmate":"我的同学都很好。","timetable":"看墙上的课程表。","breaktime":"课间我们和朋友聊天。","schoolbag":"今天我的书包很重。"}},{s:"I finish my ____ before dinner.", ans:"homework", opts:["homework","textbook","timetable","breaktime"], d:{"homework":"家庭作业","textbook":"把课本翻到第10页。","timetable":"看墙上的课程表。","breaktime":"课间我们和朋友聊天。"}},{s:"Open your ____ to page ten.", ans:"textbook", opts:["textbook","timetable","homework","breaktime"], d:{"textbook":"把课本翻到第10页。","timetable":"看墙上的课程表。","homework":"家庭作业","breaktime":"课间我们和朋友聊天。"}},{s:"I need a ____ for this line.", ans:"ruler", opts:["ruler","rubber","chess","drama"], d:{"ruler":"我需要一把尺子画这条线。","rubber":"你有橡皮吗？","chess":"大卫和本午餐时下棋。","drama":"戏；剧"}},{s:"Do you have a ____?", ans:"rubber", opts:["rubber","ruler","debate","chess"], d:{"rubber":"你有橡皮吗？","ruler":"我需要一把尺子画这条线。","debate":"我们在课上进行了一次辩论。","chess":"大卫和本午餐时下棋。"}},{s:"My ____ is red.", ans:"pencil case", opts:["pencil case","playground","headteacher","volleyball"], d:{"pencil case":"我的铅笔盒是红色的。","playground":"孩子们在操场上奔跑。","headteacher":"校长认识每一个学生。","volleyball":"他们喜欢打排球。"}},{s:"My ____ is heavy today.", ans:"schoolbag", opts:["schoolbag","timetable","breaktime","classmate"], d:{"schoolbag":"今天我的书包很重。","timetable":"看墙上的课程表。","breaktime":"课间我们和朋友聊天。","classmate":"我的同学都很好。"}},{s:"We play ____ after class.", ans:"badminton", opts:["badminton","breaktime","timetable","classmate"], d:{"badminton":"课后我们打羽毛球。","breaktime":"课间我们和朋友聊天。","timetable":"看墙上的课程表。","classmate":"我的同学都很好。"}},{s:"They like playing ____.", ans:"volleyball", opts:["volleyball","playground","timetable","breaktime"], d:{"volleyball":"他们喜欢打排球。","playground":"孩子们在操场上奔跑。","timetable":"看墙上的课程表。","breaktime":"课间我们和朋友聊天。"}},{s:"David and Ben play ____ at lunch.", ans:"chess", opts:["chess","ruler","drama","hall"], d:{"chess":"大卫和本午餐时下棋。","ruler":"我需要一把尺子画这条线。","drama":"戏；剧","hall":"我们在食堂吃午饭。"}},{s:"Our ____ club meets on Friday.", ans:"drama", opts:["drama","debate","ruler","chess"], d:{"drama":"戏；剧","club":"社团","debate":"我们在课上进行了一次辩论。","ruler":"我需要一把尺子画这条线。","chess":"大卫和本午餐时下棋。"}},{s:"We had a ____ in class.", ans:"debate", opts:["debate","drama","rubber","ruler"], d:{"debate":"我们在课上进行了一次辩论。","drama":"戏；剧","rubber":"你有橡皮吗？","ruler":"我需要一把尺子画这条线。"}}];
+  var CLOZE_PHR = [{s:"We ____ at school.", ans:"do morning exercises", opts:["do morning exercises","pay attention to","get on well with","make progress"], d:{"do morning exercises":"我们在学校做早操。","pay attention to":"请注意听老师讲课。","get on well with":"汤姆和同学相处得很好。","make progress":"这学期你进步很大。"}},{s:"I go to school ____.", ans:"on foot", opts:["on foot","hand in","go over","look up"], d:{"on foot":"我步行上学。","hand in":"请交上你的作业。","go over":"我们复习一下新单词吧。","look up":"你可以在字典里查这个词。"}},{s:"We clean the room ____.", ans:"after class", opts:["after class","at the moment","take part in","learn from"], d:{"after class":"课后我们打扫教室。","at the moment":"此刻我正在阅读。","take part in":"参与；参加","learn from":"我们可以互相学习。"}},{s:"Lily will ____ the race.", ans:"take part in", opts:["take part in","take notes","after class","make progress"], d:{"take part in":"参与；参加","take notes":"课堂上记笔记是好的。","after class":"课后我们打扫教室。","make progress":"这学期你进步很大。"}},{s:"Please ____ the teacher.", ans:"pay attention to", opts:["pay attention to","get on well with","make progress","at the moment"], d:{"pay attention to":"请注意听老师讲课。","get on well with":"汤姆和同学相处得很好。","make progress":"这学期你进步很大。","at the moment":"此刻我正在阅读。"}},{s:"You ____ this term.", ans:"make progress", opts:["make progress","at the moment","get ready for","take part in"], d:{"term":"这学期我们有一位新老师。","make progress":"这学期你进步很大。","at the moment":"此刻我正在阅读。","get ready for":"我们为旅行做准备。","take part in":"参与；参加"}},{s:"Tom ____ his classmate.", ans:"get on well with", opts:["get on well with","get ready for","pay attention to","make progress"], d:{"classmate":"我的同学都很好。","get on well with":"汤姆和同学相处得很好。","get ready for":"我们为旅行做准备。","pay attention to":"请注意听老师讲课。","make progress":"这学期你进步很大。"}},{s:"We can ____ each other.", ans:"learn from", opts:["learn from","write down","take notes","after class"], d:{"learn from":"我们可以互相学习。","write down":"把新单词记下来。","take notes":"课堂上记笔记是好的。","after class":"课后我们打扫教室。"}},{s:"Please ____ your homework.", ans:"hand in", opts:["hand in","on foot","go over","look up"], d:{"homework":"家庭作业","hand in":"请交上你的作业。","on foot":"我步行上学。","go over":"我们复习一下新单词吧。","look up":"你可以在字典里查这个词。"}},{s:"Let's ____ the new words.", ans:"go over", opts:["go over","on foot","hand in","look up"], d:{"go over":"我们复习一下新单词吧。","on foot":"我步行上学。","hand in":"请交上你的作业。","look up":"你可以在字典里查这个词。"}},{s:"____, I am reading.", ans:"at the moment", opts:["at the moment","after class","make progress","get ready for"], d:{"at the moment":"此刻我正在阅读。","after class":"课后我们打扫教室。","make progress":"这学期你进步很大。","get ready for":"我们为旅行做准备。"}},{s:"____ the new words.", ans:"write down", opts:["write down","learn from","take notes","after class"], d:{"write down":"把新单词记下来。","learn from":"我们可以互相学习。","take notes":"课堂上记笔记是好的。","after class":"课后我们打扫教室。"}},{s:"You can ____ the word in a dictionary.", ans:"look up", opts:["look up","on foot","hand in","go over"], d:{"dictionary":"这本字典很有用。","look up":"你可以在字典里查这个词。","on foot":"我步行上学。","hand in":"请交上你的作业。","go over":"我们复习一下新单词吧。"}},{s:"We ____ our pictures on the wall.", ans:"put up", opts:["put up","on foot","hand in","go over"], d:{"put up":"我们把画贴在了墙上。","on foot":"我步行上学。","hand in":"请交上你的作业。","go over":"我们复习一下新单词吧。"}},{s:"It is good to ____ in class.", ans:"take notes", opts:["take notes","take part in","learn from","write down"], d:{"take notes":"课堂上记笔记是好的。","take part in":"参与；参加","learn from":"我们可以互相学习。","write down":"把新单词记下来。"}},{s:"Everyone can ____ the game.", ans:"join in", opts:["join in","on foot","hand in","go over"], d:{"join in":"每个人都可以加入这个游戏。","on foot":"我步行上学。","hand in":"请交上你的作业。","go over":"我们复习一下新单词吧。"}},{s:"We ____ the trip.", ans:"get ready for", opts:["get ready for","get on well with","make progress","at the moment"], d:{"get ready for":"我们为旅行做准备。","get on well with":"汤姆和同学相处得很好。","make progress":"这学期你进步很大。","at the moment":"此刻我正在阅读。"}}];
+  var CLOZE_SETS = [
+    {name:'核心单词', data:CLOZE_CORE},
+    {name:'补充词汇', data:CLOZE_EXT},
+    {name:'重点短语', data:CLOZE_PHR}
+  ];
+  var clzSet = 0;
+  function curCloze(){ return CLOZE_SETS[clzSet].data; }var ci = 0, cscore = 0, cans = false, ccurrent = null;
+  var clzSent = document.getElementById('clzSent');
+  var clzOpts = document.getElementById('clzOpts');
+  var clzFb = document.getElementById('clzFb');
+  var clzNext = document.getElementById('clzNext');
+  var clzDone = document.getElementById('clzDone');
+  var clzHint = document.getElementById('clzHint');
+  var clzScore = document.getElementById('clzScore');
+
+  function wordify(t, dict){
+    var html = '';
+    var re = /([A-Za-z']+)([^A-Za-z']*)/g;
+    var last = 0, m;
+    while ((m = re.exec(t)) !== null) {
+      html += t.slice(last, m.index);
+      var w = m[1];
+      var p = RegExp.$2;
+      var key = w.toLowerCase();
+      var zh = dict && dict[key] ? dict[key] : '';
+      html += '<span class="clz-w" role="button" tabindex="0"' + (zh ? ' data-zh="' + zh + '"' : '') + '>' + w + '</span>' + p;
+      last = re.lastIndex;
+    }
+    html += t.slice(last);
+    return html;
+  }
+  function clzSentenceHtml(s, fill, dict){
+    var parts = s.split('____');
+    var html = '';
+    for (var i = 0; i < parts.length; i++) {
+      html += wordify(parts[i], dict);
+      if (i < parts.length - 1) {
+        var fkey = fill ? fill.toLowerCase() : '';
+        var fzh = dict && fill && dict[fkey] ? dict[fkey] : '';
+        html += fill
+          ? '<span class="clz-w fill" role="button" tabindex="0"' + (fzh ? ' data-zh="' + fzh + '"' : '') + '>' + fill + '</span>'
+          : '<span class="clz-blank">______</span>';
+      }
+    }
+    return html;
+  }
+  /* 点击句子中的单词：发音 + 显示释义 */
+  clzSent.addEventListener('click', function(e){
+    var t = e.target;
+    if (!t || !t.classList || !t.classList.contains('clz-w')) return;
+    var w = t.textContent;
+    speak(w, 0.8);
+    var zh = t.getAttribute('data-zh');
+    var dict = document.getElementById('clzDict');
+    if (dict) {
+      if (zh) {
+        dict.textContent = w + ' — ' + zh;
+        dict.style.display = 'block';
+      } else {
+        dict.style.display = 'none';
+      }
+    }
+  });
+
+  function loadCloze(){
+    cans = false;
+    ccurrent = curCloze()[ci];
+    clzHint.textContent = '第 ' + (ci + 1) + ' / ' + curCloze().length + ' 题 · 点选单词填空（点击单词可听发音）';
+    clzFb.textContent = '';
+    clzNext.style.display = 'none';
+    clzNext.textContent = '下一题 →';
+    clzDone.style.display = 'none';
+    clzSent.innerHTML = clzSentenceHtml(ccurrent.s, '', ccurrent.d);
+    var cdict0 = document.getElementById('clzDict');
+    if (cdict0) { cdict0.style.display = 'none'; cdict0.textContent = ''; }
+    clzOpts.innerHTML = '';
+    var opts = shuffle(ccurrent.opts);
+    opts.forEach(function(o){
+      var b = document.createElement('button');
+      b.className = 'q-opt';
+      b.type = 'button';
+      b.textContent = o;
+      b.addEventListener('click', function(){
+        speak(o, 0.8);
+        if (cans) {
+          var ck = o.toLowerCase();
+          var cz = ccurrent.d && ccurrent.d[ck] ? ccurrent.d[ck] : '';
+          var cd = document.getElementById('clzDict');
+          if (cd) {
+            if (cz) { cd.textContent = o + ' — ' + cz; cd.style.display = 'block'; }
+            else { cd.style.display = 'none'; }
+          }
+          return;
+        }
+        cans = true;
+        var correct = (o === ccurrent.ans);
+        if (correct) {
+          cscore++;
+          b.classList.add('correct');
+          clzFb.innerHTML = '答对啦！正确答案是 <b>' + ccurrent.ans + '</b>';
+          clzFb.style.color = 'var(--green)';
+        } else {
+          b.classList.add('wrong');
+          var bs2 = clzOpts.querySelectorAll('.q-opt');
+          for (var k = 0; k < bs2.length; k++) {
+            if (bs2[k].textContent === ccurrent.ans) { bs2[k].classList.add('correct'); break; }
+          }
+          clzFb.innerHTML = '再想想！正确答案是 <b>' + ccurrent.ans + '</b>';
+          clzFb.style.color = 'var(--red)';
+        }
+        /* 显示完整句子（每个单词可点读）+ 整句朗读按钮 */
+        clzSent.innerHTML = '';
+        var line = document.createElement('div');
+        line.className = 'clz-line';
+        line.innerHTML = clzSentenceHtml(ccurrent.s, ccurrent.ans, ccurrent.d);
+        var lb = document.createElement('button');
+        lb.className = 'clz-listen';
+        lb.type = 'button';
+        lb.setAttribute('aria-label', '朗读本句');
+        lb.title = '朗读本句';
+        lb.innerHTML = SPK;
+        lb.addEventListener('click', function(){
+          speak(ccurrent.s.replace('____', ccurrent.ans));
+        });
+        line.appendChild(lb);
+        clzSent.appendChild(line);
+        clzScore.textContent = '得分：' + cscore;
+        setTimeout(function(){ speak(ccurrent.ans, 0.8); }, 700);
+        if (ci < curCloze().length - 1) {
+          clzNext.style.display = 'inline-block';
+        } else {
+          clzNext.style.display = 'inline-block';
+          clzNext.textContent = '再来一轮';
+          clzDone.style.display = 'block';
+          clzDone.textContent = '完成！共 ' + curCloze().length + ' 题，答对 ' + cscore + ' 题。' +
+            (cscore === curCloze().length ? ' 太棒了，全部正确！' : (cscore >= curCloze().length * 0.6 ? ' 很好，继续加油！' : ' 建议回到例句部分再听一听。'));
+        }
+      });
+      clzOpts.appendChild(b);
+    });
+  }
+  clzNext.addEventListener('click', function(){
+    if (ci >= curCloze().length - 1) {
+      ci = 0;
+      cscore = 0;
+      clzScore.textContent = '得分：0';
+      clzDone.style.display = 'none';
+      clzDone.textContent = '';
+    } else {
+      ci++;
+    }
+    loadCloze();
+  });
+
+  /* 填空 tab（核心单词 / 补充词汇 / 重点短语） */
+  var clzTabs = document.getElementById('clzTabs');
+  var clzBadge = document.getElementById('clzBadge');
+  CLOZE_SETS.forEach(function(st, i){
+    var tb = document.createElement('button');
+    tb.className = 'q-tab' + (i === 0 ? ' active' : '');
+    tb.type = 'button';
+    tb.textContent = st.name + '（' + st.data.length + ' 题）';
+    tb.addEventListener('click', function(){
+      clzSet = i;
+      ci = 0; cscore = 0;
+      clzScore.textContent = '得分：0';
+      clzDone.style.display = 'none';
+      clzDone.textContent = '';
+      clzFb.textContent = '';
+      var tabs = clzTabs.querySelectorAll('.q-tab');
+      for (var k = 0; k < tabs.length; k++) tabs[k].classList.remove('active');
+      tb.classList.add('active');
+      clzBadge.textContent = st.name + ' · ' + st.data.length + ' 题';
+      loadCloze();
+    });
+    clzTabs.appendChild(tb);
+  });
+  clzBadge.textContent = CLOZE_SETS[0].name + ' · ' + CLOZE_SETS[0].data.length + ' 题';
+
+  loadCloze();
+
+  
+  
+})();
+</script>
+
+<button id="toTop" class="to-top" type="button" aria-label="回到顶部" title="回到顶部">↑</button>
+<div class="wrap"><div class="mob-note"><b>手机 / iPad 提示：</b>请用 <b>Safari 或 Chrome</b> 打开本文件以获得完整点读功能（"文件"App 里的预览不能交互）。如点击发音没有声音：① 检查设备侧边的<b>静音键</b>与音量；② 在「<b>设置 → 辅助功能 → 朗读内容 → 声音</b>」中下载 English 语音（如 Samantha）。</div></div>
+<script>
+(function(){
+  try{
+    var b=document.getElementById('toTop'); if(!b) return;
+    var show=function(){ b.style.display = (window.scrollY>600) ? 'flex' : 'none'; };
+    window.addEventListener('scroll',show,{passive:true}); show();
+    b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

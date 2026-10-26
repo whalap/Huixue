@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 1 · 数字与数量 Numbers</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.unit({
+  n: 1,
+  emo: '🔢',
+  beast: '数字精灵',
+  en: 'Numbers',
+  cn: '数字与数量',
+  goal: '1–20 全部认全，再往上知道整十怎么说；会问「有几个」「你几岁」。',
+  tip: '最容易混的是 <b>-teen 和 -ty</b>：thirteen（13）重音在后面、音拖长；thirty（30）重音在前面、收得干脆。' +
+       '听不准就点「🐢 慢速」，把尾巴听清楚：thir<b>TEEN</b> vs <b>THIR</b>ty。',
+  vocab: [
+    {g:'1–10', w:'one', ipa:'/wʌn/', cn:'一 · 1', ex:'One apple, please.', excn:'请给我一个苹果。'},
+    {g:'1–10', w:'two', ipa:'/tuː/', cn:'二 · 2', ex:'I have two hands.', excn:'我有两只手。'},
+    {g:'1–10', w:'three', ipa:'/θriː/', cn:'三 · 3', ex:'Three little birds.', excn:'三只小鸟。'},
+    {g:'1–10', w:'four', ipa:'/fɔː/', cn:'四 · 4', ex:'Four wheels on the car.', excn:'汽车有四个轮子。'},
+    {g:'1–10', w:'five', ipa:'/faɪv/', cn:'五 · 5', ex:'I have five fingers.', excn:'我有五根手指。'},
+    {g:'1–10', w:'six', ipa:'/sɪks/', cn:'六 · 6', ex:'Six eggs in the box.', excn:'盒子里有六个鸡蛋。'},
+    {g:'1–10', w:'seven', ipa:'/ˈsevn/', cn:'七 · 7', ex:'Seven days in a week.', excn:'一周有七天。'},
+    {g:'1–10', w:'eight', ipa:'/eɪt/', cn:'八 · 8', ex:"It's eight o'clock.", excn:'现在八点。'},
+    {g:'1–10', w:'nine', ipa:'/naɪn/', cn:'九 · 9', ex:'I am nine years old.', excn:'我九岁。'},
+    {g:'1–10', w:'ten', ipa:'/ten/', cn:'十 · 10', ex:'Ten little ducks.', excn:'十只小鸭子。'},
+
+    {g:'11–20', w:'eleven', ipa:'/ɪˈlevn/', cn:'十一 · 11', ex:'Eleven players in a team.', excn:'一个队有十一名队员。'},
+    {g:'11–20', w:'twelve', ipa:'/twelv/', cn:'十二 · 12', ex:'Twelve months in a year.', excn:'一年有十二个月。'},
+    {g:'11–20', w:'thirteen', ipa:'/ˌθɜːˈtiːn/', cn:'十三 · 13', ex:'I am thirteen.', excn:'我十三岁。'},
+    {g:'11–20', w:'fourteen', ipa:'/ˌfɔːˈtiːn/', cn:'十四 · 14', ex:'Fourteen books on the desk.', excn:'桌上有十四本书。'},
+    {g:'11–20', w:'fifteen', ipa:'/ˌfɪfˈtiːn/', cn:'十五 · 15', ex:'Fifteen minutes.', excn:'十五分钟。'},
+    {g:'11–20', w:'sixteen', ipa:'/ˌsɪksˈtiːn/', cn:'十六 · 16', ex:'Sixteen candles on the cake.', excn:'蛋糕上有十六支蜡烛。'},
+    {g:'11–20', w:'seventeen', ipa:'/ˌsevnˈtiːn/', cn:'十七 · 17', ex:'Seventeen students in my class.', excn:'我们班有十七个学生。'},
+    {g:'11–20', w:'eighteen', ipa:'/ˌeɪˈtiːn/', cn:'十八 · 18', ex:'My brother is eighteen.', excn:'我哥哥十八岁。'},
+    {g:'11–20', w:'nineteen', ipa:'/ˌnaɪnˈtiːn/', cn:'十九 · 19', ex:'Nineteen apples in the bag.', excn:'袋子里有十九个苹果。'},
+    {g:'11–20', w:'twenty', ipa:'/ˈtwenti/', cn:'二十 · 20', ex:'Twenty students.', excn:'二十个学生。'},
+
+    {g:'整十与 100', w:'thirty', ipa:'/ˈθɜːti/', cn:'三十 · 30', ex:'Thirty days in April.', excn:'四月有三十天。'},
+    {g:'整十与 100', w:'forty', ipa:'/ˈfɔːti/', cn:'四十 · 40', ex:'Forty desks.', excn:'四十张桌子。'},
+    {g:'整十与 100', w:'fifty', ipa:'/ˈfɪfti/', cn:'五十 · 50', ex:'Fifty yuan.', excn:'五十元。'},
+    {g:'整十与 100', w:'sixty', ipa:'/ˈsɪksti/', cn:'六十 · 60', ex:'Sixty seconds in a minute.', excn:'一分钟有六十秒。'},
+    {g:'整十与 100', w:'seventy', ipa:'/ˈsevnti/', cn:'七十 · 70', ex:'My grandpa is seventy.', excn:'我爷爷七十岁。'},
+    {g:'整十与 100', w:'eighty', ipa:'/ˈeɪti/', cn:'八十 · 80', ex:'Eighty books.', excn:'八十本书。'},
+    {g:'整十与 100', w:'ninety', ipa:'/ˈnaɪnti/', cn:'九十 · 90', ex:'Ninety points!', excn:'九十分！'},
+    {g:'整十与 100', w:'one hundred', ipa:'/wʌn ˈhʌndrəd/', cn:'一百 · 100', ex:'One hundred students.', excn:'一百个学生。'}
+  ],
+  sents: [
+    {en:'How many apples?', cn:'有多少个苹果？'},
+    {en:'Three apples.', cn:'三个苹果。'},
+    {en:'How old are you?', cn:'你几岁了？'},
+    {en:"I'm nine years old.", cn:'我九岁。'},
+    {en:'Count with me: one, two, three.', cn:'跟我数：一、二、三。'},
+    {en:'I have two pens.', cn:'我有两支钢笔。'},
+    {en:'What number is it?', cn:'这是数字几？'},
+    {en:"It's twenty.", cn:'是二十。'}
+  ],
+  drill: {
+    h: '听数字，选出你听到的那一个（重点分清 -teen 和 -ty）',
+    items: [
+      {say:'three', sayCn:'三', opts:['three','tree','thirteen','ten'], a:0, tip:'three /θriː/ 舌尖要轻轻放在上下牙中间。'},
+      {say:'thirteen', sayCn:'十三', opts:['thirty','three','thirteen','ten'], a:2, tip:'-teen 重音在后：thirTEEN。'},
+      {say:'fifteen', sayCn:'十五', opts:['fifty','fifteen','five','fourteen'], a:1},
+      {say:'twenty', sayCn:'二十', opts:['twelve','twenty','two','ten'], a:1},
+      {say:'forty', sayCn:'四十', opts:['fourteen','four','forty','fourth'], a:2, tip:'forty 里没有 u，不是 fourty。'},
+      {say:'eight', sayCn:'八', opts:['eight','eighty','ate','it'], a:0},
+      {say:'eleven', sayCn:'十一', opts:['seven','eleven','twelve','ten'], a:1},
+      {say:'one hundred', sayCn:'一百', opts:['ten','one hundred','hundred','one thousand'], a:1},
+      {say:'seventeen', sayCn:'十七', opts:['seventy','seven','seventeen','sixteen'], a:2, tip:'听尾巴：sevenTEEN 尾巴上扬。'},
+      {say:'ninety', sayCn:'九十', opts:['nine','nineteen','ninety','ninth'], a:2, tip:'NINE-ty 重音在前，收得快。'}
+    ]
+  },
+  quiz: [
+    {q:'“How many apples?” 是在问什么？', opts:['苹果多少钱？','有多少个苹果？','苹果在哪里？','苹果是什么颜色？'], a:1},
+    {q:'“I am nine years old.” 的意思是？', opts:['我九岁。','我有九个。','我十九岁。','我读九年级。'], a:0},
+    {q:'下面哪个是 13？', opts:['thirty','three','thirteen','third'], a:2},
+    {q:'一分钟有多少秒？', opts:['sixteen','sixty','six','sixth'], a:1},
+    {q:'“Count with me.” 是什么意思？', opts:['跟我数。','跟我走。','跟我读。','跟我写。'], a:0},
+    {q:'40 的正确拼写是哪一个？', opts:['fourty','forty','fourteen','forteen'], a:1, tip:'forty 里面没有 u。'},
+    {q:'“How old are you?” 该怎么回答？', opts:["I'm fine.", "I'm nine.", "It's nine.", 'I have nine.'], a:1},
+    {q:'一年有多少个月？用英文说是？', opts:['twelve','twenty','twelfth','ten'], a:0}
+  ],
+  proj: 'Pre-A1 Unit1 数字海报项目.html',
+  projName: '我的数字海报',
+  prev: 'Pre-A1 Unit0 英语跟读.html',
+  next: 'Pre-A1 Unit2 英语跟读.html'
+});
+</script>
+</body>
+</html>

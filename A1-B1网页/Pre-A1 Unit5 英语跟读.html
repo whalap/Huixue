@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 5 · 我的东西与家人 My Things &amp; Family</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.unit({
+  n: 5,
+  emo: '🎒',
+  beast: '收纳精灵',
+  en: 'My Things & Family',
+  cn: '我的东西与家人',
+  goal: '文具 8 个 + 玩具 5 个 + 家人 7 个；会说 This is my… / I have a… 介绍自己的东西和家里人。',
+  tip: '起步线最后一块拼图是 <b>This is my ___.</b> 和 <b>I have a ___.</b> 这两个句型 —— ' +
+       '只要会这两个，前面四个单元的字母、数字、颜色、身体就全能串成句子了。' +
+       '走完这一单元，你就准备好上 <b>A1 启程线</b> 了。',
+  vocab: [
+    {g:'文具 Stationery', w:'book', ipa:'/bʊk/', cn:'书', ex:'This is my book.', excn:'这是我的书。'},
+    {g:'文具 Stationery', w:'pen', ipa:'/pen/', cn:'钢笔', ex:'I have a pen.', excn:'我有一支钢笔。'},
+    {g:'文具 Stationery', w:'pencil', ipa:'/ˈpensl/', cn:'铅笔', ex:'It is a pencil.', excn:'这是一支铅笔。'},
+    {g:'文具 Stationery', w:'ruler', ipa:'/ˈruːlə/', cn:'尺子', ex:'My ruler is blue.', excn:'我的尺子是蓝色的。'},
+    {g:'文具 Stationery', w:'bag', ipa:'/bæg/', cn:'书包 · 袋子', ex:'This is my bag.', excn:'这是我的书包。'},
+    {g:'文具 Stationery', w:'eraser', ipa:'/ɪˈreɪzə/', cn:'橡皮', ex:'I need an eraser.', excn:'我需要一块橡皮。'},
+    {g:'文具 Stationery', w:'crayon', ipa:'/ˈkreɪən/', cn:'蜡笔', ex:'I like my crayons.', excn:'我喜欢我的蜡笔。'},
+    {g:'文具 Stationery', w:'notebook', ipa:'/ˈnəʊtbʊk/', cn:'笔记本', ex:'Write it in your notebook.', excn:'把它写在你的笔记本上。'},
+
+    {g:'玩具 Toys', w:'ball', ipa:'/bɔːl/', cn:'球', ex:'I have a ball.', excn:'我有一个球。'},
+    {g:'玩具 Toys', w:'doll', ipa:'/dɒl/', cn:'娃娃', ex:'This is my doll.', excn:'这是我的娃娃。'},
+    {g:'玩具 Toys', w:'car', ipa:'/kɑː/', cn:'小汽车', ex:'A red car.', excn:'一辆红色的小汽车。'},
+    {g:'玩具 Toys', w:'kite', ipa:'/kaɪt/', cn:'风筝', ex:'Fly a kite.', excn:'放风筝。'},
+    {g:'玩具 Toys', w:'teddy bear', ipa:'/ˈtedi beə/', cn:'泰迪熊', ex:'I like my teddy bear.', excn:'我喜欢我的泰迪熊。'},
+
+    {g:'家人 Family', w:'mum', ipa:'/mʌm/', cn:'妈妈', ex:'This is my mum.', excn:'这是我的妈妈。'},
+    {g:'家人 Family', w:'dad', ipa:'/dæd/', cn:'爸爸', ex:'This is my dad.', excn:'这是我的爸爸。'},
+    {g:'家人 Family', w:'brother', ipa:'/ˈbrʌðə/', cn:'兄弟', ex:'I have a brother.', excn:'我有一个兄弟。'},
+    {g:'家人 Family', w:'sister', ipa:'/ˈsɪstə/', cn:'姐妹', ex:'My sister is nine.', excn:'我的姐妹九岁。'},
+    {g:'家人 Family', w:'grandma', ipa:'/ˈgrænmɑː/', cn:'奶奶 / 外婆', ex:'My grandma is kind.', excn:'我的奶奶很和蔼。'},
+    {g:'家人 Family', w:'grandpa', ipa:'/ˈgrænpɑː/', cn:'爷爷 / 外公', ex:'My grandpa is seventy.', excn:'我的爷爷七十岁。'},
+    {g:'家人 Family', w:'family', ipa:'/ˈfæməli/', cn:'家庭 · 家人', ex:'I love my family.', excn:'我爱我的家人。'}
+  ],
+  sents: [
+    {en:'This is my bag.', cn:'这是我的书包。'},
+    {en:'It is a pen.', cn:'这是一支钢笔。'},
+    {en:'I have a brother.', cn:'我有一个兄弟。'},
+    {en:'This is my mum.', cn:'这是我的妈妈。'},
+    {en:'I like my teddy bear.', cn:'我喜欢我的泰迪熊。'},
+    {en:'What is in your bag?', cn:'你的书包里有什么？'},
+    {en:'Two books and a pencil.', cn:'两本书和一支铅笔。'},
+    {en:'I love my family.', cn:'我爱我的家人。'}
+  ],
+  drill: {
+    h: '听单词，选出中文意思（文具 / 玩具 / 家人混着来）',
+    items: [
+      {say:'pencil', opts:['铅笔','钢笔','尺子','橡皮'], a:0},
+      {say:'eraser', opts:['橡皮','蜡笔','笔记本','书包'], a:0},
+      {say:'crayon', opts:['蜡笔','橡皮','铅笔','尺子'], a:0},
+      {say:'notebook', opts:['笔记本','书','书包','纸'], a:0},
+      {say:'ruler', opts:['尺子','橡皮','铅笔','书'], a:0},
+      {say:'teddy bear', opts:['泰迪熊','娃娃','风筝','球'], a:0},
+      {say:'kite', opts:['风筝','球','汽车','娃娃'], a:0},
+      {say:'grandma', opts:['奶奶 / 外婆','爷爷 / 外公','妈妈','姐姐'], a:0},
+      {say:'brother', opts:['兄弟','姐妹','爸爸','爷爷'], a:0},
+      {say:'sister', opts:['姐妹','兄弟','妈妈','奶奶'], a:0}
+    ]
+  },
+  quiz: [
+    {q:'“This is my bag.” 的意思是？', opts:['这是我的书包。','这是我的书。','我有一个书包。','书包在这里。'], a:0},
+    {q:'“I have a brother.” 说明说话的人？', opts:['有一个兄弟','有一个姐妹','没有兄弟','是独生子'], a:0},
+    {q:'下面哪个是文具？', opts:['ruler','doll','kite','dad'], a:0},
+    {q:'下面哪个是家人？', opts:['car','grandpa','ball','crayon'], a:1},
+    {q:'“What is in your bag?” 是在问什么？', opts:['你书包里有什么？','你的书包在哪？','你的书包多少钱？','这是你的书包吗？'], a:0},
+    {q:'想说「这是我的妈妈」，正确的是？', opts:['This is my mum.','This is my dad.','I have a mum.','My mum is here.'], a:0},
+    {q:'“I love my family.” 的意思是？', opts:['我爱我的家人。','我有一个家。','我家很大。','我回家了。'], a:0},
+    {q:'橡皮的英文是？', opts:['eraser','ruler','crayon','pencil'], a:0, tip:'eraser（美式）／ rubber（英式），课本里常见的是 eraser。'}
+  ],
+  proj: 'Pre-A1 Unit5 我的书包与家项目.html',
+  projName: '我的书包与我的家',
+  prev: 'Pre-A1 Unit4 英语跟读.html',
+  next: null
+});
+</script>
+</body>
+</html>

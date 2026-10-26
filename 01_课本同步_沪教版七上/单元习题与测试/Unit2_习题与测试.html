@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 2 School Life · 习题与测试（沪教版七上）</title>
+<style>
+:root{
+  --ink:#2b2118; --ink2:#5c4f42; --muted:#8a7c6b;
+  --paper:#faf6ee; --card:#ffffff; --line:#e6dcc8;
+  --gold:#b8860b; --gold-soft:#d4a933; --red:#c0392b; --ok:#1e8449;
+  --brand:#1a1410;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:var(--paper); color:var(--ink); font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif; line-height:1.75; font-size:15px}
+.wrap{max-width:860px; margin:0 auto; padding:0 18px 90px}
+
+/* ---------- 顶部 ---------- */
+.hero{background:linear-gradient(135deg,#1a1410 0%,#2b2118 60%,#3a2c1c 100%); color:#f5ecd7; padding:34px 20px 26px; text-align:center; border-bottom:3px solid var(--gold)}
+.hero .kicker{color:var(--gold-soft); font-size:13px; letter-spacing:3px; margin-bottom:8px}
+.hero h1{font-size:26px; margin-bottom:8px}
+.hero .sub{color:#cbbd9d; font-size:13.5px}
+.hero .meta{margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.hero .meta span{border:1px solid rgba(212,169,51,.45); color:#e8d9ac; border-radius:99px; padding:3px 14px; font-size:12.5px}
+
+/* ---------- 卷子切换 ---------- */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:22px 0 26px; position:sticky; top:0; z-index:20; background:var(--paper); padding:12px 0; border-bottom:1px dashed var(--line)}
+.tabs button{border:1.5px solid var(--line); background:var(--card); color:var(--ink2); border-radius:10px; padding:8px 16px; font-size:14px; cursor:pointer; font-weight:600; transition:.15s}
+.tabs button:hover{border-color:var(--gold-soft)}
+.tabs button.on{background:var(--brand); color:#f0e2b8; border-color:var(--brand)}
+.tabs button .tag{display:block; font-size:11px; font-weight:400; opacity:.75; margin-top:1px}
+
+/* ---------- 卷子主体 ---------- */
+.paper{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:30px 34px; box-shadow:0 2px 14px rgba(43,33,24,.06)}
+.p-head{border-bottom:2px solid var(--brand); padding-bottom:14px; margin-bottom:8px}
+.p-head .pt{font-size:20px; font-weight:800}
+.p-head .ps{font-size:13px; color:var(--muted); margin-top:4px}
+.p-info{display:flex; gap:18px; font-size:13px; color:var(--ink2); margin:10px 0 22px; flex-wrap:wrap}
+.p-info b{color:var(--gold)}
+.sec{margin-bottom:30px}
+.sec>h3{font-size:16px; font-weight:800; color:var(--brand); border-left:4px solid var(--gold); padding-left:10px; margin-bottom:6px}
+.sec .sn{font-size:12.5px; color:var(--muted); margin-bottom:12px}
+.q{padding:12px 14px; border:1px solid var(--line); border-radius:10px; margin-bottom:10px; background:#fffdf8}
+.q .qt{font-weight:600; margin-bottom:8px}
+.q .qt .qn{color:var(--gold); font-weight:800; margin-right:6px}
+.q .qt u{ text-decoration:underline; text-decoration-color:var(--gold); text-decoration-thickness:2px; text-underline-offset:3px; font-weight:700 }
+.opts{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.opts.one{grid-template-columns:1fr}
+.opt{border:1px solid var(--line); border-radius:8px; padding:7px 12px; cursor:pointer; font-size:14px; background:#fff; transition:.12s; display:flex; gap:8px; align-items:baseline}
+.opt .lb{font-weight:800; color:var(--muted)}
+.opt:hover{border-color:var(--gold-soft); background:#fffaf0}
+.opt.sel{border-color:var(--gold); background:#fdf3d8}
+.opt.ok{border-color:var(--ok); background:#eafaf0}
+.opt.bad{border-color:var(--red); background:#fdecea}
+.opt .mk{margin-left:auto; font-weight:800}
+.opt.ok .mk{color:var(--ok)} .opt.bad .mk{color:var(--red)}
+.ans-in{border:1.5px solid var(--line); border-radius:8px; padding:8px 12px; font-size:14px; width:100%; max-width:340px; background:#fff; font-family:inherit}
+.ans-in:focus{outline:none; border-color:var(--gold)}
+.ans-in.ok{border-color:var(--ok); background:#f2fbf6}
+.ans-in.bad{border-color:var(--red); background:#fdf0ee}
+.tfrow{display:flex; gap:10px}
+.tfrow .opt{min-width:88px; justify-content:center}
+.hint{font-size:12.5px; color:var(--muted); margin-top:4px}
+.wordbank{font-size:13.5px; background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-bottom:12px; color:var(--ink2)}
+.wordbank b{color:var(--gold)}
+textarea.essay{width:100%; min-height:150px; border:1.5px solid var(--line); border-radius:10px; padding:12px; font-size:14px; font-family:inherit; resize:vertical; background:#fff}
+textarea.essay:focus{outline:none; border-color:var(--gold)}
+.checklist{background:#f4f8f4; border:1px solid #cfe3d2; border-radius:10px; padding:12px 16px; margin-top:12px; font-size:13.5px}
+.checklist b{color:var(--ok)}
+.checklist li{margin-left:20px; margin-top:3px}
+details.sample{margin-top:12px; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fffdf6}
+details.sample summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13.5px}
+details.sample .body{margin-top:10px; font-size:14px; line-height:1.9; border-top:1px dashed var(--line); padding-top:10px}
+details.sample .body .en{color:var(--ink)}
+details.sample .body .zh{color:var(--muted); font-size:12.5px}
+
+/* ---------- 阅读原文框 ---------- */
+.rdbox{background:#fffdf6; border:1.5px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:16px}
+.rdbox .rd-title{font-size:16px; font-weight:800; color:var(--brand); margin-bottom:10px}
+.rdbox .rd-title span{font-size:12px; font-weight:400; color:var(--muted); margin-left:8px}
+.rdbox .rd-body p{font-size:14.5px; line-height:2.05; margin:0 0 4px}
+.rdbox .rd-body p b{color:var(--brand)}
+.rdbox .rdn{display:inline-block; min-width:18px; color:var(--gold); font-weight:800; font-size:12.5px; margin-right:4px}
+.rdbox .kw{background:#fdf0d5; border-bottom:2px solid var(--gold-soft); border-radius:3px; padding:0 2px; font-weight:600}
+.rdbox .rd-note{font-size:12.5px; color:var(--ink2); background:#f7f1e3; border:1px dashed var(--gold-soft); border-radius:8px; padding:8px 12px; margin-top:12px}
+details.rdtr{margin-top:12px; border:1px dashed var(--line); border-radius:8px; padding:8px 12px; background:#fff}
+details.rdtr summary{cursor:pointer; font-weight:700; color:var(--gold); font-size:13px}
+details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-height:2}
+
+/* ---------- 操作区 ---------- */
+.acts{display:flex; gap:12px; margin:26px 0 10px; flex-wrap:wrap; position:sticky; bottom:0; background:linear-gradient(180deg,transparent, var(--paper) 30%); padding:14px 0}
+.btn{border:none; border-radius:10px; padding:12px 26px; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit}
+.btn-go{background:var(--brand); color:#f0e2b8}
+.btn-go:hover{background:#3a2c1c}
+.btn-ghost{background:#fff; color:var(--ink2); border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn-reset{background:#fff; color:var(--red); border:1.5px solid #ecc9c3}
+.score{display:none; border-radius:12px; padding:18px 22px; margin-top:16px; font-size:15px}
+.score.show{display:block}
+.score.pass{background:#eafaf0; border:1px solid #bfe6cc}
+.score.fail{background:#fdf0ee; border:1px solid #ecc9c3}
+.score .big{font-size:26px; font-weight:800}
+.score.pass .big{color:var(--ok)} .score.fail .big{color:var(--red)}
+.score .adv{font-size:13.5px; color:var(--ink2); margin-top:6px}
+.backhome{display:block; text-align:center; margin:26px auto 0; color:var(--muted); font-size:13px; text-decoration:none}
+.backhome:hover{color:var(--gold)}
+@media (max-width:640px){ .opts{grid-template-columns:1fr} .paper{padding:20px 16px} }
+@media print{
+  .hero,.tabs,.acts,.backhome{display:none!important}
+  body{background:#fff} .paper{border:none; box-shadow:none; padding:0}
+  .opt.sel{border-color:#999; background:#fff}
+  .q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="kicker">沪教版 · 英语七年级上册</div>
+  <h1>Unit 2 School Life</h1>
+  <div class="sub">习题与单元测试 · 每单元 5 份练习 + 3 套测试卷（在线作答 · 即时批改 · 可打印）</div>
+  <div class="meta">
+    <span>覆盖：本单元词汇 / 短语 / The simple present / -s 发音 / 课文 / 中国校园文化</span>
+    <span>依据：上海教育出版社 英语 七年级上册（2024 广州新版）</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" id="tabs"></div>
+  <div id="paperHost"></div>
+  <div id="scoreHost"></div>
+  <a class="backhome" href="../点读学习包/Unit0_总目录_点读学习中心.html">← 返回七上点读学习中心</a>
+</div>
+
+<script>
+const PAPERS = [
+  {
+    "id": "p1",
+    "title": "练习一 · 词汇与短语",
+    "time": "20 分钟",
+    "sub": "本单元核心词汇 29 个 + 拓展词 18 个 + 短语 17 个，先认词，再会用。",
+    "sections": [
+    {
+      "name": "一、词汇匹配（选出正确中文意思）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "geography", "type": "choice", "a": 0, "opts": ["地理（学）", "角；墙角", "青少年", "意识到"]},
+        {"stem": "solve", "type": "choice", "a": 1, "opts": ["加强；增强", "解答", "真诚地；诚实地", "介意"]},
+        {"stem": "teenager", "type": "choice", "a": 2, "opts": ["问候；招呼", "幸运地；幸好", "青少年", "地理（学）"]},
+        {"stem": "sincerely", "type": "choice", "a": 3, "opts": ["日记；日记簿", "（把……）打包", "解答", "真诚地；诚实地"]},
+        {"stem": "luckily", "type": "choice", "a": 0, "opts": ["幸运地；幸好", "恰好", "角；墙角", "青少年"]}
+      ]
+    },
+    {
+      "name": "二、看中文，写英文",
+      "note": "每题 1 分，共 5 分。注意拼写。",
+      "items": [
+        {"stem": "活动", "type": "text", "a": "activity", "ph": "拼写注意大小写"},
+        {"stem": "技术；技能", "type": "text", "a": "skill", "ph": "拼写注意大小写"},
+        {"stem": "年级", "type": "text", "a": "grade", "ph": "拼写注意大小写"},
+        {"stem": "课题", "type": "text", "a": "project", "ph": "拼写注意大小写"},
+        {"stem": "演示", "type": "text", "a": "presentation", "ph": "拼写注意大小写"}
+      ]
+    },
+    {
+      "name": "三、短语填空（选词填空，注意形式）",
+      "note": "每题 1 分，共 5 分。",
+      "bank": "<b>短语库：</b>take part in · look forward to · do my homework · lunch break · in time",
+      "items": [
+        {"stem": "Our school has many after-school activities. I want to ____ ____ the music club.", "type": "choice", "a": 0, "opts": ["take part in", "look forward to", "get up", "go to bed"], "explain": "take part in 参加（活动）。"},
+        {"stem": "We ____ ____ the school trip next week. We are very excited.", "type": "choice", "a": 0, "opts": ["look forward to", "take part in", "eat out", "get to school"], "explain": "look forward to 期待；盼望。"},
+        {"stem": "I always ____ ____ ____ after dinner.", "type": "choice", "a": 0, "opts": ["do my homework", "do some morning exercise", "play a ball game", "have a good time"], "explain": "do one's homework 做作业；主语 I → my。"},
+        {"stem": "We have a ____ ____ from 12:00 to 2:00 p.m.", "type": "choice", "a": 0, "opts": ["lunch break", "book corner", "sports ground", "morning break"], "explain": "have a lunch break 午休。"},
+        {"stem": "Hurry up! We must get to school ____ ____.", "type": "choice", "a": 0, "opts": ["in time", "on foot", "at school", "after school"], "explain": "in time 及时。"}
+      ]
+    },
+    {
+      "name": "四、单项选择",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "Li Hua ____ to school on foot every day.", "type": "choice", "a": 1, "opts": ["go", "goes", "going", "gone"], "explain": "主语 Li Hua 是第三人称单数，一般现在时动词加 -es → goes。"},
+        {"stem": "Geography ____ a new subject for us this term.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "geography 是单数科目名 → is。"},
+        {"stem": "—____ your class ____ a book corner? —Yes, we do.", "type": "choice", "a": 0, "opts": ["Does; have", "Do; has", "Does; has", "Is; have"], "explain": "主语 your class 视为单数，疑问句用 Does 开头，后面动词回原形 have。"},
+        {"stem": "The students ____ morning exercises at 9:40 every day.", "type": "choice", "a": 2, "opts": ["does", "doing", "do", "did"], "explain": "students 是复数，一般现在时用动词原形 do。"},
+        {"stem": "My deskmate is a ____ of the Ping-pong Club.", "type": "choice", "a": 0, "opts": ["member", "match", "magazine", "mood"], "explain": "member 成员；match 比赛；magazine 杂志；mood 情绪。"}
+      ]
+    },
+    {
+      "name": "五、对划线部分提问",
+      "note": "每题 1 分，共 5 分。用 Wh-word + 一般疑问句语序；动词为实义动词时用 do/does。",
+      "items": [
+        {"stem": "Classes <u>start at 8:00 a.m.</u>（对划线部分提问）", "type": "text", "a": "What time do classes start?", "a2": ["What time do classes start?", "When do classes start?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "Li Hua <u>goes to school on foot</u>.（对划线部分提问）", "type": "text", "a": "How does Li Hua go to school?", "a2": ["How does Li Hua go to school?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "<u>Geography</u> is my favourite subject.（对划线部分提问）", "type": "text", "a": "What is your favourite subject?", "a2": ["What's your favourite subject?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "We have a lunch break <u>in the canteen</u>.（对划线部分提问）", "type": "text", "a": "Where do you have a lunch break?", "a2": ["Where do you have lunch?"], "ph": "写完整问句，句末加 ?"},
+        {"stem": "I like the book corner <u>because I can read interesting books there</u>.（对划线部分提问）", "type": "text", "a": "Why do you like the book corner?", "a2": ["Why do you like the book corner?"], "ph": "写完整问句，句末加 ?"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p2",
+    "title": "练习二 · 语法与句型",
+    "time": "20 分钟",
+    "sub": "本单元语法重点：The simple present（一般现在时）。",
+    "sections": [
+    {
+      "name": "一、语法选择（单选）",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "He ____ up at 7:00 every morning.", "type": "choice", "a": 1, "opts": ["get", "gets", "getting", "got"], "explain": "every morning 提示一般现在时；He 是三单 → gets。"},
+        {"stem": "My mother ____ TV in the evening.", "type": "choice", "a": 2, "opts": ["watch", "watchs", "watches", "watching"], "explain": "watch 以 -ch 结尾，三单加 -es → watches。"},
+        {"stem": "Tom ____ his homework after dinner.", "type": "choice", "a": 1, "opts": ["do", "does", "doing", "dos"], "explain": "do 的三单是 does（不规则）。"},
+        {"stem": "—____ your sister ____ to school by bus? —Yes, she does.", "type": "choice", "a": 0, "opts": ["Does; go", "Do; goes", "Does; goes", "Is; go"], "explain": "三单疑问句用 Does 开头，动词回原形 go。"},
+        {"stem": "They ____ morning exercises every day.", "type": "choice", "a": 1, "opts": ["does", "do", "doing", "done"], "explain": "They 是复数 → do。"},
+        {"stem": "Li Hua never ____ late for school.", "type": "choice", "a": 0, "opts": ["is", "are", "am", "be"], "explain": "late 是形容词，前面用 be；Li Hua 三单 → is。"},
+        {"stem": "We have seven classes each day, four in the morning and three ____ the afternoon.", "type": "choice", "a": 0, "opts": ["in", "on", "at", "of"], "explain": "in the afternoon 固定搭配。"},
+        {"stem": "The first class ____ at 8:00 and ____ at 8:45.", "type": "choice", "a": 1, "opts": ["start; end", "starts; ends", "starts; end", "start; ends"], "explain": "The first class 是单数，两个动词都用三单。"},
+        {"stem": "My brother ____ like geography. He thinks it is difficult.", "type": "choice", "a": 1, "opts": ["don't", "doesn't", "isn't", "aren't"], "explain": "三单否定用 doesn't + 动词原形。"},
+        {"stem": "—____ your parents ____ newspapers? —Every Sunday.", "type": "choice", "a": 0, "opts": ["Do; read", "Does; read", "Do; reads", "Are; read"], "explain": "parents 是复数，用 Do 开头，动词用原形 read。"}
+      ]
+    },
+    {
+      "name": "二、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "push（变成第三人称单数）", "type": "text", "a": "pushes", "ph": "注意 -s / -es / -ies 变化"},
+        {"stem": "mix（变成第三人称单数）", "type": "text", "a": "mixes", "ph": "注意 -s / -es / -ies 变化"},
+        {"stem": "play（变成第三人称单数）", "type": "text", "a": "plays", "ph": "注意 -s / -es / -ies 变化"},
+        {"stem": "study（变成第三人称单数）", "type": "text", "a": "studies", "ph": "注意 -s / -es / -ies 变化"},
+        {"stem": "do（变成第三人称单数）", "type": "text", "a": "does", "ph": "注意 -s / -es / -ies 变化"}
+      ]
+    },
+    {
+      "name": "三、完成句子（每空一词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "我通常步行上学。I usually ____ ____ school ____ ____.", "type": "text", "a": "go to; on foot", "a2": ["go to; on foot"]},
+        {"stem": "我们课后参加社团活动。We ____ ____ ____ after-school club activities after school.", "type": "text", "a": "take part in", "a2": ["take part in"]},
+        {"stem": "他盼望即将到来的假期。He ____ ____ ____ the coming holiday.", "type": "text", "a": "looks forward to", "a2": ["looks forward to", "is looking forward to"]},
+        {"stem": "我们十二点到两点午休。We ____ a ____ ____ from 12:00 to 2:00.", "type": "text", "a": "have; lunch break", "a2": ["have; lunch break"]},
+        {"stem": "你必须按时完成作业。You must finish your homework ____ ____.", "type": "text", "a": "in time", "a2": ["in time"]}
+      ]
+    },
+    {
+      "name": "四、句型转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "Li Hua goes to school on foot.（改为一般疑问句）", "type": "text", "a": "Does Li Hua go to school on foot?", "a2": ["Does Li Hua go to school on foot?"]},
+        {"stem": "They play basketball after school.（改为否定句）", "type": "text", "a": "They don't play basketball after school.", "a2": ["They do not play basketball after school."]},
+        {"stem": "My sister watches TV every evening.（对 every evening 提问）", "type": "text", "a": "How often does your sister watch TV?", "a2": ["How often does your sister watch TV?"]},
+        {"stem": "I get up at 7:00.（对 at 7:00 提问）", "type": "text", "a": "What time do you get up?", "a2": ["What time do you get up?"]},
+        {"stem": "He does his homework after dinner.（对 his homework 提问）", "type": "text", "a": "What does he do after dinner?", "a2": ["What does he do after dinner?"]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p3",
+    "title": "练习三 · 课文与阅读",
+    "time": "25 分钟",
+    "sub": "围绕单元阅读语篇《My school day》——先读原文，再会答。",
+    "sections": [
+    {
+      "name": "一、课文原文《My school day》",
+      "note": "沪教版英语七上 Unit 2 阅读语篇。先读原文，再做后面四道大题；答案都能在原文里找到。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">My school day <span>阅读语篇 · 沪教版 英语 七年级上册 Unit 2</span></div><div class=\"rd-body\"><p><span class=\"rdn\">1</span>My name is Li Hua. I started junior high school this September.</p><p><span class=\"rdn\">2</span>I have a lot to say about my time there!</p><p><span class=\"rdn\">3</span>Classes start at 8:00 a.m. I have seven classes each day, four in the morning and three in the afternoon.</p><p><span class=\"rdn\">4</span>Geography is a new subj" +
+      "ect in junior high. The teacher sometimes teaches us by playing games.</p><p><span class=\"rdn\">5</span>It's a great way to learn.</p><p><span class=\"rdn\">6</span>Morning break starts at 9:40 a.m., and I run to the sports ground.</p><p><span class=\"rdn\">7</span>I often do some morning exercise or play a ball game with my friends.</p><p><span class=\"rdn\">8</span>The break ends at 10:10 a.m. How short it is!</p><p><span class=\"rdn\">9</span>We have a lunch break from 12:00 p.m. t" +
+      "o 2:00 p.m. We go to the canteen for lunch.</p><p><span class=\"rdn\">10</span>There are different foods I can choose from. I really enjoy eating there!</p><p><span class=\"rdn\">11</span>After that, I usually go to the book corner in the classroom.</p><p><span class=\"rdn\">12</span>I can always find something interesting to read.</p><p><span class=\"rdn\">13</span>Classes end at 4:25 p.m., and many students take part in after-school activities.</p><p><span class=\"rdn\">14</span>I go" +
+      " to the Ping-pong Club with my friend Chen Ming.</p><p><span class=\"rdn\">15</span>We plan to take part in the school ping-pong game next month.</p><p><span class=\"rdn\">16</span>We look forward to it and will practise very hard.</p><p><span class=\"rdn\">17</span>It's exciting to be a junior high student.</p><p><span class=\"rdn\">18</span>I have a good time at school, and I enjoy every minute of it.</p></div><details class=\"rdtr\"><summary>中文翻译（点开对照，先自己做题再看）</summary><div class=\"r" +
+      "dzh\"><p>1. 我叫李华。今年九月我开始了初中生活。</p><p>2. 关于那段时光，我有很多话想说！</p><p>3. 早上八点开始上课。我每天有七节课，上午四节，下午三节。</p><p>4. 地理是初中的新学科。老师有时通过游戏教我们。</p><p>5. 这是学习的好方式。</p><p>6. 上午大课间九点四十开始，我跑去运动场。</p><p>7. 我常做早操，或者和朋友们打球。</p><p>8. 课间十点十分结束。真短啊！</p><p>9. 我们从十二点到两点午休，我们去食堂吃午饭。</p><p>10. 有很多不同的食物可以选。我在那儿吃得很开心！</p><p>11. 之后，我通常去教室里的图书角。</p><p>12. 我总能找到有趣的东西来读。</p><p>13. 下午四点二十五放学，许多学生参加课后活动。</p><p>14. 我和朋友陈明一起去乒乓球社团。</p><p>15. 我们计划下个月参加学校的乒乓球比赛。</p><p>16. 我们很期待，会努力训练。</p><p>17. 成为一名初中生真令人兴奋。</p><p>18. 我在" +
+      "学校很开心，享受每一分钟。</p></div></details><div class=\"rd-note\"><b>阅读策略：</b>读的时候试着找出每个 he / him / us / they 分别指谁，再圈出本单元学过的词汇和短语。</div></div>",
+      "items": [
+        {"stem": "这篇课文的作者是谁？文章主要讲什么？", "type": "choice", "a": 0, "opts": ["李华；他的初中学校生活", "陈明；一场乒乓球比赛", "老师；如何学好地理", "李华；他的家庭生活"], "explain": "课文是李华写的校园日记，介绍他的初中一天。"}
+      ]
+    },
+    {
+      "name": "二、课文选词填空",
+      "note": "每题 1 分，共 5 分。均出自课文原句。",
+      "items": [
+        {"stem": "Classes ____ at 8:00 a.m.", "type": "choice", "a": 0, "opts": ["start", "end", "open"]},
+        {"stem": "Morning break starts at 9:40 a.m., and I run to the sports ____.", "type": "choice", "a": 0, "opts": ["ground", "room", "hall"]},
+        {"stem": "We go to the ____ for lunch.", "type": "choice", "a": 0, "opts": ["canteen", "library", "office"]},
+        {"stem": "I usually go to the book ____ in the classroom.", "type": "choice", "a": 0, "opts": ["corner", "room", "desk"]},
+        {"stem": "I go to the Ping-pong ____ with my friend Chen Ming.", "type": "choice", "a": 0, "opts": ["Club", "Team", "Class"]}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据课文《My school day》判断。",
+      "items": [
+        {"stem": "Li Hua started junior high school this September.", "type": "tf", "a": "T"},
+        {"stem": "Li Hua has seven classes each day.", "type": "tf", "a": "T"},
+        {"stem": "The morning break is very long.", "type": "tf", "a": "F", "explain": "课文原句：How short it is!（课间很短）。"},
+        {"stem": "Li Hua has lunch in the classroom.", "type": "tf", "a": "F", "explain": "他去食堂吃午饭（go to the canteen for lunch）。"},
+        {"stem": "Li Hua goes to the Ping-pong Club with Chen Ming.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "四、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "How many classes does Li Hua have in the afternoon?", "type": "choice", "a": 1, "opts": ["Two.", "Three.", "Four.", "Seven."]},
+        {"stem": "How does the geography teacher sometimes teach?", "type": "choice", "a": 1, "opts": ["By singing songs.", "By playing games.", "By telling stories.", "By showing films."]},
+        {"stem": "Where does Li Hua usually go after lunch?", "type": "choice", "a": 1, "opts": ["To the library.", "To the book corner.", "To the sports ground.", "To the canteen."]},
+        {"stem": "What does Li Hua look forward to?", "type": "choice", "a": 1, "opts": ["The summer holiday.", "The school ping-pong game next month.", "The new term.", "The school show."]}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 4 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What time do classes start?", "type": "text", "a": "At 8:00 a.m.", "a2": ["Classes start at 8:00 a.m.", "At 8:00.", "8:00 a.m."]},
+        {"stem": "What is a new subject in junior high?", "type": "text", "a": "Geography", "a2": ["Geography is a new subject.", "Geography."]},
+        {"stem": "Where does Li Hua have lunch?", "type": "text", "a": "In the canteen", "a2": ["He has lunch in the canteen.", "In the school canteen."]},
+        {"stem": "What club does Li Hua go to after school?", "type": "text", "a": "The Ping-pong Club", "a2": ["He goes to the Ping-pong Club.", "The Ping-pong Club."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p4",
+    "title": "练习四 · 阅读新篇章",
+    "time": "25 分钟",
+    "sub": "用本单元词汇、短语和句型新写的一篇文章。不翻课本，看看你是否真的理解和掌握了它们。",
+    "sections": [
+    {
+      "name": "一、阅读原文",
+      "note": "先通读全文，再完成下面的题。金色底纹的是本单元词汇短语，读的时候留意它们。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">A New Club at Our School · 我们学校的新社团 <span>用 Unit 2 词汇与表达新写</span></div><div class=\"rd-body\"><p>Our school has a new club this term — the Drama Club. Li Hua is one of the first <span class=\"kw\">members</span>. Every Wednesday and Friday, the club meets in the music room after school. Mrs Wang, a young teacher, teaches the students how to act and speak clearly.</p><p>Li Hua <span class=\"kw\">practises</span> very hard. He gets up early on" +
+      " club days and reads his lines (台词) in the <span class=\"kw\">book corner</span> before class. \"Drama <span class=\"kw\">develops</span> my confidence,\" he says. \"It also teaches me to work with other <span class=\"kw\">teenagers</span>.\"</p><p>Not everything is easy. Li Hua sometimes feels nervous before a <span class=\"kw\">presentation</span>. \"My hands shake and my <span class=\"kw\">mood</span> gets bad,\" he says. \"But Mrs Wang always says, 'Take a deep breath and smile.'\"</p><p>N" +
+      "ext month, the club will give a show for the whole school. The students are making <span class=\"kw\">posters</span> and practising every day. They <span class=\"kw\">look forward to</span> it. Li Hua believes the show will be a great <span class=\"kw\">success</span>.</p></div><div class=\"rd-note\"><b>阅读小任务：</b>读的时候圈出金色底纹的词汇和短语，看看你是不是每个都认识、都会用。</div></div>",
+      "items": [
+        {"stem": "这篇文章主要讲什么？", "type": "choice", "a": 0, "opts": ["学校新开设的戏剧社和李华在社团里的经历", "一场学校演出的比赛结果", "一位新老师的日常生活", "李华的家庭作业"], "explain": "文章围绕 Drama Club 的成立、训练、困难和即将到来的演出展开。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 · 判断正误（T / F）",
+      "note": "每题 1 分，共 5 分。根据上文判断。",
+      "items": [
+        {"stem": "The Drama Club meets every Wednesday and Friday.", "type": "tf", "a": "T"},
+        {"stem": "Mrs Wang teaches the students geography.", "type": "tf", "a": "F", "explain": "她教的是戏剧（act and speak clearly），不是地理。"},
+        {"stem": "Li Hua reads his lines in the book corner before class.", "type": "tf", "a": "T"},
+        {"stem": "Li Hua never feels nervous before a presentation.", "type": "tf", "a": "F", "explain": "他有时会紧张（feels nervous，手会抖）。"},
+        {"stem": "The club will give a show next month.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 · 选择最佳答案",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "Where does the Drama Club meet?", "type": "choice", "a": 0, "opts": ["In the music room.", "In the canteen.", "In the library.", "On the sports ground."]},
+        {"stem": "What does Li Hua think drama develops?", "type": "choice", "a": 0, "opts": ["His confidence.", "His strength.", "His grades.", "His hobby."]},
+        {"stem": "What does Mrs Wang say when Li Hua is nervous?", "type": "choice", "a": 0, "opts": ["Take a deep breath and smile.", "Run to the sports ground.", "Read more magazines.", "Go to bed early."]},
+        {"stem": "What are the students doing for the show?", "type": "choice", "a": 0, "opts": ["Making posters and practising every day.", "Writing diaries.", "Having a survey.", "Planting trees."]},
+        {"stem": "What does \"look forward to\" mean in the passage?", "type": "choice", "a": 0, "opts": ["Feel excited about something that will happen.", "Look at something carefully.", "Look for something lost.", "Look after someone."]}
+      ]
+    },
+    {
+      "name": "四、词汇与表达 · 语境理解",
+      "note": "每题 1 分，共 5 分。结合文章语境，判断词汇和短语的意思与用法。",
+      "items": [
+        {"stem": "\"member\" 在文中的意思是：", "type": "choice", "a": 0, "opts": ["成员", "比赛", "杂志", "情绪"], "explain": "the first members 第一批成员。"},
+        {"stem": "\"practises\" 在文中的意思是：", "type": "choice", "a": 0, "opts": ["练习；训练", "打包", "庆祝", "描述"], "explain": "practise 练习；训练。"},
+        {"stem": "\"my mood gets bad\" 说明李华：", "type": "choice", "a": 1, "opts": ["心情很好", "心情不好", "生病了", "很累"], "explain": "mood 情绪；心情。"},
+        {"stem": "\"success\" 的意思是：", "type": "choice", "a": 0, "opts": ["成功", "成功的", "失败", "成功者"], "explain": "a great success 巨大的成功。"},
+        {"stem": "\"develops my confidence\" 中 develop 的意思是：", "type": "choice", "a": 0, "opts": ["增强；培养", "描述", "解决", "练习"], "explain": "develop 加强；增强。"}
+      ]
+    },
+    {
+      "name": "五、阅读表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What club is new at Li Hua's school?", "type": "text", "a": "The Drama Club", "a2": ["The Drama Club is new.", "The Drama Club."]},
+        {"stem": "Who teaches the Drama Club?", "type": "text", "a": "Mrs Wang", "a2": ["Mrs Wang teaches it.", "A young teacher, Mrs Wang."]},
+        {"stem": "How often does the club meet?", "type": "text", "a": "Twice a week", "a2": ["Every Wednesday and Friday.", "Twice a week, on Wednesdays and Fridays."]},
+        {"stem": "What does Li Hua do on club days before class?", "type": "text", "a": "He reads his lines in the book corner", "a2": ["He reads his lines in the book corner.", "Reads his lines in the book corner."]},
+        {"stem": "What will the club do next month?", "type": "text", "a": "Give a show for the whole school", "a2": ["It will give a show for the whole school.", "Give a show for the school."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "p5",
+    "title": "练习五 · 中国校园文化",
+    "time": "20 分钟",
+    "sub": "把本单元主题放进中国文化里，学英语也了解中国。",
+    "sections": [
+    {
+      "name": "一、文化读本（原文）",
+      "note": "三段都围绕本单元主题与中国文化。先通读，再做后面的题。",
+      "passage": "<div class=\"rdbox\"><div class=\"rd-title\">School Life in China · 中国的校园生活 <span>结合 Unit 2 School Life</span></div><div class=\"rd-body\"><p><b>A. A Day at a Chinese Junior High · 中国初中生的一天</b><br>Classes usually start at 8:00 a.m. Between classes, students do eye exercises (眼保健操) to rest their eyes. At about 9:40, they run to the sports ground for morning exercises (早操) or a long break. Lunch is from 12:00 to 2:00, and many students eat in the school canteen. After school, student" +
+      "s take part in clubs and after-school activities.</p><p><b>B. Sports Meets and Group Activities · 运动会与集体活动</b><br>Most Chinese schools have a sports meet (运动会) in spring or autumn. Students take part in running, jumping and ball games. Classes work as teams, and everyone cheers for their classmates. Schools also have group activities like choir (合唱) and dance shows. These activities teach students teamwork (团队合作).</p><p><b>C. Nine Years of School for Every Child · 九年义务教育</b><" +
+      "br>In China, every child has nine years of compulsory education (义务教育): six years of primary school (小学) and three years of junior high school (初中). Students do not pay for these nine years. Schools today are modern, with libraries, computer rooms and big sports grounds.</p></div><div class=\"rd-note\"><b>文化小知识：</b>中国人说\"一年之计在于春，一日之计在于晨\"（The plan for a year is in spring; the plan for a day is in the morning.）——早晨的读书声和运动场上的跑步声，是中国校园最熟悉的声音。</div></div>",
+      "items": [
+        {"stem": "这三段文字共同讲的是什么？", "type": "choice", "a": 0, "opts": ["中国的学校生活", "中国的传统文化", "中国的食物", "中国的城市"], "explain": "三段分别讲中国初中生的一天、运动会与集体活动、九年义务教育，都围绕学校生活。"}
+      ]
+    },
+    {
+      "name": "二、阅读理解 A · 判断正误（T / F）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "Chinese students do eye exercises between classes.", "type": "tf", "a": "T"},
+        {"stem": "Chinese students have no clubs after school.", "type": "tf", "a": "F", "explain": "他们课后参加社团和课后活动（clubs and after-school activities）。"},
+        {"stem": "The school sports meet is usually held in spring or autumn.", "type": "tf", "a": "T"},
+        {"stem": "Every child in China has nine years of school.", "type": "tf", "a": "T"}
+      ]
+    },
+    {
+      "name": "三、阅读理解 B · 选择最佳答案",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "What do Chinese students do between classes?", "type": "choice", "a": 0, "opts": ["Eye exercises.", "A ball game.", "Morning exercises.", "A survey."]},
+        {"stem": "When is the school sports meet usually held?", "type": "choice", "a": 0, "opts": ["In spring or autumn.", "In winter only.", "Every month.", "On Fridays."]},
+        {"stem": "What is compulsory education (义务教育) in China?", "type": "choice", "a": 0, "opts": ["Nine years of school for every child.", "Six years of school.", "Three years of school.", "Twelve years of school."]},
+        {"stem": "What can students learn from group activities?", "type": "choice", "a": 0, "opts": ["Teamwork.", "Cooking.", "Driving.", "Fishing."]}
+      ]
+    },
+    {
+      "name": "四、文化表达（回答问题）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "What time do classes usually start in a Chinese school?", "type": "text", "a": "At about 8:00 a.m.", "a2": ["At 8:00 a.m.", "Classes start at 8:00 a.m.", "At about 8:00."]},
+        {"stem": "What exercise do students do between classes?", "type": "text", "a": "Eye exercises", "a2": ["They do eye exercises.", "Eye exercises (眼保健操)."]},
+        {"stem": "What is the school sports meet in Chinese?", "type": "text", "a": "运动会", "a2": ["It is 运动会 (yundonghui).", "运动会 (yundonghui)."]},
+        {"stem": "How long is compulsory education in China?", "type": "text", "a": "Nine years", "a2": ["It is nine years.", "Nine years."]},
+        {"stem": "Why do Chinese schools have group activities?", "type": "text", "a": "To teach students teamwork and keep them healthy", "a2": ["Because they teach students teamwork.", "To teach teamwork and keep healthy."]}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t1",
+    "title": "测试卷一 · Unit 2 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型参照本地单元卷：辨音 + 单选 + 语法选择 + 完形 + 阅读 + 回答问题 + 拼写 + 词形转换 + 写作。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. play<u>s</u>&nbsp;&nbsp;B. watche<u>s</u>&nbsp;&nbsp;C. goe<u>s</u>&nbsp;&nbsp;D. finishe<u>s</u>", "type": "choice", "a": 0, "opts": ["plays", "watches", "goes", "finishes"], "explain": "plays 中 s 发 /z/，watches / goes / finishes 都发 /ɪz/。"},
+        {"stem": "A. live<u>s</u>&nbsp;&nbsp;B. play<u>s</u>&nbsp;&nbsp;C. studie<u>s</u>&nbsp;&nbsp;D. finishe<u>s</u>", "type": "choice", "a": 3, "opts": ["lives", "plays", "studies", "finishes"], "explain": "lives / plays / studies 中 s 发 /z/，finishes 发 /ɪz/。"},
+        {"stem": "A. start<u>s</u>&nbsp;&nbsp;B. help<u>s</u>&nbsp;&nbsp;C. like<u>s</u>&nbsp;&nbsp;D. watche<u>s</u>", "type": "choice", "a": 3, "opts": ["starts", "helps", "likes", "watches"], "explain": "starts / helps / likes 中 s 发 /s/，watches 发 /ɪz/。"},
+        {"stem": "A. ha<u>s</u>&nbsp;&nbsp;B. doe<u>s</u>&nbsp;&nbsp;C. goe<u>s</u>&nbsp;&nbsp;D. want<u>s</u>", "type": "choice", "a": 3, "opts": ["has", "does", "goes", "wants"], "explain": "has / does / goes 中 s 发 /z/，wants 中 s 发 /s/。"},
+        {"stem": "A. <u>g</u>eography&nbsp;&nbsp;B. <u>c</u>lub&nbsp;&nbsp;C. <u>c</u>anteen&nbsp;&nbsp;D. a<u>c</u>tivity", "type": "choice", "a": 0, "opts": ["geography", "club", "canteen", "activity"], "explain": "geography 中 g 发 /dʒ/，club / canteen / activity 的 c 都发 /k/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "—____ your class ____ a book corner? —Yes, we do.", "type": "choice", "a": 0, "opts": ["Does; have", "Do; has", "Does; has", "Is; have"], "explain": "class 视为单数 → Does + 动词原形。"},
+        {"stem": "Li Hua ____ morning exercises at 9:40 every day.", "type": "choice", "a": 1, "opts": ["do", "does", "doing", "did"], "explain": "三单 → does。"},
+        {"stem": "My sister ____ TV every evening.", "type": "choice", "a": 2, "opts": ["watch", "watchs", "watches", "watching"], "explain": "-ch → -es。"},
+        {"stem": "—____ do your parents read newspapers? —Every Sunday.", "type": "choice", "a": 0, "opts": ["How often", "How long", "How much", "How soon"], "explain": "Every Sunday 表频率 → How often。"},
+        {"stem": "Classes ____ at 8:00 a.m. and ____ at 4:25 p.m.", "type": "choice", "a": 0, "opts": ["start; end", "starts; ends", "starts; end", "start; ends"], "explain": "Classes 是复数，动词用原形。"},
+        {"stem": "The Ping-pong Club ____ 25 members this term.", "type": "choice", "a": 1, "opts": ["have", "has", "is", "are"], "explain": "Club 是单数 → has。"},
+        {"stem": "I ____ to the book corner during the lunch break.", "type": "choice", "a": 1, "opts": ["goes", "go", "going", "went"], "explain": "主语 I → go。"},
+        {"stem": "Geography ____ my favourite subject.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "单数科目 → is。"},
+        {"stem": "Tom ____ his homework after dinner every day.", "type": "choice", "a": 1, "opts": ["do", "does", "doing", "done"], "explain": "Tom 三单 → does。"},
+        {"stem": "We ____ forward to the school trip.", "type": "choice", "a": 0, "opts": ["look", "take", "count", "get"], "explain": "look forward to 期待；盼望。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Hello! I'm Jack. I ____ up at 7:00 every morning.", "type": "choice", "a": 0, "opts": ["get", "gets", "getting", "got"], "explain": "主语 I → get。"},
+        {"stem": "I ____ breakfast at home and then walk to school with my friends.", "type": "choice", "a": 0, "opts": ["have", "has", "had", "having"], "explain": "主语 I → have。"},
+        {"stem": "School ____ at 8:00.", "type": "choice", "a": 1, "opts": ["start", "starts", "starting", "started"], "explain": "School 单数 → starts。"},
+        {"stem": "My favourite subject ____ geography because it is very interesting.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "subject 单数 → is。"},
+        {"stem": "We ____ four classes in the morning.", "type": "choice", "a": 1, "opts": ["has", "have", "had", "having"], "explain": "We 复数 → have。"},
+        {"stem": "Lunch ____ from 12:00 to 2:00.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "Lunch 单数 → is。"},
+        {"stem": "I ____ in the school canteen.", "type": "choice", "a": 1, "opts": ["eats", "eat", "eating", "ate"], "explain": "主语 I → eat。"},
+        {"stem": "After school, I ____ part in club activities on Mondays.", "type": "choice", "a": 0, "opts": ["take", "get", "make", "do"], "explain": "take part in 参加。"},
+        {"stem": "I ____ my homework after dinner.", "type": "choice", "a": 1, "opts": ["does", "do", "doing", "done"], "explain": "主语 I → do。"},
+        {"stem": "I ____ to bed at 9:30.", "type": "choice", "a": 1, "opts": ["goes", "go", "going", "went"], "explain": "主语 I → go。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Our school has a small garden behind the library. The Gardening Club ____ it every week.", "type": "choice", "a": 0, "opts": ["looks after", "looks at", "looks for", "looks like"], "explain": "look after 照料；照顾。"},
+        {"stem": "The club has twenty ____.", "type": "choice", "a": 0, "opts": ["members", "matches", "magazines", "moods"], "explain": "member 成员，复数 members。"},
+        {"stem": "They ____ plants and water them after school.", "type": "choice", "a": 0, "opts": ["grow", "buy", "sell", "pack"], "explain": "grow plants 种植植物。"},
+        {"stem": "The club ____ the garden into a beautiful place.", "type": "choice", "a": 0, "opts": ["turns", "develops", "practises", "solves"], "explain": "turn...into... 把……变成……。"},
+        {"stem": "He ____ up early on club days.", "type": "choice", "a": 0, "opts": ["gets", "goes", "stands", "packs"], "explain": "get up 起床。"},
+        {"stem": "He ____ his tools to the garden and works for an hour.", "type": "choice", "a": 0, "opts": ["takes", "makes", "lets", "has"], "explain": "take...to... 把……带到……。"},
+        {"stem": "\"Gardening ____ my mood,\" he says.", "type": "choice", "a": 0, "opts": ["improves", "describes", "celebrates", "practises"], "explain": "improve 改善；改进。"},
+        {"stem": "It also ____ me to work with others.", "type": "choice", "a": 0, "opts": ["teaches", "asks", "wants", "lets"], "explain": "teach sb to do sth 教某人做某事。"},
+        {"stem": "Next month, the club will sell vegetables and ____ money for the school library.", "type": "choice", "a": 0, "opts": ["raise", "pay", "cost", "spend"], "explain": "raise money 筹款。"},
+        {"stem": "The students look forward to it. They believe their work will be a great ____.", "type": "choice", "a": 0, "opts": ["success", "successful", "succeed", "successfully"], "explain": "a great success 巨大的成功（名词）。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>Reading Month is coming! Our school library opens from 8:00 a.m. to 5:00 p.m. every day in October. Students can borrow three books at a time. The book corner in each classroom also has new magazines. During Reading Month, every student reads one English book and writes a diary about it. The best diaries will be on the school posters. For more information, ask Miss Li in the library.<br>How many books can a student borrow at a time?", "type": "choice", "a": 1, "opts": ["Two.", "Three.", "Four.", "Five."]},
+        {"stem": "What does every student do during Reading Month?", "type": "choice", "a": 0, "opts": ["Reads one English book and writes a diary.", "Sells books in the library.", "Makes posters for the club.", "Joins the Gardening Club."]},
+        {"stem": "Where can students get more information?", "type": "choice", "a": 1, "opts": ["From Mrs Wang.", "From Miss Li in the library.", "From the monitor.", "From the PE teacher."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Our class has a basketball match with Class 3 next Friday. Everyone wants to win. Li Hua is on the team, and he practises every day after school. \"We need teamwork,\" he says. On Wednesday, something happens: Tom, another player, falls and hurts his foot. He cannot play in the match. Li Hua feels worried. That evening, he talks to his teammates. \"We can still win,\" he says. \"We must count on each other.\" On Friday, the six players work together and win the game 30-28. Tom watches from the bench (看台) and smiles. \"That's what teammates are for.\"<br>What happens to Tom on Wednesday?", "type": "choice", "a": 1, "opts": ["He wins the game.", "He falls and hurts his foot.", "He joins a club.", "He reads a book."]},
+        {"stem": "How does Li Hua feel after Tom hurts his foot?", "type": "choice", "a": 2, "opts": ["Happy.", "Bored.", "Worried.", "Angry."]},
+        {"stem": "What does Li Hua say the team must do?", "type": "choice", "a": 1, "opts": ["Give up the game.", "Count on each other.", "Practise all night.", "Watch the match."]},
+        {"stem": "What is the result of the match?", "type": "choice", "a": 1, "opts": ["They lose the game.", "They win the game 30-28.", "There is no game.", "They draw."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Tom, How is your school in Canada? I'm writing to tell you about my new school life in Guangzhou. School starts at 8:00 a.m. and ends at 4:30 p.m. We have seven classes a day. My favourite subject is geography — the teacher often teaches us by playing games. At 9:40, we have a morning break. I run to the sports ground and do exercise with my classmates. Lunch is from 12:00 to 2:00. The canteen has many kinds of food, and I often eat there. After school, I take part in the Drama Club on Wednesdays. I look forward to the show next month. Chinese school life is busy but colourful! Yours, Jack<br>What time does school end in Jack's new school?", "type": "choice", "a": 1, "opts": ["At 8:00 a.m.", "At 4:30 p.m.", "At 9:40 a.m.", "At 2:00 p.m."]},
+        {"stem": "What is Jack's favourite subject?", "type": "choice", "a": 2, "opts": ["Maths.", "English.", "Geography.", "Drama."]},
+        {"stem": "Where does Jack often have lunch?", "type": "choice", "a": 1, "opts": ["At home.", "In the school canteen.", "In the library.", "In the Drama Club."]},
+        {"stem": "How does Jack like his new school life?", "type": "choice", "a": 1, "opts": ["Boring.", "Busy but colourful.", "Easy and free.", "Difficult."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>My name is Wang Fang. I'm a Grade 7 student at Sunshine Middle School. Our school day starts at 8:00 a.m. We have four classes in the morning and three in the afternoon. My favourite subject is English because it is interesting. At 9:40, we have a morning break. My friends and I play a ball game on the sports ground. We have a lunch break from 12:00 to 2:00. I usually eat in the canteen and then read in the book corner. After school, I take part in the Dancing Club every Tuesday. We practise hard and look forward to the school show. I enjoy my school life very much.<br>What time does Wang Fang's school day start?", "type": "text", "a": "At 8:00 a.m.", "a2": ["It starts at 8:00 a.m.", "At 8:00."]},
+        {"stem": "How many classes does she have in the afternoon?", "type": "text", "a": "Three", "a2": ["She has three classes.", "Three classes.", "3."]},
+        {"stem": "What does Wang Fang do during the morning break?", "type": "text", "a": "She plays a ball game on the sports ground", "a2": ["She plays a ball game.", "Plays a ball game on the sports ground."]},
+        {"stem": "Where does she read after lunch?", "type": "text", "a": "In the book corner", "a2": ["She reads in the book corner.", "In the classroom book corner."]},
+        {"stem": "What club does Wang Fang take part in?", "type": "text", "a": "The Dancing Club", "a2": ["She takes part in the Dancing Club.", "The Dancing Club."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "g____（地理（学））", "type": "text", "a": "geography"},
+        {"stem": "s____（解答）", "type": "text", "a": "solve"},
+        {"stem": "t____（青少年）", "type": "text", "a": "teenager"},
+        {"stem": "s____（真诚地；诚实地）", "type": "text", "a": "sincerely"},
+        {"stem": "l____（幸运地；幸好）", "type": "text", "a": "luckily"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "push（变成第三人称单数）", "type": "text", "a": "pushes", "ph": "推（-sh → -es）"},
+        {"stem": "mix（变成第三人称单数）", "type": "text", "a": "mixes", "ph": "混合（-x → -es）"},
+        {"stem": "play（变成第三人称单数）", "type": "text", "a": "plays", "ph": "玩（元音+y → -s）"},
+        {"stem": "study（变成第三人称单数）", "type": "text", "a": "studies", "ph": "学习（辅音+y → -ies）"},
+        {"stem": "do（变成第三人称单数）", "type": "text", "a": "does", "ph": "做（不规则）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My School Day（我的学校生活）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 subject, club, take part in, look forward to, book corner, canteen, have a good time, in time）；③ 注意第三人称单数和句首大写。", "type": "essay", "score": 10, "ph": "My School Day\n\nI get up at...", "check": ["有没有写起床时间、上学方式和到校时间？", "有没有写课程安排和最喜欢的科目？", "有没有写课间、午餐和食堂？", "有没有写课后社团活动（take part in / club）？", "动词第三人称加 -s 了吗？句首大写了吗？"], "sample": "<div class=\"en\">My School Day<br><br>I get up at 6:30 every morning and go to school on foot. Classes start at 8:00 a.m. We have seven classes each day. My favourite subject is geography because the teacher teaches us by playing games. At 9:40, I do morning exercises with my classmates on the sports ground. Lunch is from 12:00 to 2:00. I eat in the school canteen and then read in the book corner. After school, I take part in the Ping-pong Club every Tuesday. School life is busy, but I have a good time every day.</div><div class=\"zh\">（参考范文：写了起床、到校、课程、最喜欢的科目、课间、午餐、社团和感受，用了 go to school on foot / start at / subject / morning exercises / sports ground / canteen / book corner / take part in / club / have a good time 等本单元词汇短语，注意了第三人称单数。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t2",
+    "title": "测试卷二 · Unit 2 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与测试卷一相同，题目全部更换（词汇、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>c</u>anteen&nbsp;&nbsp;B. <u>c</u>lub&nbsp;&nbsp;C. a<u>c</u>tivity&nbsp;&nbsp;D. <u>c</u>ity", "type": "choice", "a": 3, "opts": ["canteen", "club", "activity", "city"], "explain": "canteen / club / activity 中 c 发 /k/，city 中 c 发 /s/。"},
+        {"stem": "A. <u>g</u>eography&nbsp;&nbsp;B. <u>g</u>iant&nbsp;&nbsp;C. <u>g</u>ym&nbsp;&nbsp;D. <u>g</u>rade", "type": "choice", "a": 3, "opts": ["geography", "giant", "gym", "grade"], "explain": "geography / giant / gym 中 g 发 /dʒ/，grade 中 g 发 /ɡ/。"},
+        {"stem": "A. studie<u>s</u>&nbsp;&nbsp;B. goe<u>s</u>&nbsp;&nbsp;C. doe<u>s</u>&nbsp;&nbsp;D. finishe<u>s</u>", "type": "choice", "a": 3, "opts": ["studies", "goes", "does", "finishes"], "explain": "studies / goes / does 中 s 发 /z/，finishes 发 /ɪz/。"},
+        {"stem": "A. want<u>s</u>&nbsp;&nbsp;B. help<u>s</u>&nbsp;&nbsp;C. start<u>s</u>&nbsp;&nbsp;D. need<u>s</u>", "type": "choice", "a": 3, "opts": ["wants", "helps", "starts", "needs"], "explain": "wants / helps / starts 中 s 发 /s/，needs 中 s 发 /z/。"},
+        {"stem": "A. m<u>a</u>gazine&nbsp;&nbsp;B. c<u>a</u>nteen&nbsp;&nbsp;C. <u>a</u>ctivity&nbsp;&nbsp;D. cl<u>u</u>b", "type": "choice", "a": 3, "opts": ["magazine", "canteen", "activity", "club"], "explain": "magazine / canteen / activity 的画线部分发 /æ/，club 中 u 发 /ʌ/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "—____ does your father go to work? —By bus.", "type": "choice", "a": 0, "opts": ["How", "What", "When", "Where"], "explain": "问交通方式用 How。"},
+        {"stem": "The first class ____ at 8:00.", "type": "choice", "a": 1, "opts": ["start", "starts", "starting", "started"], "explain": "The first class 是单数 → starts。"},
+        {"stem": "My deskmate ____ breakfast at home every morning.", "type": "choice", "a": 1, "opts": ["have", "has", "had", "having"], "explain": "三单 → has。"},
+        {"stem": "We ____ a lot of clubs in our school.", "type": "choice", "a": 1, "opts": ["has", "have", "had", "having"], "explain": "We 复数 → have。"},
+        {"stem": "Li Hua ____ ping-pong with Chen Ming after school.", "type": "choice", "a": 1, "opts": ["play", "plays", "plaies", "playing"], "explain": "三单 → plays。"},
+        {"stem": "The book corner ____ many interesting books.", "type": "choice", "a": 1, "opts": ["have", "has", "there", "is"], "explain": "主语 book corner 单数 → has。"},
+        {"stem": "—____ your parents ____ morning exercises? —Yes, they do.", "type": "choice", "a": 1, "opts": ["Does; do", "Do; do", "Do; does", "Are; do"], "explain": "parents 复数 → Do + 动词原形。"},
+        {"stem": "Geography ____ very interesting.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "单数科目 → is。"},
+        {"stem": "Tom ____ like maths. He thinks it is difficult.", "type": "choice", "a": 1, "opts": ["don't", "doesn't", "isn't", "aren't"], "explain": "三单否定 doesn't + 动词原形。"},
+        {"stem": "I usually ____ up at 6:30.", "type": "choice", "a": 1, "opts": ["gets", "get", "getting", "got"], "explain": "主语 I → get。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Hello! I'm Lily. I ____ a Grade 7 student.", "type": "choice", "a": 0, "opts": ["am", "is", "are", "be"], "explain": "主语 I → am。"},
+        {"stem": "I ____ up at 6:30 every morning.", "type": "choice", "a": 0, "opts": ["get", "gets", "getting", "got"], "explain": "主语 I → get。"},
+        {"stem": "I ____ breakfast at 7:00 and then go to school by bike.", "type": "choice", "a": 0, "opts": ["have", "has", "had", "having"], "explain": "主语 I → have。"},
+        {"stem": "School ____ at 8:00.", "type": "choice", "a": 1, "opts": ["start", "starts", "starting", "started"], "explain": "School 单数 → starts。"},
+        {"stem": "My favourite day ____ Friday because we have a Drama Club lesson.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "day 单数 → is。"},
+        {"stem": "Our teacher ____ us to act.", "type": "choice", "a": 1, "opts": ["teach", "teaches", "teaching", "teached"], "explain": "teacher 三单；-ch → -es。"},
+        {"stem": "After school, I often ____ in the book corner.", "type": "choice", "a": 1, "opts": ["reads", "read", "reading", "readed"], "explain": "主语 I → read。"},
+        {"stem": "I ____ my homework at school. I do it at home.", "type": "choice", "a": 1, "opts": ["doesn't do", "don't do", "not do", "don't"], "explain": "主语 I 的否定：don't + 动词原形。"},
+        {"stem": "I ____ it at home after dinner.", "type": "choice", "a": 1, "opts": ["does", "do", "doing", "done"], "explain": "主语 I → do。"},
+        {"stem": "I ____ to bed at 9:30.", "type": "choice", "a": 1, "opts": ["goes", "go", "going", "went"], "explain": "主语 I → go。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Our school has a school show every December. This year, Class 1 ____ a short play.", "type": "choice", "a": 0, "opts": ["puts on", "puts up", "puts away", "puts out"], "explain": "put on a play 上演一出戏剧。"},
+        {"stem": "Li Hua ____ the lead role (主角).", "type": "choice", "a": 0, "opts": ["plays", "has", "gets", "takes"], "explain": "play the lead role 演主角。"},
+        {"stem": "He ____ his lines every evening.", "type": "choice", "a": 0, "opts": ["practises", "plans", "packs", "posts"], "explain": "practise one's lines 练习台词。"},
+        {"stem": "\"I ____ a little nervous,\" he says.", "type": "choice", "a": 0, "opts": ["feel", "seem", "look", "sound"], "explain": "feel nervous 感到紧张。"},
+        {"stem": "His friend Chen Ming ____ him practise.", "type": "choice", "a": 0, "opts": ["helps", "asks", "wants", "lets"], "explain": "help sb (to) do sth 帮助某人做某事。"},
+        {"stem": "\"You ____ great,\" Chen Ming says. \"Just speak loudly and smile.\"", "type": "choice", "a": 0, "opts": ["look", "feel", "seem", "sound"], "explain": "You look great 你看起来很棒。"},
+        {"stem": "On the day of the show, the classroom is ____ of students and parents.", "type": "choice", "a": 0, "opts": ["full", "afraid", "proud", "fond"], "explain": "be full of 满是；充满。"},
+        {"stem": "At the end, everyone ____ loudly.", "type": "choice", "a": 0, "opts": ["cheers", "claps", "laughs", "cries"], "explain": "cheer 欢呼；喝彩。"},
+        {"stem": "The teacher says the play is a great ____.", "type": "choice", "a": 0, "opts": ["success", "successful", "succeed", "successfully"], "explain": "名词 success。"},
+        {"stem": "Li Hua ____ his school life very much.", "type": "choice", "a": 0, "opts": ["enjoys", "practises", "develops", "celebrates"], "explain": "enjoy 享受；喜爱，三单 → enjoys。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（海报）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>海报：</b>Join Our Clubs! The Ping-pong Club meets every Tuesday and Thursday after school in the sports hall. The Drama Club meets on Wednesdays in the music room. The Gardening Club meets on Fridays in the school garden. Every club has two teachers. Students can choose ONE club this term. Come to the school office before Friday and fill in a form (填表). Hurry — every club has only 30 places!<br>How many clubs are there in the poster?", "type": "choice", "a": 1, "opts": ["Two.", "Three.", "Four.", "Five."]},
+        {"stem": "Where does the Drama Club meet?", "type": "choice", "a": 1, "opts": ["In the sports hall.", "In the music room.", "In the school garden.", "In the canteen."]},
+        {"stem": "What must students do before Friday?", "type": "choice", "a": 1, "opts": ["Buy posters.", "Come to the school office and fill in a form.", "Run on the sports ground.", "Write a diary."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Tom is a new student from Canada. On his first day, everything is strange to him. He does not know the way to the canteen and cannot find his classroom. At 9:40, a Chinese boy named Li Hua comes to him. \"Come with me,\" he says. Li Hua shows him the classrooms, the library and the sports ground. At lunch, they eat together in the canteen. In the afternoon, Li Hua takes Tom to the Ping-pong Club. Now Tom has many friends. \"Li Hua is really helpful,\" Tom writes in his diary. \"I look forward to every school day.\"<br>Where is Tom from?", "type": "choice", "a": 1, "opts": ["The UK.", "Canada.", "Australia.", "The USA."]},
+        {"stem": "What is Tom's problem on his first day?", "type": "choice", "a": 1, "opts": ["He is late for school.", "He does not know the way and cannot find his classroom.", "He loses his books.", "He has no friends at home."]},
+        {"stem": "Who helps Tom?", "type": "choice", "a": 2, "opts": ["Mrs Wang.", "His teacher.", "Li Hua.", "Chen Ming."]},
+        {"stem": "What does Tom write in his diary?", "type": "choice", "a": 1, "opts": ["The school is boring.", "Li Hua is really helpful and he looks forward to every school day.", "He wants to go home.", "He likes the canteen food only."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（邮件）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>邮件：</b>Dear Lily, How are you? I'm writing to tell you about my school life in Guangzhou. Our school day starts at 8:00 a.m. We do morning exercises on the sports ground at 9:40. I like this break because I can run and play with my friends. We have seven classes every day. My favourite subject is geography. Our teacher often teaches us by playing games, so the class is always interesting. After school, I take part in the Dancing Club every Tuesday. We practise for the school show. School life in China is busy, but I enjoy every minute of it. What about your school life in the UK? Write soon! Yours, Wang Fang<br>What do the students do at 9:40?", "type": "choice", "a": 1, "opts": ["They have lunch.", "Morning exercises on the sports ground.", "They have a survey.", "They go home."]},
+        {"stem": "What is Wang Fang's favourite subject?", "type": "choice", "a": 2, "opts": ["Maths.", "English.", "Geography.", "Music."]},
+        {"stem": "How does the geography teacher teach?", "type": "choice", "a": 1, "opts": ["By singing songs.", "By playing games.", "By telling stories.", "By writing diaries."]},
+        {"stem": "What club does Wang Fang join?", "type": "choice", "a": 2, "opts": ["The Ping-pong Club.", "The Drama Club.", "The Dancing Club.", "The Gardening Club."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Hello! I'm Chen Ming. I'm 13 and I'm in Grade 7 at Guangya Middle School. Our school is big and modern. We have a large library, a big sports ground and a nice canteen. Classes start at 8:00 a.m. We have four classes in the morning. My favourite subject is English because our teacher is funny. At noon, I have lunch with my friends in the canteen. There are many different foods to choose from. In the afternoon, we have three classes. School ends at 4:25 p.m. After school, I play basketball with my classmates. We have a good time every day.<br>How old is Chen Ming?", "type": "text", "a": "13", "a2": ["He is 13 years old.", "He is 13.", "13 years old."]},
+        {"stem": "What does Chen Ming's school have?", "type": "text", "a": "A large library, a big sports ground and a nice canteen", "a2": ["A large library, a big sports ground and a nice canteen.", "A big library and a nice garden."]},
+        {"stem": "Why does Chen Ming like English?", "type": "text", "a": "Because the teacher is funny", "a2": ["Because the teacher is funny.", "Because it is easy."]},
+        {"stem": "Where does Chen Ming have lunch?", "type": "text", "a": "In the school canteen", "a2": ["He has lunch in the canteen.", "In the canteen with his friends."]},
+        {"stem": "What does Chen Ming do after school?", "type": "text", "a": "He plays basketball with his classmates", "a2": ["He plays basketball with his classmates.", "Plays basketball with classmates."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "c____（角；墙角）", "type": "text", "a": "corner"},
+        {"stem": "d____（加强；增强）", "type": "text", "a": "develop"},
+        {"stem": "g____（问候；招呼）", "type": "text", "a": "greeting"},
+        {"stem": "d____（日记；日记簿）", "type": "text", "a": "diary"},
+        {"stem": "（恰好）", "type": "text", "a": "just"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "pass（变成第三人称单数）", "type": "text", "a": "passes", "ph": "通过（-ss → -es）"},
+        {"stem": "enjoy（变成第三人称单数）", "type": "text", "a": "enjoys", "ph": "享受（元音+y → -s）"},
+        {"stem": "cry（变成第三人称单数）", "type": "text", "a": "cries", "ph": "哭（辅音+y → -ies）"},
+        {"stem": "go（变成第三人称单数）", "type": "text", "a": "goes", "ph": "去（不规则）"},
+        {"stem": "have（变成第三人称单数）", "type": "text", "a": "has", "ph": "有（不规则）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：My Favourite Subject（我最喜欢的科目）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 subject, interesting, teacher, teach, break, after school, take part in, have a good time）；③ 注意第三人称单数和句首大写。", "type": "essay", "score": 10, "ph": "My Favourite Subject\n\nMy favourite subject is...", "check": ["有没有写科目名称和上课时间？", "有没有写老师怎么教（teach / by playing games）？", "有没有写为什么喜欢（interesting / funny）？", "有没有写课间或课后做什么？", "动词第三人称加 -s 了吗？句首大写了吗？"], "sample": "<div class=\"en\">My Favourite Subject<br><br>My favourite subject is geography. We have geography every Tuesday and Friday. Our teacher is young and funny. She often teaches us by playing games, so every class is interesting. At 9:40, we have a morning break, and I run to the sports ground with my friends. After school, I sometimes read geography magazines in the book corner. Geography opens a window to the world for me. I like it very much.</div><div class=\"zh\">（参考范文：写了科目、上课时间、老师、为什么喜欢、课间和课后活动，用了 subject / teacher / teach / by playing games / interesting / morning break / sports ground / after school / book corner 等本单元词汇短语。）</div>"}
+      ]
+    }
+  ]
+  },
+  {
+    "id": "t3",
+    "title": "测试卷三 · Unit 2 单元测试",
+    "time": "60 分钟",
+    "sub": "客观题 61 分 + 写作 10 分，满分 71 分；得分 ≥ 60% 视为过关。题型与前两套相同，题目全部更换（辨音组合、语法角度、阅读体裁均不同）。",
+    "sections": [
+    {
+      "name": "一、辨音（找出划线部分发音不同的单词）",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "A. <u>th</u>ree&nbsp;&nbsp;B. <u>th</u>ink&nbsp;&nbsp;C. <u>th</u>is&nbsp;&nbsp;D. mou<u>th</u>", "type": "choice", "a": 2, "opts": ["three", "think", "this", "mouth"], "explain": "three / think / mouth 中 th 发 /θ/，this 中 th 发 /ð/。"},
+        {"stem": "A. <u>g</u>eography&nbsp;&nbsp;B. <u>g</u>arden&nbsp;&nbsp;C. <u>g</u>ood&nbsp;&nbsp;D. <u>g</u>ame", "type": "choice", "a": 0, "opts": ["geography", "garden", "good", "game"], "explain": "geography 中 g 发 /dʒ/，garden / good / game 中 g 发 /ɡ/。"},
+        {"stem": "A. watche<u>s</u>&nbsp;&nbsp;B. finishe<u>s</u>&nbsp;&nbsp;C. studie<u>s</u>&nbsp;&nbsp;D. wishe<u>s</u>", "type": "choice", "a": 2, "opts": ["watches", "finishes", "studies", "wishes"], "explain": "watches / finishes / wishes 中 s 发 /ɪz/，studies 中 s 发 /z/。"},
+        {"stem": "A. help<u>s</u>&nbsp;&nbsp;B. need<u>s</u>&nbsp;&nbsp;C. start<u>s</u>&nbsp;&nbsp;D. get<u>s</u>", "type": "choice", "a": 3, "opts": ["helps", "needs", "starts", "gets"], "explain": "helps / needs / starts 中 s 发 /s/，gets 中 s 发 /z/。"},
+        {"stem": "A. gr<u>a</u>de&nbsp;&nbsp;B. c<u>a</u>nteen&nbsp;&nbsp;C. <u>a</u>ctivity&nbsp;&nbsp;D. m<u>a</u>gazine", "type": "choice", "a": 0, "opts": ["grade", "canteen", "activity", "magazine"], "explain": "grade 中 a 发 /eɪ/，canteen / activity / magazine 中 a 发 /æ/。"}
+      ]
+    },
+    {
+      "name": "二、单项选择",
+      "note": "每题 1 分，共 10 分。",
+      "items": [
+        {"stem": "—____ does your school day start? —At 8:00 a.m.", "type": "choice", "a": 0, "opts": ["What time", "How often", "How long", "What day"], "explain": "问钟点用 What time。"},
+        {"stem": "Li Hua ____ to the Ping-pong Club with Chen Ming.", "type": "choice", "a": 1, "opts": ["go", "goes", "going", "gone"], "explain": "三单 → goes。"},
+        {"stem": "The geography teacher ____ us by playing games.", "type": "choice", "a": 1, "opts": ["teach", "teaches", "teaching", "teached"], "explain": "teacher 三单；-ch → -es。"},
+        {"stem": "We ____ a lunch break from 12:00 to 2:00.", "type": "choice", "a": 1, "opts": ["has", "have", "had", "having"], "explain": "We 复数 → have。"},
+        {"stem": "Many students ____ part in after-school activities.", "type": "choice", "a": 1, "opts": ["get", "take", "make", "do"], "explain": "take part in 参加。"},
+        {"stem": "My brother ____ morning exercises every day.", "type": "choice", "a": 1, "opts": ["do", "does", "doing", "done"], "explain": "brother 三单 → does。"},
+        {"stem": "—____ your sister ____ posters for the show? —Yes, she does.", "type": "choice", "a": 1, "opts": ["Do; make", "Does; make", "Does; makes", "Is; make"], "explain": "sister 三单 → Does + 动词原形。"},
+        {"stem": "Our school ____ a big library.", "type": "choice", "a": 1, "opts": ["have", "has", "is", "are"], "explain": "school 单数 → has。"},
+        {"stem": "I ____ forward to the school trip.", "type": "choice", "a": 0, "opts": ["look", "take", "get", "count"], "explain": "look forward to 期待。"},
+        {"stem": "Tom ____ like drama. He thinks it is boring.", "type": "choice", "a": 1, "opts": ["don't", "doesn't", "isn't", "aren't"], "explain": "三单否定 doesn't。"}
+      ]
+    },
+    {
+      "name": "三、语法选择（短文填空）",
+      "note": "每题 1 分，共 10 分。通读全文再作答。",
+      "items": [
+        {"stem": "Hello! I'm Wang Fang. Friday ____ my favourite day.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "Friday 单数 → is。"},
+        {"stem": "Our first class ____ at 8:00.", "type": "choice", "a": 1, "opts": ["start", "starts", "starting", "started"], "explain": "class 单数 → starts。"},
+        {"stem": "In the morning, we ____ four classes.", "type": "choice", "a": 1, "opts": ["has", "have", "had", "having"], "explain": "we 复数 → have。"},
+        {"stem": "My favourite subject ____ geography.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "subject 单数 → is。"},
+        {"stem": "Our teacher ____ us many interesting things.", "type": "choice", "a": 1, "opts": ["teach", "teaches", "teaching", "teached"], "explain": "teacher 三单。"},
+        {"stem": "At 9:40, we ____ morning exercises on the sports ground.", "type": "choice", "a": 1, "opts": ["does", "do", "doing", "done"], "explain": "we 复数 → do。"},
+        {"stem": "Lunch ____ from 12:00 to 2:00.", "type": "choice", "a": 1, "opts": ["am", "is", "are", "be"], "explain": "Lunch 单数 → is。"},
+        {"stem": "I ____ in the canteen.", "type": "choice", "a": 1, "opts": ["eats", "eat", "eating", "ate"], "explain": "主语 I → eat。"},
+        {"stem": "After school, I ____ part in the Dancing Club.", "type": "choice", "a": 0, "opts": ["take", "get", "make", "do"], "explain": "take part in 参加。"},
+        {"stem": "We ____ for two hours.", "type": "choice", "a": 1, "opts": ["practises", "practise", "practising", "practised"], "explain": "we 复数 → practise。"}
+      ]
+    },
+    {
+      "name": "四、完形填空",
+      "note": "每题 1 分，共 10 分。先通读全文，再逐题作答。",
+      "items": [
+        {"stem": "Our classroom has a small book corner. It ____ many interesting books and magazines.", "type": "choice", "a": 0, "opts": ["has", "have", "with", "there"], "explain": "It 指 book corner，单数 → has。"},
+        {"stem": "Li Hua, our monitor, ____ the book corner.", "type": "choice", "a": 0, "opts": ["looks after", "looks at", "looks for", "looks like"], "explain": "look after 照料。"},
+        {"stem": "Every Monday, he ____ the books and puts them in order.", "type": "choice", "a": 0, "opts": ["checks", "reads", "borrows", "packs"], "explain": "check 检查；整理。"},
+        {"stem": "Students can ____ one book at a time.", "type": "choice", "a": 0, "opts": ["borrow", "lend", "buy", "sell"], "explain": "borrow 借入；lend 借出。"},
+        {"stem": "\"Reading ____ my mood,\" says Chen Ming.", "type": "choice", "a": 0, "opts": ["improves", "describes", "celebrates", "packs"], "explain": "improve 改善。"},
+        {"stem": "Every term, the class ____ a reading survey.", "type": "choice", "a": 1, "opts": ["have", "has", "is", "does"], "explain": "class 单数 → has。"},
+        {"stem": "She ____ the book corner \"the best corner in our class\".", "type": "choice", "a": 0, "opts": ["calls", "says", "tells", "speaks"], "explain": "call sb sth 把某地称作某名。"},
+        {"stem": "The class ____ more books for the corner every term.", "type": "choice", "a": 0, "opts": ["buys", "sells", "reads", "packs"], "explain": "buy 购买。"},
+        {"stem": "Everyone ____ forward to it.", "type": "choice", "a": 0, "opts": ["looks", "watches", "sees", "finds"], "explain": "look forward to 期待。"},
+        {"stem": "A good book ____ a good friend.", "type": "choice", "a": 0, "opts": ["is like", "looks like", "feels like", "likes"], "explain": "be like 像……一样。"}
+      ]
+    },
+    {
+      "name": "五、阅读理解 A（校园通知）",
+      "note": "每题 1 分，共 3 分。",
+      "items": [
+        {"stem": "<b>通知：</b>Our School Sports Meet is coming! It is on Friday, October 24th on the sports ground. Every class has a team. The games start at 8:30 a.m. and end at 4:00 p.m. Students can take part in running, jumping and ball games. Parents can come and watch the games. Please come to the sports ground in time. For more information, ask your PE teacher.<br>When is the sports meet?", "type": "choice", "a": 0, "opts": ["On Friday, October 24th.", "On Monday.", "In November.", "Every Friday."]},
+        {"stem": "What games can students take part in?", "type": "choice", "a": 0, "opts": ["Running, jumping and ball games.", "Only ball games.", "Singing and dancing.", "Reading and writing."]},
+        {"stem": "Who can watch the games?", "type": "choice", "a": 1, "opts": ["Teachers only.", "Parents.", "Nobody.", "Club members only."]}
+      ]
+    },
+    {
+      "name": "六、阅读理解 B（记叙文）",
+      "note": "每题 1 分，共 4 分。",
+      "items": [
+        {"stem": "<b>故事：</b>Tom is not good at running, but he takes part in the 800-metre race this year. \"I want to try,\" he says. His friend Li Hua runs with him every morning before class. \"Keep going! You can do it!\" Li Hua says. On the day of the race, Tom runs well for the first 400 metres. Then his legs hurt and he wants to stop. He hears Li Hua's voice: \"Come on! Don't give up!\" Tom runs again. He is last, but he finishes the race. Everyone claps. The PE teacher says, \"Courage is more important than winning.\" Tom smiles. He learns that trying is also a success.<br>What race does Tom take part in?", "type": "choice", "a": 1, "opts": ["The 100-metre race.", "The 800-metre race.", "The basketball game.", "The ping-pong game."]},
+        {"stem": "Who runs with Tom every morning?", "type": "choice", "a": 2, "opts": ["His PE teacher.", "His parents.", "Li Hua.", "His classmates."]},
+        {"stem": "What happens after 400 metres?", "type": "choice", "a": 1, "opts": ["He wins the race.", "His legs hurt and he wants to stop.", "He falls asleep.", "He goes home."]},
+        {"stem": "What does Tom learn from the race?", "type": "choice", "a": 1, "opts": ["Winning is everything.", "Trying is also a success.", "Running is dangerous.", "Friends are not important."]}
+      ]
+    },
+    {
+      "name": "七、阅读理解 C（日记）",
+      "note": "每题 1 分，共 4 题。",
+      "items": [
+        {"stem": "<b>日记：</b>Monday, October 20th, Sunny. Today is a busy day. I get up at 6:30 and do morning exercises at 7:00. Classes start at 8:00. We have four classes in the morning. My favourite is geography because the teacher plays games with us. At 9:40, we run to the sports ground for the morning break. I play a ball game with my friends. Lunch is in the canteen. I choose rice, fish and vegetables. In the afternoon, we have three classes. School ends at 4:25. After school, I go to the Dancing Club. We practise for the school show. I get home at 6:00. I do my homework after dinner and go to bed at 9:30. I'm tired, but I have a good time today.<br>What time does the writer get up?", "type": "choice", "a": 0, "opts": ["At 6:30.", "At 7:00.", "At 8:00.", "At 9:40."]},
+        {"stem": "Why does the writer like geography?", "type": "choice", "a": 1, "opts": ["Because it is easy.", "Because the teacher plays games with them.", "Because the class is short.", "Because of the homework."]},
+        {"stem": "What does the writer have for lunch?", "type": "choice", "a": 1, "opts": ["Bread and milk.", "Rice, fish and vegetables.", "Noodles only.", "Hamburgers."]},
+        {"stem": "How does the writer feel at the end of the day?", "type": "choice", "a": 2, "opts": ["Bored.", "Angry.", "Tired but happy.", "Worried."]}
+      ]
+    },
+    {
+      "name": "八、回答问题（阅读表达）",
+      "note": "每题 1 分，共 5 分。答案不唯一，意思对即可。",
+      "items": [
+        {"stem": "<b>短文：</b>Welcome to Sunshine Middle School! Our school is modern and beautiful. The school day starts at 8:00 a.m. and ends at 4:25 p.m. Students have seven classes every day. At 9:40, they do morning exercises on the sports ground. Lunch is from 12:00 to 2:00. The canteen has different foods, and students choose what they like. After lunch, many students read in the book corner. Our school has many clubs: the Ping-pong Club, the Drama Club and the Gardening Club. Students take part in club activities after school. They all have a good time at school.<br>What time does the school day end?", "type": "text", "a": "At 4:25 p.m.", "a2": ["It ends at 4:25 p.m.", "At 4:25."]},
+        {"stem": "How many classes do students have every day?", "type": "text", "a": "Seven", "a2": ["They have seven classes.", "Seven classes.", "7."]},
+        {"stem": "Where do students do morning exercises?", "type": "text", "a": "On the sports ground", "a2": ["They do morning exercises on the sports ground.", "On the playground."]},
+        {"stem": "What do many students do after lunch?", "type": "text", "a": "They read in the book corner", "a2": ["Read in the book corner.", "They read in the book corner."]},
+        {"stem": "What clubs does the school have?", "type": "text", "a": "The Ping-pong Club, the Drama Club and the Gardening Club", "a2": ["The Ping-pong Club, the Drama Club and the Gardening Club.", "Ping-pong, Drama and Gardening clubs."]}
+      ]
+    },
+    {
+      "name": "九、单词拼写",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "a____（活动）", "type": "text", "a": "activity"},
+        {"stem": "s____（技术；技能）", "type": "text", "a": "skill"},
+        {"stem": "g____（年级）", "type": "text", "a": "grade"},
+        {"stem": "p____（课题）", "type": "text", "a": "project"},
+        {"stem": "p____（演示）", "type": "text", "a": "presentation"}
+      ]
+    },
+    {
+      "name": "十、词形转换",
+      "note": "每题 1 分，共 5 分。",
+      "items": [
+        {"stem": "mix（变成第三人称单数）", "type": "text", "a": "mixes", "ph": "混合（-x → -es）"},
+        {"stem": "play（变成第三人称单数）", "type": "text", "a": "plays", "ph": "玩（元音+y → -s）"},
+        {"stem": "study（变成第三人称单数）", "type": "text", "a": "studies", "ph": "学习（辅音+y → -ies）"},
+        {"stem": "do（变成第三人称单数）", "type": "text", "a": "does", "ph": "做（不规则）"},
+        {"stem": "catch（变成第三人称单数）", "type": "text", "a": "catches", "ph": "抓住（-ch → -es）"}
+      ]
+    },
+    {
+      "name": "十一、写作（10 分）",
+      "note": "请写在作文格/横线上，写完对照自查清单和范文。",
+      "items": [
+        {"stem": "<b>题目：A Club I Want to Join（我想参加的社团）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 club, member, practise, activity, take part in, look forward to, after school, have a good time）；③ 注意第三人称单数和句首大写。", "type": "essay", "score": 10, "ph": "A Club I Want to Join\n\nI want to join...", "check": ["有没有写社团名称和活动时间？", "有没有写为什么想参加（interesting / develop skills）？", "有没有写在社团里做什么（practise / take part in）？", "有没有写自己的期待（look forward to）？", "动词第三人称加 -s 了吗？句首大写了吗？"], "sample": "<div class=\"en\">A Club I Want to Join<br><br>I want to join the Drama Club at our school. The club meets every Wednesday after school in the music room. I want to join it because drama develops my confidence and teaches me to work with others. In the club, we practise our lines and learn to speak loudly and clearly. Every member works hard, and we look forward to the school show next month. I believe the show will be a great success. I am sure I will have a good time in the club.</div><div class=\"zh\">（参考范文：写了社团名称、活动时间地点、加入原因、社团活动、期待和感受，用了 club / meets / after school / develops / confidence / practise / member / look forward to / show / success / have a good time 等本单元词汇短语。）</div>"}
+      ]
+    }
+  ]
+  }
+];
+
+const $ = s => document.querySelector(s);
+const host = $('#paperHost'), tabsEl = $('#tabs'), scoreHost = $('#scoreHost');
+let curPaper = null, answers = {};
+
+const store = {
+  key(id){ return 'hx_quiz_' + 'u2' + '_' + id; },
+  save(id, data){ try{ localStorage.setItem(this.key(id), JSON.stringify(data)); }catch(e){} },
+  load(id){ try{ return JSON.parse(localStorage.getItem(this.key(id)) || 'null'); }catch(e){ return null; } },
+  clear(id){ try{ localStorage.removeItem(this.key(id)); }catch(e){} }
+};
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function buildTabs(){
+  tabsEl.innerHTML = '';
+  PAPERS.forEach((p, i) => {
+    const b = document.createElement('button');
+    b.innerHTML = esc(p.title.split(' · ')[0]) + '<span class="tag">' + esc(p.title.split(' · ')[1] || '') + '</span>';
+    b.onclick = () => selectPaper(i);
+    b.dataset.idx = i;
+    tabsEl.appendChild(b);
+  });
+}
+
+function selectPaper(i){
+  const p = PAPERS[i];
+  curPaper = p;
+  [...tabsEl.children].forEach((b, j) => b.classList.toggle('on', j === i));
+  scoreHost.innerHTML = '';
+  const saved = store.load(p.id);
+  answers = (saved && saved.answers) || {};
+  renderPaper(p, saved && saved.submitted);
+}
+
+function qid(si, qi){ return 'q' + si + '_' + qi; }
+
+function renderPaper(p, submitted){
+  let total = 0;
+  let html = `<div class="paper">
+    <div class="p-head">
+      <div class="pt">${esc(p.title)}</div>
+      <div class="ps">${esc(p.sub || '')}</div>
+    </div>
+    <div class="p-info"><span>建议用时：<b>${esc(p.time || '20 分钟')}</b></span><span>满分：<b id="fullMark">100</b> 分</span><span>范围：<b>Unit 2</b></span></div>`;
+
+  p.sections.forEach((s, si) => {
+    html += `<div class="sec"><h3>${esc(s.name)}</h3>`;
+    if (s.note) html += `<div class="sn">${s.note}</div>`;
+    if (s.bank) html += `<div class="wordbank">${s.bank}</div>`;
+    if (s.passage) html += s.passage;
+    s.items.forEach((it, qi) => {
+      const qq = qid(si, qi);
+      total += (it.score || 1);
+      const ans = answers[qq];
+      const st = submitted && it.type !== 'essay'
+        ? (isRight(it, ans) ? 'ok' : 'bad') : '';
+      html += `<div class="q" id="${qq}"><div class="qt"><span class="qn">${qi + 1}.</span>${it.stem}</div>`;
+      if (it.type === 'choice' || it.type === 'tf'){
+        const opts = it.type === 'choice' ? it.opts : ['T（正确）', 'F（错误）'];
+        const cols = (it.opts && it.opts.length > 4) ? 'one' : '';
+        html += `<div class="opts ${cols}">`;
+        opts.forEach((o, oi) => {
+          const tv = it.type === 'tf' ? (oi === 0 ? 'T' : 'F') : String(oi);
+          const key = it.type === 'tf' ? tv : String.fromCharCode(65 + oi);
+          let cls = 'opt';
+          if (submitted && it.type === 'choice'){
+            if (String(oi) === String(it.a)) cls += ' ok'; else if (tv === String(ans) && String(oi) !== String(it.a)) cls += ' bad';
+          } else if (submitted && it.type === 'tf'){
+            if (tv === it.a) cls += ' ok'; else if (tv === String(ans) && tv !== it.a) cls += ' bad';
+          }
+          if (!submitted && ans !== undefined && String(ans) === tv) cls += ' sel';
+          const mk = (submitted && ((it.type === 'choice' && String(oi) === String(it.a)) || (it.type === 'tf' && tv === it.a))) ? '<span class="mk">✓</span>' : '';
+          html += `<div class="${cls}" data-q="${qq}" data-v="${tv}"><span class="lb">${key}.</span><span>${esc(o)}</span>${mk}</div>`;
+        });
+        html += `</div>`;
+        if (submitted && !isRight(it, ans) && it.explain) html += `<div class="hint">💡 ${it.explain}</div>`;
+      } else if (it.type === 'text'){
+        const cls = submitted ? (st === 'ok' ? 'ok' : 'bad') : '';
+        html += `<input class="ans-in ${cls}" data-q="${qq}" value="${esc(ans || '')}" placeholder="${esc(it.ph || '输入答案')}" ${submitted ? 'disabled' : ''}>`;
+        if (submitted && st !== 'ok') html += `<div class="hint">💡 参考答案：<b>${esc((it.a2 || it.a).join ? (it.a2||it.a).join(' / ') : it.a)}</b></div>`;
+      } else if (it.type === 'essay'){
+        html += `<textarea class="essay" data-q="${qq}" placeholder="${esc(it.ph || '')}">${esc(ans || '')}</textarea>`;
+        html += `<div class="checklist"><b>自查清单：</b><ul>${(it.check||[]).map(c=>`<li>${c}</li>`).join('')}</ul></div>`;
+        html += `<details class="sample"><summary>📖 参考范文（写完后展开对照）</summary><div class="body">${it.sample}</div></details>`;
+      }
+      html += `</div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `</div>
+    <div class="acts">
+      <button class="btn btn-go" id="btnSubmit">${submitted ? '重新作答' : '提交批改'}</button>
+      <button class="btn btn-ghost" onclick="window.print()">🖨 打印 / 存 PDF</button>
+      <button class="btn btn-reset" id="btnReset">清空重做</button>
+    </div>`;
+  host.innerHTML = html;
+  $('#fullMark').textContent = total;
+
+  host.querySelectorAll('.opt').forEach(o => o.onclick = () => {
+    if (submitted) return;
+    answers[o.dataset.q] = o.dataset.v;
+    host.querySelectorAll(`.opt[data-q="${o.dataset.q}"]`).forEach(x => x.classList.remove('sel'));
+    o.classList.add('sel');
+  });
+  host.querySelectorAll('.ans-in').forEach(i => i.oninput = () => { answers[i.dataset.q] = i.value; });
+  host.querySelectorAll('textarea.essay').forEach(t => t.oninput = () => { answers[t.dataset.q] = t.value; });
+  $('#btnSubmit').onclick = () => grade();
+  $('#btnReset').onclick = () => { store.clear(p.id); answers = {}; renderPaper(p, false); };
+  if (submitted) grade(true);
+}
+
+function norm(s){ return String(s||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+function isRight(it, ans){
+  if (ans === undefined || ans === '' || ans === null) return false;
+  if (it.type === 'choice') return String(ans) === String(it.a);
+  if (it.type === 'tf') return String(ans) === it.a;
+  if (it.type === 'text'){
+    const ok = (it.a2 && it.a2.length ? it.a2 : [it.a]).some(a => norm(a) === norm(ans));
+    return ok;
+  }
+  return false;
+}
+
+function grade(resubmit){
+  const p = curPaper; if (!p) return;
+  const submitted = !resubmit;
+  let got = 0, full = 0, wrong = [];
+  p.sections.forEach((s, si) => s.items.forEach((it, qi) => {
+    const v = it.score || 1; full += v;
+    const a = answers[qid(si, qi)];
+    if (it.type === 'essay') return;
+    if (isRight(it, a)) got += v;
+    else wrong.push(si + '-' + qi);
+  }));
+  const pct = Math.round(got / full * 100);
+  const pass = pct >= 60;
+  const advice = wrong.length === 0 ? '全部正确，太棒了！可以进入下一单元。'
+    : wrong.length <= 3 ? '只错 ' + wrong.length + ' 题，把错题的解析看一遍就能全对。'
+    : '错题偏多，建议回到点读页把本单元词汇和课文再过一遍，第二天重做这份卷子。';
+  scoreHost.innerHTML = `<div class="score ${pass ? 'pass' : 'fail'}">
+    <div class="big">${got} / ${full} 分（${pct}%）</div>
+    <div class="adv">${advice}${wrong.length ? ' · 错题已在卷面标红' : ''}</div>
+  </div>`;
+  if (resubmit) return;
+  store.save(p.id, { answers, submitted: true, got, full, pct });
+  renderPaper(p, true);
+}
+
+buildTabs();
+selectPaper(0);
+
+</script>
+<style>
+.pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
+.pgnav .pg-h{margin:0 0 8px;font-size:12.5px;color:#6B6359;letter-spacing:.6px;}
+.pgnav .pg-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.pgnav a{text-decoration:none;font-size:13px;color:#2B2620;background:#fff;border:1px solid #EFE6DA;border-radius:999px;padding:6px 13px;}
+.pgnav a:hover{border-color:#E8552D;color:#E8552D;}
+.pgnav a.up{background:#E8552D;border-color:#E8552D;color:#fff;}
+.pgnav a.up:hover{background:#D64520;color:#fff;}
+.pgnav a.gr{background:#0F8A7D;border-color:#0F8A7D;color:#fff;}
+.pgnav a.gr:hover{background:#0B7369;color:#fff;}
+.pgnav a.bl{background:#2E6FB7;border-color:#2E6FB7;color:#fff;}
+.pgnav a.bl:hover{background:#245A94;color:#fff;}
+</style>
+<div class="pgnav">
+  <div class="wrap">
+    <p class="pg-h">继续学习</p>
+    <div class="pg-row">
+      <a class="up" href="../点读学习包/Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
+      <a href="Unit1_习题与测试.html">← Unit1 习题</a>
+      <a href="Unit3_习题与测试.html">Unit3 习题 →</a>
+      <a href="../点读学习包/Unit2_School_Life_点读学习页.html">📖 Unit2 点读学习页</a>
+      <a href="../点读学习包/Unit2_School_Life_精简练习页.html">✏️ Unit2 精简练习</a>
+      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="../点读学习包/全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
+    </div>
+    <p class="pg-h">其他三条线 · 全站跳转</p>
+    <div class="pg-row">
+      <a class="gr" href="../../A1-B1网页/语法练习_A1-A2-B1-B2.html">✍️ 语法练习 A1–B1</a>
+      <a class="gr" href="../../A1-B1网页/A2%20主页.html">🎧 A2 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/B1%20主页.html">🎧 B1 跟读主页</a>
+      <a class="gr" href="../../A1-B1网页/英语音标48音训练.html">🔤 48 音标训练</a>
+      <a class="bl" href="../../E听说练习/index.html">🎤 中考 E 听说</a>
+      <a class="up" href="../../index.html">🏠 返回慧学首页</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

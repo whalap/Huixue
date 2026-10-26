@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 3 项目 · 课堂指令卡</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.proj({
+  n: 3,
+  emo: '🗣️',
+  beast: '课堂精灵',
+  en: 'My Classroom Cards',
+  cn: '课堂指令卡',
+  make: '做一套 12 张的课堂指令卡 —— 正面英文、背面中文加小图。做完用来玩「抽卡做动作」，' +
+        '把「听得懂」真正变成「身体记得住」。',
+  tip: '指令类的话<b>光背没用，要配上动作</b>。做卡片的时候就把动作做一遍，' +
+       '背面画的小人就是在帮你把声音和身体连起来 —— 这是零基础记得最牢的一招。',
+  steps: [
+    '准备 <b>12 张硬卡纸</b>（A4 纸对折裁开也行），每张写一条指令，字要大，坐后排也看得见。',
+    '<b>正面写英文</b>：<b>Stand up.</b> ／ <b>Sit down.</b> ／ <b>Listen.</b> ／ <b>Look.</b> ／ <b>Read.</b> ／ <b>Write.</b> ／ <b>Repeat.</b> ／ <b>Open your book.</b> ／ <b>Close your book.</b> ／ <b>Put up your hand.</b> ／ <b>Be quiet.</b> ／ <b>Come here.</b>',
+    '<b>背面写中文，再画一个小人做这个动作</b> —— 画火柴人就行，重点是动作要对。',
+    '全部做完后<b>洗牌抽卡</b>：抽一张，大声读出英文，让家人或同学立刻做动作。',
+    '<b>反过来玩一次</b>：你做动作，让对方说出或抽出对应的英文卡。做动作的那个版本更难，也更有效。',
+    '用铁环或绳子把卡片<b>串起来挂在书桌旁</b>，每天抬头看一遍；一周后再抽一次，检查还记不记得。'
+  ],
+  scaffold: {
+    lines: [
+      {en:'Stand up, please.', cn:'请起立。'},
+      {en:'Sit down, please.', cn:'请坐下。'},
+      {en:'Listen and repeat.', cn:'听并跟读。'},
+      {en:'Open your book, page ten.', cn:'打开书，第 10 页。'},
+      {en:'Put up your hand.', cn:'请举手。'},
+      {en:'Be quiet, please.', cn:'请安静。'},
+      {en:'Can you say that again?', cn:'你能再说一遍吗？'}
+    ],
+    words: ['stand up','sit down','listen','look','read','write','repeat','open','close','hand','quiet','come here','please','again','understand','sorry','thank you','excuse me','card','pick']
+  },
+  demo: [
+    {t:'卡片 1 · 正面', en:'STAND UP.', cn:'起立。'},
+    {t:'卡片 1 · 背面', en:'起立 🧍', cn:'（画一个站立的小人）'},
+    {t:'卡片 2 · 正面', en:'PUT UP YOUR HAND.', cn:'请举手。'},
+    {t:'卡片 2 · 背面', en:'举手 ✋', cn:'（画一个举手的小人）'},
+    {t:'游戏口令', en:'Pick a card. Read it. Do it!', cn:'抽一张卡，读出来，做动作！'}
+  ],
+  checks: [
+    '12 张卡片都写了英文（大字）',
+    '每张背面有中文和一个动作小图',
+    '我用卡片玩了「抽卡做动作」',
+    '我玩了「我做动作你猜」的反向版本',
+    '卡片串起来挂在书桌旁了',
+    '12 条指令我都能听懂并立刻做出动作'
+  ],
+  ph: '把你做的 12 张卡片的英文写在这里（一行一条）……写完点保存。',
+  unitFile: 'Pre-A1 Unit3 英语跟读.html',
+  prev: 'Pre-A1 Unit2 颜色拼贴项目.html',
+  next: 'Pre-A1 Unit4 身体翻翻书项目.html'
+});
+</script>
+</body>
+</html>

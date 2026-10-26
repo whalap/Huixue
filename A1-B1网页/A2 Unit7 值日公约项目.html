@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2 PBL · Unit 7 The Easy Life · Class Chores Charter</title>
+<style>
+  :root{--bg:#12100d;--panel:#1c1913;--panel2:#23201a;--chip:#2b2721;--line:#3a352c;
+        --ink:#f0ece4;--sub:#a49c8e;--gold:#f5c542;--gold2:#6b5a22;--red:#e05a4f;--green:#4ec98a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);min-height:100vh}
+  .wrap{max-width:980px;margin:0 auto;padding:20px 16px 60px}
+  a{color:var(--gold)}
+  /* ---------- header ---------- */
+  header{padding:22px 16px 18px;text-align:center;border-bottom:1px solid var(--gold2)}
+  .back{position:absolute;left:14px;top:16px;font-size:12.5px;color:var(--sub);text-decoration:none;
+        border:1px solid var(--line);padding:5px 12px;border-radius:16px;background:var(--panel)}
+  .back:hover{color:var(--gold);border-color:var(--gold2)}
+  header h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:1px}
+  header p{margin:6px 0 0;color:var(--sub);font-size:12.5px}
+  /* ---------- mission ---------- */
+  .mission{position:relative;background:var(--panel);border:1px solid var(--line);
+           border-left:4px solid var(--red);border-radius:16px;padding:20px 20px 16px;margin-top:20px}
+  .m-tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:2px;color:#fff;
+         background:var(--red);padding:3px 10px;border-radius:8px}
+  .m-id{margin-top:12px;font-size:13px;color:var(--gold);font-weight:700;letter-spacing:1px}
+  .m-q{margin:10px 0 4px;font-size:21px;font-weight:800;line-height:1.45}
+  .m-q small{display:block;font-size:13px;color:var(--sub);font-weight:500;margin-top:6px}
+  .m-prods{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+  .prod{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .prod b{font-size:13.5px;color:var(--ink)}
+  .prod span{display:block;font-size:11.5px;color:var(--sub);margin-top:3px;line-height:1.5}
+  .m-meta{margin-top:13px;padding-top:11px;border-top:1px dashed var(--line);
+          font-size:12px;color:var(--sub);line-height:1.8}
+  .m-meta b{color:var(--gold);font-weight:600}
+  /* ---------- 启动站 · 成品示例图 ---------- */
+  .exwrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:10px}
+  .exs{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:10px}
+  .exs svg{display:block;width:100%;height:auto}
+  .excap{font-size:11.5px;color:var(--sub);margin-top:7px;line-height:1.7}
+  .excap b{color:var(--gold)}
+  .exfull{grid-column:1/-1}
+  /* ---------- rail ---------- */
+  .rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:22px 0 6px}
+  .rn{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 6px;
+      text-align:center;font-size:11.5px;color:var(--sub);cursor:pointer;transition:border-color .15s}
+  .rn:hover{border-color:var(--gold2)}
+  .rn i{display:block;font-size:18px;font-style:normal;margin-bottom:4px}
+  .rn b{display:block;font-size:11px;color:var(--ink);margin-top:2px}
+  .rn.on{border-color:var(--green)}
+  .rn.on i{filter:drop-shadow(0 0 5px rgba(78,201,138,.6))}
+  /* ---------- station（手风琴：7 站折叠，点头展开） ---------- */
+  .st{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+      padding:0;margin-top:14px}
+  .st-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;list-style:none;
+        cursor:pointer;padding:16px 18px;color:var(--ink);font-weight:500;font-size:14px;
+        background:var(--panel);border-radius:15px}
+  .st-h::-webkit-details-marker{display:none}
+  .st-h::after{content:'▾';margin-left:10px;color:var(--gold);font-size:13px;transition:transform .2s}
+  .st[open]>.st-h{border-bottom:1px solid var(--line);border-radius:15px 15px 0 0;
+        position:sticky;top:0;z-index:5;box-shadow:0 8px 12px -10px rgba(0,0,0,.65)}
+  .st[open]>.st-h::after{transform:rotate(180deg)}
+  .st[open]>*:not(summary){margin-left:18px;margin-right:18px}
+  .st[open]>.ot-intro{margin-top:16px}
+  .st[open]>*:last-child{margin-bottom:16px}
+  .st-no{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--gold);
+         border:1px solid var(--gold2);border-radius:8px;padding:3px 9px}
+  .st-t{font-size:17px;font-weight:800}
+  .st-t small{font-size:12px;color:var(--sub);font-weight:500;margin-left:8px}
+  .st-go{margin-left:auto;font-size:11px;color:var(--sub);display:flex;align-items:center;gap:6px}
+  /* ---------- 并列多开开关 ---------- */
+  .multi-toggle{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;
+      padding:9px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+  .mt-sw{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-size:12.5px;font-weight:700;color:var(--ink)}
+  .mt-sw input{appearance:none;-webkit-appearance:none;width:38px;height:21px;border-radius:21px;
+      background:var(--line);border:1px solid var(--line);position:relative;cursor:pointer;
+      transition:background .18s,border-color .18s;flex:none;margin:0}
+  .mt-sw input::after{content:'';position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;
+      background:var(--sub);transition:transform .18s,background .18s}
+  .mt-sw input:checked{background:var(--gold);border-color:var(--gold)}
+  .mt-sw input:checked::after{transform:translateX(17px);background:#1a1a1a}
+  .mt-hint{font-size:11px;color:var(--sub);line-height:1.5}
+  .blk{margin-top:14px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+  .blk-t{font-size:13.5px;font-weight:700;color:var(--gold);margin-bottom:8px}
+  .blk-t span{font-size:11px;color:var(--sub);font-weight:500;margin-left:6px}
+  .blk p{font-size:12.5px;color:var(--sub);line-height:1.75;margin:6px 0}
+  .blk p b,.blk li b{color:var(--ink)}
+  /* sentence frame */
+  .frame{background:#2a2410;border:1px dashed var(--gold2);border-radius:10px;
+         padding:10px 12px;font-size:14px;line-height:1.9;margin:8px 0}
+  .frame u{color:var(--gold);text-decoration:none;font-weight:700}
+  .eg{font-size:11.5px;color:var(--sub);margin-top:4px}
+  .eg em{color:var(--green);font-style:normal}
+  /* inputs */
+  textarea,input[type=text]{width:100%;background:var(--chip);border:1px solid var(--line);border-radius:10px;
+         color:var(--ink);padding:9px 11px;font-size:13.5px;font-family:inherit;resize:vertical;line-height:1.6}
+  textarea:focus,input:focus{outline:none;border-color:var(--gold2)}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px;align-items:center}
+  .btn{border:none;border-radius:9px;padding:8px 14px;font-size:12.5px;font-weight:700;cursor:pointer}
+  .btn-g{background:var(--gold);color:#1a1a1a}
+  .btn-o{background:transparent;border:1px solid var(--gold2);color:var(--gold)}
+  .btn-r{background:var(--red);color:#fff}
+  .btn-s{background:var(--chip);border:1px solid var(--line);color:var(--sub);font-weight:600}
+  .btn:hover{filter:brightness(1.12)}
+  .btn.rec-ing{background:#7a2f28;color:#fff;animation:pulse 1s infinite}
+  @keyframes pulse{50%{opacity:.62}}
+  /* place picker */
+  .picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:10px}
+  .pick{background:var(--chip);border:2px solid var(--line);border-radius:14px;padding:13px 8px;
+        text-align:center;cursor:pointer;transition:transform .12s,border-color .12s}
+  .pick:hover{transform:translateY(-3px)}
+  .pick i{font-size:34px;font-style:normal;display:block}
+  .pick b{display:block;font-size:13px;margin-top:6px}
+  .pick span{display:block;font-size:10.5px;color:var(--sub);margin-top:2px}
+  .pick.sel{border-color:var(--gold);background:#2a2410}
+  .pick .cn-flag{display:inline-block;font-size:9.5px;background:var(--red);color:#fff;
+                  border-radius:6px;padding:1px 6px;margin-top:5px}
+  /* ---------- roles ---------- */
+  .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+  .role{background:var(--chip);border:2px solid var(--line);border-radius:12px;padding:11px 12px;
+        cursor:pointer;transition:transform .12s,border-color .12s}
+  .role:hover{transform:translateY(-3px)}
+  .role .r-i{font-size:24px}
+  .role .r-n{font-size:13px;font-weight:700;margin-top:4px}
+  .role .r-n small{font-weight:400;color:var(--sub);font-size:11px}
+  .role .r-d{font-size:11px;color:var(--sub);margin-top:4px;line-height:1.5}
+  .role.sel{border-color:var(--gold);background:#2a2410}
+  .role.sel .r-n{color:var(--gold)}
+  /* ---------- role workbenches (专属工作台) ---------- */
+  .rdesk-host{margin-top:14px}
+  .rdesk{margin-top:14px;border-color:var(--gold2)}
+  .rdesk-off{border-style:dashed;opacity:.96}
+  .rdesk-lead{font-size:12px;color:var(--ink);margin:2px 0 9px;line-height:1.65}
+  .rdesk-sec{font-size:12px;color:var(--gold);margin:11px 0 5px;font-weight:700}
+  .rdesk .chk label{font-size:12px}
+  .rdesk textarea{margin-top:4px}
+  .rdesk-hint{font-size:12px;color:var(--sub);line-height:1.7;padding:8px 4px}
+  .rdesk .rd-mode{display:flex;flex-wrap:wrap;gap:8px;margin-top:5px}
+  .rdesk .rd-mode label{font-size:12px;background:var(--panel2);border:1px solid var(--line);
+        border-radius:9px;padding:6px 11px;cursor:pointer;color:var(--ink)}
+  .rdesk .rd-mode input{margin-right:6px}
+  .rdesk .rd-mode label.on{border-color:var(--gold);background:#2a2410;color:var(--gold)}
+  .guide-focus{margin-top:11px;background:#2a2410;border:1px dashed var(--gold2);border-radius:10px;padding:10px 13px}
+  .guide-focus .gf-t{font-size:12px;color:var(--gold);font-weight:700;margin-bottom:6px}
+  .guide-focus textarea{margin-top:4px}
+  #guideBlock.is-mine{border-color:var(--gold)}
+  #guideBlock.is-mine .blk-t b, #guideBlock.is-mine .blk-t{color:var(--gold)}
+  .rsay{margin-top:11px;background:#2a2410;border:1px dashed var(--gold2);border-radius:10px;padding:11px 13px}
+  .rsay .rt{font-size:11.5px;color:var(--gold);margin-bottom:6px}
+  .rsay .ren{font-size:13.5px;font-weight:700;line-height:1.6}
+  .rsay .rcn{font-size:11px;color:var(--sub);margin-top:3px}
+  /* ---------- place intel cards ---------- */
+  .acard{background:var(--chip);border:1px solid var(--line);border-radius:12px;margin-top:10px;overflow:hidden}
+  .acard>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;
+                 padding:12px 14px;background:var(--panel2)}
+  .acard>summary::-webkit-details-marker{display:none}
+  .acard>summary .a-i{font-size:26px;font-style:normal}
+  .acard>summary .a-n{font-size:15px;font-weight:800}
+  .acard>summary .a-c{font-size:11px;color:var(--sub);margin-left:2px}
+  .acard>summary .a-tag{margin-left:auto;font-size:10px;color:var(--gold);border:1px solid var(--gold2);
+                        border-radius:8px;padding:2px 9px}
+  .acard>summary .a-tag.star{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .acard[open]>summary{border-bottom:1px solid var(--line)}
+  .a-body{padding:6px 14px 13px}
+  .fr{display:grid;grid-template-columns:72px 1fr auto;gap:9px;align-items:start;
+      padding:8px 0;border-bottom:1px dashed var(--line)}
+  .fr:last-of-type{border-bottom:none}
+  .fk{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--gold);background:#2a2410;
+      border:1px solid var(--gold2);border-radius:6px;padding:3px 0;text-align:center;margin-top:2px}
+  .fk.red{color:#ffb4a8;background:#3a1616;border-color:#7a3a32}
+  .fen{font-size:13.5px;line-height:1.6}
+  .fcn{font-size:11px;color:var(--sub);margin-top:2px}
+  .qa{margin-top:10px;background:#2a2410;border:1px solid var(--gold2);border-radius:10px;padding:10px 12px}
+  .qa-t{font-size:11.5px;font-weight:700;color:var(--gold);margin-bottom:7px}
+  .qa-i{font-size:12.5px;line-height:1.6;padding:6px 0;border-top:1px dashed var(--line)}
+  .qa-i b{color:var(--ink)}
+  .qa-a{display:none;margin-top:5px;font-size:12.5px;color:var(--green);line-height:1.6}
+  .qa-a.show{display:block}
+  .src{margin-top:9px;font-size:10.5px;color:var(--sub)}
+  .hint{font-size:11.5px;color:var(--sub);line-height:1.65}
+  /* ---------- facts shadowing player ---------- */
+  .sh-tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:11px}
+  .sh-tab{font-size:12.5px;background:var(--chip);border:1px solid var(--line);border-radius:18px;
+          padding:6px 14px;cursor:pointer;color:var(--sub)}
+  .sh-tab.on{background:var(--gold);color:#1a1a1a;font-weight:700;border-color:var(--gold)}
+  .sh-box{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .sh-prog{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .sh-bar{flex:1;height:8px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .sh-bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .sh-prog span{font-size:11.5px;color:var(--sub);min-width:92px;text-align:right}
+  .sh-now{background:var(--panel2);border:1px dashed var(--gold2);border-radius:10px;
+          padding:16px 14px;text-align:center;min-height:76px}
+  .sh-en{font-size:19px;font-weight:800;line-height:1.5}
+  .sh-sp{display:inline-block;background:var(--gold);color:#1a1a1a;font-size:12px;font-weight:800;border-radius:9px;padding:1px 8px;margin-right:8px;vertical-align:3px}
+  .sh-cn{font-size:12px;color:var(--sub);margin-top:6px}
+  .sh-ctrl{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+  .sh-gap{background:var(--chip);color:var(--sub);border:1px solid var(--line);border-radius:8px;
+          padding:7px 9px;font-size:12px}
+  .sh-dots{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .sh-dot{width:11px;height:11px;border-radius:50%;background:var(--panel2);border:1px solid var(--line)}
+  .sh-dot.cur{border-color:var(--gold);box-shadow:0 0 0 2px rgba(245,197,66,.25)}
+  .sh-dot.done{background:var(--green);border-color:var(--green)}
+  .rec-meter{height:6px;background:var(--panel2);border-radius:4px;overflow:hidden;margin-top:10px}
+  .rec-meter>i{display:block;height:100%;width:0;
+               background:linear-gradient(90deg,var(--red),var(--gold));transition:width .08s}
+  .sh-note{margin-top:10px;font-size:11px;color:var(--sub);line-height:1.8}
+  .fr-btns{display:flex;gap:5px;flex-wrap:wrap}
+  /* ---------- listening quiz ---------- */
+  .lq-box{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:13px}
+  .lq-top{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:9px}
+  .lq-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px;margin-top:11px}
+  .lq-opt{background:var(--panel2);border:2px solid var(--line);border-radius:12px;padding:13px 8px;
+          text-align:center;cursor:pointer;font-size:14px;font-weight:700;color:var(--ink);transition:transform .12s}
+  .lq-opt:hover{transform:translateY(-2px)}
+  .lq-opt.ok{border-color:var(--green);color:var(--green)}
+  .lq-opt.no{border-color:var(--red);color:var(--red)}
+  .lq-fb{margin-top:11px;font-size:13px;line-height:1.7;min-height:22px}
+  .lq-fb .ok{color:var(--green)}
+  .lq-fb .no{color:var(--red)}
+  /* ---------- grammar-in-context ---------- */
+  .pt{color:var(--gold);border-bottom:2px solid var(--gold2);font-weight:700}
+  .pt-note{margin-top:10px;background:#3a1616;border:1px solid #7a3a32;border-radius:10px;
+           padding:10px 13px;font-size:12.5px;color:#ffd9d2;line-height:1.8}
+  .pt-note b{color:#ffb4a8}
+  .gp-rule{margin-top:7px;font-size:12px;color:var(--ink);background:#2a2410;
+           border:1px solid var(--gold2);border-radius:8px;padding:8px 11px;line-height:1.75}
+  .gp-rule b{color:var(--gold)}
+  .gp-ctx{margin-top:7px;font-size:11.5px;color:var(--gold);background:#2a2410;
+          border:1px dashed var(--gold2);border-radius:8px;padding:7px 11px;line-height:1.7}
+  .dg-tag{font-size:10px;color:var(--gold);border:1px solid var(--gold2);border-radius:8px;
+          padding:2px 8px;font-weight:600}
+  /* ---------- model board ---------- */
+  .mboard{background:var(--panel2);border:1px solid var(--gold2);border-radius:12px;padding:13px 15px;margin-top:10px}
+  .mb-h{font-size:15px;font-weight:800;color:var(--gold);letter-spacing:1px;text-align:center;
+        border-bottom:1px dashed var(--gold2);padding-bottom:9px;margin-bottom:10px}
+  .mb-l{font-size:13px;line-height:1.8;color:var(--ink);padding:4px 0}
+  .mb-l b{color:var(--gold);margin-right:6px}
+  .mb-src{font-size:10.5px;color:var(--sub);margin-top:9px;padding-top:8px;border-top:1px dashed var(--line)}
+  /* ---------- Q&A maker ---------- */
+  .qa-make{margin-top:10px}
+  .qam{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px}
+  .qam-k{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--gold);margin:5px 0 3px}
+  .qam-k small{color:var(--sub);font-size:10px}
+  /* ---------- original tracks (双轨) ---------- */
+  .ot-intro{display:flex;gap:10px;align-items:flex-start;background:#2a2410;border:1px dashed var(--gold2);
+            border-radius:10px;padding:11px 13px;font-size:12.5px;color:var(--ink);line-height:1.75}
+  .dlg{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:9px}
+  .dlg-h{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:var(--gold)}
+  .dlg-h .btn{margin-left:auto}
+  .turn{display:grid;grid-template-columns:22px 1fr auto;gap:9px;align-items:center;
+        padding:6px 0;border-bottom:1px dashed var(--line)}
+  .turn:last-child{border-bottom:none}
+  .role{font-size:10px;font-weight:800;color:#1a1a1a;background:var(--gold);border-radius:6px;
+        text-align:center;padding:2px 0}
+  .ten{font-size:13px}
+  .tcn{font-size:10.5px;color:var(--sub);margin-top:1px}
+  .mods{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .mod{font-size:11px;background:var(--chip);border:1px solid var(--line);border-radius:14px;
+       padding:4px 11px;color:var(--sub)}
+  .gp{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-top:9px}
+  .gp-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .gp-h b{font-size:13.5px;color:var(--gold)}
+  .gp-h span{font-size:11px;color:var(--sub)}
+  .gp-ex{display:flex;align-items:center;gap:9px;font-size:13px;background:var(--panel2);
+         border:1px solid var(--line);border-radius:8px;padding:7px 11px;margin-top:7px}
+  .gp-ex .btn{margin-left:auto}
+  .gp-task{font-size:11.5px;color:var(--sub);margin-top:9px}
+  /* ---------- 语法线：分栏标签（点击按钮切换，不堆叠） ---------- */
+  .gptabs{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+  .gptab{font-size:12.5px;background:var(--chip);border:1px solid var(--line);border-radius:18px;
+         padding:7px 16px;cursor:pointer;color:var(--sub);transition:all .12s}
+  .gptab:hover{border-color:var(--gold2)}
+  .gptab.on{background:var(--gold);color:#1a1a1a;font-weight:800;border-color:var(--gold)}
+  .gppanel{margin-top:11px}
+  .gppanel[hidden]{display:none}
+  .dlgpanel{margin-top:11px}
+  .dlgpanel[hidden]{display:none}
+  .rdpanel{margin-top:11px}
+  .rdpanel[hidden]{display:none}
+  .rdesk-empty{font-size:12.5px;color:var(--sub);background:var(--panel2);border:1px dashed var(--line);
+               border-radius:10px;padding:11px 14px;margin-top:10px;line-height:1.7}
+  /* ---------- 驱动问题回看卡 ---------- */
+  .dq{background:linear-gradient(180deg,#2a2410,#211c0c);border:1px solid var(--gold2);border-radius:12px;padding:13px 15px;margin-top:10px}
+  .dq-q{font-size:13.5px;line-height:1.7;color:var(--ink)}
+  .dq-q b{color:var(--gold)}
+  .dq-yes{display:flex;gap:9px;flex-wrap:wrap;margin:10px 0 6px}
+  .dq-yes label{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:6px 12px;font-size:12px;cursor:pointer;transition:all .12s}
+  .dq-yes label.on{border-color:var(--gold);color:var(--gold);background:#2a2410}
+  /* ---------- 四角色工作台：手风琴（像任务情报卡一样可收起） ---------- */
+  .rdesk-det{border:1px solid var(--line);border-radius:12px;margin-top:12px;overflow:hidden;background:var(--panel2)}
+  .rdesk-det>summary{cursor:pointer;list-style:none;padding:11px 14px;display:flex;align-items:center;gap:8px;
+                     font-weight:700;color:var(--gold);user-select:none}
+  .rdesk-det>summary::-webkit-details-marker{display:none}
+  .rdesk-det[open]>summary{border-bottom:1px solid var(--line)}
+  .rdesk-det .rdesk{background:transparent;border:none;margin-top:0;padding:11px 14px}
+  .rdesk-det .rdesk-off{border:none}
+  .rd-i{font-size:16px}
+  .rd-n{font-weight:800;color:var(--gold)}
+  .rd-sub{font-size:11px;color:var(--sub);margin-left:6px}
+  .rd-caret{margin-left:auto;color:var(--sub);font-size:12px;transition:transform .15s}
+  .rdesk-det[open]>summary .rd-caret{transform:rotate(90deg)}
+  /* steps */
+  .steps{display:grid;gap:10px;margin-top:4px}
+  .step{display:flex;gap:12px;background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .step .sn{flex:none;width:44px;height:44px;border-radius:12px;background:#2a2410;border:1px solid var(--gold2);
+            display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--gold)}
+  .step .sb b{font-size:13.5px}
+  .step .sb p{font-size:12px;color:var(--sub);margin:4px 0 0;line-height:1.6}
+  /* china card */
+  .china{background:linear-gradient(135deg,#3a1616,#241414);border:1px solid #7a3a32;border-radius:12px;
+         padding:13px 15px;margin-top:10px}
+  .china .c-t{font-size:13px;font-weight:800;color:#ffb4a8;letter-spacing:1px}
+  .china p{font-size:13px;color:#f0d9d4;line-height:1.8;margin:7px 0 0}
+  .china .say{margin-top:8px;font-size:12.5px;background:rgba(0,0,0,.25);border-radius:8px;padding:8px 11px;color:#ffd9d2}
+  /* banks */
+  .bank{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:8px}
+  .bank .b-t{font-size:11px;color:var(--sub);margin-bottom:7px;letter-spacing:1px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chipx{font-size:12px;background:var(--panel2);border:1px solid var(--gold2);color:var(--gold);
+         border-radius:14px;padding:4px 11px;cursor:pointer;user-select:none}
+  .chipx:hover{background:#2a2410}
+  .chipx.w{background:var(--panel2);border-color:var(--line);color:var(--ink)}
+  .pat{display:grid;grid-template-columns:auto 1fr auto;gap:2px 9px;align-items:center;
+       padding:7px 0;border-bottom:1px dashed var(--line)}
+  .pat:last-child{border-bottom:none}
+  .chipx.ex{background:transparent;border-color:transparent;color:var(--ink);font-weight:700;
+            font-size:12.5px;padding:2px 3px;text-align:left;line-height:1.5}
+  .chipx.ex:hover{background:#2a2410;border-color:var(--gold2);color:var(--gold)}
+  .pat-cn{grid-column:2;font-size:10.5px;color:var(--sub);line-height:1.4;margin-top:1px}
+  /* label scaffold */
+  .lab{border:2px dashed var(--gold2);border-radius:12px;margin-top:10px;overflow:hidden}
+  .lab .lg{background:#2a2410;padding:7px 13px;font-size:11.5px;color:var(--gold);
+           display:flex;justify-content:space-between;gap:8px}
+  .lab .lg span{color:var(--sub);text-align:right}
+  .lab .lb{padding:11px 13px}
+  .lab .lb textarea{background:var(--chip)}
+  .lb-note{font-size:10.5px;color:var(--sub);margin-top:4px}
+  /* script builder */
+  .script{margin-top:10px;display:grid;gap:8px}
+  .sc{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:start;
+      background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .sc .k{font-size:12px;font-weight:800;color:var(--gold);padding-top:8px}
+  .sc .k small{display:block;font-size:10px;color:var(--sub);font-weight:500}
+  /* checklist */
+  .chk{display:grid;gap:7px;margin-top:8px}
+  .chk label{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--ink);
+             background:var(--chip);border:1px solid var(--line);border-radius:9px;padding:8px 11px;cursor:pointer}
+  .chk input{margin-top:2px;accent-color:var(--gold)}
+  /* feedback card */
+  .fb{background:#f7f3e8;color:#26221a;border-radius:12px;padding:14px 16px;margin-top:10px}
+  .fb .f-t{font-size:13px;font-weight:800;border-bottom:2px solid #d8cfb8;padding-bottom:6px}
+  .fb label{display:block;font-size:11.5px;color:#8a8172;margin:10px 0 4px}
+  .fb textarea,.fb input{background:#fffdf6;border:1px solid #d8cfb8;color:#26221a}
+  .stars-in{font-size:22px;letter-spacing:4px;cursor:pointer;user-select:none;color:#c9c0ab}
+  .stars-in b{font-weight:400;transition:color .1s}
+  .stars-in b.on{color:#e8a81c}
+  /* rubric */
+  .rub{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px}
+  .rd{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+  .rd b{font-size:13px;color:var(--gold)}
+  .rd .d1{font-size:10.5px;color:var(--sub);margin:3px 0 8px}
+  .rd .lv{font-size:11px;color:var(--sub);line-height:1.9;border-top:1px dashed var(--line);padding-top:7px}
+  .rd .lv b{color:var(--ink);font-size:11.5px}
+  /* teacher notes */
+  details{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 15px}
+  summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--gold);list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";color:var(--sub)}
+  details[open] summary::before{content:"▾ "}
+  details ol{margin:10px 0 0;padding-left:20px}
+  details li{font-size:12px;color:var(--sub);line-height:1.9;margin-bottom:6px}
+  details li b{color:var(--ink)}
+  details li i{color:var(--gold);font-style:normal}
+  /* done banner */
+  .donebar{display:none;margin-top:14px;background:linear-gradient(90deg,#173a2a,#1c1913);
+           border:1px solid var(--green);border-radius:12px;padding:13px 16px;font-size:13px;color:var(--green)}
+  .donebar.show{display:block}
+  footer{margin-top:26px;text-align:center;font-size:11px;color:var(--sub);line-height:1.8}
+  @media (max-width:640px){
+    .m-q{font-size:18px}
+    .back{position:static;display:inline-block;margin-bottom:10px}
+    .fr{grid-template-columns:56px 1fr auto}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="index.html">← 返回 A1 启程线</a>
+  <h1>🧹 CLASS CHORES CHARTER</h1>
+  <p>A2 · Unit 7 The Easy Life · PBL 微项目 + 原有双轨 · 1 周</p>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ MISSION ============ -->
+  <section class="mission">
+    <span class="m-tag">OUR MISSION · 我们的任务</span>
+    <div class="m-id">📋 CHARTER WRITER × 🎨 BOARD DESIGNER · 你是公约起草人 + 值日表设计师</div>
+    <div class="m-q">How can we write our class chores charter?
+      <small>我们班要写一份「值日公约」：谁必须做什么、建议大家怎么做、什么绝不能做。你不是来做练习册的——你是来用英语把责任分清楚的。</small></div>
+    <div class="m-prods">
+      <div class="prod"><b>① Chore Card 值日卡</b><span>做什么 + 在哪儿做 + 怎么做 + 来源，贴在教室后墙</span></div>
+      <div class="prod"><b>② 30s Charter Pitch Video 公约游说视频</b><span>给全班拍一段 30 秒「游说」</span></div>
+      <div class="prod"><b>③ Q&amp;A Card 问答卡</b><span>考倒同学的 3 个小问题</span></div>
+    </div>
+    <div class="m-meta">
+      ⏱ <b>周期</b>：1 周 · 3 站课 + 弹药库（原有双轨随项目调用）&nbsp;&nbsp;
+      👥 <b>真实观众</b>：全班同学 + 家长开放日&nbsp;&nbsp;
+      🗣 <b>用到</b>：说 · 写 · 读 · 听
+    </div>
+  </section>
+
+  <!-- ============ RAIL ============ -->
+  <nav class="rail">
+    <div class="rn" id="rn1"><i>🚀</i><b>启动站</b>LAUNCH</div>
+    <div class="rn" id="rn2"><i>🔍</i><b>探究站</b>RESEARCH</div>
+    <div class="rn" id="rn3"><i>🗣</i><b>跟读站</b>FACTS 跟读</div>
+    <div class="rn" id="rn4"><i>📚</i><b>弹药库</b>原有双轨</div>
+    <div class="rn" id="rn5"><i>🛠</i><b>制作站</b>MAKE</div>
+    <div class="rn" id="rn6"><i>🎤</i><b>展示站</b>SHOW</div>
+    <div class="rn" id="rn7"><i>🌱</i><b>反思站</b>REFLECT</div>
+  </nav>
+
+  <div class="multi-toggle">
+    <label class="mt-sw"><input type="checkbox" id="multiOpen"><span>📌 允许并列多开</span></label>
+    <span class="mt-hint">默认一次只摊开一站（点开的站头会吸顶）；打开后，可钉住「探究站」等几站一起对照——写公约时好用。</span>
+  </div>
+
+  <!-- ============ STATION 1 LAUNCH ============ -->
+  <details class="st" id="s1">
+    <summary class="st-h">
+      <span class="st-no">STATION 1</span>
+      <span class="st-t">启动站 <small>发现与探索 · 看样例 + 定方向 · 约 20 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="1"> 本站完成</label>
+    </summary>
+
+    <div class="blk">
+      <div class="blk-t">🎬 Hook：今天谁值日？ <span>先看，别急着读课文</span></div>
+      <p>想象你是班级的<b>公约起草人</b>。教室要干净、人要放松，但谁做什么、什么不能做，必须写清楚——你的使命是做一张值日卡，把「必须 / 应该 / 绝不能」分开。先听一段 30 秒家务对话（教师播放或班级素材库），然后回答——</p>
+      <div class="row"><button class="btn btn-g" onclick="speak('Hello, friends! Today we are charter writers. Our mission: write our class chores charter in English.')">🔊 听任务发布</button></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🖼 先看成品：做出来长这样 <span>上一届班级的样例 · 同一结构，两种内容</span></div>
+      <p>动手之前，先看清楚<b>要做成什么样</b>。下面是三份做好的样例——值日卡给了<b>两个版本</b>（洗碗版 + 拖地版）：<b>结构一模一样，内容全换</b>。<b>不是让你们抄内容，是让你们一眼看出结构</b>。选好明星任务后，制作站有跟着你们组变的活模板，照这个结构把内容换成你们组的。</p>
+      <div class="exwrap">
+        <div>
+          <div class="exs">
+            <svg viewBox="0 0 640 462" role="img" aria-label="示例：做好的值日卡 · 洗碗版">
+              <rect x="1" y="1" width="638" height="460" rx="14" fill="#1c1913" stroke="#f5c542" stroke-width="1.5"/>
+              <rect x="18" y="18" width="604" height="42" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="45" font-size="16" font-weight="800" fill="#f5c542">🧹 CLASS CHORES CHARTER · 班级值日公约</text>
+              <text x="606" y="44" text-anchor="end" font-size="11" fill="#a49c8e">样例 · 洗碗版</text>
+              <circle cx="40" cy="88" r="13" fill="#f5c542"/>
+              <text x="40" y="93" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">1</text>
+              <text x="64" y="85" font-size="12" font-weight="700" fill="#f5c542">TOPIC SENTENCE 任务一句</text>
+              <text x="64" y="103" font-size="13.5" fill="#f0ece4">Everyone on duty has to wash the dishes after lunch.</text>
+              <circle cx="40" cy="148" r="13" fill="#f5c542"/>
+              <text x="40" y="153" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">2</text>
+              <text x="64" y="145" font-size="12" font-weight="700" fill="#f5c542">WHERE &amp; DO 在哪儿做 · 怎么做</text>
+              <text x="64" y="163" font-size="13.5" fill="#f0ece4">We work at the sink near the classroom door.</text>
+              <text x="64" y="181" font-size="13.5" fill="#f0ece4">Wash, dry, and put everything back on the shelf.</text>
+              <circle cx="40" cy="226" r="13" fill="#f5c542"/>
+              <text x="40" y="231" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">3</text>
+              <text x="64" y="223" font-size="12" font-weight="700" fill="#f5c542">INTERESTING FACT 有趣事实</text>
+              <text x="64" y="241" font-size="13.5" fill="#f0ece4">Ten minutes of dishes keeps the whole room smelling clean!</text>
+              <circle cx="40" cy="304" r="13" fill="#f5c542"/>
+              <text x="40" y="309" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">4</text>
+              <text x="64" y="301" font-size="12" font-weight="700" fill="#f5c542">SOURCE 来源</text>
+              <text x="64" y="319" font-size="13.5" fill="#f0ece4">Source: Our class chores plan · Class project 2026</text>
+              <rect x="18" y="336" width="604" height="64" rx="9" fill="#23201a" stroke="#3a352c" stroke-width="1"/>
+              <text x="34" y="356" font-size="11" font-weight="700" fill="#f5c542">📋 值日周历（随手画）</text>
+              <line x1="72" y1="380" x2="568" y2="380" stroke="#6b5a22" stroke-width="2" stroke-dasharray="6 5"/>
+              <circle cx="72" cy="380" r="7" fill="#23201a" stroke="#f5c542" stroke-width="1.5"/>
+              <text x="72" y="398" text-anchor="middle" font-size="11" fill="#f0ece4">🍽 Mon</text>
+              <circle cx="320" cy="380" r="7" fill="#23201a" stroke="#f5c542" stroke-width="1.5"/>
+              <text x="320" y="398" text-anchor="middle" font-size="11" fill="#f0ece4">🧹 Wed</text>
+              <circle cx="568" cy="380" r="7" fill="#23201a" stroke="#f5c542" stroke-width="1.5"/>
+              <text x="568" y="398" text-anchor="middle" font-size="11" fill="#f0ece4">🪴 Fri</text>
+              <rect x="18" y="412" width="604" height="34" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="433" font-size="11.5" fill="#a49c8e">💡 语法打卡：<tspan font-weight="700" fill="#f0ece4">We have to wash the dishes after dinner.</tspan><tspan fill="#f5c542">（have to 肯定）</tspan></text>
+            </svg>
+          </div>
+          <div class="excap">① <b>四块结构</b>：任务一句 → 在哪儿做 + 怎么做 → 一条有趣事实 → 注明来源。<b>照结构写，内容换成你们组的任务</b>。</div>
+        </div>
+        <div>
+          <div class="exs">
+            <svg viewBox="0 0 640 462" role="img" aria-label="示例：做好的值日卡 · 拖地版">
+              <rect x="1" y="1" width="638" height="460" rx="14" fill="#1c1913" stroke="#f5c542" stroke-width="1.5"/>
+              <rect x="18" y="18" width="604" height="42" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="45" font-size="16" font-weight="800" fill="#f5c542">🧹 CLASS CHORES CHARTER · 班级值日公约</text>
+              <text x="606" y="44" text-anchor="end" font-size="11" fill="#a49c8e">样例 · 拖地版</text>
+              <circle cx="40" cy="88" r="13" fill="#f5c542"/>
+              <text x="40" y="93" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">1</text>
+              <text x="64" y="85" font-size="12" font-weight="700" fill="#f5c542">TOPIC SENTENCE 任务一句</text>
+              <text x="64" y="103" font-size="13.5" fill="#f0ece4">The floor is everyone's job on Friday afternoon.</text>
+              <circle cx="40" cy="148" r="13" fill="#f5c542"/>
+              <text x="40" y="153" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">2</text>
+              <text x="64" y="145" font-size="12" font-weight="700" fill="#f5c542">WHERE &amp; DO 在哪儿做 · 怎么做</text>
+              <text x="64" y="163" font-size="13.5" fill="#f0ece4">We clean the floor from the door to the window.</text>
+              <text x="64" y="181" font-size="13.5" fill="#f0ece4">Sweep first, then mop, and wait until it is dry.</text>
+              <circle cx="40" cy="226" r="13" fill="#f5c542"/>
+              <text x="40" y="231" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">3</text>
+              <text x="64" y="223" font-size="12" font-weight="700" fill="#f5c542">INTERESTING FACT 有趣事实</text>
+              <text x="64" y="241" font-size="13.5" fill="#f0ece4">A wet floor is the most dangerous thing in a classroom!</text>
+              <circle cx="40" cy="304" r="13" fill="#f5c542"/>
+              <text x="40" y="309" text-anchor="middle" font-size="13" font-weight="800" fill="#1a1a1a">4</text>
+              <text x="64" y="301" font-size="12" font-weight="700" fill="#f5c542">SOURCE 来源</text>
+              <text x="64" y="319" font-size="13.5" fill="#f0ece4">Source: Our class chores plan · Class project 2026</text>
+              <rect x="18" y="336" width="604" height="64" rx="9" fill="#23201a" stroke="#3a352c" stroke-width="1"/>
+              <text x="34" y="356" font-size="11" font-weight="700" fill="#f5c542">📋 值日周历（随手画）</text>
+              <line x1="72" y1="380" x2="568" y2="380" stroke="#6b5a22" stroke-width="2" stroke-dasharray="6 5"/>
+              <circle cx="72" cy="380" r="7" fill="#23201a" stroke="#f5c542" stroke-width="1.5"/>
+              <text x="72" y="398" text-anchor="middle" font-size="11" fill="#f0ece4">🍽 Mon</text>
+              <circle cx="320" cy="380" r="7" fill="#f5c542" stroke="#f5c542" stroke-width="1.5"/>
+              <text x="320" y="398" text-anchor="middle" font-size="11" font-weight="800" fill="#f5c542">🧹 Wed</text>
+              <circle cx="568" cy="380" r="7" fill="#23201a" stroke="#f5c542" stroke-width="1.5"/>
+              <text x="568" y="398" text-anchor="middle" font-size="11" fill="#f0ece4">🪴 Fri</text>
+              <rect x="18" y="412" width="604" height="34" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="433" font-size="11.5" fill="#a49c8e">💡 语法打卡：<tspan font-weight="700" fill="#f0ece4">You mustn't leave water on the floor.</tspan><tspan fill="#f5c542">（mustn't 禁止）</tspan></text>
+            </svg>
+          </div>
+          <div class="excap">② <b>同一结构，换内容</b>：任务换成「拖地」，四块跟着全换——注意底部「语法打卡」，have to 是客观必须，mustn't 是绝不能。</div>
+        </div>
+        <div class="exfull">
+          <div class="exs">
+            <svg viewBox="0 0 640 300" role="img" aria-label="示例：问答卡">
+              <rect x="1" y="1" width="638" height="298" rx="14" fill="#1c1913" stroke="#f5c542" stroke-width="1.5"/>
+              <rect x="18" y="18" width="604" height="40" rx="9" fill="#2a2410" stroke="#6b5a22" stroke-width="1"/>
+              <text x="34" y="43" font-size="15" font-weight="800" fill="#f5c542">🙋 ASK ME · 问答卡（3 问）</text>
+              <text x="606" y="42" text-anchor="end" font-size="11" fill="#a49c8e">样例</text>
+              <text x="34" y="88" font-size="13" font-weight="800" fill="#f5c542">Q1</text>
+              <text x="62" y="88" font-size="13.5" fill="#f0ece4">Do you have a lot of chores at the weekend?</text>
+              <rect x="424" y="72" width="188" height="24" rx="6" fill="#23201a" stroke="#f5c542" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="518" y="88" text-anchor="middle" font-size="11" fill="#f5c542">答案折起来 ↺</text>
+              <text x="34" y="138" font-size="13" font-weight="800" fill="#f5c542">Q2</text>
+              <text x="62" y="138" font-size="13.5" fill="#f0ece4">What are the rules in your home?</text>
+              <rect x="424" y="122" width="188" height="24" rx="6" fill="#23201a" stroke="#f5c542" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="518" y="138" text-anchor="middle" font-size="11" fill="#f5c542">答案折起来 ↺</text>
+              <text x="34" y="188" font-size="13" font-weight="800" fill="#f5c542">Q3</text>
+              <text x="62" y="188" font-size="13.5" fill="#f0ece4">Must I make my bed every morning?</text>
+              <rect x="424" y="172" width="188" height="24" rx="6" fill="#23201a" stroke="#f5c542" stroke-width="1" stroke-dasharray="4 3"/>
+              <text x="518" y="188" text-anchor="middle" font-size="11" fill="#f5c542">答案折起来 ↺</text>
+              <line x1="34" y1="218" x2="606" y2="218" stroke="#3a352c" stroke-width="1"/>
+              <text x="34" y="244" font-size="12" fill="#a49c8e">小技巧：问必须做用 Do you have to，问规矩用 What are the rules；</text>
+              <text x="34" y="264" font-size="12" fill="#a49c8e">把答案折起来，让同学先猜再翻。</text>
+            </svg>
+          </div>
+          <div class="excap">③ <b>三个小问题 + 折起来的答案</b>——题目从情报卡底部的「同学可能会问」来，答案先藏着，开放日再翻开。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">💬 Think–Pair–Share：什么让一份公约真的被执行？ <span>结对讨论 2 分钟</span></div>
+      <div class="frame">A charter works because <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>.</div>
+      <div class="eg">示例：<em>A charter works because everyone has one small job, not one big job.</em></div>
+      <div class="eg">示例：<em>A charter works because the rule says who, not just what.</em></div>
+      <div class="eg">示例：<em>A charter works because there is a day written next to it.</em></div>
+      <div class="bank">
+        <div class="b-t">💡 点子银行 · 先点下面大框，再点点子插入</div>
+        <div class="chips">
+          <span class="chipx">everyone has one small job</span>
+          <span class="chipx">the rule says who</span>
+          <span class="chipx">a day next to it</span>
+          <span class="chipx">one clear mustn't</span>
+          <span class="chipx">a kind suggestion</span>
+          <span class="chipx">a way to check</span>
+        </div>
+        <div class="chips" style="margin-top:7px">
+          <span class="chipx">a big job gets skipped</span>
+          <span class="chipx">nobody acts without a name</span>
+          <span class="chipx">without a day it never happens</span>
+          <span class="chipx">one red line is enough</span>
+          <span class="chipx">people try what they are advised</span>
+          <span class="chipx">we can see it worked</span>
+        </div>
+      </div>
+      <textarea id="launchAns" rows="2" placeholder="写下你的句子：A charter works because ..."></textarea>
+      <div class="row">
+        <button class="btn btn-o" onclick="speak(document.getElementById('launchAns').value||'A charter works because everyone has one small job.')">🔊 播放我的句子</button>
+        <button class="btn btn-o" onclick="rec(this,'launch')">🎙 录下我的回答</button>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎯 选出我们的明星任务 <span>全班的第一个任务：成为它的专家</span></div>
+      <p>投票选出的任务，就是你整个项目的「研究对象」。<b>注意</b>：不是读一读就完了——我们要像公约起草人一样思考。选好后，探究站有它的<b>完整情报卡</b>。</p>
+      <div class="picks" id="picks">
+        <div class="pick" data-p="dishes"><i>🍽</i><b>Washing the Dishes</b><span>洗碗 · 每天都有的一次</span><span class="cn-flag">after every meal</span></div>
+        <div class="pick" data-p="laundry"><i>🧺</i><b>The Laundry</b><span>洗衣 · 一周一次的那件</span><span class="cn-flag">once a week</span></div>
+        <div class="pick" data-p="floor"><i>🧹</i><b>The Floor</b><span>拖地 · 最要小心的一件</span><span class="cn-flag">dry before walking</span></div>
+        <div class="pick" data-p="plants"><i>🪴</i><b>The Plants</b><span>浇花 · 最容易忘的一件</span><span class="cn-flag">a little, not a lot</span></div>
+      </div>
+      <p style="margin-top:10px">✅ 我们组的明星任务是：<b id="pickName" style="color:var(--gold)">还没选</b></p>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎭 认领你的角色 <span>建卡不是一个人做的 · PBL 里你有选择权</span></div>
+      <p>一份公约要四种人。选一个你最想做的——<b>你选了什么，就负责什么</b>，最后量规里「合作参与」看的就是这个。</p>
+      <div class="roles" id="roleBox"></div>
+      <div id="roleSay"></div>
+      <div id="roleDeskBox" class="rdesk-host"></div>
+    </div>
+  </details>
+
+  <!-- ============ STATION 2 RESEARCH ============ -->
+  <details class="st" id="s2">
+    <summary class="st-h">
+      <span class="st-no">STATION 2</span>
+      <span class="st-t">探究站 <small>结构化输入 · 约 25 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="2"> 本站完成</label>
+    </summary>
+
+    <div class="blk">
+      <div class="blk-t">🧭 Look–Scan–Say 三步阅读法 <span>不逐字读，先抓结构</span></div>
+      <div class="steps">
+        <div class="step"><div class="sn">LOOK</div><div class="sb"><b>看</b><p>只看标题和图：What is it? How many parts? 在笔记上写下同学会问的 3 个问题。</p></div></div>
+        <div class="step"><div class="sn">SCAN</div><div class="sb"><b>扫</b><p>找每段第一个词或粗体词（如 We / Sweep / A wet），画成 3～4 个分支。</p></div></div>
+        <div class="step"><div class="sn">SAY</div><div class="sb"><b>说</b><p>用一句话说出主旨，写在下面。</p></div></div>
+      </div>
+      <textarea id="scanSay" rows="2" placeholder="This article is about ______."></textarea>
+      <div class="row"><button class="btn btn-o" onclick="speak(document.getElementById('scanSay').value||'This article is about chores and rules at home.')">🔊 播放</button></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🧹 任务情报卡 × 4 <span>点开你选的那张 · 信息足够回答同学的问题</span></div>
+      <p>每张卡都是一份<b>非虚构信息卡</b>：要点、短句、有来源——这就是新教材要的读法。每句都能 🔊 听、🎙 录、▶ 回放（录音与跟读站打通，在情报卡录的句，跟读机里直接回放）。卡底的「同学可能会问」是你做 Q&amp;A 问答卡的现成素材，参考答案先遮住，想好了再看。</p>
+      <div id="modeCards"></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🇨🇳 中国连接卡 <span>每项任务都能接回中国 · 用英语讲中国故事</span></div>
+      <p>新教材要的不是「会说 clean」，是<b>能用英语讲中国孩子的值日</b>。这一卡跟着你选的任务变——洗碗有光盘行动，洗衣有晾晒，拖地有值日表，浇花有班级植物角。</p>
+      <div id="cnBox"></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🏮 中国生活名片 · 扩展角 <span>选做 · 讲给同学和家长听</span></div>
+      <p>如果你的公约展板有空位，挑一张中国生活名片加进去——<b>让外国同学也看得懂我们的日常规矩</b>。每句都能 🔊 听、🎙 录。</p>
+      <div id="cnRareBox"></div>
+    </div>
+  </details>
+
+  <!-- ============ STATION 3 FACTS SHADOWING ============ -->
+  <details class="st" id="s3">
+    <summary class="st-h">
+      <span class="st-no">STATION 3</span>
+      <span class="st-t">跟读站 · Facts 跟读 <small>PBL 自己的跟读线 · 听 + 说 · 约 15 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="3"> 本站完成</label>
+    </summary>
+
+    <div class="ot-intro">
+      <span style="font-size:19px">🗣</span>
+      <span>情报卡里的 <b>Fun Facts</b> 和弹药库的 <b>3 段对话</b>都是现成的跟读材料——这是 PBL 自己的跟读线。<b>听进去、读出来、录下来、做对比</b>：每句 🔊 听示范 → 🎙 我读（停止自动回放）→ ▶ 回放 → 🔁 A/B 对比，四项任务共 <b>24</b> 句 + 3 段对话 <b>15</b> 句。对话跟读练熟后，去弹药库和同伴分角色录音。</span>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎧 Facts 跟读机 <span>选任务 · 逐句听 · 逐句录 · 可自动连播</span></div>
+      <div class="sh-tabs" id="shTabs"></div>
+      <div class="sh-box">
+        <div class="sh-prog"><div class="sh-bar"><i id="shBar"></i></div><span id="shNum">0 / 0</span></div>
+        <div class="sh-now">
+          <div class="sh-en" id="shEn">—</div>
+          <div class="sh-cn" id="shCn"></div>
+        </div>
+        <div class="sh-ctrl">
+          <button class="btn btn-s" onclick="shPrev()">⏮ 上一句</button>
+          <button class="btn btn-g" onclick="shPlay()">🔊 听示范</button>
+          <button class="btn btn-r" id="shRecBtn" onclick="rec(this,shKey(),'machine')">🎙 我读</button>
+          <button class="btn btn-o" onclick="shReplay()">▶ 回放我的</button>
+          <button class="btn btn-o" onclick="shCompare()">🔁 A/B 对比</button>
+          <button class="btn btn-s" onclick="shDone()">✓ 我会了</button>
+          <button class="btn btn-s" onclick="shNext()">下一句 ⏭</button>
+          <button class="btn btn-o" id="shAutoBtn" onclick="toggleAuto()">⏩ 自动连播</button>
+          <select id="shGap" class="sh-gap">
+            <option value="1000">间隔 1s</option>
+            <option value="1800" selected>间隔 1.8s</option>
+            <option value="3000">间隔 3s</option>
+          </select>
+        </div>
+        <div class="rec-meter"><i id="recMeter"></i></div>
+        <div class="sh-dots" id="shDots"></div>
+        <div class="sh-note">练句顺序：🔊 听示范 → 🎙 我读（停止后自动回放）→ ▶ 回放我的 → 🔁 A/B 对比（先示范后你）→ ✓ 我会了。🎙 录音存在这一页里，刷新后需要重录；「我会了」的进度会保存。</div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">👂 听力挑战：这是哪项任务？ <span>听一句 Fact，选出是哪项任务 · 5 题一轮</span></div>
+      <div class="lq-box">
+        <div class="lq-top"><span id="lqRound">第 1 / 5 题</span><span id="lqScore">得分 0</span></div>
+        <div class="row">
+          <button class="btn btn-g" id="lqPlay" onclick="lqPlay()">🔊 播放题目（可重听）</button>
+        </div>
+        <div class="lq-opts" id="lqOpts"></div>
+        <div class="lq-fb" id="lqFb"></div>
+        <div class="row"><button class="btn btn-o" id="lqNext" style="display:none" onclick="lqNextBtn()">下一题 →</button></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ============ STATION 4 ORIGINAL TRACKS ============ -->
+  <details class="st" id="s4">
+    <summary class="st-h">
+      <span class="st-no">STATION 4</span>
+      <span class="st-t">弹药库 · 原有双轨 <small>跟读 = 听进来 · 语法 = 写出来 · 约 20 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="4"> 本站完成</label>
+    </summary>
+
+    <div class="ot-intro">
+      <span style="font-size:19px">📚</span>
+      <span>写公约要弹药。<b>PBL 线</b>给你任务，<b>弹药库</b>给你语言材料——而且每个语法点都长在一个<b>值日情境</b>上，不裸教：have to 配「客观必须做」，should 配「建议怎么做」，mustn't 配「绝不能做」。</span>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">📖 跟读线（原有）· 4 段对话全量 <span>点一句听一句，跟着念</span></div>
+      <div id="dlgBox"></div>
+      <div class="row">
+        <a class="btn btn-g" href="A2 Unit7 英语跟读.html#shadow">🎤 去跟读页完整版 · 对话打卡 + 逐句跟读（带进度）→</a>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">✏️ 语法线 · 每个语法点长在一个值日情境上 <span>写值日卡必须用，不学就做不成</span></div>
+      <div id="gramBox"></div>
+      <p style="margin-top:9px">🧰 写值日卡要用：<b>We have to wash the dishes after dinner.</b>（have to 肯定）· <b>You mustn't leave water on the floor.</b>（mustn't 禁止）</p>
+      <p class="hint" style="margin-top:6px">每张卡自带「📐 怎么用」——<b>规则就写在卡上，不跳出去也能照着写值日卡</b>。想多练题，再点卡里的「去语法页练这一个点」：一次只开一个知识点的新页，不会在全册里迷路；练完关掉新页，回到这里继续写值日卡。</p>
+    </div>
+  </details>
+
+  <!-- ============ STATION 5 MAKE ============ -->
+  <details class="st" id="s5">
+    <summary class="st-h">
+      <span class="st-no">STATION 5</span>
+      <span class="st-t">制作站 <small>写作工作坊 · 约 25 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="5"> 本站完成</label>
+    </summary>
+
+    <div class="blk">
+      <div class="blk-t">🖼 先看一张做好的值日卡 <span>照着这个样子，做你自己的</span></div>
+      <p>动手之前先看<b>成品长什么样</b>。这张值日卡跟着你选的任务变——换任务，这里也换。</p>
+      <div id="modelBoard"></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎯 回到驱动问题 <span>动手前先确认：我们的卡在回答它吗？</span></div>
+      <div class="dq">
+        <div class="dq-q">我们的任务问题：<b>How can we write our class chores charter?</b><br><span style="color:var(--sub);font-size:12px">我们班要写一份「值日公约」：谁必须做什么、建议大家怎么做、什么绝不能做。你不是来做练习册的——你是来用英语把责任分清楚的。</span></div>
+        <div class="dq-yes" id="dqYes">
+          <label data-v="yes" onclick="dqPick('yes')">✅ 我的卡回答了它</label>
+          <label data-v="part" onclick="dqPick('part')">🟡 部分回答了</label>
+          <label data-v="no" onclick="dqPick('no')">⚪ 还没</label>
+        </div>
+        <label>为什么？一句话说明你的值日卡怎样「帮全班把责任分清楚」：</label>
+        <textarea id="dqWhy" rows="1" placeholder="Our charter shows our class how we can share the work and keep the room easy."></textarea>
+        <div class="row" style="margin-top:7px"><button class="btn btn-o" onclick="speak(dqWhy.value||'Our charter helps our class know who does what, without asking twice.')">🔊 播放我的说明</button></div>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🏷 值日卡脚手架 Chore Card <span>四块拼图，缺一不可</span></div>
+      <div class="lab">
+        <div class="lg"><b>① This job is … 任务一句</b><span>一句话说出这项任务是什么</span></div>
+        <div class="lb"><textarea id="m1" rows="1" placeholder="Everyone on duty has to wash the dishes after lunch."></textarea></div>
+        <div class="lg"><b>② Where &amp; Do 在哪儿做 · 怎么做</b><span>地点 → 正确步骤</span></div>
+        <div class="lb"><textarea id="m2" rows="3" placeholder="We work at the sink near the classroom door. Wash, dry, and put everything back."></textarea></div>
+        <div class="lg"><b>③ Interesting Fact 有趣事实</b><span>让同学「哇」的那条</span></div>
+        <div class="lb"><textarea id="m3" rows="1" placeholder="Ten minutes of dishes keeps the whole room smelling clean!"></textarea></div>
+        <div class="lg"><b>④ Source 来源</b><span>值日卡的规矩：注明出处</span></div>
+        <div class="lb"><textarea id="m4" rows="1" placeholder="Source: Our class chores plan · Class project 2026"></textarea>
+        <div class="lb-note">✓ 至少用 3 个本单元词 · ✓ 用 1 个 have to 或 1 个 mustn't · ✓ 句子短（同学站在值日表前就能读）</div></div>
+      </div>
+      <div class="bank">
+        <div class="b-t">💬 句型银行 · 左边金色＝句型框架（插入后自己填）· 右边例句＝不会写就先插它，再改词</div>
+        <div id="sentBank"></div>
+      </div>
+      <div class="bank">
+        <div class="b-t">📗 词汇银行 · 本单元词</div>
+        <div class="chips" id="wordBank">
+          <span class="chipx w">chore</span>
+          <span class="chipx w">dishes</span>
+          <span class="chipx w">laundry</span>
+          <span class="chipx w">clean</span>
+          <span class="chipx w">cook</span>
+          <span class="chipx w">wash</span>
+          <span class="chipx w">tidy</span>
+          <span class="chipx w">sweep</span>
+          <span class="chipx w">relax</span>
+          <span class="chipx w">rest</span>
+          <span class="chipx w">hobby</span>
+          <span class="chipx w">quiet</span>
+          <span class="chipx w">rule</span>
+          <span class="chipx w">healthy</span>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-o" onclick="speak([m1.value,m2.value,m3.value,m4.value].join(' '))">🔊 播放整张卡</button>
+        <button class="btn btn-s" onclick="saveNow(this)">💾 保存进度</button>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">❓ Q&amp;A 问答卡 <span>第三件产出 · 考倒同学的 3 个问题</span></div>
+      <p>任务卡里承诺的三件产出，这是第三件。素材现成的——<b>情报卡底部的「同学可能会问」</b>就是题库。你自己编也行：三个小问题，答案先藏着，发布会再翻开。</p>
+      <div class="qa-make">
+        <div class="qam"><div class="qam-k">Q1<small>问题</small></div><textarea id="q1" rows="1" placeholder="Do you have a lot of chores at the weekend?"></textarea>
+          <div class="qam-k">A1<small>答案（藏着）</small></div><textarea id="qa1" rows="1" placeholder="Yes. I have to tidy my room and do the dishes."></textarea></div>
+        <div class="qam"><div class="qam-k">Q2<small>问题</small></div><textarea id="q2" rows="1" placeholder="What are the rules in your home?"></textarea>
+          <div class="qam-k">A2<small>答案（藏着）</small></div><textarea id="qa2" rows="1" placeholder="I must make my bed every morning."></textarea></div>
+        <div class="qam"><div class="qam-k">Q3<small>问题</small></div><textarea id="q3" rows="1" placeholder="Must I stay up late on school days?"></textarea>
+          <div class="qam-k">A3<small>答案（藏着）</small></div><textarea id="qa3" rows="1" placeholder="No, you mustn't. Early to bed is healthy."></textarea></div>
+      </div>
+      <div class="row"><button class="btn btn-o" onclick="speak([q1.value,q2.value,q3.value].join(' '))">🔊 播放我的 3 个问题</button></div>
+      <p class="hint" style="margin-top:6px">小技巧：问必须做用 <b>Do you have to</b>，问规矩用 <b>What are the rules</b>。发布会把答案折起来，让同学先猜。</p>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎬 30 秒游说脚本 <span>Point – Fact – Feeling – Come</span></div>
+      <div class="script">
+        <div class="sc"><div class="k">Point<small>主旨</small></div><textarea id="p1" rows="1" placeholder="Hello! I am here to tell you about our class chores charter."></textarea></div>
+        <div class="sc"><div class="k">Fact<small>事实 ×2</small></div><textarea id="p2" rows="2" placeholder="Everyone has one small job, and the day is written next to it."></textarea></div>
+        <div class="sc"><div class="k">Feeling<small>感受</small></div><textarea id="p3" rows="1" placeholder="I love this charter because it says who, not just what."></textarea></div>
+        <div class="sc"><div class="k">Come<small>邀请</small></div><textarea id="p4" rows="1" placeholder="Come and find your name on our duty board!"></textarea></div>
+      </div>
+      <div class="row">
+        <button class="btn btn-g" onclick="speak([p1.value,p2.value,p3.value,p4.value].join(' '))">▶ 播放我的 30 秒脚本</button>
+        <button class="btn btn-o" onclick="rec(this,'video')">🎙 录制游说（30s）</button>
+      </div>
+      <p>拍摄要求：每人都发言 · 至少 1 张图 · 屏幕注明来源 · 用问题或邀请结尾。</p>
+    </div>
+  </details>
+
+  <!-- ============ STATION 6 SHOW ============ -->
+  <details class="st" id="s6">
+    <summary class="st-h">
+      <span class="st-no">STATION 6</span>
+      <span class="st-t">展示站 <small>布展 · 开放日 · 约 20 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="6"> 本站完成</label>
+    </summary>
+
+    <div class="blk" id="guideBlock">
+      <div class="blk-t">🎤 发布员须知 <span id="guideRoleTag">好的发布不是念，是问和听</span></div>
+      <div class="chk">
+        <label><input type="checkbox"><span><b>Greet</b> — 打招呼：Welcome, everyone!</span></label>
+        <label><input type="checkbox"><span><b>Share</b> — 讲 3 个关键事实（指着值日卡说）</span></label>
+        <label><input type="checkbox"><span><b>Ask</b> — 问同学一个问题</span></label>
+        <label><input type="checkbox"><span><b>Guide</b> — 带同学完成一个互动（签名认领 / 问答卡）</span></label>
+        <label><input type="checkbox"><span><b>Thank</b> — 致谢并邀请反馈：Thank you! What should we improve?</span></label>
+      </div>
+      </div>
+      <p style="margin-top:9px">🔁 发布会规则：一半人当发布员，一半人当同学，<b>中途交换</b>。</p>
+      <p style="margin-top:7px;font-size:12px;color:var(--sub);line-height:1.6">🎤 <b>发布员的个人计划</b>在你认领角色后的工作台里——回到「启动站 · 角色工作台」标签即可填写，发布日照这 5 步清单讲。</p>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">🎤 游说示范脚本 <span>照着练一遍：🔊 听 → 🎙 录 → ▶ 回放对比</span></div>
+      <p>光看清单练不出「说」。下面是一段<b>完整的游说词</b>，跟着你选的任务自动变。五句连起来就是你开口讲的那 30 秒——每句都能听、能录、能回放对比。</p>
+      <div id="guideBox"></div>
+      <div class="row"><button class="btn btn-g" onclick="guidePlayAll()">▶ 听完整段游说</button></div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">📝 同学反馈卡 <span>真实观众的声音，是改进的原料</span></div>
+      <div class="fb">
+        <div class="f-t">CHORES CHARTER EXPLORER CARD</div>
+        <label>One fact I learned 我学到一个事实</label>
+        <input type="text" id="fbFact" placeholder="I learned that one mustn't says more than five shoulds.">
+        <label>One question I have 我的一个问题</label>
+        <input type="text" id="fbQ" placeholder="What are the rules in your home?">
+        <label>One thing to remember 我会记住的一件事</label>
+        <input type="text" id="fbR" placeholder="Our class charter covers four jobs!">
+        <label>我的评分</label>
+        <div class="stars-in" id="fbStars"><b>★</b><b>★</b><b>★</b><b>★</b><b>★</b></div>
+      </div>
+
+
+    <div class="blk">
+      <div class="blk-t">🔧 据反馈修订 <span>PBL 最关键的一步：看完反馈，改一处，再来一遍</span></div>
+      <p>反馈卡不是终点，是原料。读完同学写的话，<b>只改一处</b>——改完再给另一组讲一遍，你会发现第二遍明显不一样。这一步做完，你的项目才真的转了一圈。</p>
+      <div class="script">
+        <div class="sc"><div class="k">Change<small>我要改的一处</small></div><textarea id="rev1" rows="1" placeholder="Classmates said the card had no name on it. So we added who and which day."></textarea></div>
+        <div class="sc"><div class="k">New<small>改完后的新句子</small></div><textarea id="rev2" rows="2" placeholder="Everyone on duty has to wash the dishes after lunch. Lin and I do it on Monday, at the sink by the door."></textarea></div>
+      </div>
+      <div class="chk" style="margin-top:9px">
+        <label><input type="checkbox" id="revDone"><span><b>我改完了，并且给另一组又讲了一遍</b> —— 打勾，这一站才算真完成</span></label>
+      </div>
+      <div class="row"><button class="btn btn-o" onclick="speak(rev2.value||rev1.value)">🔊 播放我改后的句子</button></div>
+    </div>
+  </details>
+
+  <!-- ============ STATION 7 REFLECT ============ -->
+  <details class="st" id="s7">
+    <summary class="st-h">
+      <span class="st-no">STATION 7</span>
+      <span class="st-t">反思站 <small>Charter Writer Journal · 约 10 分钟</small></span>
+      <label class="st-go" onclick="event.stopPropagation()"><input type="checkbox" class="stdone" data-st="7"> 本站完成</label>
+    </summary>
+    <div class="blk">
+      <div class="blk-t">📔 公约起草人日志</div>
+      <div class="script">
+        <div class="sc"><div class="k">Favorite<small>最喜欢</small></div><textarea id="r1" rows="1" placeholder="My favorite part was ... because ..."></textarea></div>
+        <div class="sc"><div class="k">Hardest<small>最难</small></div><textarea id="r2" rows="1" placeholder="The hardest part was ... because ..."></textarea></div>
+        <div class="sc"><div class="k">Next<small>下次</small></div><textarea id="r3" rows="1" placeholder="Next time, I would ..."></textarea></div>
+      </div>
+      <p>我的英语变强了（可多选）：</p>
+      <div class="chk">
+        <label><input type="checkbox" class="imp" data-v="x"><span>📖 Reading 读研究</span></label>
+        <label><input type="checkbox" class="imp" data-v="x"><span>✏️ Writing 写值日卡</span></label>
+        <label><input type="checkbox" class="imp" data-v="x"><span>🗣 Speaking 对全班发布</span></label>
+        <label><input type="checkbox" class="imp" data-v="x"><span>👂 Listening 听反馈</span></label>
+      </div>
+    </div>
+
+    <div class="blk">
+      <div class="blk-t">⭐ 项目量规 <span>第一天就看懂：5 星值日卡长什么样</span></div>
+      <div class="rub">
+        <div class="rd"><b>内容准确 Facts</b><div class="d1">事实对不对</div>
+          <div class="lv"><b>5 星</b>：多源验证 · 细节准确<br><b>3 星</b>：信息基本准确<br><b>1 星</b>：有明显错误</div></div>
+        <div class="rd"><b>语言清楚 Language</b><div class="d1">句子清不清楚</div>
+          <div class="lv"><b>5 星</b>：句型多样 · 用了单元词<br><b>3 星</b>：简单句能懂<br><b>1 星</b>：难以理解</div></div>
+        <div class="rd"><b>创意有趣 Creative</b><div class="d1">想不想让人看</div>
+          <div class="lv"><b>5 星</b>：有互动 · 有惊喜<br><b>3 星</b>：整洁清楚<br><b>1 星</b>：只有文字</div></div>
+        <div class="rd"><b>合作参与 Teamwork</b><div class="d1">团队怎么样</div>
+          <div class="lv"><b>5 星</b>：人人有分工有贡献<br><b>3 星</b>：完成分配任务<br><b>1 星</b>：有人旁观</div></div>
+      </div>
+    </div>
+
+    <div class="donebar" id="donebar">🏆 项目完成！你不只是英语学习者——你是 charter writer · researcher · educator。</div>
+  </details>
+
+  <details>
+    <summary>👩‍🏫 教师折叠笔记 · 关键 T-Script 问法（来自 PBL 逐字稿设计思路）</summary>
+    <ol>
+      <li><b>启动</b>：<i>"You are charter writers now. A charter works because ___."</i> — 先给身份，再给句型。</li>
+      <li><b>预测</b>：<i>"Don't read yet. Only look at the title and the picture. What will our class argue about?"</i> — Top-down 纪律：不许逐字读。</li>
+      <li><b>情报卡</b>：<i>"Read the card. Which fact will classmates love most? Why?"</i> — 训练筛选信息，不是搬运信息。</li>
+      <li><b>段落解剖</b>：<i>"Read the Where part. How is it organized? Place first, then steps in order."</i> — 用起草人的视角读段落。</li>
+      <li><b>来源意识</b>：<i>"Where is this from? Our class plan? Good. Our card must cite sources too."</i> — 非虚构阅读的第一课。</li>
+      <li><b>双轨调用</b>：<i>"Before you write, read the dialogues aloud. The grammar is your tool: have to, should, mustn't."</i> — 跟读和语法是弹药，不是作业。</li>
+      <li><b>Facts 跟读</b>：<i>"Listen, then say it like a writer. Don't read the paper — look at your classmates."</i> — 跟读机的目标是脱口而出。</li>
+      <li><b>对话跟读</b>：<i>"Now change roles. One asks the rules, one answers. Record it in Station 4."</i> — 跟读机里练熟单句，弹药库里做角色录音。</li>
+      <li><b>听力挑战</b>：<i>"Which chore is it? How do you know? Listen for the key word."</i> — 听关键词归类。</li>
+      <li><b>语法情境</b>：<i>"Every grammar point has a chores home. Where does have to live? In your "this must be done" line."</i> — 语法不裸教。</li>
+      <li><b>have to</b>：<i>"I have to tidy my room. She has to cook. Have to is about the rule outside you, not your feeling."</i> — have to 是客观必须，来自外部规矩。</li>
+      <li><b>should</b>：<i>"You should take a break. Should is advice, not an order. People can still say no."</i> — should 是建议，不是命令。</li>
+      <li><b>mustn't</b>：<i>"You mustn't leave water on the floor. Mustn't is a red line, not a suggestion."</i> — mustn't 是红线，不是建议。</li>
+      <li><b>写清谁</b>：<i>"A rule without a name is a wish. Write who does it and on which day."</i> — 公约的第一条纪律：写清谁和哪天。</li>
+      <li><b>同伴反馈</b>：<i>"Now you are classmates. What is the clearest part? One suggestion?"</i> — 角色转换为反馈卡。</li>
+      <li><b>角色分工</b>：<i>"You chose your role. So the researcher checks the facts — not me."</i> — 责任到人是合作的第一步。</li>
+      <li><b>示范值日卡</b>：<i>"Before you write, read this card. What comes first? What comes last?"</i> — 结构先于内容。</li>
+      <li><b>游说脚本</b>：<i>"Don't read the card. Look at your classmates and say it."</i> — 发布是「说」不是「念」。</li>
+      <li><b>据反馈修订</b>：<i>"One classmate said ___. So we changed ___. Show me the new sentence."</i> — 反馈要变成行动。</li>
+      <li><b>收尾</b>：<i>"You didn't just learn English. You used English to make sharing the work fair."</i> — 点题：用语言做有意义的事。</li>
+    </ol>
+  </details>
+  </details>
+
+  <footer>
+    进度存档于本机浏览器（localStorage · a2net_pbl_u7）· 与跟读 / 语法进度互不覆盖<br>
+    A1 启程线 · PBL 微项目 v15 · 模板线 · A2 Unit7 值日公约（基于 v14 模板抽取：7 站手风琴折叠：点头展开 · 顶部导航可跳转 · 默认展开启动站 + 跟读对话分栏标签 + 四角色工作台合并为启动站分栏标签：认领角色=默认页，其余点击显示认领后解锁 + 语法线分栏标签 + 驱动问题回看卡 + 中国元素 + 游说脚本 + 示范值日卡 + 问答卡 + 修订闭环） · 黑金皮肤 · 红仅用于任务标签
+  </footer>
+</div>
+
+<script>
+/* ================= 数据 ================= */
+var MODES = {
+  dishes:{
+    emo:"🍽",
+    name:"Washing the Dishes",
+    cn:"洗碗",
+    facts:[
+      {
+        k:"WHAT",
+        en:"Washing the dishes is the job that comes after every meal. Nobody can skip it.",
+        cn:"洗碗是每顿饭后都有的任务，谁也不能跳过。"
+      },
+      {
+        k:"WHERE",
+        en:"We work at the sink near the classroom door, where the water is.",
+        cn:"我们在教室门边的水槽干活，那里有水。"
+      },
+      {
+        k:"DO",
+        en:"Wash with water, dry with a cloth, and put everything back on the shelf.",
+        cn:"用水洗、用布擦干，再把东西放回架子。"
+      },
+      {
+        k:"FUN",
+        en:"Ten minutes of dishes keeps the whole room smelling clean!",
+        cn:"十分钟洗碗，能让整个屋子闻起来干净！"
+      },
+      {
+        k:"CHINA",
+        red:1,
+        en:"In China, children often wash the dishes after the reunion dinner.",
+        cn:"在中国，孩子常在团圆饭后洗碗。"
+      },
+      {
+        k:"CARE",
+        red:1,
+        en:"You mustn't leave food on the plate. A clean plate is respect for the cook.",
+        cn:"盘子里不能剩食物，光盘是对做饭的人的尊重。"
+      }
+    ],
+    src:"SOURCE: Our class chores plan · Class project 2026",
+    qa:[
+      {
+        q:"Do you have to do the dishes?",
+        a:"Yes, I do, after every meal."
+      },
+      {
+        q:"What do you do after washing?",
+        a:"Dry them and put them back."
+      },
+      {
+        q:"How long does it take?",
+        a:"About ten minutes."
+      }
+    ]
+  },
+  laundry:{
+    emo:"🧺",
+    name:"The Laundry",
+    cn:"洗衣",
+    facts:[
+      {
+        k:"WHAT",
+        en:"The laundry is the job of washing clothes. It is bigger than it looks.",
+        cn:"洗衣是洗衣服的任务，它比看起来更大。"
+      },
+      {
+        k:"WHERE",
+        en:"We wash in the bathroom and dry the clothes on the balcony.",
+        cn:"我们在洗手间洗，在阳台晾衣服。"
+      },
+      {
+        k:"DO",
+        en:"Put the clothes in, add water, then hang them up one by one.",
+        cn:"把衣服放进去、加水，然后一件一件挂起来。"
+      },
+      {
+        k:"FUN",
+        en:"One week of laundry for a family can be twenty pieces of clothing!",
+        cn:"一家人一周的衣物能到二十件！"
+      },
+      {
+        k:"CHINA",
+        red:1,
+        en:"In China, families often dry clothes on the balcony in the sun.",
+        cn:"在中国，家庭常在阳台上晒衣服。"
+      },
+      {
+        k:"CARE",
+        red:1,
+        en:"You should check the pockets first. One paper can ruin a whole load.",
+        cn:"应该先检查口袋，一张纸能毁掉一整桶衣服。"
+      }
+    ],
+    src:"SOURCE: Our class chores plan · Class project 2026",
+    qa:[
+      {
+        q:"How often do you do the laundry?",
+        a:"Once a week, usually on Sunday."
+      },
+      {
+        q:"Where do you dry the clothes?",
+        a:"On the balcony, in the sun."
+      },
+      {
+        q:"What should you check first?",
+        a:"The pockets."
+      }
+    ]
+  },
+  floor:{
+    emo:"🧹",
+    name:"The Floor",
+    cn:"拖地",
+    facts:[
+      {
+        k:"WHAT",
+        en:"Cleaning the floor is the job that keeps everyone safe, not just tidy.",
+        cn:"拖地是保护大家安全的任务，不只是干净。"
+      },
+      {
+        k:"WHERE",
+        en:"We clean the floor from the door to the window, along the walking line.",
+        cn:"我们从门口到窗户、沿着走动的路线拖地。"
+      },
+      {
+        k:"DO",
+        en:"Sweep first, then mop, and wait until the floor is dry.",
+        cn:"先扫、再拖，然后等地干。"
+      },
+      {
+        k:"FUN",
+        en:"A wet floor is the most dangerous thing in a classroom!",
+        cn:"湿地板是教室里最危险的东西！"
+      },
+      {
+        k:"CHINA",
+        red:1,
+        en:"In China, every class has a duty roster, and the floor is always on it.",
+        cn:"在中国，每个班都有一张值日表，拖地永远在上面。"
+      },
+      {
+        k:"CARE",
+        red:1,
+        en:"You mustn't leave water on the floor. One fall is one too many.",
+        cn:"绝不能把水留在地板上，摔一次就太多了。"
+      }
+    ],
+    src:"SOURCE: Our class chores plan · Class project 2026",
+    qa:[
+      {
+        q:"Must I clean the floor every day?",
+        a:"No, but we do it on Wednesday and Friday."
+      },
+      {
+        q:"What do you do first?",
+        a:"Sweep, then mop."
+      },
+      {
+        q:"What mustn't you do?",
+        a:"Leave water on the floor."
+      }
+    ]
+  },
+  plants:{
+    emo:"🪴",
+    name:"The Plants",
+    cn:"浇花",
+    facts:[
+      {
+        k:"WHAT",
+        en:"Watering the plants is the smallest job, and the easiest one to forget.",
+        cn:"浇花是最小的任务，也是最容易忘的。"
+      },
+      {
+        k:"WHERE",
+        en:"Our plants live on the window shelf, where the light is soft.",
+        cn:"我们的植物放在窗台架上，那里光线柔和。"
+      },
+      {
+        k:"DO",
+        en:"Give a little water at the bottom, and look at the leaves while you do it.",
+        cn:"从底部浇一点水，边浇边看看叶子。"
+      },
+      {
+        k:"FUN",
+        en:"A plant tells you how it feels — soft leaves mean it wants water!",
+        cn:"植物会告诉你它的感觉——叶子发软就是想喝水！"
+      },
+      {
+        k:"CHINA",
+        red:1,
+        en:"In China, many classrooms have a plant corner looked after by one student.",
+        cn:"在中国，很多教室有一个植物角，由一位同学照看。"
+      },
+      {
+        k:"CARE",
+        red:1,
+        en:"You shouldn't give too much water. A little, often, is better than a lot at once.",
+        cn:"不该浇太多水，少量多次好过一次浇透。"
+      }
+    ],
+    src:"SOURCE: Our class chores plan · Class project 2026",
+    qa:[
+      {
+        q:"How often should I water them?",
+        a:"A little, twice a week."
+      },
+      {
+        q:"Where are the plants?",
+        a:"On the window shelf."
+      },
+      {
+        q:"How do you know they need water?",
+        a:"The leaves go soft."
+      }
+    ]
+  }
+};
+/* 跟读机 / 听力挑战的统一素材源（4 实体 + 4 段对话并入） */
+var SH_META={dishes:MODES.dishes,laundry:MODES.laundry,floor:MODES.floor,plants:MODES.plants};
+
+var DIALOGUES = [
+  {
+    t:"① 周末的家务",
+    g:"have to / must / chores",
+    turns:[
+      ["A","Do you have a lot of chores at the weekend?","你周末有很多家务吗？"],
+      ["B","Yes. I have to tidy my room and do the dishes.","是的。我得整理房间、洗碗。"],
+      ["A","Do you have to cook, too?","你也得做饭吗？"],
+      ["B","No, I don't have to cook. My mum cooks for us.","不用，我不用做饭。妈妈给我们做。"],
+      ["A","Lucky you! I must clean the floor every Saturday.","你真幸运！我每周六必须拖地。"]
+    ]
+  },
+  {
+    t:"② 给朋友的建议",
+    g:"should / relax",
+    turns:[
+      ["A","You look tired.","你看起来很累。"],
+      ["B","Yes, I am busy every day.","是的，我每天都很忙。"],
+      ["A","You should take a break and relax at the weekend.","你周末应该休息一下、放松放松。"],
+      ["B","You are right. I should listen to music and read a book.","你说得对。我应该听听音乐、看看书。"],
+      ["A","Good idea! Rest helps you stay healthy.","好主意！休息能让你保持健康。"]
+    ]
+  },
+  {
+    t:"③ 家里的规矩",
+    g:"mustn't / rule",
+    turns:[
+      ["A","What are the rules in your home?","你家的规矩有哪些？"],
+      ["B","I must make my bed every morning.","我每天早晨必须铺床。"],
+      ["A","Anything you mustn't do?","有什么是千万不能做的吗？"],
+      ["B","I mustn't stay up late on school days.","上学日我绝不能熬夜。"],
+      ["A","That is a good rule. Early to bed is healthy.","那是条好规矩。早睡有益健康。"]
+    ]
+  }
+];
+/* 4 段对话并入跟读机：turns → facts（单一数据源，不复制句子；en 保持纯净供 TTS，sp 仅作显示） */
+DIALOGUES.forEach(function(d,di){
+  SH_META['dlg'+(di+1)]={emo:'🗣',name:d.t,cn:d.g,
+    facts:d.turns.map(function(t){return {k:t[0],sp:t[0],en:t[1],cn:t[2]};})};
+});
+var GRAMMAR = [
+  {
+    n:"have to：客观必须做的事",
+    sn:"have to 肯定",
+    p:"have-pos",
+    d:"分清「必须做」",
+    rule:"<b>have to + 原形</b> = 客观必须（规矩、安排要求你做）：I <b>have to</b> tidy my room. 第三人称用 <b>has to</b>：She <b>has to</b> cook.",
+    ctx:"🧹 值日卡的核心句——Everyone on duty has to wash the dishes. 任务不是建议，是必须。",
+    ex:["I have to tidy my room every Saturday.","She has to cook for her family."],
+    task:"写一句你必须做的事"
+  },
+  {
+    n:"should：建议怎么做",
+    sn:"should 肯定",
+    p:"should-pos",
+    d:"给出建议",
+    rule:"<b>should + 原形</b> = 建议（不是命令）：You <b>should</b> take a break. 否定 <b>shouldn't</b>：You <b>shouldn't</b> give too much water.",
+    ctx:"🧹 公约里的「建议栏」——You should check the pockets first. 建议比命令更容易被听进去。",
+    ex:[
+      "You should take a break at the weekend.",
+      "You shouldn't give the plants too much water."
+    ],
+    task:"写一句建议"
+  },
+  {
+    n:"mustn't：绝不能做的事",
+    sn:"mustn't 禁止",
+    p:"must-neg",
+    d:"划出红线",
+    rule:"<b>mustn't + 原形</b> = 禁止、绝不能：You <b>mustn't</b> leave water on the floor. <b>它比 don't 重得多</b>，是公约里的红线。",
+    ctx:"🧹 公约里的红线——You mustn't leave water on the floor. 一条红线胜过五条建议。",
+    ex:["You mustn't leave water on the floor.","I mustn't stay up late on school days."],
+    task:"写一句绝不能做的事"
+  }
+];
+
+/* ================= 角色分工（PBL：学生发声与选择） ================= */
+var ROLES=[
+  {
+    id:"researcher",
+    emo:"🔍",
+    n:"Researcher",
+    cn:"研究员",
+    d:"查步骤 · 核对事实 · 保证内容对",
+    say:"I found three facts about this chore.",
+    sayCn:"我找到了三个关于这项任务的事实。"
+  },
+  {
+    id:"designer",
+    emo:"🎨",
+    n:"Designer",
+    cn:"设计师",
+    d:"排版 · 画值日周历 · 做一个互动",
+    say:"Our board has a day next to every job because without a day it never happens.",
+    sayCn:"我们的表上每项任务都写了日期，因为没有日期就永远不会发生。"
+  },
+  {
+    id:"guide",
+    emo:"🎤",
+    n:"Presenter",
+    cn:"发布员",
+    d:"发布 · 讲解 · 带全班互动",
+    say:"Welcome, everyone! Let me read you our class charter.",
+    sayCn:"大家好！让我给大家读一读我们的班级公约。"
+  },
+  {
+    id:"recorder",
+    emo:"📝",
+    n:"Recorder",
+    cn:"记录员",
+    d:"记反馈 · 写日志 · 盯进度",
+    say:"Classmates said the card had no name. So we added who and which day.",
+    sayCn:"同学们说卡上没有名字，所以我们加上了谁和哪一天。"
+  }
+];
+
+/* ================= 游说示范脚本（展示站：把「说出」也做成可练的） ================= */
+/* Greet / Guide / Thank 固定；Share 会跟随所选实体动态生成 */
+var GUIDE=[
+  {
+    k:"Greet",
+    en:"Welcome, everyone! Our class is writing a chores charter. My name is Lin, and I am your charter writer today.",
+    cn:"大家好！我们班正在写一份值日公约。我叫林，今天是你们的公约起草人。"
+  },
+  {
+    k:"Share",
+    dyn:1,
+    en:"",
+    cn:"介绍这项任务：是什么、在哪儿做、怎么做。"
+  },
+  {
+    k:"Ask",
+    en:"Now my question for you — which job do you think is the hardest?",
+    cn:"问大家一个问题：好的起草人不是讲，是问和听。"
+  },
+  {
+    k:"Guide",
+    en:"Let us do one thing together. Please write your name next to the job you will take.",
+    cn:"我们一起做一件事：请把你的名字写在你要认领的任务旁边。"
+  },
+  {
+    k:"Thank",
+    en:"Thank you for listening! What should we add to our charter? Please write it on a card.",
+    cn:"感谢聆听！我们的公约还该加点什么？请写在卡片上。"
+  }
+];
+
+/* ================= 中国连接：每个实体都能接回中国 ================= */
+var CN_LINK={
+  dishes:{
+    t:"🍽 光盘行动",
+    en:[
+      "In China, there is a clean plate campaign: take what you can finish.",
+      "Children often wash the dishes after the reunion dinner."
+    ],
+    cn:["在中国有一个光盘行动：拿多少吃多少。","孩子常在团圆饭后洗碗。"],
+    task:"用 3 句话讲讲光盘行动。"
+  },
+  laundry:{
+    t:"🌞 阳台晾衣",
+    en:[
+      "In China, families often dry clothes on the balcony in the sun.",
+      "The sun does the last part of the washing."
+    ],
+    cn:["在中国，家庭常在阳台上晒衣服。","太阳负责洗衣的最后一步。"],
+    task:"用 3 句话讲讲中国的晾衣服。"
+  },
+  floor:{
+    t:"📋 班级值日表",
+    en:[
+      "In China, every class has a duty roster on the wall.",
+      "Each student has one job and one day."
+    ],
+    cn:["在中国，每个班的墙上都有一张值日表。","每个学生有一项任务、一个日子。"],
+    task:"用 3 句话讲讲中国班级的值日表。"
+  },
+  plants:{
+    t:"🪴 班级植物角",
+    en:[
+      "In China, many classrooms have a plant corner.",
+      "One student looks after it, and the whole class watches it grow."
+    ],
+    cn:["在中国，很多教室有一个植物角。","一位同学照看它，全班看着它长大。"],
+    task:"用 3 句话讲讲班级植物角。"
+  }
+};
+
+/* ================= 中国名片（扩展角 · 讲给外国朋友听） ================= */
+var CN_RARE=[
+  {
+    emo:"🧹",
+    n:"Big Cleaning",
+    cnName:"大扫除",
+    en:"Before the Spring Festival, Chinese families do a big cleaning of the whole home.",
+    cn:"春节前，中国家庭会给整个家做大扫除。"
+  },
+  {
+    emo:"🍽",
+    n:"Clean Plate",
+    cnName:"光盘行动",
+    en:"The clean plate campaign asks people to take only what they can finish.",
+    cn:"光盘行动提倡只拿自己吃得完的量。"
+  },
+  {
+    emo:"♻️",
+    n:"Rubbish Sorting",
+    cnName:"垃圾分类",
+    en:"In Chinese cities, people sort rubbish into different bins.",
+    cn:"在中国的城市里，人们把垃圾分到不同的桶里。"
+  },
+  {
+    emo:"📋",
+    n:"Duty Roster",
+    cnName:"值日表",
+    en:"A Chinese classroom has a duty roster: every student has one job and one day.",
+    cn:"中国教室里有值日表：每个学生有一项任务、一个日子。"
+  },
+  {
+    emo:"🌅",
+    n:"Morning Exercise",
+    cnName:"晨练",
+    en:"In China, many people exercise in the park early in the morning.",
+    cn:"在中国，很多人清晨在公园锻炼。"
+  }
+];
+
+/* ================= 状态 ================= */
+var KEY='a2net_pbl_u7';
+var S=JSON.parse(localStorage.getItem(KEY)||'{}');
+S.done=S.done||[]; S.fbStars=S.fbStars||0;
+S.rFacts=S.rFacts||{}; S.recBoard=S.recBoard||{};
+if(typeof S.dMode==='undefined')S.dMode=''; if(typeof S.dBig==='undefined')S.dBig=false;
+if(typeof S.dColor==='undefined')S.dColor=false;
+['launchAns','scanSay','m1','m2','m3','m4','p1','p2','p3','p4','r1','r2','r3','fbFact','fbQ','fbR',
+ 'q1','q2','q3','qa1','qa2','qa3','rev1','rev2',
+ 'rSrc','rFun','dLayout','rec1','rec2','rec3','recImprove','gFocus','dqWhy'].forEach(function(id){
+  var el=document.getElementById(id); if(el&&S[id]!=null) el.value=S[id];
+  if(el) el.addEventListener('input',function(){S[id]=el.value;save();});
+});
+function escAttr(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function dqPick(v){S.dqYes=v;save();if(document.getElementById('dqYes'))document.querySelectorAll('#dqYes label').forEach(function(l){l.classList.toggle('on',l.dataset.v===v);});}
+
+/* ================= 渲染：任务情报卡 ================= */
+function renderModes(){
+  var box=document.getElementById('modeCards'),h='';
+  Object.keys(MODES).forEach(function(k){
+    var a=MODES[k];
+    var open=(S.mode===k);
+    h+='<details class="acard"'+(open?' open':'')+' data-p="'+k+'">'
+      +'<summary><span class="a-i">'+a.emo+'</span><span><span class="a-n">'+a.name+'</span>'
+      +'<span class="a-c"> '+a.cn+'</span></span>'
+      +'<span class="a-tag'+(open?' star':'')+'">'+(open?'★ 我们的明星':'选它为明星')+'</span></summary>'
+      +'<div class="a-body">';
+    a.facts.forEach(function(f,fi){
+      var k2=k+'#'+fi, recing=(isRec()&&recKey===k2);
+      h+='<div class="fr"><span class="fk'+(f.red?' red':'')+'">'+f.k+'</span>'
+        +'<div><div class="fen">'+f.en+'</div><div class="fcn">'+f.cn+'</div></div>'
+        +'<span class="fr-btns">'
+        +'<button class="btn btn-s" onclick="speak(\''+f.en.replace(/'/g,"\\'")+'\')">🔊</button>'
+        +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k2+'\',\'place\')">'+(recing?'⏹':(takes[k2]?'🎙 重录':'🎙 我读'))+'</button>'
+        +(takes[k2]?'<button class="btn btn-s" onclick="playTake(\''+k2+'\')">▶ 回放</button>':'')
+        +'</span></div>';
+    });
+    h+='<div class="qa"><div class="qa-t">🙋 同学可能会问（Q&A 卡素材 · 先想后看）</div>';
+    a.qa.forEach(function(q,i){
+      h+='<div class="qa-i"><b>Q'+(i+1)+': '+q.q+'</b>'
+        +'<button class="btn btn-s" style="margin-left:8px;padding:3px 10px;font-size:11px" onclick="toggleQA(this)">看参考答案</button>'
+        +'<div class="qa-a">A: '+q.a+'</div></div>';
+    });
+    h+='</div><div class="src">'+a.src+'</div>'
+      +'<div class="row"><button class="btn btn-o" onclick="pickMode(\''+k+'\')">⭐ 选 '+a.name+' 为我们的明星任务</button></div>'
+      +'</div></details>';
+  });
+  box.innerHTML=h;
+}
+function toggleQA(btn){btn.nextElementSibling.classList.toggle('show');
+  btn.textContent=btn.nextElementSibling.classList.contains('show')?'收起答案':'看参考答案';}
+function pickMode(k){
+  document.querySelectorAll('.pick').forEach(function(x){x.classList.toggle('sel',x.dataset.p===k);});
+  S.mode=k; setPick(k); save(); renderModes();
+  /* 换任务 → 中国连接卡 / 游说脚本 / 示范值日卡 / 研究员工作台一起跟着变 */
+  renderCn(); renderGuide(); renderModelBoard(); renderRoleDesks();
+  var card=document.querySelector('.acard[data-p="'+k+'"]');
+  if(card){var s2=document.getElementById('s2');if(s2)s2.open=true;card.scrollIntoView({behavior:'smooth',block:'start'});}
+}
+
+/* ================= 渲染：跟读对话（分栏标签） ================= */
+var dlgActive=0;
+function renderDialogues(){
+  var box=document.getElementById('dlgBox'),h='';
+  h+='<div class="gptabs" id="dlgTabs">';
+  DIALOGUES.forEach(function(dg,di){
+    h+='<button class="gptab'+(di===dlgActive?' on':'')+'" data-i="'+di+'" onclick="dlgTab('+di+')">💬 '+dg.t+'</button>';
+  });
+  h+='</div>';
+  DIALOGUES.forEach(function(dg,di){
+    h+='<div class="dlgpanel" data-i="'+di+'"'+(di===dlgActive?'':' hidden')+'>';
+    h+='<div class="dlg"><div class="dlg-h">'+dg.t+'<span class="dg-tag">'+dg.g+'</span>'
+      +'<button class="btn btn-s" onclick="speak(\''+dg.turns.map(function(t){return t[1];}).join(' ').replace(/'/g,"\\'")+'\')">▶ 整段播放</button></div>';
+    dg.turns.forEach(function(t,ti){
+      var k2='dlg-'+di+'-'+ti, recing=(isRec()&&recKey===k2);
+      h+='<div class="turn"><span class="role">'+t[0]+'</span>'
+        +'<div><div class="ten">'+t[1]+'</div><div class="tcn">'+t[2]+'</div></div>'
+        +'<span class="fr-btns">'
+        +'<button class="btn btn-s" onclick="speak(\''+t[1].replace(/'/g,"\\'")+'\')">🔊</button>'
+        +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k2+'\',\'turn\')">'+(recing?'⏹':(takes[k2]?'🎙 重录':'🎙 我读'))+'</button>'
+        +(takes[k2]?'<button class="btn btn-s" onclick="playTake(\''+k2+'\')">▶ 回放</button>':'')
+        +'</span></div>';
+    });
+    h+='</div></div>';
+  });
+  box.innerHTML=h;
+}
+function dlgTab(i){dlgActive=i;renderDialogues();}
+
+/* ================= 渲染：语法线（分栏标签） ================= */
+function renderGrammar(){
+  var box=document.getElementById('gramBox'),h='';
+  h+='<div class="gptabs" id="gpTabs">';
+  GRAMMAR.forEach(function(g,i){
+    h+='<button class="gptab'+(i===0?' on':'')+'" data-i="'+i+'" onclick="gpTab('+i+')">'+g.sn+'</button>';
+  });
+  h+='</div>';
+  GRAMMAR.forEach(function(g,i){
+    h+='<div class="gppanel" data-i="'+i+'"'+(i===0?'':' hidden')+'>'
+      +'<div class="gp"><div class="gp-h"><b>'+g.n+'</b><span>'+g.d+'</span></div>'
+      +'<div class="gp-rule">📐 怎么用：'+g.rule+'</div>'
+      +'<div class="gp-ctx">📍 值日情境：'+g.ctx+'</div>';
+    g.ex.forEach(function(e){
+      h+='<div class="gp-ex">'+e+'<button class="btn btn-s" onclick="speak(\''+e.replace(/'/g,"\\'")+'\')">🔊</button></div>';
+    });
+    h+='<div class="gp-task">🛠 '+g.task+'（会自动保存）：</div>'
+      +'<textarea id="g'+(i+1)+'" rows="1" placeholder="' + g.ex[0] + '"></textarea>'
+      +'<div class="row" style="margin-top:7px">'
+      +'<a class="btn btn-s" target="_blank" rel="noopener" href="语法练习_A1-A2-B1-B2.html?p='+g.p+'&u=7">📗 去语法页练「'+g.sn+'」这一个点 →</a>'
+      +'</div></div></div>';
+  });
+  box.innerHTML=h;
+  GRAMMAR.forEach(function(g,i){
+    var el=document.getElementById('g'+(i+1));
+    if(S['g'+(i+1)]!=null) el.value=S['g'+(i+1)];
+    el.addEventListener('input',function(){S['g'+(i+1)]=el.value;save();});
+  });
+}
+function gpTab(i){
+  document.querySelectorAll('#gpTabs .gptab').forEach(function(b){b.classList.toggle('on',(+b.dataset.i)===i);});
+  document.querySelectorAll('.gppanel').forEach(function(p){p.hidden=((+p.dataset.i)!==i);});
+}
+
+/* ================= 渲染：角色分工 ================= */
+function renderRoles(){
+  var box=document.getElementById('roleBox'); if(!box)return;
+  var h='';
+  ROLES.forEach(function(r){
+    h+='<div class="role'+(S.role===r.id?' sel':'')+'" onclick="pickRole(\''+r.id+'\')">'
+      +'<div class="r-i">'+r.emo+'</div>'
+      +'<div class="r-n">'+r.n+' <small>'+r.cn+'</small></div>'
+      +'<div class="r-d">'+r.d+'</div></div>';
+  });
+  box.innerHTML=h;
+  var say=document.getElementById('roleSay'); if(!say)return;
+  var r=null; ROLES.forEach(function(x){if(x.id===S.role)r=x;});
+  if(!r){say.innerHTML='<div class="rsay"><div class="rt">先认领一个角色——认领后这里会出现你这一句「开场白」，点 🎙 可以直接录。</div></div>';return;}
+  var k='role#'+r.id, recing=(isRec()&&recKey===k);
+  say.innerHTML='<div class="rsay"><div class="rt">你的开场白（这是你的活儿，先把这一句练熟）：</div>'
+    +'<div class="ren">'+r.say+'</div><div class="rcn">'+r.sayCn+'</div>'
+    +'<div class="row" style="margin-top:8px">'
+    +'<button class="btn btn-s" onclick="speak(\''+r.say.replace(/'/g,"\\'")+'\')">🔊 听</button>'
+    +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k+'\',\'role\')">'+(recing?'⏹ 停止':(takes[k]?'🎙 重读':'🎙 我读'))+'</button>'
+    +(takes[k]?'<button class="btn btn-s" onclick="playTake(\''+k+'\')">▶ 回放</button>':'')
+    +'</div></div>';
+  renderRoleDesks();
+}
+function pickRole(id){S.role=id;save();renderRoles();}
+
+/* ================= 渲染：四角色专属工作台（合并为启动站分栏标签） ================= */
+var ROLE_NAMES={researcher:'研究员',designer:'设计师',guide:'发布员',recorder:'记录员'};
+var ROLE_DISP={researcher:'🔍 研究员',designer:'🎨 设计师',guide:'🎤 发布员',recorder:'📝 记录员'};
+function renderRoleDesks(){
+  var box=document.getElementById('roleDeskBox'); if(!box)return;
+  if(!S.role){
+    box.innerHTML='<div class="rdesk-empty">👆 先在上面认领一个角色——认领后，下面的标签就是<b>你专属的工作台</b>，点一下即可打开。</div>';
+    return;
+  }
+  /* 认领的角色排在第一页（默认打开），其余为「认领后解锁」 */
+  var order=[S.role].concat(['researcher','designer','guide','recorder'].filter(function(r){return r!==S.role;}));
+  var h='<div class="gptabs" id="rdTabs">';
+  order.forEach(function(rid,oi){
+    h+='<button class="gptab'+(oi===0?' on':'')+'" data-i="'+oi+'" onclick="rdTab('+oi+')">'+ROLE_DISP[rid]+'</button>';
+  });
+  h+='</div>';
+  order.forEach(function(rid,oi){
+    h+='<div class="rdpanel" data-i="'+oi+'"'+(oi===0?'':' hidden')+'>'+roleDeskInner(rid)+'</div>';
+  });
+  box.innerHTML=h;
+  bindRoleInputs(box);
+}
+function rdTab(i){
+  document.querySelectorAll('#rdTabs .gptab').forEach(function(b){b.classList.toggle('on',(+b.dataset.i)===i);});
+  document.querySelectorAll('.rdpanel').forEach(function(p){p.hidden=((+p.dataset.i)!==i);});
+}
+function roleDeskInner(rid){
+  if(rid!==S.role){
+    return '<div class="blk rdesk rdesk-off"><div class="blk-t">'+ROLE_DISP[rid]+' 工作台 <span>专属内容</span></div>'
+      +'<div class="rdesk-hint">这是 <b>'+ROLE_DISP[rid]+'</b> 的专属工作台。认领该角色后，这里会解锁它的专属任务。你当前认领的是 <b>'+ROLE_DISP[S.role]+'</b>。</div></div>';
+  }
+  if(rid==='researcher'){
+    var a=MODES[S.mode]||MODES.dishes, fh='';
+    a.facts.slice(0,3).forEach(function(f,i){
+      fh+='<label class="rchk"><input type="checkbox" data-rf="'+i+'"'+(S.rFacts[i]?' checked':'')+'><span>我核实过：'+escAttr(f.en)+'</span></label>';
+    });
+    return '<div class="blk rdesk"><div class="blk-t">🔍 研究员工作台 <span>你的活儿：保证每句话都站得住</span></div>'
+      +'<p class="rdesk-lead">你是研究员。值日卡上的事实由你负责——别人写，你核实、你注明来源。这一台对应值日卡的第④块「Source」。</p>'
+      +'<div class="rdesk-sec">① 核对 3 个事实（从情报卡来，勾上你已确认）</div>'
+      +'<div class="chk">'+fh+'</div>'
+      +'<div class="rdesk-sec">② 写来源（一句话）</div>'
+      +'<textarea id="rSrc" rows="1" placeholder="Our facts come from our class chores plan.">'+escAttr(S.rSrc||'')+'</textarea>'
+      +'<div class="rdesk-sec">③ 挑 1 条最该放进值日卡的 Fun Fact</div>'
+      +'<textarea id="rFun" rows="1" placeholder="A wet floor is the most dangerous thing in a classroom!">'+escAttr(S.rFun||'')+'</textarea>'
+      +'</div>';
+  }
+  if(rid==='designer'){
+    var modes=[['week','📋 值日周历'],['quiz','🃏 问答卡'],['sign','✍️ 认领签名']];
+    var mh='';
+    modes.forEach(function(m){ mh+='<label class="'+(S.dMode===m[0]?'on':'')+'"><input type="radio" name="dmode" value="'+m[0]+'"'+(S.dMode===m[0]?' checked':'')+'>'+m[1]+'</label>'; });
+    return '<div class="blk rdesk"><div class="blk-t">🎨 设计师工作台 <span>你的活儿：让值日卡好看、好懂、有互动</span></div>'
+      +'<p class="rdesk-lead">你是设计师。值日卡的样子由你决定——选一个互动、排好版式、定下字号配色。</p>'
+      +'<div class="rdesk-sec">① 选一个互动方式（开放日让同学动手）</div>'
+      +'<div class="rd-mode">'+mh+'</div>'
+      +'<div class="rdesk-sec">② 描述你的版面（一句话）</div>'
+      +'<textarea id="dLayout" rows="1" placeholder="Our card has the job at the top, the steps in the middle, and the source at the bottom.">'+escAttr(S.dLayout||'')+'</textarea>'
+      +'<div class="rdesk-sec">③ 两个设计决定</div>'
+      +'<div class="chk"><label><input type="checkbox" id="dBig"'+(S.dBig?' checked':'')+'><span>字够大，后排也看得清</span></label>'
+      +'<label><input type="checkbox" id="dColor"'+(S.dColor?' checked':'')+'><span>只用黑金，重点用金色（不用花花绿绿）</span></label></div>'
+      +'</div>';
+  }
+  if(rid==='recorder'){
+    var boards=[['plan','值日卡'],['vid','游说视频'],['quiz','问答卡'],['rev','据反馈修订']];
+    var bh='';
+    boards.forEach(function(b){ bh+='<label><input type="checkbox" data-rb="'+b[0]+'"'+(S.recBoard[b[0]]?' checked':'')+'><span>'+b[1]+'</span></label>'; });
+    return '<div class="blk rdesk"><div class="blk-t">📝 记录员日志台 <span>你的活儿：把开放日发生的事记下来</span></div>'
+      +'<p class="rdesk-lead">你是记录员。别人做，你记——同学说了什么、四件产出完成没、今天我们改进了什么。</p>'
+      +'<div class="rdesk-sec">① 开放日记录 3 条同学原话</div>'
+      +'<textarea id="rec1" rows="1" placeholder="Classmate 1 said: ...">'+escAttr(S.rec1||'')+'</textarea>'
+      +'<textarea id="rec2" rows="1" placeholder="Classmate 2 said: ...">'+escAttr(S.rec2||'')+'</textarea>'
+      +'<textarea id="rec3" rows="1" placeholder="Classmate 3 said: ...">'+escAttr(S.rec3||'')+'</textarea>'
+      +'<div class="rdesk-sec">② 进度看板（四件产出，打勾 = 完成）</div>'
+      +'<div class="chk">'+bh+'</div>'
+      +'<div class="rdesk-sec">③ 写一句：今天我们改进了什么</div>'
+      +'<textarea id="recImprove" rows="1" placeholder="Today we made the words bigger because visitors could not read them.">'+escAttr(S.recImprove||'')+'</textarea>'
+      +'</div>';
+  }
+  /* guide */
+  return '<div class="blk rdesk"><div class="blk-t">🎤 发布员工作台 <span>你的活儿：开口讲 30 秒</span></div>'
+    +'<p class="rdesk-lead">你是发布员。发布会你负责讲 30 秒——下面填你的发布计划，去展示站照着「发布员须知」5 步清单练。</p>'
+    +'<div class="guide-focus"><div class="gf-t">🎤 你的发布计划（发布会前填好）</div>'
+    +'<textarea id="gFocus" rows="2" placeholder="Today I will share 3 facts about washing the dishes, and I will ask: What are the rules in your home?">'+escAttr(S.gFocus||'')+'</textarea>'
+    +'<div class="row" style="margin-top:7px"><button class="btn btn-s" onclick="speak(gFocus.value||\'Today I will share 3 facts about our place.\')">🔊 听</button></div></div>'
+    +'</div>';
+}
+/* 给动态生成的工作台绑定输入保存 */
+function bindRoleInputs(host){
+  host.querySelectorAll('[data-rf]').forEach(function(c){
+    c.addEventListener('change',function(){S.rFacts[c.getAttribute('data-rf')]=c.checked;save();});
+  });
+  host.querySelectorAll('[data-rb]').forEach(function(c){
+    c.addEventListener('change',function(){S.recBoard[c.getAttribute('data-rb')]=c.checked;save();});
+  });
+  var dm=host.querySelector('input[name="dmode"]');
+  if(dm)host.querySelectorAll('input[name="dmode"]').forEach(function(r){
+    r.addEventListener('change',function(){ if(r.checked){S.dMode=r.value; renderRoleDesks(); save();} });
+  });
+  ['dBig','dColor'].forEach(function(id){
+    var el=host.querySelector('#'+id);
+    if(el)el.addEventListener('change',function(){ S[id]=el.checked; save(); });
+  });
+  ['rSrc','rFun','dLayout','rec1','rec2','rec3','recImprove','gFocus'].forEach(function(id){
+    var el=host.querySelector('#'+id);
+    if(el&&!el.hasAttribute('data-bound')){ el.setAttribute('data-bound','1');
+      el.addEventListener('input',function(){S[id]=el.value;save();}); }
+  });
+}
+
+/* ================= 通用：按 k 取一条事实（情报卡 / 游说脚本用） ================= */
+function factOf(a,k){var f=null;(a.facts||[]).forEach(function(x){if(!f&&x.k===k)f=x;});return f||{en:'',cn:''};}
+
+/* ================= 渲染：中国故事卡（跟随所选地方） ================= */
+function renderCn(){
+  var box=document.getElementById('cnBox'); if(!box)return;
+  var a=S.mode||'dishes', c=CN_LINK[a]||CN_LINK.dishes;
+  var h='';
+  c.en.forEach(function(s,i){
+    var k='cn'+i, recing=(isRec()&&recKey===k);
+    h+='<div class="fr"><span class="fk red">CHINA</span><div>'
+      +'<div class="fen">'+s+'</div><div class="fcn">'+c.cn[i]+'</div></div>'
+      +'<span class="fr-btns">'
+      +'<button class="btn btn-s" onclick="speak(\''+s.replace(/'/g,"\\'")+'\')">🔊</button>'
+      +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k+'\',\'cn\')">'+(recing?'⏹ 停止':(takes[k]?'🎙 重读':'🎙 我读'))+'</button>'
+      +(takes[k]?'<button class="btn btn-s" onclick="playTake(\''+k+'\')">▶ 回放</button>':'')
+      +'</span></div>';
+  });
+  h+='<div class="china"><div class="c-t">'+c.t+'</div>'
+    +'<div class="say">🎯 你的任务：'+c.task+'<br>'+c.en.join(' ')+'</div></div>';
+  box.innerHTML=h;
+}
+
+/* ================= 渲染：中国城市名片 · 扩展角 ================= */
+function renderCnRare(){
+  var box=document.getElementById('cnRareBox'); if(!box)return;
+  var h='';
+  CN_RARE.forEach(function(r,i){
+    var k='rare#'+i, recing=(isRec()&&recKey===k);
+    var full=r.n+'. '+r.en;
+    h+='<div class="fr"><span class="fk">'+r.cnName+'</span><div>'
+      +'<div class="fen">'+r.emo+' <b>'+r.n+'</b> — '+r.en+'</div><div class="fcn">'+r.cn+'</div></div>'
+      +'<span class="fr-btns">'
+      +'<button class="btn btn-s" onclick="speak(\''+full.replace(/'/g,"\\'")+'\')">🔊</button>'
+      +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k+'\',\'rare\')">'+(recing?'⏹ 停止':(takes[k]?'🎙 重读':'🎙 我读'))+'</button>'
+      +(takes[k]?'<button class="btn btn-s" onclick="playTake(\''+k+'\')">▶ 回放</button>':'')
+      +'</span></div>';
+  });
+  box.innerHTML=h;
+}
+
+/* ================= 渲染：游说示范脚本（展示站 · 把「说出」也做成可练的） ================= */
+function guideLines(){
+  var a=MODES[S.mode||'dishes'];
+  var nm=a.name.toLowerCase();
+  return GUIDE.map(function(g){
+    if(g.k==='Share') return {k:g.k,en:'Our job is '+nm+'. '+factOf(a,'DO').en,cn:g.cn};
+    return g;
+  });
+}
+function renderGuide(){
+  var box=document.getElementById('guideBox'); if(!box)return;
+  var h='';
+  guideLines().forEach(function(g,i){
+    var k='guide#'+i, recing=(isRec()&&recKey===k);
+    h+='<div class="fr"><span class="fk">'+g.k+'</span><div>'
+      +'<div class="fen">'+g.en+'</div><div class="fcn">'+g.cn+'</div></div>'
+      +'<span class="fr-btns">'
+      +'<button class="btn btn-s" onclick="speak(\''+g.en.replace(/'/g,"\\'")+'\')">🔊</button>'
+      +'<button class="btn btn-s'+(recing?' rec-ing':'')+'" onclick="rec(this,\''+k+'\',\'guide\')">'+(recing?'⏹ 停止':(takes[k]?'🎙 重读':'🎙 我读'))+'</button>'
+      +(takes[k]?'<button class="btn btn-s" onclick="playTake(\''+k+'\')">▶ 回放</button>':'')
+      +'</span></div>';
+  });
+  box.innerHTML=h;
+}
+function guidePlayAll(){
+  var t=guideLines().map(function(g){return g.en;}).join(' ');
+  speak(t);
+}
+
+/* ================= 渲染：完整示范值日卡（跟着所选任务变） ================= */
+function renderModelBoard(){
+  var box=document.getElementById('modelBoard'); if(!box)return;
+  var a=MODES[S.mode||'dishes'];
+  var w=factOf(a,'WHAT').en, wh=factOf(a,'WHERE').en, dw=factOf(a,'DO').en, fun=factOf(a,'FUN').en;
+  var spoken=[w,wh,dw,fun].join(' ');
+  box.innerHTML='<div class="mboard">'
+    +'<div class="mb-h">'+a.emo+' '+a.name.toUpperCase()+' · '+a.cn+'</div>'
+    +'<div class="mb-l"><b>①</b> '+w+'</div>'
+    +'<div class="mb-l"><b>②</b> '+wh+' '+dw+'</div>'
+    +'<div class="mb-l"><b>③</b> '+fun+'</div>'
+    +'<div class="mb-src">④ '+a.src+'</div></div>'
+    +'<div class="row" style="margin-top:9px">'
+    +'<button class="btn btn-g" onclick="speak(\''+spoken.replace(/'/g,"\\'")+'\')">🔊 听这张值日卡</button></div>'
+    +'<p class="hint" style="margin-top:7px">看得出结构吗：<b>① 先说这项任务是什么 → ② 在哪儿做 + 怎么做 → ③ 一条让人「哇」的 → ④ 最后注明来源</b>。照这个样子，把你的任务换进去。</p>';
+}
+
+/* ================= 明星任务选择 ================= */
+function setPick(p){var names={dishes:"🍽 Washing the Dishes 洗碗（每天都有的一次）",laundry:"🧺 The Laundry 洗衣（一周一次的那件）",floor:"🧹 The Floor 拖地（最要小心的一件）",plants:"🪴 The Plants 浇花（最容易忘的一件）"};
+  document.getElementById('pickName').textContent=names[p]||p;}
+if(S.mode){var pk=document.querySelector('.pick[data-p="'+S.mode+'"]'); if(pk)pk.classList.add('sel'); setPick(S.mode);}
+document.querySelectorAll('.pick').forEach(function(p){
+  p.addEventListener('click',function(){pickMode(p.dataset.p);});
+});
+
+/* ================= 星级 ================= */
+function paintStars(n){document.querySelectorAll('#fbStars b').forEach(function(b,i){b.classList.toggle('on',i<n);});}
+paintStars(S.fbStars);
+document.querySelectorAll('#fbStars b').forEach(function(b,i){
+  b.addEventListener('click',function(){S.fbStars=i+1;paintStars(S.fbStars);save();});
+});
+
+/* ================= 站点完成 ================= */
+document.querySelectorAll('.stdone').forEach(function(c){
+  var st=+c.dataset.st;
+  if(S.done.indexOf(st)>=0){c.checked=true;document.getElementById('rn'+st).classList.add('on');}
+  c.addEventListener('change',function(){
+    if(c.checked){if(S.done.indexOf(st)<0)S.done.push(st);document.getElementById('rn'+st).classList.add('on');}
+    else{S.done=S.done.filter(function(x){return x!==st;});document.getElementById('rn'+st).classList.remove('on');}
+    save();checkAll();
+  });
+});
+function checkAll(){document.getElementById('donebar').classList.toggle('show',S.done.length>=7);}
+function save(){localStorage.setItem(KEY,JSON.stringify(S));}
+function saveNow(btn){save();btn.textContent='✓ 已保存';setTimeout(function(){btn.textContent='💾 保存进度';},1200);}
+
+/* ================= 句型/词汇银行 ================= */
+/* 句型框架 + 例句：A1 孩子照框架填空容易填错，所以每个框架都配一句真实例句
+   （取自本单元四种交通方式的情报卡，插进去改个词就能用） */
+var SENT_PATTERNS=[
+  {
+    f:"I have to …",
+    ins:"I have to ",
+    ex:"I have to tidy my room.",
+    cn:"我得整理房间。"
+  },
+  {
+    f:"She / He has to …",
+    ins:" has to ",
+    ex:"She has to cook for us.",
+    cn:"她得给我们做饭。"
+  },
+  {
+    f:"Do you have to …?",
+    ins:"Do you have to ",
+    ex:"Do you have to cook, too?",
+    cn:"你也得做饭吗？"
+  },
+  {
+    f:"I must …",
+    ins:"I must ",
+    ex:"I must clean the floor every Saturday.",
+    cn:"我每周六必须拖地。"
+  },
+  {
+    f:"You mustn't …",
+    ins:"You mustn't ",
+    ex:"You mustn't leave water on the floor.",
+    cn:"你绝不能把水留在地板上。"
+  },
+  {
+    f:"You should …",
+    ins:"You should ",
+    ex:"You should take a break.",
+    cn:"你应该休息一下。"
+  },
+  {
+    f:"You shouldn't …",
+    ins:"You shouldn't ",
+    ex:"You shouldn't give too much water.",
+    cn:"你不该浇太多水。"
+  },
+  {
+    f:"What are the rules …?",
+    ins:"What are the rules ",
+    ex:"What are the rules in your home?",
+    cn:"你家的规矩有哪些？"
+  },
+  {
+    f:"I don't have to …",
+    ins:"I don't have to ",
+    ex:"I don't have to cook.",
+    cn:"我不用做饭。"
+  }
+];
+function renderSentBank(){
+  var box=document.getElementById('sentBank'); if(!box)return;
+  var h='';
+  SENT_PATTERNS.forEach(function(p){
+    h+='<div class="pat">'
+      +'<span class="chipx" data-ins="'+p.ins+'">'+p.f+'</span>'
+      +'<span class="chipx ex">'+p.ex+'</span>'
+      +'<button class="btn btn-s" onclick="speak(\''+p.ex.replace(/'/g,"\\'")+'\')">🔊</button>'
+      +'<span class="pat-cn">'+p.cn+'</span></div>';
+  });
+  box.innerHTML=h;
+}
+var lastTA=null;
+function insChip(c){
+  if(!lastTA){alert('先点一下要填写的大框，再点句型或词语插入。');return;}
+  var t=c.getAttribute('data-ins')||c.textContent;
+  var s=lastTA.selectionStart||lastTA.value.length;
+  lastTA.value=lastTA.value.slice(0,s)+t+lastTA.value.slice(s);
+  lastTA.focus(); lastTA.selectionStart=lastTA.selectionEnd=s+t.length;
+  S[lastTA.id]=lastTA.value; save();
+}
+renderSentBank();
+document.querySelectorAll('textarea').forEach(function(t){t.addEventListener('focus',function(){lastTA=t;});});
+document.querySelectorAll('.chipx').forEach(function(c){
+  c.addEventListener('click',function(){insChip(this);});
+});
+
+/* ================= TTS / 录音 ================= */
+function speak(t,cb){
+  t=(t||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim(); if(!t){if(cb)cb();return;}
+  try{window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(t); u.lang='en-US'; u.rate=.85;
+    if(cb)u.onend=cb;
+    window.speechSynthesis.speak(u);
+  }catch(e){ if(cb)cb(); }
+}
+/* ================= 统一录音 + A/B 对比 ================= */
+var mediaRec=null,recChunks=[],recBtn=null,recKey=null,micStream=null;
+var meterCtx=null,meterAnalyser=null,meterRAF=null;
+var takes={};   /* key -> 音频 URL（仅本页内存，刷新重录） */
+
+function isRec(){return !!(mediaRec&&mediaRec.state==='recording');}
+function stopMeter(){
+  if(meterRAF)cancelAnimationFrame(meterRAF);
+  meterRAF=null;
+  var m=document.getElementById('recMeter');
+  if(m)m.style.width='0%';
+}
+function startMeter(stream){
+  try{
+    meterCtx=meterCtx||new (window.AudioContext||window.webkitAudioContext)();
+    var src=meterCtx.createMediaStreamSource(stream);
+    meterAnalyser=meterCtx.createAnalyser();
+    meterAnalyser.fftSize=256;
+    src.connect(meterAnalyser);
+    var data=new Uint8Array(meterAnalyser.frequencyBinCount);
+    (function loop(){
+      if(!meterRAF)return;
+      meterRAF=requestAnimationFrame(loop);
+      meterAnalyser.getByteTimeDomainData(data);
+      var peak=0;
+      for(var i=0;i<data.length;i++){var v=Math.abs(data[i]-128)/128;if(v>peak)peak=v;}
+      var m=document.getElementById('recMeter');
+      if(m)m.style.width=Math.min(100,peak*140)+'%';
+    })();
+  }catch(e){}
+}
+/* mode: machine=跟读机 / turn=对话轮次 / place=情报卡 / plain=启动站等 */
+function rec(btn,key,mode){
+  mode=mode||'plain';
+  if(isRec()){ mediaRec.stop(); return; }   /* 再点一次=停止；停稳后再点新的一句 */
+  if(!navigator.mediaDevices||!window.MediaRecorder){
+    alert('当前浏览器不支持录音。可以只用「🔊 听示范 + 自己大声读」。');
+    return;
+  }
+  stopAuto();
+  try{window.speechSynthesis.cancel();}catch(e){}
+  recBtn=btn; recKey=key;
+  navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
+    micStream=stream;
+    mediaRec=new MediaRecorder(stream);
+    recChunks=[];
+    mediaRec.ondataavailable=function(e){if(e.data&&e.data.size)recChunks.push(e.data);};
+    mediaRec.onstop=function(){
+      try{micStream.getTracks().forEach(function(t){t.stop();});}catch(e){}
+      stopMeter();
+      var wasBtn=recBtn, wasMode=mode, wasKey=recKey;
+      var mt=(mediaRec&&mediaRec.mimeType)||'audio/webm';
+      mediaRec=null; recBtn=null; recKey=null;
+      if(recChunks.length){
+        var url=URL.createObjectURL(new Blob(recChunks,{type:mt}));
+        takes[wasKey]=url;
+        new Audio(url).play();              /* 停止即自动回放，先听自己 */
+        reRenderAfter(wasMode,wasBtn,true);
+      }else{
+        reRenderAfter(wasMode,wasBtn,false);
+      }
+    };
+    mediaRec.start();
+    btn.classList.add('rec-ing');
+    btn.innerHTML='⏹ 停止';
+    startMeter(micStream);
+  }).catch(function(){
+    alert('麦克风没授权，无法录音。可以先用「🔊 听示范 + 自己大声读」。');
+  });
+}
+/* 录音停止后按 mode 重渲染对应区域（新增 role/cn/rare/guide 四种） */
+function reRenderAfter(mode,btn,got){
+  if(mode==='machine')renderShadow();
+  else if(mode==='turn')renderDialogues();
+  else if(mode==='place'){renderModes();renderShadow();}
+  else if(mode==='role')renderRoles();
+  else if(mode==='cn')renderCn();
+  else if(mode==='rare')renderCnRare();
+  else if(mode==='guide')renderGuide();
+  else if(btn){btn.classList.remove('rec-ing');btn.innerHTML=got?'🎙 重读':'🎙 我读';}
+}
+function playTake(key){
+  if(!takes[key])return false;
+  try{window.speechSynthesis.cancel();}catch(e){}
+  new Audio(takes[key]).play();
+  return true;
+}
+
+/* ================= Facts 跟读机 ================= */
+var SH_MODES=['dishes','laundry','floor','plants','dlg1','dlg2','dlg3'];
+var shMode=S.shMode||'dishes', shIdx=0, autoTimer=null, autoOn=false;
+S.shadow=S.shadow||{};
+function shDoneCount(a){return (S.shadow[a]||[]).length;}
+function shList(){return SH_META[shMode].facts;}
+function renderShTabs(){
+  var h='';
+  SH_MODES.forEach(function(a){
+    h+='<span class="sh-tab'+(a===shMode?' on':'')+'" onclick="shSwitch(\''+a+'\')">'
+      +SH_META[a].emo+' '+SH_META[a].name+' '+shDoneCount(a)+'/'+SH_META[a].facts.length+'</span>';
+  });
+  document.getElementById('shTabs').innerHTML=h;
+}
+function shSwitch(a){stopAuto();shMode=a;shIdx=0;S.shMode=a;save();renderShadow();}
+function renderShadow(){
+  var list=shList();
+  if(shIdx>=list.length)shIdx=list.length-1;
+  if(shIdx<0)shIdx=0;
+  var f=list[shIdx];
+  document.getElementById('shEn').innerHTML=(f.sp?'<span class="sh-sp">'+f.sp+'</span> ':'')+f.en;
+  document.getElementById('shCn').textContent=f.cn;
+  var tot=0,don=0;
+  SH_MODES.forEach(function(a){tot+=SH_META[a].facts.length;don+=shDoneCount(a);});
+  document.getElementById('shBar').style.width=(don/tot*100)+'%';
+  document.getElementById('shNum').textContent='总进度 '+don+' / '+tot+' 句';
+  var done=S.shadow[shMode]||[],dh='';
+  list.forEach(function(x,i){dh+='<span class="sh-dot'+(i===shIdx?' cur':'')+(done.indexOf(i)>=0?' done':'')+'"></span>';});
+  document.getElementById('shDots').innerHTML=dh;
+  renderShTabs();
+  var rb=document.getElementById('shRecBtn');
+  if(rb){
+    var recing=isRec()&&recKey===shKey();
+    rb.classList.toggle('rec-ing',recing);
+    rb.innerHTML=recing?'⏹ 停止':(takes[shKey()]?'🎙 重读更棒':'🎙 我读');
+  }
+}
+function shKey(){return shMode+'#'+shIdx;}
+function shReplay(){if(!playTake(shKey()))alert('这一句还没录音。先点「🎙 我读」录一版，再回放对比。');}
+function shCompare(){
+  var k=shKey();
+  if(!takes[k]){alert('先点「🎙 我读」录一版，才能和示范 A/B 对比。');return;}
+  speak(shList()[shIdx].en,function(){playTake(k);});
+}
+function shPlay(){var f=shList()[shIdx];if(f)speak(f.en);}
+function shPrev(){stopAuto();shIdx=Math.max(0,shIdx-1);renderShadow();}
+function shNext(){stopAuto();shIdx=Math.min(shList().length-1,shIdx+1);renderShadow();}
+function shDone(){
+  var d=S.shadow[shMode]=S.shadow[shMode]||[];
+  if(d.indexOf(shIdx)<0)d.push(shIdx);
+  save();renderShadow();
+  if(shIdx<shList().length-1){shIdx++;renderShadow();}
+  else stopAuto();
+}
+function toggleAuto(){
+  if(autoOn){stopAuto();return;}
+  autoOn=true;
+  document.getElementById('shAutoBtn').textContent='⏹ 停止连播';
+  autoStep();
+}
+function autoStep(){
+  if(!autoOn)return;
+  var f=shList()[shIdx];
+  if(!f){stopAuto();return;}
+  try{
+    window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(f.en);u.lang='en-US';u.rate=.8;
+    u.onend=function(){
+      if(!autoOn)return;
+      autoTimer=setTimeout(function(){
+        if(!autoOn)return;
+        if(shIdx<shList().length-1){shIdx++;renderShadow();autoStep();}
+        else stopAuto();
+      },+document.getElementById('shGap').value);
+    };
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+function stopAuto(){
+  autoOn=false;
+  if(autoTimer)clearTimeout(autoTimer);
+  try{window.speechSynthesis.cancel();}catch(e){}
+  var b=document.getElementById('shAutoBtn');
+  if(b)b.textContent='🔁 自动连播';
+}
+
+/* ================= 听力挑战：它是哪种方式 ================= */
+var lqRound=0,lqScore=0,lqCur=null,lqPool=[],lqOver=false;
+function lqStart(){
+  lqRound=0;lqScore=0;lqOver=false;
+  lqPool=[];
+  SH_MODES.forEach(function(a){
+    if(a.indexOf('dlg')===0)return;   /* 对话不属于任何地方，不进「它是哪个地方」挑战 */
+    SH_META[a].facts.forEach(function(f){lqPool.push({a:a,en:f.en,cn:f.cn});});
+  });
+  lqNext();
+}
+function lqNext(){
+  lqRound++;
+  document.getElementById('lqNext').style.display='none';
+  document.getElementById('lqFb').innerHTML='';
+  document.getElementById('lqPlay').style.display='inline-block';
+  if(lqRound>5){lqFinish();return;}
+  document.getElementById('lqRound').textContent='第 '+lqRound+' / 5 题';
+  document.getElementById('lqScore').textContent='得分 '+lqScore;
+  lqCur=lqPool.splice(Math.floor(Math.random()*lqPool.length),1)[0];
+  var h='';
+  SH_MODES.forEach(function(a){
+    if(a.indexOf('dlg')===0)return;   /* 选项只列动物 */
+    h+='<div class="lq-opt" onclick="lqAnswer(\''+a+'\',this)">'+SH_META[a].emo+' '+SH_META[a].name+'</div>';
+  });
+  document.getElementById('lqOpts').innerHTML=h;
+}
+function lqPlay(){if(lqCur)speak(lqCur.en);}
+function lqAnswer(a,el){
+  var ok=(a===lqCur.a);
+  document.querySelectorAll('.lq-opt').forEach(function(o){o.style.pointerEvents='none';});
+  el.classList.add(ok?'ok':'no');
+  if(!ok){
+    document.querySelectorAll('.lq-opt').forEach(function(o){
+      if(o.textContent.indexOf(SH_META[lqCur.a].name)>=0)o.classList.add('ok');
+    });
+  }
+  if(ok)lqScore++;
+  document.getElementById('lqFb').innerHTML=ok
+    ?'<span class="ok">✅ 答对了！</span> '+lqCur.en+' <span style="color:var(--sub)">'+lqCur.cn+'</span>'
+    :'<span class="no">❌ 答案是 '+SH_META[lqCur.a].emo+' '+SH_META[lqCur.a].name+'。</span> '+lqCur.en+' <span style="color:var(--sub)">'+lqCur.cn+'</span>';
+  document.getElementById('lqScore').textContent='得分 '+lqScore;
+  var b=document.getElementById('lqNext');
+  b.style.display='inline-block';
+  b.textContent=(lqRound>=5)?'看结果 →':'下一题 →';
+}
+function lqFinish(){
+  lqOver=true;
+  document.getElementById('lqRound').textContent='本轮结束';
+  document.getElementById('lqOpts').innerHTML='';
+  document.getElementById('lqPlay').style.display='none';
+  document.getElementById('lqFb').innerHTML='🏁 5 题得分：<b style="color:var(--gold)">'+lqScore+' / 5</b> — '
+    +(lqScore===5?'满分！你是真正的公约起草人 🏆':(lqScore>=3?'不错，再练一轮更稳 💪':'多听几遍 Facts 跟读机，再来 🔁'));
+  var b=document.getElementById('lqNext');
+  b.style.display='inline-block';b.textContent='🔁 再来一轮';
+}
+function lqNextBtn(){ if(lqOver) lqStart(); else lqNext(); }
+
+/* ================= 跳转到跟读机 ================= */
+function goShadow(a){
+  shSwitch(a);
+  var s3=document.getElementById('s3'); if(s3)s3.open=true;
+  document.getElementById('s3').scrollIntoView({behavior:'smooth'});
+}
+
+/* ================= 启动渲染 ================= */
+renderModes(); renderDialogues(); renderGrammar(); renderShadow(); lqStart(); checkAll();
+/* v10：角色分工 / 中国连接卡 / 中国生活名片 / 游说脚本 / 示范值日卡 */
+renderRoles(); renderCn(); renderCnRare(); renderGuide(); renderModelBoard();
+/* 修订勾选项 */
+(function(){
+  var rd=document.getElementById('revDone'); if(!rd)return;
+  if(S.revDone)rd.checked=true;
+  rd.addEventListener('change',function(){S.revDone=rd.checked;save();});
+})();
+/* 驱动问题回看：恢复选中态 */
+if(S.dqYes&&document.getElementById('dqYes'))document.querySelectorAll('#dqYes label').forEach(function(l){l.classList.toggle('on',l.dataset.v===S.dqYes);});
+/* ================= 7 站手风琴：顶部导航跳转 / 默认展开 / 深链 ================= */
+function openStation(n){
+  var d=document.getElementById('s'+n);
+  if(d){ d.open=true; d.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+(function(){
+  /* 📌 并列多开开关：默认关（单开手风琴）；开后不再自动收起其它站 */
+  var allowMulti=false;
+  var moEl=document.getElementById('multiOpen');
+  if(moEl) moEl.addEventListener('change',function(){ allowMulti=moEl.checked; });
+  /* 单开手风琴（true accordion）：展开一站时自动收起其它站（允许并列时跳过） */
+  document.querySelectorAll('details.st').forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if(d.open && !allowMulti){
+        document.querySelectorAll('details.st').forEach(function(o){ if(o!==d && o.open) o.open=false; });
+      }
+    });
+  });
+  /* 顶部导航条：点哪站就展开哪站并滚过去 */
+  var rail=document.querySelector('.rail');
+  if(rail) rail.querySelectorAll('.rn').forEach(function(rn,i){
+    rn.addEventListener('click',function(){ openStation(i+1); });
+  });
+  /* 默认只展开第 1 站；若带 #sN 深链则展开对应站 */
+  var hash=(typeof location!=='undefined'&&location)?location.hash:'';
+  var m=hash.match(/^#s(\d+)$/);
+  if(m){ openStation(+m[1]); }
+  else { var s1=document.getElementById('s1'); if(s1)s1.open=true; }
+})();
+</script>
+</body>
+</html>

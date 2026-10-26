@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2 英语跟读学院 · 日常线主页</title>
+<style>
+  :root{--bg:#12100d;--panel:#1c1913;--panel2:#23201a;--chip:#2b2721;--line:#3a352c;
+        --ink:#f0ece4;--sub:#a49c8e;--gold:#f5c542;--gold2:#6b5a22;--red:#e05a4f;--green:#4ec98a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+  header{background:#2a1f12;border-bottom:1px solid var(--gold2);padding:22px 20px 18px;text-align:center}
+  header h1{margin:0 0 6px;font-size:24px;color:var(--gold);letter-spacing:1px}
+  header p{margin:0;color:var(--sub);font-size:13px}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 40px}
+  .lvlsw{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 18px}
+  .lvlsw .lv{display:flex;align-items:center;gap:7px;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;padding:9px 15px;text-decoration:none;color:var(--sub);font-size:13px;font-weight:600;transition:.12s}
+  .lvlsw .lv b{font-size:15px}
+  .lvlsw .lv:hover{border-color:var(--gold2);color:var(--gold)}
+  .lvlsw .lv.cur{background:linear-gradient(160deg,#231b10,#1c1913);border-color:var(--gold);color:var(--gold)}
+  .lvlsw .lv.hub{border-color:var(--gold2);color:var(--gold)}
+  .totalwrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+             background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:13px 18px}
+  .tlab{font-size:12px;color:var(--sub)}
+  .tbar{flex:1;min-width:200px;height:9px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .tbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .tnum{font-size:14px;color:var(--gold);font-weight:700;min-width:52px;text-align:right}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:16px 0 8px;
+           color:var(--sub);font-size:12px}
+  .legend b{color:var(--gold)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:14px;margin-top:10px}
+  .ucard{display:block;background:var(--panel);border:1px solid var(--line);
+         border-radius:16px;padding:15px 14px;text-decoration:none;color:var(--ink);
+         transition:transform .12s,border-color .12s}
+  .ucard:hover{transform:translateY(-3px);border-color:var(--gold2)}
+  .ucard.u0{border-color:var(--gold2);background:linear-gradient(160deg,#231b10,#1c1913)}
+  .uhead{display:flex;align-items:center;gap:11px}
+  .ubeast{font-size:12.5px;color:var(--gold);font-weight:700;letter-spacing:1px}
+  .un{font-size:10.5px;color:var(--sub);letter-spacing:2px;margin-top:3px}
+  .uen{font-size:14px;font-weight:700;margin-top:9px}
+  .ucn{font-size:12px;color:var(--sub);margin-top:2px}
+  .tracks{margin-top:11px;border-top:1px solid var(--line);padding-top:10px;display:grid;gap:6px}
+  .trk{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--sub)}
+  .trk .dot{width:6px;height:6px;border-radius:50%;background:var(--chip);border:1px solid var(--line);flex:none}
+  .trk.on .dot{background:var(--green);border-color:var(--green)}
+  .trk .nm{color:var(--ink);font-weight:600}
+  .trk .mini{margin-left:auto;text-align:right}
+  .ielts{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+  .ielts span{font-size:10px;padding:3px 9px;border-radius:10px;background:var(--chip);
+           color:var(--sub);border:1px solid var(--line)}
+  .ubars{display:flex;gap:4px;justify-content:center;margin-top:8px}
+  .pblink{display:inline-block;margin:8px 0 0;font-size:10px;font-weight:700;padding:3px 10px;
+          border-radius:10px;background:rgba(245,197,66,.12);color:var(--gold);
+          border:1px solid var(--gold2);cursor:pointer}
+  .pblink:hover{filter:brightness(1.15)}
+  .star{width:9px;height:9px;background:var(--gold);border:1px solid var(--gold);border-radius:2px}
+  .gsec{margin-top:28px;border:1px solid var(--gold2);border-radius:18px;background:var(--panel);padding:18px 20px}
+  .gsec h2{margin:0 0 4px;font-size:17px;color:var(--gold)}
+  .gsec>p{margin:0 0 14px;color:var(--sub);font-size:12.5px;line-height:1.75}
+  .ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+  .glink{display:flex;gap:10px;align-items:center;background:var(--panel2);border:1px solid var(--line);
+         border-radius:12px;padding:12px 13px;text-decoration:none;color:var(--ink);transition:.12s}
+  .glink:hover{border-color:var(--gold2)}
+  .glink .gi{font-size:21px}
+  .glink .gn{font-size:13px;font-weight:700}
+  .glink .gd{font-size:11px;color:var(--sub);margin-top:2px}
+  footer{text-align:center;color:var(--sub);font-size:12px;padding:26px 16px}
+</style>
+</head>
+<body>
+<header>
+  <h1>📗 A2 英语跟读学院 · 日常线</h1>
+  <p>THINK 1 十二单元 ＋ U0 胶水词补给站 · 跟读轴 ＋ 语法轴</p>
+</header>
+<div class="wrap">
+  <nav class="lvlsw" title="切换学习级别"><a class="lv hub" href="index.html" title="返回四级总站"><b>🏛️</b> 总站</a><a class="lv" href="A1 主页.html"><b>🌱</b> A1 启程线</a><a class="lv cur" href="A2 主页.html"><b>📗</b> A2 日常线</a><a class="lv" href="B1 主页.html"><b>🌉</b> B1 过渡线</a><a class="lv hub" href="../index.html" title="慧学学习网络首页"><b>🏠</b> 慧学首页</a></nav>
+  <div class="totalwrap">
+    <span class="tlab">本级进度</span>
+    <span class="tbar"><i id="tb"></i></span>
+    <span class="tnum" id="tn">0%</span>
+    <span class="tlab" id="td"></span>
+  </div>
+  <div class="legend"><span><b>跟读</b> = 听说输入（词汇 / 跟读 / 拼读 / 小测）　<b>语法</b> = 句子输出（语法练习 A2 档）</span><span>U0 是<b>胶水词补给站</b>：A1 没学的语料最高频词，先补齐再进 U1　|　语法格局：U1-3 现在时 → U4-6 过去时 → U7-9 情态观察 → U10-12 将来·完成</span></div>
+  <div class="grid" id="units"></div>
+  
+  <div class="gsec" hidden>
+    <h2>🧩 雅思衔接（已下线）</h2>
+    <p>十三单元全覆盖：真实 Part1 问题 ＋ 用本单元词汇与语法写的示范回答。学到哪，练到哪。<b style="color:var(--gold)">（题库页尚未接入，以下卡片暂不可点）</b></p>
+    <style>.glink.off{cursor:default;opacity:.58}</style>
+    <div class="ggrid">
+      <span class="glink off">
+        <span class="gi">🧭</span><div><div class="gn">U0 胶水词 × Part1</div>
+        <div class="gd">Spare time / Morning time / Going out · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">🎉</span><div><div class="gn">U1 Having Fun × Part1</div>
+        <div class="gd">Hobby / Music / Relax / Taking photos · 4 卡 12 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">💰</span><div><div class="gn">U2 Money × Part1</div>
+        <div class="gd">Pocket money / Shopping / Spending feelings · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">🍜</span><div><div class="gn">U3 Food for life × Part1</div>
+        <div class="gd">Everyday food / Cooking / Eating out · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">👨‍👩‍👧</span><div><div class="gn">U4 Family ties × Part1</div>
+        <div class="gd">Your family / Housework / A family member · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">🏠</span><div><div class="gn">U5 It feels like home × Part1</div>
+        <div class="gd">Your home / Your room / Neighbourhood · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">🤝</span><div><div class="gn">U6 Best Friends × Part1</div>
+        <div class="gd">Your friends / A good friend / Making friends · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">😌</span><div><div class="gn">U7 The Easy Life × Part1</div>
+        <div class="gd">Daily routine / Relax / The easy life · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">🏀</span><div><div class="gn">U8 Sporting Moments × Part1</div>
+        <div class="gd">Sports / Exercise / Watching sports · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">🌏</span><div><div class="gn">U9 Wonders of the World × Part1</div>
+        <div class="gd">Travel / Places in your country / Wonders · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">🏙️</span><div><div class="gn">U10 Around Town × Part1</div>
+        <div class="gd">Your hometown / Going out / Transport · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">🚀</span><div><div class="gn">U11 Future Bodies × Part1</div>
+        <div class="gd">Health / Sleep / Future life · 3 卡 9 题</div></div>
+      </span>
+      <span class="glink off">
+        <span class="gi">✈️</span><div><div class="gn">U12 Travellers' Tales × Part1</div>
+        <div class="gd">A trip / Holidays / Travelling · 3 卡 9 题</div></div>
+      </span>
+    </div>
+  </div>
+</div>
+<footer>A2 跟读轴取自 THINK Level 1 (A2) 12 单元 + U0 胶水词 · 语法轴对接语法练习 A2 档</footer>
+<script>
+var UNITS = [{"n": 0, "emo": "🧭", "beast": "启程之灵", "en": "Glue Words", "cn": "胶水词补给站", "file": "A2 Unit0 胶水词补给站.html", "g": [["ps-pos", 7], ["ps-neg", 7], ["ps-q", 7]], "ielts": ["Hobbies", "Spare time", "Going out"]}, {"n": 1, "pbl": 1, "pblFile": "A2 Unit1 爱好社团招新项目.html", "emo": "🎉", "beast": "欢乐之灵", "en": "Having Fun", "cn": "玩得开心", "file": "A2 Unit1 英语跟读.html", "g": [["ps-pos", 7], ["ps-neg", 7], ["ps-q", 7], ["verbpat", 7], ["adv", 7]], "ielts": ["Hobby", "Spare time", "Going out", "Relax", "Taking photos"]}, {"n": 2, "pbl": 1, "pblFile": "A2 Unit2 班级义卖项目.html", "emo": "🛍️", "beast": "集市狐", "en": "Money and How to Spend It", "cn": "钱与花法", "file": "A2 Unit2 英语跟读.html", "g": [["pc-pos", 7], ["pc-negq", 7]], "ielts": ["Shopping"]}, {"n": 3, "pbl": 1, "pblFile": "A2 Unit3 健康食谱项目.html", "emo": "🍜", "beast": "灶台貘", "en": "Food for Life", "cn": "一日三餐", "file": "A2 Unit3 英语跟读.html", "g": [["quant", 7], ["noun", 7]], "ielts": ["Food", "Fruit and Vegetables", "Cooking"]}, {"n": 4, "pbl": 1, "pblFile": "A2 Unit4 家庭时间胶囊项目.html", "emo": "👨‍👩‍👧", "beast": "守望鲸", "en": "Family Ties", "cn": "家人之间", "file": "A2 Unit4 英语跟读.html", "g": [["pronoun", 7], ["pt-be", 7]], "ielts": ["Family", "Names", "Life stages"]}, {"n": 5, "pbl": 1, "pblFile": "A2 Unit5 理想房间项目.html", "emo": "🏠", "beast": "筑巢燕", "en": "It Feels Like Home", "cn": "家的感觉", "file": "A2 Unit5 英语跟读.html", "g": [["pt-pos", 7], ["pt-negq", 7], ["a2-adj-feel", 7]], "ielts": ["Home / Accommodation", "Hometown"]}, {"n": 6, "pbl": 1, "pblFile": "A2 Unit6 友谊纪念册项目.html", "emo": "🤝", "beast": "知己之灵", "en": "Best Friends", "cn": "最好的朋友", "file": "A2 Unit6 英语跟读.html", "g": [["pt-pos", 7], ["question", 7]], "ielts": ["Childhood activities", "Friends", "Borrowing/Lending"]}, {"n": 7, "pbl": 1, "pblFile": "A2 Unit7 值日公约项目.html", "emo": "🛋", "beast": "逍遥之灵", "en": "The Easy Life", "cn": "轻松生活", "file": "A2 Unit7 英语跟读.html", "g": [["mod-have", 7], ["mod-should", 7], ["mod-must", 7]], "ielts": ["Relax", "Having a break", "Tidiness"]}, {"n": 8, "pbl": 1, "pblFile": "A2 Unit8 赛事实况报道项目.html", "emo": "🏀", "beast": "燃动之灵", "en": "Sporting Moments", "cn": "运动时刻", "file": "A2 Unit8 英语跟读.html", "g": [["pc-pos", 7], ["pt-pos", 7]], "ielts": ["Sport time", "Sports team", "Long Walk"]}, {"n": 9, "pbl": 1, "pblFile": "A2 Unit9 奇观展墙项目.html", "emo": "🗿", "beast": "奇观之灵", "en": "The Wonders of the World", "cn": "世界奇迹", "file": "A2 Unit9 英语跟读.html", "g": [["adj", 7], ["mod-can", 7]], "ielts": ["Scenery", "Views", "Geography", "Museum"]}, {"n": 10, "pbl": 1, "pblFile": "A2 Unit10 城市漫步地图项目.html", "emo": "🏙", "beast": "漫游之灵", "en": "Around Town", "cn": "城镇漫步", "file": "A2 Unit10 英语跟读.html", "g": [["fut-gng", 7], ["pc-pos", 7]], "ielts": ["The area you live in", "Crowded place", "Public places"]}, {"n": 11, "pbl": 1, "pblFile": "A2 Unit11 未来学校提案项目.html", "emo": "🦾", "beast": "进化之灵", "en": "Future Bodies", "cn": "未来身体", "file": "A2 Unit11 英语跟读.html", "g": [["fut-will", 7], ["sub", 7]], "ielts": ["Science", "Space / Space travel", "Morning time"]}, {"n": 12, "pbl": 1, "pblFile": "A2 Unit12 旅行故事集项目.html", "emo": "✈️", "beast": "远行之灵", "en": "Travellers' Tales", "cn": "旅行故事", "file": "A2 Unit12 英语跟读.html", "g": [["pt-pos", 7], ["pc-pos", 7], ["fut-will", 7], ["mod-can", 7]], "ielts": ["Travelling", "Electronic Devices", "Websites"]}];
+var KEY = 'a2net_p_';
+var GM_KEY = 'grammar_monster_all_v7';
+var doneShadow = JSON.parse(localStorage.getItem(KEY+'shadow') || '{}');
+var gmDone = {};
+try {
+  var gm = JSON.parse(localStorage.getItem(GM_KEY) || '{}');
+  Object.keys(gm.rounds || {}).forEach(function(k){
+    var gid = k.split('|')[0];
+    gmDone[gid] = (gmDone[gid]||0) + 1;
+  });
+} catch(e){}
+function gList(u){ return (u.g||[]).map(function(x){ return x[0]; }); }
+function gDone(u){
+  if(!u.g) return {n:0, all:0};
+  var n=0, all=0;
+  u.g.forEach(function(g){ all += g[1]; if((gmDone[g[0]]||0) >= g[1]) n += g[1];
+                            else n += Math.min(gmDone[g[0]]||0, g[1]); });
+  return {n:n, all:all};
+}
+function b1StateDone(u){
+  try{ var st=JSON.parse(localStorage.getItem('b1_unit'+u.n+'_state_v4'))||{};
+    var n=0; Object.keys(st).forEach(function(w){ if(st[w]&&st[w].shadowed) n++; });
+    return n;
+  }catch(e){ return 0; }
+}
+function b2StateDone(u){
+  try{ var st=JSON.parse(localStorage.getItem('b2_unit'+u.n+'_state_v4'))||{};
+    var n=0; Object.keys(st).forEach(function(w){ if(st[w]&&st[w].shadowed) n++; });
+    return n;
+  }catch(e){ return 0; }
+}
+
+function beastBadge(beast, emoji, size){
+  size=size||52; var uid='lv'+Math.random().toString(36).slice(2,7);
+  var ticks='';
+  for(var i=0;i<12;i++){
+    var a=i*30*Math.PI/180, major=(i%3===0);
+    var r1=48, r2=major?40:44;
+    ticks+='<line x1="'+(60+r1*Math.cos(a)).toFixed(1)+'" y1="'+(60+r1*Math.sin(a)).toFixed(1)+'" x2="'+(60+r2*Math.cos(a)).toFixed(1)+'" y2="'+(60+r2*Math.sin(a)).toFixed(1)+'" stroke="#f5c542" stroke-width="'+(major?1.7:0.8)+'" opacity="'+(major?0.95:0.5)+'"/>';
+  }
+  return '<svg viewBox="0 0 120 120" width="'+size+'" height="'+size+'" role="img" aria-label="'+beast+'" style="display:block;flex:none">'
+   +'<defs>'
+   +'<radialGradient id="disc'+uid+'" cx="50%" cy="34%" r="74%"><stop offset="0" stop-color="#3a3550"/><stop offset="0.5" stop-color="#201d30"/><stop offset="1" stop-color="#0e0c16"/></radialGradient>'
+   +'<linearGradient id="ring'+uid+'" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#ffeeb8"/><stop offset="0.45" stop-color="#f5c542"/><stop offset="1" stop-color="#9c7115"/></linearGradient>'
+   +'<radialGradient id="halo'+uid+'" cx="50%" cy="46%" r="50%"><stop offset="0" stop-color="#f5c542" stop-opacity="0.30"/><stop offset="1" stop-color="#f5c542" stop-opacity="0"/></radialGradient>'
+   +'</defs>'
+   +'<circle cx="60" cy="60" r="58" fill="none" stroke="url(#ring'+uid+')" stroke-width="1" opacity="0.30"/>'
+   +'<circle cx="60" cy="60" r="52" fill="url(#disc'+uid+')"/>'
+   +'<circle cx="60" cy="60" r="52" fill="none" stroke="url(#ring'+uid+')" stroke-width="3"/>'
+   +'<circle cx="60" cy="60" r="45.5" fill="none" stroke="#f5c542" stroke-width="0.7" opacity="0.30"/>'
+   + ticks
+   +'<circle cx="60" cy="60" r="41" fill="url(#halo'+uid+')"/>'
+   +'<text x="60" y="64" font-size="44" text-anchor="middle" dominant-baseline="central">'+emoji+'</text>'
+   +'<text x="60" y="101" font-size="11" text-anchor="middle" fill="#f5c542" font-weight="700" letter-spacing="1.5">'+beast+'</text>'
+   +'<circle cx="60" cy="9" r="2.6" fill="#e05a4f"/>'
+   +'</svg>';
+}
+function stars(){ var o=''; for(var i=0;i<5;i++) o+='<i class="star"></i>'; return o; }
+
+
+function cardHtml(u, line){
+  var s = line==='a2' ? (doneShadow[u.n]||0)
+       : line==='b1' ? b1StateDone(u) : b2StateDone(u);
+  var total = line==='a2' ? 8 : (u.words||40);
+  var g = gDone(u);
+  var badge = line!=='a2' ? (s>=total ? '跟读已完成' : (s>0 ? '跟读进行中' : '已解锁'))
+           : (s>=total && g.all>0 && g.n>=g.all) ? '跟读语法都完成'
+           : s>=total ? '跟读已完成，语法待练' : g.n>0 ? '语法进行中' : '已解锁';
+  var h = '<a class="ucard'+(u.n===0?' u0':'')+'" href="'+u.file+'">'
+     + '<div class="uhead">'+beastBadge(u.beast,u.emo,52)
+     + '<div><div class="ubeast">'+u.beast+'</div><div class="un">'+(u.n===0?'UNIT 0 · 补给站':'UNIT '+u.n)+'</div></div></div>'
+     + '<div class="uen">'+u.en+'</div><div class="ucn">'+u.cn+'</div>'
+     + '<div class="tracks">'
+     + '<div class="trk'+(s>0?' on':'')+'"><i class="dot"></i><span class="nm">跟读</span>'
+     + '<span class="mini">'+(line!=='a2' ? ('已跟读 '+s+' / '+total+' 词') : ('8 板块 · 完成 '+s))+'</span></div>'
+     + '<div class="trk'+(line!=='a2'? (s>0?' on':'') : (g.n>0?' on':''))+'"><i class="dot"></i><span class="nm">'+(line!=='a2'?'句型':'语法')+'</span>'
+     + '<span class="mini">'+(line!=='a2' ? ((u.gn||0)+' 组学术句型') : (g.all? g.n+' / '+g.all+' 组' : '本单元用造句输出'))+'</span></div>'
+     + '</div>';
+  /* 雅思徽标已下线（用户要求移除雅思题库） */
+  h += '<div class="ubars">'+stars()+'</div>'
+    + (u.pbl ? '<div style="text-align:center"><span class="pblink" data-u="'+u.n+'" data-f="'+(u.pblFile||'')+'">🏛 PBL 项目</span></div>' : '')
+    + '</a>';
+  return h;
+}
+
+
+
+var box = document.getElementById('units'), h = '';
+UNITS.forEach(function(u){ h += cardHtml(u,'a2'); });
+box.innerHTML = h;
+/* PBL 项目入口：卡片内「🏛 PBL 项目」徽标跳转（阻止卡片链接冒泡） */
+document.querySelectorAll('.pblink').forEach(function(el){
+  el.addEventListener('click', function(e){
+    e.preventDefault(); e.stopPropagation();
+    var f = el.getAttribute('data-f');
+    if(f) location.href = f;
+  });
+});
+var sSum=0, gSum=0, gAll=0;
+UNITS.forEach(function(u){ sSum += doneShadow[u.n]||0; var g=gDone(u); gSum+=g.n; gAll+=g.all; });
+var pct = Math.round((sSum/(UNITS.length*8)*0.5 + (gAll? gSum/gAll : 0)*0.5)*100);
+document.getElementById('tb').style.width = pct+'%';
+document.getElementById('tn').textContent = pct+'%';
+document.getElementById('td').textContent = '跟读 '+sSum+' / '+(UNITS.length*8)+' 板块 · 语法 '+gSum+' / '+gAll+' 组';
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1 英语跟读 · Unit 12 GETTING AROUND</title>
+<style>
+  :root{
+    --bg:#0f1424; --panel:#171d33; --panel2:#1f2742; --ink:#eef2ff; --sub:#9aa6c7;
+    --gold:#f5c542; --gold2:#caa12f; --red:#ff5a5f; --green:#5bd6a0; --line:#2a3358;
+    --chip:#243056;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+       background:radial-gradient(1200px 600px at 70% -10%,#22305c 0%,var(--bg) 55%);color:var(--ink);min-height:100vh}
+  header{padding:14px 20px 8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .logo{font-size:26px}
+  .title{font-weight:800;font-size:20px}
+  .title small{color:var(--sub);font-weight:500;font-size:13px;display:block;margin-top:2px}
+  .grow{flex:1}
+  .prog{display:flex;align-items:center;gap:8px}
+  .homebtn{display:inline-flex;align-items:center;gap:6px;background:var(--chip);color:var(--gold);
+           border:1px solid var(--gold2);border-radius:20px;padding:7px 14px;font-size:12.5px;
+           font-weight:700;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .homebtn:hover{background:var(--gold);color:#1a1a1a;border-color:var(--gold)}
+  .phxlink{display:inline-block;background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+           padding:6px 13px;border-radius:20px;font-size:12.5px;text-decoration:none;font-weight:600}
+  .phxlink:hover{background:var(--gold);color:#1a1a1a}
+  .stars{font-size:20px;letter-spacing:2px}
+  .bar{height:8px;width:160px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0}
+  .globalbar{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+    background:rgba(15,20,36,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+    padding:8px 20px;margin-bottom:6px}
+  .globalbar label{font-size:13px;color:var(--sub);display:flex;gap:6px;align-items:center}
+  .globalbar select,.globalbar input{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+  .globalbar .recnote{margin-left:auto;font-size:12px;color:var(--gold)}
+  nav{display:flex;gap:8px;padding:6px 20px 0;flex-wrap:wrap}
+  nav button{background:var(--panel);color:var(--sub);border:1px solid var(--line);
+    padding:9px 14px;border-radius:10px 10px 0 0;font-size:13px;cursor:pointer;font-weight:600}
+  nav button.on{background:var(--panel2);color:var(--ink);border-bottom:2px solid var(--gold)}
+  main{padding:16px 20px 60px;max-width:1100px;margin:0 auto}
+  .tab{display:none}
+  .tab.on{display:block}
+  .beast{background:linear-gradient(135deg,#1b2b4d,#20294a);border:1px solid var(--line);
+    border-radius:16px;padding:18px;display:flex;gap:16px;align-items:center;margin-bottom:16px}
+  .beast .emoji{font-size:54px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
+  .beast h2{margin:0 0 4px;font-size:18px}
+  .beast p{margin:2px 0;color:var(--sub);font-size:13px}
+  .grp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 16px}
+  .grp-tabs button{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .grp-tabs button.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.2s}
+  .card.done{border-color:var(--green)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .w{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .ipa{color:var(--sub);font-size:13px;font-style:italic}
+  .badges{display:flex;gap:6px;margin:6px 0}
+  .badge{font-size:11px;padding:2px 8px;border-radius:10px;background:var(--chip);color:var(--sub)}
+  .badge.pos{background:#2b3a6b;color:#bcd0ff}
+  .badge.band{background:#3a2f12;color:var(--gold)}
+  .def{font-size:14px;margin:4px 0;line-height:1.5}
+  .phrase{font-size:13px;color:var(--gold);margin:4px 0}
+  .ex{font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px;margin:6px 0;cursor:pointer}
+  .ex .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .ex .cn.hide{display:none}
+  .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .acts button{flex:1;border:none;border-radius:9px;padding:8px;font-size:13px;cursor:pointer;font-weight:600;min-width:60px}
+  .b-play{background:var(--chip);color:var(--ink)}
+  .b-shadow{background:var(--gold);color:#1a1a1a}
+  .b-master{background:var(--panel2);color:var(--sub);border:1px solid var(--line)}
+  .b-master.mastered{background:var(--green);color:#06281c}
+  .b-err{color:var(--gold);border:1px solid var(--gold2);flex:none;min-width:0;padding:8px 10px}
+  .mini{display:inline-flex;gap:4px;align-items:center}
+  .spk{background:none;border:none;color:var(--gold);font-size:18px;cursor:pointer;padding:0 4px}
+  .toggle{cursor:pointer;color:var(--gold)}
+  .sense{border-left:3px solid var(--line);padding:4px 0 4px 10px;margin:6px 0}
+  .sense.hiddenSense{display:none}
+  .defline{font-size:14px;line-height:1.5;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .exbox{display:none;margin-top:6px;font-size:13px;color:#cdd6f4;background:var(--panel2);padding:8px 10px;border-radius:8px}
+  .exbox .cn{display:block;color:var(--sub);margin-top:3px;font-size:12px}
+  .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line);border-radius:8px;
+    padding:6px 12px;font-size:12px;cursor:pointer;margin-top:6px;font-weight:600}
+  .player{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  .player .now{font-size:18px;font-weight:700;margin-bottom:6px}
+  .player .nowcn{color:var(--sub);font-size:14px;margin-bottom:12px}
+  /* 跟读提示条：英文 + 中文译文同一横行，一眼看完 */
+  .nowrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:11px 14px;border:1px solid var(--gold2);border-radius:10px;background:rgba(245,197,66,.06);margin-bottom:12px}
+  .nowrow .now,.nowrow .nowcn{margin-bottom:0}
+  .nowrow .now{font-size:18px;font-weight:700}
+  .nowrow .nowcn{font-size:14px;color:var(--sub)}
+  .recbox{min-height:8px;margin:10px 0}
+  .recbox audio{width:100%}
+  .rec-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:6px;vertical-align:middle;animation:pulse 1s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .ctr{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .ctr button{background:var(--gold);color:#1a1a1a;border:none;border-radius:9px;padding:9px 16px;font-weight:700;cursor:pointer}
+  .ctr .ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .ctr button.recording{background:var(--red);color:#fff}
+  .coll{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .cbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+  .cbox .e{font-size:38px}
+  .cbox .n{font-weight:700;margin:6px 0 2px}
+  .cbox .s{color:var(--gold);font-size:14px;letter-spacing:1px}
+  .cbox.lock{opacity:.45;filter:grayscale(1)}
+  .hint{color:var(--sub);font-size:12px;margin-top:10px;line-height:1.6;width:100%;white-space:normal;word-break:normal;overflow-wrap:break-word}
+  .streak{color:var(--gold);font-weight:700}
+  .banner{background:#2a1f12;border:1px solid var(--gold2);color:var(--gold);padding:8px 12px;border-radius:10px;font-size:12px;margin-bottom:12px;display:none}
+  .subtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .subtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .turn{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--panel2)}
+  .turn.recording{border-color:var(--red)}
+  .turn .role{font-weight:800;font-size:13px;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;flex:none}
+  .role-A{background:#2b3a6b;color:#bcd0ff}
+  .role-B{background:#3a2f12;color:var(--gold)}
+  .turn-text{flex:1;font-size:15px}
+  .turn-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  .turn-acts{display:flex;gap:6px;flex:none}
+  .turn-acts button{border:none;border-radius:8px;padding:7px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .turn-acts .b-play{background:var(--chip);color:var(--ink)}
+  .turn-acts .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  /* 录音提示/回放整行横向铺满，绝不被 flex 压成竖条 */
+  .turn-rec{display:block;width:100%;min-width:0;margin-top:8px;clear:both}
+  .turn-rec audio{width:100%}
+  .turn-rec .hint{white-space:normal;word-break:normal;overflow-wrap:break-word;line-height:1.6;margin-top:0}
+  .exchange{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:10px;background:var(--panel2)}
+  .qa{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .qa-text{flex:1;min-width:170px;font-size:15px}
+  /* 中文译文与英文同行，形成横向长条，便于一次性扫读 */
+  .qa-text .cn{display:inline;color:var(--sub);font-size:13px;margin-left:10px}
+  /* 回应行：标签 + 句子 + 按钮全部同一横行 */
+  .resp{margin-top:8px;padding:8px 10px;border-left:3px solid var(--gold);background:rgba(245,197,66,.07);border-radius:0 8px 8px 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .resp-label{font-size:12px;color:var(--gold);font-weight:700;flex:none}
+  .resp .qa-text{flex:1;min-width:180px}
+  .resp-acts{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+  .resp-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .resp-acts .b-play{background:var(--chip);color:var(--ink)}
+  .resp-acts .b-drill{background:var(--gold);color:#1a1a1a}
+  .q-opt.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  /* 阅读·听力 */
+  .rd-tip{color:var(--sub);font-size:12px;margin-bottom:8px}
+  .rd-playall{margin-bottom:10px}
+  .rd-sents{display:flex;flex-direction:column;gap:8px}
+  .rd-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .rd-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .rd-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .rd-sent .b-play,.rd-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .rd-sent .b-play{background:var(--chip);color:var(--ink)}
+  .rd-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .rd-qtitle{font-weight:700;margin:16px 0 8px;color:var(--gold)}
+  .art-para{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+  .art-sent{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .art-idx{color:var(--gold);font-weight:700;min-width:18px}
+  .art-en{flex:1;min-width:160px;font-size:15px;cursor:pointer}
+  .art-sent .b-play,.art-sent .b-turn-rec{border:none;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;font-weight:600}
+  .art-sent .b-play{background:var(--chip);color:var(--ink)}
+  .art-sent .b-turn-rec{background:var(--gold);color:#1a1a1a}
+  .art-zh{width:100%;color:var(--sub);font-size:13px;line-height:1.6}
+  .rdtab{background:var(--chip);color:var(--ink);border:none;padding:7px 14px;border-radius:20px;font-size:13px;cursor:pointer}
+  .rdtab.on{background:var(--gold);color:#1a1a1a;font-weight:700}
+  .rd-en.ls-masked{color:transparent;background:var(--panel2);border-radius:6px;user-select:none}
+  .listen-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+  .ls-tip{font-size:12.5px;color:var(--sub);line-height:1.75;margin-bottom:10px}
+  .ghostbtn{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .ghostbtn:hover{border-color:var(--gold)}
+  .q{margin:8px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel2)}
+  .q-q{font-size:14px;margin-bottom:6px}
+  .q-opts{display:flex;gap:8px;flex-wrap:wrap}
+  .q-opt{padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);cursor:pointer;font-size:13px}
+  .q-fb{margin-top:6px;font-size:13px}
+  /* 拼读 */
+  /* 元音手掌握图 */
+  .hand-wrap{display:flex;gap:18px;flex-wrap:wrap;align-items:stretch;margin-bottom:6px}
+  .hand-palm{flex:1;min-width:280px;background:var(--panel);border:1px solid var(--gold2);border-radius:14px;padding:14px}
+  .hand-title{font-weight:800;color:var(--gold);font-size:14px;margin-bottom:4px}
+  .hand-hint{font-size:12px;color:var(--sub);line-height:1.6;margin-bottom:10px}
+  .hand-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 0;border-top:1px dashed var(--line)}
+  .hand-row:first-of-type{border-top:none}
+  .finger{flex:1;min-width:52px;text-align:center;background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:8px 4px;cursor:pointer;transition:transform .1s}
+  .finger:hover{transform:translateY(-2px);border-color:var(--gold2)}
+  .finger .fpos{font-size:10px;color:var(--sub)}
+  .finger .fipa{font-size:17px;font-weight:800;color:var(--gold);margin:2px 0}
+  .finger .fsay{font-size:11px;color:var(--ink)}
+  .palm-vowels{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pv{flex:1;min-width:56px;text-align:center;background:rgba(245,197,66,.08);border:1px solid var(--gold2);border-radius:10px;padding:8px 4px;cursor:pointer}
+  .pv:hover{transform:translateY(-2px)}
+  .pv .pipa{font-size:17px;font-weight:800;color:var(--gold)}
+  .pv .psay{font-size:11px;color:var(--sub)}
+  .hand-words{font-size:12px;color:var(--ink);margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .hand-words .cn{color:var(--sub);font-size:11px}
+  .hand-words b{color:var(--gold);font-weight:700}
+  .phx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+  .phx-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .phx-card .ps{font-size:26px;font-weight:800;color:var(--gold)}
+  .phx-card .pn{font-size:14px;font-weight:700;margin:4px 0}
+  .phx-card .ptip{font-size:12px;color:var(--sub);margin:6px 0 8px;line-height:1.5}
+  .phx-words{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  /* 例词做成独立可点击块：学生一眼看出「每个词都能单独点」 */
+  .phx-words span,.hand-words span{display:inline-block;background:var(--chip);border:1px solid var(--line);
+    border-radius:8px;padding:5px 12px;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;
+    transition:transform .1s,border-color .15s,background .15s}
+  .phx-words span:hover,.hand-words span:hover{border-color:var(--gold);background:rgba(245,197,66,.12);color:var(--gold)}
+  .phx-words span:active,.hand-words span:active{transform:scale(.94)}
+  .phx-phrase{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:rgba(245,197,66,.07);
+    border:1px solid var(--gold2);border-radius:10px;padding:9px 11px;margin:2px 0 8px}
+  .phx-phrase .pl{font-size:11px;color:var(--gold);font-weight:700;flex:none}
+  .phx-phrase .pe{font-size:15px;font-weight:600;flex:1;min-width:150px}
+  .phx-phrase .pc{font-size:12px;color:var(--sub);flex-basis:100%}
+  .phx-tip{color:var(--sub);font-size:12px;line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:9px 12px;margin:0 0 12px}
+  .phx-tip b{color:var(--ink)}
+  /* ---------- 情绪语调卡（intonation）：把「音调走向」画出来 ---------- */
+  .itn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .itn{border:1px solid var(--line);border-radius:12px;padding:13px;background:var(--panel);
+    display:flex;flex-direction:column;gap:8px}
+  .itn-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .itn-arrow{font-size:26px;font-weight:700;line-height:1;min-width:44px;text-align:center;
+    background:var(--panel2);border:1px solid var(--gold2);border-radius:10px;padding:6px 8px;color:var(--gold)}
+  .itn-w{font-size:19px;font-weight:700}
+  .itn-ipa{font-size:13px;color:var(--sub)}
+  .itn-tone{font-size:11px;color:var(--gold);font-weight:700;background:rgba(245,197,66,.12);
+    border-radius:20px;padding:3px 10px}
+  /* 音高曲线：把 ↗ / → / ↘ 画成折线，孩子一眼看懂"往上走/往下掉" */
+  .itn-pitch{width:100%;height:56px;display:block}
+  .itn-pitch .base{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+  .itn-pitch .path{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .itn-pitch .dot{fill:var(--gold)}
+  .itn-sent{font-size:15px;font-weight:600;line-height:1.5}
+  .itn-sentcn{font-size:12px;color:var(--sub)}
+  .itn-tip{font-size:12px;color:var(--sub);line-height:1.7;background:var(--panel2);
+    border-left:3px solid var(--gold2);border-radius:0 8px 8px 0;padding:8px 10px}
+  .itn-acts{display:flex;gap:8px;flex-wrap:wrap}
+  .itn-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .itn-acts .b-real{background:var(--green);color:#06281c}
+  .itn-acts .b-rec{background:var(--gold);color:#1a1a1a}
+  .rec-slot{margin-top:8px}
+  .rec-slot audio{width:100%;height:36px}
+  .itnp-side .itn-acts button{padding:5px 9px;font-size:11px}
+  .itn-q{border:1px dashed var(--gold2);border-radius:8px;padding:6px 10px;font-size:12px;color:var(--sub)}
+  .itn-q b{color:var(--gold);font-weight:600}
+  /* 同句异调对照 */
+  .itnp{border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:12px;background:var(--panel)}
+  .itnp-vs{display:grid;grid-template-columns:1fr 44px 1fr;gap:10px;align-items:center}
+  .itnp-side{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--panel2)}
+  .itnp-side .lbl{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:5px}
+  .itnp-side .itn-pitch{height:40px;margin-bottom:6px}
+  .itnp-side .en{font-size:14px;font-weight:600;line-height:1.5}
+  .itnp-side .cn{font-size:11px;color:var(--sub);margin-bottom:6px}
+  .itnp-mid{text-align:center;font-size:11px;color:var(--sub);font-weight:700}
+  .itnp-q{font-size:13px;font-weight:600;margin-top:10px}
+  .itnp-a{font-size:12px;color:var(--sub);line-height:1.7;margin-top:6px;padding:9px 11px;
+    background:rgba(245,197,66,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0}
+  .itnp-a.hide{filter:blur(4px);cursor:pointer;user-select:none}
+  /* 反义情绪对 */
+  .apo{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:10px;background:var(--panel2)}
+  .apo-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .apo-w{font-size:16px;font-weight:700;padding:3px 10px;border-radius:8px;background:var(--chip)}
+  .apo-vs{color:var(--gold);font-weight:700;font-size:13px}
+  .apo-cn{font-size:12px;color:var(--sub)}
+  .pair{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;background:var(--panel)}
+  .pair .pt{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .pair .pc{flex:1;min-width:140px}
+  .pair .pc .pw{font-size:18px;font-weight:800}
+  .pair .pc .pi{color:var(--sub);font-size:13px;font-style:italic}
+  .pair-acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .pair-acts button{border:none;border-radius:8px;padding:7px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .pair-acts .b-play{background:var(--chip);color:var(--ink)}
+  .pair-acts .b-ok{background:var(--green);color:#06281c}
+  .pair-acts .b-bad{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+  .pair .ptip{font-size:12px;color:var(--gold);margin-top:6px}
+  .quiz-prompt{font-size:16px;margin:6px 0 10px}
+  .quiz-prompt .big{font-size:24px;font-weight:800}
+  .quiz-prompt .tag{display:inline-block;margin-left:8px;font-size:11px;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:1px 8px;vertical-align:middle}
+  /* 可点发音的词块：全局统一靠 data-say 绑定 */
+  .wchip{display:inline-flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--gold);border-radius:9px;padding:3px 10px;font-weight:800;cursor:pointer;color:var(--ink)}
+  .wchip b{font-size:12px;color:var(--gold);font-weight:700}
+  .wchip:hover{background:var(--chip)}
+  .wchip.big{font-size:24px;padding:6px 14px}
+  .wchip.big b{font-size:15px}
+  /* 预学词：来自后面单元，本单元只练发音不记意思 */
+  [data-pre="1"]{border-style:dashed;border-color:var(--sub);opacity:.95}
+  .pre-tag{font-size:10px;color:var(--sub);font-weight:700;border:1px solid var(--line);border-radius:5px;padding:0 4px;margin-left:2px}
+  .q-prog{height:8px;width:100%;background:var(--panel2);border-radius:6px;overflow:hidden;margin:8px 0}
+  .q-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .q-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:10px 0}
+  .q-opt{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;cursor:pointer;font-weight:600}
+  .q-opt:hover{border-color:var(--gold)}
+  .q-opt.ok{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-opt.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fb{font-size:14px;font-weight:700;min-height:20px;margin:8px 0}
+  /* 2026-10-16 听力填空题：输入框 + 检查按钮（KET 听力有填空题，原来只有单选） */
+  .q-fill{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;font-weight:600;min-width:0;outline:none}
+  .q-fill:focus{border-color:var(--gold)}
+  .q-fill.good{background:var(--green);color:#06281c;border-color:var(--green)}
+  .q-fill.bad{background:var(--red);color:#fff;border-color:var(--red)}
+  .q-fillbtn{flex:0 0 auto}
+  .q-fillbtn:disabled{opacity:.5;cursor:default}
+  .err-type{font-weight:800;color:var(--gold);margin:14px 0 8px;font-size:15px}
+  .err-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+  .err-meta{font-size:13px;color:var(--sub);margin-bottom:4px}
+  .err-line{font-size:14px;margin:2px 0}
+  .err-btns{display:flex;gap:8px;margin-top:8px}
+  .err-btns button{border:none;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600}
+  .err-btns .morebtn{background:var(--chip);color:var(--gold);border:1px solid var(--line)}
+  .err-btns .err-del{background:#3a1f25;color:var(--red);border:1px solid #5a2a32}
+
+  /* ---- 本单元语法 tab（联动语法练习页） ---- */
+  .gramwrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-top:4px}
+  .gcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+         display:flex;flex-direction:column;gap:7px;transition:.15s}
+  .gcard:hover{border-color:var(--gold2);transform:translateY(-2px)}
+  .gcard .gi{font-size:22px;line-height:1}
+  .gcard .gname{font-size:14.5px;font-weight:800;color:var(--ink);line-height:1.4}
+  .gcard .gdesc{font-size:12px;color:var(--sub);line-height:1.6}
+  .gcard .ggo{margin-top:auto;display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+              background:var(--chip);color:var(--gold);border:1px solid var(--gold2);
+              border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:700;
+              text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
+  .gcard .ggo:hover{background:var(--gold);color:#1a1a1a}
+  .gcard .gdone{font-size:11px;color:var(--green)}
+  .gramhead{color:var(--sub);font-size:12.5px;line-height:1.75;margin-bottom:12px}
+  .gramhead b{color:var(--gold)}
+  .gramfoot{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .art-hl{color:var(--gold,#c9a227);font-weight:700}
+  .artmark{font-size:12px;margin-left:6px;opacity:.95}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🐉</div>
+  <div class="title">英语跟读学院 · A1
+    <small id="subtitle"></small>
+  </div>
+  <a class="homebtn" href="index.html" title="返回 A1 学习网络主页">🏠 回主页</a>
+  <div class="grow"></div>
+  <div class="prog">
+    <span class="stars" id="starTop">☆☆☆</span>
+    <div class="bar"><i id="barTop"></i></div>
+    <span id="pctTop" style="color:var(--sub);font-size:13px">0%</span>
+  </div>
+</header>
+<div class="globalbar">
+  <label>音色 <select id="voiceSel"><option>默认</option></select></label>
+  <label>语速 <input type="range" id="rate" min="0.6" max="1.2" step="0.1" value="0.95"> <span id="rateVal">0.95×</span></label>
+  <span class="recnote" id="recNote"></span>
+</div>
+<nav>
+  <button data-tab="learn">📘 学习 B</button>
+  <button data-tab="review">🔁 复习 C</button>
+  <button data-tab="shadow">🎤 跟读·对话</button>
+  <button data-tab="reading">📖 阅读·听力</button>
+  <button data-tab="article" class="on">📰 单元文章</button>
+  <button data-tab="grammar">✍️ 本单元语法</button>
+  <button data-tab="phonics">🅰️ 拼读</button>
+  <button data-tab="quiz">📝 小测</button>
+  <button data-tab="errors">🩹 错题</button>
+  <button data-tab="codex">📜 图鉴</button>
+</nav>
+<main>
+  <!-- 学习 B -->
+  <section class="tab" id="learn">
+    <div class="beast">
+      <div class="emoji">🌍</div>
+      <div>
+        <h2 id="beastName"></h2>
+        <p id="beastDesc"></p>
+        <p>打卡进度：<span class="streak" id="beastStreak"></span></p>
+      </div>
+    </div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnLearn">👁 开</span></label>
+    </div>
+    <div class="grp-tabs" id="grpLearn"></div>
+    <div class="grid" id="gridLearn"></div>
+    <div class="hint">双击例句可慢速（0.6×）跟读；点 🔊 听单词。卡片「🎤 跟读打卡」跳到单句跟读页并定位该词，「❌ 记一笔」把没记住的收进错题本。</div>
+  </section>
+
+  <!-- 复习 C -->
+  <section class="tab" id="review">
+    <div class="banner" id="revBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <label style="font-size:13px;color:var(--sub)">自测模式 <span class="toggle" id="tgHideCn">🙈 隐藏中文</span></label>
+      <span style="color:var(--sub);font-size:12px">一词义一例句，点「看例句」展开；多义词点「更多 ▾」继续；每句可 🎤 跟读。</span>
+    </div>
+    <div class="grp-tabs" id="grpReview"></div>
+    <div class="grid" id="gridReview"></div>
+    <div class="hint">C 版释义已加厚：含【词性】+ 近义/反义 + 更完整场景。自测时隐藏中文，看英文回想起全部信息即过关。例句下的 🎤 跟读会跳到单句跟读页并定位该句。</div>
+  </section>
+
+  <!-- 跟读·对话 -->
+  <section class="tab" id="shadow">
+    <div class="banner" id="shBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-sh="dialog">💬 对话跟读</button>
+      <button class="subtab" data-sh="single">📝 单句跟读</button>
+      <span style="color:var(--sub);font-size:12px">对话跟读＝听问句→看回应句→录你自己的回答；单句跟读可打卡升星。</span>
+    </div>
+    <div id="shDialog"></div>
+    <div id="shSingle" style="display:none">
+      <div class="player">
+        <div class="nowrow" style="display:none">
+          <div class="now" id="shNow">准备开始…</div>
+          <div class="nowcn" id="shNowCn"></div>
+        </div>
+        <div class="hint" id="shProg" style="margin:0 0 12px">👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这里会出现回放音轨，和原声对比。</div>
+        <div class="recbox" id="shRecBox"></div>
+        <div class="ctr">
+          <button id="shPlay">▶ 听原声</button>
+          <button id="shRec">● 开始录音</button>
+          <button id="shStop" class="ghost">■ 停止</button>
+          <button id="shCheck" class="ghost">✓ 我已跟读打卡</button>
+          <button id="shPrev" class="ghost">⏮ 上一句</button>
+          <button id="shNext" class="ghost">⏭ 下一句</button>
+          <button id="shAuto" class="ghost">🔁 自动连播</button>
+          <label style="color:var(--sub);font-size:13px">跟读留白
+            <select id="shGap">
+              <option value="1500">1.5 秒</option>
+              <option value="2500" selected>2.5 秒</option>
+              <option value="4000">4 秒</option>
+              <option value="-1">手动</option>
+            </select>
+          </label>
+        </div>
+        <div class="hint" id="shHint">跟读流程：▶ 听原声 → ● 开始录音（读完后点 ■ 停止可回放对比）→ ✓ 打卡。连续打卡积累神兽星级。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本单元语法（联动语法练习页） -->
+  <section class="tab" id="grammar">
+    <div class="gramhead" id="gramHead"></div>
+    <div class="gramwrap" id="gramList"></div>
+    <div class="gramfoot">
+      <a class="phxlink" id="gramAll" target="_blank" rel="noopener">✍️ 打开英语语法练习全册 →</a>
+      <span class="hint" style="margin-top:0">点任一关，直接跳到语法练习里<b>这一个点</b>的知识卡（一次只学一个点）。练完回来，跟读这边会自动记一笔。</span>
+    </div>
+  </section>
+
+  <!-- 拼读 -->
+  <!-- 阅读·听力 -->
+  <section class="tab" id="reading">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="rdtab on" data-rd="read">📖 阅读</button>
+      <button class="rdtab" data-rd="listen">🎧 听力</button>
+      <span style="color:var(--sub);font-size:12px">阅读＝看文本做小题；<b style="color:var(--gold)">听力＝先盲听、再答题</b>，听不懂可调慢顶部语速或点「👀 看文本」。<b style="color:var(--gold)">🇨🇳</b> ＝中国主题篇。</span>
+    </div>
+
+    <div id="rdReadWrap">
+      <div class="banner" id="rdBanner"></div>
+      <div class="grp-tabs" id="rdPassages" style="margin-bottom:10px"></div>
+      <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+        <span id="rdHint" style="color:var(--sub);font-size:12px"></span>
+      </div>
+      <div id="rdText"></div>
+      <div id="rdQuiz"></div>
+    </div>
+
+    <div id="rdListenWrap" style="display:none">
+      <div class="banner" id="lsBanner"></div>
+      <div class="grp-tabs" id="lsPassages" style="margin-bottom:10px"></div>
+      <div class="listen-box">
+        <div class="ls-tip">🎧 <b>盲听三步</b>：① 点「▶ 听全篇」（顶部语速可调慢）→ ② 做下面小题 → ③ 不会就点「👀 看文本」对照，再听一遍。每句都可单点 🔊 重听、🎤 跟读。答错自动进错题本。</div>
+        <div class="rd-playall" style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="b-play" id="lsPlayAll">▶ 听全篇</button>
+          <button id="lsReplay" class="ghostbtn">🔁 再听一遍</button>
+          <button id="lsReveal" class="ghostbtn">👀 看文本</button>
+        </div>
+        <div class="rd-sents" id="lsSents"></div>
+      </div>
+      <div id="lsQuiz"></div>
+    </div>
+  </section>
+
+  <!-- 单元文章（A1＋A2 例句同源） -->
+  <section class="tab on" id="article">
+    <div class="banner" id="artBanner"></div>
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="b-play" id="artPlayAll">🔊 听全篇</button>
+      <label style="font-size:13px;color:var(--sub)">显示中文 <span class="toggle" id="tgCnArt">👁 开</span></label>
+      <label style="font-size:13px;color:var(--sub)">高亮生词 <span class="toggle" id="tgArtHL">👁 开</span></label>
+      <span style="color:var(--sub);font-size:12px">本单元单词卡上的例句，全部出自这篇故事。点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。</span>
+    </div>
+    <div id="artBody"></div>
+  </section>
+
+  <section class="tab" id="phonics">
+    <div class="toolbar" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <button class="subtab on" data-phx="cards">🔤 音素卡</button>
+      <button class="subtab" data-phx="pairs">🔁 最小对立对</button>
+      <button class="subtab" data-phx="listen">🎧 听音选词</button>
+      <button class="subtab" data-phx="intonation">🎵 情绪语调</button>
+ <button class="subtab" data-phx="antonym">↔️ 反义情绪对</button>
+      <span style="color:var(--sub);font-size:12px">A1 拼读轨道：建立 letter-sound 对应，否则跟读只是模仿不可迁移。中国学生易错音（θ / sh / ch）已优先纳入。</span>
+      <a class="phxlink" href="../英语音标48音训练.html" target="_blank" title="48 个音标的系统训练：本站 4 个音 + 全 48 音渐进路线（新窗口打开）">🔊 48 音系统训练 ↗</a>
+    </div>
+    <div id="phxHand"></div>
+    <div class="phx-tip">💡 <b>例词块</b>（蓝底方块）可以<b>逐个单独点</b>发音；<b>🔗 短语连读</b>是把含这个音的词连成一句来听——单词里听得清，句子里才知道它怎么和其他音连起来。建议把顶部语速调慢后听两遍。<br>
+      带<b>虚线框 + 「预学」标签</b>的词来自后面单元：本单元<b>只要求读准，不要求记意思</b>，占比控制在 30% 以内。</div>
+    <div id="phxCards"></div>
+    <div id="phxPairs" style="display:none"></div>
+    <div id="phxListen" style="display:none"></div>
+    <div id="phxIntonation" style="display:none"></div>
+    <div id="phxAntonym" style="display:none"></div>
+  </section>
+
+  <!-- 小测 -->
+  <section class="tab" id="quiz">
+    <div class="hint" style="margin-bottom:10px">主动回忆：听音选义 / 看词选义 / 看义选词 三类随机混出，答错自动记入「🩹 错题」。每轮覆盖本单元全部词。</div>
+    <div id="quizBox"></div>
+  </section>
+
+  <!-- 错题 -->
+  <section class="tab" id="errors">
+    <div class="hint" style="margin-bottom:10px">统一错误池（schema：话题/层级/类型/原文/标准答/学生答/时间）。词卡「记一笔」或「小测答错」自动汇总到这里，按类型聚合，可重练或删除。</div>
+    <div id="errList"></div>
+  </section>
+
+  <!-- 神兽图鉴 -->
+  <section class="tab" id="codex">
+    <div class="coll" id="codexGrid"></div>
+    <div class="hint">12 单元 = 12 只神兽。本单元神兽已解锁，掌握度越高星级越多。其余神兽可从 <a href="index.html" style="color:var(--gold)">目录</a> 进入对应单元解锁。</div>
+  </section>
+</main>
+
+<script>
+const DATA = {"unit":12,"title":"GETTING AROUND","subtitle":"交通工具 · 旅行场景 · 比较级","beast_emoji":"🚌","beast_name":"行路之灵","groups":[{"name":"交通工具","words":[{"word":"bike","ipa":"baɪk","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"自行车","phrase":"by bike","phraseDef":"骑自行车","ex":"The bike is healthier than the car.","exCn":"自行车比汽车更健康。","defC":"自行车","senses":[{"def":"自行车","ex":"The bike is healthier than the car.","exCn":"自行车比汽车更健康。","syn":"—","ant":"—"}],"inArt":1},{"word":"boat","ipa":"bəʊt","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"船","phrase":"by speedboat","phraseDef":"乘快艇","ex":"The boat is floating on the lake.","exCn":"小船漂浮在湖面上。","defC":"船","senses":[{"def":"船","ex":"The boat is floating on the lake.","exCn":"小船漂浮在湖面上。","syn":"—","ant":"—"}],"inArt":1},{"word":"bus","ipa":"bʌs","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"公交车","phrase":"by bus","phraseDef":"乘公交","ex":"The bus is cheaper than the taxi.","exCn":"巴士比出租车便宜。","defC":"公交车","senses":[{"def":"公交车","ex":"The bus is cheaper than the taxi.","exCn":"巴士比出租车便宜。","syn":"—","ant":"—"}],"inArt":1},{"word":"car","ipa":"kɑː","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"汽车","phrase":"by car","phraseDef":"开车","ex":"The mirror is in the car.","exCn":"镜子在车里。","defC":"汽车","senses":[{"def":"汽车","ex":"The mirror is in the car.","exCn":"镜子在车里。","syn":"—","ant":"—"}],"inArt":1},{"word":"ferry","ipa":"ˈfer.i","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"渡轮","phrase":"a car ferry","phraseDef":"汽车渡轮","ex":"The ferry is on the sea, and the boat is on the lake.","exCn":"渡轮在海面上，小船在湖面上。","defC":"渡轮","senses":[{"def":"渡轮","ex":"The ferry is on the sea, and the boat is on the lake.","exCn":"渡轮在海面上，小船在湖面上。","syn":"—","ant":"—"}],"inArt":1},{"word":"helicopter","ipa":"ˈhel.ɪ.kɒp.tə","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"直升机","phrase":"by helicopter","phraseDef":"乘直升机","ex":"The plane is bigger than the helicopter.","exCn":"飞机比直升机大。","defC":"直升机","senses":[{"def":"直升机","ex":"The plane is bigger than the helicopter.","exCn":"飞机比直升机大。","syn":"—","ant":"—"}],"inArt":1},{"word":"motorbike","ipa":"ˈməʊ.tə.baɪk","pos":"noun","cef":"A1","band":"中低频(5000-10000)","defB":"摩托车","phrase":"on her motorbike","phraseDef":"骑她的摩托","ex":"The horses are on the hill, and my uncle rides a motorbike.","exCn":"马在山上，我叔叔骑一辆摩托车。","defC":"摩托车","senses":[{"def":"摩托车","ex":"The horses are on the hill, and my uncle rides a motorbike.","exCn":"马在山上，我叔叔骑一辆摩托车。","syn":"—","ant":"—"}],"inArt":1},{"word":"plane","ipa":"pleɪn","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"飞机","phrase":"by plane","phraseDef":"乘飞机","ex":"The pilot flies the plane.","exCn":"飞行员开飞机。","defC":"飞机","senses":[{"def":"飞机","ex":"The pilot flies the plane.","exCn":"飞行员开飞机。","syn":"—","ant":"—"}],"inArt":1},{"word":"taxi","ipa":"ˈtæk.si","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"出租车","phrase":"take a taxi","phraseDef":"乘出租车","ex":"The bus is cheaper than the taxi.","exCn":"巴士比出租车便宜。","defC":"出租车","senses":[{"def":"出租车","ex":"The bus is cheaper than the taxi.","exCn":"巴士比出租车便宜。","syn":"—","ant":"—"}],"inArt":1},{"word":"train","ipa":"treɪn","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"火车","phrase":"by train","phraseDef":"乘火车","ex":"We travel by train to the mountains.","exCn":"我们乘火车去山里旅行。","defC":"火车","senses":[{"def":"火车","ex":"We travel by train to the mountains.","exCn":"我们乘火车去山里旅行。","syn":"—","ant":"—"}],"inArt":1},{"word":"underground train","ipa":"ˈʌn.də.graʊnd ˌtreɪn","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"地铁","phrase":"took the underground train","phraseDef":"乘地铁","ex":"The underground train is fast.","exCn":"地铁很快。","defC":"地铁","senses":[{"def":"地铁","ex":"The underground train is fast.","exCn":"地铁很快。","syn":"—","ant":"—"}],"inArt":0}]},{"name":"旅行相关","words":[{"word":"airport","ipa":"ˈeə.pɔːt","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"机场","phrase":"City Airport","phraseDef":"城市机场","ex":"The airport is big and busy.","exCn":"机场又大又繁忙。","defC":"机场","senses":[{"def":"机场","ex":"The airport is big and busy.","exCn":"机场又大又繁忙。","syn":"—","ant":"—"}],"inArt":1},{"word":"journey","ipa":"ˈdʒɜː.ni","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"旅程","phrase":"a 27-kilometre journey","phraseDef":"27 公里旅程","ex":"We go on a journey to the mountains.","exCn":"我们去山里旅行。","defC":"旅程","senses":[{"def":"旅程","ex":"We go on a journey to the mountains.","exCn":"我们去山里旅行。","syn":"—","ant":"—"}],"inArt":1},{"word":"suitcase","ipa":"ˈsuːt.keɪs","pos":"noun","cef":"A1","band":"中频(3000-5000)","defB":"行李箱","phrase":"a suitcase","phraseDef":"一个行李箱","ex":"My suitcase is heavy, and the luggage is in the car.","exCn":"我的手提箱很重，行李在车里。","defC":"行李箱","senses":[{"def":"行李箱","ex":"My suitcase is heavy, and the luggage is in the car.","exCn":"我的手提箱很重，行李在车里。","syn":"—","ant":"—"}],"inArt":1},{"word":"engine","ipa":"ˈen.dʒɪn","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"引擎","phrase":"got an engine","phraseDef":"有个引擎","ex":"The mechanic can repair the engine.","exCn":"机械师能修理发动机。","defC":"引擎","senses":[{"def":"引擎","ex":"The mechanic can repair the engine.","exCn":"机械师能修理发动机。","syn":"—","ant":"—"}],"inArt":1},{"word":"wheel","ipa":"wiːl","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"轮子","phrase":"wheels from trains","phraseDef":"旧火车的轮子","ex":"The engine is loud, and the wheel is round.","exCn":"发动机很响，轮子是圆的。","defC":"轮子","senses":[{"def":"轮子","ex":"The engine is loud, and the wheel is round.","exCn":"发动机很响，轮子是圆的。","syn":"—","ant":"—"}],"inArt":1},{"word":"rail","ipa":"reɪl","pos":"noun","cef":"A1","band":"中高频(2000-3000)","defB":"铁轨","phrase":"the same rails","phraseDef":"同样的铁轨","ex":"The rail is long, and the road is busy.","exCn":"铁轨很长，公路很繁忙。","defC":"铁轨","senses":[{"def":"铁轨","ex":"The rail is long, and the road is busy.","exCn":"铁轨很长，公路很繁忙。","syn":"—","ant":"—"}],"inArt":1},{"word":"road","ipa":"rəʊd","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"道路","phrase":"on the roads","phraseDef":"在道路上","ex":"The rail is long, and the road is busy.","exCn":"铁轨很长，公路很繁忙。","defC":"道路","senses":[{"def":"道路","ex":"The rail is long, and the road is busy.","exCn":"铁轨很长，公路很繁忙。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"自然地点","words":[{"word":"forest","ipa":"ˈfɒr.ɪst","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"森林","phrase":"mountains and forests","phraseDef":"山林","ex":"The forest is green and beautiful.","exCn":"森林绿而美丽。","defC":"森林","senses":[{"def":"森林","ex":"The forest is green and beautiful.","exCn":"森林绿而美丽。","syn":"—","ant":"—"}],"inArt":1},{"word":"hill","ipa":"hɪl","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"小山","phrase":"down a hill","phraseDef":"下小山","ex":"The hill is high, and the mountain is higher.","exCn":"山丘高，山更高。","defC":"小山","senses":[{"def":"小山","ex":"The hill is high, and the mountain is higher.","exCn":"山丘高，山更高。","syn":"—","ant":"—"}],"inArt":1},{"word":"lake","ipa":"leɪk","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"湖","phrase":"a large lake","phraseDef":"一个大湖","ex":"On the way, we see a big lake.","exCn":"在路上，我们看到一个大湖。","defC":"湖","senses":[{"def":"湖","ex":"On the way, we see a big lake.","exCn":"在路上，我们看到一个大湖。","syn":"—","ant":"—"}],"inArt":1},{"word":"mountain","ipa":"ˈmaʊn.tɪn","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"山","phrase":"to the mountains","phraseDef":"去山里","ex":"The hill is high, and the mountain is higher.","exCn":"山丘高，山更高。","defC":"山","senses":[{"def":"山","ex":"The hill is high, and the mountain is higher.","exCn":"山丘高，山更高。","syn":"—","ant":"—"}],"inArt":1},{"word":"river","ipa":"ˈrɪv.ə","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"河","phrase":"along the river","phraseDef":"沿着河","ex":"The river is long, and the water is clean.","exCn":"河流很长，水很干净。","defC":"河","senses":[{"def":"河","ex":"The river is long, and the water is clean.","exCn":"河流很长，水很干净。","syn":"—","ant":"—"}],"inArt":1},{"word":"sea","ipa":"siː","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"海","phrase":"by the sea","phraseDef":"在海边","ex":"The sea is warm in summer.","exCn":"夏天的海水很暖和。","defC":"海","senses":[{"def":"海","ex":"The sea is warm in summer.","exCn":"夏天的海水很暖和。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"比较级","words":[{"word":"better","ipa":"ˈbet.ə","pos":"adjective","cef":"A1","band":"极高频(Top1000)","defB":"更好的（good 比较级）","phrase":"better for cities","phraseDef":"对城市更好","ex":"The train is better than the bus, and the bus is bigger than the taxi.","exCn":"火车比巴士好，巴士比出租车大。","defC":"更好的（good 比较级）","senses":[{"def":"更好的（good 比较级）","ex":"The train is better than the bus, and the bus is bigger than the taxi.","exCn":"火车比巴士好，巴士比出租车大。","syn":"—","ant":"—"}],"inArt":1},{"word":"bigger","ipa":"bɪɡ.ə","pos":"adjective","cef":"A1","band":"高频(1000-2000)","defB":"更大的（big 比较级）","phrase":"bigger than","phraseDef":"比…大","ex":"The plane is bigger than the helicopter.","exCn":"飞机比直升机大。","defC":"更大的（big 比较级）","senses":[{"def":"更大的（big 比较级）","ex":"The plane is bigger than the helicopter.","exCn":"飞机比直升机大。","syn":"—","ant":"—"}],"inArt":1},{"word":"cheaper","ipa":"tʃiː.pə","pos":"adjective","cef":"A1","band":"中高频(2000-3000)","defB":"更便宜的（cheap 比较级）","phrase":"cheaper than","phraseDef":"比…便宜","ex":"The bus is cheaper than the taxi.","exCn":"巴士比出租车便宜。","defC":"更便宜的（cheap 比较级）","senses":[{"def":"更便宜的（cheap 比较级）","ex":"The bus is cheaper than the taxi.","exCn":"巴士比出租车便宜。","syn":"—","ant":"—"}],"inArt":1},{"word":"easier","ipa":"ˈiː.zi.ə","pos":"adjective","cef":"A1","band":"高频(1000-2000)","defB":"更容易的（easy 比较级）","phrase":"easier than","phraseDef":"比…容易","ex":"Walking is easier than running.","exCn":"走路比跑步轻松。","defC":"更容易的（easy 比较级）","senses":[{"def":"更容易的（easy 比较级）","ex":"Walking is easier than running.","exCn":"走路比跑步轻松。","syn":"—","ant":"—"}],"inArt":1},{"word":"healthier","ipa":"ˈhel.θi.ə","pos":"adjective","cef":"A1","band":"中频(3000-5000)","defB":"更健康的（healthy 比较级）","phrase":"healthier than","phraseDef":"比…健康","ex":"The bike is healthier than the car.","exCn":"自行车比汽车更健康。","defC":"更健康的（healthy 比较级）","senses":[{"def":"更健康的（healthy 比较级）","ex":"The bike is healthier than the car.","exCn":"自行车比汽车更健康。","syn":"—","ant":"—"}],"inArt":1},{"word":"more dangerous","ipa":"ˌmɔː ˈdeɪn.dʒər.əs","pos":"adjective","cef":"A1","band":"高频(1000-2000)","defB":"更危险的（dangerous 比较级）","phrase":"more dangerous than","phraseDef":"比…危险","ex":"The car is more dangerous than the train.","exCn":"汽车比火车更危险。","defC":"更危险的（dangerous 比较级）","senses":[{"def":"更危险的（dangerous 比较级）","ex":"The car is more dangerous than the train.","exCn":"汽车比火车更危险。","syn":"—","ant":"—"}],"inArt":0},{"word":"more expensive","ipa":"ˌmɔːr ɪkˈspen.sɪv","pos":"adjective","cef":"A1","band":"高频(1000-2000)","defB":"更贵的（expensive 比较级）","phrase":"more expensive than","phraseDef":"比…贵","ex":"The taxi is more expensive than the bike.","exCn":"出租车比自行车贵。","defC":"更贵的（expensive 比较级）","senses":[{"def":"更贵的（expensive 比较级）","ex":"The taxi is more expensive than the bike.","exCn":"出租车比自行车贵。","syn":"—","ant":"—"}],"inArt":0},{"word":"quicker","ipa":"kwɪk.ə","pos":"adjective","cef":"A1","band":"中频(3000-5000)","defB":"更快的（quick 比较级）","phrase":"quicker than","phraseDef":"比…快","ex":"The train is quicker than the bus.","exCn":"火车比巴士快。","defC":"更快的（quick 比较级）","senses":[{"def":"更快的（quick 比较级）","ex":"The train is quicker than the bus.","exCn":"火车比巴士快。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"环境与出行","words":[{"word":"air","ipa":"eə","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"空气；空中","phrase":"in the air","phraseDef":"在空中","ex":"Cars pollute the air.","exCn":"汽车污染空气。","defC":"空气；空中","senses":[{"def":"空气；空中","ex":"Cars pollute the air.","exCn":"汽车污染空气。","syn":"—","ant":"—"}],"inArt":1},{"word":"traffic","ipa":"ˈtræf.ɪk","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"交通（拥堵）","phrase":"traffic problems","phraseDef":"交通问题","ex":"The traffic is bad in the morning.","exCn":"早上交通很堵。","defC":"交通（拥堵）","senses":[{"def":"交通（拥堵）","ex":"The traffic is bad in the morning.","exCn":"早上交通很堵。","syn":"—","ant":"—"}],"inArt":1},{"word":"transport","ipa":"ˈtræn.spɔːt","pos":"noun","cef":"A1","band":"高频(1000-2000)","defB":"交通","phrase":"a type of transport","phraseDef":"一种交通方式","ex":"Public transport is good for the city.","exCn":"公共交通对城市有好处。","defC":"交通","senses":[{"def":"交通","ex":"Public transport is good for the city.","exCn":"公共交通对城市有好处。","syn":"—","ant":"—"}],"inArt":1},{"word":"pollute","ipa":"pəˈluːt","pos":"verb","cef":"A1","band":"低频(10000+)","defB":"污染","phrase":"pollute the air","phraseDef":"污染空气","ex":"Cars pollute the air.","exCn":"汽车污染空气。","defC":"污染","senses":[{"def":"污染","ex":"Cars pollute the air.","exCn":"汽车污染空气。","syn":"—","ant":"—"}],"inArt":1},{"word":"water","ipa":"ˈwɔː.tə","pos":"noun","cef":"A1","band":"极高频(Top1000)","defB":"水","phrase":"travel on the water","phraseDef":"在水上行驶","ex":"The river is long, and the water is clean.","exCn":"河流很长，水很干净。","defC":"水","senses":[{"def":"水","ex":"The river is long, and the water is clean.","exCn":"河流很长，水很干净。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"🟠 拓展·旅行与交通","words":[{"word":"way","ipa":"/weɪ/","pos":"noun","cef":"A2","band":"极高频(Top1000)","defB":"路；方式","phrase":"on the way","phraseDef":"在路上","ex":"On the way, we see a big lake.","exCn":"在路上，我们看到一个大湖。","defC":"路；方式","senses":[{"def":"路；方式","ex":"On the way, we see a big lake.","exCn":"在路上，我们看到一个大湖。","syn":"—","ant":"—"}],"inArt":1},{"word":"travel","ipa":"/ˈtrævl/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"旅行","phrase":"travel by train","phraseDef":"乘火车旅行","ex":"We travel by train to the mountains.","exCn":"我们乘火车去山里旅行。","defC":"旅行","senses":[{"def":"旅行","ex":"We travel by train to the mountains.","exCn":"我们乘火车去山里旅行。","syn":"—","ant":"—"}],"inArt":1},{"word":"right","ipa":"/raɪt/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"右；正确的","phrase":"turn right","phraseDef":"右转","ex":"Go straight on, then turn right and left.","exCn":"一直走，然后右转再左转。","defC":"右；正确的","senses":[{"def":"右；正确的","ex":"Go straight on, then turn right and left.","exCn":"一直走，然后右转再左转。","syn":"—","ant":"—"}],"inArt":1},{"word":"left","ipa":"/left/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"左","phrase":"turn left","phraseDef":"左转","ex":"Go straight on, then turn right and left.","exCn":"一直走，然后右转再左转。","defC":"左","senses":[{"def":"左","ex":"Go straight on, then turn right and left.","exCn":"一直走，然后右转再左转。","syn":"—","ant":"—"}],"inArt":1},{"word":"case","ipa":"/keɪs/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"箱子；情况","phrase":"a suitcase","phraseDef":"行李箱","ex":"The case is on the seat.","exCn":"箱子在座位上。","defC":"箱子；情况","senses":[{"def":"箱子；情况","ex":"The case is on the seat.","exCn":"箱子在座位上。","syn":"—","ant":"—"}],"inArt":1},{"word":"stop","ipa":"/stɒp/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"停；车站","phrase":"bus stop","phraseDef":"公交站","ex":"The traffic light is red, so we stop.","exCn":"红灯亮了，我们停车。","defC":"停；车站","senses":[{"def":"停；车站","ex":"The traffic light is red, so we stop.","exCn":"红灯亮了，我们停车。","syn":"—","ant":"—"}],"inArt":1},{"word":"far","ipa":"/fɑː(r)/","pos":"adverb","cef":"A2","band":"高频(1000-2000)","defB":"远的","phrase":"not far","phraseDef":"不远","ex":"The way is long, but the zoo is far from here.","exCn":"路很长，但动物园离这里很远。","defC":"远的","senses":[{"def":"远的","ex":"The way is long, but the zoo is far from here.","exCn":"路很长，但动物园离这里很远。","syn":"—","ant":"—"}],"inArt":1},{"word":"move","ipa":"/muːv/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"移动；搬家","phrase":"move house","phraseDef":"搬家","ex":"We move our bags to the car.","exCn":"我们把包挪到车上。","defC":"移动；搬家","senses":[{"def":"移动；搬家","ex":"We move our bags to the car.","exCn":"我们把包挪到车上。","syn":"—","ant":"—"}],"inArt":1},{"word":"leave","ipa":"/liːv/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"离开；留下","phrase":"leave home","phraseDef":"离家","ex":"We leave at eight o'clock.","exCn":"我们八点出发。","defC":"离开；留下","senses":[{"def":"离开；留下","ex":"We leave at eight o'clock.","exCn":"我们八点出发。","syn":"—","ant":"—"}],"inArt":1},{"word":"return","ipa":"/rɪˈtɜːn/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"返回；归还","phrase":"return home","phraseDef":"回家","ex":"We return at six in the evening.","exCn":"我们晚上六点回来。","defC":"返回；归还","senses":[{"def":"返回；归还","ex":"We return at six in the evening.","exCn":"我们晚上六点回来。","syn":"—","ant":"—"}],"inArt":1},{"word":"drive","ipa":"/draɪv/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"驾驶","phrase":"drive a car","phraseDef":"开车","ex":"My dad can drive, and the driver is my uncle.","exCn":"我爸爸会开车，司机是我叔叔。","defC":"驾驶","senses":[{"def":"驾驶","ex":"My dad can drive, and the driver is my uncle.","exCn":"我爸爸会开车，司机是我叔叔。","syn":"—","ant":"—"}],"inArt":1},{"word":"visit","ipa":"/ˈvɪzɪt/","pos":"verb","cef":"A2","band":"高频(1000-2000)","defB":"参观；拜访","phrase":"visit a city","phraseDef":"参观一座城市","ex":"The visitor is from Japan, and we visit a castle.","exCn":"游客来自日本，我们参观一座城堡。","defC":"参观；拜访","senses":[{"def":"参观；拜访","ex":"The visitor is from Japan, and we visit a castle.","exCn":"游客来自日本，我们参观一座城堡。","syn":"—","ant":"—"}],"inArt":1},{"word":"straight on","ipa":"/ˌstreɪt ˈɒn/","pos":"phrase","cef":"A2","band":"高频(1000-2000)","defB":"一直往前走","phrase":"go straight on","phraseDef":"一直走","ex":"Go straight on, then turn right and left.","exCn":"一直走，然后右转再左转。","defC":"一直往前走","senses":[{"def":"一直往前走","ex":"Go straight on, then turn right and left.","exCn":"一直走，然后右转再左转。","syn":"—","ant":"—"}],"inArt":0},{"word":"tour","ipa":"/tʊə/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"旅行；巡游","phrase":"a city tour","phraseDef":"城市游","ex":"The tour is fun, and the tour guide is kind.","exCn":"旅行很有趣，导游很和善。","defC":"旅行；巡游","senses":[{"def":"旅行；巡游","ex":"The tour is fun, and the tour guide is kind.","exCn":"旅行很有趣，导游很和善。","syn":"—","ant":"—"}],"inArt":1},{"word":"ship","ipa":"/ʃɪp/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"船","phrase":"a big ship","phraseDef":"大船","ex":"The ship is in the ocean.","exCn":"轮船在海洋里。","defC":"船","senses":[{"def":"船","ex":"The ship is in the ocean.","exCn":"轮船在海洋里。","syn":"—","ant":"—"}],"inArt":1},{"word":"machine","ipa":"/məˈʃiːn/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"机器","phrase":"a washing machine","phraseDef":"洗衣机","ex":"The engineer designs the machines, and every machine is big.","exCn":"工程师设计机器，每台机器都很大。","defC":"机器","senses":[{"def":"机器","ex":"The engineer designs the machines, and every machine is big.","exCn":"工程师设计机器，每台机器都很大。","syn":"—","ant":"—"}],"inArt":1},{"word":"trip","ipa":"/trɪp/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"短途旅行","phrase":"a school trip","phraseDef":"学校旅行","ex":"We talk about our trip on the train.","exCn":"我们在火车上谈论我们的旅行。","defC":"短途旅行","senses":[{"def":"短途旅行","ex":"We talk about our trip on the train.","exCn":"我们在火车上谈论我们的旅行。","syn":"—","ant":"—"}],"inArt":1},{"word":"flight","ipa":"/flaɪt/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"航班","phrase":"a morning flight","phraseDef":"早班机","ex":"The trip is long, and the flight is at nine.","exCn":"旅程很长，航班在九点。","defC":"航班","senses":[{"def":"航班","ex":"The trip is long, and the flight is at nine.","exCn":"旅程很长，航班在九点。","syn":"—","ant":"—"}],"inArt":1},{"word":"seat","ipa":"/siːt/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"座位","phrase":"a window seat","phraseDef":"靠窗座位","ex":"The case is on the seat.","exCn":"箱子在座位上。","defC":"座位","senses":[{"def":"座位","ex":"The case is on the seat.","exCn":"箱子在座位上。","syn":"—","ant":"—"}],"inArt":1},{"word":"window","ipa":"/ˈwɪndəʊ/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"窗户","phrase":"open the window","phraseDef":"开窗","ex":"The window is open, and the map is on the wall.","exCn":"窗户开着，地图在墙上。","defC":"窗户","senses":[{"def":"窗户","ex":"The window is open, and the map is on the wall.","exCn":"窗户开着，地图在墙上。","syn":"—","ant":"—"}],"inArt":1},{"word":"map","ipa":"/mæp/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"地图","phrase":"read a map","phraseDef":"看地图","ex":"The window is open, and the map is on the wall.","exCn":"窗户开着，地图在墙上。","defC":"地图","senses":[{"def":"地图","ex":"The window is open, and the map is on the wall.","exCn":"窗户开着，地图在墙上。","syn":"—","ant":"—"}],"inArt":1},{"word":"driver","ipa":"/ˈdraɪvə/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"司机","phrase":"a bus driver","phraseDef":"公交司机","ex":"My dad can drive, and the driver is my uncle.","exCn":"我爸爸会开车，司机是我叔叔。","defC":"司机","senses":[{"def":"司机","ex":"My dad can drive, and the driver is my uncle.","exCn":"我爸爸会开车，司机是我叔叔。","syn":"—","ant":"—"}],"inArt":1},{"word":"traffic light","ipa":"/ˈtræfɪk laɪt/","pos":"phrase","cef":"A2","band":"中高频(2000-3000)","defB":"红绿灯","phrase":"stop at the traffic light","phraseDef":"在红绿灯处停下","ex":"The traffic light is red, so we stop.","exCn":"红灯亮了，我们停车。","defC":"红绿灯","senses":[{"def":"红绿灯","ex":"The traffic light is red, so we stop.","exCn":"红灯亮了，我们停车。","syn":"—","ant":"—"}],"inArt":0},{"word":"platform","ipa":"/ˈplætfɔːm/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"站台","phrase":"platform two","phraseDef":"二号站台","ex":"The platform is long, and the train is delayed.","exCn":"站台很长，火车晚点了。","defC":"站台","senses":[{"def":"站台","ex":"The platform is long, and the train is delayed.","exCn":"站台很长，火车晚点了。","syn":"—","ant":"—"}],"inArt":1},{"word":"tour guide","ipa":"/ˈtʊə ɡaɪd/","pos":"phrase","cef":"A2","band":"中高频(2000-3000)","defB":"导游","phrase":"a kind tour guide","phraseDef":"和善的导游","ex":"The tour is fun, and the tour guide is kind.","exCn":"旅行很有趣，导游很和善。","defC":"导游","senses":[{"def":"导游","ex":"The tour is fun, and the tour guide is kind.","exCn":"旅行很有趣，导游很和善。","syn":"—","ant":"—"}],"inArt":0},{"word":"pilot","ipa":"/ˈpaɪlət/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"飞行员","phrase":"a young pilot","phraseDef":"年轻飞行员","ex":"The pilot flies the plane.","exCn":"飞行员开飞机。","defC":"飞行员","senses":[{"def":"飞行员","ex":"The pilot flies the plane.","exCn":"飞行员开飞机。","syn":"—","ant":"—"}],"inArt":1},{"word":"engineer","ipa":"/ˌendʒɪˈnɪə/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"工程师","phrase":"a train engineer","phraseDef":"火车工程师","ex":"The engineer designs the machines, and every machine is big.","exCn":"工程师设计机器，每台机器都很大。","defC":"工程师","senses":[{"def":"工程师","ex":"The engineer designs the machines, and every machine is big.","exCn":"工程师设计机器，每台机器都很大。","syn":"—","ant":"—"}],"inArt":1},{"word":"mirror","ipa":"/ˈmɪrə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"镜子","phrase":"look in the mirror","phraseDef":"照镜子","ex":"The mirror is in the car.","exCn":"镜子在车里。","defC":"镜子","senses":[{"def":"镜子","ex":"The mirror is in the car.","exCn":"镜子在车里。","syn":"—","ant":"—"}],"inArt":1},{"word":"repair","ipa":"/rɪˈpeə/","pos":"verb","cef":"A2","band":"中频(3000-4000)","defB":"修理","phrase":"repair a bike","phraseDef":"修自行车","ex":"The mechanic can repair the engine.","exCn":"机械师能修理发动机。","defC":"修理","senses":[{"def":"修理","ex":"The mechanic can repair the engine.","exCn":"机械师能修理发动机。","syn":"—","ant":"—"}],"inArt":1},{"word":"delay","ipa":"/dɪˈleɪ/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"延误","phrase":"a long delay","phraseDef":"长时间的延误","ex":"There is a delay at the airport.","exCn":"机场有延误。","defC":"延误","senses":[{"def":"延误","ex":"There is a delay at the airport.","exCn":"机场有延误。","syn":"—","ant":"—"}],"inArt":1},{"word":"passenger","ipa":"/ˈpæsɪndʒə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"乘客","phrase":"a tired passenger","phraseDef":"疲惫的乘客","ex":"The passenger is late, and the exit is there.","exCn":"乘客迟到了，出口在那里。","defC":"乘客","senses":[{"def":"乘客","ex":"The passenger is late, and the exit is there.","exCn":"乘客迟到了，出口在那里。","syn":"—","ant":"—"}],"inArt":1},{"word":"delayed","ipa":"/dɪˈleɪd/","pos":"adjective","cef":"A2","band":"中频(3000-4000)","defB":"延误的","phrase":"a delayed flight","phraseDef":"延误的航班","ex":"The platform is long, and the train is delayed.","exCn":"站台很长，火车晚点了。","defC":"延误的","senses":[{"def":"延误的","ex":"The platform is long, and the train is delayed.","exCn":"站台很长，火车晚点了。","syn":"—","ant":"—"}],"inArt":1},{"word":"visitor","ipa":"/ˈvɪzɪtə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"访客","phrase":"a museum visitor","phraseDef":"博物馆访客","ex":"The visitor is from Japan, and we visit a castle.","exCn":"游客来自日本，我们参观一座城堡。","defC":"访客","senses":[{"def":"访客","ex":"The visitor is from Japan, and we visit a castle.","exCn":"游客来自日本，我们参观一座城堡。","syn":"—","ant":"—"}],"inArt":1},{"word":"driving licence","ipa":"/ˈdraɪvɪŋ ˌlaɪsns/","pos":"phrase","cef":"A2","band":"中频(3000-4000)","defB":"驾照","phrase":"get a driving licence","phraseDef":"考驾照","ex":"My driving licence is new.","exCn":"我的驾照是新的。","defC":"驾照","senses":[{"def":"驾照","ex":"My driving licence is new.","exCn":"我的驾照是新的。","syn":"—","ant":"—"}],"inArt":0},{"word":"airplane","ipa":"/ˈeəpleɪn/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"飞机","phrase":"fly an airplane","phraseDef":"开飞机","ex":"The tram is new, and the airplane is fast.","exCn":"电车是新的，飞机很快。","defC":"飞机","senses":[{"def":"飞机","ex":"The tram is new, and the airplane is fast.","exCn":"电车是新的，飞机很快。","syn":"—","ant":"—"}],"inArt":1},{"word":"luggage","ipa":"/ˈlʌɡɪdʒ/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"行李","phrase":"heavy luggage","phraseDef":"沉重的行李","ex":"My suitcase is heavy, and the luggage is in the car.","exCn":"我的手提箱很重，行李在车里。","defC":"行李","senses":[{"def":"行李","ex":"My suitcase is heavy, and the luggage is in the car.","exCn":"我的手提箱很重，行李在车里。","syn":"—","ant":"—"}],"inArt":1},{"word":"mechanic","ipa":"/məˈkænɪk/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"机械师","phrase":"a car mechanic","phraseDef":"汽车机械师","ex":"The mechanic can repair the engine.","exCn":"机械师能修理发动机。","defC":"机械师","senses":[{"def":"机械师","ex":"The mechanic can repair the engine.","exCn":"机械师能修理发动机。","syn":"—","ant":"—"}],"inArt":1},{"word":"petrol","ipa":"/ˈpetrəl/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"汽油","phrase":"fill up with petrol","phraseDef":"加满汽油","ex":"The petrol is expensive, and the tyre is new.","exCn":"汽油很贵，轮胎是新的。","defC":"汽油","senses":[{"def":"汽油","ex":"The petrol is expensive, and the tyre is new.","exCn":"汽油很贵，轮胎是新的。","syn":"—","ant":"—"}],"inArt":1},{"word":"tyre","ipa":"/ˈtaɪə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"轮胎","phrase":"a flat tyre","phraseDef":"瘪了的轮胎","ex":"The petrol is expensive, and the tyre is new.","exCn":"汽油很贵，轮胎是新的。","defC":"轮胎","senses":[{"def":"轮胎","ex":"The petrol is expensive, and the tyre is new.","exCn":"汽油很贵，轮胎是新的。","syn":"—","ant":"—"}],"inArt":1},{"word":"tram","ipa":"/træm/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"有轨电车","phrase":"take a tram","phraseDef":"乘有轨电车","ex":"The tram is new, and the airplane is fast.","exCn":"电车是新的，飞机很快。","defC":"有轨电车","senses":[{"def":"有轨电车","ex":"The tram is new, and the airplane is fast.","exCn":"电车是新的，飞机很快。","syn":"—","ant":"—"}],"inArt":1}]},{"name":"🟠 拓展·建筑场所","words":[{"word":"office","ipa":"/ˈɒfɪs/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"办公室","phrase":"a post office","phraseDef":"邮局","ex":"The office is in the city.","exCn":"办公室在城里。","defC":"办公室","senses":[{"def":"办公室","ex":"The office is in the city.","exCn":"办公室在城里。","syn":"—","ant":"—"}],"inArt":1},{"word":"university","ipa":"/ˌjuːnɪˈvɜːsəti/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"大学","phrase":"go to university","phraseDef":"上大学","ex":"The university is big, and the college is small.","exCn":"大学很大，学院很小。","defC":"大学","senses":[{"def":"大学","ex":"The university is big, and the college is small.","exCn":"大学很大，学院很小。","syn":"—","ant":"—"}],"inArt":1},{"word":"building","ipa":"/ˈbɪldɪŋ/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"建筑物","phrase":"a tall building","phraseDef":"高楼","ex":"A block of flats is next to the building.","exCn":"一栋公寓楼在这座大楼旁边。","defC":"建筑物","senses":[{"def":"建筑物","ex":"A block of flats is next to the building.","exCn":"一栋公寓楼在这座大楼旁边。","syn":"—","ant":"—"}],"inArt":1},{"word":"college","ipa":"/ˈkɒlɪdʒ/","pos":"noun","cef":"A2","band":"高频(1000-2000)","defB":"学院；大学","phrase":"go to college","phraseDef":"上大学","ex":"The university is big, and the college is small.","exCn":"大学很大，学院很小。","defC":"学院；大学","senses":[{"def":"学院；大学","ex":"The university is big, and the college is small.","exCn":"大学很大，学院很小。","syn":"—","ant":"—"}],"inArt":1},{"word":"block","ipa":"/blɒk/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"街区","phrase":"a block of flats","phraseDef":"一排公寓","ex":"A block of flats is next to the building.","exCn":"一栋公寓楼在这座大楼旁边。","defC":"街区","senses":[{"def":"街区","ex":"A block of flats is next to the building.","exCn":"一栋公寓楼在这座大楼旁边。","syn":"—","ant":"—"}],"inArt":1},{"word":"police station","ipa":"/pəˈliːs ˌsteɪʃn/","pos":"phrase","cef":"A2","band":"中高频(2000-3000)","defB":"警察局","phrase":"near the police station","phraseDef":"在警察局附近","ex":"The police station is next to the bookstore.","exCn":"警察局在书店旁边。","defC":"警察局","senses":[{"def":"警察局","ex":"The police station is next to the bookstore.","exCn":"警察局在书店旁边。","syn":"—","ant":"—"}],"inArt":0},{"word":"guest-house","ipa":"/ˈɡest haʊs/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"家庭旅馆","phrase":"a small guest-house","phraseDef":"小家庭旅馆","ex":"The guest-house is small but nice.","exCn":"家庭旅馆小但舒适。","defC":"家庭旅馆","senses":[{"def":"家庭旅馆","ex":"The guest-house is small but nice.","exCn":"家庭旅馆小但舒适。","syn":"—","ant":"—"}],"inArt":0},{"word":"lift","ipa":"/lɪft/","pos":"noun","cef":"A2","band":"中高频(2000-3000)","defB":"电梯（英式）","phrase":"take the lift","phraseDef":"乘电梯","ex":"The lift goes up.","exCn":"电梯往上去。","defC":"电梯（英式）","senses":[{"def":"电梯（英式）","ex":"The lift goes up.","exCn":"电梯往上去。","syn":"—","ant":"—"}],"inArt":1},{"word":"castle","ipa":"/ˈkɑːsl/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"城堡","phrase":"an old castle","phraseDef":"古老的城堡","ex":"The visitor is from Japan, and we visit a castle.","exCn":"游客来自日本，我们参观一座城堡。","defC":"城堡","senses":[{"def":"城堡","ex":"The visitor is from Japan, and we visit a castle.","exCn":"游客来自日本，我们参观一座城堡。","syn":"—","ant":"—"}],"inArt":1},{"word":"exit","ipa":"/ˈeksɪt/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"出口","phrase":"the exit door","phraseDef":"出口门","ex":"The passenger is late, and the exit is there.","exCn":"乘客迟到了，出口在那里。","defC":"出口","senses":[{"def":"出口","ex":"The passenger is late, and the exit is there.","exCn":"乘客迟到了，出口在那里。","syn":"—","ant":"—"}],"inArt":1},{"word":"railway station","ipa":"/ˈreɪlweɪ ˌsteɪʃn/","pos":"phrase","cef":"A2","band":"中频(3000-4000)","defB":"火车站","phrase":"at the railway station","phraseDef":"在火车站","ex":"The railway station is near our house.","exCn":"火车站在我们家附近。","defC":"火车站","senses":[{"def":"火车站","ex":"The railway station is near our house.","exCn":"火车站在我们家附近。","syn":"—","ant":"—"}],"inArt":0},{"word":"grocery store","ipa":"/ˈɡrəʊsəri stɔː/","pos":"phrase","cef":"A2","band":"中频(3000-4000)","defB":"食品杂货店","phrase":"a corner grocery store","phraseDef":"街角杂货店","ex":"The pharmacy sells medicine, and the grocery store sells food.","exCn":"药房卖药，杂货店卖食物。","defC":"食品杂货店","senses":[{"def":"食品杂货店","ex":"The pharmacy sells medicine, and the grocery store sells food.","exCn":"药房卖药，杂货店卖食物。","syn":"—","ant":"—"}],"inArt":0},{"word":"elevator","ipa":"/ˈelɪveɪtə/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"电梯（美式）","phrase":"take the elevator","phraseDef":"乘电梯","ex":"The elevator is fast.","exCn":"电梯很快。","defC":"电梯（美式）","senses":[{"def":"电梯（美式）","ex":"The elevator is fast.","exCn":"电梯很快。","syn":"—","ant":"—"}],"inArt":1},{"word":"pharmacy","ipa":"/ˈfɑːməsi/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"药房","phrase":"a late pharmacy","phraseDef":"开到晚的药房","ex":"The pharmacy sells medicine, and the grocery store sells food.","exCn":"药房卖药，杂货店卖食物。","defC":"药房","senses":[{"def":"药房","ex":"The pharmacy sells medicine, and the grocery store sells food.","exCn":"药房卖药，杂货店卖食物。","syn":"—","ant":"—"}],"inArt":1},{"word":"bookstore","ipa":"/ˈbʊkstɔː/","pos":"noun","cef":"A2","band":"中频(3000-4000)","defB":"书店","phrase":"a big bookstore","phraseDef":"大书店","ex":"The police station is next to the bookstore.","exCn":"警察局在书店旁边。","defC":"书店","senses":[{"def":"书店","ex":"The police station is next to the bookstore.","exCn":"警察局在书店旁边。","syn":"—","ant":"—"}],"inArt":1}]}],"dialogues":[{"title":"① 怎么去机场？","turns":[{"role":"A","en":"How do you go to the airport?","cn":"你怎么去机场？"},{"role":"B","en":"By train. It is quicker than the bus.","cn":"坐火车，比公交快。"},{"role":"A","en":"Is the train more expensive?","cn":"火车更贵吗？"},{"role":"B","en":"Yes, but it is easier and safer.","cn":"贵一点，但更轻松更安全。"},{"role":"A","en":"How long is the journey?","cn":"路程多久？"},{"role":"B","en":"About forty minutes.","cn":"大约四十分钟。"}]},{"title":"② 骑车还是开车","turns":[{"role":"A","en":"Is a bike cheaper than a car?","cn":"自行车比汽车便宜吗？"},{"role":"B","en":"Yes, much cheaper. And it is healthier.","cn":"便宜多了，而且更健康。"},{"role":"A","en":"But a car is quicker in the rain.","cn":"但下雨时汽车更快。"},{"role":"B","en":"True. Cars are also more dangerous in traffic.","cn":"对，车在拥堵时也更危险。"},{"role":"A","en":"Cars pollute the air, too.","cn":"汽车还污染空气。"},{"role":"B","en":"That is why I ride my bike.","cn":"所以我骑自行车。"}]},{"title":"③ 去海滩","turns":[{"role":"A","en":"Are we going to the beach tomorrow?","cn":"我们明天去海滩吗？"},{"role":"B","en":"Yes! We go by ferry.","cn":"去！我们坐渡轮。"},{"role":"A","en":"Is the ferry big?","cn":"渡轮大吗？"},{"role":"B","en":"Yes, it is bigger than a taxi!","cn":"比出租车大得多！"},{"role":"A","en":"Can we take the suitcase?","cn":"能带行李箱吗？"},{"role":"B","en":"Of course. Pack it tonight.","cn":"当然，今晚收拾。"}]},{"title":"④ 哪种方式最好","turns":[{"role":"A","en":"What is the best way to travel in a city?","cn":"城市里最好的出行方式是什么？"},{"role":"B","en":"The underground train. No traffic!","cn":"地铁，不堵车！"},{"role":"A","en":"Is it expensive?","cn":"贵吗？"},{"role":"B","en":"No, it is cheap and fast.","cn":"不贵，又快又便宜。"},{"role":"A","en":"I go by motorbike. It is fun!","cn":"我骑摩托，很好玩！"},{"role":"B","en":"Fun, but more dangerous than the train.","cn":"好玩，但比火车危险。"}]}],"phonics":{"hand_anchor":{"title":"🖐 元音手掌握图（按口型位置记元音）","hint":"把手张开：拇指→小指，对应 5 个长元音的口型位置；掌心是短元音。跟着手指读一遍，就能记住嘴型。","long":[{"pos":"小指","ipa":"/iː/","say":"ee——","words":["see","eat","green"],"cn":"看见 / 吃 / 绿色"},{"pos":"无名指","ipa":"/eɪ/","say":"诶——","words":["name","day","play"],"cn":"名字 / 天 / 玩"},{"pos":"中指","ipa":"/aɪ/","say":"爱——","words":["I","my","time"],"cn":"我 / 我的 / 时间"},{"pos":"食指","ipa":"/ɔː/","say":"哦——","words":["four","sport","door"],"cn":"四 / 运动 / 门"},{"pos":"拇指","ipa":"/uː/","say":"乌——","words":["food","blue","school"],"cn":"食物 / 蓝色 / 学校"}],"short":[{"ipa":"/ɪ/","words":["sit","big","fish"],"cn":"坐 / 大 / 鱼","say":"短促的 i"},{"ipa":"/e/","words":["bed","red","ten"],"cn":"床 / 红 / 十","say":"短促的 e"},{"ipa":"/æ/","words":["bag","cat","hand"],"cn":"包 / 猫 / 手","say":"嘴张大"},{"ipa":"/ɒ/","words":["dog","box","hot"],"cn":"狗 / 盒子 / 热","say":"嘴圆"},{"ipa":"/ʌ/","words":["cup","bus","country"],"cn":"杯 / 巴士 / 国家","say":"松嘴短 u"}]},"sound_cards":[{"sound":"/eə/","name":"双元音（air / airport / stairs）","words":["air","airport","stairs","care"],"phrase_en":"The air at the airport is fresh? No, it is full of traffic!","phrase_cn":"机场空气新鲜？不，全是车流的味道！","tip":"从 /e/ 滑向 /ə/，嘴越来越松——/eə/ 是英式的「诶-呃」"},{"sound":"/aɪ/","name":"双元音（bike / my / like）","words":["bike","my","like","time"],"phrase_en":"I like my new bike.","phrase_cn":"我喜欢我的新自行车。","tip":"从大嘴 /a/ 滑到 /ɪ/——/aɪ/ 别读成短「爱」"}],"min_pairs":[{"a":"air","a_ipa":"/eə/","b":"ear","b_ipa":"/ɪə/","tip":"/eə/ 从 /e/ 起音，/ɪə/ 从 /ɪ/ 起音——airport 别读成 earport"},{"a":"wheel","a_ipa":"/wiːl/","b":"will","b_ipa":"/wɪl/","tip":"/iː/ 长而紧，/ɪ/ 短而松"},{"a":"boat","a_ipa":"/bəʊt/","b":"boot","b_ipa":"/buːt/","tip":"/əʊ/ 从 /ə/ 滑到圆唇，/uː/ 一直圆着不动"}],"intonation_cards":[{"word":"how","ipa":"/haʊ/","cn":"怎样","arrow":"↘","tone":"降调","sent":"How do you go to school?","sent_cn":"你怎么上学？","tip":"how 问方式，句末往下 ↘ —— 要具体答案。","pair":{"en":"Do you go by bike?","cn":"你骑自行车吗？"}},{"word":"is","ipa":"/ɪz/","cn":"是","arrow":"↗","tone":"升调","sent":"Is the train quicker?","sent_cn":"火车更快吗？","tip":"is 开头的一般疑问句，尾音上扬 ↗ 等确认。","pair":{"en":"The train is quicker.","cn":"火车更快。"}}],"intonation_pairs":[{"left":{"en":"The bus is cheap.","cn":"公交便宜。","arrow":"↘","tone":"降调"},"right":{"en":"The bus is cheap?","cn":"公交便宜？（升调）","arrow":"↗","tone":"升调"},"ask":"听到这两句，分别该做什么？","answer":"↘ 是陈述「便宜，坐吧」；↗ 是怀疑「真便宜？！」——比价时升调表示不信，要再确认。"}],"antonym_pairs":[{"a":"cheap","b":"expensive","cn_a":"便宜","cn_b":"贵","sent":"The bus is cheap, but the taxi is expensive.","sent_cn":"公交便宜，但出租车贵。"},{"a":"quick","b":"slow","cn_a":"快","cn_b":"慢","sent":"The train is quick, but walking is slow.","sent_cn":"火车快，但走路慢。"},{"a":"better","b":"worse","cn_a":"更好","cn_b":"更差","sent":"Riding is better for you than driving, but driving is worse for the air.","sent_cn":"骑车比开车对你更好，但开车对空气更差。"}]},"reading":[{"title":"Getting to School","focus":"交通方式 · 比较","meta":"A1 受控原创（句长≤8词）","sentences":["I go to school by bike.","My brother goes by bus.","The bus is easier in the rain.","My bike is healthier and cheaper.","The bus is quicker on the big road.","We both get to school on time.","My home is five kilometres from school.","My bike is red and my brother's bike is blue.","We never go to school by car.","Green transport is our first choice."],"questions":[{"q":"How does the writer go to school?","opts":["by bus","by bike","by car"],"answer":1},{"q":"What is easier in the rain?","opts":["the bike","the bus","the train"],"answer":1},{"q":"Which sentence is in the text?","opts":["I go to school by bike.","I do not go to school by bike.","This is not in the text."],"answer":0}]},{"title":"By Plane","focus":"飞机旅行 · 机场词汇","meta":"A1 受控原创（句长≤8词）","sentences":["Last summer we went to Spain by plane.","The journey was four hours long.","Flying is quicker than the ferry.","The airport was very big and busy.","Our suitcase was heavy but small.","The plane flew over the mountains and the sea.","The food on the plane was not great.","Next time we will take the train."],"questions":[{"q":"How did they go to Spain?","opts":["by ferry","by plane","by train"],"answer":1},{"q":"What was heavy?","opts":["the plane","the suitcase","the engine"],"answer":1},{"q":"Which sentence is in the text?","opts":["The airport was very big.","The airport was very small.","The airport was very clean."],"answer":0}]},{"title":"A Journey to the Beach","focus":"自然地点 · 渡轮","meta":"A1 受控原创（句长≤8词）","sentences":["On Sunday we went to the beach.","We took the ferry across the river.","The water was blue and warm.","It was a lovely journey.","We swam near the forest and collected shells.","The ferry was very big and clean.","The journey took only twenty minutes."],"questions":[{"q":"How did they cross the river?","opts":["by bus","by ferry","by bike"],"answer":1},{"q":"What was the water like?","opts":["blue and warm","cold and dirty","deep and green"],"answer":0},{"q":"Which sentence is in the text?","opts":["We took the ferry across the river.","We did not take the ferry across the river.","This is not in the text."],"answer":0}]},{"title":"Fast and Slow","focus":"比较级 · 交通对比","meta":"A1 受控原创（句长≤8词）","sentences":["A helicopter is very fast.","A bike is slower but healthier.","A train is cheaper than a plane.","A taxi is more expensive than the bus.","Walking is the healthiest of all.","Which is best for you?","But it is also the slowest."],"questions":[{"q":"What is cheaper than a plane?","opts":["a taxi","a train","a helicopter"],"answer":1},{"q":"What is the healthiest?","opts":["flying","walking","driving"],"answer":1},{"q":"What is Walking?","opts":["the healthiest of all","my friend","my home"],"answer":0}]},{"title":"Green Transport","focus":"环保 · 出行方式","meta":"A1 受控原创（句长≤8词）","sentences":["Cars pollute the air in big cities.","Traffic is a big problem.","The underground train is clean and quick.","Bikes are healthy and do not pollute.","Buses are cheaper than taxis.","Let us choose green transport!","Traffic is a big problem in the morning.","Walking and cycling are the best choices."],"questions":[{"q":"What pollutes the air?","opts":["bikes","cars","trains"],"answer":1},{"q":"What is clean and quick?","opts":["taxis","the underground train","motorbikes"],"answer":1},{"q":"What is Traffic?","opts":["a big problem","a doctor","a teacher"],"answer":0}]},{"title":"The High-Speed Train","focus":"交通 · 比较级","china":1,"meta":"A1 中国主题 · 原创","sentences":["The high-speed train is very fast.","I like the train.","It goes from Beijing to Shanghai in five hours.","It is quicker than a car and cheaper than a plane.","The seats are wide and comfortable.","There is free Wi-Fi on the train.","I like the train better than the plane."],"questions":[{"q":"Where does the train go?","opts":["from Beijing to Shanghai","from Beijing to Chengdu","from Shanghai to Tokyo"],"answer":0},{"q":"What is quicker than a car?","opts":["the bus","the bike","the train"],"answer":2},{"q":"How are the seats?","opts":["comfortable","dirty","small"],"answer":0}]},{"title":"Bikes in China","focus":"交通 · 祈使句 · 环保","china":1,"meta":"A1 中国主题 · 原创","sentences":["Many people in China ride bikes.","Bikes are cheap and clean.","Please be careful!","Bikes are healthier than cars.","Bikes are cheap, clean and fast in the city.","You can ride a bike in the park or on the road.","Sharing bikes are everywhere now.","Please be careful near the road!"],"questions":[{"q":"What do many people ride?","opts":["bikes","cars","buses"],"answer":0},{"q":"What must you be?","opts":["fast","quiet","careful"],"answer":2},{"q":"How are bikes?","opts":["healthier than cars","more expensive than cars","more dangerous than cars"],"answer":0}]},{"title":"How Do We Get There?","focus":"交通方式 · 比较级 · 环保","meta":"A1 受控原创（句长≤8词 · 高频≥85% · 生词≤5%）","sentences":["My home is five kilometres from school.","I go there by bike and my brother goes by bus.","The bus is easier on rainy days.","My bike is healthier and much cheaper.","The bus is quicker on the big road.","A car is the fastest way, but it is not the greenest.","We both get to school on time.","Walking is best for short journeys."],"questions":[{"q":"How does the writer go to school?","opts":["By bike","By bus","By car"],"answer":0},{"q":"Which way is easiest on rainy days?","opts":["The bus","The bike","Walking"],"answer":0},{"q":"Which way is not the greenest?","opts":["Walking","The bike","The car"],"answer":2}]},{"title":"A Trip Across China","focus":"旅行场景 · 交通 · 过去式 · 比较","meta":"A1 受控原创（句长≤8词 · 高频≥85% · 生词≤5%）","sentences":["Last summer we travelled across China.","We went to Beijing by plane.","Then we took the high-speed train to Shanghai.","The train was slower than the plane.","But it was cheaper and more comfortable.","The seats were wide and the view was beautiful.","We walked a lot in the old city.","Green transport is better for our health and the air.","Next time we will travel by train from the start."],"questions":[{"q":"How did they go to Beijing?","opts":["By plane","By train","By car"],"answer":0},{"q":"Why was the train better than the plane?","opts":["It was cheaper and more comfortable","It was faster","It was cheaper only"],"answer":0},{"q":"What do they want to do next time?","opts":["Travel by plane again","Travel by train from the start","Not travel at all"],"answer":1}]}],"listening":[{"title":"By Subway","focus":"交通 · 祈使 · 方向","china":1,"meta":"A1 听力 · 中国主题","sentences":["How do I get to the museum?","Take the subway.","Get off at the next station.","The museum is next to the park.","It is very easy.","Turn right at the crossing."],"questions":[{"q":"How does the writer get to the museum?","opts":["by subway","by bus","by taxi"],"answer":0},{"q":"Where is the museum?","opts":["next to the bank","behind the square","next to the park"],"answer":2},{"q":"How is it?","opts":["difficult","expensive","easy"],"answer":2}]},{"title":"The Bus in My City","focus":"公交 · 形容词 · 比较","meta":"A1 听力 · 盲听训练","sentences":["I go to school by bus.","The bus is cheap.","But it is slower than the subway.","There is a lot of traffic in the morning.","In the afternoon it is quicker.","I sometimes ride my bike instead."],"questions":[{"q":"How does the writer go to school?","opts":["by bus","by bike","by subway"],"answer":0},{"q":"What is slower than the subway?","opts":["the bike","the plane","the bus"],"answer":2},{"q":"What is there a lot of?","opts":["traffic","water","air"],"answer":0}]},{"title":"Beijing to Shanghai","focus":"比较 · 交通方式","china":1,"meta":"A1 听力 · 中国主题","sentences":["You can go by plane.","Or you can take the train.","The plane is quicker.","But the train is cheaper.","The train is also more comfortable.","It takes about five hours."],"questions":[{"q":"What is quicker?","opts":["the plane","the train","the bus"],"answer":0},{"q":"What is cheaper?","opts":["the plane","the taxi","the train"],"answer":2},{"q":"What is more comfortable?","opts":["the plane","the train","the bus"],"answer":1}]},{"title":"Bike Sharing","focus":"科技 · 交通 · 环保","china":1,"meta":"A1 听力 · 中国主题","sentences":["The bike is near my home.","It is cheap and easy.","Bikes do not pollute the air.","I use a sharing bike every day.","I find it with my phone in two minutes.","I put it back at any station."],"questions":[{"q":"How does the writer find the bike?","opts":["with his phone","at the station","in the park"],"answer":0},{"q":"Where is the bike?","opts":["near his home","near the school","in the park"],"answer":0},{"q":"What is true about bikes?","opts":["they are expensive","they are slow","they do not pollute the air"],"answer":2}]},{"title":"Getting to the Great Wall","focus":"问路 · 祈使 · 方位","china":1,"meta":"A1 听力 · 中国主题","sentences":["Excuse me, where is the Great Wall?","Go along this road.","Turn left at the bus station.","Take the bus to Badaling.","The Great Wall is very long.","Go along this road for two kilometres.","It is worth the journey."],"questions":[{"q":"What does the writer do at the bus station?","opts":["turns left","turns right","goes straight"],"answer":0},{"q":"How is the Great Wall?","opts":["very short","very cheap","very long"],"answer":2},{"q":"Where does the writer want to go?","opts":["to the Great Wall","to the museum","to the park"],"answer":0}]},{"title":"Our Trip to the Mountains","focus":"过去时 · 现在完成时 never / been","meta":"A2 听力 · 单选 + 填空","sentences":["We went to the mountains last summer.","I have never seen such a high hill.","We walked for three hours on the first day.","The air there was cleaner than in the city.","We took many photos near the river.","It was the best week of my life."],"questions":[{"q":"When did they go to the mountains?","opts":["last summer","last winter","this spring"],"answer":0},{"q":"How long did they walk on the first day?","opts":["three hours","two hours","five hours"],"answer":0},{"q":"They took many photos near the ___.","type":"fill","answer":"river","hint":"水边"}]},{"title":"The Mountain Village","focus":"have been to · 愿望","china":1,"meta":"A2 听力 · 中国主题","sentences":["We stayed in a small mountain village.","The people there were very friendly.","The food was cheaper than in the city.","We have been to that village twice.","I would like to go there again.","The nights were quiet and dark."],"questions":[{"q":"How many times have they been to the village?","opts":["twice","once","three times"],"answer":0},{"q":"How was the food there?","opts":["cheaper than in the city","more expensive","the same"],"answer":0},{"q":"They stayed in a small ___ village.","type":"fill","answer":"mountain","hint":"地形"}]},{"title":"From Beijing to Shanghai","focus":"比较 · 交通方式","meta":"A1 听力 · 盲听训练","sentences":["There are two ways from Beijing to Shanghai.","You can go by plane.","Or you can take the high-speed train.","The plane is quicker, but it is more expensive.","The train is cheaper and more comfortable.","It takes about five hours.","I prefer the train, because I can see the country."],"questions":[{"q":"Which way is cheaper?","opts":["The plane","The train","Both are the same"],"answer":1},{"q":"Why does the writer prefer the train?","opts":["He can see the country","It is quicker","It is closer"],"answer":0},{"q":"How long does the train take?","opts":["Three hours","About five hours","Ten hours"],"answer":1}]},{"title":"Asking for the Way","focus":"问路 · 祈使句 · 方位","meta":"A1 听力 · 盲听训练","sentences":["Excuse me, how do I get to the train station?","Go straight on for three minutes.","Then turn left at the big bank.","The station is between the bank and the hotel.","You can walk there in eight minutes.","It is easy and safe."],"questions":[{"q":"Where is the station?","opts":["Between the bank and the hotel","Behind the bank","Near the hotel"],"answer":0},{"q":"Where do you turn left?","opts":["At the big bank","At the station","At the hotel"],"answer":0},{"q":"How long does it take on foot?","opts":["Three minutes","Eight minutes","Twenty minutes"],"answer":1}]}],"grammar":[{"pid":"prep-place1","name":"地点介词：in / on / under","desc":"在……里 / 上 / 下"},{"pid":"14-1","name":"祈使句·肯定","desc":"动词原形开头"},{"pid":"14-2","name":"祈使句否定：Don't + 原形","desc":"别做某事"}],"article":{"title":"Our Trip to the Mountains","paras":[[["We travel by train to the mountains.","我们乘火车去山里旅行。"],["The train is quicker than the bus.","火车比巴士快。"],["The bus is cheaper than the taxi.","巴士比出租车便宜。"],["The taxi is more expensive than the bike.","出租车比自行车贵。"],["The bike is healthier than the car.","自行车比汽车更健康。"],["Walking is easier than running.","走路比跑步轻松。"],["The plane is bigger than the helicopter.","飞机比直升机大。"],["The ferry is on the sea, and the boat is on the lake.","渡轮在海面上，小船在湖面上。"],["The underground train is fast.","地铁很快。"],["The engine is loud, and the wheel is round.","发动机很响，轮子是圆的。"],["The rail is long, and the road is busy.","铁轨很长，公路很繁忙。"],["The traffic is bad in the morning.","早上交通很堵。"],["Cars pollute the air.","汽车污染空气。"],["The ship is in the ocean.","轮船在海洋里。"],["The tram is new, and the airplane is fast.","电车是新的，飞机很快。"],["The trip is long, and the flight is at nine.","旅程很长，航班在九点。"]],[["We go on a journey to the mountains.","我们去山里旅行。"],["My suitcase is heavy, and the luggage is in the car.","我的手提箱很重，行李在车里。"],["The case is on the seat.","箱子在座位上。"],["The airport is big and busy.","机场又大又繁忙。"],["The railway station is near our house.","火车站在我们家附近。"],["The police station is next to the bookstore.","警察局在书店旁边。"],["The pharmacy sells medicine, and the grocery store sells food.","药房卖药，杂货店卖食物。"],["The office is in the city.","办公室在城里。"],["The university is big, and the college is small.","大学很大，学院很小。"],["We move our bags to the car.","我们把包挪到车上。"],["We leave at eight o'clock.","我们八点出发。"],["We return at six in the evening.","我们晚上六点回来。"],["My dad can drive, and the driver is my uncle.","我爸爸会开车，司机是我叔叔。"],["The pilot flies the plane.","飞行员开飞机。"],["The mechanic can repair the engine.","机械师能修理发动机。"],["The engineer designs the machines, and every machine is big.","工程师设计机器，每台机器都很大。"],["The lift goes up.","电梯往上去。"],["The elevator is fast.","电梯很快。"],["The mirror is in the car.","镜子在车里。"],["The petrol is expensive, and the tyre is new.","汽油很贵，轮胎是新的。"],["The window is open, and the map is on the wall.","窗户开着，地图在墙上。"],["The traffic light is red, so we stop.","红灯亮了，我们停车。"],["The platform is long, and the train is delayed.","站台很长，火车晚点了。"],["There is a delay at the airport.","机场有延误。"],["The passenger is late, and the exit is there.","乘客迟到了，出口在那里。"],["The visitor is from Japan, and we visit a castle.","游客来自日本，我们参观一座城堡。"],["The tour is fun, and the tour guide is kind.","旅行很有趣，导游很和善。"],["The guest-house is small but nice.","家庭旅馆小但舒适。"],["A block of flats is next to the building.","一栋公寓楼在这座大楼旁边。"],["My driving licence is new.","我的驾照是新的。"],["Go straight on, then turn right and left.","一直走，然后右转再左转。"],["The way is long, but the zoo is far from here.","路很长，但动物园离这里很远。"]],[["The forest is green and beautiful.","森林绿而美丽。"],["The hill is high, and the mountain is higher.","山丘高，山更高。"],["The river is long, and the water is clean.","河流很长，水很干净。"],["The sea is warm in summer.","夏天的海水很暖和。"],["Public transport is good for the city.","公共交通对城市有好处。"],["The train is better than the bus, and the bus is bigger than the taxi.","火车比巴士好，巴士比出租车大。"],["The car is more dangerous than the train.","汽车比火车更危险。"]],[["On the way, we see a big lake.","在路上，我们看到一个大湖。"],["The horses are on the hill, and my uncle rides a motorbike.","马在山上，我叔叔骑一辆摩托车。"],["The boat is floating on the lake.","小船漂浮在湖面上。"],["We talk about our trip on the train.","我们在火车上谈论我们的旅行。"]]]},"artForms":["helicopter","university","bookstore","healthier","motorbike","mountains","passenger","transport","airplane","building","elevator","engineer","machines","mechanic","mountain","pharmacy","platform","suitcase","airport","cheaper","college","delayed","driving","journey","luggage","machine","pollute","quicker","traffic","visitor","better","bigger","castle","driver","easier","engine","flight","forest","mirror","office","petrol","repair","return","travel","window","block","delay","drive","ferry","leave","pilot","plane","right","river","train","visit","water","wheel","bike","boat","cars","case","exit","hill","lake","left","lift","move","rail","road","seat","ship","stop","taxi","tour","tram","trip","tyre","air","bus","car","far","map","sea","way"]};
+const STORE_KEY = "a1_unit"+DATA.unit+"_state_v4";
+const CHECK_KEY = "a1_checkin_dates_v4";  // 全局共享打卡 streak（跨单元）
+const ERR_KEY = "a1_unit"+DATA.unit+"_errors_v4";
+const BEASTS = [
+  {u:1,e:"🌍",n:"世界之灵",d:"国家·国籍·疑问词·be"},
+  {u:2,e:"😊",n:"欢欣兽",d:"场所·感受·代词"},
+  {u:3,e:"👪",n:"家脉兽",d:"家庭·房间·指示代词"},
+  {u:4,e:"🏙️",n:"城巡兽",d:"城市地点·介词·数字"},
+  {u:5,e:"🎮",n:"闲趣兽",d:"休闲·频率·设备·星期"},
+  {u:6,e:"🤝",n:"挚友兽",d:"身体·外貌·问候"},
+  {u:7,e:"⚽",n:"竞跃兽",d:"运动·can·时间·月份"},
+  {u:8,e:"🎵",n:"律动兽",d:"音乐·衣物·进行时"},
+  {u:9,e:"🍰",n:"飨宴兽",d:"食物·餐饮·must"},
+  {u:10,e:"🚀",n:"凌云兽",d:"成就·天气·过去式"},
+  {u:11,e:"🐾",n:"百兽灵",d:"动物·过去式·形容词"},
+  {u:12,e:"🚆",n:"远行兽",d:"交通·地点·比较级"},
+];
+
+let state = loadState();
+let checkins = loadCheckins();
+let errors = loadErrors();
+let curGroupLearn = 0, curGroupReview = 0;
+let shIdx = 0, shQueue = [], shAuto = false, shTimer = null;
+let rec = {mr:null, recording:false, url:null, stopBtn:null, stopLabel:null, containerEl:null};
+
+function loadState(){ try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}} }
+function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function loadCheckins(){ try{return JSON.parse(localStorage.getItem(CHECK_KEY))||[]}catch(e){return[]} }
+function loadErrors(){ try{return JSON.parse(localStorage.getItem(ERR_KEY))||[]}catch(e){return[]} }
+function saveErrors(){ localStorage.setItem(ERR_KEY, JSON.stringify(errors)); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+/* ---------- 语音（全局） ---------- */
+let voices=[], voice=null;
+function loadVoices(){
+  voices = speechSynthesis.getVoices();
+  const sel=document.getElementById('voiceSel');
+  const PREF=['en-GB','en-AU','en-IE','en-US'];
+  sel.innerHTML='';
+  voices = voices.slice().sort(function(a,b){function rank(v){if(/en-GB/i.test(v.lang||''))return (/Libby/i.test(v.name)?0:1);if(/en-AU/i.test(v.lang||''))return 2;if(/en-IE/i.test(v.lang||''))return 3;if(/en-US/i.test(v.lang||''))return 4;return 9;}return rank(a)-rank(b);});
+  let prefV=null;
+  voices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    o.value=i; o.textContent=v.name+(v.localService?' · 离线':' · 在线');
+    sel.appendChild(o);
+    if((/en-GB/i.test(v.lang||'')&&/Libby/i.test(v.name)&&!prefV)){ prefV=v; o.selected=true; }if(!prefV){ for(const p of PREF){ if(v.lang===p){ prefV=v; o.selected=true; break; } } }
+  });
+  voice = prefV || voices[0] || null;
+  if(prefV){ sel.value = voices.indexOf(prefV); }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function getVoice(){ const i=document.getElementById('voiceSel').value; return voices[i]||null; }
+function rateVal(){ return parseFloat(document.getElementById('rate').value); }
+function speak(text, opt){
+  opt=opt||{};
+  if(!('speechSynthesis' in window)){ if(opt.onend)opt.onend(); return; }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  const v=getVoice(); if(v)u.voice=v;
+  u.rate = rateVal()*(opt.slow?0.6:1); u.pitch=1; u.volume=1;
+  u.onend = opt.onend||function(){};
+  u.onerror = opt.onend||function(){};
+  speechSynthesis.speak(u);
+  if(speechSynthesis.paused) speechSynthesis.resume();
+}
+
+/* ---------- 工具 ---------- */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+/* 可发音词块：任何带 data-say 的元素点一下就朗读（全局事件委托，一次绑定全页生效）
+   suppressSay：作答的那一次点击只算「选择」，不当成「点词发音」，避免中文选英文时
+   点一下选项既答题又泄题听感 */
+let suppressSay=false;
+document.addEventListener('click', function(e){
+  const t=e.target.closest('[data-say]');
+  if(t && !suppressSay && !e.target.closest('[data-nsay]')){ e.preventDefault(); e.stopPropagation(); speak(t.getAttribute('data-say')); }
+});
+function sayChip(text, cls){ return '<span class="wchip '+(cls||'')+'" data-say="'+esc(text)+'">'+esc(text)+'<b>🔊</b></span>'; }
+/* 功能词/专名/缩写：不算「预学新词」（它们不是需要记忆的实义词） */
+const FUNCWORDS=new Set(("a an the is are am was were be been being do does did have has had "+
+"i you he she it we they me him her us them my your his its our their this that these those "+
+"what where who why how when in on at to for from of with and but or so not no yes "+
+"very too also can could will would shall may might must there here my one two three now "+
+"hello hi ok okay oh right thanks thank please let's im it's how's what's who's he's she's "+
+"that's there's we're they're don't doesn't isn't aren't wasn't weren't can't couldn't "+
+"wouldn't shouldn't i've i'll you're you've name fine good").split(/\s+/));
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function allWords(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w.word))); return a; }
+function allWordObjs(){ let a=[]; DATA.groups.forEach(g=>g.words.forEach(w=>a.push(w))); return a; }
+function masteredCount(){ return allWords().filter(w=>(state[w]||{}).mastered).length; }
+function shadowedCount(){ return allWords().filter(w=>(state[w]||{}).shadowed).length; }
+function updateProgress(){
+  const total=allWords().length;
+  const m=masteredCount();
+  const pct=Math.round(m/total*100);
+  document.getElementById('pctTop').textContent=pct+'%';
+  document.getElementById('barTop').style.width=pct+'%';
+  let stars = pct>=80?3:pct>=50?2:pct>=20?1:0;
+  document.getElementById('starTop').textContent = '★'.repeat(stars)+'☆'.repeat(3-stars);
+  document.getElementById('beastStreak').textContent=`已跟读 ${shadowedCount()}/${total} · 已掌握 ${m}/${total} · 错题 ${errors.length}`;
+}
+function flash(msg){ const t=document.createElement('div'); t.textContent=msg;
+  t.style.cssText='position:fixed;left:50%;top:20px;transform:translateX(-50%);background:var(--gold);color:#1a1a1a;padding:8px 16px;border-radius:10px;font-weight:700;z-index:99';
+  document.body.appendChild(t); setTimeout(()=>t.remove(),1400); }
+
+/* ---------- 统一录音（单句 & 对话共用） ---------- */
+function noteShadow(msg){ const n=document.getElementById('shBanner'); if(msg){ n.style.display='block'; n.textContent=msg; } else { n.style.display='none'; } }
+function startRec(text, container, stopBtn, stopLabel){
+  if(rec.recording && rec.stopBtn===stopBtn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音；现在可用「听原声」模式。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你的跟读录音，对比原声找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=stopBtn; rec.stopLabel=stopLabel||'● 开始录音';
+    rec.containerEl=container.parentElement; if(rec.containerEl) rec.containerEl.classList.add('recording');
+    stopBtn.textContent='■ 停止';
+    speak(text);
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可改用「听原声」模式。'); });
+}
+function stopRec(){
+  if(rec.recording && rec.mr){ rec.mr.stop(); rec.recording=false;
+    if(rec.stopBtn) rec.stopBtn.textContent = rec.stopLabel||'● 开始录音';
+    if(rec.containerEl) rec.containerEl.classList.remove('recording');
+    rec.stopBtn=null; rec.containerEl=null; }
+}
+/* 只录不放（用于"我来回应"——先看清/听问句，再录自己的回答） */
+function startRecRaw(text, container, btn){
+  if(rec.recording && rec.stopBtn===btn){ stopRec(); return; }
+  if(rec.recording){ stopRec(); }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    noteShadow('⚠️ 当前打开方式（双击文件）无法访问麦克风。请用本地服务地址打开本页即可真录音。');
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const mr=new MediaRecorder(stream); const chunks=[];
+    mr.ondataavailable=e=>{ if(e.data.size>0) chunks.push(e.data); };
+    mr.onstop=()=>{ const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'}); if(rec.url)URL.revokeObjectURL(rec.url); rec.url=URL.createObjectURL(blob);
+      container.innerHTML=`<audio controls src="${rec.url}"></audio><div class="hint">↑ 这是你回应的录音，对比示范找差距。</div>`;
+      stream.getTracks().forEach(t=>t.stop()); };
+    mr.start(); rec.mr=mr; rec.recording=true; rec.stopBtn=btn; rec.stopLabel=btn.textContent;
+    rec.containerEl = btn.closest('.exchange')||container.parentElement;
+    if(rec.containerEl) rec.containerEl.classList.add('recording');
+    btn.textContent='■ 停止（说完点这）';
+    container.innerHTML='<div class="hint"><span class="rec-dot"></span> 请说出回应：'+esc(text)+'</div>';
+  }).catch(err=>{ noteShadow('无法录音：'+err.message+'。可先点「🔊 听示范回应」模仿。'); });
+}
+function addError(obj){
+  obj.time=Date.now(); obj.unit=DATA.unit;
+  errors.push(obj); saveErrors(); renderErrors(); updateProgress();
+}
+
+/* ---------- 渲染：学习 B ---------- */
+function renderLearn(){
+  const grpTabs=document.getElementById('grpLearn');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupLearn)b.className='on';
+    b.onclick=()=>{curGroupLearn=i; renderLearn();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridLearn'); grid.innerHTML='';
+  DATA.groups[curGroupLearn].words.forEach((w)=>{
+    const st=state[w.word]||{};
+    const card=document.createElement('div'); card.className='card'+(st.mastered?' done':'');
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      <div class="def"><span class="cnLearn">${esc(w.defB)}</span></div>
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <div class="ex" data-ex="${esc(w.ex)}">${esc(w.ex)}<span class="cn cnLearn">${esc(w.exCn||'')}</span></div>
+      <div class="acts">
+        <button class="b-play" data-word="${esc(w.word)}">🔊 单词</button>
+        <button class="b-shadow" data-word="${esc(w.word)}">🎤 跟读打卡</button>
+        <button class="b-master ${st.mastered?'mastered':''}" data-word="${esc(w.word)}">${st.mastered?'✅ 已掌握':'☆ 掌握'}</button>
+        <button class="b-err" data-word="${esc(w.word)}">❌ 记一笔</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.ex').forEach(el=>{
+    el.onclick=()=>speak(el.getAttribute('data-ex'));
+    el.ondblclick=()=>speak(el.getAttribute('data-ex'),{slow:true});
+  });
+  grid.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-shadow').forEach(b=>b.onclick=()=>goShadowWord(b.getAttribute('data-word')));
+  grid.querySelectorAll('.b-master').forEach(b=>b.onclick=()=>toggleMaster(b.getAttribute('data-word'),b));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'词卡标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 渲染：复习 C（渐进式） ---------- */
+function renderReview(){
+  const grpTabs=document.getElementById('grpReview');
+  grpTabs.innerHTML='';
+  DATA.groups.forEach((g,i)=>{
+    const b=document.createElement('button');
+    b.textContent=g.name; if(i===curGroupReview)b.className='on';
+    b.onclick=()=>{curGroupReview=i; renderReview();};
+    grpTabs.appendChild(b);
+  });
+  const grid=document.getElementById('gridReview'); grid.innerHTML='';
+  const hide=document.getElementById('tgHideCn').dataset.hide==='1';
+  DATA.groups[curGroupReview].words.forEach(w=>{
+    const card=document.createElement('div'); card.className='card';
+    let sensesHtml='';
+    w.senses.forEach((s,i)=>{
+      const hidden = i>0 ? ' hiddenSense' : '';
+      const synAnt = (s.syn&&s.syn!=='—'?'近义 '+esc(s.syn)+' ':'') + (s.ant&&s.ant!=='—'?'反义 '+esc(s.ant):'');
+      const ex = s.ex||''; const exCn = s.exCn||'';
+      sensesHtml += `
+      <div class="sense${hidden}">
+        <div class="defline">${esc(s.def)}
+          <button class="spk" data-text="${esc(w.word)}">🔊</button>
+          ${synAnt?`<span style="color:var(--sub);font-size:12px">（${synAnt}）</span>`:''}
+        </div>
+        <button class="morebtn act-ex">💡 看例句</button>
+        <div class="exbox" data-ex="${esc(ex)}">${esc(ex)}<span class="cn">${esc(exCn)}</span>
+          ${ex?`<button class="morebtn act-shadow" data-text="${esc(ex)}">🎤 跟读这句</button>`:''}
+        </div>
+      </div>`;
+    });
+    const moreBtn = w.senses.length>1 ? `<button class="morebtn act-more">更多 ▾（还有 ${w.senses.length-1} 个义项）</button>` : '';
+    card.innerHTML=`
+      <div class="top"><span class="w">${esc(w.word)}</span>${w.inArt?'<span class="artmark" title="本单元文章中出现">📰</span>':''}<span class="ipa">${esc(w.ipa||'')}</span></div>
+      <div class="badges"><span class="badge pos">${esc(w.pos||'—')}</span><span class="badge band">${esc(w.band||'')}</span></div>
+      ${sensesHtml}
+      ${moreBtn}
+      ${w.phrase&&w.phrase!=='—'?`<div class="phrase">🗣 ${esc(w.phrase)} — ${esc(w.phraseDef||'')}</div>`:''}
+      <button class="morebtn b-err" data-word="${esc(w.word)}">❌ 记一笔（没记住）</button>`;
+    grid.appendChild(card);
+  });
+  if(hide){ grid.querySelectorAll('.cn').forEach(e=>e.style.display='none'); }
+  grid.querySelectorAll('.act-ex').forEach(b=>b.onclick=()=>{
+    const box=b.parentElement.querySelector('.exbox');
+    const open = box.style.display==='block';
+    box.style.display = open?'none':'block';
+    b.textContent = open?'💡 看例句':'🔼 收起例句';
+    if(!open){ const ex=box.getAttribute('data-ex'); if(ex) speak(ex); }
+  });
+  grid.querySelectorAll('.act-more').forEach(b=>b.onclick=()=>{
+    const card=b.closest('.card');
+    const next=card.querySelector('.sense.hiddenSense');
+    if(next){ next.classList.remove('hiddenSense');
+      const exb=next.querySelector('.exbox'); if(exb.getAttribute('data-ex')) speak(exb.getAttribute('data-ex'));
+    }
+    if(!card.querySelector('.sense.hiddenSense')) b.style.display='none';
+  });
+  grid.querySelectorAll('.spk').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  grid.querySelectorAll('.act-shadow').forEach(b=>b.onclick=()=>goShadowText(b.getAttribute('data-text')));
+  grid.querySelectorAll('.b-err').forEach(b=>b.onclick=()=>{ addError({word:b.getAttribute('data-word'),type:'词汇',original:'复习标记',standard:'—',student:'未掌握'}); flash('🩹 已记入错题'); });
+}
+
+/* ---------- 神兽/图鉴 ---------- */
+function renderCodex(){
+  const grid=document.getElementById('codexGrid'); grid.innerHTML='';
+  BEASTS.forEach(b=>{
+    const box=document.createElement('div');
+    const active = b.u===DATA.unit;
+    box.className='cbox'+(active?'':' lock');
+    let stars=0;
+    if(active){ const pct=Math.round(masteredCount()/allWords().length*100); stars=pct>=80?3:pct>=50?2:pct>=20?1:0; }
+    box.innerHTML=`<div class="e">${b.e}</div><div class="n">${b.n}</div>
+      <div class="s">${active?'★'.repeat(stars)+'☆'.repeat(3-stars):'🔒 未解锁'}</div>
+      <div style="color:var(--sub);font-size:12px;margin-top:4px">${b.d}</div>`;
+    grid.appendChild(box);
+  });
+}
+
+/* ---------- 交互 ---------- */
+function toggleMaster(w, btn){
+  if(!state[w]) state[w]={};
+  state[w].mastered=!state[w].mastered;
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  saveState();
+  btn.classList.toggle('mastered', state[w].mastered);
+  btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
+  updateProgress(); renderCodex();
+}
+function checkIn(w){
+  const d=today();
+  if(!state[w]) state[w]={};
+  state[w].shadowed=d;
+  saveState();
+  if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
+  updateProgress(); renderCodex();
+}
+function switchSub(which){
+  document.querySelectorAll('.subtab').forEach(x=>x.classList.toggle('on', x.dataset.sh===which));
+  document.getElementById('shDialog').style.display = which==='dialog'?'block':'none';
+  document.getElementById('shSingle').style.display = which==='single'?'block':'none';
+}
+function goShadowWord(word){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.word===word);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到「'+word+'」'); }
+}
+function goShadowText(text){
+  switchSub('single');
+  document.querySelector('nav button[data-tab="shadow"]').click();
+  const i=shQueue.findIndex(q=>q.en===text);
+  if(i>=0){ shIdx=i; renderShadowCurrent(); flash('🎤 已定位到该句'); }
+}
+function goReviewWord(word){
+  document.querySelector('nav button[data-tab="review"]').click();
+  DATA.groups.forEach((g,i)=>{ if(g.words.some(w=>w.word===word)){ curGroupReview=i; renderReview(); flash('🔁 已定位复习：'+word); } });
+}
+
+/* ---------- 跟读队列（含复习例句） + 单句跟读 ---------- */
+function buildQueue(){
+  shQueue=[]; const seen=new Set();
+  DATA.groups.forEach(g=>g.words.forEach(w=>{
+    if(w.ex && !seen.has(w.ex)){ seen.add(w.ex); shQueue.push({en:w.ex,cn:w.exCn,word:w.word}); }
+    (w.senses||[]).forEach(s=>{ if(s.ex && !seen.has(s.ex)){ seen.add(s.ex); shQueue.push({en:s.ex,cn:s.exCn,word:w.word}); } });
+  }));
+}
+function renderShadowCurrent(){
+  const it=shQueue[shIdx]; if(!it)return;
+  document.getElementById('shProg').textContent='第 '+(shIdx+1)+' / '+shQueue.length+' 句 · 👂 先点「听原声」听一遍 → 🎤 点「开始录音」录下你的跟读 → 录完这块会出现回放音轨，和原声对比。';
+  document.getElementById('shNow').textContent=(shIdx+1)+'/'+shQueue.length+'  '+it.en;
+  document.getElementById('shNowCn').textContent=it.cn||'';
+}
+function shPlay(){ const it=shQueue[shIdx]; if(it) speak(it.en); }
+function shGo(dir){ shIdx=(shIdx+dir+shQueue.length)%shQueue.length; renderShadowCurrent(); }
+function shCheck(){
+  const it=shQueue[shIdx]; if(!it)return;
+  checkIn(it.word); flash('🎤 已跟读打卡：'+it.word);
+}
+function shAutoPlay(){
+  if(!shQueue.length)return;
+  const it=shQueue[shIdx];
+  const gap=parseInt(document.getElementById('shGap').value,10);
+  speak(it.en,{onend:()=>{
+    if(gap>0){ shTimer=setTimeout(()=>{ if(shAuto){ shIdx=(shIdx+1)%shQueue.length; renderShadowCurrent(); shAutoPlay(); } }, gap); }
+  }});
+}
+function initShadow(){
+  buildQueue(); if(shIdx>=shQueue.length) shIdx=0; renderShadowCurrent();
+  document.getElementById('shPlay').onclick=shPlay;
+  document.getElementById('shNext').onclick=()=>shGo(1);
+  document.getElementById('shPrev').onclick=()=>shGo(-1);
+  document.getElementById('shRec').onclick=function(){
+    if(rec.recording && rec.stopBtn===this){ stopRec(); }
+    else { startRec(shQueue[shIdx].en, document.getElementById('shRecBox'), this); }
+  };
+  document.getElementById('shStop').onclick=stopRec;
+  document.getElementById('shCheck').onclick=shCheck;
+  document.getElementById('shAuto').onclick=function(){ shAuto=!shAuto; this.textContent=shAuto?'⏹ 停止连播':'🔁 自动连播'; if(shAuto)shAutoPlay(); else {clearTimeout(shTimer); speechSynthesis.cancel();} };
+}
+
+/* ---------- 对话跟读（call-response 结构） ---------- */
+function renderDialogues(){
+  const list=document.getElementById('shDialog'); list.innerHTML='';
+  DATA.dialogues.forEach(d=>{
+    const box=document.createElement('div'); box.className='player';
+    let html='';
+    const turns=d.turns;
+    let i=0;
+    while(i<turns.length){
+      const t=turns[i];
+      if(t.role==='A' && i+1<turns.length && turns[i+1].role==='B'){
+        const q=t, r=turns[i+1];
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-A">A</span>
+            <div class="qa-text">${esc(q.en)}<span class="cn">${esc(q.cn)}</span></div>
+            <button class="b-play" data-text="${esc(q.en)}">🔊 听问句</button>
+          </div>
+          <div class="resp">
+            <div class="resp-label">👉 你要回应的句子（B）：先听示范，再录你自己的</div>
+            <div class="qa-text">${esc(r.en)}<span class="cn">${esc(r.cn)}</span></div>
+            <div class="resp-acts">
+              <button class="b-play" data-text="${esc(r.en)}">🔊 听示范回应</button>
+              <button class="b-drill" data-text="${esc(r.en)}">🎤 我来回应</button>
+            </div>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=2;
+      } else {
+        html += `<div class="exchange">
+          <div class="qa">
+            <span class="role role-${t.role}">${t.role}</span>
+            <div class="qa-text">${esc(t.en)}<span class="cn">${esc(t.cn)}</span></div>
+            <button class="b-play" data-text="${esc(t.en)}">🔊 原声</button>
+            <button class="b-turn-rec" data-text="${esc(t.en)}">🎤 跟读</button>
+          </div>
+          <div class="turn-rec"></div>
+        </div>`;
+        i+=1;
+      }
+    }
+    box.innerHTML=`<div class="now" style="font-size:16px">💬 ${esc(d.title)}</div>
+      <div class="nowcn" style="margin-bottom:10px">蓝字＝A 的问句（点「🔊 听问句」）；黄框＝<b>你要回应的句子，始终显示</b>，先点「🔊 听示范回应」模仿，再点「🎤 我来回应」录下你自己的回答。回放对比原声。</div>${html}`;
+    list.appendChild(box);
+  });
+  list.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  list.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); }
+    else { startRec(b.getAttribute('data-text'), container, b); }
+  });
+  list.querySelectorAll('.b-drill').forEach(b=>b.onclick=()=>{
+    const turnEl=b.closest('.exchange'); const container=turnEl.querySelector('.turn-rec');
+    startRecRaw(b.getAttribute('data-text'), container, b);
+  });
+}
+let rdIdx = 0;
+function renderReading(){
+  const list = DATA.reading;
+  const ptabs = document.getElementById('rdPassages'); ptabs.innerHTML='';
+  list.forEach((rd,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(rd.title)+(rd.china?' 🇨🇳':'');
+    if(i===rdIdx) b.className='on';
+    b.onclick=()=>{ rdIdx=i; renderReading(); };
+    ptabs.appendChild(b);
+  });
+  document.getElementById('rdHint').textContent=list.length+' 篇受控短文：读 → 听（TTS）→ 跟读 → 做小题，一文多吃。词汇 / 短语 / 句式在不同情境重复出现，形成螺旋。🇨🇳 ＝中国主题篇。';
+  renderReadingContent();
+}
+function renderReadingContent(){
+  const rd=DATA.reading[rdIdx];
+  const rdb=document.getElementById('rdBanner');
+  rdb.style.display='block';
+  rdb.innerHTML='📖 <b>'+esc(rd.title)+'</b>'+(rd.china?' <span style="font-size:12px">🇨🇳</span>':'')+' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(rd.focus||'')+'</span> · <span style="color:var(--sub);font-size:12px">'+esc(rd.meta||'')+'</span>';
+  const txt=document.getElementById('rdText');
+  txt.innerHTML='<div class="rd-tip">点 🔊 听句子，点 🎤 跟读，双击句子慢速（0.6×）。先读一遍，再点「🔊 听整篇」做听力，最后做下面小题。</div>'
+    +'<div class="rd-playall"><button class="b-play" id="rdPlayAll">🔊 听整篇</button></div>'
+    +'<div class="rd-sents"></div>';
+  const sents=txt.querySelector('.rd-sents');
+  rd.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    sents.appendChild(d);
+  });
+  txt.querySelector('#rdPlayAll').onclick=()=>{ speakSeq(rd.sentences, 600); };
+  sents.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  sents.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  sents.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const qz=document.getElementById('rdQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 理解小题（答错自动进错题本）</div>';
+  rd.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'阅读', original:'阅读小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+
+/* ---------- 听力子模式：盲听 → 答题 → 看文本 ---------- */
+let lsIdx = 0, lsRevealed = false;
+function renderListening(){
+  const list = DATA.listening || [];
+  const ptabs = document.getElementById('lsPassages'); ptabs.innerHTML='';
+  list.forEach((ls,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=(i+1)+'· '+esc(ls.title)+(ls.china?' 🇨🇳':'');
+    if(i===lsIdx) b.className='on';
+    b.onclick=()=>{ lsIdx=i; renderListening(); };
+    ptabs.appendChild(b);
+  });
+  renderListeningContent();
+}
+function renderListeningContent(){
+  const ls=(DATA.listening||[])[lsIdx]; if(!ls) return;
+  const lsb=document.getElementById('lsBanner');
+  lsb.style.display='block';
+  lsb.innerHTML='🎧 <b>'+esc(ls.title)+'</b>'+(ls.china?' <span style="font-size:12px">🇨🇳</span>':'')
+    +' · <span style="color:var(--gold);font-weight:700;font-size:12px">'+esc(ls.focus||'')+'</span>'
+    +' · <span style="color:var(--sub);font-size:12px">'+esc(ls.meta||'')+'</span>';
+  const box=document.getElementById('lsSents'); box.innerHTML=''; lsRevealed=false;
+  ls.sentences.forEach((s,idx)=>{
+    const d=document.createElement('div'); d.className='rd-sent';
+    d.innerHTML='<span class="rd-idx">'+(idx+1)+'</span>'
+      +'<span class="rd-en ls-masked" data-text="'+esc(s)+'">'+esc(s)+'</span>'
+      +'<button class="b-play" data-text="'+esc(s)+'">🔊</button>'
+      +'<button class="b-turn-rec" data-text="'+esc(s)+'">🎤</button>'
+      +'<div class="turn-rec"></div>';
+    box.appendChild(d);
+  });
+  box.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  box.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.rd-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  box.querySelectorAll('.rd-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),0.6));
+  document.getElementById('lsPlayAll').onclick=()=>speakSeq(ls.sentences,600);
+  document.getElementById('lsReplay').onclick=()=>speakSeq(ls.sentences,600);
+  const revealBtn=document.getElementById('lsReveal');
+  revealBtn.textContent='👀 看文本';
+  revealBtn.onclick=()=>{
+    lsRevealed=!lsRevealed;
+    box.querySelectorAll('.rd-en').forEach(e=>e.classList.toggle('ls-masked', !lsRevealed));
+    revealBtn.textContent = lsRevealed ? '🙈 收起文本' : '👀 看文本';
+  };
+  const qz=document.getElementById('lsQuiz'); qz.innerHTML='<div class="rd-qtitle">📝 听力小题（答错自动进错题本）</div>';
+  ls.questions.forEach((q,qi)=>{
+    const d=document.createElement('div'); d.className='q'; d.dataset.answered='';
+    /* 2026-10-16 新增填空题（type:'fill'）：KET 听力有填空，原来只有单选。
+       answer 是字符串（填空例外，不是 int —— 单选题的 answer 仍是 int，别混）。
+       判题忽略大小写与首尾空格；accept 数组可收多个可接受答案。 */
+    if(q.type==='fill'){
+      const acc=(q.accept && q.accept.length) ? q.accept : [String(q.answer||'')];
+      d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+(q.hint?'　<span style="color:var(--sub);font-size:12px">（'+esc(q.hint)+'）</span>':'')+'</div>'
+        +'<div class="q-opts"><input class="q-fill" type="text" autocomplete="off" spellcheck="false" placeholder="在这里写答案">'
+        +'<button class="q-opt q-fillbtn">检查</button></div><div class="q-fb"></div>';
+      const inp=d.querySelector('.q-fill'), btn=d.querySelector('.q-fillbtn');
+      const check=()=>{
+        if(d.dataset.answered) return;
+        const val=(inp.value||'').trim(); if(!val) return;
+        d.dataset.answered='1';
+        const ok=acc.some(a=>String(a).trim().toLowerCase()===val.toLowerCase());
+        if(ok){ inp.classList.add('good'); inp.disabled=true; btn.disabled=true;
+          d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { inp.classList.add('bad'); inp.disabled=true; btn.disabled=true;
+          d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(acc[0])+'</span>';
+          addError({word:q.q, type:'听力填空', original:'听力填空小题', standard:acc[0], student:val}); }
+      };
+      btn.onclick=check;
+      inp.onkeydown=e=>{ if(e.key==='Enter') check(); };
+      qz.appendChild(d); return;
+    }
+    d.innerHTML='<div class="q-q">'+(qi+1)+'. '+esc(q.q)+'</div><div class="q-opts"></div><div class="q-fb"></div>';
+    const opts=d.querySelector('.q-opts');
+    q.opts.forEach((o,oi)=>{
+      const b=document.createElement('button'); b.className='q-opt'; b.textContent=o;
+      b.onclick=()=>{
+        if(d.dataset.answered) return; d.dataset.answered='1';
+        if(oi===Number(q.answer)){ b.classList.add('good'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--green)">✅ 正确</span>'; }
+        else { b.classList.add('bad'); d.querySelector('.q-fb').innerHTML='<span style="color:var(--gold)">❌ 正确应为：'+esc(q.opts[Number(q.answer)])+'</span>';
+          addError({word:q.q, type:'听力', original:'听力小题', standard:q.opts[Number(q.answer)], student:o}); }
+      };
+      opts.appendChild(b);
+    });
+    qz.appendChild(d);
+  });
+}
+function switchRd(which){
+  document.querySelectorAll('[data-rd]').forEach(x=>x.classList.toggle('on', x.dataset.rd===which));
+  document.getElementById('rdReadWrap').style.display = which==='read' ? '' : 'none';
+  document.getElementById('rdListenWrap').style.display = which==='listen' ? '' : 'none';
+  if(which==='listen') renderListening();
+}
+
+/* ---------- 拼读轨道 ---------- */
+/* TTS 不能直接念音标（/iː/ 去斜杠后会被当单词乱读）→ 「点音素」改为依次朗读该音的例词 */
+function speakSeq(words, gap, onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const arr=(words||[]).filter(Boolean);
+  let i=0;
+  (function next(){
+    if(i>=arr.length){ if(onDone)onDone(); return; }
+    const w=arr[i++];
+    speak(w, {onend:()=>setTimeout(next, gap||550)});
+  })();
+}
+function switchPhx(which){
+  document.querySelectorAll('[data-phx]').forEach(x=>x.classList.toggle('on', x.dataset.phx===which));
+  /* 手掌握图 + 顶部两条提示只属于「音素卡」视图：切到其他子 tab 时一并隐藏，
+     否则用户会看到"切过去了还是音素内容"。
+     注意选择器用 `> .phx-tip`（仅直接子级）——语调/反义区内部的提示是那些视图自己的内容，不能藏。 */
+  document.getElementById('phxHand').style.display = which==='cards'?'block':'none';
+  document.querySelectorAll('#phonics > .phx-tip').forEach(x=>x.style.display = which==='cards'?'block':'none');
+  document.getElementById('phxCards').style.display = which==='cards'?'block':'none';
+  document.getElementById('phxPairs').style.display = which==='pairs'?'block':'none';
+  document.getElementById('phxListen').style.display = which==='listen'?'block':'none';
+  document.getElementById('phxIntonation').style.display = which==='intonation'?'block':'none';
+  document.getElementById('phxAntonym').style.display = which==='antonym'?'block':'none';
+}
+function renderPhonics(){
+  /* ---- 预学词标记 ----
+     音素练习的目的是「练发音」，所以例词允许少量来自后面单元的词（虚线框 + 预学标签），
+     但必须 ≤30%，且本单元词优先。规则：不在本单元词库里的词自动标为「预学」。 */
+  const BANK=new Set(allWordObjs().map(w=>w.word.trim().toLowerCase()));
+  function isPre(w){
+    const s=String(w).toLowerCase().replace(/[.,!?]/g,'').trim();
+    if(BANK.has(s)) return false;                 // 词库以短语整条收录
+    return !s.split(/\s+/).filter(Boolean).every(p=>BANK.has(p)||FUNCWORDS.has(p));
+  }
+  let preTotal=0, allTotal=0;
+  function preWord(w){
+    allTotal++;
+    const pre=isPre(w); if(pre) preTotal++;
+    return `<span data-say-word="${esc(w)}"${pre?' data-pre="1"':''}>${esc(w)}${pre?'<i class="pre-tag">预学</i>':''}</span>`;
+  }
+  function preRatio(){ return allTotal? Math.round(preTotal/allTotal*100):0; }
+  // 元音手掌握图
+  const hand=document.getElementById('phxHand');
+  const ha=DATA.phonics.hand_anchor;
+  const fingerHtml=ha.long.map(f=>
+    `<div class="finger" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+      <div class="fpos">${esc(f.pos)}</div><div class="fipa">${esc(f.ipa)}</div><div class="fsay">${esc(f.say)}</div>
+      <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+    </div>`).join('');
+  const palmHtml=ha.short.map(f=>
+    `<div class="pv" data-ipa="${esc(f.ipa)}" data-say="${esc(f.say)}" data-words="${esc(f.words.join(' '))}">
+      <div class="pipa">${esc(f.ipa)}</div><div class="psay">${esc(f.say)}</div>
+      <div class="hand-words">${f.words.map(preWord).join('')}<span class="cn">${esc(f.cn)}</span></div>
+    </div>`).join('');
+  hand.innerHTML=`<div class="hand-wrap">
+    <div class="hand-palm">
+      <div class="hand-title">${esc(ha.title)}</div>
+      <div class="hand-hint">${esc(ha.hint)}</div>
+      <div class="hand-row">${fingerHtml}</div>
+      <div class="hand-row"><div style="font-size:11px;color:var(--gold);font-weight:700;width:100%;margin-bottom:2px">掌心＝短元音（短促）</div></div>
+      <div class="palm-vowels">${palmHtml}</div>
+      <div class="hand-hint" style="margin-top:10px">👆 <b>每个例词都是独立可点的块</b>，点哪个词就单独读哪个词；点卡片空白处会连读全部例词。</div>
+    </div>
+  </div>`;
+  hand.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  hand.querySelectorAll('.finger,.pv').forEach(c=>c.onclick=()=>speakSeq(c.dataset.words.split(' ')));
+  // 音素卡
+  const cards=document.getElementById('phxCards'); cards.innerHTML='<div class="phx-grid"></div>';
+  const cg=cards.querySelector('.phx-grid');
+  DATA.phonics.sound_cards.forEach(sc=>{
+    const d=document.createElement('div'); d.className='phx-card';
+    d.innerHTML=`<div class="ps">${esc(sc.sound)}</div><div class="pn">${esc(sc.name)}</div>
+      <div class="ptip">${esc(sc.tip)}</div>
+      <div class="phx-words">${sc.words.map(preWord).join('')}</div>
+      ${sc.phrase_en?`<div class="phx-phrase"><span class="pl">🔗 短语连读</span><span class="pe">${esc(sc.phrase_en)}</span>
+        <button class="b-play" data-phrase="${esc(sc.phrase_en)}">🔊 听短语</button>
+        <span class="pc">${esc(sc.phrase_cn||'')}</span></div>`:''}`;
+    cg.appendChild(d);
+  });
+  cards.querySelectorAll('[data-say-word]').forEach(w=>w.onclick=e=>{e.stopPropagation();speak(w.dataset.sayWord);});
+  cards.querySelectorAll('[data-phrase]').forEach(b=>b.onclick=e=>{e.stopPropagation();speak(b.dataset.phrase);});
+  cards.querySelectorAll('.phx-card').forEach(c=>c.addEventListener('click',e=>{
+    if(e.target.closest('[data-say-word]')||e.target.closest('button')) return;
+    speakSeq(Array.from(c.querySelectorAll('[data-say-word]')).map(x=>x.dataset.sayWord));
+  }));
+  /* 预学词占比提示：练发音可以带一点外单元新词，但控制在 30% 以内 */
+  const pct=preRatio();
+  const note=document.createElement('div');
+  note.className='phx-tip';
+  note.innerHTML=`📊 本单元拼读例词里 <b>${preTotal}</b> 个是后面单元的词（虚线框「预学」标签），占比 <b>${pct}%</b>。
+    ${pct>30?'<span style="color:var(--red)">⚠️ 超过 30%，需要替换为本单元词。</span>':'✅ 在 30% 以内 —— 这些词<b>只要求你会读出来</b>，不要求现在记住意思。'}`;
+  cards.appendChild(note);
+  /* ---------- 情绪语调（本单元专属维度：教材 U8/U9 语调） ----------
+   浏览器 TTS 无法真正控制语调，这里做两件事：
+   ① 用 SVG 折线把「音高走向」画出来（↗ 上扬/ → 平/ ↘ 下降），让视觉先建立概念
+   ② 用 pitch 参数近似：升调调高 pitch、降调调低 pitch，让学生能听出差别        */
+function pitchSvg(arrow){
+  // 起点(12,44) 终点(228,10)；按箭头决定控制点，画出上扬/平/下降
+  let pts;
+  if(arrow.indexOf('↑')>=0)      pts='12,46 60,40 120,26 180,10 228,4';   // 强升调
+  else if(arrow.indexOf('↗')>=0) pts='12,46 70,40 140,28 228,12';       // 升调
+  else if(arrow.indexOf('↓')>=0) pts='12,12 70,20 140,32 228,44';       // 平后微降
+  else if(arrow.indexOf('↘')>=0) pts='12,12 70,22 140,34 228,46';       // 降调
+  else                            pts='12,29 80,27 150,30 228,28';       // 平调
+  return `<svg class="itn-pitch" viewBox="0 0 240 56" preserveAspectRatio="none">
+    <line class="base" x1="6" y1="28" x2="234" y2="28"></line>
+    <polyline class="path" points="${pts}"></polyline>
+    <circle class="dot" cx="228" cy="${pts.split(' ').pop().split(',')[1]}" r="3.5"></circle>
+  </svg>`;
+}
+function tonePitch(arrow){
+  if(arrow.indexOf('↑')>=0) return 1.5;
+  if(arrow.indexOf('↗')>=0) return 1.25;
+  if(arrow.indexOf('↘')>=0) return 0.72;
+  if(arrow.indexOf('↓')>=0) return 0.85;
+  return 1.0;
+}
+/* ---------- 语调朗读：为什么不能直接调 pitch ----------
+   SpeechSynthesis 的 u.pitch 只是「整句音高缩放」，不改变句内音高走向。
+   所以同一句话设 pitch=1.25（↗）和 pitch=0.72（↘）听起来完全一样 —— 骗不了学生。
+   可行做法：把句子切成 [前半 + 末段] 两段，末段按语调方向给不同音高，
+   这样「句末往上走」还是「句末往下落」在合成音里真的能听出来。
+   仍然要诚实标注：这是电脑合成的近似语调，真语调必须听真人（老师/家长/录音）。 */
+function contourSegs(text, arrow){
+  const s=String(text||'').trim();
+  const toks=s.split(/\s+/).filter(Boolean);
+  if(toks.length<2) return [{t:s, p:tonePitch(arrow)}];
+  const head=toks.slice(0,-1).join(' '), tail=toks[toks.length-1];
+  let end;
+  if(arrow.indexOf('↑')>=0)      end=1.75;   // 强升调：末段明显抬高
+  else if(arrow.indexOf('↗')>=0) end=1.45;   // 升调
+  else if(arrow.indexOf('↘')>=0) end=0.55;   // 降调：末段明显压低
+  else if(arrow.indexOf('↓')>=0) end=0.8;    // 平后微降
+  else                            end=1.0;    // 平调
+  return [{t:head,p:1.0},{t:tail,p:end}];
+}
+function speakTone(text,arrow,rate,onDone){
+  if(!('speechSynthesis' in window)){ if(onDone)onDone(); return; }
+  speechSynthesis.cancel();
+  const segs=contourSegs(text,arrow);
+  let i=0;
+  (function next(){
+    if(i>=segs.length){ if(onDone)onDone(); return; }
+    const s=segs[i++];
+    const u=new SpeechSynthesisUtterance(s.t);
+    const v=getVoice(); if(v)u.voice=v;
+    u.rate=(typeof rateVal==='function'?rateVal():0.9);
+    u.pitch=s.p; u.volume=1; u.lang=(v&&v.lang)||'en-GB';
+    u.onend=()=>setTimeout(next,80);
+    u.onerror=()=>setTimeout(next,80);
+    speechSynthesis.speak(u);
+  })();
+}
+function renderIntonation(){
+  const box=document.getElementById('phxIntonation');
+  const cards=(DATA.phonics.intonation_cards)||[];
+  const pairs =(DATA.phonics.intonation_pairs)||[];
+  if(!cards.length && !pairs.length){ box.innerHTML='<div class="hint">本单元暂无语调卡。</div>'; return; }
+  let html='';
+  if(cards.length){
+    html+=`<div class="phx-tip">🎵 <b>语调 = 句子的情绪体温</b>。同一句话，音调走的方向不同，意思就完全不同：
+<b>↗ 上扬</b>（开心/疑问/惊讶）｜ <b>↘ 下降</b>（难过/肯定/结束）｜ <b>→ 平直</b>（无聊/累/敷衍）。
+折线图告诉你的就是「音高往哪走」。
+<br><br>⚠️ <b>关于「听」的一句实话</b>：电脑合成音<b>做不出真正的语调</b>——它只能把整句话整体调高或调低（像花栗鼠和低音炮），
+<b>走不出「句末往上挑」的旋律线</b>。所以「🔊 音高示意」只是把句末那一段<b>刻意抬高或压低</b>的近似演示，不是真人语调。
+<br>👉 <b>真正能听出语调的，只有你自己的声音。</b>点「🎤 我来念」录一遍，回放对比——那才是真语调。</div>`;
+    html+='<div class="itn-grid"></div>';
+  }
+  box.innerHTML=html;
+  if(cards.length){
+    const cg=box.querySelector('.itn-grid');
+    cards.forEach(ic=>{
+      const d=document.createElement('div'); d.className='itn';
+      d.innerHTML=`<div class="itn-top">
+          <div class="itn-arrow">${esc(ic.arrow)}</div>
+          <div><div class="itn-w">${esc(ic.word)}</div><div class="itn-ipa">${esc(ic.ipa)} · ${esc(ic.cn)}</div></div>
+          <div class="itn-tone">${esc(ic.tone)}</div>
+        </div>
+        ${pitchSvg(ic.arrow)}
+        <div class="itn-sent">${esc(ic.sent)}</div>
+        <div class="itn-sentcn">${esc(ic.sent_cn)}</div>
+        <div class="itn-tip">${esc(ic.tip)}</div>
+        <div class="itn-q">再练一句：<b>${esc(ic.pair.en)}</b> <span style="color:var(--sub)">${esc(ic.pair.cn)}</span></div>
+        <div class="itn-acts">
+          ${ic.audio?'<button class="b-real" data-audio="'+esc(ic.audio)+'">🎧 真人示范</button>':''}
+          <button class="b-play" data-t="${esc(ic.sent)}" data-a="${esc(ic.arrow)}">🔊 音高示意</button>
+          <button class="ghost" data-t="${esc(ic.pair.en)}" data-a="${esc(ic.arrow)}">🔊 再练一句</button>
+          <button class="b-rec" data-rec-t="${esc(ic.sent)}" data-rec-a="${esc(ic.arrow)}">🎤 我来念</button>
+        </div>
+        <div class="rec-slot"></div>`;
+      cg.appendChild(d);
+    });
+    box.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+  // 同句异调：从「听辨」改为「自己念两种，自己比」
+  if(pairs.length){
+    const box2=document.createElement('div');
+    box2.innerHTML=`<div class="phx-tip" style="margin-top:16px">🎤 <b>同句异调 · 自己念、自己比</b>：下面每一组<b>文字完全一样</b>，只有语调不同。
+<b>别指望用合成音听出区别（它听不出来）</b>——正确练法是：<b>照着曲线自己念一遍↗，再自己念一遍↘，录下来回放对比</b>。
+你自己的声音里有真语调，一比就知道差在哪。</div>`;
+    box.appendChild(box2);
+    pairs.forEach((p,i)=>{
+      const d=document.createElement('div'); d.className='itnp';
+      d.innerHTML=`<div class="itnp-vs">
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.left.arrow)} ${esc(p.left.tone)}</div>
+            ${pitchSvg(p.left.arrow)}
+            <div class="en">${esc(p.left.en)}</div><div class="cn">${esc(p.left.cn)}</div>
+            <div class="itn-acts">
+              ${p.left.audio?'<button class="b-real" data-audio="'+esc(p.left.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.left.en)}" data-a="${esc(p.left.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.left.en)}" data-rec-a="${esc(p.left.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+          <div class="itnp-mid">VS</div>
+          <div class="itnp-side">
+            <div class="lbl">${esc(p.right.arrow)} ${esc(p.right.tone)}</div>
+            ${pitchSvg(p.right.arrow)}
+            <div class="en">${esc(p.right.en)}</div><div class="cn">${esc(p.right.cn)}</div>
+            <div class="itn-acts">
+              ${p.right.audio?'<button class="b-real" data-audio="'+esc(p.right.audio)+'">🎧 真人</button>':''}
+              <button class="b-play" data-t="${esc(p.right.en)}" data-a="${esc(p.right.arrow)}">🔊 示意</button>
+              <button class="b-rec" data-rec-t="${esc(p.right.en)}" data-rec-a="${esc(p.right.arrow)}">🎤 念</button>
+            </div>
+            <div class="rec-slot"></div>
+          </div>
+        </div>
+        <div class="itnp-q">Q${i+1}. ${esc(p.ask)}</div>
+        <div class="itnp-a hide" data-a="${esc(p.answer)}">${esc(p.answer)}</div>`;
+      box2.appendChild(d);
+    });
+    box.querySelectorAll('.itnp-a').forEach(x=>x.onclick=()=>x.classList.toggle('hide'));
+    box2.querySelectorAll('[data-a][data-t]').forEach(b=>b.onclick=()=>speakTone(b.dataset.t,b.dataset.a));
+    box2.querySelectorAll('[data-audio]').forEach(b=>b.onclick=()=>playAudio(b.dataset.audio));
+    box2.querySelectorAll('[data-rec-t]').forEach(b=>b.onclick=()=>toneRec(b, b.dataset.recT, b.dataset.recA));
+  }
+}
+/* 真人示范音频（老师录制后填 audio 字段即可，没有就只显示合成音） */
+let realAudioEl=null;
+function playAudio(src){
+  try{
+    if(realAudioEl){ realAudioEl.pause(); }
+    realAudioEl=new Audio(src); realAudioEl.play();
+  }catch(e){ speak(src); }
+}
+/* 语调录音：学生自己念 → 回放对比（这才是真语调） */
+function toneRec(btn, text, arrow){
+  const card = btn.closest('.itn') || btn.closest('.itnp-side');
+  const slot = card ? card.querySelector('.rec-slot') : null;
+  if(!slot) return;
+  if(toneRecState.mr){ toneRecState.stop(); return; }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    slot.innerHTML='<div class="hint" style="color:var(--red)">⚠️ 双击文件打开时无法录音。请用本地服务地址打开本页（见首页说明）。</div>';
+    return;
+  }
+  navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
+    const chunks=[];
+    const mr=new MediaRecorder(stream);
+    mr.ondataavailable=e=>{ if(e.data.size) chunks.push(e.data); };
+    mr.onstop=()=>{
+      const blob=new Blob(chunks,{type:mr.mimeType||'audio/webm'});
+      const url=URL.createObjectURL(blob);
+      slot.innerHTML='<audio controls src="'+url+'"></audio>'
+        +'<div class="hint">🎧 上面是<b>你自己的声音</b>——回放听句末是往上还是往下，跟上面的曲线对一下。</div>';
+      stream.getTracks().forEach(t=>t.stop());
+      toneRecState.mr=null; btn.textContent=toneRecState.label;
+    };
+    mr.start();
+    toneRecState.mr=mr; toneRecState.btn=btn; toneRecState.label=btn.textContent;
+    toneRecState.stop=function(){ mr.stop(); };
+    btn.textContent='■ 停止';
+    slot.innerHTML='<div class="hint"><span class="rec-dot"></span> 请念：<b>'+esc(text)+'</b>　'
+      +(arrow.indexOf('↗')>=0||arrow.indexOf('↑')>=0?'（句末<b>往上挑</b>）':(arrow.indexOf('↘')>=0||arrow.indexOf('↓')>=0?'（句末<b>往下落</b>）':'（<b>平平的</b>）'))
+      +'</div>';
+  }).catch(err=>{
+    slot.innerHTML='<div class="hint" style="color:var(--red)">无法录音：'+esc(err.message)+'</div>';
+  });
+}
+let toneRecState={mr:null,btn:null,label:'',stop:function(){}};
+/* ---------- 反义情绪对（本单元专属词，语义对立 + 语调对比） ---------- */
+function renderAntonym(){
+  const box=document.getElementById('phxAntonym');
+  const list=(DATA.phonics.antonym_pairs)||[];
+  if(!list.length){ box.innerHTML='<div class="hint">本单元暂无反义情绪对。</div>'; return; }
+  let html=`<div class="phx-tip">↔️ <b>反义情绪对</b>：两词意思相反，<b>说话时的情绪也相反</b>。
+先各听一次单词，再听整句。<b>注意</b>：这里的句子是<b>平读</b>的——合成音做不出情绪语调，
+真正的情绪语调要靠你自己念（去「🎤 语调」那栏录一遍），或听真人示范。</div>`;
+  list.forEach(p=>{
+    html+=`<div class="apo">
+      <div class="apo-top">
+        <span class="apo-w">${esc(p.a)}</span><span class="apo-vs">↔ 意思相反 →</span><span class="apo-w">${esc(p.b)}</span>
+        <span class="apo-cn">${esc(p.cn_a)} / ${esc(p.cn_b)}</span>
+      </div>
+      <div style="font-size:14px;font-weight:600;line-height:1.6;margin-bottom:7px">${esc(p.sent)}</div>
+      <div class="apo-cn" style="margin-bottom:8px">${esc(p.sent_cn)}</div>
+      <div class="itn-acts">
+        <button class="b-play" data-w2="${esc(p.a)}">🔊 ${esc(p.a)}</button>
+        <button class="b-play" data-w2="${esc(p.b)}">🔊 ${esc(p.b)}</button>
+        <button class="b-play" data-t2="${esc(p.sent)}">🔊 听整句</button>
+      </div>
+    </div>`;
+  });
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w2]').forEach(b=>b.onclick=()=>speak(b.dataset.w2));
+  box.querySelectorAll('[data-t2]').forEach(b=>b.onclick=()=>speak(b.dataset.t2));
+}
+  // 最小对立对
+  const pairs=document.getElementById('phxPairs'); pairs.innerHTML='';
+  DATA.phonics.min_pairs.forEach(mp=>{
+    const d=document.createElement('div'); d.className='pair';
+    d.innerHTML=`<div class="pt">
+        <div class="pc"><div class="pw">${esc(mp.a)}</div><div class="pi">${esc(mp.a_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.a)}">🔊 ${esc(mp.a)}</button></div></div>
+        <div class="pc"><div class="pw">${esc(mp.b)}</div><div class="pi">${esc(mp.b_ipa)}</div>
+          <div class="pair-acts"><button class="b-play" data-text="${esc(mp.b)}">🔊 ${esc(mp.b)}</button></div></div>
+      </div>
+      <div class="ptip">${esc(mp.tip)}</div>
+      <div class="pair-acts">
+        <button class="b-ok" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">✅ 我能区分</button>
+        <button class="b-bad" data-a="${esc(mp.a)}" data-b="${esc(mp.b)}">❌ 我还混</button>
+      </div>`;
+    pairs.appendChild(d);
+  });
+  pairs.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.dataset.text));
+  pairs.querySelectorAll('.b-ok').forEach(b=>b.onclick=()=>flash('👍 已标记：能区分'));
+  pairs.querySelectorAll('.b-bad').forEach(b=>b.onclick=()=>{ addError({word:b.dataset.a+' / '+b.dataset.b,type:'拼读',original:'最小对立对',standard:b.dataset.a+' '+b.dataset.b,student:'未区分'}); flash('🩹 已记入错题'); });
+  // 听音选词（运行时生成）
+  const lis=document.getElementById('phxListen');
+  lis.innerHTML=`<div class="player"><div class="now">🎧 听音选词</div>
+    <div class="nowcn">听发音，从 4 个选项里选出你听到的词。答错自动入错题本。</div>
+    <div id="phxListenBox"></div></div>`;
+  phxListenNext();
+  /* 语调 / 反义情绪对两个视图的内容在这里渲染（否则 div 是空的，用户切过去一片空白） */
+  renderIntonation();
+  renderAntonym();
+}
+function phxListenNext(){
+  const box=document.getElementById('phxListenBox'); if(!box) return;
+  const words=allWordObjs();
+  const correct=words[Math.floor(Math.random()*words.length)];
+  const distract=shuffle(words.filter(w=>w.word!==correct.word)).slice(0,3);
+  const opts=shuffle([correct,...distract]);
+  box.innerHTML=`<div class="ctr"><button id="phxPlay" class="b-play">▶ 播放发音</button></div>
+    <div class="q-opts">${opts.map((o,i)=>`<button class="q-opt" data-word="${esc(o.word)}">${esc(o.word)}</button>`).join('')}</div>
+    <div class="q-fb" id="phxFb"></div>
+    <div class="ctr"><button id="phxNext" class="ghost">⏭ 下一题</button></div>`;
+  let answered=false;
+  document.getElementById('phxPlay').onclick=()=>speak(correct.word);
+  setTimeout(()=>speak(correct.word),300);
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    if(b.dataset.word===correct.word){ b.classList.add('ok'); document.getElementById('phxFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('phxFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：'+esc(correct.word)+'</span>';
+      addError({word:correct.word,type:'拼读',original:'听音选词',standard:correct.word,student:b.dataset.word});
+      box.querySelectorAll('.q-opt').forEach(bb=>{ if(bb.dataset.word===correct.word) bb.classList.add('ok'); }); }
+    document.getElementById('phxNext').onclick=phxListenNext;
+  });
+}
+
+/* ---------- 小测 ---------- */
+let quizQueue=[], quizIdx=0, quizScore=0, quizTotal=0, quizDone=false;
+function cnOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.defB)).slice(0,3);
+  return shuffle([{label:w.defB,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function enOpts(w){
+  const others=shuffle(allWordObjs().filter(x=>x.word!==w.word).map(x=>x.word)).slice(0,3);
+  return shuffle([{label:w.word,ok:true},...others.map(l=>({label:l,ok:false}))]);
+}
+function buildQuiz(){
+  const words=shuffle(allWordObjs());
+  quizQueue=[];
+  words.forEach(w=>{
+    const r=Math.random();
+    if(r<0.30){ const opts=cnOpts(w); quizQueue.push({kind:'listen',word:w.word,cn:w.defB,opts}); }
+    else if(r<0.60){ const opts=cnOpts(w); quizQueue.push({kind:'en2cn',word:w.word,cn:w.defB,opts}); }
+    else { const opts=enOpts(w); quizQueue.push({kind:'cn2en',word:w.word,cn:w.defB,opts}); }
+  });
+  quizIdx=0; quizScore=0; quizTotal=quizQueue.length; quizDone=false; renderQuiz();
+}
+function renderQuiz(){
+  const box=document.getElementById('quizBox');
+  if(quizDone){ box.innerHTML=`<div class="player"><div class="now">🎉 本轮完成！</div>
+    <div class="nowcn">答对 ${quizScore} / ${quizTotal}。答错的已自动记入「🩹 错题」，去错题本重练。</div>
+    <div class="ctr"><button id="quizAgain">🔁 再来一轮</button></div></div>`;
+    document.getElementById('quizAgain').onclick=buildQuiz; return; }
+  const q=quizQueue[quizIdx];
+  /* 三种题面都把「英文」做成可点发音块：
+     listen — 不直接露词，只有播放钮
+     en2cn — 题干英文可点（听音不影响作答，帮助记发音）
+     cn2en — 选完后英文选项立刻变成可点发音块；作答前点选项＝选择，不发音 */
+  let promptHtml='';
+  if(q.kind==='listen') promptHtml=`<div class="quiz-prompt">🔊 听发音，选出中文意思
+      <button class="b-play" id="qPlay">▶ 播放</button>
+      <button class="ghost" id="qPeek">👀 看单词</button></div>`;
+  else if(q.kind==='en2cn') promptHtml=`<div class="quiz-prompt">${sayChip(q.word,'big')}
+      <span class="tag">点单词听发音</span><div style="color:var(--sub);font-size:13px">选出中文意思</div></div>`;
+  else promptHtml=`<div class="quiz-prompt"><span class="big">「${esc(q.cn)}」</span>
+      <div style="color:var(--sub);font-size:13px">对应的英文是？<span class="tag">选完后点选项可再听发音</span></div></div>`;
+  let opts='';
+  q.opts.forEach((o,i)=>{ opts+=`<button class="q-opt" data-i="${i}">${esc(o.label)}</button>`; });
+  box.innerHTML=`<div class="player"><div class="now">📝 小测 ${quizIdx+1}/${quizTotal}</div>${promptHtml}
+    <div class="q-prog"><div class="bar"><i style="width:${Math.round(quizIdx/quizTotal*100)}%"></i></div></div>
+    <div class="q-opts">${opts}</div><div class="q-fb" id="qFb"></div>
+    <div class="ctr"><button id="qNext" class="ghost">⏭ 下一题</button></div></div>`;
+  if(q.kind==='listen'){
+    document.getElementById('qPlay').onclick=()=>speak(q.word);
+    document.getElementById('qPeek').onclick=()=>{ speak(q.word); flash('🔊 单词是：'+q.word); };
+    setTimeout(()=>speak(q.word),250);
+  }
+  if(q.kind==='en2cn') setTimeout(()=>speak(q.word),250);   // 题干可点，也可自动听一次
+  /* 作答后：把正确英文自动读一遍 + 给所有英文选项装上发音块（连排多次，强化记忆） */
+  function afterAnswer(){
+    const fb=document.getElementById('qFb');
+    const tail=' <span style="font-weight:600;color:var(--sub)">点单词再听：</span>';
+    if(q.kind==='cn2en') fb.innerHTML += tail+sayChip(q.word)+' '+sayChip(q.word);
+    else fb.innerHTML += tail+sayChip(q.word);
+    box.querySelectorAll('.q-opt').forEach((bb,j)=>{
+      const lab=q.opts[j].label;
+      if(/^[A-Za-z' -]+$/.test(lab)){ bb.setAttribute('data-say',lab); bb.insertAdjacentHTML('beforeend','<span style="font-size:11px;color:var(--gold)"> 🔊</span>'); }
+    });
+    setTimeout(()=>speak(q.word), 260);
+  }
+  let answered=false;
+  box.querySelectorAll('.q-opt').forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true;
+    suppressSay=true;                       // 本次点击只算作答，不触发词块发音
+    setTimeout(()=>{ suppressSay=false; },0);
+    const o=q.opts[+b.dataset.i];
+    if(o.ok){ quizScore++; b.classList.add('ok'); document.getElementById('qFb').innerHTML='<span style="color:var(--green)">✅ 答对！</span>'; }
+    else { b.classList.add('bad'); document.getElementById('qFb').innerHTML='<span style="color:var(--red)">❌ 正确应为：</span>'+sayChip(q.word);
+      addError({word:q.word,type:'小测',original:'小测题',standard:q.word,student:o.label});
+      box.querySelectorAll('.q-opt').forEach((bb,j)=>{ if(q.opts[j].ok) bb.classList.add('ok'); }); }
+    afterAnswer();
+    document.getElementById('qNext').onclick=()=>{ quizIdx++; if(quizIdx>=quizTotal){quizDone=true;} renderQuiz(); };
+  });
+}
+
+/* ---------- 错题池 ---------- */
+function renderErrors(){
+  const box=document.getElementById('errList');
+  if(!errors.length){ box.innerHTML='<div class="hint">还没有错题。小测答错、或在词卡/复习点「❌ 记一笔」会自动收集到这里，按类型聚合，方便专项重练。</div>'; return; }
+  const byType={};
+  errors.forEach((e,i)=>{ (byType[e.type]=byType[e.type]||[]).push({...e,idx:i}); });
+  const labels={词汇:'📘 词汇没记住',拼读:'🅰️ 拼读没区分',小测:'📝 小测答错'};
+  let html='';
+  for(const t in byType){
+    html+=`<div class="err-type">${labels[t]||t}（${byType[t].length}）</div>`;
+    byType[t].forEach(e=>{
+      html+=`<div class="err-item"><div class="err-meta"><b>${esc(e.word)}</b> · ${new Date(e.time).toLocaleDateString()} ${new Date(e.time).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}</div>
+        <div class="err-line">标准：<span style="color:var(--green)">${esc(e.standard)}</span></div>
+        ${e.student&&e.student!==e.standard?`<div class="err-line">你的：<span style="color:var(--red)">${esc(e.student)}</span></div>`:''}
+        <div class="err-btns"><button class="morebtn" data-w="${esc(e.word)}">🔁 重练</button><button class="err-del" data-i="${e.idx}">🗑 删除</button></div></div>`;
+    });
+  }
+  box.innerHTML=html;
+  box.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>goReviewWord(b.dataset.w));
+  box.querySelectorAll('.err-del').forEach(b=>b.onclick=()=>{ errors.splice(+b.dataset.i,1); saveErrors(); renderErrors(); updateProgress(); });
+}
+
+/* ---------- 本单元语法：跳到语法练习的具体知识点 ---------- */
+const GRAM_PAGE = "../语法练习_A1-A2-B1-B2.html";
+const GRAM_KEY  = "a1_gram_done_v1";
+function loadGram(){ try{return JSON.parse(localStorage.getItem(GRAM_KEY))||{}}catch(e){return{}} }
+function saveGram(g){ localStorage.setItem(GRAM_KEY, JSON.stringify(g)); }
+/* 只记一笔「点过」，真正的跳转交给 <a href target=_blank> —— 避免 window.open 与新标签重复开两次 */
+function markGrammar(pid){
+  var g=loadGram();
+  var u=DATA.unit;
+  g[u]=g[u]||[]; if(g[u].indexOf(pid)<0){ g[u].push(pid); saveGram(g); }
+  setTimeout(renderGrammar,60);
+}
+function renderGrammar(){
+  var list=(DATA.grammar||[]), box=document.getElementById('gramList'), head=document.getElementById('gramHead');
+  var all=document.getElementById('gramAll');
+  if(all) all.href=GRAM_PAGE;
+  if(!head||!box) return;
+  var done=(loadGram()[DATA.unit]||[]);
+  head.innerHTML='Unit '+DATA.unit+' 学 <b>'+list.length+' 个语法点</b>。'
+    + '跟读是「听进来」，语法是「写出来」—— 本单元的句子会用到这些点，'
+    + '点一下就跳到语法练习里对应的那一关（已完成 '+done.length+' / '+list.length+'）。';
+  if(!list.length){
+    box.innerHTML='<div class="hint">本单元还没配语法点。</div>'; return;
+  }
+  box.innerHTML=list.map(function(it,i){
+    var ok=done.indexOf(it.pid)>=0;
+    return '<div class="gcard">'
+      + '<div class="gi">'+(ok?'✅':'✍️')+'</div>'
+      + '<div class="gname">'+esc(it.name)+'</div>'
+      + '<div class="gdesc">'+esc(it.desc||'')+'<br><span style="opacity:.6">pid: '+esc(it.pid)+'</span></div>'
+      + (ok?'<div class="gdone">已练过</div>':'')
+      + '<a class="ggo" href="'+GRAM_PAGE+'?p='+encodeURIComponent(it.pid)+'&u='+DATA.unit+'"'
+      +   ' target="_blank" rel="noopener" onclick="markGrammar(\'' + it.pid + '\')">去练这一点 →</a>'
+      + '</div>';
+  }).join('');
+}
+
+/* ---------- 单元文章：把本单元生词织进一个语境 ---------- */
+function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
+function artHL(text){
+  const fs = DATA.artForms || [];
+  const out = esc(text);
+  if(!fs.length) return out;
+  try{
+    const re = new RegExp('(?<![a-zA-Z])(' + fs.map(f=>f.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|') + ')(?![a-zA-Z])','gi');
+    return out.replace(re,'<span class="art-hl">$1</span>');
+  }catch(e){ return out; }
+}
+function renderArticle(){
+  const a=DATA.article;
+  const body=document.getElementById('artBody');
+  const banner=document.getElementById('artBanner');
+  if(!a || !a.paras || !a.paras.length){
+    banner.style.display='none';
+    body.innerHTML='<div class="hint">本单元暂无文章。</div>';
+    return;
+  }
+  const total=a.paras.reduce((s,p)=>s+p.length,0);
+  const hlEl=document.getElementById('tgArtHL');
+  const hl=!hlEl || hlEl.dataset.hide!=='1';
+  let nArt=0, nAll=0;
+  (DATA.groups||[]).forEach(g=>g.words.forEach(w=>{ nAll++; if(w.inArt) nArt++; }));
+  banner.style.display='block';
+  banner.innerHTML='📰 <b>'+esc(a.title)+'</b> · <span style="font-weight:700;font-size:12px">'+total+' 句</span> · <span style="font-size:12px">本单元生词全部织进这篇短文</span>';
+  body.innerHTML='';
+  let gi=0; const all=[];
+  a.paras.forEach(para=>{
+    const pd=document.createElement('div'); pd.className='art-para';
+    para.forEach(s=>{
+      gi++; all.push(s[0]);
+      const d=document.createElement('div'); d.className='art-sent';
+      d.innerHTML='<span class="art-idx">'+gi+'</span>'
+        +'<span class="art-en" data-text="'+escAttr(s[0])+'">'+(hl?artHL(s[0]):esc(s[0]))+'</span>'
+        +'<button class="b-play" data-text="'+escAttr(s[0])+'">🔊</button>'
+        +'<button class="b-turn-rec" data-text="'+escAttr(s[0])+'">🎤</button>'
+        +'<div class="turn-rec"></div>'
+        +'<div class="art-zh cnArt">'+esc(s[1]||'')+'</div>';
+      pd.appendChild(d);
+    });
+    body.appendChild(pd);
+  });
+  body.querySelectorAll('.b-play').forEach(b=>b.onclick=()=>speak(b.getAttribute('data-text')));
+  body.querySelectorAll('.art-en').forEach(e=>e.ondblclick=()=>speak(e.getAttribute('data-text'),{slow:true}));
+  body.querySelectorAll('.b-turn-rec').forEach(b=>b.onclick=()=>{
+    const el=b.closest('.art-sent'); const c=el.querySelector('.turn-rec');
+    if(rec.recording && rec.stopBtn===b){ stopRec(); } else { startRec(b.getAttribute('data-text'), c, b); }
+  });
+  const pa=document.getElementById('artPlayAll');
+  if(pa) pa.onclick=()=>{ speakSeq(all, 600); };
+}
+/* ---------- tab 切换 ---------- */
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById(b.dataset.tab).classList.add('on');
+    if(b.dataset.tab==='shadow') initShadow();
+    if(b.dataset.tab==='codex') renderCodex();
+    if(b.dataset.tab==='review') renderReview();
+    if(b.dataset.tab==='phonics') renderPhonics();
+    if(b.dataset.tab==='quiz') buildQuiz();
+    if(b.dataset.tab==='errors') renderErrors();
+    if(b.dataset.tab==='reading') renderReading();
+    if(b.dataset.tab==='grammar') renderGrammar();
+    if(b.dataset.tab==='article') renderArticle();
+  };
+});
+document.querySelectorAll('.subtab').forEach(b=>b.onclick=()=>switchSub(b.dataset.sh));
+document.querySelectorAll('[data-phx]').forEach(b=>b.onclick=()=>switchPhx(b.dataset.phx));
+document.querySelectorAll('[data-rd]').forEach(b=>b.onclick=()=>switchRd(b.dataset.rd));
+(function(){
+  const r=(DATA.reading||[]).length, l=(DATA.listening||[]).length;
+  const rb=document.querySelector('[data-rd="read"]'), lb=document.querySelector('[data-rd="listen"]');
+  if(rb) rb.innerHTML='📖 阅读 '+r+' 篇';
+  if(lb){ if(!l){ lb.style.display='none'; } else lb.innerHTML='🎧 听力 '+l+' 篇'; }
+})();
+document.getElementById('tgCnLearn').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnLearn').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('tgHideCn').onclick=function(){
+  const hide=this.dataset.hide!=='1'; this.dataset.hide=hide?'1':'';
+  this.textContent=hide?'👁 显示中文':'🙈 隐藏中文'; renderReview();
+};
+document.getElementById('tgCnArt').onclick=function(){
+  const on=this.dataset.hide!=='1'; this.dataset.hide=on?'1':''; this.textContent=on?'🙈 关':'👁 开';
+  document.querySelectorAll('.cnArt').forEach(e=>e.style.display=on?'none':'');
+};
+document.getElementById('rate').oninput=function(){ document.getElementById('rateVal').textContent=this.value+'×'; };
+document.getElementById('voiceSel').onchange=function(){ voice=getVoice(); };
+
+/* ---------- 初始化 ---------- */
+document.getElementById('subtitle').textContent='Unit '+DATA.unit+' · '+DATA.title+' — '+DATA.subtitle;
+document.getElementById('beastName').textContent=(DATA.beast_emoji||'🐾')+' '+(DATA.beast_name||'英语跟读')+'（Unit '+DATA.unit+' '+DATA.title+'）';
+document.getElementById('beastDesc').textContent=DATA.subtitle;
+buildQueue(); renderDialogues();
+renderLearn(); renderReview(); updateProgress(); renderCodex();
+</script>
+</body>
+</html>

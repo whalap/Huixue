@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-A1 Unit 0 项目 · 我的字母小书</title>
+<link rel="stylesheet" href="prea1_assets/prea1.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="prea1_assets/prea1.js"></script>
+<script>
+PA1.proj({
+  n: 0,
+  emo: '🔤',
+  beast: '字母精灵',
+  en: 'My Alphabet Book',
+  cn: '我的字母小书',
+  make: '做一本属于自己的字母小书：26 个字母，每个字母一页 —— 写上字母（大小写）、配一个例词、画一幅小图。' +
+        '做完你能从头念到尾，这就是你第一本英文书。',
+  tip: '<b>不要求一口气做完。</b>一次做 6 个字母（A–G / H–N / O–T / U–Z 四批），四天做完。' +
+       '画不出来就贴打印图或写中文，<b>先把「音—形—义」对上，比画得好看重要</b>。',
+  steps: [
+    '准备<b>26 张小卡片</b>（或一张 A4 纸折成 26 格），每张写一个字母，大小写一起写：Aa、Bb、Cc……',
+    '给每个字母配一个例词 —— 直接用跟读页里那 26 个（apple、ball、cat…），<b>不会拼就照抄</b>，抄三遍就记住了。',
+    '给每个例词<b>画一幅小图</b>；画不出来就贴一张打印图，或者写个中文备注，别卡在这一步。',
+    '每页写一句话：<b>A is for apple.</b>（26 页就是 26 句，句式完全一样，只换字母和单词。）',
+    '按顺序装订起来，封面写 <b>My Alphabet Book</b> 和你的英文名字，再画个封面图。',
+    '<b>大声念给家人或同学听</b> —— 念完回来在自检清单打勾。能念出来，这一单元才算过。'
+  ],
+  scaffold: {
+    lines: [
+      {en:'A is for apple.', cn:'A 代表 apple（苹果）。'},
+      {en:'B is for ball.', cn:'B 代表 ball（球）。'},
+      {en:'What letter is it?', cn:'它是什么字母？'},
+      {en:"It's A.", cn:'是 A。'},
+      {en:'This is my alphabet book.', cn:'这是我的字母书。'},
+      {en:'I can say my A B C.', cn:'我会念字母表了。'}
+    ],
+    words: ['alphabet', 'letter', 'apple', 'ball', 'cat', 'dog', 'egg', 'fish', 'girl', 'hat', 'ink', 'jam', 'kite', 'leg', 'moon', 'nose', 'orange', 'pen', 'queen', 'rabbit', 'sun', 'tiger', 'umbrella', 'van', 'water', 'box', 'yellow', 'zoo', 'book', 'my']
+  },
+  demo: [
+    {t:'封面', en:'My Alphabet Book — by Tom', cn:'我的字母书 —— 作者：Tom'},
+    {t:'第 1 页', en:'Aa — apple 🍎　A is for apple.', cn:'Aa — 苹果　A 代表 apple。'},
+    {t:'第 2 页', en:'Bb — ball ⚽　B is for ball.', cn:'Bb — 球　B 代表 ball。'},
+    {t:'最后一页', en:'I can say my A B C! 😃', cn:'我会念字母表啦！'}
+  ],
+  checks: [
+    '26 个字母都写上了，大小写都写了',
+    '每个字母都配了一个例词',
+    '每个例词旁边有一幅图（画的或贴的都行）',
+    '每页都有一句 “___ is for ___.”',
+    '封面写了书名和我的名字',
+    '我大声念完了整本书（至少一遍）'
+  ],
+  ph: '把你的字母小书内容写在这里，比如 26 句 “A is for apple.”……写完点保存，下次打开还在。',
+  unitFile: 'Pre-A1 Unit0 英语跟读.html',
+  prev: null,
+  next: 'Pre-A1 Unit1 数字海报项目.html'
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 8 Collecting as a hobby · 点读学习页（沪教版 七上）</title>
+<style>
+  :root{
+    --bg:#FFF8F0; --card:#FFFFFF; --ink:#2B2620; --sub:#6B6359;
+    --line:#EFE6DA; --coral:#E8552D; --teal:#0F8A7D; --amber:#B57A00;
+    --coral-soft:#FDEBE3; --teal-soft:#E2F3F0; --amber-soft:#FBF0DC;
+    --blue:#2E6FB7; --blue-soft:#E8F1FA; --green:#2E8B57; --red:#D64545;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Arial,sans-serif;
+       background:var(--bg); color:var(--ink); line-height:1.6;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 16px;}
+
+  /* ===== Hero ===== */
+  .hero{background:linear-gradient(135deg,#FF7A45 0%,#FFA63D 55%,#FFC14D 100%);
+        color:#fff; padding:34px 0 30px;}
+  .hero .badge{display:inline-block; background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.45);
+        border-radius:999px; padding:4px 14px; font-size:13px; letter-spacing:.5px;}
+  .hero h1{font-size:34px; margin:14px 0 4px; line-height:1.2;}
+  .hero h1 em{font-style:normal; border-bottom:3px solid rgba(255,255,255,.85);}
+  .hero .kq{margin:6px 0 0; font-size:15px; opacity:.96;}
+  .hero .kq small{display:block; font-size:13px; opacity:.85; margin-top:2px;}
+
+  /* ===== 学习地图 ===== */
+  .map-card{background:var(--card); border:1px solid var(--line); border-radius:16px;
+            margin:20px 0 6px; padding:16px 12px 10px; box-shadow:0 2px 10px rgba(0,0,0,.05);}
+  .map-card h3{margin:0 0 8px; font-size:15px; color:var(--sub); font-weight:600;}
+  .map-card svg{width:100%; height:auto; display:block;}
+
+  /* ===== 使用说明 ===== */
+  .tips{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0;}
+  .tip{background:var(--teal-soft); border:1px solid #B7DED6; color:#0B5F55;
+       border-radius:10px; padding:6px 12px; font-size:13px;}
+
+  /* ===== 工具栏 ===== */
+  .toolbar{position:sticky; top:0; z-index:50; background:rgba(255,248,240,.94);
+       backdrop-filter:blur(6px); border-bottom:1px solid var(--line); padding:10px 0;}
+  .toolbar .row{display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; font-size:13px; color:var(--sub);}
+  .toolbar select{font-size:14px; padding:6px 8px; border:1px solid #D8CDBF; border-radius:8px; background:#fff; color:var(--ink);}
+  .toolbar label{display:flex; align-items:center; gap:6px; cursor:pointer; color:var(--ink);}
+  .toolbar input[type=checkbox]{width:17px; height:17px; accent-color:var(--teal);}
+  .toolbar button{border:none; background:var(--coral); color:#fff; font-size:14px;
+       padding:7px 16px; border-radius:999px; cursor:pointer;}
+  .toolbar button:hover{background:#D64520;}
+
+  /* ===== 导航 ===== */
+  nav.secnav{display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 4px;}
+  nav.secnav a{text-decoration:none; font-size:14px; color:var(--ink); background:#fff;
+       border:1px solid var(--line); padding:7px 14px; border-radius:999px;}
+  nav.secnav a:hover{border-color:var(--coral); color:var(--coral);}
+
+  /* ===== 区块 ===== */
+  section.block{margin:26px 0;}
+  .sec-head{display:flex; align-items:center; gap:10px; margin:0 0 14px;}
+  .sec-head .no{background:var(--coral); color:#fff; border-radius:10px; width:34px; height:34px;
+       display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; flex:0 0 34px;}
+  .sec-head h2{margin:0; font-size:21px;}
+  .sec-head p{margin:0; font-size:13px; color:var(--sub);}
+  .count-badge{margin-left:auto; background:var(--teal-soft); color:#0B5F55; font-size:13px;
+       border-radius:999px; padding:4px 12px; white-space:nowrap;}
+
+  /* ===== 单词卡片 ===== */
+  .word-grid{display:flex; flex-wrap:wrap; gap:12px;}
+  .wcard{flex:1 1 215px; min-width:0; background:var(--card); border:1px solid var(--line);
+       border-radius:14px; padding:14px 14px 10px; cursor:pointer; position:relative;
+       transition:transform .12s, box-shadow .12s;}
+  .wcard:hover{transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.08);}
+  .wcard.speaking{border-color:var(--teal); box-shadow:0 0 0 2px var(--teal-soft);}
+  .wcard .wd{font-size:23px; font-weight:700; letter-spacing:.3px; color:var(--ink); display:flex; flex-wrap:wrap; align-items:baseline;}
+  .wcard .wd .syl{cursor:pointer; border-radius:6px; padding:0 1px;}
+  .wcard .wd .syl:hover{background:var(--amber-soft);}
+  .wcard .wd .sep{color:#C9BBA8; font-weight:400; margin:0 1px;}
+  .wcard .wd .stress{font-size:15px; color:var(--coral); font-weight:600; margin-right:1px;}
+  .wcard .ipa{color:var(--sub); font-size:14px; margin-top:3px; font-family:'Segoe UI',Arial,sans-serif;}
+  .wcard .meta{display:flex; align-items:center; margin-top:6px; gap:8px;}
+  .wcard .pos{background:var(--blue-soft); color:var(--blue); border-radius:6px; font-size:12px; padding:1px 7px;}
+  .wcard .zh{font-size:14px; color:var(--ink);}
+  .wcard .play{margin-left:auto; border:none; background:var(--coral-soft); color:var(--coral);
+       border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; flex:0 0 34px;}
+  .wcard .play:hover{background:var(--coral); color:#fff;}
+  .wcard .play svg{width:16px; height:16px; fill:currentColor;}
+  .wcard .lbl{position:absolute; top:8px; right:10px; font-size:11px; color:#C0B3A0;}
+
+  /* ===== 短语 ===== */
+  .phrase-list{display:flex; flex-wrap:wrap; gap:10px;}
+  .pchip{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 14px;
+       cursor:pointer; display:inline-flex; align-items:center; gap:8px; flex:1 1 250px; min-width:0;}
+  .pchip:hover{border-color:var(--teal);}
+  .pchip.speaking{border-color:var(--teal); background:var(--teal-soft);}
+  .pchip .pt{font-weight:600; font-size:16px;}
+  .pchip .pz{color:var(--sub); font-size:13px; margin-left:auto; text-align:right;}
+
+  /* ===== 课文 ===== */
+  .passage-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 20px 12px;}
+  .post-head{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .avatar{width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,#8FD3B9,#4AAE96);
+       color:#fff; font-weight:700; font-size:18px; display:flex; align-items:center; justify-content:center;}
+  .post-head .nm{font-weight:700;}
+  .post-head .dt{font-size:12px; color:var(--sub);}
+  .read-all{margin-left:auto; border:none; background:var(--teal); color:#fff; font-size:14px;
+       padding:8px 16px; border-radius:999px; cursor:pointer;}
+  .read-all:hover{background:#0B6B5F;}
+  .sent{position:relative; margin:0 0 14px; padding:8px 52px 8px 14px; border-left:4px solid transparent;
+       border-radius:8px; font-size:17.5px; line-height:1.9;}
+  .sent.active{background:var(--amber-soft); border-left-color:var(--amber);}
+  .sent .w{cursor:pointer; border-radius:5px; padding:0 1px; transition:background .1s;}
+  .sent .w:hover{background:var(--teal-soft); color:#0B5F55;}
+  .sent .w.speaking{background:var(--amber); color:#fff;}
+  .sent-btn{position:absolute; right:6px; top:50%; transform:translateY(-50%); border:none;
+       background:var(--coral-soft); color:var(--coral); width:38px; height:38px; border-radius:50%;
+       cursor:pointer; display:flex; align-items:center; justify-content:center;}
+  .sent-btn:hover{background:var(--coral); color:#fff;}
+  .sent-btn svg{width:16px; height:16px; fill:currentColor;}
+  .reading-note{margin-top:16px; background:var(--teal-soft); border-radius:12px; padding:12px 16px; font-size:14px; color:#0B5F55;}
+  .reading-note b{color:#08493F;}
+
+  /* ===== 语音 ===== */
+  .phon-grid{display:flex; flex-wrap:wrap; gap:12px;}
+  .phon{flex:1 1 300px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px;}
+  .phon .ph{font-size:26px; font-weight:700; color:var(--coral); font-family:'Segoe UI',Arial,sans-serif;}
+  .phon .pw{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+  .phon .pw span{background:var(--amber-soft); border-radius:8px; padding:4px 12px; font-size:16px; cursor:pointer;}
+  .phon .pw span:hover{background:var(--amber); color:#fff;}
+  .phon .ps{margin-top:8px; font-size:14px; color:var(--sub); cursor:pointer;}
+
+  /* ===== 语法 ===== */
+  .grammar-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .wh-list{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
+  .wh-chip{background:var(--blue-soft); border:1px solid #C6DCF2; border-radius:10px; padding:8px 14px;
+       cursor:pointer; font-size:15px; color:var(--blue);}
+  .wh-chip:hover{background:var(--blue); color:#fff;}
+  .rule{margin-top:14px; background:var(--amber-soft); border-radius:12px; padding:12px 16px; font-size:14px; color:#7A5200;}
+
+  /* ===== 小测 ===== */
+  .quiz-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .q-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .q-play{border:none; background:var(--teal); color:#fff; width:52px; height:52px; border-radius:50%;
+       cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 52px;}
+  .q-play:hover{background:#0B6B5F;}
+  .q-play svg{width:22px; height:22px; fill:currentColor;}
+  .q-word{font-size:22px; font-weight:700; color:var(--sub); letter-spacing:.5px;}
+  .q-hint{font-size:13px; color:var(--sub);}
+  .q-opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-top:16px;}
+  .q-opt{border:1.5px solid var(--line); background:#fff; border-radius:12px; padding:14px 16px;
+       font-size:16px; cursor:pointer; text-align:left; color:var(--ink); min-height:48px;}
+  .q-opt:hover{border-color:var(--teal);}
+  .q-opt.correct{border-color:var(--green); background:#EAF6EF; color:var(--green); font-weight:600;}
+  .q-opt.wrong{border-color:var(--red); background:#FCEBEB; color:var(--red);}
+  .q-feedback{margin-top:14px; min-height:24px; font-size:15px;}
+  .q-score{font-size:15px; font-weight:600; color:var(--teal);}
+  .q-next{margin-top:12px; border:none; background:var(--coral); color:#fff; font-size:15px;
+       padding:9px 22px; border-radius:999px; cursor:pointer; display:none;}
+  .q-done{margin-top:12px; display:none; background:var(--teal-soft); border-radius:12px; padding:14px 18px; font-size:16px; color:#0B5F55;}
+
+  /* ===== 小测分组与课文填空 ===== */
+  .q-tabs{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;}
+  .q-tab{border:1.5px solid var(--line); background:#fff; color:var(--sub); font-size:14px;
+       padding:8px 16px; border-radius:999px; cursor:pointer;}
+  .q-tab:hover{border-color:var(--teal); color:var(--teal);}
+  .q-tab.active{background:var(--teal); border-color:var(--teal); color:#fff; font-weight:600;}
+  .q-modes{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;}
+  .q-modes .q-tab.active{background:var(--coral); border-color:var(--coral); color:#fff; font-weight:600;}
+  .cloze-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .clz-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:6px;}
+  .clz-progress{font-size:14px; color:var(--sub);}
+  .clz-sent{font-size:19px; line-height:1.9; margin:14px 0; min-height:46px;}
+  .clz-blank{background:var(--amber-soft); color:var(--amber); border-bottom:2px solid var(--amber);
+       border-radius:6px; padding:0 10px; font-weight:700; letter-spacing:3px;}
+  .clz-fill{color:var(--green); font-weight:800; border-bottom:2px solid var(--green);}
+  .clz-w{cursor:pointer; border-bottom:1px dotted #C9BFAF; border-radius:4px; padding:0 2px;}
+  .clz-w:hover{background:var(--amber-soft); color:#7A5200;}
+  .clz-w.fill{color:var(--green); font-weight:800; border-bottom:2px solid var(--green); background:transparent;}
+  .clz-w.fill:hover{background:var(--amber-soft); color:#7A5200;}
+  .clz-opts{display:flex; flex-wrap:wrap; gap:10px;}
+  .clz-opts .q-opt{flex:1 1 130px;}
+  .clz-line{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+  .clz-listen{border:none; background:var(--teal-soft); color:var(--teal); width:40px; height:40px;
+       border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 40px;}
+  .clz-listen:hover{background:var(--teal); color:#fff;}
+  .clz-listen svg{width:17px; height:17px; fill:currentColor;}
+
+  /* ===== 语法 · 对话匹配 ===== */
+  .gm-box{background:#FDF9F3; border:1px dashed #E2D5C4; border-radius:12px; padding:16px; margin-top:16px;}
+  .gm-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:10px;}
+  .gm-q{display:flex; align-items:center; gap:12px; background:var(--blue-soft); border-radius:14px; padding:12px 16px; margin-bottom:12px;}
+  .gm-play{border:none; background:var(--blue); color:#fff; width:44px; height:44px; border-radius:50%;
+       cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 44px;}
+  .gm-play:hover{background:#245C9C;}
+  .gm-play svg{width:19px; height:19px; fill:currentColor;}
+  .gm-qtext{font-size:19px; font-weight:700; color:var(--blue); cursor:pointer; line-height:1.5;}
+  .gm-qtext:hover{text-decoration:underline;}
+  .gm-label{font-size:13px; color:var(--sub); margin-bottom:10px;}
+  .gm-opts{display:flex; flex-direction:column; gap:10px;}
+  .gm-opt{display:flex; align-items:center; gap:10px; border:1.5px solid var(--line); background:#fff;
+       border-radius:12px; padding:12px 14px; cursor:pointer; font-size:16px; color:var(--ink); text-align:left;}
+  .gm-opt:hover{border-color:var(--teal);}
+  .gm-opt .txt{flex:1;}
+  .gm-opt .lstn{border:none; background:var(--teal-soft); color:var(--teal); width:38px; height:38px;
+       border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; flex:0 0 38px;}
+  .gm-opt .lstn:hover{background:var(--teal); color:#fff;}
+  .gm-opt .lstn svg{width:16px; height:16px; fill:currentColor;}
+  .gm-opt.correct{border-color:var(--green); background:#EAF6EF;}
+  .gm-opt.wrong{border-color:var(--red); background:#FCEBEB;}
+  .gm-pair{display:none; margin-top:12px;}
+  .gm-pair.show{display:block;}
+  .gm-bubbles{display:flex; flex-direction:column; gap:8px; margin-bottom:10px;}
+  .gm-bub{max-width:88%; border-radius:14px; padding:10px 14px; font-size:16px; line-height:1.6;}
+  .gm-bub.q{background:var(--blue-soft); color:var(--blue); align-self:flex-start;}
+  .gm-bub.a{background:var(--teal-soft); color:#0B5F55; align-self:flex-end;}
+  .gm-repeat{border:none; background:var(--amber); color:#fff; font-size:14px; padding:9px 18px;
+       border-radius:999px; cursor:pointer;}
+  .gm-repeat:hover{background:#9A6A00;}
+
+  footer{margin:36px 0 20px; text-align:center; font-size:13px; color:var(--sub);}
+    @media (max-width:600px){
+    .hero h1{font-size:27px;}
+    .sent{font-size:16.5px;}
+    .wcard{flex:1 1 160px;}
+    /* 触控目标加大（>=44px，适配手机/iPad） */
+    .wcard .play{width:44px;height:44px;flex-basis:44px;}
+    .sent-btn{width:44px;height:44px;}
+    .gm-play{width:48px;height:48px;flex-basis:48px;}
+    .gm-opt .lstn,.clz-listen{width:44px;height:44px;flex-basis:44px;}
+    .q-play{width:56px;height:56px;flex-basis:56px;}
+    .q-opt{padding:16px 18px;min-height:52px;font-size:16.5px;}
+    .toolbar select{font-size:16px;padding:8px 10px;min-height:42px;}
+    .toolbar button{padding:9px 18px;font-size:15px;}
+    .toolbar input[type=checkbox]{width:20px;height:20px;}
+    nav.secnav a{padding:9px 16px;font-size:15px;}
+    .q-tab{padding:10px 18px;font-size:15px;}
+    .sec-head h2{font-size:19px;}
+    .tip{padding:8px 12px;font-size:13.5px;}
+    .phon .pw span{padding:7px 14px;font-size:16.5px;}
+  }
+
+  /* ===== 移动端优化 ===== */
+  .mob-note{max-width:700px;margin:22px auto 0;background:var(--blue-soft);border:1px solid #C6DCF2;
+       border-radius:12px;padding:10px 16px;font-size:13.5px;color:var(--blue);text-align:left;line-height:1.7;}
+  .to-top{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;
+       background:var(--coral);color:#fff;border:none;font-size:20px;line-height:1;cursor:pointer;
+       box-shadow:0 3px 10px rgba(0,0,0,.18);z-index:60;display:none;align-items:center;justify-content:center;}
+  .to-top:hover{background:#D64520;}
+</style>
+</head>
+<body>
+
+<!-- ================= Hero ================= -->
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">适用人群：使用《沪教版》（2024 广州新版）七年级上册的学生</span>
+    <h1>Unit 8 <em>Collecting as a hobby</em> · 收藏之乐</h1>
+    <p class="kq">本页为配套听写练习，词表与例句由教师独立整理，不代表上海教育出版社出品或授权。</p>
+
+    <div class="tips"><span class="tip">点击任意单词 / 音节，即可听到标准发音</span><span class="tip">点句子可听完整例句，点选项可听发音</span><span class="tip">支持切换语速与发音人</span><span class="tip">听音选词 + 句子填空双练习</span></div>
+  </div>
+</header>
+
+<!-- ================= 工具栏 ================= -->
+<div class="toolbar">
+  <div class="wrap row">
+    <label>语速
+      <select id="rateSel">
+        <option value="0.6">慢速 0.6×</option>
+        <option value="0.8">较慢 0.8×</option>
+        <option value="1" selected>正常 1×</option>
+      </select>
+    </label>
+    <label>发音人 <select id="voiceSel"></select></label>
+    <label><input type="checkbox" id="sylMode"> 逐音节跟读</label>
+    <label><input type="checkbox" id="stressShow" checked> 显示重音 ˈ</label>
+    <button id="stopBtn" type="button">■ 停止朗读</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="secnav"><a href="#words">① 单词卡</a><a href="#phrases">② 短语</a><a href="#quiz">③ 小测</a><a href="#cloze">④ 填空</a></nav>
+
+  <!-- ================= 单词 ================= -->
+  <section class="block" id="words">
+    <div class="sec-head">
+      <div class="no">1</div>
+      <h2>核心单词</h2>
+      <p>点击卡片朗读整词，点击分色音节逐音节跟读</p>
+      <span class="count-badge">本单元词汇表 · 30 词</span>
+    </div>
+    <div class="word-grid" id="wordGrid"></div>
+
+    <div class="sec-head" style="margin-top:26px;">
+      <div class="no" style="background:var(--teal);">+</div>
+      <h2>单元补充词汇</h2>
+      <p>收藏 · 爱好 · 珍宝（课文与听说活动）</p>
+      <span class="count-badge">18 词</span>
+    </div>
+    <div class="word-grid" id="extraGrid"></div>
+  </section>
+
+  <!-- ================= 短语 ================= -->
+  <section class="block" id="phrases">
+    <div class="sec-head">
+      <div class="no">2</div>
+      <h2>重点短语</h2>
+      <p>来自单元词汇表，点击即可点读</p>
+      <span class="count-badge">17 个</span>
+    </div>
+    <div class="phrase-list" id="phraseList"></div>
+  </section>
+
+        <!-- ================= 小测 ================= -->
+  <section class="block" id="quiz">
+    <div class="sec-head">
+      <div class="no">3</div>
+      <h2>听音选词 · 听力小测</h2>
+      <p>三组词汇 · 听音选义 + 听音选英语双题型</p>
+      <span class="count-badge" id="quizBadge"></span>
+    </div>
+    <div class="quiz-box">
+      <div class="q-tabs" id="qTabs"></div>
+      <div class="q-modes" id="qModes">
+        <button class="q-tab active" id="modeEnBtn" type="button">听音选英语</button>
+        <button class="q-tab" id="modeZhBtn" type="button">听音选义（中文）</button>
+      </div>
+      <div class="q-top">
+        <button class="q-play" id="qPlay" type="button" aria-label="播放单词">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div>
+          <div class="q-word" id="qWord">—</div>
+          <div class="q-hint" id="qHint">第 1 / 8 题 · 点击左侧播放按钮听单词</div>
+        </div>
+        <div class="q-score" id="qScore">得分：0</div>
+      </div>
+      <div class="q-opts" id="qOpts"></div>
+      <div class="q-feedback" id="qFb"></div>
+      <button class="q-next" id="qNext" type="button">下一题 →</button>
+      <div class="q-done" id="qDone"></div>
+    </div>
+  </section>
+
+  <!-- ================= 选词填空 ================= -->
+  <section class="block" id="cloze">
+    <div class="sec-head">
+      <div class="no" style="background:var(--teal);">4</div>
+      <h2>句子填空 · A1 独立例句</h2>
+      <p>例句由教师按单元主题独立编写，点句子听完整发音，点选单词填空</p>
+      <span class="count-badge" id="clzBadge">课文原句 · 12 题</span>
+    </div>
+    <div class="cloze-box">
+      <div class="q-tabs" id="clzTabs"></div>
+      <div class="clz-top">
+        <div class="clz-progress" id="clzHint">第 1 / 12 题</div>
+        <div class="q-score" id="clzScore">得分：0</div>
+      </div>
+      <div class="clz-sent" id="clzSent"></div>
+      <div class="clz-dict" id="clzDict" style="display:none;margin-top:10px;padding:10px 14px;background:#FDF9F3;border:1px solid #EAD9AC;border-radius:12px;font-size:15px;color:#7A5200;"></div>
+      <div class="clz-opts" id="clzOpts"></div>
+      <div class="q-feedback" id="clzFb"></div>
+      <button class="q-next" id="clzNext" type="button">下一题 →</button>
+      <div class="q-done" id="clzDone"></div>
+    </div>
+  </section>
+
+    <footer>
+    <p>本页为配套听写练习，词表与例句由教师独立整理，不代表上海教育出版社出品或授权</p>
+    <p>点读功能基于浏览器语音合成（Web Speech API），建议使用 Chrome / Edge 浏览器打开体验最佳</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var SPK = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
+
+  /* ========== 数据 ========== */
+  var WORDS = [
+    {w:'collection', syl:['col','lec','tion'], st:1, ipa:'/kəˈlekʃn/', pos:'n.', zh:'收集物；收藏品'},
+    {w:'collect', syl:['col','lect'], st:1, ipa:'/kəˈlekt/', pos:'v.', zh:'收集；收藏'},
+    {w:'hobby', syl:['hob','by'], st:0, ipa:'/ˈhɒbi/', pos:'n.', zh:'爱好'},
+    {w:'stamp', syl:['stamp'], st:0, ipa:'/stæmp/', pos:'n.', zh:'邮票'},
+    {w:'own', syl:['own'], st:0, ipa:'/əʊn/', pos:'v.', zh:'拥有'},
+    {w:'thousand', syl:['thou','sand'], st:0, ipa:'/ˈθaʊznd/', pos:'n.', zh:'一千'},
+    {w:'valuable', syl:['val','u','a','ble'], st:0, ipa:'/ˈvæljuəbl/', pos:'adj.', zh:'贵重的；宝贵的'},
+    {w:'care', syl:['care'], st:0, ipa:'/keə(r)/', pos:'n.', zh:'照料；小心'},
+    {w:'protect', syl:['pro','tect'], st:1, ipa:'/prəˈtekt/', pos:'v.', zh:'保护'},
+    {w:'glove', syl:['glove'], st:0, ipa:'/ɡlʌv/', pos:'n.', zh:'手套'},
+    {w:'envelope', syl:['en','ve','lope'], st:0, ipa:'/ˈenvələʊp/', pos:'n.', zh:'信封'},
+    {w:'postcard', syl:['post','card'], st:0, ipa:'/ˈpəʊstkɑːd/', pos:'n.', zh:'明信片'},
+    {w:'story', syl:['sto','ry'], st:0, ipa:'/ˈstɔːri/', pos:'n.', zh:'故事'},
+    {w:'lesson', syl:['les','son'], st:0, ipa:'/ˈlesn/', pos:'n.', zh:'课；教训'},
+    {w:'absolutely', syl:['ab','so','lute','ly'], st:0, ipa:'/ˈæbsəluːtli/', pos:'adv.', zh:'绝对地；完全地'},
+    {w:'favourite', syl:['fa','vou','rite'], st:0, ipa:'/ˈfeɪvərɪt/', pos:'adj.', zh:'最喜欢的'},
+    {w:'impossible', syl:['im','pos','si','ble'], st:1, ipa:'/ɪmˈpɒsəbl/', pos:'adj.', zh:'不可能的'},
+    {w:'nail', syl:['nail'], st:0, ipa:'/neɪl/', pos:'n.', zh:'钉子'},
+    {w:'explain', syl:['ex','plain'], st:1, ipa:'/ɪkˈspleɪn/', pos:'v.', zh:'解释；说明'},
+    {w:'bit', syl:['bit'], st:0, ipa:'/bɪt/', pos:'n.', zh:'少量；一点'},
+    {w:'palace', syl:['pal','ace'], st:0, ipa:'/ˈpæləs/', pos:'n.', zh:'宫殿'},
+    {w:'interested', syl:['in','te','res','ted'], st:0, ipa:'/ˈɪntrəstɪd/', pos:'adj.', zh:'感兴趣的'},
+    {w:'similar', syl:['sim','i','lar'], st:0, ipa:'/ˈsɪmələ(r)/', pos:'adj.', zh:'相似的'},
+    {w:'country', syl:['coun','try'], st:0, ipa:'/ˈkʌntri/', pos:'n.', zh:'国家'},
+    {w:'treasure', syl:['trea','sure'], st:0, ipa:'/ˈtreʒə(r)/', pos:'n.', zh:'珍宝；宝物'},
+    {w:'shell', syl:['shell'], st:0, ipa:'/ʃel/', pos:'n.', zh:'贝壳'},
+    {w:'coin', syl:['coin'], st:0, ipa:'/kɔɪn/', pos:'n.', zh:'硬币'},
+    {w:'key ring', syl:['key','ring'], st:0, ipa:'/ˈkiː rɪŋ/', pos:'n.', zh:'钥匙扣'},
+    {w:'model', syl:['mod','el'], st:0, ipa:'/ˈmɒdl/', pos:'n.', zh:'模型'},
+    {w:'wrapper', syl:['wrap','per'], st:0, ipa:'/ˈræpə(r)/', pos:'n.', zh:'包装纸'}
+  ];
+  var EXTRAS = [
+    {w:'collector', syl:['col','lec','tor'], st:1, ipa:'/kəˈlektə(r)/', pos:'n.', zh:'收藏家'},
+    {w:'discover', syl:['dis','cov','er'], st:1, ipa:'/dɪˈskʌvə(r)/', pos:'v.', zh:'发现'},
+    {w:'curious', syl:['cu','ri','ous'], st:0, ipa:'/ˈkjʊəriəs/', pos:'adj.', zh:'好奇的'},
+    {w:'pattern', syl:['pat','tern'], st:0, ipa:'/ˈpætn/', pos:'n.', zh:'图案；花样'},
+    {w:'unusual', syl:['un','u','su','al'], st:1, ipa:'/ʌnˈjuːʒuəl/', pos:'adj.', zh:'不寻常的'},
+    {w:'memory', syl:['mem','o','ry'], st:0, ipa:'/ˈmeməri/', pos:'n.', zh:'回忆；记忆'},
+    {w:'box', syl:['box'], st:0, ipa:'/bɒks/', pos:'n.', zh:'盒子'},
+    {w:'album', syl:['al','bum'], st:0, ipa:'/ˈælbəm/', pos:'n.', zh:'集邮册；相册'},
+    {w:'shelf', syl:['shelf'], st:0, ipa:'/ʃelf/', pos:'n.', zh:'架子'},
+    {w:'drawer', syl:['draw','er'], st:0, ipa:'/drɔː(r)/', pos:'n.', zh:'抽屉'},
+    {w:'sticker', syl:['stick','er'], st:0, ipa:'/ˈstɪkə(r)/', pos:'n.', zh:'贴纸'},
+    {w:'paper clip', syl:['pa','per','clip'], st:0, ipa:'/ˈpeɪpə klɪp/', pos:'n.', zh:'回形针'},
+    {w:'badge', syl:['badge'], st:0, ipa:'/bædʒ/', pos:'n.', zh:'徽章'},
+    {w:'doll', syl:['doll'], st:0, ipa:'/dɒl/', pos:'n.', zh:'洋娃娃'},
+    {w:'toy', syl:['toy'], st:0, ipa:'/tɔɪ/', pos:'n.', zh:'玩具'},
+    {w:'card', syl:['card'], st:0, ipa:'/kɑːd/', pos:'n.', zh:'卡片'},
+    {w:'eraser', syl:['e','ra','ser'], st:1, ipa:'/ɪˈreɪzə(r)/', pos:'n.', zh:'橡皮'},
+    {w:'pencil', syl:['pen','cil'], st:0, ipa:'/ˈpensl/', pos:'n.', zh:'铅笔'}
+  ];
+  var PHRASES = [
+    {p:'stamp collection', zh:'集邮'},
+    {p:'all over the world', zh:'全世界'},
+    {p:'pocket money', zh:'零花钱'},
+    {p:'thanks to', zh:'多亏；由于'},
+    {p:'take care of', zh:'照顾；保管'},
+    {p:'with great care', zh:'非常小心地'},
+    {p:'add ... to ...', zh:'把……加入……'},
+    {p:'take ... from ...', zh:'从……取下……'},
+    {p:'a history lesson', zh:'一堂历史课'},
+    {p:'the Palace Museum', zh:'故宫博物院'},
+    {p:'hundreds of years ago', zh:'几百年前'},
+    {p:'a single nail', zh:'一颗钉子'},
+    {p:'become interested in', zh:'对……产生兴趣'},
+    {p:'more and more', zh:'越来越多'},
+    {p:'chocolate wrappers', zh:'巧克力包装纸'},
+    {p:'sweet memories', zh:'甜蜜的回忆'},
+    {p:'paper money', zh:'纸币'}
+  ];
+  var QUIZ = [
+    {w:'collection', zh:'收集物；收藏品', opts:['爱好','邮票','故事']},
+    {w:'collect', zh:'收集；收藏', opts:['扔掉','分发','购买']},
+    {w:'hobby', zh:'爱好', opts:['工作','作业','习惯']},
+    {w:'stamp', zh:'邮票', opts:['信封','明信片','标签']},
+    {w:'own', zh:'拥有', opts:['借用','出售','丢失']},
+    {w:'thousand', zh:'一千', opts:['一百','一万','百万']},
+    {w:'valuable', zh:'贵重的；宝贵的', opts:['便宜的','普通的','无用的']},
+    {w:'care', zh:'照料；小心', opts:['粗心','帮助','保护']},
+    {w:'protect', zh:'保护', opts:['伤害','暴露','清洗']},
+    {w:'glove', zh:'手套', opts:['袜子','帽子','围巾']},
+    {w:'envelope', zh:'信封', opts:['信纸','邮票','包裹']},
+    {w:'postcard', zh:'明信片', opts:['照片','贺卡','杂志']},
+    {w:'story', zh:'故事', opts:['诗歌','歌曲','新闻']},
+    {w:'lesson', zh:'课；教训', opts:['假期','休息','练习']},
+    {w:'absolutely', zh:'绝对地；完全地', opts:['部分地','几乎','可能']},
+    {w:'favourite', zh:'最喜欢的', opts:['讨厌的','普通的','唯一的']},
+    {w:'impossible', zh:'不可能的', opts:['可能的','困难的','容易的']},
+    {w:'nail', zh:'钉子', opts:['螺丝','锤子','绳子']},
+    {w:'explain', zh:'解释；说明', opts:['隐藏','怀疑','提问']},
+    {w:'bit', zh:'少量；一点', opts:['大量','全部','一半']},
+    {w:'palace', zh:'宫殿', opts:['城堡','寺庙','教堂']},
+    {w:'interested', zh:'感兴趣的', opts:['无聊的','兴奋的','惊讶的']},
+    {w:'similar', zh:'相似的', opts:['不同的','相同的','相反的']},
+    {w:'country', zh:'国家', opts:['城市','乡村','大陆']},
+    {w:'treasure', zh:'珍宝；宝物', opts:['垃圾','礼物','证书']},
+    {w:'shell', zh:'贝壳', opts:['石头','沙子','珍珠']},
+    {w:'coin', zh:'硬币', opts:['纸币','支票','信用卡']},
+    {w:'key ring', zh:'钥匙扣', opts:['钥匙','锁','门铃']},
+    {w:'model', zh:'模型', opts:['原型','玩具','样品']},
+    {w:'wrapper', zh:'包装纸', opts:['报纸','信纸','海报']}
+  ];
+  var QUIZ_EXTRA = [
+    {w:'collector', zh:'收藏家', opts:['顾客','读者','游客']},
+    {w:'discover', zh:'发现', opts:['发明','创造','隐藏']},
+    {w:'curious', zh:'好奇的', opts:['漠不关心的','害怕的','兴奋的']},
+    {w:'pattern', zh:'图案；花样', opts:['颜色','形状','设计']},
+    {w:'unusual', zh:'不寻常的', opts:['普通的','常见的','奇怪的']},
+    {w:'memory', zh:'回忆；记忆', opts:['梦想','未来','经历']},
+    {w:'box', zh:'盒子', opts:['袋子','篮子','瓶子']},
+    {w:'album', zh:'集邮册；相册', opts:['画册','笔记本','字典']},
+    {w:'shelf', zh:'架子', opts:['桌子','椅子','柜子']},
+    {w:'drawer', zh:'抽屉', opts:['门','窗','书架']},
+    {w:'sticker', zh:'贴纸', opts:['标签','邮票','胶带']},
+    {w:'paper clip', zh:'回形针', opts:['订书钉','橡皮筋','别针']},
+    {w:'badge', zh:'徽章', opts:['奖牌','硬币','钥匙扣']},
+    {w:'doll', zh:'洋娃娃', opts:['玩具熊','机器人','木偶']},
+    {w:'toy', zh:'玩具', opts:['工具','文具','餐具']},
+    {w:'card', zh:'卡片', opts:['信封','纸张','书本']},
+    {w:'eraser', zh:'橡皮', opts:['铅笔刀','尺子','胶水']},
+    {w:'pencil', zh:'铅笔', opts:['钢笔','蜡笔','毛笔']}
+  ];
+  var QUIZ_PHRASE = [
+    {w:'stamp collection', zh:'集邮', opts:['收藏邮票','邮票展','集邮册']},
+    {w:'all over the world', zh:'全世界', opts:['世界各地都有','环绕世界','世界尽头']},
+    {w:'pocket money', zh:'零花钱', opts:['压岁钱','存款','工资']},
+    {w:'thanks to', zh:'多亏；由于', opts:['感谢','因为……而','拒绝']},
+    {w:'take care of', zh:'照顾；保管', opts:['放弃','关注','忽视']},
+    {w:'with great care', zh:'非常小心地', opts:['毫不在意地','粗心地','仔细地']},
+    {w:'add ... to ...', zh:'把……加入……', opts:['从……减去……','把……换成……','把……送给……']},
+    {w:'take ... from ...', zh:'从……取下……', opts:['把……放到……','从……拿走……','把……交给……']},
+    {w:'a history lesson', zh:'一堂历史课', opts:['历史书','历史考试','历史故事']},
+    {w:'the Palace Museum', zh:'故宫博物院', opts:['国家博物馆','圆明园','颐和园']},
+    {w:'hundreds of years ago', zh:'几百年前', opts:['几百天后','几十年前','几千年后']},
+    {w:'a single nail', zh:'一颗钉子', opts:['一颗螺丝','一根绳子','一块木板']},
+    {w:'become interested in', zh:'对……产生兴趣', opts:['对……失去兴趣','擅长……','开始学习……']},
+    {w:'more and more', zh:'越来越多', opts:['越来越少','更多','最多']},
+    {w:'chocolate wrappers', zh:'巧克力包装纸', opts:['巧克力盒','巧克力棒','糖果纸']},
+    {w:'sweet memories', zh:'甜蜜的回忆', opts:['痛苦的经历','美好的梦想','快乐的时光']},
+    {w:'paper money', zh:'纸币', opts:['硬币','支票','存折']}
+  ];
+
+  /* 音节发音小词典（个别音节按自然拼读读法处理） */
+  var SYL_SPEAK = {
+    'tion':'shun','tient':'shent','tive':'tiv','ture':'cher','sure':'zher',
+    'cious':'shus','ge':'j','gi':'ji','ce':'s','ci':'si','ea':'ee','eau':'oh',
+    'ight':'ite','ough':'uff','augh':'aw','tion':'shun','ph':'f','wh':'w'
+  };
+  function sylSpeak(syl){
+    var k = syl.toLowerCase();
+    return SYL_SPEAK[k] || syl;
+  }
+
+  /* ========== 语音引擎 ========== */
+  var synth = window.speechSynthesis;
+  var voices = [];
+  var voiceSel = document.getElementById('voiceSel');
+  var rateSel = document.getElementById('rateSel');
+
+  function loadVoices(){
+    if (!synth) return;
+    voices = synth.getVoices();
+    var en = voices.filter(function(v){ return /^en/i.test(v.lang); });
+    voiceSel.innerHTML = '';
+    if (en.length === 0) { voiceSel.innerHTML = '<option value="">使用默认发音</option>'; return; }
+    en.forEach(function(v){
+      var o = document.createElement('option');
+      o.value = v.name;
+      o.textContent = v.name + ' (' + v.lang + ')';
+      voiceSel.appendChild(o);
+    });
+    /* 优先英式发音（教材以英式英语为标准） */
+    var prefer = en.filter(function(v){ return /^en-GB/i.test(v.lang); });
+    var pick = (prefer.length ? prefer : en)[0];
+    voiceSel.value = pick.name;
+  }
+  if (synth) {
+    loadVoices();
+    if (typeof synth.onvoiceschanged !== 'undefined') synth.onvoiceschanged = loadVoices;
+  }
+
+  function getVoice(){
+    if (!synth) return null;
+    var name = voiceSel.value;
+    for (var i = 0; i < voices.length; i++) if (voices[i].name === name) return voices[i];
+    var en = voices.filter(function(v){ return /^en/i.test(v.lang); });
+    return en.length ? en[0] : null;
+  }
+
+  function speak(text, rate, onend){
+    if (!synth) { alert('当前浏览器不支持语音合成（Web Speech API），建议使用 Chrome 或 Edge。'); return; }
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    var v = getVoice();
+    if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-GB'; }
+    u.rate = rate || parseFloat(rateSel.value) || 1;
+    u.pitch = 1;
+    u.onend = onend || null;
+    synth.speak(u);
+  }
+
+  function stopSpeak(){
+    if (synth) synth.cancel();
+    var els = document.querySelectorAll('.speaking');
+    for (var i = 0; i < els.length; i++) els[i].classList.remove('speaking');
+  }
+
+  function sylModeOn(){
+    var c = document.getElementById('sylMode');
+    return c && c.checked;
+  }
+  function stressShowOn(){
+    var c = document.getElementById('stressShow');
+    return !c || c.checked;
+  }
+  document.getElementById('stopBtn').addEventListener('click', stopSpeak);
+
+  /* ========== 单词卡片 ========== */
+  function renderWords(arr, containerId){
+    var box = document.getElementById(containerId);
+    arr.forEach(function(item, idx){
+      var card = document.createElement('div');
+      card.className = 'wcard';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', item.w + '，' + item.zh);
+
+      var wd = document.createElement('div');
+      wd.className = 'wd';
+      item.syl.forEach(function(s, i){
+        if (stressShowOn() && i === item.st && item.syl.length > 1) {
+          var st = document.createElement('span');
+          st.className = 'stress';
+          st.textContent = 'ˈ';
+          wd.appendChild(st);
+        }
+        var sp = document.createElement('span');
+        sp.className = 'syl';
+        sp.textContent = s;
+        if (i === item.st) sp.style.fontWeight = '800';
+        sp.style.color = ['#E8552D','#0F8A7D','#B57A00'][i % 3];
+        sp.title = '点击跟读音节 ' + s;
+        sp.addEventListener('click', function(e){
+          e.stopPropagation();
+          speak(sylSpeak(s), undefined);
+        });
+        wd.appendChild(sp);
+        if (i < item.syl.length - 1) {
+          var sep = document.createElement('span');
+          sep.className = 'sep';
+          sep.textContent = '·';
+          wd.appendChild(sep);
+        }
+      });
+      card.appendChild(wd);
+
+      var ipa = document.createElement('div');
+      ipa.className = 'ipa';
+      ipa.textContent = item.ipa;
+      card.appendChild(ipa);
+
+      var meta = document.createElement('div');
+      meta.className = 'meta';
+      var pos = document.createElement('span');
+      pos.className = 'pos';
+      pos.textContent = item.pos;
+      var zh = document.createElement('span');
+      zh.className = 'zh';
+      zh.textContent = item.zh;
+      var play = document.createElement('button');
+      play.className = 'play';
+      play.type = 'button';
+      play.setAttribute('aria-label', '朗读 ' + item.w);
+      play.innerHTML = SPK;
+      play.addEventListener('click', function(e){
+        e.stopPropagation();
+        speak(item.w);
+      });
+      meta.appendChild(pos);
+      meta.appendChild(zh);
+      meta.appendChild(play);
+      card.appendChild(meta);
+
+      var lbl = document.createElement('span');
+      lbl.className = 'lbl';
+      lbl.textContent = String(idx + 1).padStart(2, '0');
+      card.appendChild(lbl);
+
+      function playWord(){
+        if (sylModeOn()) {
+          /* 逐音节连读 */
+          if (!synth) return;
+          synth.cancel();
+          var syls = item.syl.slice();
+          var i = 0;
+          function next(){
+            if (i >= syls.length) { card.classList.remove('speaking'); return; }
+            card.classList.add('speaking');
+            var u = new SpeechSynthesisUtterance(sylSpeak(syls[i]));
+            var v = getVoice();
+            if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-GB'; }
+            u.rate = parseFloat(rateSel.value) || 1;
+            u.onend = function(){ i++; setTimeout(next, 140); };
+            synth.speak(u);
+          }
+          next();
+        } else {
+          card.classList.add('speaking');
+          speak(item.w, undefined, function(){ card.classList.remove('speaking'); });
+        }
+      }
+      card.addEventListener('click', playWord);
+      card.addEventListener('keydown', function(e){
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playWord(); }
+      });
+      box.appendChild(card);
+    });
+  }
+  renderWords(WORDS, 'wordGrid');
+  renderWords(EXTRAS, 'extraGrid');
+
+  /* ========== 短语 ========== */
+  var phraseList = document.getElementById('phraseList');
+  PHRASES.forEach(function(item){
+    var chip = document.createElement('div');
+    chip.className = 'pchip';
+    chip.setAttribute('role', 'button');
+    chip.setAttribute('tabindex', '0');
+    chip.setAttribute('aria-label', item.p + '，' + item.zh);
+    var pt = document.createElement('span');
+    pt.className = 'pt';
+    pt.textContent = item.p;
+    var pz = document.createElement('span');
+    pz.className = 'pz';
+    pz.textContent = item.zh;
+    chip.appendChild(pt);
+    chip.appendChild(pz);
+    function play(){
+      chip.classList.add('speaking');
+      speak(item.p, undefined, function(){ chip.classList.remove('speaking'); });
+    }
+    chip.addEventListener('click', play);
+    chip.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); }
+    });
+    phraseList.appendChild(chip);
+  });
+
+  /* ========== 课文 ========== */
+  /* ========== 听音选词小测（三组 × 双题型） ========== */
+  var qi = 0, score = 0, answered = false, setIdx = 0;
+  var quizMode = 1; /* 0 = 听音选义（中文），1 = 听音选英语 */
+  var current = null;
+  var qPlay = document.getElementById('qPlay');
+  var qWord = document.getElementById('qWord');
+  var qHint = document.getElementById('qHint');
+  var qScore = document.getElementById('qScore');
+  var qOpts = document.getElementById('qOpts');
+  var qFb = document.getElementById('qFb');
+  var qNext = document.getElementById('qNext');
+  var qDone = document.getElementById('qDone');
+  var qTabs = document.getElementById('qTabs');
+  var qBadge = document.getElementById('quizBadge');
+  var modeZhBtn = document.getElementById('modeZhBtn');
+  var modeEnBtn = document.getElementById('modeEnBtn');
+  var QUIZ_SETS = [
+    {name:'核心单词', data:QUIZ},
+    {name:'补充词汇', data:QUIZ_EXTRA},
+    {name:'重点短语', data:QUIZ_PHRASE}
+  ];
+  function curQuiz(){ return QUIZ_SETS[setIdx].data; }
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function setQuizMode(m){
+    if (quizMode === m) return;
+    quizMode = m;
+    qi = 0; score = 0; answered = false;
+    qScore.textContent = '得分：0';
+    qDone.style.display = 'none';
+    qDone.textContent = '';
+    qFb.textContent = '';
+    modeZhBtn.classList.toggle('active', m === 0);
+    modeEnBtn.classList.toggle('active', m === 1);
+    loadQuestion();
+  }
+  modeZhBtn.addEventListener('click', function(){ setQuizMode(0); });
+  modeEnBtn.addEventListener('click', function(){ setQuizMode(1); });
+
+  function engOpts(w){
+    var pool = curQuiz().filter(function(it){ return it.w !== w; });
+    return shuffle(pool).slice(0, 3).map(function(it){ return it.w; }).concat([w]);
+  }
+
+  function loadQuestion(){
+    answered = false;
+    current = curQuiz()[qi];
+    var isPhrase = (setIdx === 2);
+    qWord.textContent = isPhrase ? '听一听：这是哪个短语？' : '听一听：这是哪个单词？';
+    qHint.textContent = '第 ' + (qi + 1) + ' / ' + curQuiz().length + ' 题 · ' +
+      (quizMode === 0 ? '点击左侧播放按钮听发音' : '听发音，选出对应的' + (isPhrase ? '英语短语' : '英语单词'));
+    qFb.textContent = '';
+    qNext.style.display = 'none';
+    qNext.textContent = '下一题 →';
+    qOpts.innerHTML = '';
+    var opts = (quizMode === 0) ? shuffle(current.opts.concat([current.zh])) : shuffle(engOpts(current.w));
+    var target = (quizMode === 0) ? current.zh : current.w;
+    opts.forEach(function(o){
+      var b = document.createElement('button');
+      b.className = 'q-opt';
+      b.type = 'button';
+      b.textContent = o;
+      b.addEventListener('click', function(){
+        if (answered) return;
+        answered = true;
+        var correct = (o === target);
+        if (correct) {
+          score++;
+          b.classList.add('correct');
+          qFb.innerHTML = (quizMode === 0)
+            ? '答对啦！<b>' + current.w + '</b> 的意思是「' + current.zh + '」'
+            : '答对啦！「' + current.zh + '」的英语是 <b>' + current.w + '</b>';
+          qFb.style.color = 'var(--green)';
+        } else {
+          b.classList.add('wrong');
+          var okBtn = null;
+          var bs = qOpts.querySelectorAll('.q-opt');
+          for (var k = 0; k < bs.length; k++) {
+            if (bs[k].textContent === target) { okBtn = bs[k]; break; }
+          }
+          if (okBtn) okBtn.classList.add('correct');
+          qFb.innerHTML = (quizMode === 0)
+            ? '再听一遍！<b>' + current.w + '</b> 的意思是「' + current.zh + '」'
+            : '再听一遍！「' + current.zh + '」的英语是 <b>' + current.w + '</b>';
+          qFb.style.color = 'var(--red)';
+        }
+        qScore.textContent = '得分：' + score;
+        /* 自动播放正确答案，增加听力输入 */
+        setTimeout(function(){ speak(target, 0.8); }, 400);
+        if (qi < curQuiz().length - 1) {
+          qNext.style.display = 'inline-block';
+        } else {
+          qNext.style.display = 'inline-block';
+          qNext.textContent = '再来一轮';
+          qDone.style.display = 'block';
+          qDone.textContent = '完成！共 ' + curQuiz().length + ' 题，答对 ' + score + ' 题。' +
+            (score === curQuiz().length ? ' 太棒了，全部正确！' : (score >= curQuiz().length * 0.6 ? ' 很好，继续加油！' : ' 建议回到单词卡再多听几遍。'));
+        }
+      });
+      qOpts.appendChild(b);
+    });
+  }
+  qPlay.addEventListener('click', function(){
+    if (!current) return;
+    speak(current.w, 0.75);
+  });
+  qNext.addEventListener('click', function(){
+    if (qi >= curQuiz().length - 1) {
+      qi = 0;
+      score = 0;
+      qScore.textContent = '得分：0';
+      qDone.style.display = 'none';
+      qDone.textContent = '';
+    } else {
+      qi++;
+    }
+    loadQuestion();
+  });
+  QUIZ_SETS.forEach(function(s, idx){
+    var tb = document.createElement('button');
+    tb.type = 'button';
+    tb.className = 'q-tab' + (idx === 0 ? ' active' : '');
+    tb.textContent = s.name + '（' + s.data.length + ' 题）';
+    tb.addEventListener('click', function(){
+      if (setIdx === idx) return;
+      setIdx = idx;
+      qi = 0; score = 0; answered = false;
+      qScore.textContent = '得分：0';
+      qDone.style.display = 'none';
+      qDone.textContent = '';
+      qFb.textContent = '';
+      var tabs = qTabs.querySelectorAll('.q-tab');
+      for (var k = 0; k < tabs.length; k++) tabs[k].classList.remove('active');
+      tb.classList.add('active');
+      qBadge.textContent = s.name + ' · ' + s.data.length + ' 题';
+      loadQuestion();
+    });
+    qTabs.appendChild(tb);
+  });
+  qBadge.textContent = QUIZ_SETS[0].name + ' · ' + QUIZ_SETS[0].data.length + ' 题';
+  loadQuestion();
+
+  /* ========== 选词填空（课文原句 + 语法原句） ========== */
+  var CLOZE_CORE = [{s:"His stamp ____ is huge.", ans:"collection", opts:["collection","collect","common","corner"], d:{"stamp":"邮票","collection":"收集物；收藏品","collect":"收集；收藏","common":"石头很常见。","corner":"商店在街角。"}},{s:"I ____ old coins.", ans:"collect", opts:["collect","common","corner","cover"], d:{"collect":"收集；收藏","old":"我爷爷保存着老照片。","common":"石头很常见。","corner":"商店在街角。","cover":"这本书的封面是蓝色的。"}},{s:"Collecting is a quiet ____.", ans:"hobby", opts:["hobby","price","cheap","shelf"], d:{"hobby":"爱好","price":"这个玩具多少钱？","cheap":"这些明信片相当便宜。","shelf":"架子"}},{s:"This coin is a real ____.", ans:"treasure", opts:["treasure","valuable","ticket","remember"], d:{"coin":"硬币","treasure":"珍宝；宝物","valuable":"贵重的；宝贵的","ticket":"我们把票留作纪念。","remember":"我记得我的第一枚硬币。"}},{s:"The book is very ____.", ans:"valuable", opts:["valuable","treasure","remember","collect"], d:{"valuable":"贵重的；宝贵的","treasure":"珍宝；宝物","remember":"我记得我的第一枚硬币。","collect":"收集；收藏"}},{s:"What is the ____ of this toy?", ans:"price", opts:["price","page","hobby","cheap"], d:{"price":"这个玩具多少钱？","toy":"玩具","page":"翻到下一页看看。","hobby":"爱好","cheap":"这些明信片相当便宜。"}},{s:"The card ____ me five yuan.", ans:"cost", opts:["cost","cover","common","card"], d:{"card":"卡片","cost":"这张卡片花了我五元。","cover":"这本书的封面是蓝色的。","common":"石头很常见。"}},{s:"These postcards are quite ____.", ans:"cheap", opts:["cheap","cover","cost","common"], d:{"cheap":"这些明信片相当便宜。","cover":"这本书的封面是蓝色的。","cost":"这张卡片花了我五元。","common":"石头很常见。"}},{s:"That old watch is ____.", ans:"expensive", opts:["expensive","collection","treasure","valuable"], d:{"old":"我爷爷保存着老照片。","expensive":"那块旧表很贵。","collection":"收集物；收藏品","treasure":"珍宝；宝物","valuable":"贵重的；宝贵的"}},{s:"This is a ____ box.", ans:"special", opts:["special","collect","shelf","store"], d:{"special":"这是一个特别的盒子。","box":"盒子","collect":"收集；收藏","shelf":"架子","store":"我们把盒子存放在房间里。"}},{s:"Stones are very ____.", ans:"common", opts:["common","corner","collect","cover"], d:{"common":"石头很常见。","corner":"商店在街角。","collect":"收集；收藏","cover":"这本书的封面是蓝色的。"}},{s:"This stamp is very ____.", ans:"rare", opts:["rare","cost","card","page"], d:{"stamp":"邮票","rare":"这张邮票很稀有。","cost":"这张卡片花了我五元。","card":"卡片","page":"翻到下一页看看。"}},{s:"My grandpa keeps ____ photos.", ans:"old", opts:["old","new","box","buy"], d:{"old":"我爷爷保存着老照片。","new":"看我的新漫画。","box":"盒子","buy":"我想买一个新笔记本。"}},{s:"Look at my ____ comic.", ans:"new", opts:["new","old","box","buy"], d:{"new":"看我的新漫画。","old":"我爷爷保存着老照片。","box":"盒子","buy":"我想买一个新笔记本。"}},{s:"I have a ____ from every city.", ans:"card", opts:["card","cost","cheap","cover"], d:{"card":"卡片","cost":"这张卡片花了我五元。","cheap":"这些明信片相当便宜。","cover":"这本书的封面是蓝色的。"}},{s:"We keep the ____s as souvenirs.", ans:"ticket", opts:["ticket","treasure","common","corner"], d:{"keep":"把你的收藏保管好。","ticket":"我们把票留作纪念。","treasure":"珍宝；宝物","common":"石头很常见。","corner":"商店在街角。"}},{s:"The ____ is full of shells.", ans:"box", opts:["box","buy","old","new"], d:{"box":"盒子","buy":"我想买一个新笔记本。","old":"我爷爷保存着老照片。","new":"看我的新漫画。"}},{s:"Put the books on the ____.", ans:"shelf", opts:["shelf","share","shop","store"], d:{"shelf":"架子","share":"和朋友分享你的爱好。","shop":"这家店卖玩具和卡片。","store":"我们把盒子存放在房间里。"}},{s:"This photo ____ is for Lily.", ans:"album", opts:["album","hobby","price","cheap"], d:{"album":"集邮册；相册","hobby":"爱好","price":"这个玩具多少钱？","cheap":"这些明信片相当便宜。"}},{s:"Turn the ____ and look.", ans:"page", opts:["page","price","cost","rare"], d:{"page":"翻到下一页看看。","price":"这个玩具多少钱？","cost":"这张卡片花了我五元。","rare":"这张邮票很稀有。"}},{s:"The ____ of the book is blue.", ans:"cover", opts:["cover","cost","common","corner"], d:{"cover":"这本书的封面是蓝色的。","cost":"这张卡片花了我五元。","common":"石头很常见。","corner":"商店在街角。"}},{s:"The shop is round the ____.", ans:"corner", opts:["corner","common","collect","cover"], d:{"shop":"这家店卖玩具和卡片。","corner":"商店在街角。","common":"石头很常见。","collect":"收集；收藏","cover":"这本书的封面是蓝色的。"}},{s:"We find old things at the ____.", ans:"market", opts:["market","common","ticket","corner"], d:{"old":"我爷爷保存着老照片。","market":"我们在市场找到老物件。","common":"石头很常见。","ticket":"我们把票留作纪念。","corner":"商店在街角。"}},{s:"The ____ sells toys and cards.", ans:"shop", opts:["shop","shelf","share","sell"], d:{"shop":"这家店卖玩具和卡片。","shelf":"架子","share":"和朋友分享你的爱好。","sell":"她卖掉了旧漫画。"}},{s:"I want to ____ a new notebook.", ans:"buy", opts:["buy","box","old","new"], d:{"buy":"我想买一个新笔记本。","new":"看我的新漫画。","box":"盒子","old":"我爷爷保存着老照片。"}},{s:"She ____s her old comics.", ans:"sell", opts:["sell","shop","shelf","store"], d:{"old":"我爷爷保存着老照片。","sell":"她卖掉了旧漫画。","shop":"这家店卖玩具和卡片。","shelf":"架子","store":"我们把盒子存放在房间里。"}},{s:"____ your collection safe.", ans:"keep", opts:["keep","cost","rare","card"], d:{"keep":"把你的收藏保管好。","collection":"收集物；收藏品","cost":"这张卡片花了我五元。","rare":"这张邮票很稀有。","card":"卡片"}},{s:"We ____ the boxes in the room.", ans:"store", opts:["store","shelf","share","shop"], d:{"store":"我们把盒子存放在房间里。","shelf":"架子","share":"和朋友分享你的爱好。","shop":"这家店卖玩具和卡片。"}},{s:"I ____ my first coin.", ans:"remember", opts:["remember","treasure","valuable","collect"], d:{"remember":"我记得我的第一枚硬币。","coin":"硬币","treasure":"珍宝；宝物","valuable":"贵重的；宝贵的","collect":"收集；收藏"}},{s:"____ your hobby with a friend.", ans:"share", opts:["share","shelf","shop","store"], d:{"share":"和朋友分享你的爱好。","hobby":"爱好","shelf":"架子","shop":"这家店卖玩具和卡片。","store":"我们把盒子存放在房间里。"}}];
+  var CLOZE_EXT = [{s:"____ the cards by colour.", ans:"sort", opts:["sort","swap","list","lend"], d:{"sort":"按颜色把卡片分类。","swap":"用你的漫画换我的玩具。","list":"把你的东西列个清单。","lend":"请把你的笔借给我。"}},{s:"We ____ the shells by size.", ans:"group", opts:["group","order","count","trade"], d:{"group":"我们按大小把贝壳分组。","order":"把书按顺序放好。","count":"数数你有多少个。","trade":"我们在学校交换卡片。"}},{s:"Put the books in ____.", ans:"order", opts:["order","group","count","trade"], d:{"order":"把书按顺序放好。","group":"我们按大小把贝壳分组。","count":"数数你有多少个。","trade":"我们在学校交换卡片。"}},{s:"Make a ____ of your things.", ans:"list", opts:["list","lend","sort","swap"], d:{"list":"把你的东西列个清单。","lend":"请把你的笔借给我。","sort":"按颜色把卡片分类。","swap":"用你的漫画换我的玩具。"}},{s:"____ the pages, please.", ans:"number", opts:["number","borrow","return","repair"], d:{"number":"请给页编号。","borrow":"我能借你的相册吗？","return":"下周把书还回来。","repair":"爸爸能修好这个盒子。"}},{s:"____ how many you have.", ans:"count", opts:["count","clean","group","order"], d:{"count":"数数你有多少个。","clean":"每个月清理一次你的收藏。","group":"我们按大小把贝壳分组。","order":"把书按顺序放好。"}},{s:"We ____ cards at school.", ans:"trade", opts:["trade","group","order","count"], d:{"trade":"我们在学校交换卡片。","group":"我们按大小把贝壳分组。","order":"把书按顺序放好。","count":"数数你有多少个。"}},{s:"____ your comic for my toy.", ans:"swap", opts:["swap","sort","list","lend"], d:{"swap":"用你的漫画换我的玩具。","toy":"玩具","sort":"按颜色把卡片分类。","list":"把你的东西列个清单。","lend":"请把你的笔借给我。"}},{s:"Can I ____ your album?", ans:"borrow", opts:["borrow","number","return","repair"], d:{"borrow":"我能借你的相册吗？","album":"集邮册；相册","number":"请给页编号。","return":"下周把书还回来。","repair":"爸爸能修好这个盒子。"}},{s:"____ me your pen, please.", ans:"lend", opts:["lend","list","sort","swap"], d:{"lend":"请把你的笔借给我。","list":"把你的东西列个清单。","sort":"按颜色把卡片分类。","swap":"用你的漫画换我的玩具。"}},{s:"____ the book next week.", ans:"return", opts:["return","repair","number","borrow"], d:{"return":"下周把书还回来。","repair":"爸爸能修好这个盒子。","number":"请给页编号。","borrow":"我能借你的相册吗？"}},{s:"Dad can ____ the box.", ans:"repair", opts:["repair","return","number","borrow"], d:{"repair":"爸爸能修好这个盒子。","box":"盒子","return":"下周把书还回来。","number":"请给页编号。","borrow":"我能借你的相册吗？"}},{s:"____ your collection every month.", ans:"clean", opts:["clean","count","group","order"], d:{"clean":"每个月清理一次你的收藏。","collection":"收集物；收藏品","count":"数数你有多少个。","group":"我们按大小把贝壳分组。","order":"把书按顺序放好。"}},{s:"We ____ the old coins.", ans:"polish", opts:["polish","number","borrow","return"], d:{"polish":"我们擦拭旧硬币。","old":"我爷爷保存着老照片。","number":"请给页编号。","borrow":"我能借你的相册吗？","return":"下周把书还回来。"}},{s:"She puts the photo in a ____.", ans:"frame", opts:["frame","group","order","count"], d:{"frame":"她把照片装进相框。","group":"我们按大小把贝壳分组。","order":"把书按顺序放好。","count":"数数你有多少个。"}},{s:"____ your shells on the shelf.", ans:"display", opts:["display","number","borrow","return"], d:{"display":"把贝壳摆在架子上。","shelf":"架子","number":"请给页编号。","borrow":"我能借你的相册吗？","return":"下周把书还回来。"}},{s:"The museum has a small ____.", ans:"exhibition", opts:["exhibition","display","number","borrow"], d:{"museum":"我们在博物馆看到老玩具。","exhibition":"博物馆有个小展览。","display":"把贝壳摆在架子上。","number":"请给页编号。","borrow":"我能借你的相册吗？"}},{s:"We see old toys at the ____.", ans:"museum", opts:["museum","number","borrow","return"], d:{"old":"我爷爷保存着老照片。","museum":"我们在博物馆看到老玩具。","number":"请给页编号。","borrow":"我能借你的相册吗？","return":"下周把书还回来。"}}];
+  var CLOZE_PHR = [{s:"David ____ from Asia.", ans:"collect stamps", opts:["collect stamps","take pride in","all kinds of","take care of"], d:{"collect stamps":"大卫收集亚洲的邮票。","take pride in":"本为他的贝壳感到自豪。","all kinds of":"他有各种各样的硬币。","take care of":"照顾；保管"}},{s:"I have ____ toy cards.", ans:"a set of", opts:["a set of","look for","pick out","take out"], d:{"toy":"玩具","a set of":"我有一整套玩具卡。","look for":"我在网上找旧明信片。","pick out":"挑出你最喜欢的那一个。","take out":"把你的收藏拿出来。"}},{s:"He has ____ coins.", ans:"all kinds of", opts:["all kinds of","take care of","take pride in","learn about"], d:{"all kinds of":"他有各种各样的硬币。","take care of":"照顾；保管","take pride in":"本为他的贝壳感到自豪。","learn about":"我们了解古老的中国。"}},{s:"I ____ old postcards online.", ans:"look for", opts:["look for","a set of","pick out","take out"], d:{"old":"我爷爷保存着老照片。","look for":"我在网上找旧明信片。","a set of":"我有一整套玩具卡。","pick out":"挑出你最喜欢的那一个。","take out":"把你的收藏拿出来。"}},{s:"____ your favourite one.", ans:"pick out", opts:["pick out","put away","a set of","look for"], d:{"favourite":"最喜欢的","pick out":"挑出你最喜欢的那一个。","put away":"课后把卡片收好。","a set of":"我有一整套玩具卡。","look for":"我在网上找旧明信片。"}},{s:"____ your collection.", ans:"take out", opts:["take out","a set of","look for","pick out"], d:{"collection":"收集物；收藏品","take out":"把你的收藏拿出来。","a set of":"我有一整套玩具卡。","look for":"我在网上找旧明信片。","pick out":"挑出你最喜欢的那一个。"}},{s:"____ your cards after class.", ans:"put away", opts:["put away","pick out","a set of","look for"], d:{"put away":"课后把卡片收好。","pick out":"挑出你最喜欢的那一个。","a set of":"我有一整套玩具卡。","look for":"我在网上找旧明信片。"}},{s:"____ your box.", ans:"add to", opts:["add to","a set of","look for","pick out"], d:{"coin":"硬币","box":"盒子","add to":"把这枚硬币加到你的盒子里。","a set of":"我有一整套玩具卡。","look for":"我在网上找旧明信片。","pick out":"挑出你最喜欢的那一个。"}},{s:"____ your collection.", ans:"take care of", opts:["take care of","take pride in","all kinds of","take out"], d:{"care":"照料；小心","collection":"收集物；收藏品","take care of":"照顾；保管","take pride in":"本为他的贝壳感到自豪。","all kinds of":"他有各种各样的硬币。","take out":"把你的收藏拿出来。"}},{s:"The shelf ____ books.", ans:"be full of", opts:["be full of","be made of","search for","remind of"], d:{"shelf":"架子","be full of":"架子上摆满了书。","be made of":"这个盒子是木头做的。","search for":"在网上搜索稀有硬币。","remind of":"这首歌让我想起家。"}},{s:"The box ____ wood.", ans:"be made of", opts:["be made of","be full of","search for","remind of"], d:{"box":"盒子","be made of":"这个盒子是木头做的。","be full of":"架子上摆满了书。","search for":"在网上搜索稀有硬币。","remind of":"这首歌让我想起家。"}},{s:"Eva ____terested in old photos.", ans:"be interested in", opts:["be interested in","collect stamps","be full of","be made of"], d:{"interested":"感兴趣的","old":"我爷爷保存着老照片。","be interested in":"埃娃对老照片感兴趣。","collect stamps":"大卫收集亚洲的邮票。","be full of":"架子上摆满了书。","be made of":"这个盒子是木头做的。"}},{s:"Ben ____ his shells.", ans:"take pride in", opts:["take pride in","take care of","collect stamps","all kinds of"], d:{"take pride in":"本为他的贝壳感到自豪。","take care of":"照顾；保管","collect stamps":"大卫收集亚洲的邮票。","all kinds of":"他有各种各样的硬币。"}},{s:"This song ____ home.", ans:"remind of", opts:["remind of","a set of","look for","pick out"], d:{"remind of":"这首歌让我想起家。","a set of":"我有一整套玩具卡。","look for":"我在网上找旧明信片。","pick out":"挑出你最喜欢的那一个。"}},{s:"We ____ old China.", ans:"learn about", opts:["learn about","all kinds of","look for","take care of"], d:{"old":"我爷爷保存着老照片。","learn about":"我们了解古老的中国。","all kinds of":"他有各种各样的硬币。","look for":"我在网上找旧明信片。","take care of":"照顾；保管"}},{s:"____ rare coins online.", ans:"search for", opts:["search for","be full of","be made of","show off"], d:{"rare":"这张邮票很稀有。","search for":"在网上搜索稀有硬币。","be full of":"架子上摆满了书。","be made of":"这个盒子是木头做的。","show off":"别炫耀你的东西。"}},{s:"Do not ____ your things.", ans:"show off", opts:["show off","a set of","look for","pick out"], d:{"show off":"别炫耀你的东西。","a set of":"我有一整套玩具卡。","look for":"我在网上找旧明信片。","pick out":"挑出你最喜欢的那一个。"}}];
+  var CLOZE_SETS = [
+    {name:'核心单词', data:CLOZE_CORE},
+    {name:'补充词汇', data:CLOZE_EXT},
+    {name:'重点短语', data:CLOZE_PHR}
+  ];
+  var clzSet = 0;
+  function curCloze(){ return CLOZE_SETS[clzSet].data; }var ci = 0, cscore = 0, cans = false, ccurrent = null, clzSet = 0;
+  var clzSent = document.getElementById('clzSent');
+  var clzOpts = document.getElementById('clzOpts');
+  var clzFb = document.getElementById('clzFb');
+  var clzNext = document.getElementById('clzNext');
+  var clzDone = document.getElementById('clzDone');
+  var clzHint = document.getElementById('clzHint');
+  var clzScore = document.getElementById('clzScore');
+
+  function wordify(t, dict){
+    var html = '';
+    var re = /([A-Za-z']+)([^A-Za-z']*)/g;
+    var last = 0, m;
+    while ((m = re.exec(t)) !== null) {
+      html += t.slice(last, m.index);
+      var w = m[1];
+      var p = RegExp.$2;
+      var key = w.toLowerCase();
+      var zh = dict && dict[key] ? dict[key] : '';
+      html += '<span class="clz-w" role="button" tabindex="0"' + (zh ? ' data-zh="' + zh + '"' : '') + '>' + w + '</span>' + p;
+      last = re.lastIndex;
+    }
+    html += t.slice(last);
+    return html;
+  }
+  function clzSentenceHtml(s, fill, dict){
+    var parts = s.split('____');
+    var html = '';
+    for (var i = 0; i < parts.length; i++) {
+      html += wordify(parts[i], dict);
+      if (i < parts.length - 1) {
+        var fkey = fill ? fill.toLowerCase() : '';
+        var fzh = dict && fill && dict[fkey] ? dict[fkey] : '';
+        html += fill
+          ? '<span class="clz-w fill" role="button" tabindex="0"' + (fzh ? ' data-zh="' + fzh + '"' : '') + '>' + fill + '</span>'
+          : '<span class="clz-blank">______</span>';
+      }
+    }
+    return html;
+  }
+  /* 点击句子中的单词：发音 + 显示释义 */
+  clzSent.addEventListener('click', function(e){
+    var t = e.target;
+    if (!t || !t.classList || !t.classList.contains('clz-w')) return;
+    var w = t.textContent;
+    speak(w, 0.8);
+    var zh = t.getAttribute('data-zh');
+    var dict = document.getElementById('clzDict');
+    if (dict) {
+      if (zh) {
+        dict.textContent = w + ' — ' + zh;
+        dict.style.display = 'block';
+      } else {
+        dict.style.display = 'none';
+      }
+    }
+  });
+
+  function loadCloze(){
+    cans = false;
+    ccurrent = curCloze()[ci];
+    clzHint.textContent = '第 ' + (ci + 1) + ' / ' + curCloze().length + ' 题 · 点选单词填空（点击单词可听发音）';
+    clzFb.textContent = '';
+    clzNext.style.display = 'none';
+    clzNext.textContent = '下一题 →';
+    clzDone.style.display = 'none';
+    clzSent.innerHTML = clzSentenceHtml(ccurrent.s, '', ccurrent.d);
+    var cdict0 = document.getElementById('clzDict');
+    if (cdict0) { cdict0.style.display = 'none'; cdict0.textContent = ''; }
+    clzOpts.innerHTML = '';
+    var opts = shuffle(ccurrent.opts);
+    opts.forEach(function(o){
+      var b = document.createElement('button');
+      b.className = 'q-opt';
+      b.type = 'button';
+      b.textContent = o;
+      b.addEventListener('click', function(){
+        speak(o, 0.8);
+        if (cans) {
+          var ck = o.toLowerCase();
+          var cz = ccurrent.d && ccurrent.d[ck] ? ccurrent.d[ck] : '';
+          var cd = document.getElementById('clzDict');
+          if (cd) {
+            if (cz) { cd.textContent = o + ' — ' + cz; cd.style.display = 'block'; }
+            else { cd.style.display = 'none'; }
+          }
+          return;
+        }
+        cans = true;
+        var correct = (o === ccurrent.ans);
+        if (correct) {
+          cscore++;
+          b.classList.add('correct');
+          clzFb.innerHTML = '答对啦！正确答案是 <b>' + ccurrent.ans + '</b>';
+          clzFb.style.color = 'var(--green)';
+        } else {
+          b.classList.add('wrong');
+          var bs2 = clzOpts.querySelectorAll('.q-opt');
+          for (var k = 0; k < bs2.length; k++) {
+            if (bs2[k].textContent === ccurrent.ans) { bs2[k].classList.add('correct'); break; }
+          }
+          clzFb.innerHTML = '再想想！正确答案是 <b>' + ccurrent.ans + '</b>';
+          clzFb.style.color = 'var(--red)';
+        }
+        /* 显示完整句子（每个单词可点读）+ 整句朗读按钮 */
+        clzSent.innerHTML = '';
+        var line = document.createElement('div');
+        line.className = 'clz-line';
+        line.innerHTML = clzSentenceHtml(ccurrent.s, ccurrent.ans, ccurrent.d);
+        var lb = document.createElement('button');
+        lb.className = 'clz-listen';
+        lb.type = 'button';
+        lb.setAttribute('aria-label', '朗读本句');
+        lb.title = '朗读本句';
+        lb.innerHTML = SPK;
+        lb.addEventListener('click', function(){
+          speak(ccurrent.s.replace('____', ccurrent.ans));
+        });
+        line.appendChild(lb);
+        clzSent.appendChild(line);
+        clzScore.textContent = '得分：' + cscore;
+        setTimeout(function(){ speak(ccurrent.ans, 0.8); }, 700);
+        if (ci < curCloze().length - 1) {
+          clzNext.style.display = 'inline-block';
+        } else {
+          clzNext.style.display = 'inline-block';
+          clzNext.textContent = '再来一轮';
+          clzDone.style.display = 'block';
+          clzDone.textContent = '完成！共 ' + curCloze().length + ' 题，答对 ' + cscore + ' 题。' +
+            (cscore === curCloze().length ? ' 太棒了，全部正确！' : (cscore >= curCloze().length * 0.6 ? ' 很好，继续加油！' : ' 建议回到例句部分再听一听。'));
+        }
+      });
+      clzOpts.appendChild(b);
+    });
+  }
+  clzNext.addEventListener('click', function(){
+    if (ci >= curCloze().length - 1) {
+      ci = 0;
+      cscore = 0;
+      clzScore.textContent = '得分：0';
+      clzDone.style.display = 'none';
+      clzDone.textContent = '';
+    } else {
+      ci++;
+    }
+    loadCloze();
+  });
+  /* 填空 tab（课文原句 / 语法原句） */
+  var clzTabs = document.getElementById('clzTabs');
+  var clzBadge = document.getElementById('clzBadge');
+  CLOZE_SETS.forEach(function(s, idx){
+    var tb = document.createElement('button');
+    tb.type = 'button';
+    tb.className = 'q-tab' + (idx === 0 ? ' active' : '');
+    tb.textContent = s.name + '（' + s.data.length + ' 题）';
+    tb.addEventListener('click', function(){
+      if (clzSet === idx) return;
+      clzSet = idx;
+      ci = 0; cscore = 0; cans = false;
+      clzScore.textContent = '得分：0';
+      clzDone.style.display = 'none';
+      clzDone.textContent = '';
+      clzFb.textContent = '';
+      var tabs = clzTabs.querySelectorAll('.q-tab');
+      for (var k = 0; k < tabs.length; k++) tabs[k].classList.remove('active');
+      tb.classList.add('active');
+      clzBadge.textContent = s.name + ' · ' + s.data.length + ' 题';
+      loadCloze();
+    });
+    clzTabs.appendChild(tb);
+  });
+  clzBadge.textContent = CLOZE_SETS[0].name + ' · ' + CLOZE_SETS[0].data.length + ' 题';
+  loadCloze();
+
+  
+  
+})();
+</script>
+
+<button id="toTop" class="to-top" type="button" aria-label="回到顶部" title="回到顶部">↑</button>
+<div class="wrap"><div class="mob-note"><b>手机 / iPad 提示：</b>请用 <b>Safari 或 Chrome</b> 打开本文件以获得完整点读功能（"文件"App 里的预览不能交互）。如点击发音没有声音：① 检查设备侧边的<b>静音键</b>与音量；② 在「<b>设置 → 辅助功能 → 朗读内容 → 声音</b>」中下载 English 语音（如 Samantha）。</div></div>
+<script>
+(function(){
+  try{
+    var b=document.getElementById('toTop'); if(!b) return;
+    var show=function(){ b.style.display = (window.scrollY>600) ? 'flex' : 'none'; };
+    window.addEventListener('scroll',show,{passive:true}); show();
+    b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

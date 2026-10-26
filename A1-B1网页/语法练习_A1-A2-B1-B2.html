@@ -11641,7 +11641,8 @@ var UNITS = [
   {n:11, emo:'🐘', en:'A World of Animals', cn:'动物世界', open:1, file:'A1 Unit11 英语跟读.html', g:['a1-pc', 'a1-comp', 'a1-andbutor']},
   {n:12, emo:'🚌', en:'Getting Around', cn:'出行', open:1, file:'A1 Unit12 英语跟读.html', g:['prep-place1', '14-1', '14-2']}
 ];
-var SHADOW_ROOT = 'A1 启程线/';
+/* 跟读页与语法页同目录（A1-B1网页/），无需前缀；此前写成 'A1 启程线/' 导致 404 */
+var SHADOW_ROOT = '';
 
 function unitOfPid(pid){
   for(var i=0;i<UNITS.length;i++){ if(UNITS[i].g.indexOf(pid)>=0) return UNITS[i]; }

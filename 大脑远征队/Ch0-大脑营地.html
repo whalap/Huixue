@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大脑远征队 · 远征大本营</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#16110f; --bg2:#221813; --panel:#2a1f18; --panel2:#352819; --line:#4a3727;
+  --text:#f7efe6; --dim:#c4ad9a; --gold:#d8b45a; --gold2:#f0d68a;
+  --song:#7bc96f; --jiu:#6fa8dc; --mian:#f2b880; --shan:#c9a2e0; --danger:#e2777a;
+}
+html,body{height:100%}
+body{
+  background:radial-gradient(1200px 620px at 50% -120px, #17291d 0%, var(--bg) 62%) fixed;
+  color:var(--text);
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Source Han Sans SC",sans-serif;
+  min-height:100vh; display:flex; flex-direction:column; line-height:1.75;
+  overflow-x:hidden;
+}
+.hidden{display:none !important}
+a{text-decoration:none;color:inherit}
+
+/* ---------- 顶栏 ---------- */
+#topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:1px solid var(--line);background:rgba(12,19,16,.85);position:sticky;top:0;z-index:20;backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .logo{font-size:26px}
+.brand .t1{font-weight:800;font-size:17px;letter-spacing:1px}
+.brand .t2{font-size:10px;color:var(--dim);letter-spacing:3px}
+.badge{font-size:12px;color:var(--gold2);border:1px solid rgba(216,180,90,.4);background:rgba(216,180,90,.08);padding:3px 10px;border-radius:999px;white-space:nowrap}
+.tb-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.mapbtn{font-size:12px;color:var(--gold2);border:1px solid rgba(216,180,90,.55);background:rgba(216,180,90,.14);padding:4px 11px;border-radius:999px;white-space:nowrap;transition:.18s}
+.mapbtn:hover{background:rgba(216,180,90,.26);border-color:var(--gold2)}
+
+main{flex:1;width:100%;max-width:1060px;margin:0 auto;padding:22px 18px 40px}
+
+/* ---------- 英雄区 ---------- */
+.hero{text-align:center;padding:14px 0 6px}
+.hero h1{font-size:30px;letter-spacing:2px;margin-top:8px}
+.hero .sub{color:var(--dim);font-size:13.5px;margin-top:2px}
+.hero .tag{display:inline-block;margin-top:10px;font-size:12px;color:var(--gold2);border:1px solid rgba(216,180,90,.4);background:rgba(216,180,90,.08);padding:3px 12px;border-radius:999px}
+.squad{display:flex;justify-content:center;gap:18px;margin-top:14px;flex-wrap:wrap}
+.sq{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;color:var(--dim)}
+.sq .nm{color:var(--text);font-weight:700}
+.sq .rl{font-size:10.5px}
+
+/* ---------- 进度汇总 ---------- */
+.progress{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:16px 0 20px}
+.pstat{font-size:12.5px;color:var(--dim);border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:5px 14px}
+.pstat b{color:var(--gold2)}
+
+/* ---------- 关卡网格 ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.lv{display:block;background:linear-gradient(160deg,var(--panel) 0%,var(--bg2) 100%);border:1px solid var(--line);border-radius:14px;padding:14px 16px;transition:.18s;position:relative}
+.lv:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,0,0,.35)}
+.lv-top{display:flex;align-items:center;gap:10px}
+.lv-no{flex:none;font-size:11px;font-weight:800;color:var(--gold2);border:1px solid rgba(216,180,90,.5);background:rgba(216,180,90,.1);border-radius:8px;padding:2px 8px;letter-spacing:1px}
+.lv-no.special{color:var(--shan);border-color:rgba(201,162,224,.5);background:rgba(201,162,224,.1)}
+.lv-name{font-size:18px;font-weight:800;letter-spacing:1px}
+.lv-world{font-size:11.5px;color:var(--dim);margin-top:4px}
+.lv-boss{font-size:12px;color:var(--danger);margin-top:6px}
+.lv-skills{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.6}
+.lv-skills b{color:var(--text);font-weight:600}
+.lv-combo{font-size:12px;color:var(--gold2);margin-top:4px}
+.lv-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
+.lv-best{font-size:12px;color:var(--dim)}
+.lv-best b{color:var(--gold2)}
+.lv-best.none{opacity:.75}
+.lv-go{font-size:12.5px;color:var(--gold2);font-weight:700;white-space:nowrap}
+
+/* ---------- 玩法 & 求助卡 ---------- */
+.block{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.block .bt{font-size:14px;font-weight:800;color:var(--gold2);letter-spacing:1px}
+.block ul{margin:8px 0 0 18px;font-size:12.5px;color:var(--dim);line-height:1.9}
+.block ul b{color:var(--text)}
+.help{margin-top:14px;background:linear-gradient(160deg,rgba(216,180,90,.1),var(--bg2));border:1px solid rgba(216,180,90,.45);border-radius:14px;padding:14px 18px}
+.help .bt{font-size:14px;font-weight:800;color:var(--gold2);letter-spacing:1px}
+.help .line{font-size:12.5px;color:var(--dim);margin-top:6px;line-height:1.8}
+.help .line b{color:var(--text)}
+.footer-note{text-align:center;margin-top:22px;font-size:11px;color:var(--dim);line-height:1.8}
+
+@media (max-width:640px){
+  main{padding:16px 12px 32px}
+  .hero h1{font-size:24px}
+  .grid{grid-template-columns:1fr}
+  .squad{gap:12px}
+}
+</style>
+<script src="../site-nav.js" defer></script>
+</head>
+<body>
+
+<header id="topbar">
+  <div class="brand">
+    <span class="logo">🧠</span>
+    <div><div class="t1">大脑远征队</div><div class="t2">BRAIN EXPEDITION</div></div>
+  </div>
+  <div class="tb-right">
+    <a class="mapbtn" href="Ch0-通关地图.html">🗺 通关地图</a>
+    <span class="badge">🏕 远征大本营 · 关卡选择</span>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>远征大本营</h1>
+    <div class="sub">十二个关卡，四名队员，一颗大脑——选一个关卡，随时回来</div>
+    <div class="tag">社交即玩法 · 连招必须跨角色组合</div>
+    <div class="squad" id="squad"></div>
+  </div>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="block">
+    <div class="bt">🎮 怎么玩</div>
+    <ul>
+      <li><b>四名队员各管一件事</b>：松松管行动、究究管认知、眠眠管能量、闪闪管情绪和说话。</li>
+      <li><b>连招要跨角色组合</b>：一个人打不出的招，两个人配合才能放——社交就是玩法本身。</li>
+      <li><b>选错不惩罚</b>：没有扣血没有骂人，随时暂停存档；每一关结束都有图鉴和公约可以带走。</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <div class="bt">🗺 通关地图 · 远征战绩单</div>
+    <ul>
+      <li><b>一页看完十二关</b>：每关的 Boss、新招、连招、以及章末念的那句公约。</li>
+      <li><b>自动填战绩</b>：通关记录会点亮技能图鉴墙——通关哪一关，就点亮哪一关的招。</li>
+      <li><b>可以打印</b>：纸上版式自动换成浅色，能贴书桌前，也能当家长共读的一页。</li>
+    </ul>
+    <div style="margin-top:10px"><a class="mapbtn" href="Ch0-通关地图.html">打开通关地图 →</a></div>
+  </div>
+
+  <div class="help">
+    <div class="bt">🆘 求助口袋卡（每章图鉴里也有）</div>
+    <div class="line"><b>正面</b>：写下 3 个你信得过的大人 —— ①＿＿＿ ②＿＿＿ ③＿＿＿</div>
+    <div class="line"><b>背面</b>：54321 着陆 —— 看 5 样 · 摸 4 样 · 听 3 声 · 闻 2 样 · 尝 1 味</div>
+    <div class="line">心里乱的时候：先着陆，再找人说。<b>求助不是软弱，是精准调用资源。</b></div>
+  </div>
+
+  <div class="footer-note">
+    进度（最佳记录）保存在本机浏览器里，换设备或清理缓存会重置<br>
+    所有章节文件需放在同一文件夹一起使用 · 本作全部形象为原创绘制，不使用任何第三方 IP 素材
+  </div>
+</main>
+
+<script>
+(function(){
+"use strict";
+var CHARS={
+  song:{name:"松松",role:"行动担当",hex:"#7bc96f"},
+  jiu :{name:"究究",role:"认知担当",hex:"#6fa8dc"},
+  mian:{name:"眠眠",role:"能量担当",hex:"#f2b880"},
+  shan:{name:"闪闪",role:"情绪语言",hex:"#c9a2e0"}
+};
+var CHAR_ORDER=["song","jiu","mian","shan"];
+function charSVG(key,size){
+  var hex=CHARS[key].hex, skin="#f2c9a0", ink="#2f2a26", shoe="#22302a";
+  var s='<svg viewBox="0 0 64 64" width="'+size+'" height="'+size+'" style="display:block">';
+  s+='<ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"/>';
+  if(key==="song"){
+    s+='<path d="M27 50 L21 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><path d="M35 50 L41 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="59.5" r="3" fill="'+shoe+'"/><circle cx="42" cy="59.5" r="3" fill="'+shoe+'"/>';
+    s+='<rect x="21" y="33" width="22" height="19" rx="7" fill="'+hex+'"/>';
+    s+='<path d="M43 39 L52 34" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="53" cy="33.5" r="3.2" fill="'+skin+'"/><path d="M21 39 L12 45" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="11" cy="45.5" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/>';
+    s+='<path d="M19.5 21 a12.5 12.5 0 0 1 25 0 l-3.5 -1.5 a9.5 9.5 0 0 0 -18 0 z" fill="#6b4f35"/><path d="M31 7 l-3.5 5 M33 7.5 l3 4.5" stroke="#6b4f35" stroke-width="2.4" stroke-linecap="round"/>';
+    s+='<path d="M19.5 17.5 q12.5 -7 25 0 l0 3.6 q-12.5 -6.4 -25 0 z" fill="#e2777a"/><path d="M43 19 l9 -3.5 -2 6.5 z" fill="#e2777a"/>';
+    s+='<circle cx="27" cy="24" r="1.9" fill="'+ink+'"/><circle cx="37" cy="24" r="1.9" fill="'+ink+'"/><path d="M28 29.5 q4 3.6 8 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+  }else if(key==="jiu"){
+    s+='<path d="M28 50 v9 M36 50 v9" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><circle cx="28" cy="59" r="3" fill="'+shoe+'"/><circle cx="36" cy="59" r="3" fill="'+shoe+'"/>';
+    s+='<rect x="22" y="33" width="20" height="19" rx="6" fill="'+hex+'"/><path d="M27 33 v19 M37 33 v19" stroke="rgba(255,255,255,.25)" stroke-width="1.6"/>';
+    s+='<path d="M22 40 L15 44" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="14" cy="44.5" r="3.2" fill="'+skin+'"/><rect x="6" y="38" width="10" height="8" rx="1.5" fill="#d8b45a" transform="rotate(-12 11 42)"/><path d="M11 38.5 v7" stroke="#a8863c" stroke-width="1.2"/>';
+    s+='<path d="M42 40 L47 47" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="47.5" cy="48" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 v-3 a12.5 12.5 0 0 0 -25 0 z" fill="#33404f"/>';
+    s+='<circle cx="27" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"/><circle cx="37" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"/><path d="M31.6 24 h0.8 M22.4 23.5 l-3 -1.5 M41.6 23.5 l3 -1.5" stroke="#2b2f36" stroke-width="2" stroke-linecap="round"/>';
+    s+='<circle cx="27" cy="24" r="1.5" fill="'+ink+'"/><circle cx="37" cy="24" r="1.5" fill="'+ink+'"/><path d="M29 30.5 h6" stroke="'+ink+'" stroke-width="2" stroke-linecap="round"/>';
+  }else if(key==="mian"){
+    s+='<path d="M23 46 l-3 13 h22 l-3 -13 z" fill="'+hex+'"/><path d="M32 46 v13" stroke="rgba(255,255,255,.25)" stroke-width="1.6"/>';
+    s+='<rect x="23" y="33" width="18" height="14" rx="6" fill="'+hex+'"/><path d="M26 33 L38 47 M38 33 L26 47" stroke="rgba(255,255,255,.3)" stroke-width="1.6"/>';
+    s+='<path d="M41 40 L48 43" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="49" cy="43.5" r="3.2" fill="'+skin+'"/><rect x="46" y="34" width="9" height="12" rx="2.5" fill="#cfd8c5"/><rect x="46" y="34" width="9" height="4" rx="2" fill="#9aa88f"/>';
+    s+='<path d="M23 40 L18 46" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="17.5" cy="46.5" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 z" fill="#8a5a30"/><circle cx="17" cy="21" r="5.5" fill="#8a5a30"/><circle cx="47" cy="21" r="5.5" fill="#8a5a30"/>';
+    s+='<path d="M24 24.5 q3 2.8 6 0 M34 24.5 q3 2.8 6 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M28.5 30 q3.5 3.2 7 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    s+='<ellipse cx="23" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"/><ellipse cx="41" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"/>';
+  }else{
+    s+='<path d="M29 50 v9 M35 50 v9" stroke="#31413a" stroke-width="5.5" stroke-linecap="round"/><circle cx="29" cy="59" r="2.8" fill="'+shoe+'"/><circle cx="35" cy="59" r="2.8" fill="'+shoe+'"/>';
+    s+='<rect x="23" y="33" width="18" height="18" rx="7" fill="'+hex+'"/>';
+    s+='<path d="M22 31 q10 6 20 0 l0 5 q-10 -6 -20 0 z" fill="'+hex+'"/><path d="M37 34 l11 9 -4.5 2.5 -9 -8 z" fill="'+hex+'"/>';
+    s+='<circle cx="30" cy="47" r="3" fill="'+skin+'"/><circle cx="35.5" cy="47.5" r="3" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 l0 -2 q-12.5 -10 -25 0 z" fill="#3c3a52"/>';
+    s+='<path d="M40 6 l1.7 3.6 4 .5 -2.9 2.8 .7 4 -3.5 -1.9 -3.5 1.9 .7 -4 -2.9 -2.8 4 -.5 z" fill="#f0d68a" transform="translate(-1,-1) scale(.92)"/>';
+    s+='<path d="M34.5 26 q2.4 2 4.6 0" stroke="'+ink+'" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M27.5 30.5 q4.5 2.8 9 0" stroke="'+ink+'" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
+  }
+  return s+'</svg>';
+}
+
+var CHAPTERS=[
+  {no:"第一章",  name:"拖延沼泽", world:"花园世界 · 启动篇", boss:"拖拖 · 拖延沼泽主",
+   skills:"微步骤启动 · 自动触发 · 认知重编程 · 状态监控 · 弱点标记", combo:"先看再走",
+   file:"大脑远征队-Ch1-拖延沼泽.html", key:"brainexp_ch1_best_v3"},
+  {no:"第二章",  name:"分心花田", world:"花园世界 · 专注篇", boss:"多多 · 分心花田主",
+   skills:"单线程 · 环境锚定 · 番茄钟", combo:"一页一心",
+   file:"大脑远征队-Ch2-分心花田.html", key:"brainexp_ch2_best_v1"},
+  {no:"第三章",  name:"遗忘迷宫", world:"方块世界 · 记忆篇", boss:"忘忘 · 遗忘迷宫主",
+   skills:"主动提取 · 间隔重复 · 交错练习 · 睡眠存档", combo:"闭眼回想",
+   file:"Ch3-遗忘迷宫.html", key:"brainexp_ch3_best_v1"},
+  {no:"第四章",  name:"理解冰山", world:"方块世界 · 理解篇", boss:"蒙蒙 · 理解冰山主",
+   skills:"费曼讲解 · 生成效应 · 自我解释 · 复利叠加", combo:"讲一遍懂一层",
+   file:"Ch4-理解冰山.html", key:"brainexp_ch4_best_v1"},
+  {no:"第五章",  name:"否定斗技场", world:"竞技世界 · 自我篇", boss:"否否 · 否定斗技场主",
+   skills:"成长型思维 · 自我效能 · 替代经验", combo:"我还不行",
+   file:"Ch5-否定斗技场.html", key:"brainexp_ch5_best_v1"},
+  {no:"第六章",  name:"语言风暴", world:"竞技世界 · 语言篇", boss:"签签 · 贴标签主",
+   skills:"情绪重评 · 语言力量（扩展）", combo:"换个说法",
+   file:"Ch6-语言风暴.html", key:"brainexp_ch6_best_v1"},
+  {no:"社交特别篇", name:"关系回声", world:"朋友篇 · 对外社交", boss:"一刀 · 一刀切主", special:true,
+   skills:"我句式（表达感受）· 行为透镜（区分行为/本人）", combo:"说清楚也留得住",
+   file:"Ch7-关系回声.html", key:"brainexp_social_best_v1"},
+  {no:"第八章",  name:"能量峡谷", world:"竞技世界 · 能量篇", boss:"山山 · 压力火山主",
+   skills:"身体地图 · 降温阀 · 组队Buff · 健康管理（扩展）", combo:"先降温再一起扛",
+   file:"Ch8-能量峡谷.html", key:"brainexp_ch8_best_v1"},
+  {no:"终章",    name:"大脑王座", world:"终章 · 八章合成", boss:"浑浑 · 混沌主",
+   skills:"终极合成 · 单线程 · 身体地图 · 情绪重评", combo:"四招合一",
+   file:"Ch9-大脑王座.html", key:"brainexp_ch9_best_v1"},
+  {no:"特别篇二", name:"边界篇", world:"界线平原 · 对外边界", boss:"逼逼 · 逼你同意主", special:true,
+   skills:"边界宣言 · 认知重编程 · 自我解释 · 状态监控", combo:"说不行，也给理由",
+   file:"Ch10-边界篇.html", key:"brainexp_ch10_best_v1"},
+  {no:"特别篇三", name:"旁观篇", world:"看台边 · 为别人出手", boss:"看看 · 看看主", special:true,
+   skills:"旁观出手 · 我句式 · 自我解释 · 状态监控", combo:"站过去，就是出手",
+   file:"Ch11-旁观篇.html", key:"brainexp_ch11_best_v1"},
+  {no:"特别篇四", name:"数字篇", world:"屏中潮 · 屏幕与网络", boss:"滤滤 · 人设滤镜主", special:true,
+   skills:"睡前落闸 · 点赞秤 · 我句式 · 自我解释", combo:"先落闸，再称重",
+   file:"Ch12-数字篇.html", key:"brainexp_ch12_best_v1"}
+];
+
+function readBest(key){
+  try{var b=JSON.parse(localStorage.getItem(key));if(b&&b.rating)return b;}catch(e){}
+  return null;
+}
+function el(tag,cls,text){var d=document.createElement(tag);if(cls)d.className=cls;if(text!=null)d.textContent=text;return d;}
+
+/* 小队 */
+var sq=document.getElementById("squad");
+CHAR_ORDER.forEach(function(k){
+  var d=el("div","sq");
+  d.innerHTML=charSVG(k,56);
+  d.appendChild(el("div","nm",CHARS[k].name));
+  d.appendChild(el("div","rl",CHARS[k].role));
+  sq.appendChild(d);
+});
+
+/* 关卡卡片 */
+var grid=document.getElementById("grid");
+var done=0, sss=0;
+CHAPTERS.forEach(function(c){
+  var a=el("a","lv"); a.href=c.file;
+  var top=el("div","lv-top");
+  top.appendChild(el("span","lv-no"+(c.special?" special":""),c.no));
+  top.appendChild(el("span","lv-name",c.name));
+  a.appendChild(top);
+  a.appendChild(el("div","lv-world",c.world));
+  a.appendChild(el("div","lv-boss","Boss · "+c.boss));
+  var sk=el("div","lv-skills");
+  sk.innerHTML="新技能：<b>"+c.skills+"</b>";
+  a.appendChild(sk);
+  a.appendChild(el("div","lv-combo","连招 · "+c.combo));
+  var foot=el("div","lv-foot");
+  var best=readBest(c.key);
+  var chip=el("div","lv-best"+(best?"":" none"));
+  if(best){
+    chip.innerHTML="🏆 最佳 <b>"+best.rating+"</b> · "+best.diff+(best.date?" · "+best.date:"");
+    done++; if(best.rating==="SSS")sss++;
+  }else{
+    chip.textContent="尚未通关";
+  }
+  foot.appendChild(chip);
+  foot.appendChild(el("span","lv-go","进入 →"));
+  a.appendChild(foot);
+  grid.appendChild(a);
+});
+
+/* 进度汇总 */
+var pg=document.getElementById("progress");
+function pstat(html){var d=el("div","pstat");d.innerHTML=html;pg.appendChild(d);}
+pstat("已通关 <b>"+done+" / 12</b>");
+pstat("SSS 满评 <b>"+sss+" / 12</b>");
+pstat("队员 <b>4</b> 人 · 连招需跨角色组合");
+})();
+</script>
+</body>
+</html>

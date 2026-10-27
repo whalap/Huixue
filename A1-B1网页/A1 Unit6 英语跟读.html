@@ -325,6 +325,8 @@
   .art-hl{color:var(--gold,#c9a227);font-weight:700}
   .artmark{font-size:12px;margin-left:6px;opacity:.95}
 </style>
+<link rel="stylesheet" href="../theme-blackgold.css">
+<script src="../site-nav.js" defer></script>
 </head>
 <body>
 <header>
@@ -806,7 +808,7 @@ function renderCodex(){
 function toggleMaster(w, btn){
   if(!state[w]) state[w]={};
   state[w].mastered=!state[w].mastered;
-  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); state[w].masteredAt=Date.now(); }
   saveState();
   btn.classList.toggle('mastered', state[w].mastered);
   btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
@@ -816,6 +818,8 @@ function checkIn(w){
   const d=today();
   if(!state[w]) state[w]={};
   state[w].shadowed=d;
+  state[w].shadowedAt=Date.now();
+  state[w].times=(state[w].times||0)+1;
   saveState();
   if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
   updateProgress(); renderCodex();

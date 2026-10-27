@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大脑远征队 · 第三章「遗忘迷宫」</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b1118; --bg2:#111a24; --panel:#17222e; --panel2:#1e2c3a; --line:#2c3d4e;
+  --text:#e8f0f6; --dim:#9fb3c4; --gold:#d8b45a; --gold2:#f0d68a;
+  --song:#7bc96f; --jiu:#6fa8dc; --mian:#f2b880; --shan:#c9a2e0; --danger:#e2777a;
+  --skin:#f2c9a0; --ink:#2f2a26;
+}
+html,body{height:100%}
+body{
+  background:radial-gradient(1200px 620px at 50% -120px, #17291d 0%, var(--bg) 62%) fixed;
+  color:var(--text);
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Source Han Sans SC",sans-serif;
+  min-height:100vh; display:flex; flex-direction:column; line-height:1.75;
+  overflow-x:hidden;
+}
+.hidden{display:none !important}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* ---------- 顶栏 ---------- */
+#topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:1px solid var(--line);background:rgba(12,19,16,.85);position:sticky;top:0;z-index:20;backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .logo{font-size:26px}
+.brand .t1{font-weight:800;font-size:17px;letter-spacing:1px}
+.brand .t2{font-size:10px;color:var(--dim);letter-spacing:3px}
+.tb-right{display:flex;align-items:center;gap:8px}
+.badge{font-size:12px;color:var(--gold2);border:1px solid rgba(216,180,90,.4);background:rgba(216,180,90,.08);padding:3px 10px;border-radius:999px;white-space:nowrap}
+.tbtn{font-size:13px;color:var(--dim);border:1px solid var(--line);border-radius:8px;padding:4px 10px;background:var(--panel)}
+.tbtn:hover{color:var(--text);border-color:var(--gold)}
+
+/* ---------- HUD 小队 + 地图 ---------- */
+#hud{border-bottom:1px solid var(--line);background:rgba(16,26,20,.6)}
+.hud-row{display:flex;align-items:center;gap:14px;padding:8px 18px;flex-wrap:wrap}
+#squad{display:flex;gap:8px;flex-wrap:wrap}
+.pchip{display:flex;align-items:center;gap:6px;font-size:12.5px;padding:3px 10px 3px 4px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--dim);transition:.2s}
+.pchip .ava{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--panel2);overflow:hidden}
+.pchip .ava svg{display:block}
+.pchip.me{color:var(--text);border-color:var(--gold)}
+.pchip .you{font-size:10px;color:var(--gold2);border:1px solid rgba(216,180,90,.5);border-radius:4px;padding:0 3px;margin-left:2px}
+.trust-wrap{display:flex;align-items:center;gap:8px;margin-left:auto;position:relative}
+.trust-label{font-size:12px;color:var(--gold2);white-space:nowrap}
+.trust-bar{width:150px;height:10px;border-radius:999px;background:#0a120d;border:1px solid var(--line);overflow:hidden}
+#trustFill{height:100%;width:0%;background:linear-gradient(90deg,#8a6d2f,var(--gold2));transition:width .5s ease}
+.trust-num{font-size:12px;color:var(--dim);min-width:20px}
+.float-trust{position:absolute;right:34px;top:-14px;font-size:12px;font-weight:700;color:var(--gold2);animation:floatup 1.3s ease forwards;pointer-events:none;z-index:5}
+@keyframes floatup{0%{opacity:0;transform:translateY(6px)}20%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
+
+#mapStrip{display:flex;align-items:center;gap:0;padding:2px 18px 10px;flex-wrap:wrap}
+.map-node{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--dim);transition:.3s}
+.map-node .mn{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;background:var(--panel2);border:1px solid var(--line);transition:.3s}
+.map-node.passed{color:var(--gold2)}
+.map-node.passed .mn{border-color:var(--gold);background:rgba(216,180,90,.12)}
+.map-node.current{color:var(--gold2);font-weight:700}
+.map-node.current .mn{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(216,180,90,.18);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(216,180,90,.18)}50%{box-shadow:0 0 0 6px rgba(216,180,90,.05)}}
+.map-link{width:26px;height:1px;border-top:2px dashed var(--line);margin:0 6px}
+
+/* ---------- 屏幕 ---------- */
+main{flex:1;width:100%;max-width:880px;margin:0 auto;padding:22px 16px 60px}
+.screen{display:none;animation:fadein .3s ease}
+.screen.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- 标题页 ---------- */
+.hero{text-align:center;padding:30px 0 8px}
+.hero-squad{display:flex;justify-content:center;gap:6px;align-items:flex-end;margin-bottom:10px}
+.hero-squad .hs{filter:drop-shadow(0 10px 14px rgba(0,0,0,.5))}
+.hero-squad .hs:nth-child(1){animation:bob 2.8s ease-in-out infinite}
+.hero-squad .hs:nth-child(2){animation:bob 3s ease-in-out infinite .3s}
+.hero-squad .hs:nth-child(3){animation:bob 2.7s ease-in-out infinite .5s}
+.hero-squad .hs:nth-child(4){animation:bob 3.1s ease-in-out infinite .15s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero h1{font-size:30px;letter-spacing:4px;margin-bottom:6px}
+.hero .sub{color:var(--dim);font-size:14px;letter-spacing:1px}
+.hero .tag{display:inline-block;margin-top:14px;font-size:12px;color:var(--gold2);border:1px solid rgba(216,180,90,.35);border-radius:999px;padding:3px 14px;background:rgba(216,180,90,.06)}
+.menu{max-width:340px;margin:26px auto 0;display:flex;flex-direction:column;gap:12px}
+#bestLine{text-align:center;margin-top:18px;font-size:12.5px;color:var(--dim);min-height:18px}
+#bestLine b{color:var(--gold2)}
+
+/* ---------- 通用按钮 ---------- */
+.btn{padding:12px 16px;border-radius:12px;font-size:15px;border:1px solid var(--line);background:var(--panel2);color:var(--text);transition:.15s}
+.btn:hover{transform:translateY(-1px);border-color:var(--gold)}
+.btn.primary{background:linear-gradient(180deg,#e8c876,#c9a24a);color:#241a05;font-weight:800;border:none}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;color:var(--dim)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* ---------- 难度 / 角色 ---------- */
+.page-title{font-size:20px;font-weight:800;margin-bottom:4px;text-align:center}
+.page-sub{font-size:13px;color:var(--dim);text-align:center;margin-bottom:22px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:left;transition:.15s;width:100%}
+.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card .ct{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px}
+.card .cd{font-size:12.5px;color:var(--dim);margin-top:6px}
+.lvl-dots{display:flex;gap:5px;margin-bottom:10px}
+.lvl-dots i{width:12px;height:12px;border-radius:50%;border:1px solid var(--gold)}
+.lvl-dots i.on{background:var(--gold2);box-shadow:0 0 8px rgba(240,214,138,.4)}
+.char-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+.char-card .ava-big{width:96px;height:96px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:8px}
+.char-card .ct{justify-content:center}
+.char-card .role{font-size:11.5px;color:var(--dim);letter-spacing:1px;margin-top:2px}
+.char-card .sk{display:flex;gap:10px;justify-content:center;margin-top:10px;opacity:.85}
+.char-card .voice{font-size:12px;color:var(--danger);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;width:100%}
+
+/* ================= 漫画分镜 ================= */
+#gameBody{cursor:pointer;user-select:none}
+.comic-frame{position:relative;height:400px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#0e1a12;box-shadow:inset 0 0 60px rgba(0,0,0,.5)}
+@media (max-width:640px){.comic-frame{height:310px}}
+.scene-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fogA{animation:fogdrift 11s ease-in-out infinite}
+.fogB{animation:fogdrift 15s ease-in-out infinite reverse}
+@keyframes fogdrift{0%,100%{transform:translateX(-16px)}50%{transform:translateX(20px)}}
+.ff{animation:ff 2.8s ease-in-out infinite}
+.ff.f2{animation-delay:.9s}.ff.f3{animation-delay:1.7s}.ff.f4{animation-delay:.4s}.ff.f5{animation-delay:2.2s}
+@keyframes ff{0%,100%{opacity:.12}50%{opacity:.8}}
+.stone-hl{animation:hlglow 1.3s ease-in-out infinite}
+@keyframes hlglow{0%,100%{opacity:.55}50%{opacity:1}}
+.flower{animation:fadein .6s backwards}
+.stage-fx{position:absolute;inset:0;pointer-events:none;z-index:6}
+.spark{position:absolute;border-radius:50%;filter:blur(1px)}
+.bubblep{position:absolute;border-radius:50%;background:rgba(140,190,150,.5);pointer-events:none}
+.wm-totem{position:absolute;right:12px;bottom:10px;opacity:.09;pointer-events:none}
+
+.pollen{animation:pollen 5.5s ease-in-out infinite}
+@keyframes pollen{0%,100%{transform:translate(0,0);opacity:.2}50%{transform:translate(12px,-16px);opacity:.85}}
+.petalp{position:absolute;border-radius:50% 0 50% 50%;pointer-events:none;opacity:.9}
+.blockp{position:absolute;border-radius:3px;pointer-events:none;opacity:.9}
+/* 演员站位 *//* 演员站位 */
+.actor-row{position:absolute;left:2%;right:27%;bottom:3%;display:flex;justify-content:space-around;align-items:flex-end;pointer-events:none}
+.actor{display:flex;flex-direction:column;align-items:center;gap:2px;opacity:.45;transition:.28s cubic-bezier(.2,.8,.3,1.2);transform:translateY(8px) scale(.94)}
+.actor .ava-svg{width:78px;height:78px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.55))}
+.actor .name-tag{font-size:11.5px;color:var(--dim);background:rgba(12,19,16,.85);border:1px solid var(--line);border-radius:999px;padding:1px 10px;transition:.25s;white-space:nowrap}
+.actor.active{opacity:1;transform:translateY(-10px) scale(1.12)}
+.actor.active .ava-svg{filter:drop-shadow(0 0 16px var(--gold2)) drop-shadow(0 8px 12px rgba(0,0,0,.55));animation:talk .6s ease}
+@keyframes talk{40%{transform:translateY(-7px)}}
+.actor.active .name-tag{color:var(--gold2);border-color:var(--gold)}
+.actor.active::after{content:"";position:absolute;left:50%;top:-34px;transform:translateX(-50%);border:7px solid transparent;border-bottom-color:var(--gold2);animation:tailin .3s ease}
+@keyframes tailin{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
+.stage-boss{position:absolute;right:7%;top:15%;width:150px;filter:drop-shadow(0 14px 18px rgba(0,0,0,.6));animation:bob 3.4s ease-in-out infinite}
+.stage-caption{position:absolute;left:14px;right:14px;top:12px;background:rgba(8,14,10,.82);border:1px solid rgba(216,180,90,.25);border-radius:10px;padding:8px 14px;font-size:13.5px;color:var(--dim);font-style:italic;text-align:center;backdrop-filter:blur(3px);min-height:38px;line-height:1.6}
+.caption{position:absolute;left:14px;right:14px;bottom:10px;text-align:center;font-size:13px;color:#7fa08a;font-style:italic;min-height:22px}
+
+/* 对话框 */
+.bubble-wrap{position:relative;margin:12px 14px 4px;background:linear-gradient(180deg,#1b2e22,#152019);border:1px solid var(--line);border-radius:14px;padding:12px 16px;min-height:84px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.bubble-wrap .speaker-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.speaker-chip{font-size:12px;font-weight:700;color:#0c1310;background:var(--dim);border-radius:6px;padding:1px 10px}
+.bubble-text{font-size:16px;line-height:1.8;min-height:46px}
+.dots{display:flex;gap:5px;justify-content:center;padding:4px 0 12px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:.2s}
+.dots i.cur{background:var(--gold2);transform:scale(1.3)}
+#nextHint{text-align:right;font-size:12px;color:var(--gold2);padding:2px 8px 0;animation:blink 1.4s infinite}
+#nextHint.choose{text-align:center;font-size:13.5px;font-weight:700;letter-spacing:2px;animation:hintdrop 1.1s ease-in-out infinite}
+@keyframes hintdrop{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(6px);opacity:1}}
+@keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* 选项 */
+.choice-tray{padding:4px 2px 6px}
+.choice-title{font-size:13px;color:var(--gold2);letter-spacing:2px;margin:4px 0 10px;animation:titlepulse 1.6s ease-in-out infinite}
+@keyframes titlepulse{0%,100%{opacity:.75;text-shadow:none}50%{opacity:1;text-shadow:0 0 14px rgba(216,180,90,.6)}}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:13px 15px;margin-bottom:10px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),var(--panel));font-size:14.5px;transition:.15s;line-height:1.6;animation:optin .3s backwards}
+.opt:nth-child(2){animation-delay:.05s}.opt:nth-child(3){animation-delay:.1s}.opt:nth-child(4){animation-delay:.15s}
+@keyframes optin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.opt:hover{border-color:var(--gold);transform:translateX(4px);box-shadow:0 4px 18px rgba(216,180,90,.12)}
+.opt .ol{flex:none;width:26px;height:26px;border-radius:8px;background:var(--bg2);border:1px solid var(--gold);color:var(--gold2);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+
+/* ================= 战斗 ================= */
+.battleground{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);min-height:360px;
+  background:linear-gradient(180deg,#141a16 0%,#0d1710 60%,#0a120c 100%)}
+.battleground.flash{animation:flash .35s ease}
+@keyframes flash{0%{filter:brightness(1)}30%{filter:brightness(1.5) saturate(1.3)}100%{filter:brightness(1)}}
+
+.boss-zone{position:absolute;right:5%;top:7%;display:flex;flex-direction:column;align-items:center;gap:6px;z-index:3}
+#bossWrap{width:150px;height:140px;position:relative;filter:drop-shadow(0 12px 20px rgba(0,0,0,.6));animation:bob 3.2s ease-in-out infinite;cursor:default}
+#bossWrap.shake{animation:shake .45s ease}
+@keyframes shake{0%,100%{transform:translate(0,0) rotate(0)}20%{transform:translate(-9px,3px) rotate(-7deg)}40%{transform:translate(8px,-4px) rotate(6deg)}60%{transform:translate(-6px,2px) rotate(-4deg)}80%{transform:translate(4px,-2px) rotate(3deg)}}
+#bossWrap.taunt{animation:taunt .5s ease}
+@keyframes taunt{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
+#bossStamps{position:absolute;inset:0;pointer-events:none}
+#bossStamps .st{position:absolute;width:26px;height:26px;opacity:0;animation:stampin .5s forwards}
+@keyframes stampin{to{opacity:.75}}
+.boss-name{font-weight:800;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:2px 12px;white-space:nowrap}
+.boss-hpbox{width:150px}
+.bar-label{font-size:11px;color:var(--dim);display:flex;justify-content:space-between;margin-bottom:3px}
+.hp-bar{height:10px;border-radius:999px;background:#0a120d;border:1px solid var(--line);overflow:hidden}
+#bossHpFill{height:100%;width:100%;background:linear-gradient(90deg,#8a3b3e,#e2777a);transition:width .6s ease}
+#bossBubble{position:absolute;right:3%;top:33%;max-width:230px;background:rgba(20,12,12,.9);border:1px solid rgba(226,119,122,.4);border-radius:12px;padding:8px 12px;font-size:13px;color:#f0b6b7;line-height:1.65;z-index:3}
+
+.squad-zone{position:absolute;left:4%;bottom:8%;display:flex;gap:10px;z-index:3}
+.sq{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.85;transition:.25s}
+.sq .sq-ava{width:50px;height:50px;border-radius:50%;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(circle at 35% 30%,var(--panel2),#0d1710);border:2px solid var(--line)}
+.sq .sq-name{font-size:10.5px;color:var(--dim)}
+.sq.owner-on .sq-ava{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(216,180,90,.18);animation:avapop .35s ease}
+.sq.owner-on .sq-name{color:var(--gold2)}
+@keyframes avapop{0%{transform:scale(.9)}60%{transform:scale(1.07)}100%{transform:scale(1)}}
+
+#fxLayer{position:absolute;inset:0;pointer-events:none;z-index:5}
+.dmg-num{position:absolute;font-size:26px;font-weight:900;color:#f0b6b7;text-shadow:0 2px 8px rgba(0,0,0,.6);pointer-events:none}
+.dmg-num.gold{color:var(--gold2);font-size:32px}
+.dmg-num.miss{color:#7fa08a;font-size:20px}
+.combo-banner{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%) rotate(-4deg);background:linear-gradient(90deg,#3a2f10,#171204);border:2px solid var(--gold2);color:var(--gold2);font-weight:900;font-size:20px;letter-spacing:2px;border-radius:12px;padding:8px 26px;z-index:6;white-space:nowrap;box-shadow:0 0 40px rgba(216,180,90,.35);animation:bannerin 1.6s ease forwards;display:flex;align-items:center;gap:10px}
+@keyframes bannerin{0%{opacity:0;transform:translate(-50%,-50%) rotate(-4deg) scale(.4)}15%{opacity:1;transform:translate(-50%,-50%) rotate(-4deg) scale(1.08)}25%{transform:translate(-50%,-50%) rotate(-4deg) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) rotate(-4deg) scale(1.05)}}
+
+/* ---------- 战斗一屏布局：画面 + 卡牌同屏，无需滚动 ---------- */
+main:has(> #scr-battle.active){padding-bottom:10px}
+#scr-battle.active{display:flex;flex-direction:column;min-height:520px}
+#scr-battle .battleground{flex:1;min-height:270px}
+#scr-battle .battle-side{margin-top:10px;flex:none}
+.battleground.zoom{animation:bzoom .45s ease}
+@keyframes bzoom{0%{transform:scale(1)}35%{transform:scale(1.025)}100%{transform:scale(1)}}
+/* 画中浮层：回合横幅 / 眠眠小抄 / 最新出招记录 */
+.round-banner{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:6;font-size:13px;font-weight:700;color:var(--gold2);background:rgba(10,16,12,.85);border:1px solid rgba(216,180,90,.45);border-radius:999px;padding:5px 18px;letter-spacing:1px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.ease-toast{position:absolute;top:46px;left:50%;transform:translateX(-50%);z-index:6;width:min(92%,540px);font-size:12px;color:#f2b880;background:rgba(22,15,8,.88);border:1px dashed rgba(242,184,128,.45);border-radius:10px;padding:7px 12px;text-align:center;line-height:1.6}
+.battle-feed{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);z-index:6;width:min(94%,580px);display:flex;flex-direction:column;gap:5px;pointer-events:none}
+.bf-line{font-size:13px;line-height:1.6;padding:6px 14px;border-radius:10px;background:rgba(10,16,12,.88);border:1px solid var(--line);color:var(--mian);animation:bfin .35s ease;text-align:center;transition:opacity .6s}
+.bf-line.hit{color:var(--gold2);border-color:rgba(216,180,90,.5);font-weight:700}
+.bf-line.act{color:#9fc7a8;border-color:rgba(159,199,168,.35)}
+.bf-line.fade{opacity:0}
+@keyframes bfin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.battle-log{background:#0e1712;border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-height:110px;max-height:180px;overflow-y:auto;font-size:13.5px;margin-top:14px}
+.battle-side{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.hand{display:flex;flex-wrap:wrap;gap:10px;min-height:60px;align-items:stretch}
+.hand .trust-label{font-size:12px;color:var(--gold2);align-self:center}
+.chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;width:112px;padding:10px 8px 8px;border-radius:12px;border:1px solid var(--line);border-top:3px solid var(--dim);background:linear-gradient(180deg,var(--panel2),var(--panel));font-size:13px;transition:.15s;text-align:center}
+.chip .cem{width:48px;height:48px;display:flex;align-items:center;justify-content:center}
+.chip .own{position:absolute;top:-9px;left:8px;font-size:10.5px;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--panel)}
+.chip:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.chip.on{border-color:var(--gold2);box-shadow:0 0 0 2px var(--gold2) inset,0 8px 20px rgba(216,180,90,.2);transform:translateY(-5px)}
+.chip.on .cem{filter:drop-shadow(0 0 10px var(--gold2))}
+.chip.on::after{content:"已选";position:absolute;top:-10px;right:6px;font-size:10px;background:var(--gold2);color:#241a05;border-radius:4px;padding:0 5px;font-weight:700}
+#btn-confirm{align-self:flex-start}
+.ease{margin-top:10px;font-size:12px;color:var(--mian);background:rgba(242,184,128,.08);border:1px dashed rgba(242,184,128,.4);border-radius:10px;padding:8px 10px;text-align:left;line-height:1.6}
+
+/* ================= 技能卡（图腾翻转） ================= */
+.modal{position:fixed;inset:0;background:rgba(5,9,7,.82);display:flex;align-items:center;justify-content:center;z-index:50;padding:18px;animation:fadein .2s ease}
+.modal-box{background:var(--panel);border:1px solid var(--gold);border-radius:18px;max-width:520px;width:100%;padding:24px;max-height:86vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.flip-card{perspective:1200px;margin:6px 0 4px}
+.flip-inner{position:relative;display:grid;transition:transform .6s cubic-bezier(.2,.7,.3,1.2);transform-style:preserve-3d;cursor:pointer}
+.flip-inner.flipped{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.cardface{background:linear-gradient(160deg,#22342a,#101c14);border:1px solid rgba(216,180,90,.5);border-radius:16px;padding:22px 20px;min-height:240px;display:flex;flex-direction:column;justify-content:center}
+.totem-big{width:110px;height:110px;margin:0 auto;display:flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 40% 30%,rgba(216,180,90,.18),rgba(216,180,90,.04) 65%);border:1px solid rgba(216,180,90,.35);animation:totemin .6s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes totemin{0%{transform:scale(.3) rotate(-25deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+.cardface .cname{font-size:20px;font-weight:900;text-align:center;margin-top:10px}
+.mantra{background:rgba(216,180,90,.08);border-left:3px solid var(--gold);border-radius:8px;padding:10px 12px;font-size:14px;margin:12px 0 0;font-weight:600;color:var(--gold2);line-height:1.7}
+.flip-tip{text-align:center;font-size:11.5px;color:var(--dim);margin-top:10px}
+.skill-name{font-size:19px;font-weight:900;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.own-tag{font-size:11px;font-weight:700;color:#0c1310;border-radius:6px;padding:1px 8px}
+.new-tag{font-size:10.5px;color:var(--dim);border:1px solid var(--line);border-radius:5px;padding:1px 6px;letter-spacing:1px}
+.note-sec{margin-top:10px;font-size:13.5px;line-height:1.8}
+.note-sec .lab{font-size:11.5px;color:var(--gold);letter-spacing:2px;margin-bottom:2px}
+.locked-note{font-size:12px;color:var(--dim);margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;line-height:1.7}
+.lead-note{font-size:12px;color:var(--dim);margin-top:8px;line-height:1.7}
+.combo-hero{display:flex;justify-content:center;margin:10px 0}
+
+/* ---------- 借招弹窗 ---------- */
+.borrow-ava{width:84px;height:84px;border-radius:50%;display:flex;align-items:flex-end;justify-content:center;margin:0 auto 8px;background:radial-gradient(circle at 35% 30%,var(--panel2),#0d1710);border:2px solid var(--gold);animation:totemin .5s cubic-bezier(.2,.9,.3,1.3)}
+
+/* ================= 结算 ================= */
+.end-card{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 20px;text-align:center}
+.confetti{position:absolute;top:-14px;width:8px;height:12px;border-radius:2px;z-index:0;animation:fall linear forwards}
+@keyframes fall{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(560px) rotate(540deg);opacity:0}}
+.end-card>*{position:relative;z-index:1}
+.rating-wrap{position:relative;display:inline-block;margin:6px 0 4px}
+.rating-big{position:relative;display:inline-flex;align-items:center;justify-content:center;width:92px;height:92px;border-radius:24px;font-size:34px;font-weight:900;background:var(--panel2);border:2px solid var(--line);color:var(--dim)}
+.rating-wrap.glow::before{content:"";position:absolute;inset:-26px;border-radius:50%;background:conic-gradient(from 0deg,rgba(216,180,90,.0),rgba(216,180,90,.5),rgba(216,180,90,.0));animation:spin 5s linear infinite;z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rating-big.SSS{background:linear-gradient(160deg,#3a2f10,#171204);border-color:var(--gold2);color:var(--gold2);text-shadow:0 0 24px rgba(240,214,138,.5)}
+.rating-big.S{border-color:var(--gold);color:var(--gold2)}
+.rating-big.A{border-color:#5f9e6e;color:#8fd0a0}
+/* 两栏仪表盘：左评级+统计，右图腾墙+观察，一屏看全 */
+.end-main{display:grid;grid-template-columns:1.05fr .95fr;gap:10px 22px;align-items:start;text-align:left;margin-top:2px}
+.end-main .rating-wrap{margin-top:0}
+.end-line{font-size:13px;color:var(--mian);margin:6px 0 2px;text-align:center}
+.end-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 0}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:8px 4px}
+.stat .v{font-size:14px;font-weight:800;color:var(--gold2)}
+.stat .k{font-size:11px;color:var(--dim);margin-top:2px}
+.totem-wall{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;margin:0}
+.tw{display:flex;flex-direction:column;align-items:center;gap:4px;width:80px;padding:8px 4px;border-radius:12px;background:var(--panel2);border:1px solid var(--line);font-size:11px;color:var(--dim);animation:optin .5s backwards}
+.tw .twi{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(216,180,90,.4);background:rgba(216,180,90,.06)}
+.tw.gold .twi{border-color:var(--gold2);box-shadow:0 0 14px rgba(216,180,90,.25)}
+.tw:nth-child(2){animation-delay:.08s}.tw:nth-child(3){animation-delay:.16s}.tw:nth-child(4){animation-delay:.24s}.tw:nth-child(5){animation-delay:.32s}
+.observe{background:rgba(242,184,128,.07);border:1px dashed rgba(242,184,128,.35);border-radius:12px;padding:9px 12px;font-size:12.5px;color:var(--mian);text-align:left;margin:10px 0 0;line-height:1.6}
+.footer-note{font-size:12px;color:var(--dim);margin-top:8px;text-align:left}
+.secret{margin-top:10px;font-size:12.5px;color:var(--shan);border:1px dashed rgba(201,162,224,.4);border-radius:12px;padding:8px 12px;background:rgba(201,162,224,.06)}
+
+/* ---------- 图鉴 / 帮助 ---------- */
+.codex-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.codex-grid{grid-template-columns:1fr}}
+.cdx-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.cdx-card.locked{opacity:.45}
+.cdx-card .cdx-t{width:64px;height:64px;margin:0 auto 8px}
+.cdx-card .cdx-name{font-size:15px;font-weight:800}
+.codex-skill-row{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:6px}
+.help-list{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.help-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:13.5px;display:flex;align-items:center;gap:12px}
+.help-item .hi{flex:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
+.help-item b{color:var(--gold2);margin-right:2px}
+
+/* ---------- 火焰 / 营地 / 战斗虚弱态 ---------- */
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flame .55s ease-in-out infinite alternate}
+.flame.f2{animation-duration:.42s;animation-delay:.1s}
+@keyframes flame{from{transform:scale(1)}to{transform:scaleY(1.22) scaleX(.9) translateY(-2px)}}
+.flicker{animation:flicker 1.8s ease-in-out infinite}
+@keyframes flicker{0%,100%{opacity:.75}50%{opacity:1}}
+.comic-frame.fire-up .flame{animation-duration:.18s}
+.hero-camp{position:relative;height:96px;border-radius:16px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.end-hero{position:relative;height:60px;border-radius:14px;overflow:hidden;border:1px solid var(--line);margin-bottom:10px}
+#bossWrap.weak svg{filter:saturate(.5) brightness(.82)}
+#bossWrap.weak .st{opacity:.9}
+
+/* ---------- toast ---------- */
+#toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);background:var(--panel2);border:1px solid var(--gold);color:var(--gold2);font-size:13.5px;border-radius:999px;padding:9px 20px;z-index:99;animation:fadein .2s ease;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.center-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+
+/* ---------- 手机端结算压缩（置于末尾确保覆盖基础规则） ---------- */
+@media (max-width:720px){
+  .end-main{grid-template-columns:1fr}
+  .end-card{padding:14px 14px}
+  .end-hero{height:44px}
+  .rating-big{width:80px;height:80px;font-size:30px;border-radius:20px}
+  .tw{width:72px}
+  .observe{font-size:12px;padding:8px 10px}
+  .center-row{margin-top:12px}
+}
+.footer-note{text-align:center;font-size:11px;color:#5c7263;margin-top:34px;line-height:1.8}
+</style>
+<script src="../site-nav.js" defer></script>
+</head>
+<body>
+
+<header id="topbar">
+  <div class="brand">
+    <span class="logo">🧠</span>
+    <div><div class="t1">大脑远征队</div><div class="t2">BRAIN EXPEDITION</div></div>
+  </div>
+  <div class="tb-right">
+    <span id="badge-diff" class="badge">难度：入门</span>
+    <button id="btn-help" class="tbtn">❓ 帮助</button>
+    <button id="btn-pause" class="tbtn hidden">⏸ 暂停</button>
+  </div>
+</header>
+
+<div id="hud" class="hidden">
+  <div class="hud-row">
+    <div id="squad"></div>
+    <div class="trust-wrap">
+      <span class="trust-label">🤝 组队值</span>
+      <div class="trust-bar"><div id="trustFill"></div></div>
+      <span id="trustNum" class="trust-num">8</span>
+    </div>
+  </div>
+  <div id="mapStrip"></div>
+</div>
+
+<main>
+
+<!-- ============ 标题 ============ -->
+<section id="scr-title" class="screen active">
+  <div class="hero">
+    <div class="hero-camp" id="heroCamp"></div>
+    <div class="hero-squad" id="heroSquad"></div>
+    <h1>大脑远征队</h1>
+    <div class="sub">第三章 · 遗忘迷宫 —— 合上书，才真的记住</div>
+    <div class="tag">社交即玩法 · 连招必须跨角色组合</div>
+  </div>
+  <div class="menu">
+    <button id="btn-new" class="btn primary">🚩 开始新冒险</button>
+    <button id="btn-continue" class="btn hidden">▶ 继续冒险（有存档）</button>
+    <button id="btn-help2" class="btn ghost">❓ 玩法说明</button>
+    <button id="btn-home" class="btn ghost">🏟 回主页</button>
+  </div>
+  <div id="bestLine"></div>
+  <div class="footer-note">HTML 原型版 · Ch2 全流程可玩 · 四档难度 + 随时暂停存档<br>本作全部形象为原创绘制，不使用任何第三方 IP 素材</div>
+</section>
+
+<!-- ============ 难度 ============ -->
+<section id="scr-diff" class="screen">
+  <div class="page-title">选择难度</div>
+  <div class="page-sub">文本与技能池随难度切换，游戏中随时可以换</div>
+  <div class="grid2" id="diffGrid"></div>
+</section>
+
+<!-- ============ 角色 ============ -->
+<section id="scr-char" class="screen">
+  <div class="page-title">选择你的冒险者</div>
+  <div class="page-sub">其余三人由小队共同演绎——你的选择会改变经历的分支与隐藏台词</div>
+  <div class="grid2" id="charGrid"></div>
+</section>
+
+<!-- ============ 帮助 ============ -->
+<section id="scr-help" class="screen">
+  <div class="page-title">玩法说明</div>
+  <div class="page-sub">交互铁律 · 全部为选择题，没有标准答案</div>
+  <div class="help-list" id="helpList"></div>
+  <div class="center-row"><button class="btn ghost" id="btn-help-back">返回</button></div>
+</section>
+
+<!-- ============ 图鉴 ============ -->
+<section id="scr-codex" class="screen">
+  <div class="page-title">📖 章末图鉴</div>
+  <div class="page-sub">本章技能卡 / 小队公约 / 连招（完整笔记在这里全部解锁）</div>
+  <div class="codex-grid" id="codexGrid"></div>
+  <div class="center-row"><button class="btn ghost" id="btn-codex-back">返回</button></div>
+</section>
+
+<!-- ============ 漫画剧情 ============ -->
+<section id="scr-game" class="screen">
+  <div id="gameBody"></div>
+  <div id="nextHint" class="hidden">点击画面继续 ▸</div>
+</section>
+
+<!-- ============ 战斗 ============ -->
+<section id="scr-battle" class="screen">
+  <div class="battleground" id="battleground">
+    <div class="boss-zone">
+      <div class="boss-name">忘忘 · 遗忘迷宫主</div>
+      <div class="boss-hpbox">
+        <div class="bar-label"><span>分心值</span><span id="bossHpNum">100</span></div>
+        <div class="hp-bar"><div id="bossHpFill"></div></div>
+      </div>
+      <div id="bossWrap"></div>
+    </div>
+    <div id="bossBubble"></div>
+    <div class="squad-zone" id="squadZone"></div>
+    <div id="fxLayer"></div>
+    <div id="roundName" class="round-banner hidden"></div>
+    <div id="battle-ease" class="ease-toast hidden"></div>
+    <div id="battleFeed" class="battle-feed"></div>
+  </div>
+  <div class="battle-side">
+    <div id="hand" class="hand"></div>
+    <button id="btn-confirm" class="btn primary">确认出招 ⚔</button>
+  </div>
+</section>
+
+<!-- ============ 结算 ============ -->
+<section id="scr-end" class="screen">
+  <div id="endBody"></div>
+</section>
+
+</main>
+
+<!-- ============ 技能卡弹窗 ============ -->
+<div id="modal-skill" class="modal hidden">
+  <div class="modal-box" id="skillBox"></div>
+</div>
+
+<!-- ============ 借技能弹窗 ============ -->
+<div id="modal-borrow" class="modal hidden">
+  <div class="modal-box" style="max-width:430px">
+    <div class="borrow-ava" id="borrowAva"></div>
+    <div class="skill-name" style="justify-content:center">队友伸出了手</div>
+    <div class="mantra" id="borrowText" style="font-weight:600;margin-top:14px"></div>
+    <div class="center-row" style="margin-top:16px">
+      <button class="btn primary" id="btn-borrow-yes">接下这一招</button>
+      <button class="btn ghost" id="btn-borrow-no">我们自己练</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 暂停 ============ -->
+<div id="overlay-pause" class="modal hidden">
+  <div class="modal-box" style="max-width:360px">
+    <div class="skill-name">⏸ 暂停</div>
+    <div class="page-sub" style="margin:6px 0 16px">远征随时可以继续</div>
+    <div class="menu" style="margin:0">
+      <button class="btn primary" id="btn-resume">继续冒险</button>
+      <button class="btn" id="btn-save">💾 保存进度</button>
+      <button class="btn" id="btn-load">📂 读取进度</button>
+      <button class="btn" id="btn-diff-in">🎚 切换难度（当前：<span id="pause-diff">入门</span>）</button>
+      <button class="btn" id="btn-codex-in">📖 图鉴</button>
+      <button class="btn ghost" id="btn-quit">返回标题</button>
+      <button class="btn ghost" id="btn-home-pause">🏟 回主页</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="hidden"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= 数据 ================= */
+var DIFFS={
+  easy :{key:"easy", name:"简单",      level:1, hints:true,  card:"full", tags:false,
+         desc:"眠眠全程陪练，技能卡全展示，战斗有小抄。"},
+  intro:{key:"intro",name:"入门",      level:2, hints:true,  card:"full", tags:true,
+         desc:"标准节奏。新技能灰标，眠眠在关键处提醒。"},
+  semi :{key:"semi", name:"半标注进阶",level:3, hints:false, card:"fold", tags:true,
+         desc:"新技能灰标 NEW。提示减半，卡牌自己翻面。"},
+  hard :{key:"hard", name:"困难",      level:4, hints:false, card:"one",  tags:false,
+         desc:"无提示无小抄。只给一句咒语，全凭自己悟。"}
+};
+var DIFF_ORDER=["easy","intro","semi","hard"];
+
+var CHARS={
+  song:{name:"松松",role:"行动担当 · 剑士",hex:"#7bc96f",
+       voice:"「等会儿再说」",
+       desc:"永远第一个冲，也永远第一个想放弃。",
+       skills:["micro","interleave"]},
+  jiu :{name:"究究",role:"认知担当 · 军师",hex:"#6fa8dc",
+       voice:"「还不够好」",
+       desc:"能背下整本图鉴，但不敢举手回答问题。",
+       skills:["retrieve","monitor"]},
+  mian:{name:"眠眠",role:"能量担当 · 守护",hex:"#f2b880",
+       voice:"「算了，没人在乎」",
+       desc:"记得每个人的生日，默默把事情全做了。",
+       skills:["sleep","monitor"]},
+  shan:{name:"闪闪",role:"情绪语言担当 · 信使",hex:"#c9a2e0",
+       voice:"「我不行」",
+       desc:"不太说话，却第一个察觉谁今天不开心。",
+       skills:["spacing","mark"]}
+};
+var CHAR_ORDER=["song","jiu","mian","shan"];
+var NAME2KEY={"松松":"song","究究":"jiu","眠眠":"mian","闪闪":"shan","忘忘":"boss","四人":"all"};
+
+var SKILLS={
+  micro  :{name:"微步骤启动",owner:"song",
+           one:"大事切成五秒能做完的小事，第一步小到不可能失败。",
+           mantra:"「先做第一步，第一步只花五秒。」",
+           why:"大脑看见「大任务」会害怕，看见「抬一下手」不会——启动的阻力变小了，你就动了。",
+           cross:"再高的楼，也是一阶一阶上的。想拍球？先拍一下，就一下。"},
+  interleave:{name:"交错练习",owner:"song",
+           one:"同一段时间里，换着练几种。别一种练到底。",
+           mantra:"「换着来，脑子才醒着。」",
+           why:"大脑要先认出「这是哪一种」，才会真的记住。一直练同一种，它只靠惯性；换着来，它得动脑分辨。",
+           cross:"练拍球，练一会儿换跳绳，再回来拍——比一口气拍一小时记得牢。"},
+  retrieve:{name:"主动提取",owner:"jiu",
+           one:"合上书，先自己想一遍。想不起来，再翻。",
+           mantra:"「先想一遍，再翻书。」",
+           why:"看十遍，不如合上书想一遍。想不起来的那一下，才是在真的记住。",
+           cross:"看完一本故事书，合上，讲给同伴听——讲不出的那段，就是下次要看的那段。"},
+  sleep  :{name:"睡眠存档",owner:"mian",
+           one:"今天记的，睡一觉再存档。困了就睡，别硬撑。",
+           mantra:"「睡一觉，路还在。」",
+           why:"白天记的东西，要在睡着的时候才搬进「长期的抽屉」。不睡，等于没存档就关机。",
+           cross:"白天练熟的招式，睡一觉起来反而更顺手——那就是存档完成了。"},
+  monitor:{name:"状态监控",owner:"mian",
+           one:"随时看一眼自己的「体力条」，累了就补给，不硬撑。",
+           mantra:"「先看电量，再决定冲不冲。」",
+           why:"手机没电会提醒你，人累了却不会。学会自己看电量，才不会在关键时刻突然关机。",
+           cross:"跳绳跳着开始大喘气？那是身体在亮黄灯：该歇会儿啦。"},
+  spacing:{name:"间隔重复",owner:"shan",
+           one:"在要记住的地方留个记号，隔一会儿再回来看一眼。",
+           mantra:"「隔一段，再见一面。」",
+           why:"刚记住就丢开，忘得最快。隔一段时间再认一次，每认一次，就记得久一点。",
+           cross:"路边的树，天天见就认得；隔几天再去看一眼，才真的记住是哪一棵。"},
+  mark   :{name:"弱点标记",owner:"shan",
+           one:"把最安静的人看见的东西说出来，敌人就有了破绽。",
+           mantra:"「先标记，再出招。」",
+           why:"打游戏要瞄准弱点才好赢。做事也是：先标出「到底卡在哪一步」，再出手。",
+           cross:"积木塔总塌？先看清是哪一块歪了，比推倒重来管用。"}
+};
+var COMBOS=[
+  {name:"闭眼回想",members:["sleep","retrieve"],
+   desc:"睡眠存档（眠）＋主动提取（究）——睡一觉存档，醒来合上书想一遍。跨角色组合技，两人以上才发得动。"},
+  {name:"不放弃",members:["micro","sleep","monitor"],locked:true,
+   desc:"微步骤启动（松）＋睡眠存档（眠）＋状态监控（眠）——后续章节解锁。"}
+];
+/* ---------- 剧情场景 ---------- */
+var SCENES={
+ i1:{kind:"story",next:"i2",lines:[
+  {anim:"lights"},
+  {who:"眠眠",text:"这块砖……我见过。"},
+  {who:"松松",text:"门在哪儿！我要出去！"},
+  {anim:"campfire"}
+ ]},
+ i2:{kind:"skill",skill:"micro",lead:"松松掏出那张折得四四方方的笔记。「先做第一步——到哪儿都管用。」",next:"i3"},
+ i3:{kind:"story",next:"choice1",lines:[
+  {anim:"march"},
+  {who:"究究",text:"砖墙上……有门。"},
+  {who:"眠眠",text:"走进去，路就没了。"},
+  {anim:"focus-stone"},
+  {anim:"boss-eye"}
+ ]},
+
+ choice1:{kind:"choice",letters:true,prompt:"迷宫里，四条岔路。你先走向谁？",options:[
+  {t:"走向松松——他在三条岔路上来回跑",next:"a1",branch:"A",
+   after:[{act:"三趟跑完，一条也没走通。"},{who:"松松",text:"这条！不对，那条！"}]},
+  {t:"走向眠眠——她靠着砖墙打瞌睡",next:"b1",branch:"B",
+   after:[{act:"她的记录本越写越乱。"},{who:"眠眠",text:"我再记一个路口……"}]},
+  {t:"走向究究——他抱着图鉴，不肯合上",next:"c1",branch:"C",
+   after:[{act:"图鉴翻了一页，又翻回去。"},{who:"究究",text:"明明写着……"}]},
+  {t:"走向闪闪——她在路口蹲下，画了个记号",next:"d1",branch:"D",
+   after:[{act:"那么暗，她居然看得见砖缝。"},{who:"你",text:"闪闪，你画什么？"}]}
+ ]},
+
+ /* ---- A 线 · 松松：交错练习 ---- */
+ a1:{kind:"story",next:"a2",lines:[
+  {who:"松松",text:"这条！不对，那条！"},
+  {who:"眠眠",text:"跑了三趟，一条也没走完。"}
+ ]},
+ a2:{kind:"skill",skill:"interleave",lead:"松松把三条岔路在掌心排开：「一、二、三——换着走。」",next:"a3"},
+ a3:{kind:"choice",letters:false,prompt:"松松挠头：「换着走……不就乱了吗？」你说：",options:[
+  {t:"「换着走，脑子才醒着。」",next:"conv",trust:8,flag:"kind",
+   after:[{who:"松松",text:"（写下一二三）……换着来！"}]},
+  {t:"「一条走到底，才记得住。」",next:"conv",trust:2,
+   after:[{act:"松松点点头，又跑回了第一条。"}]},
+  {t:"「你这样哪条都记不住。」",next:"conv",trust:-5,flag:"toxic",
+   after:[{act:"松松停在岔口，三条路全模糊了。"}]}
+ ]},
+
+ /* ---- B 线 · 眠眠：睡眠存档 ---- */
+ b1:{kind:"story",next:"b2",lines:[
+  {who:"眠眠",text:"再记一个路口……"},
+  {who:"眠眠",text:"……眼皮好重。"},
+  {who:"松松",text:"你已经记错三次啦！"}
+ ]},
+ b2:{kind:"skill",skill:"sleep",lead:"眠眠把记录本合上，抱在怀里：「先睡一觉。醒来，路还在。」",next:"b3"},
+ b3:{kind:"choice",letters:false,prompt:"眠眠小声说：「睡着了……会不会全忘了？」你说：",options:[
+  {t:"「睡着了，脑子才在存档。」",next:"conv",trust:8,flag:"kind",
+   after:[{who:"眠眠",text:"（抱紧本子）……那我睡了。"}]},
+  {t:"「我替你记着！」",next:"conv",trust:3,
+   after:[{act:"眠眠点点头，又把本子翻开一页。"}]},
+  {t:"「忘了就白记了。」",next:"conv",trust:-5,flag:"toxic",
+   after:[{act:"眠眠揉揉眼睛，继续硬撑着记。"}]}
+ ]},
+
+ /* ---- C 线 · 究究：主动提取（本章社交困境核心） ---- */
+ c1:{kind:"story",next:"c2",lines:[
+  {who:"究究",text:"图鉴上写着……第三条。"},
+  {who:"究究",text:"（翻页）……写着什么来着。"},
+  {who:"闪闪",text:"（小声）……他一直没抬头。"}
+ ]},
+ c2:{kind:"skill",skill:"retrieve",lead:"究究把图鉴扣在腿上：「合上，自己想一遍。」",next:"c3"},
+ c3:{kind:"choice",letters:false,prompt:"究究推推眼镜：「合上了……我怕想错。」你说：",options:[
+  {t:"「想错了，也记得更牢。」",next:"conv",trust:8,flag:"kind",
+   after:[{who:"究究",text:"（闭上眼）……第三条。记住了。"}]},
+  {t:"「那你就再看一眼。」",next:"conv",trust:2,
+   after:[{act:"究究又翻开一页，图鉴更厚了。"}]},
+  {t:"「这都记不住？」",next:"conv",trust:-5,flag:"toxic",
+   after:[{act:"究究的图鉴，悄悄合上了。"}]}
+ ]},
+
+ /* ---- D 线 · 闪闪：间隔重复 ---- */
+ d1:{kind:"story",next:"d2",lines:[
+  {who:"闪闪",text:"这个路口……我画了。"},
+  {who:"闪闪",text:"画过吗？……记不清。"}
+ ]},
+ d2:{kind:"skill",skill:"spacing",lead:"闪闪在砖上画了个圈：「隔一会儿，再回来看一眼。」",next:"d3"},
+ d3:{kind:"choice",letters:false,prompt:"松松催：「闪闪，记号有啥用？走啊！」你说：",options:[
+  {t:"「隔一段，再见一面。」",next:"conv",trust:8,flag:"kind",
+   after:[{who:"闪闪",text:"（画完最后一笔）……好。"}]},
+  {t:"「多画几个记号！」",next:"conv",trust:2,
+   after:[{act:"闪闪画满一墙，自己也认不出了。"}]},
+  {t:"「别画了，来不及。」",next:"conv",trust:-5,flag:"toxic",
+   after:[{act:"闪闪停笔，把粉笔收进口袋。"}]}
+ ]},
+
+ /* ---- 汇合 → Boss ---- */
+ conv:{kind:"story",next:"BATTLE",lines:[
+  {anim:"boss-rise"},
+  {who:"忘忘",text:"走过的路……都不算数。"},
+  {who:"究究",text:"它靠「记不住」活着。"},
+  {who:"松松",text:"那就想起来！出招！"}
+ ]},
+
+ /* ---- 战后 ---- */
+ w1:{kind:"story",next:"w2",lines:[
+  {anim:"boss-burst"},
+  {who:"忘忘",text:"你们……居然记得……"}
+ ]},
+ w2:{kind:"story",next:"w3",onEnter:function(){
+   if(!state.flags.conv2){state.flags.conv2=1;addTrust(2,"小队第一次同频");}
+ },lines:[
+  {anim:"swamp-clear"},
+  {who:"究究",text:"合上书……就忘了。"},
+  {who:"四人",text:"记不住，不丢人！"},
+  {who:"四人",text:"说出来，才记得住！"}
+ ]},
+ w3:{kind:"combo",next:"END"}
+};
+/* ---------- 战斗 ---------- */
+var ROUNDS=[
+ {name:"第 1 回合 · 雾锁回廊",rk:"fog",
+  bossLine:"「哪条路来着？……忘了吧。」雾从砖缝里渗出来，回廊开始变形。",
+  valid:["micro","retrieve"],
+  ease:"眠眠：雾里要靠「想」——先迈一小步，或者合上书自己想一遍。"},
+ {name:"第 2 回合 · 方块塌落",rk:"fall",
+  bossLine:"「这块，你没记住。」脚下的砖，一块块塌下去。",
+  valid:["interleave","spacing","sleep","monitor","retrieve"],
+  ease:"眠眠：路在塌，要用「换」和「隔」——换着走、留记号，撑不住就先睡一觉。"},
+ {name:"第 3 回合 · 忘忘之核",rk:"core",
+  bossLine:"「记住又怎样？明天你们还是会忘！」",
+  valid:"COMBO",
+  ease:"眠眠：这一下，一个人拦不住。找一位队友，各出一招。"}
+];
+var REPLAY={
+ fog:{
+  micro:["把「走出回廊」切成五秒一步——先，踩稳下一块砖。雾扑了个空。"],
+  retrieve:["「合上书，自己想一遍。」闭眼——第三条路，左转。雾散了一格。"],
+  miss:["眠眠：「再想一招。小到不可能失败，或者合上书先想一遍。」"]
+ },
+ fall:{
+  interleave:["三条岔路换着走：一、二、三——砖块认出了脚下的节奏。"],
+  spacing:["闪闪留下的记号亮了一下——隔一段再见一面，路就还在。"],
+  sleep:["眠眠合上记录本：「先睡一觉。」醒来，塌掉的砖回来了。"],
+  monitor:["眠眠先看了一眼电量：撑不住的地方，绕开就好。"],
+  retrieve:["「合上书，想一遍。」想不起来的那块砖反而回来了——那才是真记住的地方。"],
+  miss:["眠眠：「路在塌，要用「换」和「隔」——再想一招。」"]
+ },
+ core:{
+  single:["忘忘抖落一地砖块：「一个人……记不住我……」身后伸过来一只手。"],
+  same:["两股相同的力气撞在一起，互相抵消。眠眠：「两个人，两个法子——再来！」"]
+ }
+};
+var COMBO_LINES={
+ "micro+retrieve"    :["松松先迈五秒一步，究究合上书想了一遍。","脚下的砖，和脑子里的路，对上了。"],
+ "micro+sleep"       :["先迈一步，再睡一觉存档。","小小的一步，被好好收进了抽屉。"],
+ "micro+monitor"     :["眠眠报电量，松松只迈一步。","一步，一电，咬合成同一个齿轮。"],
+ "micro+spacing"     :["松松迈步，闪闪在路上留了个记号。","走过的路，隔一段还会再见一面。"],
+ "mark+micro"        :["闪闪标出松动的砖，松松一步跨过去。","会塌的地方，被一脚踩过去了。"],
+ "interleave+retrieve":["三条路换着走，走完再合上眼想一遍。","换着来，再想一遍——忘忘抓不住了。"],
+ "interleave+sleep"  :["换着走三条路，然后睡一觉存档。","醒来的第一件事：路还记得。"],
+ "interleave+monitor":["眠眠看条，松松换着走。","电量够走到哪儿，就走到哪儿。"],
+ "interleave+spacing":["换着走，每个岔口都留一个记号。","三条路，三种记号——全认得。"],
+ "interleave+mark"   :["闪闪标出哪块砖松，松松换着踩。","换着来的脚步，正好绕开了破绽。"],
+ "retrieve+sleep"    :["究究合上书想了一遍，眠眠说：睡一觉再存档。","闭上眼，路被收进长期的抽屉——组合技「闭眼回想」！"],
+ "monitor+retrieve"  :["先看电量，再合上书想一遍。","不硬撑的那一遍，记得最牢。"],
+ "retrieve+spacing"  :["合上书想一遍，再在路口留个记号。","想过的，和留下的，对上同一个岔口。"],
+ "mark+retrieve"     :["闪闪标出哪块砖空，究究合眼一想。","空掉的那块，被想了回来。"],
+ "sleep+spacing"     :["睡一觉存档，醒来回头再看一眼记号。","隔一段再见一面——这次真的记住了。"],
+ "mark+sleep"        :["闪闪标出要记的，眠眠负责存档。","标记过的地方，睡着也不会丢。"],
+ "monitor+spacing"   :["眠眠看条，闪闪留记号。","不硬撑，也不丢路。"],
+ "mark+monitor"      :["闪闪点出破绽，眠眠看条。","破绽照到了，电量也省下了。"]
+};
+var COMBO_NAMES={
+ "micro+retrieve":"一步一想","micro+sleep":"一步一档","micro+monitor":"一步一电","micro+spacing":"一步一记",
+ "mark+micro":"踩点破绽","interleave+retrieve":"换路回想","interleave+sleep":"换路存档",
+ "interleave+monitor":"换路看条","interleave+spacing":"换路留记","interleave+mark":"换路点灯",
+ "retrieve+sleep":"闭眼回想","monitor+retrieve":"看条回想","retrieve+spacing":"回想留记",
+ "mark+retrieve":"点亮回想","sleep+spacing":"存档留记","mark+sleep":"点亮存档",
+ "monitor+spacing":"看条留记","mark+monitor":"点灯看条"
+};
+var COMBO_FALLBACK=["两股不同颜色的力量，在半空咬合成一个齿轮。","忘忘的砖块，被正式吹散。"];
+var BORROW_ORDER=["monitor","mark","sleep","spacing","interleave"];
+var BORROW_LINE={
+ mian:"眠眠：「我的记录本和钟都借你们——先看电量，困了就睡一觉存档。」",
+ shan:"闪闪：「我把要记住的地方留个记号。你们，尽管出手。」",
+ jiu :"究究：「合上书，自己想一遍——想不起来的那段，就是关键。」",
+ song:"松松：「「交错练习」借你们！换着来，脑子才醒着！」"
+};
+/* ---------- 章节地图 ---------- */
+var MAP_NODES=[{k:"enter",t:"集结",e:"🚩"},{k:"maze",t:"迷宫",e:"🧱"},{k:"boss",t:"Boss",e:"⚔"},{k:"pact",t:"公约",e:"📜"},{k:"end",t:"结算",e:"🏁"}];
+var NODE_OF_SCENE={i1:0,i2:0,i3:0,choice1:1,a1:1,a2:1,a3:1,b1:1,b2:1,b3:1,c1:1,c2:1,c3:1,d1:1,d2:1,d3:1,conv:2,w1:3,w2:3,w3:3};
+/* ================= 状态 ================= */
+var SAVE_KEY="brainexp_ch3_save_v1";
+var BEST_KEY="brainexp_ch3_best_v1";
+var RANK={B:0,A:1,S:2,SSS:3};
+var diffReturn="new";
+var codexReturn="end";
+var helpReturn="scr-title";
+var state=fresh();
+
+function fresh(){
+  return {diff:"intro",me:"song",skills:[],trust:8,flags:{},branch:null,
+          sceneId:"i1",battle:null,battleDone:null,secret:false,node:0};
+}
+
+/* ================= 工具 ================= */
+function $(s){return document.querySelector(s);}
+function $$(s){return Array.from(document.querySelectorAll(s));}
+function el(tag,cls,text){var d=document.createElement(tag);if(cls)d.className=cls;if(text!=null)d.textContent=text;return d;}
+function diff(){return DIFFS[state.diff]||DIFFS.intro;}
+function show(id){
+  var screens=document.querySelectorAll(".screen");
+  for(var i=0;i<screens.length;i++)screens[i].classList.remove("active");
+  var t=$("#"+id); if(t)t.classList.add("active");
+  try{window.scrollTo({top:0,behavior:"smooth"});}catch(e){}
+  var inGame=(id==="scr-game"||id==="scr-battle");
+  $("#hud").classList.toggle("hidden",!inGame);
+  $("#btn-pause").classList.toggle("hidden",!inGame);
+  if(inGame)renderMap(state.node);
+}
+var toastTimer=null;
+function toast(msg){
+  var t=$("#toast"); t.textContent=msg; t.classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){t.classList.add("hidden");},1800);
+}
+function modalOpen(){
+  return ["#modal-skill","#modal-borrow","#overlay-pause"].some(function(s){
+    return !$(s).classList.contains("hidden");
+  });
+}
+
+/* ---------- 音效（WebAudio，失败静默） ---------- */
+var AC=null;
+function beep(kind){
+  try{
+    var Ctx=window.AudioContext||window.webkitAudioContext;
+    if(!Ctx)return;
+    if(!AC)AC=new Ctx();
+    if(AC.state==="suspended"&&AC.resume)AC.resume();
+    var seq={click:[[520,.05]],hit:[[170,.14]],combo:[[660,.1],[880,.12]],win:[[523,.1],[659,.1],[784,.16]],unlock:[[440,.08],[660,.1]]}[kind]||[[520,.05]];
+    var t=AC.currentTime;
+    seq.forEach(function(p){
+      var o=AC.createOscillator();
+      var gn=AC.createGain();
+      o.type=kind==="hit"?"sawtooth":"triangle";
+      o.frequency.value=p[0];
+      gn.gain.setValueAtTime(.06,t);
+      gn.gain.exponentialRampToValueAtTime(.001,t+p[1]);
+      o.connect(gn);gn.connect(AC.destination);
+      o.start(t);o.stop(t+p[1]+.02);
+      t+=p[1];
+    });
+  }catch(e){}
+}
+
+/* ================= SVG 素材库 ================= */
+/* ---- 技能图腾（统一 viewBox 0 0 48 48，stroke 风格） ---- */
+var TOTEM_ART={
+ micro:'<path d="M7 41h9v-8h9v-8h9V16h9" fill="none" stroke="TOT" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="8" r="3" fill="TOT"/>',
+ single:'<path d="M8 24h30" stroke="TOT" stroke-width="4" stroke-linecap="round"/><path d="M30 16l9 8-9 8" fill="none" stroke="TOT" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="24" r="3.4" fill="TOT"/><path d="M8 36h30M8 12h30" stroke="TOT" stroke-width="2" stroke-linecap="round" opacity=".38"/>',
+ anchor:'<circle cx="24" cy="9" r="4" fill="none" stroke="TOT" stroke-width="3.5"/><path d="M24 13v24" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/><path d="M11 19l13-6 13 6" fill="none" stroke="TOT" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 33c5 7 13 9 17 9s12-2 17-9" fill="none" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/>',
+ tomato:'<circle cx="24" cy="27" r="13" fill="none" stroke="TOT" stroke-width="3.5"/><path d="M24 27v-7M24 27l4.5 2.5" stroke="TOT" stroke-width="3" stroke-linecap="round"/><path d="M18 12l3-5h6l3 5" fill="none" stroke="TOT" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="9" r="2" fill="TOT"/>',
+ trigger:'<rect x="6" y="16" width="36" height="16" rx="8" fill="none" stroke="TOT" stroke-width="3.5"/><circle cx="33" cy="24" r="5.5" fill="TOT"/>',
+ recode:'<path d="M8 17h26" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/><path d="M27 10l8 7-8 7" fill="none" stroke="TOT" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 31H14" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/><path d="M21 24l-8 7 8 7" fill="none" stroke="TOT" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>',
+ monitor:'<rect x="5" y="14" width="32" height="20" rx="5" fill="none" stroke="TOT" stroke-width="3.5"/><rect x="40" y="20" width="4" height="8" rx="2" fill="TOT"/><path d="M11 24h5l3-6 4 10 3-4h6" fill="none" stroke="TOT" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>',
+ mark:'<circle cx="24" cy="24" r="15" fill="none" stroke="TOT" stroke-width="3.5"/><circle cx="24" cy="24" r="7" fill="none" stroke="TOT" stroke-width="3.5"/><circle cx="24" cy="24" r="2.4" fill="TOT"/><path d="M24 2v7M24 39v7M2 24h7M39 24h7" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/>'
+};
+TOTEM_ART.interleave='<rect x="6" y="10" width="15" height="6" rx="2" fill="TOT"/><rect x="15" y="21" width="27" height="6" rx="2" fill="TOT" opacity=".72"/><rect x="6" y="32" width="21" height="6" rx="2" fill="TOT" opacity=".45"/>';
+TOTEM_ART.retrieve='<path d="M9 12h13v24H9z" fill="none" stroke="TOT" stroke-width="3.5"/><path d="M22 12v24" stroke="TOT" stroke-width="3.5"/><path d="M28 20l8 4-8 4" fill="none" stroke="TOT" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+TOTEM_ART.sleep='<path d="M16 9a12 12 0 1 0 9 20A14 14 0 0 1 16 9z" fill="none" stroke="TOT" stroke-width="3.5" stroke-linejoin="round"/><path d="M30 24h11M30 31h8M30 38h11" stroke="TOT" stroke-width="3" stroke-linecap="round"/>';
+TOTEM_ART.spacing='<circle cx="9" cy="27" r="4.6" fill="TOT"/><circle cx="24" cy="27" r="4.6" fill="TOT" opacity=".72"/><circle cx="39" cy="27" r="4.6" fill="TOT" opacity=".45"/><path d="M9 17v-7M24 17v-7M39 17v-7" stroke="TOT" stroke-width="2.6" stroke-linecap="round" opacity=".55"/>';
+
+function totem(id,size,color){
+  var art=TOTEM_ART[id]; if(!art)return "";
+  var inner=art.split("TOT").join(color||"#f0d68a");
+  return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block">'+inner+'</svg>';
+}
+function helpBadge(size){
+  return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block">'+
+  '<rect x="10" y="8" width="28" height="34" rx="5" fill="rgba(216,180,90,.1)" stroke="#f0d68a" stroke-width="2.5"/>'+
+  '<path d="M24 16 v10 M18 21 h12" stroke="#f0d68a" stroke-width="3" stroke-linecap="round"/>'+
+  '<path d="M15 32 q9 6 18 0" stroke="#f0d68a" stroke-width="2.4" fill="none" stroke-linecap="round"/>'+
+  '</svg>';
+}
+function comboBadge(locked,size){
+  if(locked)return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block"><circle cx="24" cy="24" r="20" fill="none" stroke="#5c7263" stroke-width="2.5"/><path d="M17 22v-3a7 7 0 0 1 14 0v3" fill="none" stroke="#5c7263" stroke-width="3"/><rect x="15" y="22" width="18" height="13" rx="3" fill="#5c7263"/><circle cx="24" cy="28.5" r="2" fill="#0c1310"/></svg>';
+  return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block"><circle cx="19" cy="24" r="11" fill="none" stroke="#f0d68a" stroke-width="3"/><circle cx="29" cy="24" r="11" fill="none" stroke="#d8b45a" stroke-width="3"/><circle cx="24" cy="24" r="3.4" fill="#f0d68a"/></svg>';
+}
+function pactBadge(size){
+  var dots=CHAR_ORDER.map(function(k,i){
+    var a=i*Math.PI/2-Math.PI/4;
+    return '<circle cx="'+(24+13.4*Math.cos(a)).toFixed(1)+'" cy="'+(24+13.4*Math.sin(a)).toFixed(1)+'" r="3" fill="'+CHARS[k].hex+'"/>';
+  }).join("");
+  return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block"><circle cx="24" cy="24" r="20" fill="rgba(216,180,90,.1)" stroke="#f0d68a" stroke-width="2.5"/>'+dots+
+  '<rect x="17" y="17" width="14" height="10" rx="3" fill="none" stroke="#f0d68a" stroke-width="2.5"/><path d="M21 17l-2-4h8l-2 4" fill="#f0d68a"/></svg>';
+}
+
+/* ---- 角色 Q 版小人（viewBox 0 0 64 64） ---- */
+function charSVG(key,size){
+  var hex=CHARS[key].hex, skin="#f2c9a0", ink="#2f2a26", shoe="#22302a";
+  var s='<svg viewBox="0 0 64 64" width="'+size+'" height="'+size+'" style="display:block">';
+  s+='<ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"/>';
+  if(key==="song"){
+    s+='<path d="M27 50 L21 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><path d="M35 50 L41 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="59.5" r="3" fill="'+shoe+'"/><circle cx="42" cy="59.5" r="3" fill="'+shoe+'"/>';
+    s+='<rect x="21" y="33" width="22" height="19" rx="7" fill="'+hex+'"/>';
+    s+='<path d="M43 39 L52 34" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="53" cy="33.5" r="3.2" fill="'+skin+'"/><path d="M21 39 L12 45" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="11" cy="45.5" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/>';
+    s+='<path d="M19.5 21 a12.5 12.5 0 0 1 25 0 l-3.5 -1.5 a9.5 9.5 0 0 0 -18 0 z" fill="#6b4f35"/><path d="M31 7 l-3.5 5 M33 7.5 l3 4.5" stroke="#6b4f35" stroke-width="2.4" stroke-linecap="round"/>';
+    s+='<path d="M19.5 17.5 q12.5 -7 25 0 l0 3.6 q-12.5 -6.4 -25 0 z" fill="#e2777a"/><path d="M43 19 l9 -3.5 -2 6.5 z" fill="#e2777a"/>';
+    s+='<circle cx="27" cy="24" r="1.9" fill="'+ink+'"/><circle cx="37" cy="24" r="1.9" fill="'+ink+'"/><path d="M28 29.5 q4 3.6 8 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+  }else if(key==="jiu"){
+    s+='<path d="M28 50 v9 M36 50 v9" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><circle cx="28" cy="59" r="3" fill="'+shoe+'"/><circle cx="36" cy="59" r="3" fill="'+shoe+'"/>';
+    s+='<rect x="22" y="33" width="20" height="19" rx="6" fill="'+hex+'"/><path d="M27 33 v19 M37 33 v19" stroke="rgba(255,255,255,.25)" stroke-width="1.6"/>';
+    s+='<path d="M22 40 L15 44" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="14" cy="44.5" r="3.2" fill="'+skin+'"/><rect x="6" y="38" width="10" height="8" rx="1.5" fill="#d8b45a" transform="rotate(-12 11 42)"/><path d="M11 38.5 v7" stroke="#a8863c" stroke-width="1.2"/>';
+    s+='<path d="M42 40 L47 47" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="47.5" cy="48" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 v-3 a12.5 12.5 0 0 0 -25 0 z" fill="#33404f"/>';
+    s+='<circle cx="27" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"/><circle cx="37" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"/><path d="M31.6 24 h0.8 M22.4 23.5 l-3 -1.5 M41.6 23.5 l3 -1.5" stroke="#2b2f36" stroke-width="2" stroke-linecap="round"/>';
+    s+='<circle cx="27" cy="24" r="1.5" fill="'+ink+'"/><circle cx="37" cy="24" r="1.5" fill="'+ink+'"/><path d="M29 30.5 h6" stroke="'+ink+'" stroke-width="2" stroke-linecap="round"/>';
+  }else if(key==="mian"){
+    s+='<path d="M23 46 l-3 13 h22 l-3 -13 z" fill="'+hex+'"/><path d="M32 46 v13" stroke="rgba(255,255,255,.25)" stroke-width="1.6"/>';
+    s+='<rect x="23" y="33" width="18" height="14" rx="6" fill="'+hex+'"/><path d="M26 33 L38 47 M38 33 L26 47" stroke="rgba(255,255,255,.3)" stroke-width="1.6"/>';
+    s+='<path d="M41 40 L48 43" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="49" cy="43.5" r="3.2" fill="'+skin+'"/><rect x="46" y="34" width="9" height="12" rx="2.5" fill="#cfd8c5"/><rect x="46" y="34" width="9" height="4" rx="2" fill="#9aa88f"/>';
+    s+='<path d="M23 40 L18 46" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="17.5" cy="46.5" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 z" fill="#8a5a30"/><circle cx="17" cy="21" r="5.5" fill="#8a5a30"/><circle cx="47" cy="21" r="5.5" fill="#8a5a30"/>';
+    s+='<path d="M24 24.5 q3 2.8 6 0 M34 24.5 q3 2.8 6 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M28.5 30 q3.5 3.2 7 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    s+='<ellipse cx="23" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"/><ellipse cx="41" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"/>';
+  }else{
+    s+='<path d="M29 50 v9 M35 50 v9" stroke="#31413a" stroke-width="5.5" stroke-linecap="round"/><circle cx="29" cy="59" r="2.8" fill="'+shoe+'"/><circle cx="35" cy="59" r="2.8" fill="'+shoe+'"/>';
+    s+='<rect x="23" y="33" width="18" height="18" rx="7" fill="'+hex+'"/>';
+    s+='<path d="M22 31 q10 6 20 0 l0 5 q-10 -6 -20 0 z" fill="'+hex+'"/><path d="M37 34 l11 9 -4.5 2.5 -9 -8 z" fill="'+hex+'"/>';
+    s+='<circle cx="30" cy="47" r="3" fill="'+skin+'"/><circle cx="35.5" cy="47.5" r="3" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 l0 -2 q-12.5 -10 -25 0 z" fill="#3c3a52"/>';
+    s+='<path d="M40 6 l1.7 3.6 4 .5 -2.9 2.8 .7 4 -3.5 -1.9 -3.5 1.9 .7 -4 -2.9 -2.8 4 -.5 z" fill="#f0d68a" transform="translate(-1,-1) scale(.92)"/>';
+    s+='<path d="M34.5 26 q2.4 2 4.6 0" stroke="'+ink+'" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M27.5 30.5 q4.5 2.8 9 0" stroke="'+ink+'" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
+  }
+  return s+'</svg>';
+}
+
+/* ---- Boss 忘忘（遗忘方块魔 · 身上全是记忆缺口） ---- */
+function bossSVG(size){
+  var chips="";
+  for(var i=0;i<8;i++){
+    var a=i*Math.PI/4, px=(60+46*Math.cos(a)).toFixed(1), py=(54+37*Math.sin(a)).toFixed(1);
+    chips+='<rect x="'+px+'" y="'+py+'" width="12" height="12" rx="1.5" fill="'+(i%2?"#d6e4f0":"#f0d68a")+'" transform="rotate('+(i*35)+' '+px+' '+py+')"/>';
+  }
+  return '<svg viewBox="0 0 120 110" width="'+size+'" height="'+Math.round(size*0.92)+'" style="display:block">'+
+  '<defs><radialGradient id="bgw" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="rgba(240,180,90,.40)"/><stop offset="1" stop-color="rgba(240,180,90,0)"/></radialGradient></defs>'+
+  '<ellipse cx="60" cy="56" rx="58" ry="54" fill="url(#bgw)"/>'+
+  '<ellipse cx="60" cy="103" rx="47" ry="7" fill="rgba(0,0,0,.5)"/>'+
+  '<path d="M32 98 q-9 5 -20 5 M88 98 q9 5 20 5" stroke="#46596b" stroke-width="7" fill="none" stroke-linecap="round"/>'+
+  '<rect x="0" y="48" width="24" height="19" rx="3" fill="#58708a" transform="rotate(-14 12 57)"/>'+
+  '<rect x="96" y="48" width="24" height="19" rx="3" fill="#58708a" transform="rotate(14 108 57)"/>'+
+  '<rect x="33" y="0" width="11" height="17" rx="1" fill="#93aec4"/><rect x="76" y="0" width="11" height="17" rx="1" fill="#93aec4"/>'+
+  '<rect x="33" y="0" width="11" height="5" rx="1" fill="#f0d68a"/><rect x="76" y="0" width="11" height="5" rx="1" fill="#f0d68a"/>'+
+  '<rect x="14" y="14" width="92" height="86" rx="8" fill="#7d97ae" stroke="#2b3644" stroke-width="3"/>'+
+  '<rect x="14" y="14" width="92" height="86" rx="8" fill="none" stroke="rgba(240,214,138,.5)" stroke-width="2"/>'+
+  '<rect x="17" y="17" width="86" height="9" rx="4" fill="#93aec4"/>'+
+  '<rect x="20" y="74" width="15" height="15" rx="2" fill="#0e161f"/><rect x="20" y="74" width="15" height="15" rx="2" fill="none" stroke="rgba(240,214,138,.55)" stroke-width="1.6"/>'+
+  '<rect x="85" y="74" width="15" height="15" rx="2" fill="#0e161f"/><rect x="85" y="74" width="15" height="15" rx="2" fill="none" stroke="rgba(240,214,138,.55)" stroke-width="1.6"/>'+
+  '<rect x="48" y="86" width="12" height="12" rx="2" fill="#0e161f"/><rect x="48" y="86" width="12" height="12" rx="2" fill="none" stroke="rgba(240,214,138,.55)" stroke-width="1.6"/>'+
+  '<rect x="30" y="30" width="26" height="18" rx="2" fill="#f6fafd" stroke="#22303c" stroke-width="2.5"/><rect x="39" y="36" width="9" height="8" fill="#d8b45a"/>'+
+  '<rect x="64" y="30" width="26" height="18" rx="2" fill="#f6fafd" stroke="#22303c" stroke-width="2.5"/><rect x="73" y="36" width="9" height="8" fill="#d8b45a"/>'+
+  '<rect x="44" y="56" width="32" height="9" rx="4" fill="#0e161f"/><rect x="51" y="59" width="18" height="3" rx="1.5" fill="#8a4a52"/>'+
+  chips+
+  '<g class="pollen" style="animation-delay:.4s"><rect x="12" y="10" width="7" height="7" rx="1" fill="#9fb6c9"/></g>'+
+  '<g class="pollen" style="animation-delay:1.7s"><rect x="104" y="24" width="6" height="6" rx="1" fill="#9fb6c9"/></g>'+
+  '<g class="pollen" style="animation-delay:2.5s"><rect x="24" y="92" width="6" height="6" rx="1" fill="#f0d68a"/></g>'+
+  '</svg>';
+}
+/* ---- 场景插画 ---- */
+/* ---- 场景插画（方块世界 · 迷宫） ---- */
+var PAVERS=[[150,318],[228,300],[306,295],[386,281],[464,267],[542,257],[624,247]];
+function sceneKindOf(id){
+  if(id==="i1"||id==="i2")return "camp";
+  if(id==="w1"||id==="w2"||id==="w3")return "clear";
+  return "maze";
+}
+function sceneSVG(kind){
+  var clear=(kind==="clear"), camp=(kind==="camp"), maze=!clear&&!camp;
+  var sky1=camp?"#1b2a38":(clear?"#334b62":"#253546"), sky2=camp?"#0a1118":(clear?"#17242f":"#0d151d");
+  var ground1=clear?"#31465a":"#1f2d3b";
+  var sid="sk"+kind;
+  var body="";
+  if(camp){
+    body+='<g opacity=".92"><path d="M0 252 L0 196 L64 196 L64 170 L140 170 L140 204 L216 204 L216 180 L296 180 L296 252 Z" fill="#0e1a24"/><path d="M584 252 L584 186 L658 186 L658 166 L742 166 L742 198 L824 198 L824 252 Z" fill="#0e1a24"/></g>';
+    body+='<rect x="0" y="250" width="880" height="130" fill="#16222f"/><rect x="0" y="250" width="880" height="6" fill="#2b3f52"/>';
+    for(var r=0;r<3;r++){
+      body+='<path d="M0 '+(266+r*30)+' h880" stroke="rgba(255,255,255,.09)" stroke-width="2"/>';
+      for(var c=0;c<12;c++){
+        body+='<path d="M'+(c*76+(r%2?38:0))+' '+(266+r*30)+' v30" stroke="rgba(255,255,255,.09)" stroke-width="2"/>';
+      }
+    }
+    body+='<circle cx="440" cy="300" r="104" fill="url(#'+sid+'glow)" class="flicker"/>';
+    body+='<rect x="396" y="300" width="88" height="14" rx="2" fill="#3f5163"/><rect x="412" y="286" width="56" height="14" rx="2" fill="#54708a"/>';
+    body+='<path class="flame" d="M440 288 C424 272 431 254 440 240 C449 254 456 272 440 288 Z" fill="#e8934a"/>';
+    body+='<path class="flame f2" d="M440 286 C432 275 436 262 440 254 C444 262 448 275 440 286 Z" fill="#f0d68a"/>';
+    body+='<rect x="112" y="192" width="28" height="64" fill="#33465a"/><rect x="140" y="176" width="28" height="80" fill="#3b5064"/><rect x="212" y="196" width="28" height="60" fill="#33465a"/>';
+    body+='<rect x="146" y="192" width="58" height="64" fill="none" stroke="#6fa8dc" stroke-width="2"/>';
+    body+='<rect x="154" y="200" width="42" height="56" fill="url(#'+sid+'portal)" class="flicker"/>';
+    body+='<rect x="672" y="288" width="38" height="28" rx="3" fill="#7a5a3a"/><rect x="672" y="288" width="38" height="7" rx="2" fill="#9a7549"/>';
+    body+='<path d="M682 288 v28 M700 288 v28" stroke="#5c432c" stroke-width="2"/>';
+    body+='<rect x="742" y="266" width="10" height="32" rx="2" fill="#3f5163"/><rect x="733" y="256" width="28" height="13" rx="3" fill="#f0d68a"/>';
+    body+='<circle cx="747" cy="263" r="3.4" fill="#fff6d0"/>';
+    body+='<ellipse cx="220" cy="274" rx="100" ry="17" fill="rgba(180,210,235,.07)" class="fogA"/>';
+  }else{
+    body+='<rect x="0" y="238" width="880" height="142" fill="'+ground1+'"/>';
+    for(var w=0;w<21;w++){
+      for(var h=0;h<4;h++){
+        var bx=w*44+(h%2?22:0), by=92+h*30;
+        if(bx>880)continue;
+        var tone=(w+h)%4===0?"#33465a":((w+h)%4===1?"#2b3c4c":((w+h)%4===2?"#243442":"#1e2c39"));
+        body+='<rect x="'+bx+'" y="'+by+'" width="41" height="27" rx="2" fill="'+tone+'"/>';
+      }
+    }
+    body+='<rect x="0" y="212" width="880" height="30" fill="rgba(10,17,24,.45)"/>';
+    body+='<rect x="384" y="146" width="112" height="106" fill="#0c141c" stroke="'+(clear?"#f0d68a":"#4a6076")+'" stroke-width="5"/>';
+    body+='<rect x="398" y="160" width="84" height="92" fill="url(#'+sid+'portal)" opacity="'+(clear?"1":".75")+'"/>';
+    if(clear)body+='<rect x="398" y="160" width="84" height="92" fill="rgba(240,214,138,.18)"/><rect x="384" y="146" width="112" height="106" fill="none" stroke="rgba(240,214,138,.35)" stroke-width="12"/>';
+    body+='<rect x="52" y="104" width="34" height="146" fill="#2b3a4a"/><rect x="52" y="104" width="34" height="11" fill="#3a4d5f"/>';
+    body+='<rect x="794" y="104" width="34" height="146" fill="#2b3a4a"/><rect x="794" y="104" width="34" height="11" fill="#3a4d5f"/>';
+    body+='<path d="M86 250 L384 250 M496 250 L794 250" stroke="rgba(255,255,255,.06)" stroke-width="3"/>';
+    var pv="";
+    PAVERS.forEach(function(p,i){
+      var hl=(maze&&i===2), dy=clear?-10:0, pw=52+i*4;
+      pv+='<rect x="'+(p[0]-pw/2)+'" y="'+(p[1]+dy-8)+'" width="'+pw+'" height="20" rx="3" fill="'+(hl?"#7b93aa":(clear?"#3d5468":"#32465a"))+'" stroke="#16212c" stroke-width="1.5"'+(hl?' class="stone-hl"':'')+'/>';
+      pv+='<rect x="'+(p[0]-pw/2+4)+'" y="'+(p[1]+dy-6)+'" width="'+(pw-8)+'" height="4" rx="2" fill="rgba(255,255,255,.09)"/>';
+    });
+    body+=pv;
+    if(maze){
+      body+='<ellipse cx="440" cy="250" rx="370" ry="52" fill="rgba(170,200,225,.16)" class="fogA"/>';
+      body+='<ellipse cx="230" cy="276" rx="160" ry="34" fill="rgba(170,200,225,.12)" class="fogB"/>';
+      body+='<ellipse cx="660" cy="268" rx="130" ry="26" fill="rgba(170,200,225,.09)" class="fogA"/>';
+    }else{
+      body+='<g class="flower"><rect x="298" y="250" width="9" height="9" rx="2" fill="#e0a8b8"/><rect x="540" y="226" width="9" height="9" rx="2" fill="#f0d68a"/><rect x="222" y="264" width="9" height="9" rx="2" fill="#c9a2e0"/><rect x="662" y="274" width="8" height="8" rx="2" fill="#e0a8b8"/></g>';
+    }
+  }
+  var skyBlocks=[[64,58,17],[148,38,11],[262,78,13],[352,34,9],[470,62,16],[566,40,10],[662,92,13],[766,48,15],[846,104,10],[196,116,8],[600,124,9]];
+  var skyG="";
+  skyBlocks.forEach(function(b,i){
+    skyG+='<rect x="'+b[0]+'" y="'+b[1]+'" width="'+b[2]+'" height="'+b[2]+'" rx="2" fill="'+(i%3===0?"#33465a":(i%3===1?"#263647":"#3f5468"))+'" opacity="'+(0.35+(i%4)*0.14).toFixed(2)+'"/>';
+  });
+  return '<svg class="scene-svg" viewBox="0 0 880 380" preserveAspectRatio="xMidYMid slice">'+
+  '<defs><linearGradient id="'+sid+'sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+sky1+'"/><stop offset="1" stop-color="'+sky2+'"/></linearGradient>'+
+  '<radialGradient id="'+sid+'glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="rgba(240,214,138,.30)"/><stop offset="1" stop-color="rgba(240,214,138,0)"/></radialGradient>'+
+  '<linearGradient id="'+sid+'portal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+(clear?"#f0d68a":"#6fa8dc")+'"/><stop offset="1" stop-color="'+(clear?"#a8863c":"#24405e")+'"/></linearGradient>'+
+  '</defs>'+
+  '<rect width="880" height="380" fill="url(#'+sid+'sky)"/>'+
+  skyG+
+  body+
+  '</svg>';
+}
+/* ---- 营地横幅（标题页 / 结算页） ---- */
+function campStrip(uid){
+  var pos=[["song",96],["jiu",162],["mian",716],["shan",782]];
+  var chars="";
+  pos.forEach(function(p){
+    chars+='<svg x="'+p[1]+'" y="56" width="46" height="46">'+charSVG(p[0],46)+'</svg>';
+  });
+  return '<svg class="scene-svg" viewBox="0 0 880 130" preserveAspectRatio="xMidYMid slice">'+
+  '<defs><radialGradient id="cs'+uid+'" cx=".5" cy=".95" r=".65"><stop offset="0" stop-color="rgba(240,180,90,.25)"/><stop offset="1" stop-color="rgba(240,180,90,0)"/></radialGradient></defs>'+
+  '<rect width="880" height="130" fill="#0d1710"/>'+
+  '<circle cx="790" cy="24" r="15" fill="#dfe8cf" opacity=".85"/><circle cx="784" cy="20" r="2.4" fill="rgba(120,140,110,.35)"/>'+
+  '<g fill="#dfe8cf" opacity=".7"><circle cx="120" cy="30" r="1.4"/><circle cx="260" cy="52" r="1.2"/><circle cx="420" cy="34" r="1.3"/><circle cx="560" cy="56" r="1.1"/><circle cx="690" cy="36" r="1.3"/></g>'+
+  '<circle cx="440" cy="112" r="112" fill="url(#cs'+uid+')"/>'+
+  '<path d="M0 106 L140 96 L300 104 L460 96 L620 106 L780 98 L880 104 L880 130 L0 130 Z" fill="#131f16"/>'+
+  '<path d="M426 100 L454 100 M425 96 L455 104 M455 96 L425 104" stroke="#4a3520" stroke-width="5" stroke-linecap="round"/>'+
+  '<path class="flame" d="M440 98 C430 88 435 76 440 66 C447 76 452 88 440 98 Z" fill="#e8934a"/>'+
+  '<path class="flame f2" d="M440 96 C435 89 437 81 440 75 C443 81 445 89 440 96 Z" fill="#f0d68a"/>'+
+  chars+
+  '</svg>';
+}
+
+/* ---------- 特效 ---------- */
+function fxAnimate(node,frames,opts){
+  if(node&&typeof node.animate==="function")return node.animate(frames,opts);
+  return null;
+}
+function renderSquadZone(ownerOn){
+  var z=$("#squadZone"); if(!z)return;
+  z.innerHTML="";
+  CHAR_ORDER.forEach(function(k){
+    var c=CHARS[k];
+    var s=el("div","sq"+(ownerOn===k?" owner-on":""));
+    var ava=el("div","sq-ava");
+    ava.innerHTML=charSVG(k,44);
+    if(ownerOn===k)ava.style.borderColor=c.hex;
+    s.appendChild(ava);
+    s.appendChild(el("div","sq-name",c.name));
+    z.appendChild(s);
+  });
+}
+function squadShake(){
+  fxAnimate($("#squadZone"),[
+    {transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(-4px)"},{transform:"translateX(0)"}
+  ],{duration:380,easing:"ease"});
+}
+function shakeBoss(){
+  var b=$("#bossWrap"); if(!b)return;
+  b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake");
+  setTimeout(function(){b.classList.remove("shake");},460);
+}
+function tauntBoss(){
+  var b=$("#bossWrap"); if(!b)return;
+  b.classList.remove("taunt"); void b.offsetWidth; b.classList.add("taunt");
+  setTimeout(function(){b.classList.remove("taunt");},520);
+}
+function dmgFloat(n,cls){
+  var host=$("#fxLayer"); if(!host)return;
+  var d=el("div","dmg-num"+(cls?" "+cls:""),n);
+  d.style.left=(34+Math.random()*26)+"%";
+  d.style.top=(24+Math.random()*22)+"%";
+  host.appendChild(d);
+  var a=fxAnimate(d,[
+    {transform:"translateY(0) scale(.5)",opacity:0},
+    {transform:"translateY(-16px) scale(1.25)",opacity:1,offset:.25},
+    {transform:"translateY(-56px) scale(1)",opacity:0}
+  ],{duration:1000,easing:"ease-out"});
+  if(a)a.onfinish=function(){d.remove();};
+  else setTimeout(function(){d.remove();},1000);
+}
+function comboBanner(text,comboId){
+  var g=$("#battleground"); if(!g)return;
+  var b=el("div","combo-banner");
+  b.appendChild(el("span",null,"🔗 组合技 · "+text));
+  g.appendChild(b);
+  setTimeout(function(){b.remove();},1700);
+}
+function flashGround(){
+  var g=$("#battleground"); if(!g)return;
+  g.classList.remove("flash"); void g.offsetWidth; g.classList.add("flash");
+  setTimeout(function(){g.classList.remove("flash");},380);
+}
+function flyCards(chipEls,done){
+  if(!chipEls||!chipEls.length){done&&done();return;}
+  var anims=chipEls.filter(function(c){return c&&typeof c.animate==="function";});
+  if(!anims.length){done&&done();return;}
+  var left=anims.length;
+  anims.forEach(function(c,i){
+    var r=c.getBoundingClientRect(),boss=$("#bossWrap").getBoundingClientRect();
+    var ghost=c.cloneNode(true);
+    ghost.style.cssText+=";position:fixed;left:"+r.left+"px;top:"+r.top+"px;width:"+r.width+"px;margin:0;z-index:60;pointer-events:none;";
+    document.body.appendChild(ghost);
+    var dx=(boss.left+boss.width/2)-(r.left+r.width/2);
+    var dy=(boss.top+boss.height/2)-(r.top+r.height/2);
+    var a=fxAnimate(ghost,[
+      {transform:"translate(0,0) scale(1) rotate(0)",opacity:1},
+      {transform:"translate("+(dx*.5)+"px,"+(dy*.5-40)+"px) scale(1.15) rotate("+(i?12:-12)+"deg)",opacity:1,offset:.55},
+      {transform:"translate("+dx+"px,"+dy+"px) scale(.35)",opacity:.15}
+    ],{duration:480,easing:"ease-in"});
+    if(a)a.onfinish=function(){ghost.remove();if(--left===0)done&&done();};
+    else{ghost.remove();if(--left===0)done&&done();}
+  });
+}
+function impactFx(combo){
+  flashGround(); shakeBoss();
+  dmgFloat(combo?60:30,combo?"gold":"");
+  if(combo){beep("combo");}else beep("hit");
+}
+function stampBoss(skillId){
+  var host=$("#bossStamps"); var wrap=$("#bossWrap");
+  if(!host||!wrap)return;
+  if(host.children.length>=8)return;
+  var st=el("div","st");
+  st.innerHTML=totem(skillId,26,"#f0d68a");
+  st.style.left=(12+Math.random()*62)+"%";
+  st.style.top=(14+Math.random()*58)+"%";
+  host.appendChild(st);
+}
+function bossBurstFx(){
+  var host=$("#fxLayer"); if(!host)return;
+  for(var i=0;i<14;i++){
+    var p=el("i","blockp");
+    var sz=6+Math.random()*14;
+    p.style.width=sz+"px"; p.style.height=sz+"px";
+    p.style.left=(46+ (Math.random()*26-13))+"%";
+    p.style.top=(24+(Math.random()*20-10))+"%";
+    host.appendChild(p);
+    var a=fxAnimate(p,[
+      {transform:"translate(0,0) scale(.4)",opacity:.9},
+      {transform:"translate("+(Math.random()*120-60)+"px,"+(-120-Math.random()*90)+"px) scale(1.2)",opacity:0}
+    ],{duration:900+Math.random()*500,easing:"ease-out"});
+    if(a)a.onfinish=function(){p.remove();};
+    else setTimeout(function(){p.remove();},1300);
+  }
+  var bw=$("#bossWrap");
+  if(bw){bw.style.transition="opacity .5s";bw.style.opacity="0";}
+}
+function confetti(n){
+  var host=$("#endBody"); if(!host)return;
+  var colors=["#d8b45a","#f0d68a","#7bc96f","#c9a2e0","#f2b880","#6fa8dc"];
+  for(var i=0;i<n;i++){
+    var c=el("i","confetti");
+    c.style.left=(Math.random()*96+2)+"%";
+    c.style.background=colors[i%colors.length];
+    c.style.animationDelay=(Math.random()*.9)+"s";
+    c.style.animationDuration=(1.6+Math.random()*1.3)+"s";
+    host.appendChild(c);
+    (function(el2){setTimeout(function(){el2.remove();},3400);})(c);
+  }
+}
+
+/* ================= 存档 ================= */
+function save(silent){
+  try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));
+      if(!silent)toast("💾 已保存");}
+  catch(e){if(!silent)toast("保存失败：浏览器禁止了本地存储");}
+}
+function load(){try{return JSON.parse(localStorage.getItem(SAVE_KEY));}catch(e){return null;}}
+function autosave(){save(true);}
+function saveBest(rating){
+  var best=null;
+  try{best=JSON.parse(localStorage.getItem(BEST_KEY));}catch(e){}
+  if(!best||RANK[rating]>RANK[best.rating]){
+    best={rating:rating,diff:DIFFS[state.diff].name,date:new Date().toISOString().slice(0,10)};
+    try{localStorage.setItem(BEST_KEY,JSON.stringify(best));}catch(e){}
+  }
+  return best;
+}
+function bestLine(){
+  var best=null;
+  try{best=JSON.parse(localStorage.getItem(BEST_KEY));}catch(e){}
+  var b=$("#bestLine");
+  var html="";
+  if(best)html="🏆 本章最佳记录：<b>"+best.rating+"</b> · "+best.diff+" · "+best.date;
+  var p1=null;
+  try{p1=JSON.parse(localStorage.getItem("brainexp_ch1_best_v3"));}catch(e){}
+  if(p1)html+=(html?"<br>":"")+"🏅 已继承第一章：「拖延沼泽」最佳 <b>"+p1.rating+"</b> · "+p1.diff;
+  var p2=null;
+  try{p2=JSON.parse(localStorage.getItem("brainexp_ch2_best_v1"));}catch(e){}
+  if(p2)html+=(html?"<br>":"")+"🏅 已继承第二章：「分心花田」最佳 <b>"+p2.rating+"</b> · "+p2.diff;
+  b.innerHTML=html;
+}
+
+/* ================= HUD ================= */
+function renderSquad(){
+  var box=$("#squad"); box.innerHTML="";
+  Object.keys(CHARS).forEach(function(k){
+    var c=CHARS[k];
+    var chip=el("div","pchip"+(state.me===k?" me":""));
+    chip.style.borderColor=state.me===k?"var(--gold)":"var(--line)";
+    var ava=el("span","ava");
+    ava.innerHTML=charSVG(k,22);
+    chip.appendChild(ava);
+    chip.appendChild(el("span",null,c.name));
+    if(state.me===k)chip.appendChild(el("span","you","你"));
+    box.appendChild(chip);
+  });
+  updateTrustUI();
+}
+function updateTrustUI(){
+  $("#trustFill").style.width=Math.min(100,Math.round(state.trust/35*100))+"%";
+  $("#trustNum").textContent=state.trust;
+}
+function addTrust(n,reason){
+  state.trust=Math.max(0,state.trust+n);
+  updateTrustUI();
+  if(n>0){
+    var w=document.querySelector(".trust-wrap");
+    var f=el("span","float-trust","+"+n+(reason?" "+reason:""));
+    w.appendChild(f);
+    setTimeout(function(){f.remove();},1400);
+  }
+  autosave();
+}
+function renderMap(node){
+  var strip=$("#mapStrip"); if(!strip)return;
+  strip.innerHTML="";
+  MAP_NODES.forEach(function(n,i){
+    if(i>0)strip.appendChild(el("span","map-link"));
+    var d=el("div","map-node"+(i<node?" passed":"")+(i===node?" current":""));
+    d.appendChild(el("span","mn",n.e));
+    d.appendChild(el("span",null,n.t));
+    strip.appendChild(d);
+  });
+}
+
+/* ================= 标题 / 难度 / 角色 ================= */
+function refreshTitle(){
+  $("#btn-continue").classList.toggle("hidden",!load());
+  bestLine();
+}
+function setDiffBadge(){
+  $("#badge-diff").textContent="难度："+DIFFS[state.diff].name;
+  $("#pause-diff").textContent=DIFFS[state.diff].name;
+}
+function renderDiffGrid(){
+  var g=$("#diffGrid"); g.innerHTML="";
+  DIFF_ORDER.forEach(function(k){
+    var d=DIFFS[k];
+    var b=el("button","card");
+    var dots=el("div","lvl-dots");
+    for(var i=1;i<=4;i++)dots.appendChild(el("i",i<=d.level?"on":""));
+    b.appendChild(dots);
+    b.appendChild(el("div","ct",d.name+(state.diff===k?" · 当前":"")));
+    b.appendChild(el("div","cd",d.desc));
+    b.onclick=function(){
+      state.diff=d.key;
+      setDiffBadge();
+      autosave();
+      if(diffReturn==="new"){renderCharGrid();show("scr-char");}
+      else{toast("难度已切换为 "+d.name);closeModal("#overlay-pause");}
+    };
+    g.appendChild(b);
+  });
+}
+function renderCharGrid(){
+  var g=$("#charGrid"); g.innerHTML="";
+  var chosen=state.diff;
+  Object.keys(CHARS).forEach(function(k){
+    var c=CHARS[k];
+    var b=el("button","card char-card");
+    var ava=el("div","ava-big");
+    ava.innerHTML=charSVG(k,88);
+    b.appendChild(ava);
+    b.appendChild(el("div","ct",c.name));
+    b.appendChild(el("div","role",c.role));
+    b.appendChild(el("div","cd",c.desc));
+    var sk=el("div","sk");
+    c.skills.forEach(function(sid){sk.appendChild(el("span",null,""));});
+    c.skills.forEach(function(sid){
+      var w=el("span");
+      w.innerHTML=totem(sid,30,c.hex);
+      sk.appendChild(w);
+    });
+    b.appendChild(sk);
+    b.appendChild(el("div","voice","内心小声音："+c.voice));
+    b.onclick=function(){
+      beep("click");
+      state=fresh();
+      state.diff=chosen;
+      state.me=k; state.skills=["micro"]; state.trust=8; state.sceneId="i1";
+      setDiffBadge();
+      renderSquad();
+      save(true);
+      gotoScene("i1");
+    };
+    g.appendChild(b);
+  });
+}
+function renderHelp(){
+  var h=[
+   ["全部选择题，点一点就能玩。","mark"],
+   ["选错不惩罚，战斗中可以换招重来。","monitor"],
+   ["知识点锁小学，方法都是成年人验证过的。","recode"],
+   ["随时暂停存档，每次前进也会自动存。","trigger"],
+   ["四档难度，随时切换，随你心情。","micro"],
+   ["组队值决定连招——怎么对队友，比怎么打 Boss 更重要。","micro"]
+  ];
+  var g=$("#helpList"); g.innerHTML="";
+  h.forEach(function(p){
+    var it=el("div","help-item");
+    var ic=el("span","hi");
+    ic.innerHTML=totem(p[1],24,"#d8b45a");
+    it.appendChild(ic);
+    it.appendChild(el("span",null,p[0]));
+    g.appendChild(it);
+  });
+}
+
+/* ================= 剧情引擎（漫画分镜） ================= */
+var typeTimer=null, typing=null;
+function completeTyping(){
+  if(typeTimer){clearInterval(typeTimer);typeTimer=null;}
+  if(typing){typing.node.textContent=typing.text;typing=null;}
+}
+function typeInto(node,text){
+  if(text==null)text="";
+  var n=0; node.textContent="";
+  typing={node:node,text:text};
+  typeTimer=setInterval(function(){
+    n++;
+    node.textContent=text.slice(0,n);
+    if(n>=text.length){clearInterval(typeTimer);typeTimer=null;typing=null;}
+  },26);
+}
+function renderScene(id){
+  state.sceneId=id;
+  if(NODE_OF_SCENE[id]!=null){state.node=NODE_OF_SCENE[id];renderMap(state.node);}
+  autosave();
+  var sc=SCENES[id];
+  if(!sc){console.error("missing scene",id);return;}
+  if(sc.onEnter)sc.onEnter();
+  if(sc.kind==="story")renderComic(sc);
+  else if(sc.kind==="choice")renderChoice(sc);
+  else if(sc.kind==="skill"){
+    if(state.skills.indexOf(sc.skill)<0)state.skills.push(sc.skill);
+    openSkillModal(sc.skill,sc.lead||"",function(){gotoScene(sc.next);});
+  }
+  else if(sc.kind==="combo")renderComboCard();
+}
+function gotoScene(id){
+  if(id==="BATTLE"){startBattle();return;}
+  if(id==="END"){showEnd();return;}
+  show("scr-game");
+  renderScene(id);
+}
+function buildStage(sceneId){
+  var box=$("#gameBody");
+  box.innerHTML="";
+  var frame=el("div","comic-frame");
+  frame.dataset.scene=sceneId;
+  frame.insertAdjacentHTML("afterbegin",sceneSVG(sceneKindOf(sceneId)));
+  if(sceneId==="conv"){
+    frame.insertAdjacentHTML("beforeend",'<div class="stage-boss" style="opacity:0;transform:translateY(54px)">'+bossSVG(150)+'</div>');
+  }
+  var narr=el("div","stage-caption hidden");
+  frame.appendChild(narr);
+  var cap=el("div","caption hidden");
+  frame.appendChild(cap);
+  var fx=el("div","stage-fx");
+  frame.appendChild(fx);
+  var row=el("div","actor-row");
+  CHAR_ORDER.forEach(function(k){
+    var c=CHARS[k];
+    var a=el("div","actor");
+    a.dataset.k=k;
+    var f=el("div","ava-svg");
+    f.innerHTML=charSVG(k,78);
+    if(k===state.me)f.style.filter="drop-shadow(0 0 6px rgba(216,180,90,.45))";
+    a.appendChild(f);
+    a.appendChild(el("div","name-tag",c.name));
+    row.appendChild(a);
+  });
+  frame.appendChild(row);
+  fxAnimate(row,[
+    {transform:"translateX(-26%)",opacity:0},
+    {transform:"translateX(0)",opacity:1}
+  ],{duration:480,easing:"ease-out",fill:"forwards"});
+  box.appendChild(frame);
+  var bubble=el("div","bubble-wrap hidden");
+  var spr=el("div","speaker-row");
+  spr.appendChild(el("span","speaker-chip"));
+  bubble.appendChild(spr);
+  bubble.appendChild(el("div","bubble-text"));
+  box.appendChild(bubble);
+  var dots=el("div","dots");
+  box.appendChild(dots);
+  var tray=el("div","choice-tray hidden");
+  box.appendChild(tray);
+  return {
+    narr:narr,cap:cap,bubble:bubble,fx:fx,row:row,frame:frame,
+    chip:bubble.querySelector(".speaker-chip"),
+    txt:bubble.querySelector(".bubble-text"),
+    dots:dots,tray:tray
+  };
+}
+
+function setActiveActor(key){
+  var actors=$$("#gameBody .actor");
+  actors.forEach(function(a){
+    var on=(key&&a.dataset.k===key)||(key==="ALL");
+    a.classList.toggle("active",!!on);
+  });
+}
+function litFly(fx){
+  ["song","jiu","mian","shan"].forEach(function(k,i){
+    var d=el("div","spark");
+    var col=CHARS[k].hex;
+    d.style.width="18px"; d.style.height="18px";
+    d.style.background=col;
+    d.style.boxShadow="0 0 18px "+col;
+    var sx=(i%2)*90+3, sy=(i<2?8:86);
+    d.style.left=sx+"%"; d.style.top=sy+"%";
+    fx.appendChild(d);
+    var a=fxAnimate(d,[
+      {transform:"translate(0,0) scale(1)",opacity:1},
+      {transform:"translate("+((i%2?-1:1)*(14-i*8))+"vw,-"+(30+i*4)+"vh) scale(.4)",opacity:1,offset:.6},
+      {transform:"translate("+((44-sx))+"%,-"+(50-sy)+"%) scale(.1)",opacity:0}
+    ],{duration:900,easing:"ease-in-out"});
+    if(a)a.onfinish=function(){d.remove();};
+    else setTimeout(function(){d.remove();},900);
+  });
+  beep("unlock");
+}
+function bubbleRain(fx){
+  for(var i=0;i<8;i++){
+    (function(k){
+      setTimeout(function(){
+        var p=el("i","blockp");
+        var sz=5+Math.random()*10;
+        p.style.width=sz+"px"; p.style.height=sz+"px";
+        p.style.left=(20+Math.random()*60)+"%";
+        p.style.top="62%";
+        fx.appendChild(p);
+        var a=fxAnimate(p,[
+          {transform:"translateY(0) scale(.5)",opacity:.9},
+          {transform:"translateY(-70px) scale(1.1)",opacity:0}
+        ],{duration:900,easing:"ease-out"});
+        if(a)a.onfinish=function(){p.remove();};
+        else setTimeout(function(){p.remove();},900);
+      },k*90);
+    })(i);
+  }
+  beep("hit");
+}
+function focusStoneFx(){
+  var st=$("#gameBody .stone-hl");
+  if(st){
+    st.style.transition="none"; st.style.filter="brightness(1.5)";
+    setTimeout(function(){st.style.transition="filter .8s";st.style.filter="";},450);
+  }
+  beep("click");
+}
+function swampClearFx(){
+  var f=$("#gameBody .comic-frame");
+  if(f){f.style.transition="filter .8s";f.style.filter="brightness(1.12) saturate(1.15)";}
+  beep("unlock");
+}
+function campfireFx(ui){
+  if(ui.frame){
+    ui.frame.classList.add("fire-up");
+    setTimeout(function(){ui.frame.classList.remove("fire-up");},1300);
+  }
+  beep("unlock");
+}
+function marchFx(ui){
+  fxAnimate(ui.row,[
+    {transform:"translateX(0)",opacity:1},
+    {transform:"translateX(-46%)",opacity:0}
+  ],{duration:850,easing:"ease-in",fill:"forwards"});
+  fxAnimate(ui.frame,[
+    {transform:"scale(1)"},
+    {transform:"scale(1.07)"}
+  ],{duration:850,easing:"ease-in",fill:"forwards"});
+}
+function bossEyeFx(ui){
+  for(var i=0;i<2;i++){
+    (function(k){
+      var d=el("div","spark");
+      d.style.width="11px"; d.style.height="11px";
+      d.style.background="#e8e2cf";
+      d.style.boxShadow="0 0 18px rgba(232,226,207,.95)";
+      d.style.left=(76+k*4.5)+"%"; d.style.top="44%";
+      ui.fx.appendChild(d);
+      var a=fxAnimate(d,[
+        {opacity:0,transform:"scale(.3)"},
+        {opacity:1,transform:"scale(1.25)",offset:.45},
+        {opacity:1,transform:"scale(1)",offset:.8},
+        {opacity:0,transform:"scale(.4)"}
+      ],{duration:1500,delay:k*200,easing:"ease"});
+      if(a)a.onfinish=function(){d.remove();};
+      else setTimeout(function(){d.remove();},1800);
+    })(i);
+  }
+  beep("click");
+}
+function bossRiseFx(ui){
+  var b=$("#gameBody .stage-boss");
+  fxAnimate(b,[
+    {transform:"translateY(54px)",opacity:0},
+    {transform:"translateY(-7px)",opacity:1,offset:.75},
+    {transform:"translateY(0)",opacity:1}
+  ],{duration:950,easing:"ease-out",fill:"forwards"});
+  beep("hit");
+}
+function playAnim(name,ui){
+  if(name==="lights")litFly(ui.fx);
+  else if(name==="focus-stone")focusStoneFx();
+  else if(name==="boss-burst")bubbleRain(ui.fx);
+  else if(name==="swamp-clear")swampClearFx();
+  else if(name==="campfire")campfireFx(ui);
+  else if(name==="march")marchFx(ui);
+  else if(name==="boss-eye")bossEyeFx(ui);
+  else if(name==="boss-rise")bossRiseFx(ui);
+}
+
+function linePlayer(ui){
+  function showNarr(text){
+    ui.narr.classList.remove("hidden"); ui.cap.classList.add("hidden"); ui.bubble.classList.add("hidden");
+    setActiveActor(null);
+    typeInto(ui.narr,text);
+  }
+  function showAct(text){
+    ui.cap.classList.remove("hidden"); ui.narr.classList.add("hidden"); ui.bubble.classList.add("hidden");
+    setActiveActor(null);
+    typeInto(ui.cap,"（"+text+"）");
+  }
+  function showSay(who,text){
+    ui.bubble.classList.remove("hidden"); ui.narr.classList.add("hidden"); ui.cap.classList.add("hidden");
+    var key=NAME2KEY[who];
+    setActiveActor(key==="boss"?null:(who==="四人"?"ALL":key));
+    ui.chip.textContent=who;
+    if(key&&CHARS[key])ui.chip.style.background=CHARS[key].hex;
+    else if(key==="boss")ui.chip.style.background="var(--danger)";
+    else ui.chip.style.background="var(--gold2)";
+    typeInto(ui.txt,text);
+  }
+  return {
+    narr:showNarr,act:showAct,say:showSay,
+    play:function(ln){
+      if(ln.anim){playAnim(ln.anim,ui);hideAllText(ui);}
+      else if(ln.act)showAct(ln.act);
+      else if(ln.who==="旁白")showNarr(ln.text);
+      else showSay(ln.who,ln.text);
+    }
+  };
+  function hideAllText(ui){
+    ui.narr.classList.add("hidden"); ui.cap.classList.add("hidden"); ui.bubble.classList.add("hidden");
+  }
+}
+function renderComic(sc){
+  var box=$("#gameBody");
+  var ui=buildStage(state.sceneId);
+  var player=linePlayer(ui);
+  completeTyping();
+  var hint=$("#nextHint");
+  hint.textContent="点击画面继续 ▸";
+  hint.classList.remove("hidden","choose");
+  ui.dots.innerHTML="";
+  sc.lines.forEach(function(){ui.dots.appendChild(el("i"));});
+  var i=0;
+  function paintDots(){
+    $$("#gameBody .dots i").forEach(function(d,idx){d.classList.toggle("cur",idx===i);});
+  }
+  function step(){
+    if(i>=sc.lines.length){
+      $$("#gameBody .dots i").forEach(function(d){d.classList.remove("cur");});
+      gotoScene(sc.next);return;
+    }
+    player.play(sc.lines[i]);
+    i++; paintDots();
+  }
+  box.onclick=function(){
+    if(typeTimer){completeTyping();return;}
+    step();
+  };
+  step();
+}
+function renderChoice(sc){
+  var box=$("#gameBody");
+  var ui=buildStage(state.sceneId);
+  var player=linePlayer(ui);
+  completeTyping();
+  ui.dots.innerHTML="";
+  ui.tray.classList.remove("hidden");
+  if(sc.prompt)ui.tray.appendChild(el("div","choice-title","【你的选择】"+sc.prompt));
+  /* 选择引导：改提示文案 + 平滑滚动把选项带进视口 */
+  var hint=$("#nextHint");
+  hint.textContent="▼ 做出你的选择";
+  hint.classList.remove("hidden");
+  hint.classList.add("choose");
+  setTimeout(function(){
+    if(typeof ui.tray.scrollIntoView==="function"){
+      try{ui.tray.scrollIntoView({behavior:"smooth",block:"center"});}
+      catch(e){try{ui.tray.scrollIntoView();}catch(e2){}}
+    }
+  },80);
+  var letters="ABCD";
+  sc.options.forEach(function(opt,idx){
+    var b=el("button","opt");
+    if(sc.letters)b.appendChild(el("span","ol",letters[idx]||"·"));
+    b.appendChild(el("span",null,opt.t));
+    b.onclick=function(ev){
+      ev.stopPropagation();
+      beep("click");
+      hint.classList.add("hidden");
+      hint.classList.remove("choose");
+      if(opt.trust)addTrust(opt.trust);
+      if(opt.flag)state.flags[opt.flag]=(state.flags[opt.flag]||0)+1;
+      if(opt.branch)state.branch=opt.branch;
+      autosave();
+      box.onclick=null;
+      ui.tray.parentNode.removeChild(ui.tray);
+      var lines=opt.after||[];
+      if(!lines.length){gotoScene(opt.next);return;}
+      var j=0;
+      box.onclick=function(){
+        if(typeTimer){completeTyping();return;}
+        if(j>=lines.length){gotoScene(opt.next);return;}
+        player.play(lines[j]);
+        j++;
+      };
+      player.play(lines[0]);j=1;
+    };
+    ui.tray.appendChild(b);
+  });
+  setActiveActor(null);
+}
+
+/* ---------- 连招卡 ---------- */
+function renderComboCard(){
+  var box=$("#skillBox"); box.innerHTML="";
+  box.appendChild(el("div","skill-name","🔗 连招解锁"));
+  var hero=el("div","combo-hero");
+  hero.innerHTML=comboBadge(false,96);
+  box.appendChild(hero);
+  var cn=COMBOS[0];
+  var mem=cn.members.map(function(m){return SKILLS[m].name+"（"+CHARS[SKILLS[m].owner].name+"）";}).join("＋");
+  box.appendChild(el("div","mantra","「"+cn.name+"」＝ "+mem));
+  box.appendChild(el("div","note-sec",cn.desc));
+  box.appendChild(el("div","locked-note","预告：后续章节，「不放弃」＝ 认知重编程（松）＋微步骤启动（松）＋状态监控（眠）。\n冲突没有解决的章节，连招图标会是灰色的。"));
+  beep("win");
+  var b=el("button","btn primary","前往结算");
+  b.style.marginTop="18px"; b.style.width="100%";
+  b.onclick=function(){beep("click");closeModal("#modal-skill");showEnd();};
+  box.appendChild(b);
+  openModal("#modal-skill");
+}
+
+/* ---------- 技能卡（图腾翻转） ---------- */
+function openSkillModal(id,lead,onDone){
+  var sk=SKILLS[id]; if(!sk){onDone&&onDone();return;}
+  var owner=CHARS[sk.owner];
+  var d=diff();
+  var box=$("#skillBox"); box.innerHTML="";
+  box.appendChild(el("div","skill-name","🎴 新技能入手"));
+  var tagRow=el("div"); tagRow.style.marginTop="6px";
+  tagRow.style.textAlign="center";
+  var ot=el("span","own-tag",owner.name);
+  ot.style.background=owner.hex;
+  tagRow.appendChild(ot);
+  if(d.tags)tagRow.appendChild(el("span","new-tag","NEW"));
+  box.appendChild(tagRow);
+  if(lead)box.appendChild(el("div","lead-note",lead));
+  var flip=el("div","flip-card");
+  var inner=el("div","flip-inner");
+  var front=el("div","face front");
+  var frontCard=el("div","cardface");
+  var tb=el("div","totem-big");
+  tb.innerHTML=totem(id,84,owner.hex);
+  frontCard.appendChild(tb);
+  frontCard.appendChild(el("div","cname",sk.name));
+  frontCard.appendChild(el("div","mantra",sk.mantra));
+  front.appendChild(frontCard);
+  inner.appendChild(front);
+  if(d.card!=="one"){
+    var back=el("div","face back");
+    var backCard=el("div","cardface");
+    note("一句话版",sk.one,backCard);
+    note("原理 · WHY",owner.name+"的批注："+sk.why,backCard);
+    note("跨界 · CROSS",sk.cross,backCard);
+    back.appendChild(backCard);
+    inner.appendChild(back);
+    inner.onclick=function(){
+      inner.classList.toggle("flipped");
+      beep("click");
+    };
+    box.appendChild(el("div","flip-tip","👆 点击卡牌翻面，看完整笔记"));
+  }else{
+    box.appendChild(el("div","locked-note","困难模式：完整笔记见章末图鉴。现在，记住这句咒语，就够上路了。"));
+  }
+  flip.appendChild(inner);
+  box.appendChild(flip);
+  beep("unlock");
+  var b=el("button","btn primary","记住啦 ✔");
+  b.style.marginTop="18px"; b.style.width="100%";
+  b.onclick=function(){beep("click");closeModal("#modal-skill");onDone&&onDone();};
+  box.appendChild(b);
+  openModal("#modal-skill");
+  function note(lab,text,parent){
+    var sec=el("div","note-sec");
+    sec.appendChild(el("div","lab",lab));
+    sec.appendChild(el("div",null,text));
+    parent.appendChild(sec);
+  }
+}
+
+/* ================= 战斗 ================= */
+function startBattle(restore){
+  var bg=$("#battleground");
+  var old=bg.querySelector(".scene-svg");
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  bg.insertAdjacentHTML("afterbegin",sceneSVG("maze"));
+  if(restore)state.battle=restore;
+  else state.battle={round:0,hp:100,log:[],borrowed:[],invalid:0,sel:[],r3First:true,declined:false};
+  state.node=2; renderMap(2);
+  var bw=$("#bossWrap");
+  bw.style.opacity="0";
+  bw.innerHTML=bossSVG(150)+'<div id="bossStamps"></div>';
+  var rise=fxAnimate(bw,[
+    {transform:"translateY(48px)",opacity:0},
+    {transform:"translateY(0)",opacity:1}
+  ],{duration:700,easing:"ease-out"});
+  if(rise)rise.onfinish=function(){bw.style.opacity="1";};
+  else bw.style.opacity="1";
+  show("scr-battle");
+  var feed=$("#battleFeed"); if(feed)feed.innerHTML="";
+  renderSquadZone(null);
+  renderBattle();
+  fitBattle();
+}
+/* 战斗一屏化：实测顶部框架高度，动态设定战斗区高度（适配桌面/手机/窗口缩放） */
+function fitBattle(){
+  var sec=$("#scr-battle");
+  if(!sec||!sec.classList.contains("active"))return;
+  var tb=$("#topbar"),hud=$("#hud"),main=$("main");
+  /* 注意：#mapStrip 嵌套在 #hud 内，已包含在 hud 高度中，不要重复相加 */
+  var top=(tb?tb.getBoundingClientRect().height:0)
+         +(hud?hud.getBoundingClientRect().height:0)
+         +(main?parseFloat(getComputedStyle(main).paddingTop)||0:0);
+  var pb=(main?parseFloat(getComputedStyle(main).paddingBottom)||0:0);
+  sec.style.height=Math.max(520,window.innerHeight-top-pb-4)+"px";
+}
+window.addEventListener("resize",function(){fitBattle();});
+/* 出招镜头：画面轻微推近，把"出招→命中→掉血"的视线锁在画面内 */
+function zoomPunch(){
+  var bg=$("#battleground");
+  if(!bg||typeof bg.animate!=="function")return;
+  bg.classList.remove("zoom");
+  void bg.offsetWidth;
+  bg.classList.add("zoom");
+}
+function availSkills(){
+  var seen={},out=[];
+  state.skills.concat(state.battle.borrowed||[]).forEach(function(id){
+    if(!seen[id]&&SKILLS[id]){seen[id]=1;out.push(id);}
+  });
+  return out;
+}
+function renderBattle(){
+  var b=state.battle, r=ROUNDS[b.round];
+  $("#bossBubble").textContent=r.bossLine;
+  $("#roundName").textContent=r.name;
+  $("#roundName").classList.remove("hidden");
+  $("#bossHpNum").textContent=Math.max(0,b.hp);
+  $("#bossHpFill").style.width=Math.max(0,b.hp)+"%";
+  var bw=$("#bossWrap");
+  if(bw)bw.classList.toggle("weak",b.hp>0&&b.hp<=30);
+  var ease=$("#battle-ease");
+  if(diff().hints){ease.textContent=r.ease;ease.classList.remove("hidden");}
+  else ease.classList.add("hidden");
+  /* 出招记录改为画中浮层：只飘最新一条，旧的淡出，不撑长页面 */
+  var t=b.log[b.log.length-1];
+  var feed=$("#battleFeed");
+  if(t&&feed){
+    var cls="bf-line";
+    if(t.indexOf("【出招】")===0)cls="bf-line hit";
+    else if(t.indexOf("【解说】")===0){cls="bf-line act";t=t.replace("【解说】","");}
+    Array.prototype.forEach.call(feed.children,function(c){c.classList.add("fade");});
+    feed.appendChild(el("div",cls,t));
+    while(feed.children.length>2)feed.removeChild(feed.firstChild);
+    clearTimeout(feed._t);
+    feed._t=setTimeout(function(){
+      Array.prototype.forEach.call(feed.children,function(c){c.classList.add("fade");});
+      setTimeout(function(){feed.innerHTML="";},700);
+    },2600);
+  }
+  renderHand();
+  updateConfirm();
+}
+
+function renderHand(){
+  var b=state.battle, r=ROUNDS[b.round];
+  var hand=$("#hand"); hand.innerHTML="";
+  if(r.valid==="COMBO"){
+    hand.appendChild(el("span","trust-label","选两位【不同角色】的卡牌，组合出招："));
+  }
+  availSkills().forEach(function(id){
+    var sk=SKILLS[id], owner=CHARS[sk.owner];
+    var chip=el("button","chip"+(b.sel.indexOf(id)>=0?" on":""));
+    chip.dataset.id=id;
+    chip.style.borderTopColor=owner.hex;
+    var od=el("span","own",owner.name);
+    od.style.color=owner.hex;
+    chip.appendChild(od);
+    var cem=el("span","cem");
+    cem.innerHTML=totem(id,44,owner.hex);
+    chip.appendChild(cem);
+    chip.appendChild(el("span",null,sk.name));
+    chip.onclick=function(){
+      if(b.done||b.locked)return;
+      beep("click");
+      if(r.valid!=="COMBO"){
+        b.sel=[id];
+        renderHand(); updateConfirm();
+        return;
+      }
+      var i=b.sel.indexOf(id);
+      if(i>=0)b.sel.splice(i,1);
+      else{
+        if(b.sel.length>=2){toast("组合技只需要两位队友");return;}
+        b.sel.push(id);
+      }
+      renderHand(); updateConfirm();
+    };
+    hand.appendChild(chip);
+  });
+}
+function updateConfirm(){
+  var b=state.battle;
+  $("#btn-confirm").disabled=!b||b.sel.length===0||!!b.done||!!b.locked;
+  $("#btn-confirm").textContent=ROUNDS[b.round].valid==="COMBO"?"组合出招 🔗":"确认出招 ⚔";
+}
+function ownersOf(sel){return sel.map(function(id){return SKILLS[id].owner;});}
+function chipEls(ids){return ids.map(function(id){return document.querySelector('.chip[data-id="'+id+'"]');});}
+function confirmSkill(){
+  var b=state.battle;
+  if(!b||b.done||b.locked)return;
+  var r=ROUNDS[b.round], rk=r.rk||["whisper","warm","curse"][b.round];
+  if(b.sel.length===0){toast("先选一招");return;}
+  var els=chipEls(b.sel);
+  if(b.round<2){
+    var id=b.sel[0];
+    if(r.valid.indexOf(id)>=0){
+      b.log.push("【出招】"+CHARS[SKILLS[id].owner].name+" · "+SKILLS[id].name);
+      REPLAY[rk][id].forEach(function(l){b.log.push(l);});
+      b.hp-=30; b.sel=[];
+      b.round++;
+      renderBattle();
+      zoomPunch();
+      flyCards(els,function(){impactFx(false);stampBoss(id);});
+    }else{
+      b.invalid++;
+      b.log.push("（没打中）");
+      REPLAY[rk].miss.forEach(function(l){b.log.push(l);});
+      b.sel=[];
+      renderBattle();
+      dmgFloat("MISS","miss");
+      tauntBoss();
+    }
+  }else{
+    if(b.sel.length<2){
+      REPLAY[rk].single.forEach(function(l){b.log.push(l);});
+      b.log.push("（这一回合，一个人接不住）");
+      b.r3First=false;
+      renderBattle();
+      tauntBoss();
+      squadShake();
+      offerBorrow();
+    }else if(ownersOf(b.sel)[0]===ownersOf(b.sel)[1]){
+      REPLAY[rk].same.forEach(function(l){b.log.push(l);});
+      b.r3First=false;
+      renderBattle();
+      tauntBoss();
+      squadShake();
+      offerBorrow();
+    }else{
+      var key=b.sel.slice().sort().join("+");
+      var lines=COMBO_LINES[key]||COMBO_FALLBACK;
+      var cname=COMBO_NAMES[key]||"跨角色组合";
+      b.log.push("【出招】组合技 · "+b.sel.map(function(i){return SKILLS[i].name;}).join("＋"));
+      lines.forEach(function(l){b.log.push(l);});
+      var comboIds=b.sel.slice();
+      b.hp=0; b.sel=[];
+      b.locked=true; /* 胜利过渡窗口锁：防止重复出招（winBattle 的 done 哨兵不受影响） */
+      renderBattle();
+      zoomPunch();
+      flyCards(els,function(){impactFx(true);comboIds.forEach(function(sid){stampBoss(sid);});});
+      comboBanner(cname,key);
+      bossBurstFx();
+      setTimeout(winBattle,1600);
+    }
+  }
+  autosave();
+}
+function offerBorrow(){
+  var b=state.battle;
+  var plan=null;
+  for(var i=0;i<BORROW_ORDER.length;i++){
+    var id=BORROW_ORDER[i];
+    if(state.skills.indexOf(id)<0&&b.borrowed.indexOf(id)<0&&SKILLS[id].owner!==state.me){plan=id;break;}
+  }
+  $("#btn-borrow-no").classList.toggle("hidden",!!(b.declined||!plan));
+  if(b.sel.length>=2)b.sel=[];
+  if(!plan){
+    $("#borrowText").textContent="队友们在岸上喊成一片——再挑两位不同角色的卡牌试试！";
+  }else{
+    $("#borrowAva").innerHTML=charSVG(SKILLS[plan].owner,64);
+    $("#borrowText").textContent=BORROW_LINE[SKILLS[plan].owner]+"（获得「"+SKILLS[plan].name+"」，组队值 +3）";
+    $("#modal-borrow").dataset.plan=plan;
+  }
+  openModal("#modal-borrow");
+}
+function winBattle(){
+  var b=state.battle;
+  if(!b||b.done)return;
+  b.done=true;
+  state.battleDone={
+    perfect:b.invalid===0&&b.r3First,
+    comboFirst:b.r3First,
+    invalid:b.invalid,
+    borrowed:b.borrowed.length>0
+  };
+  state.battle=null;
+  gotoScene("w1");
+}
+
+/* ================= 结算 ================= */
+function computeRating(){
+  var t=state.trust;
+  var bd=state.battleDone;
+  if(bd){
+    if(bd.perfect)t+=6;
+    if(bd.comboFirst)t+=4;
+  }
+  var rating="B";
+  if(t>=28)rating="SSS"; else if(t>=20)rating="S"; else if(t>=13)rating="A";
+  if((state.flags.toxic||0)>=2&&RANK[rating]>RANK.A)rating="A";
+  return {trust:t,rating:rating};
+}
+function showEnd(){
+  var r=computeRating();
+  state.secret=(state.me==="shan"&&state.branch==="D"&&RANK[r.rating]>=RANK.S);
+  var best=saveBest(r.rating);
+  state.node=4; renderMap(4);
+  var box=$("#endBody"); box.innerHTML="";
+  var card=el("div","end-card");
+  var eh=el("div","end-hero");
+  eh.innerHTML=campStrip("end");
+  card.appendChild(eh);
+  card.appendChild(el("div","page-sub","第三章 · 遗忘迷宫 —— 完"));
+  /* 两栏：左 = 评级+评语+统计；右 = 图腾墙+眠眠观察+最佳记录 */
+  var main=el("div","end-main");
+  var left=el("div");
+  var wrap=el("div","rating-wrap"+(RANK[r.rating]>=RANK.S?" glow":""));
+  wrap.appendChild(el("div","rating-big "+r.rating,r.rating));
+  left.appendChild(wrap);
+  left.appendChild(el("div","end-line",diffRatingLine(r.rating)));
+  var stats=el("div","end-stats");
+  [["组队值",r.trust],["战斗评价",battleText()],["走的路线",routeName()]].forEach(function(p){
+    var s=el("div","stat"); s.appendChild(el("div","v",p[1])); s.appendChild(el("div","k",p[0])); stats.appendChild(s);
+  });
+  left.appendChild(stats);
+  main.appendChild(left);
+  var right=el("div");
+  var wall=el("div","totem-wall");
+  state.skills.forEach(function(id){
+    var w=el("div","tw gold");
+    var ic=el("span","twi");
+    ic.innerHTML=totem(id,38,CHARS[SKILLS[id].owner].hex);
+    w.appendChild(ic);
+    w.appendChild(el("span",null,SKILLS[id].name));
+    wall.appendChild(w);
+  });
+  [["小队公约","pact"],["连招 · "+COMBOS[0].name,"combo"]].forEach(function(p){
+    var w=el("div","tw");
+    var ic=el("span","twi");
+    ic.innerHTML=p[1]==="pact"?pactBadge(38):comboBadge(false,38);
+    w.appendChild(ic);
+    w.appendChild(el("span",null,p[0]));
+    wall.appendChild(w);
+  });
+  right.appendChild(wall);
+  var ob=el("div","observe");
+  ob.textContent="眠眠的观察："+observeLine();
+  right.appendChild(ob);
+  right.appendChild(el("div","footer-note","🏆 本章最佳记录："+best.rating+" · "+best.diff+"（已留存）"));
+  main.appendChild(right);
+  card.appendChild(main);
+  if(state.secret){
+    var sec=el("div","secret");
+    sec.textContent="✨ 隐藏台词：最安静的人，往往是第一个看懂陷阱的人。——这颗星，是你自己点亮的。";
+    card.appendChild(sec);
+  }
+  var row=el("div","center-row");
+  var b1=el("button","btn primary","📖 章末图鉴");
+  b1.onclick=function(){codexReturn="end";openCodex();};
+  var b2=el("button","btn","🔁 重玩本章");
+  b2.onclick=function(){
+    var chosen=state.diff;
+    state=fresh(); state.diff=chosen;
+    diffReturn="new"; renderDiffGrid(); show("scr-diff");
+  };
+  var b3=el("button","btn ghost","🏟 回主页");
+  b3.onclick=function(){location.href="Ch0-大脑营地.html";};
+  row.appendChild(b1);row.appendChild(b2);row.appendChild(b3);
+  card.appendChild(row);
+  box.appendChild(card);
+  show("scr-end");
+  if(RANK[r.rating]>=RANK.S){confetti(36);beep("win");}
+  autosave();
+}
+function diffRatingLine(r){
+  if(r==="SSS")return "满分小队——四个人，都长成了彼此的外挂。";
+  if(r==="S")return "漂亮的配合！再听听那几句没说出口的话，SSS 在等你。";
+  if(r==="A")return "过关了。迷宫里不只有路，还有没想起来的事。";
+  return "也走出了迷宫。下次，试着先把想不起来的说出来。";
+}
+function battleText(){
+  var bd=state.battleDone;
+  if(!bd)return "—";
+  if(bd.perfect)return "完美 · 零失误一击穿";
+  if(bd.invalid>=3)return "波折 · 试了 "+bd.invalid+" 次错招";
+  if(bd.borrowed)return "稳健 · 借招成功";
+  return "良好";
+}
+function routeName(){
+  var m={A:"A线 · 换着走",B:"B线 · 先睡一觉",C:"C线 · 合上书想",D:"D线 · 留个记号"};
+  return state.branch?m[state.branch]:"—";
+}
+function observeLine(){
+  var f=state.flags;
+  if((f.toxic||0)>=1)return "「刚才那句话，有点扎人。下次想脱口而出的时候，先喝口水——我给你们续上。」";
+  if(f.hush)return "（眠眠看了闪闪一眼，什么都没说，只是把水杯放在了闪闪手边。）";
+  return "「以后谁问我『记不记得』，我就先合上书，自己说一遍。」";
+}
+
+/* ================= 图鉴 ================= */
+function openCodex(){
+  var g=$("#codexGrid"); g.innerHTML="";
+  var owned={};
+  state.skills.forEach(function(id){owned[id]=1;});
+  Object.keys(SKILLS).forEach(function(id){
+    var sk=SKILLS[id], owner=CHARS[sk.owner];
+    var c=el("div","cdx-card"+(owned[id]?"":" locked"));
+    var t=el("div","cdx-t");
+    if(owned[id])t.innerHTML=totem(id,60,owner.hex);
+    else t.innerHTML=totem(id,60,"#5c7263");
+    c.appendChild(t);
+    c.appendChild(el("div","cdx-name",(owned[id]?"":"🔒 ")+sk.name));
+    var row=el("div","codex-skill-row");
+    var tag=el("span","own-tag",owner.name); tag.style.background=owner.hex;
+    row.appendChild(tag);
+    c.appendChild(row);
+    c.appendChild(el("div","mantra",sk.mantra));
+    if(diff().card!=="one"||owned[id]){
+      var s=el("div","note-sec");
+      s.appendChild(el("div",null,sk.one));
+      c.appendChild(s);
+    }
+    g.appendChild(c);
+  });
+  var cc=el("div","cdx-card");
+  var ct=el("div","cdx-t");
+  ct.innerHTML=pactBadge(60);
+  cc.appendChild(ct);
+  cc.appendChild(el("div","cdx-name","小队公约"));
+  cc.appendChild(el("div","mantra","记不住，不丢人！"));
+  cc.appendChild(el("div","mantra","说出来，才记得住！"));
+  cc.appendChild(el("div","note-sec","第三章诞生。公约会随章节累积，章末统一收录。"));
+  g.appendChild(cc);
+  COMBOS.forEach(function(cn){
+    var c=el("div","cdx-card"+(cn.locked?" locked":""));
+    var t=el("div","cdx-t");
+    t.innerHTML=comboBadge(!!cn.locked,60);
+    c.appendChild(t);
+    c.appendChild(el("div","cdx-name",(cn.locked?"🔒 ":"")+cn.name));
+    c.appendChild(el("div","mantra",cn.members.map(function(m){return SKILLS[m].name;}).join("＋")));
+    c.appendChild(el("div","note-sec",cn.desc));
+    g.appendChild(c);
+  });
+  var hc=el("div","cdx-card");
+  var ht=el("div","cdx-t"); ht.innerHTML=helpBadge(60);
+  hc.appendChild(ht);
+  hc.appendChild(el("div","cdx-name","求助口袋卡"));
+  hc.appendChild(el("div","mantra","求助不是软弱，是精准调用资源。"));
+  var hnote=el("div","note-sec");
+  hnote.appendChild(el("div",null,"正面：写下 3 个你信得过的大人 —— ①＿＿＿ ②＿＿＿ ③＿＿＿"));
+  hnote.appendChild(el("div",null,"背面：54321 着陆 —— 看 5 样 · 摸 4 样 · 听 3 声 · 闻 2 样 · 尝 1 味"));
+  hnote.appendChild(el("div",null,"心里乱的时候：先着陆，再找人说。"));
+  hc.appendChild(hnote);
+  g.appendChild(hc);
+  show("scr-codex");
+}
+
+/* ================= 弹窗 ================= */
+function openModal(sel){$(sel).classList.remove("hidden");}
+function closeModal(sel){$(sel).classList.add("hidden");}
+
+/* ================= 绑定 ================= */
+function boot(){
+  renderDiffGrid();
+  refreshTitle();
+  renderSquad();
+  setDiffBadge();
+  renderHelp();
+  $("#heroCamp").innerHTML=campStrip("hero");
+  $("#heroSquad").innerHTML=CHAR_ORDER.map(function(k){
+    return '<div class="hs">'+charSVG(k,64)+'</div>';
+  }).join("");
+
+  $("#btn-new").onclick=function(){diffReturn="new";renderDiffGrid();show("scr-diff");};
+  $("#btn-continue").onclick=function(){
+    var sv=load(); if(!sv){toast("没有找到存档");return;}
+    state=Object.assign(fresh(),sv);
+    setDiffBadge(); renderSquad();
+    if(state.battle)startBattle(state.battle);
+    else gotoScene(state.sceneId||"i1");
+  };
+  $("#btn-help").onclick=function(){
+    var cur=document.querySelector(".screen.active");
+    helpReturn=cur?cur.id:"scr-title";
+    show("scr-help");
+  };
+  $("#btn-help2").onclick=function(){helpReturn="scr-title";show("scr-help");};
+  $("#btn-home").onclick=function(){location.href="Ch0-大脑营地.html";};
+  $("#btn-help-back").onclick=function(){show(helpReturn);};
+  $("#btn-codex-back").onclick=function(){
+    if(codexReturn==="pause")openModal("#overlay-pause");
+    else show("scr-end");
+  };
+  $("#btn-codex-in").onclick=function(){codexReturn="pause";closeModal("#overlay-pause");openCodex();};
+  $("#btn-pause").onclick=function(){openModal("#overlay-pause");};
+  $("#btn-resume").onclick=function(){closeModal("#overlay-pause");};
+  $("#btn-save").onclick=function(){save(false);};
+  $("#btn-load").onclick=function(){
+    var sv=load(); if(!sv){toast("还没有存档");return;}
+    state=Object.assign(fresh(),sv);
+    setDiffBadge(); renderSquad();
+    if(state.battle)startBattle(state.battle);else gotoScene(state.sceneId||"i1");
+    closeModal("#overlay-pause");
+    toast("📂 已读取");
+  };
+  $("#btn-diff-in").onclick=function(){diffReturn="game";renderDiffGrid();show("scr-diff");};
+  $("#btn-quit").onclick=function(){closeModal("#overlay-pause");refreshTitle();show("scr-title");};
+  $("#btn-home-pause").onclick=function(){location.href="Ch0-大脑营地.html";};
+  $("#btn-confirm").onclick=confirmSkill;
+  $("#btn-borrow-yes").onclick=function(){
+    var plan=$("#modal-borrow").dataset.plan, b=state.battle;
+    if(b&&plan&&SKILLS[plan]&&state.skills.indexOf(plan)<0&&b.borrowed.indexOf(plan)<0){
+      b.borrowed.push(plan);
+      b.log.push("【解说】"+BORROW_LINE[SKILLS[plan].owner]);
+      addTrust(3,"借招成功");
+      renderBattle();
+    }
+    closeModal("#modal-borrow");
+  };
+  $("#btn-borrow-no").onclick=function(){
+    state.battle.declined=true;
+    closeModal("#modal-borrow");
+    toast("眠眠：「那……再把这一回合想一想。」");
+  };
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){
+      if(!$("#overlay-pause").classList.contains("hidden")){closeModal("#overlay-pause");return;}
+      if(modalOpen())return;
+      var cur=document.querySelector(".screen.active");
+      if(cur&&(cur.id==="scr-game"||cur.id==="scr-battle"))openModal("#overlay-pause");
+      return;
+    }
+    if(e.key==="Enter"||e.key===" "){
+      if(modalOpen())return;
+      var g=$("#gameBody");
+      if(g&&!$("#scr-game").classList.contains("hidden")){e.preventDefault();g.click();}
+    }
+  });
+}
+
+boot();
+})();
+</script>
+
+
+</body></html>

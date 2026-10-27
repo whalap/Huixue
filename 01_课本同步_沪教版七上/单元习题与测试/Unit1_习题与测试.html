@@ -111,6 +111,7 @@ details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-hei
   .q{break-inside:avoid}
 }
 </style>
+<script src="../../site-nav.js" defer></script>
 </head>
 <body>
 <div class="hero">
@@ -913,7 +914,7 @@ function grade(resubmit){
     <div class="adv">${advice}${wrong.length ? ' · 错题已在卷面标红' : ''}</div>
   </div>`;
   if (resubmit) return;
-  store.save(p.id, { answers, submitted: true, got, full, pct });
+  store.save(p.id, { answers, submitted: true, got, full, pct, at: Date.now() });
   renderPaper(p, true);
 }
 

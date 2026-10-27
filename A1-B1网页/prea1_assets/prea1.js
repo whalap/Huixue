@@ -86,7 +86,10 @@ window.PA1 = (function () {
         REC.mr = null;
         if (REC.btn) { REC.btn.classList.remove('on'); REC.btn.textContent = '● 录音'; }
         if (REC.si >= 0 && CUR) {
-          ST.s = ST.s || {}; ST.s[REC.si] = 1; save(CUR.n, ST); updProg();
+          ST.s = ST.s || {};
+          var _prev = (ST.s[REC.si] && typeof ST.s[REC.si] === 'object') ? ST.s[REC.si] : {};
+          ST.s[REC.si] = { done: 1, times: (_prev.times || 0) + 1, at: Date.now() };
+          save(CUR.n, ST); updProg();
         }
         REC.si = -1;
       };
@@ -450,7 +453,7 @@ window.PA1 = (function () {
         var w = t.getAttribute('data-w');
         ST.w = ST.w || {};
         if (ST.w[w]) { delete ST.w[w]; t.classList.remove('got'); t.textContent = '✓ 标掌握'; var c = t.closest ? t.closest('.vcard') : null; if (c) c.classList.remove('done'); }
-        else { ST.w[w] = 1; t.classList.add('got'); t.textContent = '✓ 已掌握'; var c2 = t.closest ? t.closest('.vcard') : null; if (c2) c2.classList.add('done'); }
+        else { ST.w[w] = { done: 1, at: Date.now() }; t.classList.add('got'); t.textContent = '✓ 已掌握'; var c2 = t.closest ? t.closest('.vcard') : null; if (c2) c2.classList.add('done'); }
         save(CUR.n, ST); updProg();
         return;
       }

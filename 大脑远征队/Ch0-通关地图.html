@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大脑远征队 · 通关地图「远征战绩单」</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#16110f; --bg2:#221813; --panel:#2a1f18; --panel2:#352819; --line:#4a3727;
+  --text:#f7efe6; --dim:#c4ad9a; --gold:#d8b45a; --gold2:#f0d68a;
+  --song:#7bc96f; --jiu:#6fa8dc; --mian:#f2b880; --shan:#c9a2e0; --danger:#e2777a;
+}
+html,body{height:100%}
+body{
+  background:radial-gradient(1200px 620px at 50% -120px, #17291d 0%, var(--bg) 62%) fixed;
+  color:var(--text);
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Source Han Sans SC",sans-serif;
+  min-height:100vh;display:flex;flex-direction:column;line-height:1.75;overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+#topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 18px;border-bottom:1px solid var(--line);background:rgba(12,19,16,.85);position:sticky;top:0;z-index:20;backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .logo{font-size:26px}
+.brand .t1{font-weight:800;font-size:17px;letter-spacing:1px}
+.brand .t2{font-size:10px;color:var(--dim);letter-spacing:3px}
+.tb-actions{display:flex;gap:8px;flex-wrap:wrap}
+.tbtn{font-size:12px;color:var(--gold2);border:1px solid rgba(216,180,90,.45);background:rgba(216,180,90,.08);padding:5px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;font-family:inherit}
+.tbtn:hover{background:rgba(216,180,90,.18)}
+main{flex:1;width:100%;max-width:1060px;margin:0 auto;padding:22px 18px 40px}
+.hero{text-align:center;padding:8px 0 6px}
+.hero h1{font-size:28px;letter-spacing:2px}
+.hero .sub{color:var(--dim);font-size:13px;margin-top:2px}
+.hero .tag{display:inline-block;margin-top:10px;font-size:12px;color:var(--gold2);border:1px solid rgba(216,180,90,.4);background:rgba(216,180,90,.08);padding:3px 12px;border-radius:999px}
+.squad{display:flex;justify-content:center;gap:18px;margin-top:12px;flex-wrap:wrap}
+.sq{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;color:var(--dim)}
+.sq .nm{color:var(--text);font-weight:700}
+.sq .rl{font-size:10.5px}
+.progress{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:16px 0 6px}
+.pstat{font-size:12.5px;color:var(--dim);border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:5px 14px}
+.pstat b{color:var(--gold2)}
+.signrow{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:4px 16px;font-size:12.5px;color:var(--dim);margin:6px 0 18px}
+.signrow i{font-style:normal;color:var(--gold2)}
+
+.sec-t{font-size:16px;font-weight:800;color:var(--gold2);letter-spacing:1px;margin:24px 0 10px;display:flex;align-items:center;gap:8px}
+.sec-t small{font-size:11.5px;color:var(--dim);font-weight:400;letter-spacing:0}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.lv{display:block;background:linear-gradient(160deg,var(--panel) 0%,var(--bg2) 100%);border:1px solid var(--line);border-radius:14px;padding:14px 16px;position:relative;transition:.18s}
+.lv:hover{border-color:var(--gold);box-shadow:0 6px 22px rgba(0,0,0,.35)}
+.lv-top{display:flex;align-items:center;gap:9px}
+.lv-no{flex:none;font-size:11px;font-weight:800;color:var(--gold2);border:1px solid rgba(216,180,90,.5);background:rgba(216,180,90,.1);border-radius:8px;padding:2px 8px;letter-spacing:1px}
+.lv-emo{font-size:18px}
+.lv-name{font-size:17px;font-weight:800;letter-spacing:1px}
+.lv-world{font-size:11.5px;color:var(--dim);margin-top:3px}
+.lv-boss{font-size:12px;color:var(--danger);margin-top:6px}
+.lv-row{font-size:12px;color:var(--dim);margin-top:8px;line-height:1.7}
+.lv-row b{color:var(--text);font-weight:600}
+.pact{margin-top:8px;background:rgba(216,180,90,.08);border-left:3px solid var(--gold);border-radius:8px;padding:8px 10px;font-size:12.5px;color:var(--gold2);font-weight:600;line-height:1.65}
+.lv-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
+.lv-best{font-size:12px;color:var(--dim)}
+.lv-best b{color:var(--gold2)}
+.lv-best.none{opacity:.75}
+.lv-go{font-size:12.5px;color:var(--gold2);font-weight:700;white-space:nowrap}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:11.5px;border-radius:999px;padding:2px 9px;border:1px solid;line-height:1.6}
+.chip.song{color:var(--song);border-color:rgba(123,201,111,.45);background:rgba(123,201,111,.1)}
+.chip.jiu{color:var(--jiu);border-color:rgba(111,168,220,.45);background:rgba(111,168,220,.1)}
+.chip.mian{color:var(--mian);border-color:rgba(242,184,128,.45);background:rgba(242,184,128,.1)}
+.chip.shan{color:var(--shan);border-color:rgba(201,162,224,.45);background:rgba(201,162,224,.1)}
+.chip.lock{opacity:.4}
+
+.wall{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.wgrp{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.wgrp .wh{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:var(--gold2)}
+.wgrp .wh span.role{font-size:11px;color:var(--dim);font-weight:400}
+.wgrp .ww{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.skchip{font-size:11.5px;border-radius:10px;padding:3px 9px;border:1px solid var(--line);background:var(--bg2);color:var(--text)}
+.skchip.lock{opacity:.42;color:var(--dim)}
+.skchip em{font-style:normal;font-size:10px;color:var(--dim);margin-left:4px}
+
+.pactlist{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px 16px 14px}
+.pactrow{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:12.5px;line-height:1.7}
+.pactrow:last-child{border-bottom:0}
+.pactrow .pn{flex:none;color:var(--gold2);font-weight:700;font-size:12px;min-width:52px}
+.pactrow .pt{color:var(--text)}
+.pactrow.off .pt{color:var(--dim)}
+
+.help{margin-top:20px;background:linear-gradient(160deg,rgba(216,180,90,.1),var(--bg2));border:1px solid rgba(216,180,90,.45);border-radius:14px;padding:14px 18px}
+.help .bt{font-size:14px;font-weight:800;color:var(--gold2);letter-spacing:1px}
+.help .line{font-size:12.5px;color:var(--dim);margin-top:6px;line-height:1.8}
+.help .line b{color:var(--text)}
+.footer-note{text-align:center;margin-top:22px;font-size:11px;color:var(--dim);line-height:1.8}
+
+@media (max-width:640px){
+  main{padding:16px 12px 32px}
+  .hero h1{font-size:22px}
+  .grid{grid-template-columns:1fr}
+  .squad{gap:12px}
+}
+
+@media print{
+  #topbar,.signrow .np,.footer-note .np{display:none !important}
+  body{background:#fff !important;color:#1c1c1c}
+  main{max-width:none;padding:0}
+  .pstat,.lv,.wgrp,.pactlist,.help{border-color:#b9b0a6 !important;background:#fff !important;color:#1c1c1c;box-shadow:none}
+  .pact,.wgrp .wh{background:#f4efe7 !important;color:#6b5320 !important;border-color:#c9a227}
+  .lv-name,.skchip,.pactrow .pt,.pstat b,.wgrp .wh{color:#1c1c1c !important}
+  .sq .nm,.lv-row b{color:#1c1c1c !important}
+  .lv-go{display:none !important}
+  .hero .tag{color:#6b5320 !important;border-color:#c9a227 !important;background:#f4efe7 !important}
+  .pstat,.signrow,.pact,.help .bt{color:#6b5320 !important}
+  .lv-world,.lv-row,.sq .rl,.wgrp .wh span.role,.pactrow.off .pt,.help .line{color:#5d564f !important}
+  .lv-boss{color:#a33 !important}
+  .lv-best,.lv-go,.pactrow .pn{color:#6b5320 !important}
+  .chip.song{color:#2f6b23 !important;border-color:#8fbf83 !important;background:#f1f8ef !important}
+  .chip.jiu{color:#2a4f75 !important;border-color:#8fb0d6 !important;background:#eef4fb !important}
+  .chip.mian{color:#8a5320 !important;border-color:#d7b189 !important;background:#fbf3ea !important}
+  .chip.shan{color:#5c3d77 !important;border-color:#c1a2d8 !important;background:#f6f0fb !important}
+  .grid{gap:9px}
+  .lv,.pactrow,.pactlist{break-inside:avoid;page-break-inside:avoid}
+  .sec-t{break-after:avoid;page-break-after:avoid;color:#6b5320 !important}
+  @page{margin:14mm}
+}
+</style>
+<script src="../site-nav.js" defer></script>
+</head>
+<body>
+<header id="topbar">
+  <div class="brand">
+    <span class="logo">🧠</span>
+    <div><div class="t1">大脑远征队</div><div class="t2">BRAIN EXPEDITION</div></div>
+  </div>
+  <div class="tb-actions">
+    <a class="tbtn" href="Ch0-大脑营地.html">🏟 回主页</a>
+    <button class="tbtn" id="btn-print" type="button">🖨 打印战绩单</button>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>通关地图 · 远征战绩单</h1>
+    <div class="sub">十二个关卡 · 四名队员 · 一颗大脑 —— 走过的招，都留在这里</div>
+    <div class="tag">进度从本机浏览器读取 · 打印出来贴在书桌前</div>
+    <div class="squad" id="squad"></div>
+  </div>
+
+  <div class="progress" id="progress"></div>
+  <div class="signrow"><span>远征队员签名 <i>＿＿＿＿＿＿＿＿</i></span><span>日期 <i>＿＿＿＿ 年 ＿＿ 月 ＿＿ 日</i></span></div>
+
+  <div class="sec-t">🗺 十二关地图 <small>点卡片直接进入关卡 · 战评来自各关最佳记录</small></div>
+  <div class="grid" id="grid"></div>
+
+  <div class="sec-t">🎴 技能图鉴墙 <small>通关哪一关，就点亮哪一关的招；灰着的还没背回来</small></div>
+  <div class="wall" id="wall"></div>
+
+  <div class="sec-t">📜 十二关公约 <small>每关结束时，四个人一起念的那句话</small></div>
+  <div class="pactlist" id="pactlist"></div>
+
+  <div class="help">
+    <div class="bt">🆘 求助口袋卡（每一关的图鉴里都有）</div>
+    <div class="line"><b>正面</b>：写下 3 个你信得过的大人 —— ①＿＿＿ ②＿＿＿ ③＿＿＿</div>
+    <div class="line"><b>背面</b>：54321 着陆 —— 看 5 样 · 摸 4 样 · 听 3 声 · 闻 2 样 · 尝 1 味</div>
+    <div class="line">心里乱的时候：先着陆，再找人说。<b>求助不是软弱，是精准调用资源。</b></div>
+  </div>
+
+  <div class="footer-note">
+    最佳记录保存在本机浏览器里，换设备或清理缓存会重置 · 打印时会自动换成纸质友好的浅色版式<br>
+    所有章节文件需放在同一文件夹一起使用 · 本作全部形象为原创绘制，不使用任何第三方 IP 素材
+  </div>
+</main>
+
+<script>
+(function(){
+"use strict";
+var CHARS={
+  song:{name:"松松",role:"行动担当",hex:"#7bc96f"},
+  jiu :{name:"究究",role:"认知担当",hex:"#6fa8dc"},
+  mian:{name:"眠眠",role:"能量担当",hex:"#f2b880"},
+  shan:{name:"闪闪",role:"情绪语言",hex:"#c9a2e0"}
+};
+var CHAR_ORDER=["song","jiu","mian","shan"];
+function charSVG(key,size){
+  var hex=CHARS[key].hex, skin="#f2c9a0", ink="#2f2a26", shoe="#22302a";
+  var s='<svg viewBox="0 0 64 64" width="'+size+'" height="'+size+'" style="display:block">';
+  s+='<ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"/>';
+  if(key==="song"){
+    s+='<path d="M27 50 L21 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><path d="M35 50 L41 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="59.5" r="3" fill="'+shoe+'"/><circle cx="42" cy="59.5" r="3" fill="'+shoe+'"/>';
+    s+='<rect x="21" y="33" width="22" height="19" rx="7" fill="'+hex+'"/>';
+    s+='<path d="M43 39 L52 34" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="53" cy="33.5" r="3.2" fill="'+skin+'"/><path d="M21 39 L12 45" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="11" cy="45.5" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/>';
+    s+='<path d="M19.5 21 a12.5 12.5 0 0 1 25 0 l-3.5 -1.5 a9.5 9.5 0 0 0 -18 0 z" fill="#6b4f35"/><path d="M31 7 l-3.5 5 M33 7.5 l3 4.5" stroke="#6b4f35" stroke-width="2.4" stroke-linecap="round"/>';
+    s+='<path d="M19.5 17.5 q12.5 -7 25 0 l0 3.6 q-12.5 -6.4 -25 0 z" fill="#e2777a"/><path d="M43 19 l9 -3.5 -2 6.5 z" fill="#e2777a"/>';
+    s+='<circle cx="27" cy="24" r="1.9" fill="'+ink+'"/><circle cx="37" cy="24" r="1.9" fill="'+ink+'"/><path d="M28 29.5 q4 3.6 8 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+  }else if(key==="jiu"){
+    s+='<path d="M28 50 v9 M36 50 v9" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><circle cx="28" cy="59" r="3" fill="'+shoe+'"/><circle cx="36" cy="59" r="3" fill="'+shoe+'"/>';
+    s+='<rect x="22" y="33" width="20" height="19" rx="6" fill="'+hex+'"/><path d="M27 33 v19 M37 33 v19" stroke="rgba(255,255,255,.25)" stroke-width="1.6"/>';
+    s+='<path d="M22 40 L15 44" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="14" cy="44.5" r="3.2" fill="'+skin+'"/><rect x="6" y="38" width="10" height="8" rx="1.5" fill="#d8b45a" transform="rotate(-12 11 42)"/><path d="M11 38.5 v7" stroke="#a8863c" stroke-width="1.2"/>';
+    s+='<path d="M42 40 L47 47" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="47.5" cy="48" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 v-3 a12.5 12.5 0 0 0 -25 0 z" fill="#33404f"/>';
+    s+='<circle cx="27" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"/><circle cx="37" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"/><path d="M31.6 24 h0.8 M22.4 23.5 l-3 -1.5 M41.6 23.5 l3 -1.5" stroke="#2b2f36" stroke-width="2" stroke-linecap="round"/>';
+    s+='<circle cx="27" cy="24" r="1.5" fill="'+ink+'"/><circle cx="37" cy="24" r="1.5" fill="'+ink+'"/><path d="M29 30.5 h6" stroke="'+ink+'" stroke-width="2" stroke-linecap="round"/>';
+  }else if(key==="mian"){
+    s+='<path d="M23 46 l-3 13 h22 l-3 -13 z" fill="'+hex+'"/><path d="M32 46 v13" stroke="rgba(255,255,255,.25)" stroke-width="1.6"/>';
+    s+='<rect x="23" y="33" width="18" height="14" rx="6" fill="'+hex+'"/><path d="M26 33 L38 47 M38 33 L26 47" stroke="rgba(255,255,255,.3)" stroke-width="1.6"/>';
+    s+='<path d="M41 40 L48 43" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="49" cy="43.5" r="3.2" fill="'+skin+'"/><rect x="46" y="34" width="9" height="12" rx="2.5" fill="#cfd8c5"/><rect x="46" y="34" width="9" height="4" rx="2" fill="#9aa88f"/>';
+    s+='<path d="M23 40 L18 46" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="17.5" cy="46.5" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 z" fill="#8a5a30"/><circle cx="17" cy="21" r="5.5" fill="#8a5a30"/><circle cx="47" cy="21" r="5.5" fill="#8a5a30"/>';
+    s+='<path d="M24 24.5 q3 2.8 6 0 M34 24.5 q3 2.8 6 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M28.5 30 q3.5 3.2 7 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    s+='<ellipse cx="23" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"/><ellipse cx="41" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"/>';
+  }else{
+    s+='<path d="M29 50 v9 M35 50 v9" stroke="#31413a" stroke-width="5.5" stroke-linecap="round"/><circle cx="29" cy="59" r="2.8" fill="'+shoe+'"/><circle cx="35" cy="59" r="2.8" fill="'+shoe+'"/>';
+    s+='<rect x="23" y="33" width="18" height="18" rx="7" fill="'+hex+'"/>';
+    s+='<path d="M22 31 q10 6 20 0 l0 5 q-10 -6 -20 0 z" fill="'+hex+'"/><path d="M37 34 l11 9 -4.5 2.5 -9 -8 z" fill="'+hex+'"/>';
+    s+='<circle cx="30" cy="47" r="3" fill="'+skin+'"/><circle cx="35.5" cy="47.5" r="3" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 l0 -2 q-12.5 -10 -25 0 z" fill="#3c3a52"/>';
+    s+='<path d="M40 6 l1.7 3.6 4 .5 -2.9 2.8 .7 4 -3.5 -1.9 -3.5 1.9 .7 -4 -2.9 -2.8 4 -.5 z" fill="#f0d68a" transform="translate(-1,-1) scale(.92)"/>';
+    s+='<path d="M34.5 26 q2.4 2 4.6 0" stroke="'+ink+'" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M27.5 30.5 q4.5 2.8 9 0" stroke="'+ink+'" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
+  }
+  return s+'</svg>';
+}
+var DATA={
+ "chapters": [
+  {
+   "no": "第一章",
+   "idx": 1,
+   "name": "拖延沼泽",
+   "world": "花园世界 · 启动篇",
+   "emoji": "🌿",
+   "boss": "拖拖 · 拖延沼泽主",
+   "file": "大脑远征队-Ch1-拖延沼泽.html",
+   "key": "brainexp_ch1_best_v3",
+   "pact": "行动之前，每个人必须说一句话。",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "自动触发",
+     "owner": "song"
+    },
+    {
+     "name": "认知重编程",
+     "owner": "song"
+    },
+    {
+     "name": "状态监控",
+     "owner": "mian"
+    },
+    {
+     "name": "弱点标记",
+     "owner": "shan"
+    }
+   ],
+   "combos": [
+    {
+     "name": "先看再走",
+     "members": [
+      "微步骤启动",
+      "状态监控"
+     ]
+    },
+    {
+     "name": "不放弃",
+     "members": [
+      "认知重编程",
+      "微步骤启动",
+      "状态监控"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "第二章",
+   "idx": 2,
+   "name": "分心花田",
+   "world": "花园世界 · 专注篇",
+   "emoji": "🌸",
+   "boss": "多多 · 分心花田主",
+   "file": "大脑远征队-Ch2-分心花田.html",
+   "key": "brainexp_ch2_best_v1",
+   "pact": "自己的事情自己拿主意；使唤别人之前，先问一句。",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "单线程",
+     "owner": "song"
+    },
+    {
+     "name": "环境锚定",
+     "owner": "jiu"
+    },
+    {
+     "name": "番茄钟",
+     "owner": "mian"
+    },
+    {
+     "name": "弱点标记",
+     "owner": "shan"
+    },
+    {
+     "name": "认知重编程",
+     "owner": "song"
+    },
+    {
+     "name": "状态监控",
+     "owner": "mian"
+    }
+   ],
+   "combos": [
+    {
+     "name": "一页一心",
+     "members": [
+      "单线程",
+      "番茄钟"
+     ]
+    },
+    {
+     "name": "不放弃",
+     "members": [
+      "认知重编程",
+      "微步骤启动",
+      "状态监控"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "第三章",
+   "idx": 3,
+   "name": "遗忘迷宫",
+   "world": "方块世界 · 记忆篇",
+   "emoji": "🧱",
+   "boss": "忘忘 · 遗忘迷宫主",
+   "file": "Ch3-遗忘迷宫.html",
+   "key": "brainexp_ch3_best_v1",
+   "pact": "记不住，不丢人！说出来，才记得住！",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "交错练习",
+     "owner": "song"
+    },
+    {
+     "name": "主动提取",
+     "owner": "jiu"
+    },
+    {
+     "name": "睡眠存档",
+     "owner": "mian"
+    },
+    {
+     "name": "状态监控",
+     "owner": "mian"
+    },
+    {
+     "name": "间隔重复",
+     "owner": "shan"
+    },
+    {
+     "name": "弱点标记",
+     "owner": "shan"
+    }
+   ],
+   "combos": [
+    {
+     "name": "闭眼回想",
+     "members": [
+      "睡眠存档",
+      "主动提取"
+     ]
+    },
+    {
+     "name": "不放弃",
+     "members": [
+      "微步骤启动",
+      "睡眠存档",
+      "状态监控"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "第四章",
+   "idx": 4,
+   "name": "理解冰山",
+   "world": "方块世界 · 理解篇",
+   "emoji": "🧊",
+   "boss": "蒙蒙 · 理解冰山主",
+   "file": "Ch4-理解冰山.html",
+   "key": "brainexp_ch4_best_v1",
+   "pact": "讲不清楚的地方，就是还没懂的地方！不懂装懂，才是真的慢！",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "复利叠加",
+     "owner": "song"
+    },
+    {
+     "name": "自我解释",
+     "owner": "jiu"
+    },
+    {
+     "name": "生成效应",
+     "owner": "mian"
+    },
+    {
+     "name": "睡眠存档",
+     "owner": "mian"
+    },
+    {
+     "name": "状态监控",
+     "owner": "mian"
+    },
+    {
+     "name": "费曼讲解",
+     "owner": "shan"
+    },
+    {
+     "name": "弱点标记",
+     "owner": "shan"
+    }
+   ],
+   "combos": [
+    {
+     "name": "讲一遍懂一层",
+     "members": [
+      "费曼讲解",
+      "自我解释"
+     ]
+    },
+    {
+     "name": "不放弃",
+     "members": [
+      "微步骤启动",
+      "睡眠存档",
+      "状态监控"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "第五章",
+   "idx": 5,
+   "name": "否定斗技场",
+   "world": "竞技世界 · 自我篇",
+   "emoji": "🥊",
+   "boss": "否否 · 否定斗技场主",
+   "file": "Ch5-否定斗技场.html",
+   "key": "brainexp_ch5_best_v1",
+   "pact": "「我不行」可以改成「我还不行」！看见别人做到，我也能——那不是别人的事！",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "成长型思维",
+     "owner": "shan"
+    },
+    {
+     "name": "自我效能",
+     "owner": "shan"
+    },
+    {
+     "name": "替代经验",
+     "owner": "shan"
+    },
+    {
+     "name": "自我解释",
+     "owner": "jiu"
+    },
+    {
+     "name": "睡眠存档",
+     "owner": "mian"
+    },
+    {
+     "name": "状态监控",
+     "owner": "mian"
+    },
+    {
+     "name": "弱点标记",
+     "owner": "shan"
+    }
+   ],
+   "combos": [
+    {
+     "name": "我还不行",
+     "members": [
+      "成长型思维",
+      "微步骤启动"
+     ]
+    },
+    {
+     "name": "不放弃",
+     "members": [
+      "微步骤启动",
+      "睡眠存档",
+      "状态监控"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "第六章",
+   "idx": 6,
+   "name": "语言风暴",
+   "world": "竞技世界 · 语言篇",
+   "emoji": "🗣",
+   "boss": "签签 · 贴标签主",
+   "file": "Ch6-语言风暴.html",
+   "key": "brainexp_ch6_best_v1",
+   "pact": "贴在我身上的标签，我可以选择不认领！把「我不行」说成「我正在学」——一句话就能换天气！",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "认知重编程",
+     "owner": "song"
+    },
+    {
+     "name": "自我解释",
+     "owner": "jiu"
+    },
+    {
+     "name": "情绪重评",
+     "owner": "shan"
+    },
+    {
+     "name": "状态监控",
+     "owner": "mian"
+    },
+    {
+     "name": "语言力量",
+     "owner": "shan"
+    }
+   ],
+   "combos": [
+    {
+     "name": "换个说法",
+     "members": [
+      "情绪重评",
+      "自我解释"
+     ]
+    },
+    {
+     "name": "先说再做",
+     "members": [
+      "认知重编程",
+      "状态监控"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "社交特别篇",
+   "idx": 7,
+   "name": "关系回声",
+   "world": "特别篇 · 朋友篇",
+   "emoji": "🤝",
+   "boss": "一刀 · 一刀切主",
+   "file": "Ch7-关系回声.html",
+   "key": "brainexp_social_best_v1",
+   "pact": "他做的事让我不舒服，不等于他是坏人！不舒服，我可以说出来，不硬撑！",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "认知重编程",
+     "owner": "song"
+    },
+    {
+     "name": "自我解释",
+     "owner": "jiu"
+    },
+    {
+     "name": "行为透镜",
+     "owner": "mian"
+    },
+    {
+     "name": "我句式",
+     "owner": "shan"
+    }
+   ],
+   "combos": [
+    {
+     "name": "说清楚也留得住",
+     "members": [
+      "我句式",
+      "行为透镜"
+     ]
+    },
+    {
+     "name": "先看清再开口",
+     "members": [
+      "自我解释",
+      "认知重编程"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "第八章",
+   "idx": 8,
+   "name": "能量峡谷",
+   "world": "竞技世界 · 能量篇",
+   "emoji": "🌋",
+   "boss": "山山 · 压力火山主",
+   "file": "Ch8-能量峡谷.html",
+   "key": "brainexp_ch8_best_v1",
+   "pact": "累了就说出来，不丢人；求助不是软弱，是精准调用资源。",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "降温阀",
+     "owner": "song"
+    },
+    {
+     "name": "自我解释",
+     "owner": "jiu"
+    },
+    {
+     "name": "身体地图",
+     "owner": "mian"
+    },
+    {
+     "name": "健康管理",
+     "owner": "mian"
+    },
+    {
+     "name": "组队Buff",
+     "owner": "shan"
+    }
+   ],
+   "combos": [
+    {
+     "name": "先降温再一起扛",
+     "members": [
+      "降温阀",
+      "组队Buff"
+     ]
+    },
+    {
+     "name": "先看身体再问一句",
+     "members": [
+      "身体地图",
+      "自我解释"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "终章",
+   "idx": 9,
+   "name": "大脑王座",
+   "world": "终章 · 八章合成",
+   "emoji": "👑",
+   "boss": "浑浑 · 混沌主",
+   "file": "Ch9-大脑王座.html",
+   "key": "brainexp_ch9_best_v1",
+   "pact": "事情再多，也一件一件来；没有万能的一招，只有合适的一招。",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "单线程",
+     "owner": "song"
+    },
+    {
+     "name": "终极合成",
+     "owner": "jiu"
+    },
+    {
+     "name": "身体地图",
+     "owner": "mian"
+    },
+    {
+     "name": "情绪重评",
+     "owner": "shan"
+    }
+   ],
+   "combos": [
+    {
+     "name": "四招合一",
+     "members": [
+      "终极合成",
+      "微步骤启动"
+     ]
+    },
+    {
+     "name": "王座勋章",
+     "members": [
+      "终极合成",
+      "情绪重评"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "特别篇二",
+   "idx": 10,
+   "name": "界线平原",
+   "world": "特别篇 · 界线平原",
+   "emoji": "🚩",
+   "boss": "逼逼 · 逼你同意主",
+   "file": "Ch10-边界篇.html",
+   "key": "brainexp_ch10_best_v1",
+   "pact": "我不接受___，因为___——这句话，我可以练。",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "认知重编程",
+     "owner": "song"
+    },
+    {
+     "name": "自我解释",
+     "owner": "jiu"
+    },
+    {
+     "name": "边界宣言",
+     "owner": "shan"
+    },
+    {
+     "name": "状态监控",
+     "owner": "mian"
+    }
+   ],
+   "combos": [
+    {
+     "name": "说不行，也给理由",
+     "members": [
+      "边界宣言",
+      "认知重编程"
+     ]
+    },
+    {
+     "name": "先看颜色再开口",
+     "members": [
+      "边界宣言",
+      "自我解释"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "特别篇三",
+   "idx": 11,
+   "name": "看台边",
+   "world": "特别篇 · 看台边",
+   "emoji": "👀",
+   "boss": "看看 · 看看主",
+   "file": "Ch11-旁观篇.html",
+   "key": "brainexp_ch11_best_v1",
+   "pact": "看见别人被堵住，我可以出手——最小的一步，也算数！",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "自我解释",
+     "owner": "jiu"
+    },
+    {
+     "name": "我句式",
+     "owner": "shan"
+    },
+    {
+     "name": "旁观出手",
+     "owner": "mian"
+    },
+    {
+     "name": "状态监控",
+     "owner": "mian"
+    }
+   ],
+   "combos": [
+    {
+     "name": "站过去，就是出手",
+     "members": [
+      "旁观出手",
+      "微步骤启动"
+     ]
+    },
+    {
+     "name": "递一句给他",
+     "members": [
+      "我句式",
+      "旁观出手"
+     ]
+    }
+   ]
+  },
+  {
+   "no": "特别篇四",
+   "idx": 12,
+   "name": "屏中潮",
+   "world": "特别篇 · 屏中潮",
+   "emoji": "📱",
+   "boss": "滤滤 · 人设滤镜主",
+   "file": "Ch12-数字篇.html",
+   "key": "brainexp_ch12_best_v1",
+   "pact": "屏幕里的生活，是修过图的；我的价值，不靠点赞数！",
+   "skills": [
+    {
+     "name": "微步骤启动",
+     "owner": "song"
+    },
+    {
+     "name": "自我解释",
+     "owner": "jiu"
+    },
+    {
+     "name": "我句式",
+     "owner": "shan"
+    },
+    {
+     "name": "睡前落闸",
+     "owner": "mian"
+    },
+    {
+     "name": "点赞秤",
+     "owner": "jiu"
+    }
+   ],
+   "combos": [
+    {
+     "name": "先落闸，再称重",
+     "members": [
+      "睡前落闸",
+      "点赞秤"
+     ]
+    },
+    {
+     "name": "停一秒，再转发",
+     "members": [
+      "我句式",
+      "微步骤启动"
+     ]
+    }
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "id": "micro",
+   "name": "微步骤启动",
+   "owner": "song",
+   "ch": 1,
+   "comboNote": ""
+  },
+  {
+   "id": "trigger",
+   "name": "自动触发",
+   "owner": "song",
+   "ch": 1,
+   "comboNote": ""
+  },
+  {
+   "id": "recode",
+   "name": "认知重编程",
+   "owner": "song",
+   "ch": 1,
+   "comboNote": ""
+  },
+  {
+   "id": "monitor",
+   "name": "状态监控",
+   "owner": "mian",
+   "ch": 1,
+   "comboNote": ""
+  },
+  {
+   "id": "mark",
+   "name": "弱点标记",
+   "owner": "shan",
+   "ch": 1,
+   "comboNote": ""
+  },
+  {
+   "id": "single",
+   "name": "单线程",
+   "owner": "song",
+   "ch": 2,
+   "comboNote": ""
+  },
+  {
+   "id": "anchor",
+   "name": "环境锚定",
+   "owner": "jiu",
+   "ch": 2,
+   "comboNote": ""
+  },
+  {
+   "id": "tomato",
+   "name": "番茄钟",
+   "owner": "mian",
+   "ch": 2,
+   "comboNote": ""
+  },
+  {
+   "id": "interleave",
+   "name": "交错练习",
+   "owner": "song",
+   "ch": 3,
+   "comboNote": ""
+  },
+  {
+   "id": "retrieve",
+   "name": "主动提取",
+   "owner": "jiu",
+   "ch": 3,
+   "comboNote": ""
+  },
+  {
+   "id": "sleep",
+   "name": "睡眠存档",
+   "owner": "mian",
+   "ch": 3,
+   "comboNote": ""
+  },
+  {
+   "id": "spacing",
+   "name": "间隔重复",
+   "owner": "shan",
+   "ch": 3,
+   "comboNote": ""
+  },
+  {
+   "id": "compound",
+   "name": "复利叠加",
+   "owner": "song",
+   "ch": 4,
+   "comboNote": ""
+  },
+  {
+   "id": "selfexplain",
+   "name": "自我解释",
+   "owner": "jiu",
+   "ch": 4,
+   "comboNote": ""
+  },
+  {
+   "id": "generate",
+   "name": "生成效应",
+   "owner": "mian",
+   "ch": 4,
+   "comboNote": ""
+  },
+  {
+   "id": "feynman",
+   "name": "费曼讲解",
+   "owner": "shan",
+   "ch": 4,
+   "comboNote": ""
+  },
+  {
+   "id": "growth",
+   "name": "成长型思维",
+   "owner": "shan",
+   "ch": 5,
+   "comboNote": ""
+  },
+  {
+   "id": "selfeff",
+   "name": "自我效能",
+   "owner": "shan",
+   "ch": 5,
+   "comboNote": ""
+  },
+  {
+   "id": "vicarious",
+   "name": "替代经验",
+   "owner": "shan",
+   "ch": 5,
+   "comboNote": ""
+  },
+  {
+   "id": "reappraise",
+   "name": "情绪重评",
+   "owner": "shan",
+   "ch": 6,
+   "comboNote": ""
+  },
+  {
+   "id": "lang",
+   "name": "语言力量",
+   "owner": "shan",
+   "ch": 6,
+   "comboNote": ""
+  },
+  {
+   "id": "lens",
+   "name": "行为透镜",
+   "owner": "mian",
+   "ch": 7,
+   "comboNote": ""
+  },
+  {
+   "id": "express",
+   "name": "我句式",
+   "owner": "shan",
+   "ch": 7,
+   "comboNote": ""
+  },
+  {
+   "id": "cooldown",
+   "name": "降温阀",
+   "owner": "song",
+   "ch": 8,
+   "comboNote": ""
+  },
+  {
+   "id": "bodymap",
+   "name": "身体地图",
+   "owner": "mian",
+   "ch": 8,
+   "comboNote": ""
+  },
+  {
+   "id": "health",
+   "name": "健康管理",
+   "owner": "mian",
+   "ch": 8,
+   "comboNote": ""
+  },
+  {
+   "id": "team",
+   "name": "组队Buff",
+   "owner": "shan",
+   "ch": 8,
+   "comboNote": ""
+  },
+  {
+   "id": "synthesis",
+   "name": "终极合成",
+   "owner": "jiu",
+   "ch": 9,
+   "comboNote": ""
+  },
+  {
+   "id": "boundary",
+   "name": "边界宣言",
+   "owner": "shan",
+   "ch": 10,
+   "comboNote": ""
+  },
+  {
+   "id": "standby",
+   "name": "旁观出手",
+   "owner": "mian",
+   "ch": 11,
+   "comboNote": ""
+  },
+  {
+   "id": "screendown",
+   "name": "睡前落闸",
+   "owner": "mian",
+   "ch": 12,
+   "comboNote": ""
+  },
+  {
+   "id": "likes",
+   "name": "点赞秤",
+   "owner": "jiu",
+   "ch": 12,
+   "comboNote": ""
+  }
+ ]
+};
+function readBest(key){try{var b=JSON.parse(localStorage.getItem(key));if(b&&b.rating)return b;}catch(e){}return null;}
+function el(tag,cls,text){var d=document.createElement(tag);if(cls)d.className=cls;if(text!=null)d.textContent=text;return d;}
+function chip(owner,txt){var c=el("span","chip "+owner,txt);return c;}
+
+/* 小队 */
+var sq=document.getElementById("squad");
+CHAR_ORDER.forEach(function(k){
+  var d=el("div","sq");
+  d.innerHTML=charSVG(k,54);
+  d.appendChild(el("div","nm",CHARS[k].name));
+  d.appendChild(el("div","rl",CHARS[k].role));
+  sq.appendChild(d);
+});
+
+/* 逐关读最佳记录 */
+var doneName={};
+DATA.chapters.forEach(function(c){c.best=readBest(c.key);doneName[c.idx]=!!c.best;});
+
+/* 关卡卡 */
+var grid=document.getElementById("grid");
+var done=0,sss=0;
+DATA.chapters.forEach(function(c){
+  var a=el("a","lv");a.href=c.file;
+  var top=el("div","lv-top");
+  top.appendChild(el("span","lv-no",c.no));
+  top.appendChild(el("span","lv-emo",c.emoji));
+  top.appendChild(el("span","lv-name",c.name));
+  a.appendChild(top);
+  a.appendChild(el("div","lv-world",c.world));
+  a.appendChild(el("div","lv-boss","Boss · "+c.boss));
+  var cs=el("div","chips");
+  c.skills.forEach(function(s){
+    if(s.name==="微步骤启动"&&c.idx>1)return;/* 每关通用起手，只在第一章列出 */
+    cs.appendChild(chip(s.owner,s.name));
+  });
+  a.appendChild(cs);
+  c.combos.forEach(function(k){
+    var row=el("div","lv-row");
+    row.innerHTML="连招 <b>「"+k.name+"」</b>＝ "+k.members.join(" ＋ ");
+    a.appendChild(row);
+  });
+  var foot=el("div","lv-foot");
+  var b=el("div","lv-best"+(c.best?"":" none"));
+  if(c.best){
+    b.innerHTML="🏆 最佳 <b>"+c.best.rating+"</b> · "+c.best.diff+(c.best.date?" · "+c.best.date:"");
+    done++;if(c.best.rating==="SSS")sss++;
+  }else{b.textContent="尚未通关";}
+  foot.appendChild(b);
+  foot.appendChild(el("span","lv-go","进入 →"));
+  a.appendChild(foot);
+  grid.appendChild(a);
+});
+
+/* 进度汇总 */
+var unlockedN=0;
+DATA.skills.forEach(function(s){if(doneName[s.ch])unlockedN++;});
+var pactN=0;DATA.chapters.forEach(function(c){if(c.best)pactN++;});
+var pg=document.getElementById("progress");
+function pstat(html){var d=el("div","pstat");d.innerHTML=html;pg.appendChild(d);}
+pstat("已通关 <b>"+done+" / 12</b>");
+pstat("SSS 满评 <b>"+sss+" / 12</b>");
+pstat("已背回技能 <b>"+unlockedN+" / "+DATA.skills.length+"</b>");
+pstat("带走的公约 <b>"+pactN+" / 12</b>");
+pstat("队员 <b>4</b> 人 · 连招需跨角色组合");
+
+/* 技能墙：按 owner 分组 */
+var wall=document.getElementById("wall");
+CHAR_ORDER.forEach(function(k){
+  var g=el("div","wgrp");
+  var h=el("div","wh");
+  h.innerHTML=charSVG(k,34)+'<span>'+CHARS[k].name+'</span><span class="role">'+CHARS[k].role+'</span>';
+  g.appendChild(h);
+  var ww=el("div","ww");
+  DATA.skills.filter(function(s){return s.owner===k;}).forEach(function(s){
+    var c=el("div","skchip"+(doneName[s.ch]?"":" lock"));
+    c.innerHTML=s.name+"<em>第"+s.ch+"关</em>";
+    ww.appendChild(c);
+  });
+  g.appendChild(ww);
+  wall.appendChild(g);
+});
+
+/* 公约总表 */
+var pl=document.getElementById("pactlist");
+DATA.chapters.forEach(function(c){
+  var r=el("div","pactrow"+(c.best?"":" off"));
+  r.appendChild(el("div","pn",c.no));
+  r.appendChild(el("div","pt",c.pact));
+  pl.appendChild(r);
+});
+
+document.getElementById("btn-print").onclick=function(){window.print();};
+})();
+</script>
+</body>
+</html>

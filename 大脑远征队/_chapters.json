@@ -1,0 +1,254 @@
+{
+ "Ch1": {
+  "title": "大脑远征队 · 第一章「拖延沼泽」",
+  "sub": "第一章 · 拖延沼泽 —— 四个人，才是完整的外挂",
+  "boss": "拖拖 · 拖延沼泽主",
+  "mantras": [
+   "行动之前，每个人必须说一句话。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "trigger|自动触发|song",
+   "recode|认知重编程|song",
+   "monitor|状态监控|mian",
+   "mark|弱点标记|shan"
+  ],
+  "combos": [
+   "先看再走 = \"micro\",\"monitor\"",
+   "不放弃 = \"recode\",\"micro\",\"monitor\""
+  ]
+ },
+ "Ch2": {
+  "title": "大脑远征队 · 第二章「分心花田」",
+  "sub": "第二章 · 分心花田 —— 一次，只做一件事",
+  "boss": "多多 · 分心花田主",
+  "mantras": [
+   "自己的事情自己拿主意；使唤别人之前，先问一句。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "single|单线程|song",
+   "anchor|环境锚定|jiu",
+   "tomato|番茄钟|mian",
+   "mark|弱点标记|shan",
+   "recode|认知重编程|song",
+   "monitor|状态监控|mian"
+  ],
+  "combos": [
+   "一页一心 = \"single\",\"tomato\"",
+   "不放弃 = \"recode\",\"micro\",\"monitor\""
+  ]
+ },
+ "Ch3": {
+  "title": "大脑远征队 · 第三章「遗忘迷宫」",
+  "sub": "第三章 · 遗忘迷宫 —— 合上书，才真的记住",
+  "boss": "忘忘 · 遗忘迷宫主",
+  "mantras": [
+   "自己的事情自己拿主意；使唤别人之前，先问一句。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "interleave|交错练习|song",
+   "retrieve|主动提取|jiu",
+   "sleep|睡眠存档|mian",
+   "monitor|状态监控|mian",
+   "spacing|间隔重复|shan",
+   "mark|弱点标记|shan"
+  ],
+  "combos": [
+   "闭眼回想 = \"sleep\",\"retrieve\"",
+   "不放弃 = \"micro\",\"sleep\",\"monitor\""
+  ]
+ },
+ "Ch4": {
+  "title": "大脑远征队 · 第四章「理解冰山」",
+  "sub": "第四章 · 理解冰山 —— 「懂了」和「真懂」，隔着一座冰山",
+  "boss": "蒙蒙 · 理解冰山主",
+  "mantras": [
+   "自己的事情自己拿主意；使唤别人之前，先问一句。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "compound|复利叠加|song",
+   "selfexplain|自我解释|jiu",
+   "generate|生成效应|mian",
+   "sleep|睡眠存档|mian",
+   "monitor|状态监控|mian",
+   "feynman|费曼讲解|shan",
+   "mark|弱点标记|shan"
+  ],
+  "combos": [
+   "讲一遍懂一层 = \"feynman\",\"selfexplain\"",
+   "不放弃 = \"micro\",\"sleep\",\"monitor\""
+  ]
+ },
+ "Ch5": {
+  "title": "大脑远征队 · 第五章「否定斗技场」",
+  "sub": "第五章 · 否定斗技场 —— 脑子里的「我不行」，是个会变大变小的小怪",
+  "boss": "否否 · 否定斗技场主",
+  "mantras": [
+   "自己的事情自己拿主意；使唤别人之前，先问一句。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "growth|成长型思维|shan",
+   "selfeff|自我效能|shan",
+   "vicarious|替代经验|shan",
+   "selfexplain|自我解释|jiu",
+   "sleep|睡眠存档|mian",
+   "monitor|状态监控|mian",
+   "mark|弱点标记|shan"
+  ],
+  "combos": [
+   "我还不行 = \"growth\",\"micro\"",
+   "不放弃 = \"micro\",\"sleep\",\"monitor\""
+  ]
+ },
+ "Ch6": {
+  "title": "大脑远征队 · 第六章「语言风暴」",
+  "sub": "第六章 · 语言风暴 —— 脑子里的声音会贴标签，也能改写台词",
+  "boss": "签签 · 贴标签主",
+  "mantras": [
+   "自己的事情自己拿主意；使唤别人之前，先问一句。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "reprog|认知重编程|song",
+   "selfexplain|自我解释|jiu",
+   "reappraise|情绪重评|shan",
+   "monitor|状态监控|mian",
+   "lang|语言力量|shan"
+  ],
+  "combos": [
+   "换个说法 = \"reappraise\",\"selfexplain\"",
+   "先说再做 = \"reprog\",\"monitor\""
+  ]
+ },
+ "Ch7": {
+  "title": "大脑远征队 · 社交特别篇「关系回声」",
+  "sub": "社交特别篇 · 关系回声 —— 朋友的话会回弹，也能重新说一遍",
+  "boss": "一刀 · 一刀切主",
+  "mantras": [
+   "自己的事情自己拿主意；使唤别人之前，先问一句。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "reprog|认知重编程|song",
+   "selfexplain|自我解释|jiu",
+   "lens|行为透镜|mian",
+   "express|我句式|shan"
+  ],
+  "combos": [
+   "说清楚也留得住 = \"express\",\"lens\"",
+   "先看清再开口 = \"selfexplain\",\"reprog\""
+  ]
+ },
+ "Ch8": {
+  "title": "大脑远征队 · 第八章「能量峡谷」",
+  "sub": "第八章 · 能量峡谷 —— 身体先知道，累了就说出口",
+  "boss": "山山 · 压力火山主",
+  "mantras": [
+   "累了就说出来，不丢人；求助不是软弱，是精准调用资源。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "cooldown|降温阀|song",
+   "selfexplain|自我解释|jiu",
+   "bodymap|身体地图|mian",
+   "health|健康管理|mian",
+   "team|组队Buff|shan"
+  ],
+  "combos": [
+   "先降温再一起扛 = \"cooldown\",\"team\"",
+   "先看身体再问一句 = \"bodymap\",\"selfexplain\""
+  ]
+ },
+ "Ch9": {
+  "title": "大脑远征队 · 终章「大脑王座」",
+  "sub": "终章 · 大脑王座 —— 八章所学，合成你的一招",
+  "boss": "浑浑 · 混沌主",
+  "mantras": [
+   "事情再多，也一件一件来；没有万能的一招，只有合适的一招。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "single|单线程|song",
+   "synthesis|终极合成|jiu",
+   "bodymap|身体地图|mian",
+   "reappraise|情绪重评|shan"
+  ],
+  "combos": [
+   "四招合一 = \"synthesis\",\"micro\"",
+   "王座勋章 = \"synthesis\",\"reappraise\""
+  ]
+ },
+ "Ch10": {
+  "title": "大脑远征队 · 边界篇「界线平原」",
+  "sub": "边界篇 · 界线平原 —— 说不行，也给理由",
+  "boss": "逼逼 · 逼你同意主",
+  "mantras": [
+   "我不接受___，因为___——这句话，我可以练。",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "reprog|认知重编程|song",
+   "selfexplain|自我解释|jiu",
+   "boundary|边界宣言|shan",
+   "monitor|状态监控|mian"
+  ],
+  "combos": [
+   "说不行，也给理由 = \"boundary\",\"reprog\"",
+   "先看颜色再开口 = \"boundary\",\"selfexplain\""
+  ]
+ },
+ "Ch11": {
+  "title": "大脑远征队 · 旁观篇「看台边」",
+  "sub": "旁观篇 · 看台边 —— 为别人出手",
+  "boss": "看看 · 看看主",
+  "mantras": [
+   "看见别人被堵住，我可以出手——最小的一步，也算数！",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "selfexplain|自我解释|jiu",
+   "express|我句式|shan",
+   "standby|旁观出手|mian",
+   "monitor|状态监控|mian"
+  ],
+  "combos": [
+   "站过去，就是出手 = \"standby\",\"micro\"",
+   "递一句给他 = \"express\",\"standby\""
+  ]
+ },
+ "Ch12": {
+  "title": "大脑远征队 · 数字篇「屏中潮」",
+  "sub": "数字篇 · 屏中潮 —— 屏幕里的，不全是真的",
+  "boss": "滤滤 · 人设滤镜主",
+  "mantras": [
+   "屏幕里的生活，是修过图的；我的价值，不靠点赞数！",
+   "求助不是软弱，是精准调用资源。"
+  ],
+  "skills": [
+   "micro|微步骤启动|song",
+   "selfexplain|自我解释|jiu",
+   "express|我句式|shan",
+   "screendown|睡前落闸|mian",
+   "likes|点赞秤|jiu"
+  ],
+  "combos": [
+   "先落闸，再称重 = \"screendown\",\"likes\"",
+   "停一秒，再转发 = \"express\",\"micro\""
+  ]
+ }
+}

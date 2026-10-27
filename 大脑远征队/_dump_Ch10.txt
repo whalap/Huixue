@@ -1,0 +1,2244 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大脑远征队 · 边界篇「界线平原」</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#16110f; --bg2:#221813; --panel:#2a1f18; --panel2:#352819; --line:#4a3727;
+  --text:#f7efe6; --dim:#c4ad9a; --gold:#d8b45a; --gold2:#f0d68a;
+  --song:#7bc96f; --jiu:#6fa8dc; --mian:#f2b880; --shan:#c9a2e0; --danger:#e2777a;
+  --skin:#f2c9a0; --ink:#2f2a26;
+}
+html,body{height:100%}
+body{
+  background:radial-gradient(1200px 620px at 50% -120px, #17291d 0%, var(--bg) 62%) fixed;
+  color:var(--text);
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC","Source Han Sans SC",sans-serif;
+  min-height:100vh; display:flex; flex-direction:column; line-height:1.75;
+  overflow-x:hidden;
+}
+.hidden{display:none !important}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* ---------- 顶栏 ---------- */
+#topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:1px solid var(--line);background:rgba(12,19,16,.85);position:sticky;top:0;z-index:20;backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .logo{font-size:26px}
+.brand .t1{font-weight:800;font-size:17px;letter-spacing:1px}
+.brand .t2{font-size:10px;color:var(--dim);letter-spacing:3px}
+.tb-right{display:flex;align-items:center;gap:8px}
+.badge{font-size:12px;color:var(--gold2);border:1px solid rgba(216,180,90,.4);background:rgba(216,180,90,.08);padding:3px 10px;border-radius:999px;white-space:nowrap}
+.tbtn{font-size:13px;color:var(--dim);border:1px solid var(--line);border-radius:8px;padding:4px 10px;background:var(--panel)}
+.tbtn:hover{color:var(--text);border-color:var(--gold)}
+
+/* ---------- HUD 小队 + 地图 ---------- */
+#hud{border-bottom:1px solid var(--line);background:rgba(16,26,20,.6)}
+.hud-row{display:flex;align-items:center;gap:14px;padding:8px 18px;flex-wrap:wrap}
+#squad{display:flex;gap:8px;flex-wrap:wrap}
+.pchip{display:flex;align-items:center;gap:6px;font-size:12.5px;padding:3px 10px 3px 4px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--dim);transition:.2s}
+.pchip .ava{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--panel2);overflow:hidden}
+.pchip .ava svg{display:block}
+.pchip.me{color:var(--text);border-color:var(--gold)}
+.pchip .you{font-size:10px;color:var(--gold2);border:1px solid rgba(216,180,90,.5);border-radius:4px;padding:0 3px;margin-left:2px}
+.trust-wrap{display:flex;align-items:center;gap:8px;margin-left:auto;position:relative}
+.trust-label{font-size:12px;color:var(--gold2);white-space:nowrap}
+.trust-bar{width:150px;height:10px;border-radius:999px;background:#0a120d;border:1px solid var(--line);overflow:hidden}
+#trustFill{height:100%;width:0%;background:linear-gradient(90deg,#8a6d2f,var(--gold2));transition:width .5s ease}
+.trust-num{font-size:12px;color:var(--dim);min-width:20px}
+.float-trust{position:absolute;right:34px;top:-14px;font-size:12px;font-weight:700;color:var(--gold2);animation:floatup 1.3s ease forwards;pointer-events:none;z-index:5}
+@keyframes floatup{0%{opacity:0;transform:translateY(6px)}20%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
+
+#mapStrip{display:flex;align-items:center;gap:0;padding:2px 18px 10px;flex-wrap:wrap}
+.map-node{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--dim);transition:.3s}
+.map-node .mn{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;background:var(--panel2);border:1px solid var(--line);transition:.3s}
+.map-node.passed{color:var(--gold2)}
+.map-node.passed .mn{border-color:var(--gold);background:rgba(216,180,90,.12)}
+.map-node.current{color:var(--gold2);font-weight:700}
+.map-node.current .mn{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(216,180,90,.18);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(216,180,90,.18)}50%{box-shadow:0 0 0 6px rgba(216,180,90,.05)}}
+.map-link{width:26px;height:1px;border-top:2px dashed var(--line);margin:0 6px}
+
+/* ---------- 屏幕 ---------- */
+main{flex:1;width:100%;max-width:880px;margin:0 auto;padding:22px 16px 60px}
+.screen{display:none;animation:fadein .3s ease}
+.screen.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- 标题页 ---------- */
+.hero{text-align:center;padding:30px 0 8px}
+.hero-squad{display:flex;justify-content:center;gap:6px;align-items:flex-end;margin-bottom:10px}
+.hero-squad .hs{filter:drop-shadow(0 10px 14px rgba(0,0,0,.5))}
+.hero-squad .hs:nth-child(1){animation:bob 2.8s ease-in-out infinite}
+.hero-squad .hs:nth-child(2){animation:bob 3s ease-in-out infinite .3s}
+.hero-squad .hs:nth-child(3){animation:bob 2.7s ease-in-out infinite .5s}
+.hero-squad .hs:nth-child(4){animation:bob 3.1s ease-in-out infinite .15s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero h1{font-size:30px;letter-spacing:4px;margin-bottom:6px}
+.hero .sub{color:var(--dim);font-size:14px;letter-spacing:1px}
+.hero .tag{display:inline-block;margin-top:14px;font-size:12px;color:var(--gold2);border:1px solid rgba(216,180,90,.35);border-radius:999px;padding:3px 14px;background:rgba(216,180,90,.06)}
+.menu{max-width:340px;margin:26px auto 0;display:flex;flex-direction:column;gap:12px}
+#bestLine{text-align:center;margin-top:18px;font-size:12.5px;color:var(--dim);min-height:18px}
+#bestLine b{color:var(--gold2)}
+
+/* ---------- 通用按钮 ---------- */
+.btn{padding:12px 16px;border-radius:12px;font-size:15px;border:1px solid var(--line);background:var(--panel2);color:var(--text);transition:.15s}
+.btn:hover{transform:translateY(-1px);border-color:var(--gold)}
+.btn.primary{background:linear-gradient(180deg,#e8c876,#c9a24a);color:#241a05;font-weight:800;border:none}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;color:var(--dim)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* ---------- 难度 / 角色 ---------- */
+.page-title{font-size:20px;font-weight:800;margin-bottom:4px;text-align:center}
+.page-sub{font-size:13px;color:var(--dim);text-align:center;margin-bottom:22px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:left;transition:.15s;width:100%}
+.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card .ct{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px}
+.card .cd{font-size:12.5px;color:var(--dim);margin-top:6px}
+.lvl-dots{display:flex;gap:5px;margin-bottom:10px}
+.lvl-dots i{width:12px;height:12px;border-radius:50%;border:1px solid var(--gold)}
+.lvl-dots i.on{background:var(--gold2);box-shadow:0 0 8px rgba(240,214,138,.4)}
+.char-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+.char-card .ava-big{width:96px;height:96px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:8px}
+.char-card .ct{justify-content:center}
+.char-card .role{font-size:11.5px;color:var(--dim);letter-spacing:1px;margin-top:2px}
+.char-card .sk{display:flex;gap:10px;justify-content:center;margin-top:10px;opacity:.85}
+.char-card .voice{font-size:12px;color:var(--danger);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;width:100%}
+
+/* ================= 漫画分镜 ================= */
+#gameBody{cursor:pointer;user-select:none}
+.comic-frame{position:relative;height:400px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#0e1a12;box-shadow:inset 0 0 60px rgba(0,0,0,.5)}
+@media (max-width:640px){.comic-frame{height:310px}}
+.scene-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fogA{animation:fogdrift 11s ease-in-out infinite}
+.fogB{animation:fogdrift 15s ease-in-out infinite reverse}
+@keyframes fogdrift{0%,100%{transform:translateX(-16px)}50%{transform:translateX(20px)}}
+.ff{animation:ff 2.8s ease-in-out infinite}
+.ff.f2{animation-delay:.9s}.ff.f3{animation-delay:1.7s}.ff.f4{animation-delay:.4s}.ff.f5{animation-delay:2.2s}
+@keyframes ff{0%,100%{opacity:.12}50%{opacity:.8}}
+.stone-hl{animation:hlglow 1.3s ease-in-out infinite}
+@keyframes hlglow{0%,100%{opacity:.55}50%{opacity:1}}
+.flower{animation:fadein .6s backwards}
+.stage-fx{position:absolute;inset:0;pointer-events:none;z-index:6}
+.spark{position:absolute;border-radius:50%;filter:blur(1px)}
+.bubblep{position:absolute;border-radius:50%;background:rgba(140,190,150,.5);pointer-events:none}
+.wm-totem{position:absolute;right:12px;bottom:10px;opacity:.09;pointer-events:none}
+
+.pollen{animation:pollen 5.5s ease-in-out infinite}
+@keyframes pollen{0%,100%{transform:translate(0,0);opacity:.2}50%{transform:translate(12px,-16px);opacity:.85}}
+.petalp{position:absolute;border-radius:50% 0 50% 50%;pointer-events:none;opacity:.9}
+.blockp{position:absolute;border-radius:3px;pointer-events:none;opacity:.9}
+.icep{position:absolute;border-radius:2px;pointer-events:none;opacity:.92;box-shadow:0 0 6px rgba(160,215,240,.5)}
+.ember{position:absolute;border-radius:50% 50% 50% 0;pointer-events:none;opacity:.9;box-shadow:0 0 7px rgba(240,178,74,.6);transform:rotate(45deg)}
+/* 演员站位 *//* 演员站位 */
+.actor-row{position:absolute;left:2%;right:27%;bottom:3%;display:flex;justify-content:space-around;align-items:flex-end;pointer-events:none}
+.actor{display:flex;flex-direction:column;align-items:center;gap:2px;opacity:.45;transition:.28s cubic-bezier(.2,.8,.3,1.2);transform:translateY(8px) scale(.94)}
+.actor .ava-svg{width:78px;height:78px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.55))}
+.actor .name-tag{font-size:11.5px;color:var(--dim);background:rgba(12,19,16,.85);border:1px solid var(--line);border-radius:999px;padding:1px 10px;transition:.25s;white-space:nowrap}
+.actor.active{opacity:1;transform:translateY(-10px) scale(1.12)}
+.actor.active .ava-svg{filter:drop-shadow(0 0 16px var(--gold2)) drop-shadow(0 8px 12px rgba(0,0,0,.55));animation:talk .6s ease}
+@keyframes talk{40%{transform:translateY(-7px)}}
+.actor.active .name-tag{color:var(--gold2);border-color:var(--gold)}
+.actor.active::after{content:"";position:absolute;left:50%;top:-34px;transform:translateX(-50%);border:7px solid transparent;border-bottom-color:var(--gold2);animation:tailin .3s ease}
+@keyframes tailin{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
+.stage-boss{position:absolute;right:7%;top:15%;width:150px;filter:drop-shadow(0 14px 18px rgba(0,0,0,.6));animation:bob 3.4s ease-in-out infinite}
+.stage-caption{position:absolute;left:14px;right:14px;top:12px;background:rgba(8,14,10,.82);border:1px solid rgba(216,180,90,.25);border-radius:10px;padding:8px 14px;font-size:13.5px;color:var(--dim);font-style:italic;text-align:center;backdrop-filter:blur(3px);min-height:38px;line-height:1.6}
+.caption{position:absolute;left:14px;right:14px;bottom:10px;text-align:center;font-size:13px;color:#7fa08a;font-style:italic;min-height:22px}
+
+/* 对话框 */
+.bubble-wrap{position:relative;margin:12px 14px 4px;background:linear-gradient(180deg,#1b2e22,#152019);border:1px solid var(--line);border-radius:14px;padding:12px 16px;min-height:84px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.bubble-wrap .speaker-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.speaker-chip{font-size:12px;font-weight:700;color:#0c1310;background:var(--dim);border-radius:6px;padding:1px 10px}
+.bubble-text{font-size:16px;line-height:1.8;min-height:46px}
+.dots{display:flex;gap:5px;justify-content:center;padding:4px 0 12px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:.2s}
+.dots i.cur{background:var(--gold2);transform:scale(1.3)}
+#nextHint{text-align:right;font-size:12px;color:var(--gold2);padding:2px 8px 0;animation:blink 1.4s infinite}
+#nextHint.choose{text-align:center;font-size:13.5px;font-weight:700;letter-spacing:2px;animation:hintdrop 1.1s ease-in-out infinite}
+@keyframes hintdrop{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(6px);opacity:1}}
+@keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* 选项 */
+.choice-tray{padding:4px 2px 6px}
+.choice-title{font-size:13px;color:var(--gold2);letter-spacing:2px;margin:4px 0 10px;animation:titlepulse 1.6s ease-in-out infinite}
+@keyframes titlepulse{0%,100%{opacity:.75;text-shadow:none}50%{opacity:1;text-shadow:0 0 14px rgba(216,180,90,.6)}}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:13px 15px;margin-bottom:10px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),var(--panel));font-size:14.5px;transition:.15s;line-height:1.6;animation:optin .3s backwards}
+.opt:nth-child(2){animation-delay:.05s}.opt:nth-child(3){animation-delay:.1s}.opt:nth-child(4){animation-delay:.15s}
+@keyframes optin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.opt:hover{border-color:var(--gold);transform:translateX(4px);box-shadow:0 4px 18px rgba(216,180,90,.12)}
+.opt .ol{flex:none;width:26px;height:26px;border-radius:8px;background:var(--bg2);border:1px solid var(--gold);color:var(--gold2);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+
+/* ================= 战斗 ================= */
+.battleground{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);min-height:360px;
+  background:linear-gradient(180deg,#141a16 0%,#0d1710 60%,#0a120c 100%)}
+.battleground.flash{animation:flash .35s ease}
+@keyframes flash{0%{filter:brightness(1)}30%{filter:brightness(1.5) saturate(1.3)}100%{filter:brightness(1)}}
+
+.boss-zone{position:absolute;right:5%;top:7%;display:flex;flex-direction:column;align-items:center;gap:6px;z-index:3}
+#bossWrap{width:150px;height:140px;position:relative;filter:drop-shadow(0 12px 20px rgba(0,0,0,.6));animation:bob 3.2s ease-in-out infinite;cursor:default}
+#bossWrap.shake{animation:shake .45s ease}
+@keyframes shake{0%,100%{transform:translate(0,0) rotate(0)}20%{transform:translate(-9px,3px) rotate(-7deg)}40%{transform:translate(8px,-4px) rotate(6deg)}60%{transform:translate(-6px,2px) rotate(-4deg)}80%{transform:translate(4px,-2px) rotate(3deg)}}
+#bossWrap.taunt{animation:taunt .5s ease}
+@keyframes taunt{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
+#bossStamps{position:absolute;inset:0;pointer-events:none}
+#bossStamps .st{position:absolute;width:26px;height:26px;opacity:0;animation:stampin .5s forwards}
+@keyframes stampin{to{opacity:.75}}
+.boss-name{font-weight:800;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:2px 12px;white-space:nowrap}
+.boss-hpbox{width:150px}
+.bar-label{font-size:11px;color:var(--dim);display:flex;justify-content:space-between;margin-bottom:3px}
+.hp-bar{height:10px;border-radius:999px;background:#0a120d;border:1px solid var(--line);overflow:hidden}
+#bossHpFill{height:100%;width:100%;background:linear-gradient(90deg,#8a3b3e,#e2777a);transition:width .6s ease}
+#bossBubble{position:absolute;right:3%;top:33%;max-width:230px;background:rgba(20,12,12,.9);border:1px solid rgba(226,119,122,.4);border-radius:12px;padding:8px 12px;font-size:13px;color:#f0b6b7;line-height:1.65;z-index:3}
+
+.squad-zone{position:absolute;left:4%;bottom:8%;display:flex;gap:10px;z-index:3}
+.sq{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.85;transition:.25s}
+.sq .sq-ava{width:50px;height:50px;border-radius:50%;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(circle at 35% 30%,var(--panel2),#0d1710);border:2px solid var(--line)}
+.sq .sq-name{font-size:10.5px;color:var(--dim)}
+.sq.owner-on .sq-ava{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(216,180,90,.18);animation:avapop .35s ease}
+.sq.owner-on .sq-name{color:var(--gold2)}
+@keyframes avapop{0%{transform:scale(.9)}60%{transform:scale(1.07)}100%{transform:scale(1)}}
+
+#fxLayer{position:absolute;inset:0;pointer-events:none;z-index:5}
+.dmg-num{position:absolute;font-size:26px;font-weight:900;color:#f0b6b7;text-shadow:0 2px 8px rgba(0,0,0,.6);pointer-events:none}
+.dmg-num.gold{color:var(--gold2);font-size:32px}
+.dmg-num.miss{color:#7fa08a;font-size:20px}
+.combo-banner{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%) rotate(-4deg);background:linear-gradient(90deg,#3a2f10,#171204);border:2px solid var(--gold2);color:var(--gold2);font-weight:900;font-size:20px;letter-spacing:2px;border-radius:12px;padding:8px 26px;z-index:6;white-space:nowrap;box-shadow:0 0 40px rgba(216,180,90,.35);animation:bannerin 1.6s ease forwards;display:flex;align-items:center;gap:10px}
+@keyframes bannerin{0%{opacity:0;transform:translate(-50%,-50%) rotate(-4deg) scale(.4)}15%{opacity:1;transform:translate(-50%,-50%) rotate(-4deg) scale(1.08)}25%{transform:translate(-50%,-50%) rotate(-4deg) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) rotate(-4deg) scale(1.05)}}
+
+/* ---------- 战斗一屏布局：画面 + 卡牌同屏，无需滚动 ---------- */
+main:has(> #scr-battle.active){padding-bottom:10px}
+#scr-battle.active{display:flex;flex-direction:column;min-height:520px}
+#scr-battle .battleground{flex:1;min-height:270px}
+#scr-battle .battle-side{margin-top:10px;flex:none}
+.battleground.zoom{animation:bzoom .45s ease}
+@keyframes bzoom{0%{transform:scale(1)}35%{transform:scale(1.025)}100%{transform:scale(1)}}
+/* 画中浮层：回合横幅 / 眠眠小抄 / 最新出招记录 */
+.round-banner{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:6;font-size:13px;font-weight:700;color:var(--gold2);background:rgba(10,16,12,.85);border:1px solid rgba(216,180,90,.45);border-radius:999px;padding:5px 18px;letter-spacing:1px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.ease-toast{position:absolute;top:46px;left:50%;transform:translateX(-50%);z-index:6;width:min(92%,540px);font-size:12px;color:#f2b880;background:rgba(22,15,8,.88);border:1px dashed rgba(242,184,128,.45);border-radius:10px;padding:7px 12px;text-align:center;line-height:1.6}
+.battle-feed{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);z-index:6;width:min(94%,580px);display:flex;flex-direction:column;gap:5px;pointer-events:none}
+.bf-line{font-size:13px;line-height:1.6;padding:6px 14px;border-radius:10px;background:rgba(10,16,12,.88);border:1px solid var(--line);color:var(--mian);animation:bfin .35s ease;text-align:center;transition:opacity .6s}
+.bf-line.hit{color:var(--gold2);border-color:rgba(216,180,90,.5);font-weight:700}
+.bf-line.act{color:#9fc7a8;border-color:rgba(159,199,168,.35)}
+.bf-line.fade{opacity:0}
+@keyframes bfin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.battle-log{background:#0e1712;border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-height:110px;max-height:180px;overflow-y:auto;font-size:13.5px;margin-top:14px}
+.battle-side{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.hand{display:flex;flex-wrap:wrap;gap:10px;min-height:60px;align-items:stretch}
+.hand .trust-label{font-size:12px;color:var(--gold2);align-self:center}
+.chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;width:112px;padding:10px 8px 8px;border-radius:12px;border:1px solid var(--line);border-top:3px solid var(--dim);background:linear-gradient(180deg,var(--panel2),var(--panel));font-size:13px;transition:.15s;text-align:center}
+.chip .cem{width:48px;height:48px;display:flex;align-items:center;justify-content:center}
+.chip .own{position:absolute;top:-9px;left:8px;font-size:10.5px;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--panel)}
+.chip:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.chip.on{border-color:var(--gold2);box-shadow:0 0 0 2px var(--gold2) inset,0 8px 20px rgba(216,180,90,.2);transform:translateY(-5px)}
+.chip.on .cem{filter:drop-shadow(0 0 10px var(--gold2))}
+.chip.on::after{content:"已选";position:absolute;top:-10px;right:6px;font-size:10px;background:var(--gold2);color:#241a05;border-radius:4px;padding:0 5px;font-weight:700}
+#btn-confirm{align-self:flex-start}
+.ease{margin-top:10px;font-size:12px;color:var(--mian);background:rgba(242,184,128,.08);border:1px dashed rgba(242,184,128,.4);border-radius:10px;padding:8px 10px;text-align:left;line-height:1.6}
+
+/* ================= 技能卡（图腾翻转） ================= */
+.modal{position:fixed;inset:0;background:rgba(5,9,7,.82);display:flex;align-items:center;justify-content:center;z-index:50;padding:18px;animation:fadein .2s ease}
+.modal-box{background:var(--panel);border:1px solid var(--gold);border-radius:18px;max-width:520px;width:100%;padding:24px;max-height:86vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.flip-card{perspective:1200px;margin:6px 0 4px}
+.flip-inner{position:relative;display:grid;transition:transform .6s cubic-bezier(.2,.7,.3,1.2);transform-style:preserve-3d;cursor:pointer}
+.flip-inner.flipped{transform:rotateY(180deg)}
+.face{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.cardface{background:linear-gradient(160deg,#22342a,#101c14);border:1px solid rgba(216,180,90,.5);border-radius:16px;padding:22px 20px;min-height:240px;display:flex;flex-direction:column;justify-content:center}
+.totem-big{width:110px;height:110px;margin:0 auto;display:flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 40% 30%,rgba(216,180,90,.18),rgba(216,180,90,.04) 65%);border:1px solid rgba(216,180,90,.35);animation:totemin .6s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes totemin{0%{transform:scale(.3) rotate(-25deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+.cardface .cname{font-size:20px;font-weight:900;text-align:center;margin-top:10px}
+.mantra{background:rgba(216,180,90,.08);border-left:3px solid var(--gold);border-radius:8px;padding:10px 12px;font-size:14px;margin:12px 0 0;font-weight:600;color:var(--gold2);line-height:1.7}
+.flip-tip{text-align:center;font-size:11.5px;color:var(--dim);margin-top:10px}
+.skill-name{font-size:19px;font-weight:900;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.own-tag{font-size:11px;font-weight:700;color:#0c1310;border-radius:6px;padding:1px 8px}
+.new-tag{font-size:10.5px;color:var(--dim);border:1px solid var(--line);border-radius:5px;padding:1px 6px;letter-spacing:1px}
+.note-sec{margin-top:10px;font-size:13.5px;line-height:1.8}
+.note-sec .lab{font-size:11.5px;color:var(--gold);letter-spacing:2px;margin-bottom:2px}
+.locked-note{font-size:12px;color:var(--dim);margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;line-height:1.7}
+.lead-note{font-size:12px;color:var(--dim);margin-top:8px;line-height:1.7}
+.combo-hero{display:flex;justify-content:center;margin:10px 0}
+
+/* ---------- 借招弹窗 ---------- */
+.borrow-ava{width:84px;height:84px;border-radius:50%;display:flex;align-items:flex-end;justify-content:center;margin:0 auto 8px;background:radial-gradient(circle at 35% 30%,var(--panel2),#0d1710);border:2px solid var(--gold);animation:totemin .5s cubic-bezier(.2,.9,.3,1.3)}
+
+/* ================= 结算 ================= */
+.end-card{position:relative;overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 20px;text-align:center}
+.confetti{position:absolute;top:-14px;width:8px;height:12px;border-radius:2px;z-index:0;animation:fall linear forwards}
+@keyframes fall{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(560px) rotate(540deg);opacity:0}}
+.end-card>*{position:relative;z-index:1}
+.rating-wrap{position:relative;display:inline-block;margin:6px 0 4px}
+.rating-big{position:relative;display:inline-flex;align-items:center;justify-content:center;width:92px;height:92px;border-radius:24px;font-size:34px;font-weight:900;background:var(--panel2);border:2px solid var(--line);color:var(--dim)}
+.rating-wrap.glow::before{content:"";position:absolute;inset:-26px;border-radius:50%;background:conic-gradient(from 0deg,rgba(216,180,90,.0),rgba(216,180,90,.5),rgba(216,180,90,.0));animation:spin 5s linear infinite;z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rating-big.SSS{background:linear-gradient(160deg,#3a2f10,#171204);border-color:var(--gold2);color:var(--gold2);text-shadow:0 0 24px rgba(240,214,138,.5)}
+.rating-big.S{border-color:var(--gold);color:var(--gold2)}
+.rating-big.A{border-color:#5f9e6e;color:#8fd0a0}
+/* 两栏仪表盘：左评级+统计，右图腾墙+观察，一屏看全 */
+.end-main{display:grid;grid-template-columns:1.05fr .95fr;gap:10px 22px;align-items:start;text-align:left;margin-top:2px}
+.end-main .rating-wrap{margin-top:0}
+.end-line{font-size:13px;color:var(--mian);margin:6px 0 2px;text-align:center}
+.end-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 0}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:8px 4px}
+.stat .v{font-size:14px;font-weight:800;color:var(--gold2)}
+.stat .k{font-size:11px;color:var(--dim);margin-top:2px}
+.totem-wall{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;margin:0}
+.tw{display:flex;flex-direction:column;align-items:center;gap:4px;width:80px;padding:8px 4px;border-radius:12px;background:var(--panel2);border:1px solid var(--line);font-size:11px;color:var(--dim);animation:optin .5s backwards}
+.tw .twi{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(216,180,90,.4);background:rgba(216,180,90,.06)}
+.tw.gold .twi{border-color:var(--gold2);box-shadow:0 0 14px rgba(216,180,90,.25)}
+.tw:nth-child(2){animation-delay:.08s}.tw:nth-child(3){animation-delay:.16s}.tw:nth-child(4){animation-delay:.24s}.tw:nth-child(5){animation-delay:.32s}
+.observe{background:rgba(242,184,128,.07);border:1px dashed rgba(242,184,128,.35);border-radius:12px;padding:9px 12px;font-size:12.5px;color:var(--mian);text-align:left;margin:10px 0 0;line-height:1.6}
+.footer-note{font-size:12px;color:var(--dim);margin-top:8px;text-align:left}
+.secret{margin-top:10px;font-size:12.5px;color:var(--shan);border:1px dashed rgba(201,162,224,.4);border-radius:12px;padding:8px 12px;background:rgba(201,162,224,.06)}
+
+/* ---------- 图鉴 / 帮助 ---------- */
+.codex-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.codex-grid{grid-template-columns:1fr}}
+.cdx-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.cdx-card.locked{opacity:.45}
+.cdx-card .cdx-t{width:64px;height:64px;margin:0 auto 8px}
+.cdx-card .cdx-name{font-size:15px;font-weight:800}
+.codex-skill-row{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:6px}
+.help-list{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.help-item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:13.5px;display:flex;align-items:center;gap:12px}
+.help-item .hi{flex:none;width:30px;height:30px;display:flex;align-items:center;justify-content:center}
+.help-item b{color:var(--gold2);margin-right:2px}
+
+/* ---------- 火焰 / 营地 / 战斗虚弱态 ---------- */
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flame .55s ease-in-out infinite alternate}
+.flame.f2{animation-duration:.42s;animation-delay:.1s}
+@keyframes flame{from{transform:scale(1)}to{transform:scaleY(1.22) scaleX(.9) translateY(-2px)}}
+.flicker{animation:flicker 1.8s ease-in-out infinite}
+@keyframes flicker{0%,100%{opacity:.75}50%{opacity:1}}
+.comic-frame.fire-up .flame{animation-duration:.18s}
+.hero-camp{position:relative;height:96px;border-radius:16px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.end-hero{position:relative;height:60px;border-radius:14px;overflow:hidden;border:1px solid var(--line);margin-bottom:10px}
+#bossWrap.weak svg{filter:saturate(.5) brightness(.82)}
+#bossWrap.weak .st{opacity:.9}
+
+/* ---------- toast ---------- */
+#toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);background:var(--panel2);border:1px solid var(--gold);color:var(--gold2);font-size:13.5px;border-radius:999px;padding:9px 20px;z-index:99;animation:fadein .2s ease;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.center-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+
+.footer-note{text-align:center;font-size:11px;color:#5c7263;margin-top:34px;line-height:1.8}
+/* ---------- 手机端结算压缩（置于 .footer-note 之后才能覆盖基础规则） ---------- */
+@media (max-width:720px){
+  .end-main{grid-template-columns:1fr;gap:6px}
+  .end-card{padding:10px 12px}
+  .end-hero{height:34px;margin-bottom:7px}
+  .rating-wrap{margin:2px 0 2px}
+  .rating-big{width:68px;height:68px;font-size:25px;border-radius:18px}
+  .end-line{font-size:12px;margin:3px 0 1px}
+  .end-stats{grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0 0}
+  .stat{padding:6px 3px;border-radius:10px}
+  .stat .v{font-size:13px}
+  .stat .k{font-size:10px}
+  .totem-wall{gap:6px}
+  .tw{width:62px;padding:5px 3px;gap:2px;font-size:10.5px}
+  .tw .twi{width:34px;height:34px}
+  .observe{font-size:11.5px;padding:7px 9px;margin:6px 0 0;line-height:1.5}
+  .footer-note{margin-top:5px;font-size:10.5px}
+  .secret{margin-top:6px;font-size:11.5px;padding:6px 10px}
+  .center-row{margin-top:8px;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<header id="topbar">
+  <div class="brand">
+    <span class="logo">🧠</span>
+    <div><div class="t1">大脑远征队</div><div class="t2">BRAIN EXPEDITION</div></div>
+  </div>
+  <div class="tb-right">
+    <span id="badge-diff" class="badge">难度：入门</span>
+    <button id="btn-help" class="tbtn">❓ 帮助</button>
+    <button id="btn-pause" class="tbtn hidden">⏸ 暂停</button>
+  </div>
+</header>
+
+<div id="hud" class="hidden">
+  <div class="hud-row">
+    <div id="squad"><div class="pchip me" style="border-color: var(--gold);"><span class="ava"><svg viewBox="0 0 64 64" width="22" height="22" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M27 50 L21 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"></path><path d="M35 50 L41 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"></path><circle cx="20" cy="59.5" r="3" fill="#22302a"></circle><circle cx="42" cy="59.5" r="3" fill="#22302a"></circle><rect x="21" y="33" width="22" height="19" rx="7" fill="#7bc96f"></rect><path d="M43 39 L52 34" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="53" cy="33.5" r="3.2" fill="#f2c9a0"></circle><path d="M21 39 L12 45" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="11" cy="45.5" r="3.2" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 21 a12.5 12.5 0 0 1 25 0 l-3.5 -1.5 a9.5 9.5 0 0 0 -18 0 z" fill="#6b4f35"></path><path d="M31 7 l-3.5 5 M33 7.5 l3 4.5" stroke="#6b4f35" stroke-width="2.4" stroke-linecap="round"></path><path d="M19.5 17.5 q12.5 -7 25 0 l0 3.6 q-12.5 -6.4 -25 0 z" fill="#e2777a"></path><path d="M43 19 l9 -3.5 -2 6.5 z" fill="#e2777a"></path><circle cx="27" cy="24" r="1.9" fill="#2f2a26"></circle><circle cx="37" cy="24" r="1.9" fill="#2f2a26"></circle><path d="M28 29.5 q4 3.6 8 0" stroke="#2f2a26" stroke-width="2" fill="none" stroke-linecap="round"></path></svg></span><span>松松</span><span class="you">你</span></div><div class="pchip" style="border-color: var(--line);"><span class="ava"><svg viewBox="0 0 64 64" width="22" height="22" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M28 50 v9 M36 50 v9" stroke="#31413a" stroke-width="6" stroke-linecap="round"></path><circle cx="28" cy="59" r="3" fill="#22302a"></circle><circle cx="36" cy="59" r="3" fill="#22302a"></circle><rect x="22" y="33" width="20" height="19" rx="6" fill="#6fa8dc"></rect><path d="M27 33 v19 M37 33 v19" stroke="rgba(255,255,255,.25)" stroke-width="1.6"></path><path d="M22 40 L15 44" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="14" cy="44.5" r="3.2" fill="#f2c9a0"></circle><rect x="6" y="38" width="10" height="8" rx="1.5" fill="#d8b45a" transform="rotate(-12 11 42)"></rect><path d="M11 38.5 v7" stroke="#a8863c" stroke-width="1.2"></path><path d="M42 40 L47 47" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="47.5" cy="48" r="3.2" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 v-3 a12.5 12.5 0 0 0 -25 0 z" fill="#33404f"></path><circle cx="27" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"></circle><circle cx="37" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"></circle><path d="M31.6 24 h0.8 M22.4 23.5 l-3 -1.5 M41.6 23.5 l3 -1.5" stroke="#2b2f36" stroke-width="2" stroke-linecap="round"></path><circle cx="27" cy="24" r="1.5" fill="#2f2a26"></circle><circle cx="37" cy="24" r="1.5" fill="#2f2a26"></circle><path d="M29 30.5 h6" stroke="#2f2a26" stroke-width="2" stroke-linecap="round"></path></svg></span><span>究究</span></div><div class="pchip" style="border-color: var(--line);"><span class="ava"><svg viewBox="0 0 64 64" width="22" height="22" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M23 46 l-3 13 h22 l-3 -13 z" fill="#f2b880"></path><path d="M32 46 v13" stroke="rgba(255,255,255,.25)" stroke-width="1.6"></path><rect x="23" y="33" width="18" height="14" rx="6" fill="#f2b880"></rect><path d="M26 33 L38 47 M38 33 L26 47" stroke="rgba(255,255,255,.3)" stroke-width="1.6"></path><path d="M41 40 L48 43" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="49" cy="43.5" r="3.2" fill="#f2c9a0"></circle><rect x="46" y="34" width="9" height="12" rx="2.5" fill="#cfd8c5"></rect><rect x="46" y="34" width="9" height="4" rx="2" fill="#9aa88f"></rect><path d="M23 40 L18 46" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="17.5" cy="46.5" r="3.2" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 z" fill="#8a5a30"></path><circle cx="17" cy="21" r="5.5" fill="#8a5a30"></circle><circle cx="47" cy="21" r="5.5" fill="#8a5a30"></circle><path d="M24 24.5 q3 2.8 6 0 M34 24.5 q3 2.8 6 0" stroke="#2f2a26" stroke-width="2" fill="none" stroke-linecap="round"></path><path d="M28.5 30 q3.5 3.2 7 0" stroke="#2f2a26" stroke-width="2" fill="none" stroke-linecap="round"></path><ellipse cx="23" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"></ellipse><ellipse cx="41" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"></ellipse></svg></span><span>眠眠</span></div><div class="pchip" style="border-color: var(--line);"><span class="ava"><svg viewBox="0 0 64 64" width="22" height="22" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M29 50 v9 M35 50 v9" stroke="#31413a" stroke-width="5.5" stroke-linecap="round"></path><circle cx="29" cy="59" r="2.8" fill="#22302a"></circle><circle cx="35" cy="59" r="2.8" fill="#22302a"></circle><rect x="23" y="33" width="18" height="18" rx="7" fill="#c9a2e0"></rect><path d="M22 31 q10 6 20 0 l0 5 q-10 -6 -20 0 z" fill="#c9a2e0"></path><path d="M37 34 l11 9 -4.5 2.5 -9 -8 z" fill="#c9a2e0"></path><circle cx="30" cy="47" r="3" fill="#f2c9a0"></circle><circle cx="35.5" cy="47.5" r="3" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 l0 -2 q-12.5 -10 -25 0 z" fill="#3c3a52"></path><path d="M40 6 l1.7 3.6 4 .5 -2.9 2.8 .7 4 -3.5 -1.9 -3.5 1.9 .7 -4 -2.9 -2.8 4 -.5 z" fill="#f0d68a" transform="translate(-1,-1) scale(.92)"></path><path d="M34.5 26 q2.4 2 4.6 0" stroke="#2f2a26" stroke-width="1.8" fill="none" stroke-linecap="round"></path><path d="M27.5 30.5 q4.5 2.8 9 0" stroke="#2f2a26" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg></span><span>闪闪</span></div></div>
+    <div class="trust-wrap">
+      <span class="trust-label">🤝 组队值</span>
+      <div class="trust-bar"><div id="trustFill" style="width: 23%;"></div></div>
+      <span id="trustNum" class="trust-num">8</span>
+    </div>
+  </div>
+  <div id="mapStrip"></div>
+</div>
+
+<main>
+
+<!-- ============ 标题 ============ -->
+<section id="scr-title" class="screen active">
+  <div class="hero">
+    <div class="hero-camp" id="heroCamp"><svg class="scene-svg" viewBox="0 0 880 130" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="cshero" cx=".5" cy=".95" r=".65"><stop offset="0" stop-color="rgba(240,180,90,.25)"></stop><stop offset="1" stop-color="rgba(240,180,90,0)"></stop></radialGradient></defs><rect width="880" height="130" fill="#141020"></rect><circle cx="790" cy="24" r="15" fill="#dfe8cf" opacity=".85"></circle><circle cx="784" cy="20" r="2.4" fill="rgba(120,140,110,.35)"></circle><g fill="#dfe8cf" opacity=".7"><circle cx="120" cy="30" r="1.4"></circle><circle cx="260" cy="52" r="1.2"></circle><circle cx="420" cy="34" r="1.3"></circle><circle cx="560" cy="56" r="1.1"></circle><circle cx="690" cy="36" r="1.3"></circle></g><circle cx="440" cy="112" r="112" fill="url(#cshero)"></circle><path d="M0 106 L140 96 L300 104 L460 96 L620 106 L780 98 L880 104 L880 130 L0 130 Z" fill="#1c1630"></path><rect x="428" y="76" width="24" height="34" rx="3" fill="#241b36" stroke="#f0b24a" stroke-width="1.8"></rect><rect x="432" y="78" width="16" height="9" fill="#e05a4a"></rect><rect x="432" y="88" width="16" height="9" fill="#f0b24a"></rect><rect x="432" y="98" width="16" height="9" fill="#8fbf6a"></rect><svg x="96" y="56" width="46" height="46"><svg viewBox="0 0 64 64" width="46" height="46" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M27 50 L21 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"></path><path d="M35 50 L41 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"></path><circle cx="20" cy="59.5" r="3" fill="#22302a"></circle><circle cx="42" cy="59.5" r="3" fill="#22302a"></circle><rect x="21" y="33" width="22" height="19" rx="7" fill="#7bc96f"></rect><path d="M43 39 L52 34" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="53" cy="33.5" r="3.2" fill="#f2c9a0"></circle><path d="M21 39 L12 45" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="11" cy="45.5" r="3.2" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 21 a12.5 12.5 0 0 1 25 0 l-3.5 -1.5 a9.5 9.5 0 0 0 -18 0 z" fill="#6b4f35"></path><path d="M31 7 l-3.5 5 M33 7.5 l3 4.5" stroke="#6b4f35" stroke-width="2.4" stroke-linecap="round"></path><path d="M19.5 17.5 q12.5 -7 25 0 l0 3.6 q-12.5 -6.4 -25 0 z" fill="#e2777a"></path><path d="M43 19 l9 -3.5 -2 6.5 z" fill="#e2777a"></path><circle cx="27" cy="24" r="1.9" fill="#2f2a26"></circle><circle cx="37" cy="24" r="1.9" fill="#2f2a26"></circle><path d="M28 29.5 q4 3.6 8 0" stroke="#2f2a26" stroke-width="2" fill="none" stroke-linecap="round"></path></svg></svg><svg x="162" y="56" width="46" height="46"><svg viewBox="0 0 64 64" width="46" height="46" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M28 50 v9 M36 50 v9" stroke="#31413a" stroke-width="6" stroke-linecap="round"></path><circle cx="28" cy="59" r="3" fill="#22302a"></circle><circle cx="36" cy="59" r="3" fill="#22302a"></circle><rect x="22" y="33" width="20" height="19" rx="6" fill="#6fa8dc"></rect><path d="M27 33 v19 M37 33 v19" stroke="rgba(255,255,255,.25)" stroke-width="1.6"></path><path d="M22 40 L15 44" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="14" cy="44.5" r="3.2" fill="#f2c9a0"></circle><rect x="6" y="38" width="10" height="8" rx="1.5" fill="#d8b45a" transform="rotate(-12 11 42)"></rect><path d="M11 38.5 v7" stroke="#a8863c" stroke-width="1.2"></path><path d="M42 40 L47 47" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="47.5" cy="48" r="3.2" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 v-3 a12.5 12.5 0 0 0 -25 0 z" fill="#33404f"></path><circle cx="27" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"></circle><circle cx="37" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"></circle><path d="M31.6 24 h0.8 M22.4 23.5 l-3 -1.5 M41.6 23.5 l3 -1.5" stroke="#2b2f36" stroke-width="2" stroke-linecap="round"></path><circle cx="27" cy="24" r="1.5" fill="#2f2a26"></circle><circle cx="37" cy="24" r="1.5" fill="#2f2a26"></circle><path d="M29 30.5 h6" stroke="#2f2a26" stroke-width="2" stroke-linecap="round"></path></svg></svg><svg x="716" y="56" width="46" height="46"><svg viewBox="0 0 64 64" width="46" height="46" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M23 46 l-3 13 h22 l-3 -13 z" fill="#f2b880"></path><path d="M32 46 v13" stroke="rgba(255,255,255,.25)" stroke-width="1.6"></path><rect x="23" y="33" width="18" height="14" rx="6" fill="#f2b880"></rect><path d="M26 33 L38 47 M38 33 L26 47" stroke="rgba(255,255,255,.3)" stroke-width="1.6"></path><path d="M41 40 L48 43" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="49" cy="43.5" r="3.2" fill="#f2c9a0"></circle><rect x="46" y="34" width="9" height="12" rx="2.5" fill="#cfd8c5"></rect><rect x="46" y="34" width="9" height="4" rx="2" fill="#9aa88f"></rect><path d="M23 40 L18 46" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="17.5" cy="46.5" r="3.2" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 z" fill="#8a5a30"></path><circle cx="17" cy="21" r="5.5" fill="#8a5a30"></circle><circle cx="47" cy="21" r="5.5" fill="#8a5a30"></circle><path d="M24 24.5 q3 2.8 6 0 M34 24.5 q3 2.8 6 0" stroke="#2f2a26" stroke-width="2" fill="none" stroke-linecap="round"></path><path d="M28.5 30 q3.5 3.2 7 0" stroke="#2f2a26" stroke-width="2" fill="none" stroke-linecap="round"></path><ellipse cx="23" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"></ellipse><ellipse cx="41" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"></ellipse></svg></svg><svg x="782" y="56" width="46" height="46"><svg viewBox="0 0 64 64" width="46" height="46" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M29 50 v9 M35 50 v9" stroke="#31413a" stroke-width="5.5" stroke-linecap="round"></path><circle cx="29" cy="59" r="2.8" fill="#22302a"></circle><circle cx="35" cy="59" r="2.8" fill="#22302a"></circle><rect x="23" y="33" width="18" height="18" rx="7" fill="#c9a2e0"></rect><path d="M22 31 q10 6 20 0 l0 5 q-10 -6 -20 0 z" fill="#c9a2e0"></path><path d="M37 34 l11 9 -4.5 2.5 -9 -8 z" fill="#c9a2e0"></path><circle cx="30" cy="47" r="3" fill="#f2c9a0"></circle><circle cx="35.5" cy="47.5" r="3" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 l0 -2 q-12.5 -10 -25 0 z" fill="#3c3a52"></path><path d="M40 6 l1.7 3.6 4 .5 -2.9 2.8 .7 4 -3.5 -1.9 -3.5 1.9 .7 -4 -2.9 -2.8 4 -.5 z" fill="#f0d68a" transform="translate(-1,-1) scale(.92)"></path><path d="M34.5 26 q2.4 2 4.6 0" stroke="#2f2a26" stroke-width="1.8" fill="none" stroke-linecap="round"></path><path d="M27.5 30.5 q4.5 2.8 9 0" stroke="#2f2a26" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg></svg></svg></div>
+    <div class="hero-squad" id="heroSquad"><div class="hs"><svg viewBox="0 0 64 64" width="64" height="64" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M27 50 L21 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"></path><path d="M35 50 L41 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"></path><circle cx="20" cy="59.5" r="3" fill="#22302a"></circle><circle cx="42" cy="59.5" r="3" fill="#22302a"></circle><rect x="21" y="33" width="22" height="19" rx="7" fill="#7bc96f"></rect><path d="M43 39 L52 34" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="53" cy="33.5" r="3.2" fill="#f2c9a0"></circle><path d="M21 39 L12 45" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="11" cy="45.5" r="3.2" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 21 a12.5 12.5 0 0 1 25 0 l-3.5 -1.5 a9.5 9.5 0 0 0 -18 0 z" fill="#6b4f35"></path><path d="M31 7 l-3.5 5 M33 7.5 l3 4.5" stroke="#6b4f35" stroke-width="2.4" stroke-linecap="round"></path><path d="M19.5 17.5 q12.5 -7 25 0 l0 3.6 q-12.5 -6.4 -25 0 z" fill="#e2777a"></path><path d="M43 19 l9 -3.5 -2 6.5 z" fill="#e2777a"></path><circle cx="27" cy="24" r="1.9" fill="#2f2a26"></circle><circle cx="37" cy="24" r="1.9" fill="#2f2a26"></circle><path d="M28 29.5 q4 3.6 8 0" stroke="#2f2a26" stroke-width="2" fill="none" stroke-linecap="round"></path></svg></div><div class="hs"><svg viewBox="0 0 64 64" width="64" height="64" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M28 50 v9 M36 50 v9" stroke="#31413a" stroke-width="6" stroke-linecap="round"></path><circle cx="28" cy="59" r="3" fill="#22302a"></circle><circle cx="36" cy="59" r="3" fill="#22302a"></circle><rect x="22" y="33" width="20" height="19" rx="6" fill="#6fa8dc"></rect><path d="M27 33 v19 M37 33 v19" stroke="rgba(255,255,255,.25)" stroke-width="1.6"></path><path d="M22 40 L15 44" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="14" cy="44.5" r="3.2" fill="#f2c9a0"></circle><rect x="6" y="38" width="10" height="8" rx="1.5" fill="#d8b45a" transform="rotate(-12 11 42)"></rect><path d="M11 38.5 v7" stroke="#a8863c" stroke-width="1.2"></path><path d="M42 40 L47 47" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="47.5" cy="48" r="3.2" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 v-3 a12.5 12.5 0 0 0 -25 0 z" fill="#33404f"></path><circle cx="27" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"></circle><circle cx="37" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"></circle><path d="M31.6 24 h0.8 M22.4 23.5 l-3 -1.5 M41.6 23.5 l3 -1.5" stroke="#2b2f36" stroke-width="2" stroke-linecap="round"></path><circle cx="27" cy="24" r="1.5" fill="#2f2a26"></circle><circle cx="37" cy="24" r="1.5" fill="#2f2a26"></circle><path d="M29 30.5 h6" stroke="#2f2a26" stroke-width="2" stroke-linecap="round"></path></svg></div><div class="hs"><svg viewBox="0 0 64 64" width="64" height="64" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M23 46 l-3 13 h22 l-3 -13 z" fill="#f2b880"></path><path d="M32 46 v13" stroke="rgba(255,255,255,.25)" stroke-width="1.6"></path><rect x="23" y="33" width="18" height="14" rx="6" fill="#f2b880"></rect><path d="M26 33 L38 47 M38 33 L26 47" stroke="rgba(255,255,255,.3)" stroke-width="1.6"></path><path d="M41 40 L48 43" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="49" cy="43.5" r="3.2" fill="#f2c9a0"></circle><rect x="46" y="34" width="9" height="12" rx="2.5" fill="#cfd8c5"></rect><rect x="46" y="34" width="9" height="4" rx="2" fill="#9aa88f"></rect><path d="M23 40 L18 46" stroke="#f2c9a0" stroke-width="5.5" stroke-linecap="round"></path><circle cx="17.5" cy="46.5" r="3.2" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 z" fill="#8a5a30"></path><circle cx="17" cy="21" r="5.5" fill="#8a5a30"></circle><circle cx="47" cy="21" r="5.5" fill="#8a5a30"></circle><path d="M24 24.5 q3 2.8 6 0 M34 24.5 q3 2.8 6 0" stroke="#2f2a26" stroke-width="2" fill="none" stroke-linecap="round"></path><path d="M28.5 30 q3.5 3.2 7 0" stroke="#2f2a26" stroke-width="2" fill="none" stroke-linecap="round"></path><ellipse cx="23" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"></ellipse><ellipse cx="41" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"></ellipse></svg></div><div class="hs"><svg viewBox="0 0 64 64" width="64" height="64" style="display:block"><ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"></ellipse><path d="M29 50 v9 M35 50 v9" stroke="#31413a" stroke-width="5.5" stroke-linecap="round"></path><circle cx="29" cy="59" r="2.8" fill="#22302a"></circle><circle cx="35" cy="59" r="2.8" fill="#22302a"></circle><rect x="23" y="33" width="18" height="18" rx="7" fill="#c9a2e0"></rect><path d="M22 31 q10 6 20 0 l0 5 q-10 -6 -20 0 z" fill="#c9a2e0"></path><path d="M37 34 l11 9 -4.5 2.5 -9 -8 z" fill="#c9a2e0"></path><circle cx="30" cy="47" r="3" fill="#f2c9a0"></circle><circle cx="35.5" cy="47.5" r="3" fill="#f2c9a0"></circle><circle cx="32" cy="22" r="12.5" fill="#f2c9a0"></circle><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 l0 -2 q-12.5 -10 -25 0 z" fill="#3c3a52"></path><path d="M40 6 l1.7 3.6 4 .5 -2.9 2.8 .7 4 -3.5 -1.9 -3.5 1.9 .7 -4 -2.9 -2.8 4 -.5 z" fill="#f0d68a" transform="translate(-1,-1) scale(.92)"></path><path d="M34.5 26 q2.4 2 4.6 0" stroke="#2f2a26" stroke-width="1.8" fill="none" stroke-linecap="round"></path><path d="M27.5 30.5 q4.5 2.8 9 0" stroke="#2f2a26" stroke-width="1.8" fill="none" stroke-linecap="round"></path></svg></div></div>
+    <h1>大脑远征队</h1>
+    <div class="sub">边界篇 · 界线平原 —— 说不行，也给理由</div>
+    <div class="tag">社交即玩法 · 连招必须跨角色组合</div>
+  </div>
+  <div class="menu">
+    <button id="btn-new" class="btn primary">🚩 开始新冒险</button>
+    <button id="btn-continue" class="btn hidden">▶ 继续冒险（有存档）</button>
+    <button id="btn-help2" class="btn ghost">❓ 玩法说明</button>
+    <button id="btn-home" class="btn ghost">🏟 回主页</button>
+  </div>
+  <div id="bestLine"></div>
+  <div class="footer-note">HTML 原型版 · Ch2 全流程可玩 · 四档难度 + 随时暂停存档<br>本作全部形象为原创绘制，不使用任何第三方 IP 素材</div>
+</section>
+
+<!-- ============ 难度 ============ -->
+<section id="scr-diff" class="screen">
+  <div class="page-title">选择难度</div>
+  <div class="page-sub">文本与技能池随难度切换，游戏中随时可以换</div>
+  <div class="grid2" id="diffGrid"><button class="card"><div class="lvl-dots"><i class="on"></i><i></i><i></i><i></i></div><div class="ct">简单</div><div class="cd">眠眠全程陪练，技能卡全展示，战斗有小抄。</div></button><button class="card"><div class="lvl-dots"><i class="on"></i><i class="on"></i><i></i><i></i></div><div class="ct">入门 · 当前</div><div class="cd">标准节奏。新技能灰标，眠眠在关键处提醒。</div></button><button class="card"><div class="lvl-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><div class="ct">半标注进阶</div><div class="cd">新技能灰标 NEW。提示减半，卡牌自己翻面。</div></button><button class="card"><div class="lvl-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><div class="ct">困难</div><div class="cd">无提示无小抄。只给一句咒语，全凭自己悟。</div></button></div>
+</section>
+
+<!-- ============ 角色 ============ -->
+<section id="scr-char" class="screen">
+  <div class="page-title">选择你的冒险者</div>
+  <div class="page-sub">其余三人由小队共同演绎——你的选择会改变经历的分支与隐藏台词</div>
+  <div class="grid2" id="charGrid"></div>
+</section>
+
+<!-- ============ 帮助 ============ -->
+<section id="scr-help" class="screen">
+  <div class="page-title">玩法说明</div>
+  <div class="page-sub">交互铁律 · 全部为选择题，没有标准答案</div>
+  <div class="help-list" id="helpList"><div class="help-item"><span class="hi"><svg viewBox="0 0 48 48" width="24" height="24" style="display:block"><circle cx="24" cy="24" r="15" fill="none" stroke="#d8b45a" stroke-width="3.5"></circle><circle cx="24" cy="24" r="7" fill="none" stroke="#d8b45a" stroke-width="3.5"></circle><circle cx="24" cy="24" r="2.4" fill="#d8b45a"></circle><path d="M24 2v7M24 39v7M2 24h7M39 24h7" stroke="#d8b45a" stroke-width="3.5" stroke-linecap="round"></path></svg></span><span>全部选择题，点一点就能玩。</span></div><div class="help-item"><span class="hi"><svg viewBox="0 0 48 48" width="24" height="24" style="display:block"><rect x="5" y="14" width="32" height="20" rx="5" fill="none" stroke="#d8b45a" stroke-width="3.5"></rect><rect x="40" y="20" width="4" height="8" rx="2" fill="#d8b45a"></rect><path d="M11 24h5l3-6 4 10 3-4h6" fill="none" stroke="#d8b45a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span>选错不惩罚，战斗中可以换招重来。</span></div><div class="help-item"><span class="hi"><svg viewBox="0 0 48 48" width="24" height="24" style="display:block"><path d="M8 17h26" stroke="#d8b45a" stroke-width="3.5" stroke-linecap="round"></path><path d="M27 10l8 7-8 7" fill="none" stroke="#d8b45a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M40 31H14" stroke="#d8b45a" stroke-width="3.5" stroke-linecap="round"></path><path d="M21 24l-8 7 8 7" fill="none" stroke="#d8b45a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span>知识点锁小学，方法都是成年人验证过的。</span></div><div class="help-item"><span class="hi"><svg viewBox="0 0 48 48" width="24" height="24" style="display:block"><rect x="6" y="16" width="36" height="16" rx="8" fill="none" stroke="#d8b45a" stroke-width="3.5"></rect><circle cx="33" cy="24" r="5.5" fill="#d8b45a"></circle></svg></span><span>随时暂停存档，每次前进也会自动存。</span></div><div class="help-item"><span class="hi"><svg viewBox="0 0 48 48" width="24" height="24" style="display:block"><path d="M7 41h9v-8h9v-8h9V16h9" fill="none" stroke="#d8b45a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="40" cy="8" r="3" fill="#d8b45a"></circle></svg></span><span>四档难度，随时切换，随你心情。</span></div><div class="help-item"><span class="hi"><svg viewBox="0 0 48 48" width="24" height="24" style="display:block"><path d="M7 41h9v-8h9v-8h9V16h9" fill="none" stroke="#d8b45a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="40" cy="8" r="3" fill="#d8b45a"></circle></svg></span><span>组队值决定连招——怎么对队友，比怎么打 Boss 更重要。</span></div></div>
+  <div class="center-row"><button class="btn ghost" id="btn-help-back">返回</button></div>
+</section>
+
+<!-- ============ 图鉴 ============ -->
+<section id="scr-codex" class="screen">
+  <div class="page-title">📖 章末图鉴</div>
+  <div class="page-sub">本章技能卡 / 小队公约 / 连招（完整笔记在这里全部解锁）</div>
+  <div class="codex-grid" id="codexGrid"></div>
+  <div class="center-row"><button class="btn ghost" id="btn-codex-back">返回</button></div>
+</section>
+
+<!-- ============ 漫画剧情 ============ -->
+<section id="scr-game" class="screen">
+  <div id="gameBody"></div>
+  <div id="nextHint" class="hidden">点击画面继续 ▸</div>
+</section>
+
+<!-- ============ 战斗 ============ -->
+<section id="scr-battle" class="screen">
+  <div class="battleground" id="battleground">
+    <div class="boss-zone">
+      <div class="boss-name">逼逼 · 逼你同意主</div>
+      <div class="boss-hpbox">
+        <div class="bar-label"><span>分心值</span><span id="bossHpNum">100</span></div>
+        <div class="hp-bar"><div id="bossHpFill"></div></div>
+      </div>
+      <div id="bossWrap"></div>
+    </div>
+    <div id="bossBubble"></div>
+    <div class="squad-zone" id="squadZone"></div>
+    <div id="fxLayer"></div>
+    <div id="roundName" class="round-banner hidden"></div>
+    <div id="battle-ease" class="ease-toast hidden"></div>
+    <div id="battleFeed" class="battle-feed"></div>
+  </div>
+  <div class="battle-side">
+    <div id="hand" class="hand"></div>
+    <button id="btn-confirm" class="btn primary">确认出招 ⚔</button>
+  </div>
+</section>
+
+<!-- ============ 结算 ============ -->
+<section id="scr-end" class="screen">
+  <div id="endBody"></div>
+</section>
+
+</main>
+
+<!-- ============ 技能卡弹窗 ============ -->
+<div id="modal-skill" class="modal hidden">
+  <div class="modal-box" id="skillBox"></div>
+</div>
+
+<!-- ============ 借技能弹窗 ============ -->
+<div id="modal-borrow" class="modal hidden">
+  <div class="modal-box" style="max-width:430px">
+    <div class="borrow-ava" id="borrowAva"></div>
+    <div class="skill-name" style="justify-content:center">队友伸出了手</div>
+    <div class="mantra" id="borrowText" style="font-weight:600;margin-top:14px"></div>
+    <div class="center-row" style="margin-top:16px">
+      <button class="btn primary" id="btn-borrow-yes">接下这一招</button>
+      <button class="btn ghost" id="btn-borrow-no">我们自己练</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 暂停 ============ -->
+<div id="overlay-pause" class="modal hidden">
+  <div class="modal-box" style="max-width:360px">
+    <div class="skill-name">⏸ 暂停</div>
+    <div class="page-sub" style="margin:6px 0 16px">远征随时可以继续</div>
+    <div class="menu" style="margin:0">
+      <button class="btn primary" id="btn-resume">继续冒险</button>
+      <button class="btn" id="btn-save">💾 保存进度</button>
+      <button class="btn" id="btn-load">📂 读取进度</button>
+      <button class="btn" id="btn-diff-in">🎚 切换难度（当前：<span id="pause-diff">入门</span>）</button>
+      <button class="btn" id="btn-codex-in">📖 图鉴</button>
+      <button class="btn ghost" id="btn-quit">返回标题</button>
+      <button class="btn ghost" id="btn-home-pause">🏟 回主页</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="hidden"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= 数据 ================= */
+var DIFFS={
+  easy :{key:"easy", name:"简单",      level:1, hints:true,  card:"full", tags:false,
+         desc:"眠眠全程陪练，技能卡全展示，战斗有小抄。"},
+  intro:{key:"intro",name:"入门",      level:2, hints:true,  card:"full", tags:true,
+         desc:"标准节奏。新技能灰标，眠眠在关键处提醒。"},
+  semi :{key:"semi", name:"半标注进阶",level:3, hints:false, card:"fold", tags:true,
+         desc:"新技能灰标 NEW。提示减半，卡牌自己翻面。"},
+  hard :{key:"hard", name:"困难",      level:4, hints:false, card:"one",  tags:false,
+         desc:"无提示无小抄。只给一句咒语，全凭自己悟。"}
+};
+var DIFF_ORDER=["easy","intro","semi","hard"];
+
+var CHARS={
+  song:{name:"松松",role:"行动担当 · 剑士",hex:"#7bc96f",
+       voice:"「等会儿再说」",
+       desc:"永远第一个冲，也永远第一个想放弃。",
+       skills:["micro","compound"]},
+  jiu :{name:"究究",role:"认知担当 · 军师",hex:"#6fa8dc",
+       voice:"「还不够好」",
+       desc:"能背下整本图鉴，但不敢举手回答问题。",
+       skills:["selfexplain","monitor"]},
+  mian:{name:"眠眠",role:"能量担当 · 守护",hex:"#f2b880",
+       voice:"「算了，没人在乎」",
+       desc:"记得每个人的生日，默默把事情全做了。",
+       skills:["generate","sleep"]},
+  shan:{name:"闪闪",role:"情绪语言担当 · 信使",hex:"#c9a2e0",
+       voice:"「我不行」",
+       desc:"不太说话，却第一个察觉谁今天不开心。",
+       skills:["mark","feynman"]}
+};
+var CHAR_ORDER=["song","jiu","mian","shan"];
+var NAME2KEY={"松松":"song","究究":"jiu","眠眠":"mian","闪闪":"shan","逼逼":"boss","四人":"all"};
+
+var SKILLS={
+  micro  :{name:"微步骤启动",owner:"song",
+           one:"大事切成五秒能做完的小事，第一步小到不可能失败。",
+           mantra:"「先做第一步，第一步只花五秒。」",
+           why:"大脑看见「大任务」会害怕，看见「抬一下手」不会——启动的阻力变小了，你就动了。",
+           cross:"再高的楼，也是一阶一阶上的。想拍球？先拍一下，就一下。"},
+  reprog :{name:"认知重编程",owner:"song",
+           one:"对方的话是对方的——「别小气」「大家都这样」，换成我自己的台词。",
+           mantra:"「那句话，我可以不认领。」",
+           why:"话是别人塞过来的，接不接，你说了算。换一句自己的，力气就回到你身上。",
+           cross:"别人说「你肯定不敢」——换成「我还没决定」。台词一换，脚步就听你的了。"},
+  selfexplain:{name:"自我解释",owner:"jiu",
+           one:"先说为什么，再决定动不动——理由是自己的，选择才是自己的。",
+           mantra:"「先问一句：为什么？」",
+           why:"说得清理由的人，才不会被人一句话推着走。知其然，更知其所以然。",
+           cross:"朋友约你玩，你不想去——说得出「我在等一个电话」，就不怕被说小气。"},
+  boundary:{name:"边界宣言",owner:"shan",
+           one:"能接受、看情况、不行——三种颜色，我自己选。不行，就说：「我不接受___，因为___。」",
+           mantra:"「我不接受，因为___。」",
+           why:"边界不是墙，是门——门在你自己手里。会说「不行」的人，别人才知道你的「行」值多少。",
+           cross:"借出去的漫画不想再借？说一句「这本我还没看完」——门，还在你手里。"},
+  monitor:{name:"状态监控",owner:"mian",
+           one:"身体先知道：肩膀发紧、胃在打结、手心出汗——信号亮起，先认下来。",
+           mantra:"「信号亮了，就降一档。」",
+           why:"情绪还没开口，身体先报了信。认得信号的人，不会在撑不住的时候还硬撑。",
+           cross:"一想到要当众发言就手心汗？那是身体在说「我在乎」——认下来，再决定要不要上。"}
+};
+var COMBOS=[
+  {name:"说不行，也给理由",members:["boundary","reprog"],
+   desc:"边界宣言（闪）＋认知重编程（松）——把「别小气」换成自己的话，再补一句「因为我___」。逼逼最怕你既立了线，又说清了理由。"},
+  {name:"先看颜色再开口",members:["boundary","selfexplain"],
+   desc:"边界宣言（闪）＋自我解释（究）——能接受、看情况、还是不行？先想清楚为什么，再开口。线在心里，话才稳。"}
+];
+/* ---------- 剧情场景 ---------- */
+var SCENES={
+ i1:{kind:"story",next:"i2",lines:[
+  {anim:"lights"},
+  {who:"眠眠",text:"第十个世界了……"},
+  {who:"闪闪",text:"脚下的地，分成三种颜色。"},
+  {anim:"campfire"}
+ ]},
+ i2:{kind:"skill",skill:"micro",lead:"松松放下背包：「老规矩——先迈五秒一步。守住线，也是这么守的。」",next:"i3"},
+ i3:{kind:"story",next:"choice1",lines:[
+  {who:"究究",text:"那条白线，会动。"},
+  {who:"闪闪",text:"（小声）阿嗨今天……也来了。"},
+  {anim:"focus-stone"},
+  {anim:"boss-eye"}
+ ]},
+
+ choice1:{kind:"choice",letters:true,prompt:"逼逼从线后探出身：「就玩一下嘛——别小气。」阿嗨笑着把球塞过来。你先出哪一招？",options:[
+  {t:"先接住：别让他落了面子",next:"a1",branch:"A",
+   after:[{act:"松松把球接住了。"},{who:"松松",text:"先接住，再说。"}]},
+  {t:"先想清：我到底想不想玩",next:"b1",branch:"B",
+   after:[{act:"究究抬起手。"},{who:"究究",text:"先问自己一句。"}]},
+  {t:"先开口：这句话，我可以说",next:"c1",branch:"C",
+   after:[{act:"闪闪深吸一口气。"},{who:"闪闪",text:"这次，不硬撑。"}]},
+  {t:"先看信号：我身体哪儿紧了",next:"d1",branch:"D",
+   after:[{act:"眠眠把手放上肩。"},{who:"眠眠",text:"我这里……发紧。"}]}
+ ]},
+
+ /* ---- A 线 · 认知重编程 ---- */
+ a1:{kind:"story",next:"a2",lines:[
+  {who:"松松",text:"「别小气」……这话我收过不少。"},
+  {who:"闪闪",text:"（苦笑）我也是。"}
+ ]},
+ a2:{kind:"skill",skill:"reprog",lead:"究究推了推眼镜：「认知重编程——『别小气』是对方的话。换成我自己的：『我现在不想玩这个。』」",next:"a3"},
+ a3:{kind:"choice",letters:false,prompt:"松松怕：「可阿嗨会不高兴。」你说：",options:[
+  {t:"「不高兴，也可以说。感受没有对错。」",next:"conv",trust:8,flag:"kind",
+   after:[{who:"松松",text:"（点头）……那我说了。"}]},
+  {t:"「那就算了，陪他玩吧。」",next:"conv",trust:2,
+   after:[{act:"松松把话咽了回去。"}]},
+  {t:"「你就是想太多。」",next:"conv",trust:-5,flag:"toxic",
+   after:[{act:"松松别过脸去。"}]}
+ ]},
+
+ /* ---- B 线 · 自我解释 ---- */
+ b1:{kind:"story",next:"b2",lines:[
+  {who:"究究",text:"先问自己——我想不想？"},
+  {who:"眠眠",text:"为什么不想？"}
+ ]},
+ b2:{kind:"skill",skill:"selfexplain",lead:"究究摊开纸：「自我解释——把『不想』说出来，再补一句为什么：『我在看书，这一章看完就来。』」",next:"b3"},
+ b3:{kind:"choice",letters:false,prompt:"究究卡壳：「为什么……怎么说？」你说：",options:[
+  {t:"「说一个真的理由，不用完美。」",next:"conv",trust:8,flag:"kind",
+   after:[{who:"究究",text:"（写）……这一个就行。"}]},
+  {t:"「随便编一个就行。」",next:"conv",trust:2,
+   after:[{act:"究究把纸揉掉了。"}]},
+  {t:"「没理由就是没理由，别问。」",next:"conv",trust:-5,flag:"toxic",
+   after:[{act:"究究低下了头。"}]}
+ ]},
+
+ /* ---- C 线 · 边界宣言 ---- */
+ c1:{kind:"story",next:"c2",lines:[
+  {who:"闪闪",text:"我句式……我学过。"},
+  {who:"眠眠",text:"这次，再加一句。"}
+ ]},
+ c2:{kind:"skill",skill:"boundary",lead:"闪闪抽出一块三色牌：「边界宣言——『我不接受___，因为___。』能接受、看情况、不行，三种颜色，我自己选。」",next:"c3"},
+ c3:{kind:"choice",letters:false,prompt:"闪闪声音发虚：「万一他不理我了呢？」你说：",options:[
+  {t:"「说完，他还是他，你还是你。」",next:"conv",trust:8,flag:"kind",
+   after:[{who:"闪闪",text:"（握拳）……我说。"}]},
+  {t:"「那还是别说了。」",next:"conv",trust:2,
+   after:[{act:"闪闪把牌放下了。"}]},
+  {t:"「不说就对了，别矫情。」",next:"conv",trust:-5,flag:"toxic",
+   after:[{act:"闪闪退到了线后。"}]}
+ ]},
+
+ /* ---- D 线 · 状态监控 ---- */
+ d1:{kind:"story",next:"d2",lines:[
+  {who:"眠眠",text:"（按肩）这里发紧。"},
+  {who:"松松",text:"身体先知道。"}
+ ]},
+ d2:{kind:"skill",skill:"monitor",lead:"眠眠看一眼心率：「状态监控——身体发紧，是在说『我不舒服』。信号亮起，先认下来。」",next:"d3"},
+ d3:{kind:"choice",letters:false,prompt:"眠眠犹豫：「发紧……算理由吗？」你说：",options:[
+  {t:"「算。信号亮着，就是在报信。」",next:"conv",trust:8,flag:"kind",
+   after:[{who:"眠眠",text:"（深呼吸）……认下了。"}]},
+  {t:"「不算，想多了。」",next:"conv",trust:2,
+   after:[{act:"眠眠把手放下了。"}]},
+  {t:"「就是你太娇气。」",next:"conv",trust:-5,flag:"toxic",
+   after:[{act:"眠眠把地图合上了。"}]}
+ ]},
+
+ /* ---- 汇合 → Boss ---- */
+ conv:{kind:"story",next:"BATTLE",lines:[
+  {anim:"boss-rise"},
+  {who:"逼逼",text:"就玩一下嘛——别小气！"},
+  {who:"眠眠",text:"（腿软）三条线……都在晃。"},
+  {who:"四人",text:"站稳了——哪条线，都不白让！"}
+ ]},
+
+ /* ---- 战后 ---- */
+ w1:{kind:"story",next:"w2",lines:[
+  {anim:"boss-burst"},
+  {who:"逼逼",text:"你们……把「愿意」和「应该」分开了……"}
+ ]},
+ w2:{kind:"story",next:"w3",onEnter:function(){
+   if(!state.flags.conv2){state.flags.conv2=1;addTrust(2,"小队第一次同频");}
+ },lines:[
+  {anim:"swamp-clear"},
+  {who:"闪闪",text:"说不行，也给理由。"},
+  {who:"四人",text:"「我不接受___，因为___——这句话，我可以练！」"},
+  {who:"四人",text:"说不行，也给理由——三色的线，我自己守！"}
+ ]},
+ w3:{kind:"combo",next:"END"}
+};
+/* ---------- 战斗 ---------- */
+var ROUNDS=[
+ {name:"第 1 回合 · 红线",rk:"red",
+  bossLine:"「就玩一下嘛——别小气！」逼逼一脚踩过你的红线。",
+  valid:["micro","reprog","selfexplain","boundary","monitor"],
+  ease:"眠眠：接住、想清、开口、看信号——用哪招都行。"},
+ {name:"第 2 回合 · 黄线",rk:"yellow",
+  bossLine:"「大家都是这样的！」逼逼把黄线涂成了红的。",
+  valid:["micro","reprog","selfexplain","boundary","monitor"],
+  ease:"眠眠：稳住——想清楚为什么，再决定让不让。"},
+ {name:"第 3 回合 · 绿区",rk:"core",
+  bossLine:"「你一个人，守不住三条线！」逼逼胀到最大。",
+  valid:"COMBO",
+  ease:"眠眠：一个人守不住。找一位不同角色的队友，各出一招。"}
+];
+var REPLAY={
+ red:{
+  micro:["五秒一步——先退半步，离开红线。逼逼的脚，落了空。"],
+  reprog:["「别小气」是对方的话。换成「我现在不想玩」——红线，亮了回来。"],
+  selfexplain:["究究问一句「我为什么不想？」——理由一出口，红线站稳了。"],
+  boundary:["「我不接受，因为我在看书。」三色牌一举，红线钉回地上。"],
+  monitor:["眠眠按住发紧的肩：信号亮着——先认，再退半步。红线，回来了。"],
+  miss:["眠眠：「再想一招。接住、想清、开口、看信号——都行。」"]
+ },
+ yellow:{
+  micro:["五秒一步：先离开黄区中心，往边上看。逼逼的脚，慢了。"],
+  reprog:["「大家都这样」——换成「我可以和大家不一样」。黄线，分了回来。"],
+  selfexplain:["把「看情况」说出条件来：「这章看完，我就来。」黄线稳了。"],
+  boundary:["「看情况——不是不行，是有条件。」三色牌一转，黄线归位。"],
+  monitor:["身体还紧着？那这一档，先不答应。信号亮了，就降一档。"],
+  miss:["眠眠：「再想一招。接住、想清、开口、看信号——都行。」"]
+ },
+ core:{
+  boundary:["逼逼退了一步：「一个人……守不住……」线后伸过来一只手。"],
+  same:["两股同色的力气撞在一起，互相抵消。眠眠：「两个人，两招——再来！」"]
+ }
+};
+var COMBO_LINES={
+ "boundary+micro"     :["闪闪立牌「我不接受，因为这一章看完就来」，松松数五秒：先退半步。","先站稳，再开口。"],
+ "boundary+monitor"   :["闪闪举牌，眠眠按住发紧的肩：信号亮着，就不硬接。","牌和信号，一起用。"],
+ "boundary+reprog"    :["闪闪把「别小气」换成自己的话，再补一句「因为我___」。","换完台词，再划线。"],
+ "boundary+selfexplain":["闪闪问「我为什么不行」，究究把理由写清楚——牌上有字了。","想清了，才说得稳。"],
+ "micro+monitor"      :["松松退半步，眠眠按住肩：先离开红线，再认信号。","退一步，松一寸。"],
+ "micro+selfexplain"  :["松松只走一小步，究究问：这一小步，为什么值得走？","小步，也想一想。"],
+ "monitor+reprog"     :["眠眠的信号一亮，松松把那句话翻译成自己的。","信号亮，就换词。"],
+ "monitor+selfexplain":["眠眠说「这里发紧」，究究问：紧在说什么？","身体在说话，脑子记下来。"],
+ "reprog+selfexplain" :["松松换掉对方的话，究究补上自己的理由。","换一句，再说清。"]
+};
+var COMBO_NAMES={
+ "boundary+micro":"先站再开","boundary+monitor":"牌随信号","boundary+reprog":"划线换词","boundary+selfexplain":"想清说稳",
+ "micro+monitor":"退一步","micro+selfexplain":"小步一想","monitor+reprog":"亮就换词","monitor+selfexplain":"身体记话","reprog+selfexplain":"换句说清"
+};
+var COMBO_FALLBACK=["两股不同颜色的力气，在界碑前立成一枚三色徽章。","逼逼的「就玩一下嘛」，被正式挡在了线外。"];
+var BORROW_ORDER=["boundary","reprog","selfexplain","monitor"];
+var BORROW_LINE={
+ shan:"闪闪：「边界宣言借你们——『我不接受___，因为___。』」",
+ song:"松松：「认知重编程借你们！把那句话换成自己的！」",
+ jiu :"究究：「自我解释借你们——先说为什么。」",
+ mian:"眠眠：「状态监控借你们！看身体哪儿在报信。」"
+};
+/* ---------- 章节地图 ---------- */
+var MAP_NODES=[{k:"enter",t:"集结",e:"🚩"},{k:"plain",t:"界线平原",e:"🚧"},{k:"boss",t:"逼逼",e:"⚔"},{k:"pact",t:"公约",e:"📜"},{k:"end",t:"结算",e:"🏁"}];
+var NODE_OF_SCENE={i1:0,i2:0,i3:0,choice1:1,a1:1,a2:1,a3:1,b1:1,b2:1,b3:1,c1:1,c2:1,c3:1,d1:1,d2:1,d3:1,conv:2,w1:3,w2:3,w3:3};
+/* ================= 状态 ================= */
+var SAVE_KEY="brainexp_ch10_save_v1";
+var BEST_KEY="brainexp_ch10_best_v1";
+var RANK={B:0,A:1,S:2,SSS:3};
+var diffReturn="new";
+var codexReturn="end";
+var helpReturn="scr-title";
+var state=fresh();
+
+function fresh(){
+  return {diff:"intro",me:"song",skills:[],trust:8,flags:{},branch:null,
+          sceneId:"i1",battle:null,battleDone:null,secret:false,node:0};
+}
+
+/* ================= 工具 ================= */
+function $(s){return document.querySelector(s);}
+function $$(s){return Array.from(document.querySelectorAll(s));}
+function el(tag,cls,text){var d=document.createElement(tag);if(cls)d.className=cls;if(text!=null)d.textContent=text;return d;}
+function diff(){return DIFFS[state.diff]||DIFFS.intro;}
+function show(id){
+  var screens=document.querySelectorAll(".screen");
+  for(var i=0;i<screens.length;i++)screens[i].classList.remove("active");
+  var t=$("#"+id); if(t)t.classList.add("active");
+  try{window.scrollTo({top:0,behavior:"smooth"});}catch(e){}
+  var inGame=(id==="scr-game"||id==="scr-battle");
+  $("#hud").classList.toggle("hidden",!inGame);
+  $("#btn-pause").classList.toggle("hidden",!inGame);
+  if(inGame)renderMap(state.node);
+}
+var toastTimer=null;
+function toast(msg){
+  var t=$("#toast"); t.textContent=msg; t.classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){t.classList.add("hidden");},1800);
+}
+function modalOpen(){
+  return ["#modal-skill","#modal-borrow","#overlay-pause"].some(function(s){
+    return !$(s).classList.contains("hidden");
+  });
+}
+
+/* ---------- 音效（WebAudio，失败静默） ---------- */
+var AC=null;
+function beep(kind){
+  try{
+    var Ctx=window.AudioContext||window.webkitAudioContext;
+    if(!Ctx)return;
+    if(!AC)AC=new Ctx();
+    if(AC.state==="suspended"&&AC.resume)AC.resume();
+    var seq={click:[[520,.05]],hit:[[170,.14]],combo:[[660,.1],[880,.12]],win:[[523,.1],[659,.1],[784,.16]],unlock:[[440,.08],[660,.1]]}[kind]||[[520,.05]];
+    var t=AC.currentTime;
+    seq.forEach(function(p){
+      var o=AC.createOscillator();
+      var gn=AC.createGain();
+      o.type=kind==="hit"?"sawtooth":"triangle";
+      o.frequency.value=p[0];
+      gn.gain.setValueAtTime(.06,t);
+      gn.gain.exponentialRampToValueAtTime(.001,t+p[1]);
+      o.connect(gn);gn.connect(AC.destination);
+      o.start(t);o.stop(t+p[1]+.02);
+      t+=p[1];
+    });
+  }catch(e){}
+}
+
+/* ================= SVG 素材库 ================= */
+/* ---- 技能图腾（统一 viewBox 0 0 48 48，stroke 风格） ---- */
+var TOTEM_ART={
+ micro:'<path d="M7 41h9v-8h9v-8h9V16h9" fill="none" stroke="TOT" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="8" r="3" fill="TOT"/>',
+ single:'<path d="M8 24h30" stroke="TOT" stroke-width="4" stroke-linecap="round"/><path d="M30 16l9 8-9 8" fill="none" stroke="TOT" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="24" r="3.4" fill="TOT"/><path d="M8 36h30M8 12h30" stroke="TOT" stroke-width="2" stroke-linecap="round" opacity=".38"/>',
+ anchor:'<circle cx="24" cy="9" r="4" fill="none" stroke="TOT" stroke-width="3.5"/><path d="M24 13v24" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/><path d="M11 19l13-6 13 6" fill="none" stroke="TOT" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 33c5 7 13 9 17 9s12-2 17-9" fill="none" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/>',
+ tomato:'<circle cx="24" cy="27" r="13" fill="none" stroke="TOT" stroke-width="3.5"/><path d="M24 27v-7M24 27l4.5 2.5" stroke="TOT" stroke-width="3" stroke-linecap="round"/><path d="M18 12l3-5h6l3 5" fill="none" stroke="TOT" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="9" r="2" fill="TOT"/>',
+ trigger:'<rect x="6" y="16" width="36" height="16" rx="8" fill="none" stroke="TOT" stroke-width="3.5"/><circle cx="33" cy="24" r="5.5" fill="TOT"/>',
+ recode:'<path d="M8 17h26" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/><path d="M27 10l8 7-8 7" fill="none" stroke="TOT" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 31H14" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/><path d="M21 24l-8 7 8 7" fill="none" stroke="TOT" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>',
+ monitor:'<rect x="5" y="14" width="32" height="20" rx="5" fill="none" stroke="TOT" stroke-width="3.5"/><rect x="40" y="20" width="4" height="8" rx="2" fill="TOT"/><path d="M11 24h5l3-6 4 10 3-4h6" fill="none" stroke="TOT" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>',
+ mark:'<circle cx="24" cy="24" r="15" fill="none" stroke="TOT" stroke-width="3.5"/><circle cx="24" cy="24" r="7" fill="none" stroke="TOT" stroke-width="3.5"/><circle cx="24" cy="24" r="2.4" fill="TOT"/><path d="M24 2v7M24 39v7M2 24h7M39 24h7" stroke="TOT" stroke-width="3.5" stroke-linecap="round"/>'
+};
+TOTEM_ART.interleave='<rect x="6" y="10" width="15" height="6" rx="2" fill="TOT"/><rect x="15" y="21" width="27" height="6" rx="2" fill="TOT" opacity=".72"/><rect x="6" y="32" width="21" height="6" rx="2" fill="TOT" opacity=".45"/>';
+TOTEM_ART.retrieve='<path d="M9 12h13v24H9z" fill="none" stroke="TOT" stroke-width="3.5"/><path d="M22 12v24" stroke="TOT" stroke-width="3.5"/><path d="M28 20l8 4-8 4" fill="none" stroke="TOT" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+TOTEM_ART.sleep='<path d="M16 9a12 12 0 1 0 9 20A14 14 0 0 1 16 9z" fill="none" stroke="TOT" stroke-width="3.5" stroke-linejoin="round"/><path d="M30 24h11M30 31h8M30 38h11" stroke="TOT" stroke-width="3" stroke-linecap="round"/>';
+TOTEM_ART.spacing='<circle cx="9" cy="27" r="4.6" fill="TOT"/><circle cx="24" cy="27" r="4.6" fill="TOT" opacity=".72"/><circle cx="39" cy="27" r="4.6" fill="TOT" opacity=".45"/><path d="M9 17v-7M24 17v-7M39 17v-7" stroke="TOT" stroke-width="2.6" stroke-linecap="round" opacity=".55"/>';
+
+TOTEM_ART.compound='<rect x="6" y="34" width="10" height="9" rx="2" fill="TOT" opacity=".45"/><rect x="18" y="26" width="10" height="17" rx="2" fill="TOT" opacity=".72"/><rect x="30" y="14" width="10" height="29" rx="2" fill="TOT"/><path d="M35 4v6M32 8l3-4 3 4" fill="none" stroke="TOT" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>';
+TOTEM_ART.generate='<rect x="6" y="12" width="20" height="24" rx="3" fill="none" stroke="TOT" stroke-width="3" stroke-dasharray="4 3"/><path d="M28 24h3" stroke="TOT" stroke-width="2.6" stroke-linecap="round"/><rect x="33" y="17" width="11" height="11" rx="2" fill="TOT"/>';
+TOTEM_ART.selfexplain='<path d="M6 12h30v20H16l-6 7v-7H6z" fill="none" stroke="TOT" stroke-width="3" stroke-linejoin="round"/><path d="M17 19a3 3 0 1 1 3 3v2" fill="none" stroke="TOT" stroke-width="2.6" stroke-linecap="round"/><circle cx="20" cy="29" r="1.5" fill="TOT"/>';
+TOTEM_ART.feynman='<circle cx="14" cy="24" r="7" fill="none" stroke="TOT" stroke-width="3"/><path d="M25 18a9 9 0 0 1 0 12M32 14a15 15 0 0 1 0 20M39 10a21 21 0 0 1 0 28" fill="none" stroke="TOT" stroke-width="2.6" stroke-linecap="round"/>';
+
+TOTEM_ART.growth='<path d="M20 36 V20" stroke="TOT" stroke-width="3.4" stroke-linecap="round" fill="none"/><path d="M20 26 q-9 -1 -11 -10 M20 22 q9 -1 11 -10" stroke="TOT" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M13 13 q-4 -3 -2 -7 q5 1 4 6 Z" fill="TOT"/><path d="M27 9 q4 -3 2 -7 q-5 1 -4 6 Z" fill="TOT"/>';
+TOTEM_ART.selfeff='<path d="M20 7 L33 13 V23 Q33 33 20 37 Q7 33 7 23 V13 Z" fill="none" stroke="TOT" stroke-width="3"/><path d="M14 21 l4 4 9 -10" fill="none" stroke="TOT" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>';
+TOTEM_ART.vicarious='<circle cx="14" cy="15" r="6.5" fill="none" stroke="TOT" stroke-width="3"/><path d="M14 21 v9" stroke="TOT" stroke-width="3" stroke-linecap="round"/><circle cx="29" cy="24" r="6.5" fill="none" stroke="TOT" stroke-width="3"/><path d="M29 30 v6" stroke="TOT" stroke-width="3" stroke-linecap="round"/><path d="M14 15 h15" stroke="TOT" stroke-width="2.4" stroke-dasharray="3 3"/>';
+
+TOTEM_ART.reappraise='<rect x="10" y="13" width="20" height="13" rx="2" fill="none" stroke="TOT" stroke-width="2.4"/><path d="M14 20 l12 -9" stroke="TOT" stroke-width="2.4" stroke-linecap="round"/><path d="M11 28 q9 6 18 0" stroke="TOT" stroke-width="2.6" fill="none" stroke-linecap="round"/>';
+TOTEM_ART.lang='<path d="M12 13 h16 a3 3 0 0 1 3 3 v9 a3 3 0 0 1 -3 3 h-9 l-6 5 v-5 h-1 a3 3 0 0 1 -3 -3 v-9 a3 3 0 0 1 3 -3 Z" fill="none" stroke="TOT" stroke-width="2.4"/><path d="M16 20 h11 M16 25 h8" stroke="TOT" stroke-width="2.2" stroke-linecap="round"/>';
+
+TOTEM_ART.lens='<circle cx="24" cy="22" r="11" fill="none" stroke="TOT" stroke-width="2.4"/><path d="M24 11 v22 M13 22 h22" stroke="TOT" stroke-width="1.5"/><path d="M14 31 q10 5 20 0" stroke="TOT" stroke-width="2.4" fill="none" stroke-linecap="round"/>';
+TOTEM_ART.express='<path d="M10 12 h22 a3 3 0 0 1 3 3 v12 a3 3 0 0 1 -3 3 h-12 l-7 6 v-6 h-3 a3 3 0 0 1 -3 -3 v-12 a3 3 0 0 1 3 -3 Z" fill="none" stroke="TOT" stroke-width="2.4"/><circle cx="21" cy="20" r="4" fill="none" stroke="TOT" stroke-width="2"/><path d="M14 32 q7 5 14 0" fill="none" stroke="TOT" stroke-width="2"/>';
+
+TOTEM_ART.cooldown='<circle cx="24" cy="19" r="10" fill="none" stroke="TOT" stroke-width="2.4"/><path d="M24 25 v13 M19 32 l5 5 l5 -5" stroke="TOT" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>';
+TOTEM_ART.bodymap='<circle cx="24" cy="13" r="5" fill="none" stroke="TOT" stroke-width="2.4"/><path d="M16 36 q0 -13 8 -13 q8 0 8 13" fill="none" stroke="TOT" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="27" r="1.8" fill="TOT"/><circle cx="28" cy="23" r="1.8" fill="TOT"/>';
+TOTEM_ART.health='<rect x="13" y="17" width="21" height="14" rx="3" fill="none" stroke="TOT" stroke-width="2.4"/><rect x="36" y="21" width="3" height="6" fill="TOT"/><rect x="16" y="20" width="12" height="8" rx="1.5" fill="TOT"/>';
+TOTEM_ART.team='<circle cx="17" cy="17" r="5" fill="none" stroke="TOT" stroke-width="2.2"/><circle cx="31" cy="17" r="5" fill="none" stroke="TOT" stroke-width="2.2"/><path d="M9 36 q0 -10 8 -10 M23 36 q0 -10 8 -10" fill="none" stroke="TOT" stroke-width="2.2" stroke-linecap="round"/><path d="M24 13 v11 M18.5 18.5 h11" stroke="TOT" stroke-width="2" stroke-linecap="round"/>';
+
+TOTEM_ART.synthesis='<circle cx="24" cy="24" r="8" fill="none" stroke="TOT" stroke-width="2.6"/><path d="M24 4v9M24 35v9M4 24h9M35 24h9" stroke="TOT" stroke-width="2.6" stroke-linecap="round"/><path d="M12 12l5 5M36 12l-5 5M12 36l5-5M36 36l-5-5" stroke="TOT" stroke-width="2" stroke-linecap="round" opacity=".55"/><circle cx="24" cy="24" r="2.4" fill="TOT"/>';
+
+TOTEM_ART.boundary='<path d="M24 5.5 l1.9 3.8 4.2 .6 -3 2.9 .7 4.2 -3.8 -2 -3.8 2 .7 -4.2 -3 -2.9 4.2 -.6 Z" fill="TOT"/><rect x="17" y="14" width="14" height="28" rx="2" fill="none" stroke="TOT" stroke-width="2.4"/><rect x="19.4" y="16" width="9.2" height="6.6" fill="#e05a4a"/><rect x="19.4" y="23.5" width="9.2" height="6.6" fill="#f0b24a"/><rect x="19.4" y="31" width="9.2" height="6.6" fill="#8fbf6a"/><rect x="14" y="42" width="20" height="3.6" rx="1.6" fill="TOT" opacity=".55"/>';
+
+function totem(id,size,color){
+  var art=TOTEM_ART[id]; if(!art)return "";
+  var inner=art.split("TOT").join(color||"#f0d68a");
+  return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block">'+inner+'</svg>';
+}
+function helpBadge(size){
+  return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block">'+
+  '<rect x="10" y="8" width="28" height="34" rx="5" fill="rgba(216,180,90,.1)" stroke="#f0d68a" stroke-width="2.5"/>'+
+  '<path d="M24 16 v10 M18 21 h12" stroke="#f0d68a" stroke-width="3" stroke-linecap="round"/>'+
+  '<path d="M15 32 q9 6 18 0" stroke="#f0d68a" stroke-width="2.4" fill="none" stroke-linecap="round"/>'+
+  '</svg>';
+}
+function comboBadge(locked,size){
+  if(locked)return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block"><circle cx="24" cy="24" r="20" fill="none" stroke="#5c7263" stroke-width="2.5"/><path d="M17 22v-3a7 7 0 0 1 14 0v3" fill="none" stroke="#5c7263" stroke-width="3"/><rect x="15" y="22" width="18" height="13" rx="3" fill="#5c7263"/><circle cx="24" cy="28.5" r="2" fill="#0c1310"/></svg>';
+  return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block"><circle cx="19" cy="24" r="11" fill="none" stroke="#f0d68a" stroke-width="3"/><circle cx="29" cy="24" r="11" fill="none" stroke="#d8b45a" stroke-width="3"/><circle cx="24" cy="24" r="3.4" fill="#f0d68a"/></svg>';
+}
+function pactBadge(size){
+  var dots=CHAR_ORDER.map(function(k,i){
+    var a=i*Math.PI/2-Math.PI/4;
+    return '<circle cx="'+(24+13.4*Math.cos(a)).toFixed(1)+'" cy="'+(24+13.4*Math.sin(a)).toFixed(1)+'" r="3" fill="'+CHARS[k].hex+'"/>';
+  }).join("");
+  return '<svg viewBox="0 0 48 48" width="'+size+'" height="'+size+'" style="display:block"><circle cx="24" cy="24" r="20" fill="rgba(216,180,90,.1)" stroke="#f0d68a" stroke-width="2.5"/>'+dots+
+  '<rect x="17" y="17" width="14" height="10" rx="3" fill="none" stroke="#f0d68a" stroke-width="2.5"/><path d="M21 17l-2-4h8l-2 4" fill="#f0d68a"/></svg>';
+}
+
+/* ---- 角色 Q 版小人（viewBox 0 0 64 64） ---- */
+function charSVG(key,size){
+  var hex=CHARS[key].hex, skin="#f2c9a0", ink="#2f2a26", shoe="#22302a";
+  var s='<svg viewBox="0 0 64 64" width="'+size+'" height="'+size+'" style="display:block">';
+  s+='<ellipse cx="32" cy="60" rx="15" ry="3.4" fill="rgba(0,0,0,.35)"/>';
+  if(key==="song"){
+    s+='<path d="M27 50 L21 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><path d="M35 50 L41 59" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><circle cx="20" cy="59.5" r="3" fill="'+shoe+'"/><circle cx="42" cy="59.5" r="3" fill="'+shoe+'"/>';
+    s+='<rect x="21" y="33" width="22" height="19" rx="7" fill="'+hex+'"/>';
+    s+='<path d="M43 39 L52 34" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="53" cy="33.5" r="3.2" fill="'+skin+'"/><path d="M21 39 L12 45" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="11" cy="45.5" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/>';
+    s+='<path d="M19.5 21 a12.5 12.5 0 0 1 25 0 l-3.5 -1.5 a9.5 9.5 0 0 0 -18 0 z" fill="#6b4f35"/><path d="M31 7 l-3.5 5 M33 7.5 l3 4.5" stroke="#6b4f35" stroke-width="2.4" stroke-linecap="round"/>';
+    s+='<path d="M19.5 17.5 q12.5 -7 25 0 l0 3.6 q-12.5 -6.4 -25 0 z" fill="#e2777a"/><path d="M43 19 l9 -3.5 -2 6.5 z" fill="#e2777a"/>';
+    s+='<circle cx="27" cy="24" r="1.9" fill="'+ink+'"/><circle cx="37" cy="24" r="1.9" fill="'+ink+'"/><path d="M28 29.5 q4 3.6 8 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+  }else if(key==="jiu"){
+    s+='<path d="M28 50 v9 M36 50 v9" stroke="#31413a" stroke-width="6" stroke-linecap="round"/><circle cx="28" cy="59" r="3" fill="'+shoe+'"/><circle cx="36" cy="59" r="3" fill="'+shoe+'"/>';
+    s+='<rect x="22" y="33" width="20" height="19" rx="6" fill="'+hex+'"/><path d="M27 33 v19 M37 33 v19" stroke="rgba(255,255,255,.25)" stroke-width="1.6"/>';
+    s+='<path d="M22 40 L15 44" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="14" cy="44.5" r="3.2" fill="'+skin+'"/><rect x="6" y="38" width="10" height="8" rx="1.5" fill="#d8b45a" transform="rotate(-12 11 42)"/><path d="M11 38.5 v7" stroke="#a8863c" stroke-width="1.2"/>';
+    s+='<path d="M42 40 L47 47" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="47.5" cy="48" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 v-3 a12.5 12.5 0 0 0 -25 0 z" fill="#33404f"/>';
+    s+='<circle cx="27" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"/><circle cx="37" cy="24" r="4.6" fill="rgba(255,255,255,.14)" stroke="#2b2f36" stroke-width="2"/><path d="M31.6 24 h0.8 M22.4 23.5 l-3 -1.5 M41.6 23.5 l3 -1.5" stroke="#2b2f36" stroke-width="2" stroke-linecap="round"/>';
+    s+='<circle cx="27" cy="24" r="1.5" fill="'+ink+'"/><circle cx="37" cy="24" r="1.5" fill="'+ink+'"/><path d="M29 30.5 h6" stroke="'+ink+'" stroke-width="2" stroke-linecap="round"/>';
+  }else if(key==="mian"){
+    s+='<path d="M23 46 l-3 13 h22 l-3 -13 z" fill="'+hex+'"/><path d="M32 46 v13" stroke="rgba(255,255,255,.25)" stroke-width="1.6"/>';
+    s+='<rect x="23" y="33" width="18" height="14" rx="6" fill="'+hex+'"/><path d="M26 33 L38 47 M38 33 L26 47" stroke="rgba(255,255,255,.3)" stroke-width="1.6"/>';
+    s+='<path d="M41 40 L48 43" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="49" cy="43.5" r="3.2" fill="'+skin+'"/><rect x="46" y="34" width="9" height="12" rx="2.5" fill="#cfd8c5"/><rect x="46" y="34" width="9" height="4" rx="2" fill="#9aa88f"/>';
+    s+='<path d="M23 40 L18 46" stroke="'+skin+'" stroke-width="5.5" stroke-linecap="round"/><circle cx="17.5" cy="46.5" r="3.2" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 z" fill="#8a5a30"/><circle cx="17" cy="21" r="5.5" fill="#8a5a30"/><circle cx="47" cy="21" r="5.5" fill="#8a5a30"/>';
+    s+='<path d="M24 24.5 q3 2.8 6 0 M34 24.5 q3 2.8 6 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M28.5 30 q3.5 3.2 7 0" stroke="'+ink+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    s+='<ellipse cx="23" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"/><ellipse cx="41" cy="28.5" rx="2.4" ry="1.5" fill="rgba(226,119,122,.45)"/>';
+  }else{
+    s+='<path d="M29 50 v9 M35 50 v9" stroke="#31413a" stroke-width="5.5" stroke-linecap="round"/><circle cx="29" cy="59" r="2.8" fill="'+shoe+'"/><circle cx="35" cy="59" r="2.8" fill="'+shoe+'"/>';
+    s+='<rect x="23" y="33" width="18" height="18" rx="7" fill="'+hex+'"/>';
+    s+='<path d="M22 31 q10 6 20 0 l0 5 q-10 -6 -20 0 z" fill="'+hex+'"/><path d="M37 34 l11 9 -4.5 2.5 -9 -8 z" fill="'+hex+'"/>';
+    s+='<circle cx="30" cy="47" r="3" fill="'+skin+'"/><circle cx="35.5" cy="47.5" r="3" fill="'+skin+'"/>';
+    s+='<circle cx="32" cy="22" r="12.5" fill="'+skin+'"/><path d="M19.5 22 a12.5 12.5 0 0 1 25 0 l0 -2 q-12.5 -10 -25 0 z" fill="#3c3a52"/>';
+    s+='<path d="M40 6 l1.7 3.6 4 .5 -2.9 2.8 .7 4 -3.5 -1.9 -3.5 1.9 .7 -4 -2.9 -2.8 4 -.5 z" fill="#f0d68a" transform="translate(-1,-1) scale(.92)"/>';
+    s+='<path d="M34.5 26 q2.4 2 4.6 0" stroke="'+ink+'" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M27.5 30.5 q4.5 2.8 9 0" stroke="'+ink+'" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
+  }
+  return s+'</svg>';
+}
+
+/* ---- Boss 逼逼（逼你同意主 · 「就玩一下嘛，别小气」的声音） ---- */
+function bossSVG(size){
+  var chips="";
+  for(var i=0;i<8;i++){
+    var a=i*Math.PI/4, px=(60+50*Math.cos(a)).toFixed(1), py=(52+42*Math.sin(a)).toFixed(1);
+    chips+='<circle cx="'+px+'" cy="'+py+'" r="'+(5+(i%3))+'" fill="'+(i%2?"#5a6472":"#46505e")+'" opacity="'+(0.5+(i%3)*0.16).toFixed(2)+'"/>';
+  }
+  return '<svg viewBox="0 0 120 110" width="'+size+'" height="'+Math.round(size*0.92)+'" style="display:block">'+
+  '<ellipse cx="60" cy="56" rx="56" ry="52" fill="rgba(18,26,32,.55)"/>'+
+  /* 金色推手三股（向上伸出气泡遮挡区） */
+  '<path d="M34 32 Q20 16 36 8" stroke="#f0b24a" stroke-width="3" fill="none" stroke-linecap="round"/>'+
+  '<path d="M60 26 Q60 6 74 10" stroke="#f0b24a" stroke-width="3" fill="none" stroke-linecap="round"/>'+
+  '<path d="M86 32 Q100 16 84 8" stroke="#f0b24a" stroke-width="3" fill="none" stroke-linecap="round"/>'+
+  /* 推出去的手 */
+  '<path d="M96 60 q12 2 16 10" stroke="#8a94a4" stroke-width="4" fill="none" stroke-linecap="round"/>'+
+  '<circle cx="112" cy="70" r="4" fill="#8a94a4"/>'+
+  /* 团身（左暗右亮两面） */
+  '<path d="M18 92 Q10 60 30 44 Q36 20 60 18 Q84 20 90 44 Q110 60 102 92 Z" fill="#5a6472" stroke="#2e3440" stroke-width="3" stroke-linejoin="round"/>'+
+  '<path d="M60 18 Q84 20 90 44 Q110 60 102 92 L60 92 Z" fill="#6e7888"/>'+
+  /* 三道推压纹 */
+  '<path d="M36 68 q24 -8 48 0" stroke="#46505e" stroke-width="3" fill="none" stroke-linecap="round"/>'+
+  '<path d="M42 78 q18 -6 36 0" stroke="#46505e" stroke-width="2.4" fill="none" stroke-linecap="round"/>'+
+  /* 红色 ✕ 眼（画在上部，避开气泡） */
+  '<path d="M44 42 l9 9 M53 42 l-9 9" stroke="#e05a4a" stroke-width="3.4" stroke-linecap="round"/>'+
+  '<path d="M67 42 l9 9 M76 42 l-9 9" stroke="#e05a4a" stroke-width="3.4" stroke-linecap="round"/>'+
+  /* 嘴：努出去的语气 */
+  '<path d="M52 88 q8 5 16 0" stroke="#2e3440" stroke-width="2.6" fill="none" stroke-linecap="round"/>'+
+  chips+
+  '<g class="pollen" style="animation-delay:.4s"><path d="M14 18 l4 4 l-4 4 l-4 -4 Z" fill="#f0b24a"/></g>'+
+  '<g class="pollen" style="animation-delay:1.7s"><path d="M104 30 l4 4 l-4 4 l-4 -4 Z" fill="#8a94a4"/></g>'+
+  '</svg>';
+}
+/* ---- 场景插画 ---- */
+/* ---- 场景插画（竞技世界 · 斗技场） ---- */
+var PAVERS=[[150,318],[228,300],[306,295],[386,281],[464,267],[542,257],[624,247]];
+function sceneKindOf(id){
+  if(id==="i1"||id==="i2")return "camp";
+  if(id==="w1"||id==="w2"||id==="w3")return "clear";
+  return "arena";
+}
+function sceneSVG(kind){
+  var clear=(kind==="clear"), camp=(kind==="camp"), arena=!clear&&!camp;
+  var sky1=camp?"#1a1428":(clear?"#3a2a1c":"#141020"), sky2=camp?"#0d0a16":(clear?"#241910":"#0a0812");
+  var sid="sk"+kind;
+  var body="";
+  if(camp){
+    /* 界碑前（集结地）：安全绿岛 + 帐篷 + 界碑 */
+    body+='<rect x="0" y="250" width="880" height="130" fill="#150f20"/><rect x="0" y="250" width="880" height="6" fill="#3a2f52"/>';
+    body+='<ellipse cx="440" cy="286" rx="330" ry="60" fill="rgba(143,191,106,.07)"/>';
+    /* 帐篷 */
+    body+='<path d="M180 292 L230 232 L280 292 Z" fill="#241b36" stroke="#f0b24a" stroke-width="2"/>';
+    body+='<path d="M230 232 L280 292 L262 292 L230 254 L198 292 L180 292 Z" fill="#1c1530" stroke="#f0b24a" stroke-width="1.4"/>';
+    body+='<path d="M226 292 L230 258 L234 292 Z" fill="#f0d68a" opacity=".8"/>';
+    body+='<path d="M640 292 L688 238 L736 292 Z" fill="#241b36" stroke="#f0b24a" stroke-width="2"/>';
+    body+='<path d="M688 238 L736 292 L718 292 L688 260 L658 292 L640 292 Z" fill="#1c1530" stroke="#f0b24a" stroke-width="1.4"/>';
+    /* 界碑（三色带 + 底座） */
+    body+='<rect x="428" y="196" width="24" height="76" rx="3" fill="#241b36" stroke="#f0b24a" stroke-width="2"/>';
+    body+='<rect x="432" y="202" width="16" height="20" fill="#e05a4a"/>';
+    body+='<rect x="432" y="224" width="16" height="20" fill="#f0b24a"/>';
+    body+='<rect x="432" y="246" width="16" height="20" fill="#8fbf6a"/>';
+    body+='<rect x="420" y="272" width="40" height="10" rx="2" fill="#2a2140" stroke="#f0b24a" stroke-width="1.6"/>';
+    body+='<circle cx="440" cy="190" r="4.6" fill="#f0d68a" class="flicker"/>';
+    body+='<rect x="300" y="168" width="280" height="34" rx="4" fill="#2a1f3a" stroke="#f0b24a" stroke-width="2"/>';
+    body+='<text x="440" y="191" font-size="18" fill="#f0d68a" text-anchor="middle" font-family="sans-serif">边界篇 · 界碑前</text>';
+    body+='<ellipse cx="220" cy="300" rx="100" ry="15" fill="rgba(240,178,74,.08)" class="fogA"/>';
+    body+='<ellipse cx="660" cy="306" rx="100" ry="15" fill="rgba(201,143,216,.07)" class="fogA"/>';
+  }else if(arena){
+    /* 界线平原：绿带 / 黄带 / 红带 + 白界线 + 界碑 + 三面旗 */
+    body+='<rect x="0" y="238" width="880" height="46" fill="#1e2a1a"/>';
+    body+='<rect x="0" y="284" width="880" height="46" fill="#2a2416"/>';
+    body+='<rect x="0" y="330" width="880" height="50" fill="#2a1616"/>';
+    body+='<path d="M0 238 h880 M0 284 h880 M0 330 h880" stroke="rgba(240,214,138,.5)" stroke-width="2.4"/>';
+    /* 三色半透明罩，让带子更像「地带」 */
+    body+='<rect x="0" y="238" width="880" height="46" fill="rgba(143,191,106,.14)"/>';
+    body+='<rect x="0" y="284" width="880" height="46" fill="rgba(240,178,74,.13)"/>';
+    body+='<rect x="0" y="330" width="880" height="50" fill="rgba(224,90,74,.14)"/>';
+    /* 界碑横跨三带 */
+    body+='<rect x="428" y="242" width="24" height="92" rx="3" fill="#241b36" stroke="#f0b24a" stroke-width="2"/>';
+    body+='<rect x="432" y="246" width="16" height="24" fill="#e05a4a"/>';
+    body+='<rect x="432" y="274" width="16" height="24" fill="#f0b24a"/>';
+    body+='<rect x="432" y="302" width="16" height="24" fill="#8fbf6a"/>';
+    body+='<rect x="420" y="334" width="40" height="10" rx="2" fill="#2a2140" stroke="#f0b24a" stroke-width="1.6"/>';
+    body+='<circle cx="440" cy="236" r="4.6" fill="#f0d68a" class="flicker"/>';
+    /* 三面旗：红黄绿插在带边 */
+    body+='<path d="M170 334 v-46" stroke="#8a94a4" stroke-width="2.4"/><path d="M170 292 l30 8 l-30 8 Z" fill="#e05a4a"/>';
+    body+='<path d="M330 288 v-40" stroke="#8a94a4" stroke-width="2.4"/><path d="M330 252 l28 7 l-28 7 Z" fill="#f0b24a"/>';
+    body+='<path d="M710 242 v-40" stroke="#8a94a4" stroke-width="2.4"/><path d="M710 206 l28 7 l-28 7 Z" fill="#8fbf6a"/>';
+    /* 探照光（竞技味） */
+    body+='<path d="M340 0 L400 238 L280 238 Z" fill="rgba(240,178,74,.08)"/>';
+    body+='<path d="M540 0 L600 238 L480 238 Z" fill="rgba(201,143,216,.06)"/>';
+    body+='<rect x="0" y="234" width="880" height="4" fill="rgba(240,178,74,.22)"/>';
+    body+='<rect x="150" y="150" width="580" height="30" rx="4" fill="#2a1f3a" stroke="#f0b24a" stroke-width="1.8"/>';
+    body+='<text x="440" y="171" font-size="17" fill="#f0d68a" text-anchor="middle" font-family="sans-serif">边界篇 · 界线平原</text>';
+    body+='<text x="440" y="362" font-size="18" fill="#f0d68a" text-anchor="middle" font-family="sans-serif" opacity=".85">界 碑</text>';
+    body+='<ellipse cx="300" cy="300" rx="180" ry="26" fill="rgba(138,148,164,.08)" class="fogA"/>';
+    body+='<ellipse cx="620" cy="250" rx="180" ry="24" fill="rgba(138,148,164,.07)" class="fogA"/>';
+  }else{
+    /* 破晓：界碑镀金，三色花开 */
+    body+='<rect x="0" y="238" width="880" height="46" fill="#26301c"/>';
+    body+='<rect x="0" y="284" width="880" height="46" fill="#33291a"/>';
+    body+='<rect x="0" y="330" width="880" height="50" fill="#3a2420"/>';
+    body+='<path d="M0 238 h880 M0 284 h880 M0 330 h880" stroke="rgba(240,214,138,.45)" stroke-width="2.2"/>';
+    body+='<rect x="428" y="242" width="24" height="92" rx="3" fill="#2e2418" stroke="#f0d68a" stroke-width="2.4"/>';
+    body+='<rect x="432" y="246" width="16" height="24" fill="#e0705a"/>';
+    body+='<rect x="432" y="274" width="16" height="24" fill="#f0c86a"/>';
+    body+='<rect x="432" y="302" width="16" height="24" fill="#a8d88a"/>';
+    body+='<rect x="420" y="334" width="40" height="10" rx="2" fill="#43321f" stroke="#f0d68a" stroke-width="1.6"/>';
+    body+='<circle cx="440" cy="236" r="5.4" fill="#f0d68a" class="flicker"/>';
+    body+='<path d="M300 0 L380 238 L260 238 Z" fill="rgba(240,214,138,.10)"/>';
+    body+='<path d="M580 0 L620 238 L500 238 Z" fill="rgba(240,214,138,.07)"/>';
+    body+='<g class="flower"><rect x="298" y="250" width="9" height="9" rx="2" fill="#f0b24a"/><rect x="580" y="226" width="9" height="9" rx="2" fill="#e05a4a"/><rect x="222" y="264" width="9" height="9" rx="2" fill="#f0b24a"/><rect x="662" y="274" width="8" height="8" rx="2" fill="#e05a4a"/></g>';
+    body+='<ellipse cx="440" cy="270" rx="300" ry="40" fill="rgba(240,214,138,.10)" class="fogA"/>';
+  }
+  var skyBlocks=[[64,58,17],[148,38,11],[262,78,13],[352,34,9],[470,62,16],[566,40,10],[662,92,13],[766,48,15],[846,104,10],[196,116,8],[600,124,9]];
+  var skyG="";
+  skyBlocks.forEach(function(b,i){
+    skyG+='<rect x="'+b[0]+'" y="'+b[1]+'" width="'+b[2]+'" height="'+b[2]+'" rx="2" fill="'+(i%3===0?"#3a2a1c":(i%3===1?"#241810":"#4a3422"))+'" opacity="'+(0.35+(i%4)*0.14).toFixed(2)+'"/>';
+  });
+  return '<svg class="scene-svg" viewBox="0 0 880 380" preserveAspectRatio="xMidYMid slice">'+
+  '<defs><linearGradient id="'+sid+'sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+sky1+'"/><stop offset="1" stop-color="'+sky2+'"/></linearGradient>'+
+  '</defs>'+
+  '<rect width="880" height="380" fill="url(#'+sid+'sky)"/>'+
+  skyG+
+  body+
+  '</svg>';
+}
+/* ---- 营地横幅（标题页 / 结算页） ---- */
+function campStrip(uid){
+  var pos=[["song",96],["jiu",162],["mian",716],["shan",782]];
+  var chars="";
+  pos.forEach(function(p){
+    chars+='<svg x="'+p[1]+'" y="56" width="46" height="46">'+charSVG(p[0],46)+'</svg>';
+  });
+  return '<svg class="scene-svg" viewBox="0 0 880 130" preserveAspectRatio="xMidYMid slice">'+
+  '<defs><radialGradient id="cs'+uid+'" cx=".5" cy=".95" r=".65"><stop offset="0" stop-color="rgba(240,180,90,.25)"/><stop offset="1" stop-color="rgba(240,180,90,0)"/></radialGradient></defs>'+
+  '<rect width="880" height="130" fill="#141020"/>'+
+  '<circle cx="790" cy="24" r="15" fill="#dfe8cf" opacity=".85"/><circle cx="784" cy="20" r="2.4" fill="rgba(120,140,110,.35)"/>'+
+  '<g fill="#dfe8cf" opacity=".7"><circle cx="120" cy="30" r="1.4"/><circle cx="260" cy="52" r="1.2"/><circle cx="420" cy="34" r="1.3"/><circle cx="560" cy="56" r="1.1"/><circle cx="690" cy="36" r="1.3"/></g>'+
+  '<circle cx="440" cy="112" r="112" fill="url(#cs'+uid+')"/>'+
+  '<path d="M0 106 L140 96 L300 104 L460 96 L620 106 L780 98 L880 104 L880 130 L0 130 Z" fill="#1c1630"/>'+
+  '<rect x="428" y="76" width="24" height="34" rx="3" fill="#241b36" stroke="#f0b24a" stroke-width="1.8"/>'+
+  '<rect x="432" y="78" width="16" height="9" fill="#e05a4a"/>'+
+  '<rect x="432" y="88" width="16" height="9" fill="#f0b24a"/>'+
+  '<rect x="432" y="98" width="16" height="9" fill="#8fbf6a"/>'+
+  chars+
+  '</svg>';
+}
+
+/* ---------- 特效 ---------- */
+function fxAnimate(node,frames,opts){
+  if(node&&typeof node.animate==="function")return node.animate(frames,opts);
+  return null;
+}
+function renderSquadZone(ownerOn){
+  var z=$("#squadZone"); if(!z)return;
+  z.innerHTML="";
+  CHAR_ORDER.forEach(function(k){
+    var c=CHARS[k];
+    var s=el("div","sq"+(ownerOn===k?" owner-on":""));
+    var ava=el("div","sq-ava");
+    ava.innerHTML=charSVG(k,44);
+    if(ownerOn===k)ava.style.borderColor=c.hex;
+    s.appendChild(ava);
+    s.appendChild(el("div","sq-name",c.name));
+    z.appendChild(s);
+  });
+}
+function squadShake(){
+  fxAnimate($("#squadZone"),[
+    {transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(-4px)"},{transform:"translateX(0)"}
+  ],{duration:380,easing:"ease"});
+}
+function shakeBoss(){
+  var b=$("#bossWrap"); if(!b)return;
+  b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake");
+  setTimeout(function(){b.classList.remove("shake");},460);
+}
+function tauntBoss(){
+  var b=$("#bossWrap"); if(!b)return;
+  b.classList.remove("taunt"); void b.offsetWidth; b.classList.add("taunt");
+  setTimeout(function(){b.classList.remove("taunt");},520);
+}
+function dmgFloat(n,cls){
+  var host=$("#fxLayer"); if(!host)return;
+  var d=el("div","dmg-num"+(cls?" "+cls:""),n);
+  d.style.left=(34+Math.random()*26)+"%";
+  d.style.top=(24+Math.random()*22)+"%";
+  host.appendChild(d);
+  var a=fxAnimate(d,[
+    {transform:"translateY(0) scale(.5)",opacity:0},
+    {transform:"translateY(-16px) scale(1.25)",opacity:1,offset:.25},
+    {transform:"translateY(-56px) scale(1)",opacity:0}
+  ],{duration:1000,easing:"ease-out"});
+  if(a)a.onfinish=function(){d.remove();};
+  else setTimeout(function(){d.remove();},1000);
+}
+function comboBanner(text,comboId){
+  var g=$("#battleground"); if(!g)return;
+  var b=el("div","combo-banner");
+  b.appendChild(el("span",null,"🔗 组合技 · "+text));
+  g.appendChild(b);
+  setTimeout(function(){b.remove();},1700);
+}
+function flashGround(){
+  var g=$("#battleground"); if(!g)return;
+  g.classList.remove("flash"); void g.offsetWidth; g.classList.add("flash");
+  setTimeout(function(){g.classList.remove("flash");},380);
+}
+function flyCards(chipEls,done){
+  if(!chipEls||!chipEls.length){done&&done();return;}
+  var anims=chipEls.filter(function(c){return c&&typeof c.animate==="function";});
+  if(!anims.length){done&&done();return;}
+  var left=anims.length;
+  anims.forEach(function(c,i){
+    var r=c.getBoundingClientRect(),boss=$("#bossWrap").getBoundingClientRect();
+    var ghost=c.cloneNode(true);
+    ghost.style.cssText+=";position:fixed;left:"+r.left+"px;top:"+r.top+"px;width:"+r.width+"px;margin:0;z-index:60;pointer-events:none;";
+    document.body.appendChild(ghost);
+    var dx=(boss.left+boss.width/2)-(r.left+r.width/2);
+    var dy=(boss.top+boss.height/2)-(r.top+r.height/2);
+    var a=fxAnimate(ghost,[
+      {transform:"translate(0,0) scale(1) rotate(0)",opacity:1},
+      {transform:"translate("+(dx*.5)+"px,"+(dy*.5-40)+"px) scale(1.15) rotate("+(i?12:-12)+"deg)",opacity:1,offset:.55},
+      {transform:"translate("+dx+"px,"+dy+"px) scale(.35)",opacity:.15}
+    ],{duration:480,easing:"ease-in"});
+    if(a)a.onfinish=function(){ghost.remove();if(--left===0)done&&done();};
+    else{ghost.remove();if(--left===0)done&&done();}
+  });
+}
+function impactFx(combo){
+  flashGround(); shakeBoss();
+  dmgFloat(combo?60:30,combo?"gold":"");
+  if(combo){beep("combo");}else beep("hit");
+}
+function stampBoss(skillId){
+  var host=$("#bossStamps"); var wrap=$("#bossWrap");
+  if(!host||!wrap)return;
+  if(host.children.length>=8)return;
+  var st=el("div","st");
+  st.innerHTML=totem(skillId,26,"#f0d68a");
+  st.style.left=(12+Math.random()*62)+"%";
+  st.style.top=(14+Math.random()*58)+"%";
+  host.appendChild(st);
+}
+function bossBurstFx(){
+  var host=$("#fxLayer"); if(!host)return;
+  for(var i=0;i<14;i++){
+    var p=el("i","ember");
+    var sz=6+Math.random()*14;
+    p.style.width=sz+"px"; p.style.height=sz+"px";
+    p.style.left=(46+ (Math.random()*26-13))+"%";
+    p.style.top=(24+(Math.random()*20-10))+"%";
+    host.appendChild(p);
+    var a=fxAnimate(p,[
+      {transform:"translate(0,0) scale(.4)",opacity:.9},
+      {transform:"translate("+(Math.random()*120-60)+"px,"+(-120-Math.random()*90)+"px) scale(1.2)",opacity:0}
+    ],{duration:900+Math.random()*500,easing:"ease-out"});
+    if(a)a.onfinish=function(){p.remove();};
+    else setTimeout(function(){p.remove();},1300);
+  }
+  var bw=$("#bossWrap");
+  if(bw){bw.style.transition="opacity .5s";bw.style.opacity="0";}
+}
+function confetti(n){
+  var host=$("#endBody"); if(!host)return;
+  var colors=["#d8b45a","#f0d68a","#7bc96f","#c9a2e0","#f2b880","#6fa8dc"];
+  for(var i=0;i<n;i++){
+    var c=el("i","confetti");
+    c.style.left=(Math.random()*96+2)+"%";
+    c.style.background=colors[i%colors.length];
+    c.style.animationDelay=(Math.random()*.9)+"s";
+    c.style.animationDuration=(1.6+Math.random()*1.3)+"s";
+    host.appendChild(c);
+    (function(el2){setTimeout(function(){el2.remove();},3400);})(c);
+  }
+}
+
+/* ================= 存档 ================= */
+function save(silent){
+  try{localStorage.setItem(SAVE_KEY,JSON.stringify(state));
+      if(!silent)toast("💾 已保存");}
+  catch(e){if(!silent)toast("保存失败：浏览器禁止了本地存储");}
+}
+function load(){try{return JSON.parse(localStorage.getItem(SAVE_KEY));}catch(e){return null;}}
+function autosave(){save(true);}
+function saveBest(rating){
+  var best=null;
+  try{best=JSON.parse(localStorage.getItem(BEST_KEY));}catch(e){}
+  if(!best||RANK[rating]>RANK[best.rating]){
+    best={rating:rating,diff:DIFFS[state.diff].name,date:new Date().toISOString().slice(0,10)};
+    try{localStorage.setItem(BEST_KEY,JSON.stringify(best));}catch(e){}
+  }
+  return best;
+}
+function bestLine(){
+  var best=null;
+  try{best=JSON.parse(localStorage.getItem(BEST_KEY));}catch(e){}
+  var b=$("#bestLine");
+  var html="";
+  if(best)html="🏆 本章最佳记录：<b>"+best.rating+"</b> · "+best.diff+" · "+best.date;
+  var p1=null;
+  try{p1=JSON.parse(localStorage.getItem("brainexp_ch1_best_v3"));}catch(e){}
+  if(p1)html+=(html?"<br>":"")+"🏅 已继承第一章：「拖延沼泽」最佳 <b>"+p1.rating+"</b> · "+p1.diff;
+  var p2=null;
+  try{p2=JSON.parse(localStorage.getItem("brainexp_ch2_best_v1"));}catch(e){}
+  if(p2)html+=(html?"<br>":"")+"🏅 已继承第二章：「分心花田」最佳 <b>"+p2.rating+"</b> · "+p2.diff;
+  var p3=null;
+  try{p3=JSON.parse(localStorage.getItem("brainexp_ch3_best_v1"));}catch(e){}
+  if(p3)html+=(html?"<br>":"")+"🏅 已继承第三章：「遗忘迷宫」最佳 <b>"+p3.rating+"</b> · "+p3.diff;
+  var p4=null;
+  try{p4=JSON.parse(localStorage.getItem("brainexp_ch4_best_v1"));}catch(e){}
+  if(p4)html+=(html?"<br>":"")+"🏅 已继承第四章：「理解冰山」最佳 <b>"+p4.rating+"</b> · "+p4.diff;
+  var p5=null;
+  try{p5=JSON.parse(localStorage.getItem("brainexp_ch5_best_v1"));}catch(e){}
+  if(p5)html+=(html?"<br>":"")+"🏅 已继承第五章：「否定斗技场」最佳 <b>"+p5.rating+"</b> · "+p5.diff;
+  var p6=null;
+  try{p6=JSON.parse(localStorage.getItem("brainexp_ch6_best_v1"));}catch(e){}
+  if(p6)html+=(html?"<br>":"")+"🏅 已继承第六章：「语言风暴」最佳 <b>"+p6.rating+"</b> · "+p6.diff;
+  var p7=null;
+  try{p7=JSON.parse(localStorage.getItem("brainexp_social_best_v1"));}catch(e){}
+  if(p7)html+=(html?"<br>":"")+"🏅 已继承社交特别篇：「关系回声」最佳 <b>"+p7.rating+"</b> · "+p7.diff;
+  var p8=null;
+  try{p8=JSON.parse(localStorage.getItem("brainexp_ch8_best_v1"));}catch(e){}
+  if(p8)html+=(html?"<br>":"")+"🏅 已继承第八章：「能量峡谷」最佳 <b>"+p8.rating+"</b> · "+p8.diff;
+  var p9=null;
+  try{p9=JSON.parse(localStorage.getItem("brainexp_ch9_best_v1"));}catch(e){}
+  if(p9)html+=(html?"<br>":"")+"🏅 已继承终章：「大脑王座」最佳 <b>"+p9.rating+"</b> · "+p9.diff;
+  b.innerHTML=html;
+}
+
+/* ================= HUD ================= */
+function renderSquad(){
+  var box=$("#squad"); box.innerHTML="";
+  Object.keys(CHARS).forEach(function(k){
+    var c=CHARS[k];
+    var chip=el("div","pchip"+(state.me===k?" me":""));
+    chip.style.borderColor=state.me===k?"var(--gold)":"var(--line)";
+    var ava=el("span","ava");
+    ava.innerHTML=charSVG(k,22);
+    chip.appendChild(ava);
+    chip.appendChild(el("span",null,c.name));
+    if(state.me===k)chip.appendChild(el("span","you","你"));
+    box.appendChild(chip);
+  });
+  updateTrustUI();
+}
+function updateTrustUI(){
+  $("#trustFill").style.width=Math.min(100,Math.round(state.trust/35*100))+"%";
+  $("#trustNum").textContent=state.trust;
+}
+function addTrust(n,reason){
+  state.trust=Math.max(0,state.trust+n);
+  updateTrustUI();
+  if(n>0){
+    var w=document.querySelector(".trust-wrap");
+    var f=el("span","float-trust","+"+n+(reason?" "+reason:""));
+    w.appendChild(f);
+    setTimeout(function(){f.remove();},1400);
+  }
+  autosave();
+}
+function renderMap(node){
+  var strip=$("#mapStrip"); if(!strip)return;
+  strip.innerHTML="";
+  MAP_NODES.forEach(function(n,i){
+    if(i>0)strip.appendChild(el("span","map-link"));
+    var d=el("div","map-node"+(i<node?" passed":"")+(i===node?" current":""));
+    d.appendChild(el("span","mn",n.e));
+    d.appendChild(el("span",null,n.t));
+    strip.appendChild(d);
+  });
+}
+
+/* ================= 标题 / 难度 / 角色 ================= */
+function refreshTitle(){
+  $("#btn-continue").classList.toggle("hidden",!load());
+  bestLine();
+}
+function setDiffBadge(){
+  $("#badge-diff").textContent="难度："+DIFFS[state.diff].name;
+  $("#pause-diff").textContent=DIFFS[state.diff].name;
+}
+function renderDiffGrid(){
+  var g=$("#diffGrid"); g.innerHTML="";
+  DIFF_ORDER.forEach(function(k){
+    var d=DIFFS[k];
+    var b=el("button","card");
+    var dots=el("div","lvl-dots");
+    for(var i=1;i<=4;i++)dots.appendChild(el("i",i<=d.level?"on":""));
+    b.appendChild(dots);
+    b.appendChild(el("div","ct",d.name+(state.diff===k?" · 当前":"")));
+    b.appendChild(el("div","cd",d.desc));
+    b.onclick=function(){
+      state.diff=d.key;
+      setDiffBadge();
+      autosave();
+      if(diffReturn==="new"){renderCharGrid();show("scr-char");}
+      else{toast("难度已切换为 "+d.name);closeModal("#overlay-pause");}
+    };
+    g.appendChild(b);
+  });
+}
+function renderCharGrid(){
+  var g=$("#charGrid"); g.innerHTML="";
+  var chosen=state.diff;
+  Object.keys(CHARS).forEach(function(k){
+    var c=CHARS[k];
+    var b=el("button","card char-card");
+    var ava=el("div","ava-big");
+    ava.innerHTML=charSVG(k,88);
+    b.appendChild(ava);
+    b.appendChild(el("div","ct",c.name));
+    b.appendChild(el("div","role",c.role));
+    b.appendChild(el("div","cd",c.desc));
+    var sk=el("div","sk");
+    c.skills.forEach(function(sid){sk.appendChild(el("span",null,""));});
+    c.skills.forEach(function(sid){
+      var w=el("span");
+      w.innerHTML=totem(sid,30,c.hex);
+      sk.appendChild(w);
+    });
+    b.appendChild(sk);
+    b.appendChild(el("div","voice","内心小声音："+c.voice));
+    b.onclick=function(){
+      beep("click");
+      state=fresh();
+      state.diff=chosen;
+      state.me=k; state.skills=["micro"]; state.trust=8; state.sceneId="i1";
+      setDiffBadge();
+      renderSquad();
+      save(true);
+      gotoScene("i1");
+    };
+    g.appendChild(b);
+  });
+}
+function renderHelp(){
+  var h=[
+   ["全部选择题，点一点就能玩。","mark"],
+   ["选错不惩罚，战斗中可以换招重来。","monitor"],
+   ["知识点锁小学，方法都是成年人验证过的。","recode"],
+   ["随时暂停存档，每次前进也会自动存。","trigger"],
+   ["四档难度，随时切换，随你心情。","micro"],
+   ["组队值决定连招——怎么对队友，比怎么打 Boss 更重要。","micro"]
+  ];
+  var g=$("#helpList"); g.innerHTML="";
+  h.forEach(function(p){
+    var it=el("div","help-item");
+    var ic=el("span","hi");
+    ic.innerHTML=totem(p[1],24,"#d8b45a");
+    it.appendChild(ic);
+    it.appendChild(el("span",null,p[0]));
+    g.appendChild(it);
+  });
+}
+
+/* ================= 剧情引擎（漫画分镜） ================= */
+var typeTimer=null, typing=null;
+function completeTyping(){
+  if(typeTimer){clearInterval(typeTimer);typeTimer=null;}
+  if(typing){typing.node.textContent=typing.text;typing=null;}
+}
+function typeInto(node,text){
+  if(text==null)text="";
+  var n=0; node.textContent="";
+  typing={node:node,text:text};
+  typeTimer=setInterval(function(){
+    n++;
+    node.textContent=text.slice(0,n);
+    if(n>=text.length){clearInterval(typeTimer);typeTimer=null;typing=null;}
+  },26);
+}
+function renderScene(id){
+  state.sceneId=id;
+  if(NODE_OF_SCENE[id]!=null){state.node=NODE_OF_SCENE[id];renderMap(state.node);}
+  autosave();
+  var sc=SCENES[id];
+  if(!sc){console.error("missing scene",id);return;}
+  if(sc.onEnter)sc.onEnter();
+  if(sc.kind==="story")renderComic(sc);
+  else if(sc.kind==="choice")renderChoice(sc);
+  else if(sc.kind==="skill"){
+    if(state.skills.indexOf(sc.skill)<0)state.skills.push(sc.skill);
+    openSkillModal(sc.skill,sc.lead||"",function(){gotoScene(sc.next);});
+  }
+  else if(sc.kind==="combo")renderComboCard();
+}
+function gotoScene(id){
+  if(id==="BATTLE"){startBattle();return;}
+  if(id==="END"){showEnd();return;}
+  show("scr-game");
+  renderScene(id);
+}
+function buildStage(sceneId){
+  var box=$("#gameBody");
+  box.innerHTML="";
+  var frame=el("div","comic-frame");
+  frame.dataset.scene=sceneId;
+  frame.insertAdjacentHTML("afterbegin",sceneSVG(sceneKindOf(sceneId)));
+  if(sceneId==="conv"){
+    frame.insertAdjacentHTML("beforeend",'<div class="stage-boss" style="opacity:0;transform:translateY(54px)">'+bossSVG(150)+'</div>');
+  }
+  var narr=el("div","stage-caption hidden");
+  frame.appendChild(narr);
+  var cap=el("div","caption hidden");
+  frame.appendChild(cap);
+  var fx=el("div","stage-fx");
+  frame.appendChild(fx);
+  var row=el("div","actor-row");
+  CHAR_ORDER.forEach(function(k){
+    var c=CHARS[k];
+    var a=el("div","actor");
+    a.dataset.k=k;
+    var f=el("div","ava-svg");
+    f.innerHTML=charSVG(k,78);
+    if(k===state.me)f.style.filter="drop-shadow(0 0 6px rgba(216,180,90,.45))";
+    a.appendChild(f);
+    a.appendChild(el("div","name-tag",c.name));
+    row.appendChild(a);
+  });
+  frame.appendChild(row);
+  fxAnimate(row,[
+    {transform:"translateX(-26%)",opacity:0},
+    {transform:"translateX(0)",opacity:1}
+  ],{duration:480,easing:"ease-out",fill:"forwards"});
+  box.appendChild(frame);
+  var bubble=el("div","bubble-wrap hidden");
+  var spr=el("div","speaker-row");
+  spr.appendChild(el("span","speaker-chip"));
+  bubble.appendChild(spr);
+  bubble.appendChild(el("div","bubble-text"));
+  box.appendChild(bubble);
+  var dots=el("div","dots");
+  box.appendChild(dots);
+  var tray=el("div","choice-tray hidden");
+  box.appendChild(tray);
+  return {
+    narr:narr,cap:cap,bubble:bubble,fx:fx,row:row,frame:frame,
+    chip:bubble.querySelector(".speaker-chip"),
+    txt:bubble.querySelector(".bubble-text"),
+    dots:dots,tray:tray
+  };
+}
+
+function setActiveActor(key){
+  var actors=$$("#gameBody .actor");
+  actors.forEach(function(a){
+    var on=(key&&a.dataset.k===key)||(key==="ALL");
+    a.classList.toggle("active",!!on);
+  });
+}
+function litFly(fx){
+  ["song","jiu","mian","shan"].forEach(function(k,i){
+    var d=el("div","spark");
+    var col=CHARS[k].hex;
+    d.style.width="18px"; d.style.height="18px";
+    d.style.background=col;
+    d.style.boxShadow="0 0 18px "+col;
+    var sx=(i%2)*90+3, sy=(i<2?8:86);
+    d.style.left=sx+"%"; d.style.top=sy+"%";
+    fx.appendChild(d);
+    var a=fxAnimate(d,[
+      {transform:"translate(0,0) scale(1)",opacity:1},
+      {transform:"translate("+((i%2?-1:1)*(14-i*8))+"vw,-"+(30+i*4)+"vh) scale(.4)",opacity:1,offset:.6},
+      {transform:"translate("+((44-sx))+"%,-"+(50-sy)+"%) scale(.1)",opacity:0}
+    ],{duration:900,easing:"ease-in-out"});
+    if(a)a.onfinish=function(){d.remove();};
+    else setTimeout(function(){d.remove();},900);
+  });
+  beep("unlock");
+}
+function bubbleRain(fx){
+  for(var i=0;i<8;i++){
+    (function(k){
+      setTimeout(function(){
+        var p=el("i","ember");
+        var sz=5+Math.random()*10;
+        p.style.width=sz+"px"; p.style.height=sz+"px";
+        p.style.left=(20+Math.random()*60)+"%";
+        p.style.top="62%";
+        fx.appendChild(p);
+        var a=fxAnimate(p,[
+          {transform:"translateY(0) scale(.5)",opacity:.9},
+          {transform:"translateY(-70px) scale(1.1)",opacity:0}
+        ],{duration:900,easing:"ease-out"});
+        if(a)a.onfinish=function(){p.remove();};
+        else setTimeout(function(){p.remove();},900);
+      },k*90);
+    })(i);
+  }
+  beep("hit");
+}
+function focusStoneFx(){
+  var st=$("#gameBody .stone-hl");
+  if(st){
+    st.style.transition="none"; st.style.filter="brightness(1.5)";
+    setTimeout(function(){st.style.transition="filter .8s";st.style.filter="";},450);
+  }
+  beep("click");
+}
+function swampClearFx(){
+  var f=$("#gameBody .comic-frame");
+  if(f){f.style.transition="filter .8s";f.style.filter="brightness(1.12) saturate(1.15)";}
+  beep("unlock");
+}
+function campfireFx(ui){
+  if(ui.frame){
+    ui.frame.classList.add("fire-up");
+    setTimeout(function(){ui.frame.classList.remove("fire-up");},1300);
+  }
+  beep("unlock");
+}
+function marchFx(ui){
+  fxAnimate(ui.row,[
+    {transform:"translateX(0)",opacity:1},
+    {transform:"translateX(-46%)",opacity:0}
+  ],{duration:850,easing:"ease-in",fill:"forwards"});
+  fxAnimate(ui.frame,[
+    {transform:"scale(1)"},
+    {transform:"scale(1.07)"}
+  ],{duration:850,easing:"ease-in",fill:"forwards"});
+}
+function bossEyeFx(ui){
+  for(var i=0;i<2;i++){
+    (function(k){
+      var d=el("div","spark");
+      d.style.width="11px"; d.style.height="11px";
+      d.style.background="#e8e2cf";
+      d.style.boxShadow="0 0 18px rgba(232,226,207,.95)";
+      d.style.left=(76+k*4.5)+"%"; d.style.top="44%";
+      ui.fx.appendChild(d);
+      var a=fxAnimate(d,[
+        {opacity:0,transform:"scale(.3)"},
+        {opacity:1,transform:"scale(1.25)",offset:.45},
+        {opacity:1,transform:"scale(1)",offset:.8},
+        {opacity:0,transform:"scale(.4)"}
+      ],{duration:1500,delay:k*200,easing:"ease"});
+      if(a)a.onfinish=function(){d.remove();};
+      else setTimeout(function(){d.remove();},1800);
+    })(i);
+  }
+  beep("click");
+}
+function bossRiseFx(ui){
+  var b=$("#gameBody .stage-boss");
+  fxAnimate(b,[
+    {transform:"translateY(54px)",opacity:0},
+    {transform:"translateY(-7px)",opacity:1,offset:.75},
+    {transform:"translateY(0)",opacity:1}
+  ],{duration:950,easing:"ease-out",fill:"forwards"});
+  beep("hit");
+}
+function playAnim(name,ui){
+  if(name==="lights")litFly(ui.fx);
+  else if(name==="focus-stone")focusStoneFx();
+  else if(name==="boss-burst")bubbleRain(ui.fx);
+  else if(name==="swamp-clear")swampClearFx();
+  else if(name==="campfire")campfireFx(ui);
+  else if(name==="march")marchFx(ui);
+  else if(name==="boss-eye")bossEyeFx(ui);
+  else if(name==="boss-rise")bossRiseFx(ui);
+}
+
+function linePlayer(ui){
+  function showNarr(text){
+    ui.narr.classList.remove("hidden"); ui.cap.classList.add("hidden"); ui.bubble.classList.add("hidden");
+    setActiveActor(null);
+    typeInto(ui.narr,text);
+  }
+  function showAct(text){
+    ui.cap.classList.remove("hidden"); ui.narr.classList.add("hidden"); ui.bubble.classList.add("hidden");
+    setActiveActor(null);
+    typeInto(ui.cap,"（"+text+"）");
+  }
+  function showSay(who,text){
+    ui.bubble.classList.remove("hidden"); ui.narr.classList.add("hidden"); ui.cap.classList.add("hidden");
+    var key=NAME2KEY[who];
+    setActiveActor(key==="boss"?null:(who==="四人"?"ALL":key));
+    ui.chip.textContent=who;
+    if(key&&CHARS[key])ui.chip.style.background=CHARS[key].hex;
+    else if(key==="boss")ui.chip.style.background="var(--danger)";
+    else ui.chip.style.background="var(--gold2)";
+    typeInto(ui.txt,text);
+  }
+  return {
+    narr:showNarr,act:showAct,say:showSay,
+    play:function(ln){
+      if(ln.anim){playAnim(ln.anim,ui);hideAllText(ui);}
+      else if(ln.act)showAct(ln.act);
+      else if(ln.who==="旁白")showNarr(ln.text);
+      else showSay(ln.who,ln.text);
+    }
+  };
+  function hideAllText(ui){
+    ui.narr.classList.add("hidden"); ui.cap.classList.add("hidden"); ui.bubble.classList.add("hidden");
+  }
+}
+function renderComic(sc){
+  var box=$("#gameBody");
+  var ui=buildStage(state.sceneId);
+  var player=linePlayer(ui);
+  completeTyping();
+  var hint=$("#nextHint");
+  hint.textContent="点击画面继续 ▸";
+  hint.classList.remove("hidden","choose");
+  ui.dots.innerHTML="";
+  sc.lines.forEach(function(){ui.dots.appendChild(el("i"));});
+  var i=0;
+  function paintDots(){
+    $$("#gameBody .dots i").forEach(function(d,idx){d.classList.toggle("cur",idx===i);});
+  }
+  function step(){
+    if(i>=sc.lines.length){
+      $$("#gameBody .dots i").forEach(function(d){d.classList.remove("cur");});
+      gotoScene(sc.next);return;
+    }
+    player.play(sc.lines[i]);
+    i++; paintDots();
+  }
+  box.onclick=function(){
+    if(typeTimer){completeTyping();return;}
+    step();
+  };
+  step();
+}
+function renderChoice(sc){
+  var box=$("#gameBody");
+  var ui=buildStage(state.sceneId);
+  var player=linePlayer(ui);
+  completeTyping();
+  ui.dots.innerHTML="";
+  ui.tray.classList.remove("hidden");
+  if(sc.prompt)ui.tray.appendChild(el("div","choice-title","【你的选择】"+sc.prompt));
+  /* 选择引导：改提示文案 + 平滑滚动把选项带进视口 */
+  var hint=$("#nextHint");
+  hint.textContent="▼ 做出你的选择";
+  hint.classList.remove("hidden");
+  hint.classList.add("choose");
+  setTimeout(function(){
+    if(typeof ui.tray.scrollIntoView==="function"){
+      try{ui.tray.scrollIntoView({behavior:"smooth",block:"center"});}
+      catch(e){try{ui.tray.scrollIntoView();}catch(e2){}}
+    }
+  },80);
+  var letters="ABCD";
+  sc.options.forEach(function(opt,idx){
+    var b=el("button","opt");
+    if(sc.letters)b.appendChild(el("span","ol",letters[idx]||"·"));
+    b.appendChild(el("span",null,opt.t));
+    b.onclick=function(ev){
+      ev.stopPropagation();
+      beep("click");
+      hint.classList.add("hidden");
+      hint.classList.remove("choose");
+      if(opt.trust)addTrust(opt.trust);
+      if(opt.flag)state.flags[opt.flag]=(state.flags[opt.flag]||0)+1;
+      if(opt.branch)state.branch=opt.branch;
+      autosave();
+      box.onclick=null;
+      ui.tray.parentNode.removeChild(ui.tray);
+      var lines=opt.after||[];
+      if(!lines.length){gotoScene(opt.next);return;}
+      var j=0;
+      box.onclick=function(){
+        if(typeTimer){completeTyping();return;}
+        if(j>=lines.length){gotoScene(opt.next);return;}
+        player.play(lines[j]);
+        j++;
+      };
+      player.play(lines[0]);j=1;
+    };
+    ui.tray.appendChild(b);
+  });
+  setActiveActor(null);
+}
+
+/* ---------- 连招卡 ---------- */
+function renderComboCard(){
+  var box=$("#skillBox"); box.innerHTML="";
+  box.appendChild(el("div","skill-name","🔗 连招解锁"));
+  var hero=el("div","combo-hero");
+  hero.innerHTML=comboBadge(false,96);
+  box.appendChild(hero);
+  var cn=COMBOS[0];
+  var mem=cn.members.map(function(m){return SKILLS[m].name+"（"+CHARS[SKILLS[m].owner].name+"）";}).join("＋");
+  box.appendChild(el("div","mantra","「"+cn.name+"」＝ "+mem));
+  box.appendChild(el("div","note-sec",cn.desc));
+  box.appendChild(el("div","locked-note","预告：还有两位新考验——「为别人出手」和「深夜的手机」，在排队报到。\n冲突没有解决的章节，连招图标会是灰色的。"));
+  beep("win");
+  var b=el("button","btn primary","前往结算");
+  b.style.marginTop="18px"; b.style.width="100%";
+  b.onclick=function(){beep("click");closeModal("#modal-skill");showEnd();};
+  box.appendChild(b);
+  openModal("#modal-skill");
+}
+
+/* ---------- 技能卡（图腾翻转） ---------- */
+function openSkillModal(id,lead,onDone){
+  var sk=SKILLS[id]; if(!sk){onDone&&onDone();return;}
+  var owner=CHARS[sk.owner];
+  var d=diff();
+  var box=$("#skillBox"); box.innerHTML="";
+  box.appendChild(el("div","skill-name","🎴 新技能入手"));
+  var tagRow=el("div"); tagRow.style.marginTop="6px";
+  tagRow.style.textAlign="center";
+  var ot=el("span","own-tag",owner.name);
+  ot.style.background=owner.hex;
+  tagRow.appendChild(ot);
+  if(d.tags)tagRow.appendChild(el("span","new-tag","NEW"));
+  box.appendChild(tagRow);
+  if(lead)box.appendChild(el("div","lead-note",lead));
+  var flip=el("div","flip-card");
+  var inner=el("div","flip-inner");
+  var front=el("div","face front");
+  var frontCard=el("div","cardface");
+  var tb=el("div","totem-big");
+  tb.innerHTML=totem(id,84,owner.hex);
+  frontCard.appendChild(tb);
+  frontCard.appendChild(el("div","cname",sk.name));
+  frontCard.appendChild(el("div","mantra",sk.mantra));
+  front.appendChild(frontCard);
+  inner.appendChild(front);
+  if(d.card!=="one"){
+    var back=el("div","face back");
+    var backCard=el("div","cardface");
+    note("一句话版",sk.one,backCard);
+    note("原理 · WHY",owner.name+"的批注："+sk.why,backCard);
+    note("跨界 · CROSS",sk.cross,backCard);
+    back.appendChild(backCard);
+    inner.appendChild(back);
+    inner.onclick=function(){
+      inner.classList.toggle("flipped");
+      beep("click");
+    };
+    box.appendChild(el("div","flip-tip","👆 点击卡牌翻面，看完整笔记"));
+  }else{
+    box.appendChild(el("div","locked-note","困难模式：完整笔记见章末图鉴。现在，记住这句咒语，就够上路了。"));
+  }
+  flip.appendChild(inner);
+  box.appendChild(flip);
+  beep("unlock");
+  var b=el("button","btn primary","记住啦 ✔");
+  b.style.marginTop="18px"; b.style.width="100%";
+  b.onclick=function(){beep("click");closeModal("#modal-skill");onDone&&onDone();};
+  box.appendChild(b);
+  openModal("#modal-skill");
+  function note(lab,text,parent){
+    var sec=el("div","note-sec");
+    sec.appendChild(el("div","lab",lab));
+    sec.appendChild(el("div",null,text));
+    parent.appendChild(sec);
+  }
+}
+
+/* ================= 战斗 ================= */
+function startBattle(restore){
+  var bg=$("#battleground");
+  var old=bg.querySelector(".scene-svg");
+  if(old&&old.parentNode)old.parentNode.removeChild(old);
+  bg.insertAdjacentHTML("afterbegin",sceneSVG("arena"));
+  if(restore)state.battle=restore;
+  else state.battle={round:0,hp:100,log:[],borrowed:[],invalid:0,sel:[],r3First:true,declined:false};
+  state.node=2; renderMap(2);
+  var bw=$("#bossWrap");
+  bw.style.opacity="0";
+  bw.innerHTML=bossSVG(150)+'<div id="bossStamps"></div>';
+  var rise=fxAnimate(bw,[
+    {transform:"translateY(48px)",opacity:0},
+    {transform:"translateY(0)",opacity:1}
+  ],{duration:700,easing:"ease-out"});
+  if(rise)rise.onfinish=function(){bw.style.opacity="1";};
+  else bw.style.opacity="1";
+  show("scr-battle");
+  var feed=$("#battleFeed"); if(feed)feed.innerHTML="";
+  renderSquadZone(null);
+  renderBattle();
+  fitBattle();
+}
+/* 战斗一屏化：实测顶部框架高度，动态设定战斗区高度（适配桌面/手机/窗口缩放） */
+function fitBattle(){
+  var sec=$("#scr-battle");
+  if(!sec||!sec.classList.contains("active"))return;
+  var tb=$("#topbar"),hud=$("#hud"),main=$("main");
+  /* 注意：#mapStrip 嵌套在 #hud 内，已包含在 hud 高度中，不要重复相加 */
+  var top=(tb?tb.getBoundingClientRect().height:0)
+         +(hud?hud.getBoundingClientRect().height:0)
+         +(main?parseFloat(getComputedStyle(main).paddingTop)||0:0);
+  var pb=(main?parseFloat(getComputedStyle(main).paddingBottom)||0:0);
+  sec.style.height=Math.max(520,window.innerHeight-top-pb-4)+"px";
+}
+window.addEventListener("resize",function(){fitBattle();});
+/* 出招镜头：画面轻微推近，把"出招→命中→掉血"的视线锁在画面内 */
+function zoomPunch(){
+  var bg=$("#battleground");
+  if(!bg||typeof bg.animate!=="function")return;
+  bg.classList.remove("zoom");
+  void bg.offsetWidth;
+  bg.classList.add("zoom");
+}
+function availSkills(){
+  var seen={},out=[];
+  state.skills.concat(state.battle.borrowed||[]).forEach(function(id){
+    if(!seen[id]&&SKILLS[id]){seen[id]=1;out.push(id);}
+  });
+  return out;
+}
+function renderBattle(){
+  var b=state.battle, r=ROUNDS[b.round];
+  $("#bossBubble").textContent=r.bossLine;
+  $("#roundName").textContent=r.name;
+  $("#roundName").classList.remove("hidden");
+  $("#bossHpNum").textContent=Math.max(0,b.hp);
+  $("#bossHpFill").style.width=Math.max(0,b.hp)+"%";
+  var bw=$("#bossWrap");
+  if(bw)bw.classList.toggle("weak",b.hp>0&&b.hp<=30);
+  var ease=$("#battle-ease");
+  if(diff().hints){ease.textContent=r.ease;ease.classList.remove("hidden");}
+  else ease.classList.add("hidden");
+  /* 出招记录改为画中浮层：只飘最新一条，旧的淡出，不撑长页面 */
+  var t=b.log[b.log.length-1];
+  var feed=$("#battleFeed");
+  if(t&&feed){
+    var cls="bf-line";
+    if(t.indexOf("【出招】")===0)cls="bf-line hit";
+    else if(t.indexOf("【解说】")===0){cls="bf-line act";t=t.replace("【解说】","");}
+    Array.prototype.forEach.call(feed.children,function(c){c.classList.add("fade");});
+    feed.appendChild(el("div",cls,t));
+    while(feed.children.length>2)feed.removeChild(feed.firstChild);
+    clearTimeout(feed._t);
+    feed._t=setTimeout(function(){
+      Array.prototype.forEach.call(feed.children,function(c){c.classList.add("fade");});
+      setTimeout(function(){feed.innerHTML="";},700);
+    },2600);
+  }
+  renderHand();
+  updateConfirm();
+}
+
+function renderHand(){
+  var b=state.battle, r=ROUNDS[b.round];
+  var hand=$("#hand"); hand.innerHTML="";
+  if(r.valid==="COMBO"){
+    hand.appendChild(el("span","trust-label","选两位【不同角色】的卡牌，组合出招："));
+  }
+  availSkills().forEach(function(id){
+    var sk=SKILLS[id], owner=CHARS[sk.owner];
+    var chip=el("button","chip"+(b.sel.indexOf(id)>=0?" on":""));
+    chip.dataset.id=id;
+    chip.style.borderTopColor=owner.hex;
+    var od=el("span","own",owner.name);
+    od.style.color=owner.hex;
+    chip.appendChild(od);
+    var cem=el("span","cem");
+    cem.innerHTML=totem(id,44,owner.hex);
+    chip.appendChild(cem);
+    chip.appendChild(el("span",null,sk.name));
+    chip.onclick=function(){
+      if(b.done||b.locked)return;
+      beep("click");
+      if(r.valid!=="COMBO"){
+        b.sel=[id];
+        renderHand(); updateConfirm();
+        return;
+      }
+      var i=b.sel.indexOf(id);
+      if(i>=0)b.sel.splice(i,1);
+      else{
+        if(b.sel.length>=2){toast("组合技只需要两位队友");return;}
+        b.sel.push(id);
+      }
+      renderHand(); updateConfirm();
+    };
+    hand.appendChild(chip);
+  });
+}
+function updateConfirm(){
+  var b=state.battle;
+  $("#btn-confirm").disabled=!b||b.sel.length===0||!!b.done||!!b.locked;
+  $("#btn-confirm").textContent=ROUNDS[b.round].valid==="COMBO"?"组合出招 🔗":"确认出招 ⚔";
+}
+function ownersOf(sel){return sel.map(function(id){return SKILLS[id].owner;});}
+function chipEls(ids){return ids.map(function(id){return document.querySelector('.chip[data-id="'+id+'"]');});}
+function confirmSkill(){
+  var b=state.battle;
+  if(!b||b.done||b.locked)return;
+  var r=ROUNDS[b.round], rk=r.rk||["whisper","warm","curse"][b.round];
+  if(b.sel.length===0){toast("先选一招");return;}
+  var els=chipEls(b.sel);
+  if(b.round<2){
+    var id=b.sel[0];
+    if(r.valid.indexOf(id)>=0){
+      b.log.push("【出招】"+CHARS[SKILLS[id].owner].name+" · "+SKILLS[id].name);
+      REPLAY[rk][id].forEach(function(l){b.log.push(l);});
+      b.hp-=30; b.sel=[];
+      b.round++;
+      renderBattle();
+      zoomPunch();
+      flyCards(els,function(){impactFx(false);stampBoss(id);});
+    }else{
+      b.invalid++;
+      b.log.push("（没打中）");
+      REPLAY[rk].miss.forEach(function(l){b.log.push(l);});
+      b.sel=[];
+      renderBattle();
+      dmgFloat("MISS","miss");
+      tauntBoss();
+    }
+  }else{
+    if(b.sel.length<2){
+      REPLAY[rk].single.forEach(function(l){b.log.push(l);});
+      b.log.push("（这一回合，一个人接不住）");
+      b.r3First=false;
+      renderBattle();
+      tauntBoss();
+      squadShake();
+      offerBorrow();
+    }else if(ownersOf(b.sel)[0]===ownersOf(b.sel)[1]){
+      REPLAY[rk].same.forEach(function(l){b.log.push(l);});
+      b.r3First=false;
+      renderBattle();
+      tauntBoss();
+      squadShake();
+      offerBorrow();
+    }else{
+      var key=b.sel.slice().sort().join("+");
+      var lines=COMBO_LINES[key]||COMBO_FALLBACK;
+      var cname=COMBO_NAMES[key]||"跨角色组合";
+      b.log.push("【出招】组合技 · "+b.sel.map(function(i){return SKILLS[i].name;}).join("＋"));
+      lines.forEach(function(l){b.log.push(l);});
+      var comboIds=b.sel.slice();
+      b.hp=0; b.sel=[];
+      b.locked=true; /* 胜利过渡窗口锁：防止重复出招（winBattle 的 done 哨兵不受影响） */
+      renderBattle();
+      zoomPunch();
+      flyCards(els,function(){impactFx(true);comboIds.forEach(function(sid){stampBoss(sid);});});
+      comboBanner(cname,key);
+      bossBurstFx();
+      setTimeout(winBattle,1600);
+    }
+  }
+  autosave();
+}
+function offerBorrow(){
+  var b=state.battle;
+  var plan=null;
+  for(var i=0;i<BORROW_ORDER.length;i++){
+    var id=BORROW_ORDER[i];
+    if(state.skills.indexOf(id)<0&&b.borrowed.indexOf(id)<0&&SKILLS[id].owner!==state.me){plan=id;break;}
+  }
+  $("#btn-borrow-no").classList.toggle("hidden",!!(b.declined||!plan));
+  if(b.sel.length>=2)b.sel=[];
+  if(!plan){
+    $("#borrowText").textContent="队友们在岸上喊成一片——再挑两位不同角色的卡牌试试！";
+  }else{
+    $("#borrowAva").innerHTML=charSVG(SKILLS[plan].owner,64);
+    $("#borrowText").textContent=BORROW_LINE[SKILLS[plan].owner]+"（获得「"+SKILLS[plan].name+"」，组队值 +3）";
+    $("#modal-borrow").dataset.plan=plan;
+  }
+  openModal("#modal-borrow");
+}
+function winBattle(){
+  var b=state.battle;
+  if(!b||b.done)return;
+  b.done=true;
+  state.battleDone={
+    perfect:b.invalid===0&&b.r3First,
+    comboFirst:b.r3First,
+    invalid:b.invalid,
+    borrowed:b.borrowed.length>0
+  };
+  state.battle=null;
+  gotoScene("w1");
+}
+
+/* ================= 结算 ================= */
+function computeRating(){
+  var t=state.trust;
+  var bd=state.battleDone;
+  if(bd){
+    if(bd.perfect)t+=6;
+    if(bd.comboFirst)t+=4;
+  }
+  var rating="B";
+  if(t>=28)rating="SSS"; else if(t>=20)rating="S"; else if(t>=13)rating="A";
+  if((state.flags.toxic||0)>=2&&RANK[rating]>RANK.A)rating="A";
+  return {trust:t,rating:rating};
+}
+function showEnd(){
+  var r=computeRating();
+  state.secret=(state.me==="shan"&&state.branch==="D"&&RANK[r.rating]>=RANK.S);
+  var best=saveBest(r.rating);
+  state.node=4; renderMap(4);
+  var box=$("#endBody"); box.innerHTML="";
+  var card=el("div","end-card");
+  var eh=el("div","end-hero");
+  eh.innerHTML=campStrip("end");
+  card.appendChild(eh);
+  card.appendChild(el("div","page-sub","边界篇 · 界线平原 —— 完"));
+  /* 两栏：左 = 评级+评语+统计；右 = 图腾墙+眠眠观察+最佳记录 */
+  var main=el("div","end-main");
+  var left=el("div");
+  var wrap=el("div","rating-wrap"+(RANK[r.rating]>=RANK.S?" glow":""));
+  wrap.appendChild(el("div","rating-big "+r.rating,r.rating));
+  left.appendChild(wrap);
+  left.appendChild(el("div","end-line",diffRatingLine(r.rating)));
+  var stats=el("div","end-stats");
+  [["组队值",r.trust],["战斗评价",battleText()],["走的路线",routeName()]].forEach(function(p){
+    var s=el("div","stat"); s.appendChild(el("div","v",p[1])); s.appendChild(el("div","k",p[0])); stats.appendChild(s);
+  });
+  left.appendChild(stats);
+  main.appendChild(left);
+  var right=el("div");
+  var wall=el("div","totem-wall");
+  state.skills.forEach(function(id){
+    var w=el("div","tw gold");
+    var ic=el("span","twi");
+    ic.innerHTML=totem(id,38,CHARS[SKILLS[id].owner].hex);
+    w.appendChild(ic);
+    w.appendChild(el("span",null,SKILLS[id].name));
+    wall.appendChild(w);
+  });
+  [["小队公约","pact"],["连招 · "+COMBOS[0].name,"combo"]].forEach(function(p){
+    var w=el("div","tw");
+    var ic=el("span","twi");
+    ic.innerHTML=p[1]==="pact"?pactBadge(38):comboBadge(false,38);
+    w.appendChild(ic);
+    w.appendChild(el("span",null,p[0]));
+    wall.appendChild(w);
+  });
+  right.appendChild(wall);
+  var ob=el("div","observe");
+  ob.textContent="眠眠的观察："+observeLine();
+  right.appendChild(ob);
+  right.appendChild(el("div","footer-note","🏆 本章最佳记录："+best.rating+" · "+best.diff+"（已留存）"));
+  main.appendChild(right);
+  card.appendChild(main);
+  if(state.secret){
+    var sec=el("div","secret");
+    sec.textContent="✨ 隐藏台词：最软的那句话，往往最有力量——「我不接受，因为___」。这句话，是你自己说出口的。";
+    card.appendChild(sec);
+  }
+  var row=el("div","center-row");
+  var b1=el("button","btn primary","📖 章末图鉴");
+  b1.onclick=function(){codexReturn="end";openCodex();};
+  var b2=el("button","btn","🔁 重玩本章");
+  b2.onclick=function(){
+    var chosen=state.diff;
+    state=fresh(); state.diff=chosen;
+    diffReturn="new"; renderDiffGrid(); show("scr-diff");
+  };
+  var b3=el("button","btn ghost","🏟 回主页");
+  b3.onclick=function(){location.href="Ch0-大脑营地.html";};
+  row.appendChild(b1);row.appendChild(b2);row.appendChild(b3);
+  card.appendChild(row);
+  box.appendChild(card);
+  show("scr-end");
+  if(RANK[r.rating]>=RANK.S){confetti(36);beep("win");}
+  autosave();
+}
+function diffRatingLine(r){
+  if(r==="SSS")return "满分小队——四个人，都长成了彼此的外挂。";
+  if(r==="S")return "漂亮的配合！再听听那几句没说出口的话，SSS 在等你。";
+  if(r==="A")return "过关了。三条线都在你手里——红的、黄的、绿的，你自己选。";
+  return "也守住了三条线。说「不行」的那一次，你把自己立住了。";
+}
+function battleText(){
+  var bd=state.battleDone;
+  if(!bd)return "—";
+  if(bd.perfect)return "完美 · 零失误一击穿";
+  if(bd.invalid>=3)return "波折 · 试了 "+bd.invalid+" 次错招";
+  if(bd.borrowed)return "稳健 · 借招成功";
+  return "良好";
+}
+function routeName(){
+  var m={A:"A线 · 认知重编程",B:"B线 · 想清为什么",C:"C线 · 边界宣言",D:"D线 · 看身体信号"};
+  return state.branch?m[state.branch]:"—";
+}
+function observeLine(){
+  var f=state.flags;
+  if((f.toxic||0)>=1)return "「刚才那句话，有点扎人。下次想脱口而出的时候，先喝口水——我给你们续上。」";
+  if(f.hush)return "（眠眠看了闪闪一眼，什么都没说，只是把水杯放在了闪闪手边。）";
+  return "「以后遇到让我不舒服的事，我先停一秒：能接受、看情况，还是不行？不行，就说『我不接受___，因为___』。」";
+}
+
+/* ================= 图鉴 ================= */
+function openCodex(){
+  var g=$("#codexGrid"); g.innerHTML="";
+  var owned={};
+  state.skills.forEach(function(id){owned[id]=1;});
+  Object.keys(SKILLS).forEach(function(id){
+    var sk=SKILLS[id], owner=CHARS[sk.owner];
+    var c=el("div","cdx-card"+(owned[id]?"":" locked"));
+    var t=el("div","cdx-t");
+    if(owned[id])t.innerHTML=totem(id,60,owner.hex);
+    else t.innerHTML=totem(id,60,"#5c7263");
+    c.appendChild(t);
+    c.appendChild(el("div","cdx-name",(owned[id]?"":"🔒 ")+sk.name));
+    var row=el("div","codex-skill-row");
+    var tag=el("span","own-tag",owner.name); tag.style.background=owner.hex;
+    row.appendChild(tag);
+    c.appendChild(row);
+    c.appendChild(el("div","mantra",sk.mantra));
+    if(diff().card!=="one"||owned[id]){
+      var s=el("div","note-sec");
+      s.appendChild(el("div",null,sk.one));
+      c.appendChild(s);
+    }
+    g.appendChild(c);
+  });
+  var cc=el("div","cdx-card");
+  var ct=el("div","cdx-t");
+  ct.innerHTML=pactBadge(60);
+  cc.appendChild(ct);
+  cc.appendChild(el("div","cdx-name","小队公约"));
+  cc.appendChild(el("div","mantra","我不接受___，因为___——这句话，我可以练。"));
+  cc.appendChild(el("div","note-sec","边界篇诞生。公约会随章节累积，章末统一收录。"));
+  g.appendChild(cc);
+  COMBOS.forEach(function(cn){
+    var c=el("div","cdx-card"+(cn.locked?" locked":""));
+    var t=el("div","cdx-t");
+    t.innerHTML=comboBadge(!!cn.locked,60);
+    c.appendChild(t);
+    c.appendChild(el("div","cdx-name",(cn.locked?"🔒 ":"")+cn.name));
+    c.appendChild(el("div","mantra",cn.members.map(function(m){return SKILLS[m].name;}).join("＋")));
+    c.appendChild(el("div","note-sec",cn.desc));
+    g.appendChild(c);
+  });
+  var hc=el("div","cdx-card");
+  var ht=el("div","cdx-t"); ht.innerHTML=helpBadge(60);
+  hc.appendChild(ht);
+  hc.appendChild(el("div","cdx-name","求助口袋卡"));
+  hc.appendChild(el("div","mantra","求助不是软弱，是精准调用资源。"));
+  var hnote=el("div","note-sec");
+  hnote.appendChild(el("div",null,"正面：写下 3 个你信得过的大人 —— ①＿＿＿ ②＿＿＿ ③＿＿＿"));
+  hnote.appendChild(el("div",null,"背面：54321 着陆 —— 看 5 样 · 摸 4 样 · 听 3 声 · 闻 2 样 · 尝 1 味"));
+  hnote.appendChild(el("div",null,"心里乱的时候：先着陆，再找人说。"));
+  hc.appendChild(hnote);
+  g.appendChild(hc);
+  show("scr-codex");
+}
+
+/* ================= 弹窗 ================= */
+function openModal(sel){$(sel).classList.remove("hidden");}
+function closeModal(sel){$(sel).classList.add("hidden");}
+
+/* ================= 绑定 ================= */
+function boot(){
+  renderDiffGrid();
+  refreshTitle();
+  renderSquad();
+  setDiffBadge();
+  renderHelp();
+  $("#heroCamp").innerHTML=campStrip("hero");
+  $("#heroSquad").innerHTML=CHAR_ORDER.map(function(k){
+    return '<div class="hs">'+charSVG(k,64)+'</div>';
+  }).join("");
+
+  $("#btn-new").onclick=function(){diffReturn="new";renderDiffGrid();show("scr-diff");};
+  $("#btn-continue").onclick=function(){
+    var sv=load(); if(!sv){toast("没有找到存档");return;}
+    state=Object.assign(fresh(),sv);
+    setDiffBadge(); renderSquad();
+    if(state.battle)startBattle(state.battle);
+    else gotoScene(state.sceneId||"i1");
+  };
+  $("#btn-help").onclick=function(){
+    var cur=document.querySelector(".screen.active");
+    helpReturn=cur?cur.id:"scr-title";
+    show("scr-help");
+  };
+  $("#btn-help2").onclick=function(){helpReturn="scr-title";show("scr-help");};
+  $("#btn-home").onclick=function(){location.href="Ch0-大脑营地.html";};
+  $("#btn-help-back").onclick=function(){show(helpReturn);};
+  $("#btn-codex-back").onclick=function(){
+    if(codexReturn==="pause")openModal("#overlay-pause");
+    else show("scr-end");
+  };
+  $("#btn-codex-in").onclick=function(){codexReturn="pause";closeModal("#overlay-pause");openCodex();};
+  $("#btn-pause").onclick=function(){openModal("#overlay-pause");};
+  $("#btn-resume").onclick=function(){closeModal("#overlay-pause");};
+  $("#btn-save").onclick=function(){save(false);};
+  $("#btn-load").onclick=function(){
+    var sv=load(); if(!sv){toast("还没有存档");return;}
+    state=Object.assign(fresh(),sv);
+    setDiffBadge(); renderSquad();
+    if(state.battle)startBattle(state.battle);else gotoScene(state.sceneId||"i1");
+    closeModal("#overlay-pause");
+    toast("📂 已读取");
+  };
+  $("#btn-diff-in").onclick=function(){diffReturn="game";renderDiffGrid();show("scr-diff");};
+  $("#btn-quit").onclick=function(){closeModal("#overlay-pause");refreshTitle();show("scr-title");};
+  $("#btn-home-pause").onclick=function(){location.href="Ch0-大脑营地.html";};
+  $("#btn-confirm").onclick=confirmSkill;
+  $("#btn-borrow-yes").onclick=function(){
+    var plan=$("#modal-borrow").dataset.plan, b=state.battle;
+    if(b&&plan&&SKILLS[plan]&&state.skills.indexOf(plan)<0&&b.borrowed.indexOf(plan)<0){
+      b.borrowed.push(plan);
+      b.log.push("【解说】"+BORROW_LINE[SKILLS[plan].owner]);
+      addTrust(3,"借招成功");
+      renderBattle();
+    }
+    closeModal("#modal-borrow");
+  };
+  $("#btn-borrow-no").onclick=function(){
+    state.battle.declined=true;
+    closeModal("#modal-borrow");
+    toast("眠眠：「那……再把这一回合想一想。」");
+  };
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){
+      if(!$("#overlay-pause").classList.contains("hidden")){closeModal("#overlay-pause");return;}
+      if(modalOpen())return;
+      var cur=document.querySelector(".screen.active");
+      if(cur&&(cur.id==="scr-game"||cur.id==="scr-battle"))openModal("#overlay-pause");
+      return;
+    }
+    if(e.key==="Enter"||e.key===" "){
+      if(modalOpen())return;
+      var g=$("#gameBody");
+      if(g&&!$("#scr-game").classList.contains("hidden")){e.preventDefault();g.click();}
+    }
+  });
+}
+
+boot();
+})();
+</script>
+
+
+</body></html>

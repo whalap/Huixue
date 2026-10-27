@@ -338,6 +338,8 @@
   .art-hl{color:var(--gold);font-weight:700;border-bottom:1px dashed var(--gold2)}
   .artmark{font-size:12px;margin-left:6px;opacity:.95}
 </style>
+<link rel="stylesheet" href="../theme-blackgold.css">
+<script src="../site-nav.js" defer></script>
 </head>
 <body>
 <header>
@@ -345,7 +347,7 @@
   <div class="title">英语跟读学院 · A2
     <small id="subtitle"></small>
   </div>
-  <nav class="lvlsw" title="切换学习级别"><a class="lv hub" href="index.html" title="返回四级总站">🏛️ 总站</a><a class="lv" href="A1 启程线/index.html">🌱 A1</a><a class="lv cur" href="A2 主页.html">📗 A2</a><a class="lv" href="B1 主页.html">🌉 B1</a><a class="lv" href="B2 主页.html">🎓 B2</a></nav>
+  <nav class="lvlsw" title="切换学习级别"><a class="lv hub" href="index.html" title="返回四级总站">🏛️ 总站</a><a class="lv" href="A1 主页.html">🌱 A1</a><a class="lv cur" href="A2 主页.html">📗 A2</a><a class="lv" href="B1 主页.html">🌉 B1</a><a class="lv" href="B2 主页.html">🎓 B2</a></nav>
   <a class="homebtn" href="A2 主页.html" title="返回 A2 日常线主页 A2 学习网络主页">🏠 回主页</a>
   <div class="grow"></div>
   <div class="prog">
@@ -836,7 +838,7 @@ function renderCodex(){
 function toggleMaster(w, btn){
   if(!state[w]) state[w]={};
   state[w].mastered=!state[w].mastered;
-  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); }
+  if(state[w].mastered){ if(!state[w].shadowed) state[w].shadowed=today(); state[w].masteredAt=Date.now(); }
   saveState();
   btn.classList.toggle('mastered', state[w].mastered);
   btn.textContent=state[w].mastered?'✅ 已掌握':'☆ 掌握';
@@ -846,6 +848,8 @@ function checkIn(w){
   const d=today();
   if(!state[w]) state[w]={};
   state[w].shadowed=d;
+  state[w].shadowedAt=Date.now();
+  state[w].times=(state[w].times||0)+1;
   saveState();
   if(!checkins.includes(d)){ checkins.push(d); localStorage.setItem(CHECK_KEY,JSON.stringify(checkins)); }
   updateProgress(); renderCodex();

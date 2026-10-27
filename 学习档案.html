@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学习档案 · 慧学学习网络</title>
+<link rel="stylesheet" href="theme-blackgold.css">
+<script src="site-nav.js" defer></script>
+<style>
+body{background:#14110C;color:#F0ECE4;font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+     margin:0;padding:0 0 60px;line-height:1.7;}
+.wrap{max-width:920px;margin:0 auto;padding:0 18px;}
+h1{font-size:24px;margin:26px 0 6px;color:#D4AF37;letter-spacing:.5px;}
+.sub{font-size:13px;color:#A49C8E;margin-bottom:22px;}
+.card{background:#1F1A13;border:1px solid rgba(212,175,55,.28);border-radius:14px;padding:16px 18px;margin-bottom:16px;}
+.card h2{font-size:16px;margin:0 0 12px;color:#E8C969;display:flex;align-items:center;gap:8px;}
+.card h2 .cnt{margin-left:auto;font-size:12px;color:#A49C8E;font-weight:400;}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px;}
+.stat{background:#262019;border:1px solid rgba(212,175,55,.2);border-radius:10px;padding:9px 14px;min-width:104px;flex:1;}
+.stat .k{font-size:11.5px;color:#A49C8E;}
+.stat .v{font-size:19px;font-weight:800;color:#E8C969;line-height:1.3;}
+.stat .v small{font-size:12px;color:#A49C8E;font-weight:400;}
+.none{font-size:13px;color:#8A8172;padding:4px 0;}
+.bar{height:7px;background:#262019;border-radius:99px;overflow:hidden;margin:6px 0 10px;}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#A8831B,#E8C969);border-radius:99px;}
+label.fld{display:block;font-size:12.5px;color:#A49C8E;margin-bottom:5px;}
+input.txt{width:100%;max-width:320px;background:#262019;border:1px solid rgba(212,175,55,.3);color:#F0ECE4;
+          border-radius:9px;padding:9px 12px;font-size:14px;font-family:inherit;}
+input.txt:focus{outline:none;border-color:#D4AF37;}
+button.act,.btnlnk{display:inline-flex;align-items:center;gap:6px;border-radius:10px;padding:10px 18px;font-size:13.5px;
+          font-weight:700;cursor:pointer;border:1px solid rgba(212,175,55,.42);background:#262019;color:#E8C969;
+          text-decoration:none;font-family:inherit;}
+button.act:hover,.btnlnk:hover{background:#D4AF37;color:#14110C;border-color:#D4AF37;}
+button.act.primary{background:linear-gradient(135deg,#D4AF37,#A8831B);color:#14110C;border-color:transparent;}
+button.act.primary:hover{background:linear-gradient(135deg,#E8C969,#C09A22);}
+button.act:disabled{opacity:.5;cursor:default;}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 14px;}
+textarea.out{width:100%;min-height:230px;background:#100E0A;border:1px solid rgba(212,175,55,.25);color:#E2DCCF;
+             border-radius:11px;padding:13px;font-size:12.5px;line-height:1.75;
+             font-family:Consolas,'Courier New',monospace;resize:vertical;white-space:pre;}
+details{margin-top:9px;}
+summary{cursor:pointer;font-size:13px;color:#E8C969;padding:5px 0;user-select:none;}
+summary:hover{color:#F0ECE4;}
+.wronglist{max-height:280px;overflow:auto;margin-top:7px;font-size:12.5px;}
+.wronglist .item{border-bottom:1px dashed rgba(212,175,55,.16);padding:7px 0;}
+.wronglist .item:last-child{border-bottom:0;}
+.wronglist .en{color:#F0ECE4;}
+.wronglist .meta{color:#A49C8E;font-size:11.5px;}
+.wronglist .mine{color:#E2777A;}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:34px;background:#D4AF37;color:#14110C;
+       font-size:13.5px;font-weight:700;padding:11px 22px;border-radius:11px;opacity:0;pointer-events:none;
+       transition:opacity .25s;}
+.toast.show{opacity:1;}
+.tip{font-size:12.5px;color:#8A8172;line-height:1.85;margin-top:8px;}
+.tip b{color:#A49C8E;}
+@media(max-width:600px){h1{font-size:20px;} .stat{min-width:88px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📋 我的学习档案</h1>
+  <p class="sub">汇总四条线的练习记录与错题。生成后复制文本或下载文件，发给谢老师即可。</p>
+
+  <div class="card">
+    <h2>① 先填名字 <span class="cnt">老师靠这个区分每个人的档案</span></h2>
+    <label class="fld" for="stuName">学生姓名 / 昵称</label>
+    <input class="txt" id="stuName" placeholder="例如：小明" autocomplete="off">
+    <div class="tip">档案只保存在你自己的这台设备上，不会自动上传。要换设备继续留存，用下面的<b>下载文件</b>。</div>
+  </div>
+
+  <div class="card">
+    <h2>② 一键汇总</h2>
+    <div class="acts">
+      <button class="act primary" id="btnGen">🔄 生成学习档案</button>
+      <button class="act" id="btnCopy" disabled>📋 复制全文</button>
+      <button class="act" id="btnDown" disabled>⬇ 下载文件</button>
+    </div>
+    <div id="summaries"></div>
+  </div>
+
+  <div class="card">
+    <h2>③ 档案全文 <span class="cnt">可直接全选复制</span></h2>
+    <textarea class="out" id="report" placeholder="点上面的「生成学习档案」按钮后，这里会出现完整档案。"></textarea>
+  </div>
+
+  <div class="card">
+    <h2>④ 换设备 / 恢复档案</h2>
+    <div class="acts">
+      <label class="btnlnk" style="cursor:pointer">📥 导入档案文件<input type="file" id="fileIn" accept=".json" style="display:none"></label>
+      <button class="act" id="btnClear">🧹 清空本机全部练习记录</button>
+    </div>
+    <div class="tip">
+      <b>导入</b>：把之前下载的 json 文件选进来，可把当时的完成状态写回本机（用于换电脑、换浏览器）。<br>
+      <b>清空</b>：会抹掉这台设备上四条线的全部进度，慎用——清空后数据无法找回。
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+  var NAME_KEY='hx_report_name';
+
+  function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2000);}
+  function safe(k){try{var v=localStorage.getItem(k);return v;}catch(e){return null;}}
+  function jget(k){var v=safe(k);if(v==null)return null;try{return JSON.parse(v);}catch(e){return null;}}
+  function keys(){var a=[];try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k!=null)a.push(String(k));}}catch(e){}return a;}
+  function num(n){return (typeof n==='number'&&isFinite(n))?n:0;}
+  function pct(a,b){return b>0?Math.round(a*100/b):0;}
+  function dt(ts){try{var d=new Date(ts);if(isNaN(d.getTime()))return '';
+    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')
+      +' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}catch(e){return '';}}
+
+  /* ========== 各线采集器：全部做形状容错，单个 key 坏掉不影响整体 ========== */
+
+  /* ---- E 听说 ---- */
+  function readEET(){
+    var out={has:false,levels:{},scores:[],badge:null,totalAt:0};
+    keys().forEach(function(k){
+      var m;
+      if(m=k.match(/^eet_prog_(.+)$/)){
+        var o=jget(k); if(!o||typeof o!=='object')return;
+        var done=0; Object.keys(o).forEach(function(mod){
+          if(o[mod]&&typeof o[mod]==='object') done+=Object.keys(o[mod]).length;
+        });
+        if(done>0){out.has=true; out.levels[m[1]]=(out.levels[m[1]]||0)+done;}
+      }
+      if(m=k.match(/^eet_scores_(.+)$/)){
+        var s=jget(k); if(!s||typeof s!=='object')return;
+        Object.keys(s).forEach(function(tid){
+          var rec=s[tid]; if(!rec||typeof rec!=='object')return;
+          Object.keys(rec).forEach(function(mid){
+            var r=rec[mid]; if(!r||typeof r!=='object')return;
+            if(typeof r.total!=='undefined'){out.has=true;
+              out.scores.push({tid:tid,mid:mid,total:num(r.total),full:num(r.full),at:r.at||0});
+              if(r.at) out.totalAt=Math.max(out.totalAt,r.at);
+            }
+          });
+        });
+      }
+      if(k==='eet_badges'){var b=jget(k); if(b&&typeof b==='object'){out.has=true;out.badge=b;}}
+    });
+    return out;
+  }
+
+  /* ---- 跟读线 ---- */
+  function readShadow(){
+    var out={has:false,units:{},errs:[],checkin:0,gramDone:0};
+    keys().forEach(function(k){
+      var m;
+      /* 兼容各级：a1_ / a2_ / b1_ / pre-a1_ 前缀都能识别 */
+      if(m=/^([A-Za-z0-9\-]+)_unit([0-9]+)_state_v[0-9]+$/.exec(k)){
+        var lv=m[1].toUpperCase();
+        var st=jget(k); if(!st||typeof st!=='object')return;
+        var tot=0,mst=0,ttimes=0,lastAt=0;
+        Object.keys(st).forEach(function(w){
+          tot++; var o=st[w]||{};
+          if(o.mastered) mst++;
+          if(typeof o.times==='number') ttimes+=o.times;
+          if(o.shadowedAt&&o.shadowedAt>lastAt) lastAt=o.shadowedAt;
+          if(o.masteredAt&&o.masteredAt>lastAt) lastAt=o.masteredAt;
+        });
+        if(tot>0){out.has=true; out.units[lv+' Unit'+m[2]]={total:tot,mastered:mst,times:ttimes,lastAt:lastAt};}
+      }
+      /* Pre-A1 起步线：prea1_v1_uN（词汇 w + 跟读句 s） */
+      if(m=/^prea1_v1_u([0-9]+)$/.exec(k)){
+        var pa=jget(k); if(!pa||typeof pa!=='object')return;
+        var _pw=pa.w||{}, _ps=pa.s||{};
+        var _wt=Object.keys(_pw).length, _stn=Object.keys(_ps).length, _tot=_wt+_stn;
+        if(_tot>0){
+          var _ttimes=0,_lastAt=0;
+          Object.keys(_ps).forEach(function(idx){ var o=_ps[idx];
+            if(typeof o==='object'){ if(typeof o.times==='number')_ttimes+=o.times; if(o.at&&o.at>_lastAt)_lastAt=o.at; }
+            else _ttimes+=1; });
+          Object.keys(_pw).forEach(function(ww){ var o=_pw[ww]; if(typeof o==='object'&&o.at&&o.at>_lastAt)_lastAt=o.at; });
+          out.has=true; out.units['PRE-A1 Unit'+m[1]]={total:_tot,mastered:_tot,times:_ttimes,lastAt:_lastAt};
+        }
+      }
+      if(m=/^([A-Za-z0-9\-]+)_unit([0-9]+)_errors_v[0-9]+$/.exec(k)){
+        var lv2=m[1].toUpperCase();
+        var er=jget(k); if(!Array.isArray(er))return;
+        er.forEach(function(e){ if(e&&typeof e==='object'){
+          out.has=true;
+          out.errs.push({unit:lv2+' Unit'+m[2],word:e.word||'',type:e.type||'',correct:e.standard||e.original||'',mine:e.student||'',t:e.time||''});
+        }});
+      }
+      if(/^([A-Za-z0-9\-]+)_checkin_dates_v[0-9]+$/.test(k)){
+        var c=jget(k); if(Array.isArray(c)){if(c.length){out.has=true;} out.checkin+=c.length;}
+      }
+      if(/^([A-Za-z0-9\-]+)_gram_done_v[0-9]+$/.test(k)){
+        var g=jget(k); if(g&&typeof g==='object'){
+          Object.keys(g).forEach(function(u){ if(Array.isArray(g[u])) out.gramDone+=g[u].length; });
+          if(out.gramDone)out.has=true;
+        }
+      }
+    });
+    return out;
+  }
+
+  /* ---- 语法学院 ---- */
+  function readGrammar(){
+    var out={has:false,rounds:0,roundsDone:0,bestSum:0,bestN:0,wrongs:[],outAns:0,lastAt:0};
+    var st=jget('grammar_monster_all_v7');
+    if(st&&typeof st==='object'){
+      if(st.rounds&&typeof st.rounds==='object'){
+        Object.keys(st.rounds).forEach(function(k){
+          var v=st.rounds[k]; if(!Array.isArray(v))return;
+          out.has=true; out.rounds+=v.length;
+          v.forEach(function(b){ if(b) out.roundsDone++; });
+        });
+      }
+      if(st.best&&typeof st.best==='object'){
+        Object.keys(st.best).forEach(function(k){
+          var v=st.best[k];
+          if(typeof v==='number'&&isFinite(v)){out.has=true;out.bestSum+=v;out.bestN++;}
+        });
+      }
+      if(Array.isArray(st.wrong)){
+        st.wrong.forEach(function(w){ if(w&&typeof w==='object'){
+          out.has=true;
+          if(w.at&&w.at>out.lastAt) out.lastAt=w.at;
+          out.wrongs.push({q:String(w.q||'').replace(/<[^>]*>/g,'').slice(0,80),answer:w.answer||'',why:w.why||'',streak:num(w.streak),at:num(w.at)});
+        }});
+      }
+    }
+    keys().forEach(function(k){
+      if(k.indexOf('out:')===0){ var o=jget(k); if(o&&o.ans&&typeof o.ans==='object'){out.has=true;out.outAns+=Object.keys(o.ans).length;} }
+      if(k.indexOf('shadow:')===0||k.indexOf('gp:')===0){ out.has=true; }
+    });
+    return out;
+  }
+
+  /* ---- 课本同步习题卷 ---- */
+  function readQuiz(){
+    var out={has:false,papers:[],lastAt:0};
+    keys().forEach(function(k){
+      if(k.indexOf('hx_quiz_')!==0)return;
+      var o=jget(k); if(!o||typeof o!=='object')return;
+      var got=num(o.got),full=num(o.full);
+      out.has=true;
+      if(o.at&&o.at>out.lastAt) out.lastAt=o.at;
+      out.papers.push({key:k,got:got,full:full,pct:full>0?pct(got,full):num(o.pct),submitted:!!o.submitted,at:num(o.at),
+                       answered:(o.answers&&typeof o.answers==='object')?Object.keys(o.answers).length:0});
+    });
+    return out;
+  }
+
+  /* ========== 渲染 ========== */
+  function statCard(items){
+    if(!items.length)return '';
+    return '<div class="row">'+items.map(function(s){
+      return '<div class="stat"><div class="k">'+s.k+'</div><div class="v">'+s.v+
+             (s.sub?' <small>'+s.sub+'</small>':'')+'</div></div>';
+    }).join('')+'</div>';
+  }
+
+  /* 任一采集器异常都不能让它冒泡——否则整个 IIFE 中断，按钮全部绑不上 */
+  function guard(fn,empty){ try{ var r=fn(); return r||empty; }catch(e){ return empty; } }
+
+  function render(){
+    var eet=guard(readEET,{has:false,levels:{},scores:[],badge:null,totalAt:0});
+    var sh =guard(readShadow,{has:false,units:{},errs:[],checkin:0,gramDone:0});
+    var gr =guard(readGrammar,{has:false,rounds:0,roundsDone:0,bestSum:0,bestN:0,wrongs:[],outAns:0});
+    var qz =guard(readQuiz,{has:false,papers:[]});
+    var host=document.getElementById('summaries');
+    var html='';
+
+    /* E听说 */
+    html+='<div class="card"><h2>🎧 E 听说 <span class="cnt">'+(eet.has?'已有记录':'暂无记录')+'</span></h2>';
+    if(eet.has){
+      html+=statCard([
+        {k:'完成关卡',v:Object.keys(eet.levels).reduce(function(a,b){return a+eet.levels[b];},0),sub:'个'},
+        {k:'成绩记录',v:eet.scores.length,sub:'条'},
+        {k:'最近练习',v:eet.totalAt?dt(eet.totalAt).slice(0,10):'—'}
+      ]);
+      if(eet.scores.length){
+        var tot=0,full=0; eet.scores.forEach(function(s){tot+=s.total;full+=s.full;});
+        html+='<div class="bar"><i style="width:'+pct(tot,full)+'%"></i></div>';
+        html+='<div class="none">累计得分 '+tot+' / '+full+'（'+pct(tot,full)+'%）</div>';
+        var low=eet.scores.filter(function(s){return s.full>0&&s.total/s.full<0.8;}).slice(-12);
+        if(low.length){
+          html+='<details><summary>需要加强的题（正确率低于 80%，共 '+low.length+' 条）</summary><div class="wronglist">';
+          low.forEach(function(s){html+='<div class="item"><div class="en">'+s.tid+' · '+s.mid+'</div><div class="meta">'+s.total+'/'+s.full+(s.at?' · '+dt(s.at):'')+'</div></div>';});
+          html+='</div></details>';
+        }
+      }
+      if(eet.badge&&eet.badge.earned&&typeof eet.badge.earned==='object'){
+        var bn=Object.keys(eet.badge.earned).length;
+        if(bn) html+='<div class="none">已获徽章 '+bn+' 枚'+(eet.badge.streak?'，连续打卡 '+num(eet.badge.streak.count)+' 天':'')+'</div>';
+      }
+    } else html+='<div class="none">还没有练习记录。</div>';
+    html+='</div>';
+
+    /* 跟读 */
+    html+='<div class="card"><h2>🗣 跟读线 <span class="cnt">'+(sh.has?'已有记录':'暂无记录')+'</span></h2>';
+    if(sh.has){
+      var uid=Object.keys(sh.units); var tT=0,tM=0,tTM=0,lastAt=0;
+      uid.forEach(function(u){var x=sh.units[u];tT+=x.total;tM+=x.mastered;tTM+=(x.times||0);if(x.lastAt&&x.lastAt>lastAt)lastAt=x.lastAt;});
+      html+=statCard([
+        {k:'已学单元',v:uid.length,sub:'个'},
+        {k:'掌握词条',v:tM,sub:'/ '+tT},
+        {k:'累计跟读',v:tTM,sub:'遍'},
+        {k:'错题累计',v:sh.errs.length,sub:'条'}
+      ]);
+      if(tT) html+='<div class="bar"><i style="width:'+pct(tM,tT)+'%"></i></div>';
+      if(lastAt) html+='<div class="none">最近练习 '+dt(lastAt).slice(0,16)+(sh.checkin?'　·　累计打卡 '+sh.checkin+' 天':'')+(sh.gramDone?'，点过的语法点 '+sh.gramDone+' 个':'')+'</div>';
+      else if(sh.checkin) html+='<div class="none">累计打卡 '+sh.checkin+' 天'+(sh.gramDone?'，点过的语法点 '+sh.gramDone+' 个':'')+'</div>';
+      if(sh.errs.length){
+        html+='<details><summary>跟读错题明细（'+sh.errs.length+' 条）</summary><div class="wronglist">';
+        sh.errs.slice(-60).forEach(function(e){
+          html+='<div class="item"><div class="en">'+esc(e.word)+' <span class="meta">'+esc(e.type)+' · '+esc(e.unit)+'</span></div>'+
+                '<div class="meta">正确：'+esc(e.correct)+(e.mine?' · <span class="mine">写成：'+esc(e.mine)+'</span>':'')+(e.t?' · '+esc(String(e.t).slice(0,16)):'')+'</div></div>';
+        });
+        html+='</div></details>';
+      }
+    } else html+='<div class="none">还没有练习记录。</div>';
+    html+='</div>';
+
+    /* 语法 */
+    html+='<div class="card"><h2>📐 语法学院 <span class="cnt">'+(gr.has?'已有记录':'暂无记录')+'</span></h2>';
+    if(gr.has){
+      html+=statCard([
+        {k:'练习组完成',v:gr.roundsDone,sub:'/ '+gr.rounds},
+        {k:'平均分',v:gr.bestN?Math.round(gr.bestSum/gr.bestN*10)/10:'—'},
+        {k:'错题本',v:gr.wrongs.length,sub:'条'}
+      ]);
+      if(gr.rounds) html+='<div class="bar"><i style="width:'+pct(gr.roundsDone,gr.rounds)+'%"></i></div>';
+      if(gr.lastAt) html+='<div class="none">最近练习 '+dt(gr.lastAt).slice(0,16)+'</div>';
+      if(gr.wrongs.length){
+        html+='<details><summary>语法错题明细（'+gr.wrongs.length+' 条）</summary><div class="wronglist">';
+        gr.wrongs.slice(0,60).forEach(function(w){
+          html+='<div class="item"><div class="en">'+esc(w.q)+'</div><div class="meta">答案：'+esc(w.answer)+(w.why?' · '+esc(String(w.why).slice(0,40)):'')+'</div></div>';
+        });
+        html+='</div></details>';
+      }
+    } else html+='<div class="none">还没有练习记录。</div>';
+    html+='</div>';
+
+    /* 课本同步 */
+    html+='<div class="card"><h2>📘 课本同步习题 <span class="cnt">'+(qz.has?'已有记录':'暂无记录')+'</span></h2>';
+    if(qz.has){
+      var g=0,f=0,doneN=0;
+      qz.papers.forEach(function(p){g+=p.got;f+=p.full;if(p.submitted)doneN++;});
+      html+=statCard([
+        {k:'已交卷',v:doneN,sub:'/ '+qz.papers.length+' 份'},
+        {k:'总分',v:g,sub:'/ '+f},
+        {k:'正确率',v:pct(g,f)+'%'}
+      ]);
+      if(f) html+='<div class="bar"><i style="width:'+pct(g,f)+'%"></i></div>';
+      if(qz.lastAt) html+='<div class="none">最近交卷 '+dt(qz.lastAt).slice(0,16)+'</div>';
+      html+='<details><summary>各卷明细</summary><div class="wronglist">';
+      qz.papers.forEach(function(p){
+        html+='<div class="item"><div class="en">'+esc(p.key.replace('hx_quiz_',''))+'</div>'+
+              '<div class="meta">'+(p.submitted?'已交卷 '+p.got+'/'+p.full+'（'+p.pct+'%）':'未交卷，已答 '+p.answered+' 题')+'</div></div>';
+      });
+      html+='</div></details>';
+    } else html+='<div class="none">还没有练习记录。</div>';
+    html+='</div>';
+
+    host.innerHTML=html;
+    return {eet:eet,sh:sh,gr:gr,qz:qz};
+  }
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function buildText(d,name){
+    var L=[];
+    L.push('════════ 慧学学习档案 ════════');
+    L.push('学生姓名：'+(name||'（未填写）'));
+    L.push('生成时间：'+dt(Date.now()));
+    L.push('');
+
+    L.push('【一】E 听说');
+    if(d.eet.has){
+      var n=0;Object.keys(d.eet.levels).forEach(function(k){n+=d.eet.levels[k];});
+      L.push('  完成关卡：'+n+' 个');
+      if(d.eet.scores.length){
+        var tt=0,ff=0;d.eet.scores.forEach(function(s){tt+=s.total;ff+=s.full;});
+        L.push('  成绩记录：'+d.eet.scores.length+' 条，累计 '+tt+'/'+ff+'（'+pct(tt,ff)+'%）');
+        var low=d.eet.scores.filter(function(s){return s.full>0&&s.total/s.full<0.8;});
+        if(low.length){L.push('  需要加强（正确率<80%）：');
+          low.slice(-10).forEach(function(s){L.push('    · '+s.tid+' / '+s.mid+'：'+s.total+'/'+s.full);});}
+      }
+      if(d.eet.badge&&d.eet.badge.earned&&typeof d.eet.badge.earned==='object'){var bn=Object.keys(d.eet.badge.earned).length;
+        L.push('  徽章 '+bn+' 枚'+(d.eet.badge.streak?'，连续打卡 '+num(d.eet.badge.streak.count)+' 天':''));}
+    } else L.push('  暂无记录');
+    L.push('');
+
+    L.push('【二】跟读线');
+    if(d.sh.has){
+      var uu=Object.keys(d.sh.units),tT=0,tM=0,tTM=0,lastAt=0;
+      uu.forEach(function(u){var x=d.sh.units[u];tT+=x.total;tM+=x.mastered;tTM+=(x.times||0);if(x.lastAt&&x.lastAt>lastAt)lastAt=x.lastAt;});
+      L.push('  已学单元：'+uu.length+' 个');
+      L.push('  掌握词条：'+tM+'/'+tT+'（'+pct(tM,tT)+'%）');
+      L.push('  累计跟读：'+tTM+' 遍');
+      L.push('  错题：'+d.sh.errs.length+' 条');
+      if(lastAt) L.push('  最近练习：'+dt(lastAt));
+      if(d.sh.checkin)L.push('  累计打卡：'+d.sh.checkin+' 天');
+      if(d.sh.errs.length){L.push('  错题明细：');
+        d.sh.errs.slice(-30).forEach(function(e){L.push('    · ['+e.unit+'] '+e.word+'　正确='+e.correct+(e.mine?'　写成='+e.mine:''));});}
+    } else L.push('  暂无记录');
+    L.push('');
+
+    L.push('【三】语法学院');
+    if(d.gr.has){
+      L.push('  练习组完成：'+d.gr.roundsDone+'/'+d.gr.rounds);
+      if(d.gr.bestN)L.push('  平均最高分：'+(Math.round(d.gr.bestSum/d.gr.bestN*10)/10));
+      L.push('  错题本：'+d.gr.wrongs.length+' 条');
+      if(d.gr.lastAt) L.push('  最近练习：'+dt(d.gr.lastAt));
+      if(d.gr.wrongs.length){L.push('  错题明细：');
+        d.gr.wrongs.slice(0,30).forEach(function(w){L.push('    · '+w.q+'　答案='+w.answer);});}
+    } else L.push('  暂无记录');
+    L.push('');
+
+    L.push('【四】课本同步习题');
+    if(d.qz.has){
+      var g=0,f=0,dn=0;d.qz.papers.forEach(function(p){g+=p.got;f+=p.full;if(p.submitted)dn++;});
+      L.push('  已交卷：'+dn+'/'+d.qz.papers.length+' 份');
+      L.push('  总分：'+g+'/'+f+'（'+pct(g,f)+'%）');
+      if(d.qz.lastAt) L.push('  最近交卷：'+dt(d.qz.lastAt));
+      d.qz.papers.forEach(function(p){
+        L.push('    · '+p.key.replace('hx_quiz_','')+'：'+(p.submitted?p.got+'/'+p.full+'（'+p.pct+'%）':'未交卷（已答 '+p.answered+' 题）'));});
+    } else L.push('  暂无记录');
+    L.push('');
+    L.push('── 档案结束 ──');
+    return L.join('\n');
+  }
+
+  /* ========== 交互 ========== */
+  var lastText='';
+
+  document.getElementById('btnGen').addEventListener('click',function(){
+    var name=document.getElementById('stuName').value.trim();
+    try{ localStorage.setItem(NAME_KEY,name); }catch(e){}
+    var d=render();
+    lastText=buildText(d,name);
+    document.getElementById('report').value=lastText;
+    document.getElementById('btnCopy').disabled=false;
+    document.getElementById('btnDown').disabled=false;
+    toast('档案已生成');
+  });
+
+  document.getElementById('btnCopy').addEventListener('click',function(){
+    var ta=document.getElementById('report');
+    ta.select(); ta.setSelectionRange(0,999999);
+    var ok=false;
+    try{ ok=document.execCommand('copy'); }catch(e){}
+    if(!ok&&navigator.clipboard){ navigator.clipboard.writeText(lastText).then(function(){toast('已复制');},function(){toast('复制失败，请手动全选复制');}); return; }
+    toast(ok?'已复制，可直接粘贴发给老师':'复制失败，请手动全选复制');
+  });
+
+  document.getElementById('btnDown').addEventListener('click',function(){
+    var name=(document.getElementById('stuName').value.trim()||'学生');
+    var stamp=dt(Date.now()).replace(/[-: ]/g,'').slice(0,12);
+    var blob=new Blob([lastText],{type:'text/plain;charset=utf-8'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='学习档案_'+name+'_'+stamp+'.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(a.href);},1500);
+    toast('已下载');
+  });
+
+  document.getElementById('fileIn').addEventListener('change',function(e){
+    var f=e.target.files&&e.target.files[0]; if(!f)return;
+    var r=new FileReader();
+    r.onload=function(){
+      try{
+        var o=JSON.parse(r.result);
+        if(!o||typeof o!=='object')throw new Error('bad');
+        var n=0;
+        Object.keys(o).forEach(function(k){
+          if(typeof o[k]==='string'){ try{localStorage.setItem(k,o[k]);n++;}catch(_){} }
+        });
+        toast('已导入 '+n+' 项记录');
+        resetArchive();   /* 文本档案已过期，强制重新生成 */
+        render();
+      }catch(_){ toast('文件格式不对，导入失败'); }
+    };
+    r.onerror=function(){ toast('文件读取失败'); };
+    r.readAsText(f);
+    e.target.value='';
+  });
+
+  /* 清空范围必须与采集器的识别范围完全一致，否则会出现「提示已清空、数据还在」 */
+  var SHADOW_RE=/^[A-Za-z0-9\-]+_(?:unit[0-9]+_(?:state|errors)|checkin_dates|gram_done)_v[0-9]+$/;
+  function isStudyKey(k){
+    return /^(?:eet_|hx_quiz_|hx_report_name|prea1_v1_u\d+$)/.test(k)
+      || SHADOW_RE.test(k)
+      || k==='grammar_monster_all_v7'
+      || k.indexOf('out:')===0 || k.indexOf('shadow:')===0 || k.indexOf('gp:')===0;
+  }
+  function resetArchive(){
+    lastText='';
+    document.getElementById('report').value='';
+    document.getElementById('btnCopy').disabled=true;
+    document.getElementById('btnDown').disabled=true;
+  }
+
+  document.getElementById('btnClear').addEventListener('click',function(){
+    if(!confirm('确定要清空这台设备上的全部练习记录吗？\n清空后无法找回，建议先「下载文件」备份。'))return;
+    try{
+      var ks=keys(); var n=0;
+      ks.forEach(function(k){
+        if(isStudyKey(k)){ try{ localStorage.removeItem(k); n++; }catch(e){} }
+      });
+      document.getElementById('stuName').value='';
+      resetArchive();
+      render();
+      toast('已清空 '+n+' 项记录');
+    }catch(e){ toast('清空失败'); }
+  });
+
+  /* 初始 */
+  /* 初始：这里的 render 必须容错，否则一次意外数据就会让整页按钮失效 */
+  try{ document.getElementById('stuName').value=localStorage.getItem(NAME_KEY)||''; }catch(e){}
+  try{ render(); }catch(e){}
+})();
+</script>
+</body>
+</html>

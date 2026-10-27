@@ -1,4 +1,4 @@
-[2026/10/27 周二 10:53:08.85] Starting push attempts 
-[2026/10/27 周二 10:53:08.85] Attempt 1 starting... 
-fatal: unable to access 'https://github.com/whalap/Huixue.git/': Recv failure: Connection was reset
-[2026/10/27 周二 10:53:31.19] git exit code: 128 
+[2026/10/27 周二 10:54:32.80] Starting push attempts 
+[2026/10/27 周二 10:54:32.80] Attempt 1 starting... 
+fatal: unable to access 'https://github.com/whalap/Huixue.git/': Failed to connect to github.com:443 after 21106 ms: Could not connect to server
+[2026/10/27 周二 10:54:54.07] git exit code: 128 

@@ -1,7 +1,7 @@
 /* 慧学学习网络 · 全站 Service Worker
    统一接管整个站点（含 E听说 / 点读 / A1–B1 / 单元习题），支持离线 + 可“安装”到桌面/iPad 主屏。
    策略：安装时预缓存外壳；运行时按需缓存所有访问过的页面与资源（含课文 mp3），离线即可用。 */
-const CACHE = 'huixue-v1';
+const CACHE = 'huixue-v2';
 const SHELL = [
   './',
   './index.html',
@@ -10,7 +10,7 @@ const SHELL = [
   './icon-192.png',
   './icon-512.png',
   './icon-maskable-512.png',
-  './E%E8%AF%B4%E5%90%AC%E7%BB%83%E4%B9%A0/index.html',
+  './E%E5%90%AC%E8%AF%B4%E7%BB%83%E4%B9%A0/index.html',
   './01_%E8%AF%BE%E6%9C%AC%E5%90%8C%E6%AD%A5_%E6%B2%AA%E6%95%99%E7%89%88%E4%B8%83%E4%B8%8A/%E7%82%B9%E8%AF%BB%E5%AD%A6%E4%B9%A0%E5%8C%85/Unit0_%E6%80%BB%E7%9B%AE%E5%BD%95_%E7%82%B9%E8%AF%BB%E5%AD%A6%E4%B9%A0%E4%B8%AD%E5%BF%83.html'
 ];
 

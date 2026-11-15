@@ -131,6 +131,14 @@
   .notes{width:100%;min-height:120px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;color:var(--txt);padding:12px;font-size:15px;font-family:inherit;resize:vertical}
   .audio-row{display:flex;align-items:center;gap:12px;margin:12px 0;flex-wrap:wrap}
   audio{width:100%;max-width:430px}
+  /* 原声 vs 我的录音：对比卡 */
+  .cmpGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+  .cmpCard{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .cmpCard .cmpHead{font-weight:800;font-size:14px;color:var(--gold-soft);margin-bottom:8px}
+  .cmpCard audio{max-width:100%}
+  .cmpCard .btn{padding:7px 12px;font-size:13px}
+  .cmpCard .btn-row{margin:6px 0 0;gap:6px;flex-wrap:wrap}
+  .cmpStatus{font-size:13px;color:var(--gold-soft);margin:8px 0;min-height:18px}
   .rec-dot{width:12px;height:12px;border-radius:50%;background:var(--red);display:inline-block;animation:pulse 1s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
@@ -194,20 +202,25 @@
   <div class="btn-row" style="margin:16px 0 4px">
     <button class="btn gold" id="examBtn" style="font-size:15px;padding:12px 20px">🎯 进入全真模考（四题连做 · 严格计时，贴近真实机考）</button>
   </div>
-  <div class="hint" style="margin-bottom:6px">模考流程：① 模仿朗读 → ② 听选信息 → ③ 回答问题 → ④ 信息转述及询问（转述+询问），四环节连做，严格按官方计时，考完出汇总。</div>
+  <div class="hint" id="examHint" style="margin-bottom:6px">模考流程：① 模仿朗读 → ② 听选信息 → ③ 回答问题 → ④ 信息转述及询问（转述+询问），四环节连做，严格按官方计时，考完出汇总。</div>
 
-  <div class="notice" style="margin:14px 0 6px">
+  <div class="notice" id="liteNotice" style="margin:14px 0 6px;display:none">
+    <h4>🎧 跟读对比版（当前版本）</h4>
+    <div class="hint">本版<b>只做三件事</b>：听原声 → 录自己的声音 → 把两段放在一起对比。评分、自评打分、成绩单与徽章暂时下线，练习题海和进度照常保留。<br>进「模仿朗读」任选一关，用「① 模考模式（先听后录）」或「② 影子跟读（边听边录）」，录完会出现<b>原声 / 我的录音</b>对比卡，可反复听、慢速听、一键连着听，不满意就再录一次。</div>
+  </div>
+
+  <div class="notice score-feature" style="margin:14px 0 6px">
     <h4>📊 官方题型与分值分布（满分 30 分）</h4>
     <div id="scoreTable" style="margin-top:8px"></div>
   </div>
 
-  <div class="notice" style="margin:14px 0 6px">
+  <div class="notice score-feature" style="margin:14px 0 6px">
     <h4>📈 我的成绩单（做完练习自动记录）</h4>
     <div class="hint">每个题型做完都会给分并记录在这里。看「薄弱项排行」就知道接下来该练什么。</div>
     <div id="myReport" style="margin-top:10px"></div>
   </div>
 
-  <div class="notice" style="margin:14px 0 6px">
+  <div class="notice score-feature" style="margin:14px 0 6px">
     <h4>🏅 我的徽章墙</h4>
     <div class="hint">徽章奖励"练好"，不只是"点过"——分四类：<b>完成数量/通关 · 连续打卡 · 质量达标 · 补强弱项</b>。点亮徽章就是看得见的成长证据。</div>
     <div id="badgeWall" style="margin-top:10px"></div>
@@ -453,6 +466,7 @@ async function speak(text, opt){
     if(s) anySpoken=true;
     if(i<parts.length-1) await new Promise(r=>setTimeout(r,120));
   }
+  return anySpoken;   // 修复：原来无返回值，影子跟读「听满 2 遍」门禁永远解不开
 }
 function beep(freq,dur){
   try{
@@ -466,6 +480,16 @@ function beep(freq,dur){
     o.start(); o.stop(ctx.currentTime+(dur||0.18)+0.02);
   }catch(e){}
 }
+
+/* ============================================================
+   跟读对比版开关（2026-11-15）
+   true  = 暂时下线全部评分/自评/成绩单/徽章，练习只保留
+           「听原声 → 录自己的声音 → 原声与录音对比」，
+           跟读录音后走 buildCompareStage()，不写任何成绩档案。
+   false = 恢复原来的评分链路（buildScoring / buildScorePanel 全部保留，
+           一行改回来即可，等接入语音评测 API 后再启用）。
+   ============================================================ */
+const LITE_MODE = true;
 
 /* 计时器 */
 let timerObj=null;
@@ -489,7 +513,7 @@ function stopTimer(){ if(timerObj){ clearInterval(timerObj); timerObj=null; } }
    已修两处会导致「录不了 / 最后评不了分」的老问题：
    ① 原来固定把 Blob 标成 audio/webm，iPad 上 MediaRecorder 产出的是 mp4，回放直接失败；
    ② 原来只靠 onstop 回调 resolve，某些浏览器 onstop 不触发时 await stopRecording()
-      会永久挂起，后面的评分面板永远不出现。现在加 2.5 秒兜底，录音失败也放行评分。 */
+      会永久挂起，后面的对比卡永远不出现。现在加 2.5 秒兜底，录音失败也放行对比。 */
 let mediaRecorder=null, recChunks=[], recUrl=null, recStream=null, recMime='';
 const IS_IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
 const IS_STANDALONE = (window.navigator.standalone===true) || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
@@ -570,7 +594,7 @@ function stopRecording(){
       await startRecording();
       await new Promise(r=>setTimeout(r,1000));
       const u=await stopRecording();
-      if(u) set('✅ 录音正常（格式 '+(recMime||'浏览器默认')+'）。可以开始跟读评分。',true);
+      if(u) set('✅ 录音正常（格式 '+(recMime||'浏览器默认')+'）。可以开始跟读录音。',true);
       else set('⚠ 权限给了但没录到数据：关掉其它占用麦克风的应用再试；iPad 请留在 Safari 里打开本页。',false);
     }catch(e){
       const n=(e&&e.name)||'';
@@ -590,14 +614,14 @@ function markDone(modId,taskId){
   const p=getProg(); const key=(taskId.indexOf('of_')===0)?'official':modId;
   p[key]=p[key]||{}; p[key][taskId]=true;
   localStorage.setItem(progKey(),JSON.stringify(p));
-  checkIn(); checkBadges();
+  checkIn(); if(!LITE_MODE) checkBadges();
   refreshProgress();
 }
 function refreshProgress(){
   const p=getProg(); let done=0,total=0;
   SITE_DATA.modules.forEach(m=>{ const ts=m.tasks[currentLevel]||[]; total+=ts.length; done+=(ts.filter(t=>p[m.id]&&p[m.id][t.id]).length); });
   document.getElementById('progressMini').textContent=`本级别完成 ${done}/${total}`;
-  try{ renderBadgeWall(); }catch(e){}
+  if(!LITE_MODE){ try{ renderBadgeWall(); }catch(e){} }
 }
 
 /* 工具 */
@@ -1123,7 +1147,8 @@ function renderCards(){
   SITE_DATA.modules.forEach(m=>{
     const ts=m.tasks[currentLevel]||[];
     const done=ts.filter(t=>p[m.id]&&p[m.id][t.id]).length;
-    const c=el(`<div class="card"><span class="tag">${m.score}</span><h3>${m.name}</h3><p>${m.desc}</p><div class="meta">${ts.length} 关 · <span class="${done===ts.length?'done':''}">已完成 ${done}/${ts.length}</span></div></div>`);
+    const tag=LITE_MODE ? (m.id==='readaloud'?'🎧 跟读对比':'🎧 练习') : m.score;
+    const c=el(`<div class="card"><span class="tag">${tag}</span><h3>${m.name}</h3><p>${m.desc}</p><div class="meta">${ts.length} 关 · <span class="${done===ts.length?'done':''}">已完成 ${done}/${ts.length}</span></div></div>`);
     c.onclick=()=>openModule(m);
     box.appendChild(c);
   });
@@ -1268,7 +1293,38 @@ function renderBadgeWall(){
    items: [{label, dims:{dimId:earned}, max, note}]  每个题目/维度的得分明细
    dims:  维度总表 {dimId: earned}
    full:  满分 */
+/* 跟读对比版：评分面板换成「完成卡」，并把同一张卡里的自评/统计项隐藏。
+   原评分逻辑完整保留在下面，LITE_MODE 改回 false 即恢复。 */
+function hideScoreSiblings(container){
+  const card = container && container.closest ? container.closest('.checklist') : null;
+  if(!card) return;
+  [...card.children].forEach(ch=>{
+    if(ch===container || ch.contains(container)) return;
+    ch.style.display='none';           // 标题「📊…评分」、自评勾选项、统计提示
+  });
+}
+function buildPlainFinish(opts){
+  const {modId,taskId,modName,onRedo}=opts, container=opts.container;
+  container.innerHTML='';
+  hideScoreSiblings(container);
+  const box=el(`<div class="checklist" style="background:transparent;border:none;padding:0;margin:0">
+    <h4>✅ ${modName} · 本关完成</h4>
+    <div class="hint">当前是「跟读对比版」：不打分、不记分。回听一遍自己的录音，对照原文 / 参考要点，觉得不对就再录一次。</div>
+    <div class="btn-row">
+      <button class="btn" id="liteRedo">🔁 再练一次</button>
+      <button class="btn gold" id="liteDone">${examMode?'进入下一题 →':'✓ 完成本关并继续'}</button>
+    </div>
+  </div>`);
+  container.appendChild(box);
+  box.querySelector('#liteRedo').onclick=()=>{ try{ onRedo&&onRedo(); }catch(e){} };
+  box.querySelector('#liteDone').onclick=()=>{
+    if(examMode){ examAdvance(); }
+    else { try{ markDone(modId,taskId); }catch(e){} toast('已完成，进度已保存'); }
+  };
+  return {recalc:function(){}};   // 各题型的自评回调仍会调用，空实现即可
+}
 function buildScorePanel(opts){
+  if(LITE_MODE) return buildPlainFinish(opts);
   const {modId,taskId,modName,full,dimList,dimEarned,items,onRedo,exam,extraNote}=opts;
   const dims=SCORE_DIMS[modId]||[];
   const container=opts.container;
@@ -1423,7 +1479,7 @@ function openModule(m){
   // 切换页面：停掉一切在途媒体 + 换导航令牌，避免旧异步回调污染本页
   stopAllMedia(); navGuard();
   document.getElementById('ovTitle').textContent=m.name+' · '+currentLevel;
-  document.getElementById('ovSub').textContent=m.score+' · '+m.desc;
+  document.getElementById('ovSub').textContent=LITE_MODE ? m.desc : (m.score+' · '+m.desc);
   ovBody.innerHTML='';
   const wrap=el(`<div id="taskListWrap"></div>`);
   ovBody.appendChild(wrap);
@@ -1463,7 +1519,7 @@ document.addEventListener('keydown',e=>{
 });
 /* 练习内返回关卡列表：先停一切在途媒体再跳回，杜绝旧回调把内容又写回本页 */
 function addBackBar(m, onBack){
-  const info = m ? (m.official ? (m.name+' · '+m.score) : (m.name+' · '+m.score+' · '+currentLevel)) : '';
+  const info = m ? (LITE_MODE ? (m.name+' · '+currentLevel) : (m.official ? (m.name+' · '+m.score) : (m.name+' · '+m.score+' · '+currentLevel))) : '';
   const bar=el(`<div class="btn-row" style="margin-bottom:14px">
     <button class="btn ghost" id="backList">← 返回关卡列表</button>
     <span class="hint" style="margin:0">${info}</span>
@@ -1527,6 +1583,23 @@ function examAdvance(){
 function renderExamSummary(){
   ovBody.innerHTML='';
   ovBody.appendChild(stageLabel('模考完成 · 汇总'));
+  if(LITE_MODE){
+    const lb=el(`<div class="checklist"><h4>🎯 全真模考 · 完成情况（${currentLevel}）</h4>
+      <div class="hint">当前是「跟读对比版」：<b>不出分、不排名</b>。哪一环节想再练，回练习模式重新听原声、重录、对比即可。</div>
+      <div class="exam-summary"></div>
+      <div class="btn-row">
+        <button class="btn gold" id="redoExam">🔁 再考一次（换题）</button>
+        <button class="btn" id="backHome">返回首页</button>
+      </div></div>`);
+    ovBody.appendChild(lb);
+    const sum=lb.querySelector('.exam-summary');
+    examMode.steps.forEach(s=>{
+      sum.appendChild(el(`<div class="chk"><input type="checkbox" checked disabled><label>${s.label} — 已完成 ✓（录完音可回听原声与自己的录音）</label></div>`));
+    });
+    lb.querySelector('#redoExam').onclick=()=>runMockExam();
+    lb.querySelector('#backHome').onclick=()=>{ stopTimer(); try{ speechSynthesis.cancel(); }catch(e){} examMode=null; overlay.classList.remove('show'); renderCards(); };
+    return;
+  }
   const box=el(`<div class="checklist"><h4>🎯 全真模考成绩单（${currentLevel}）</h4>
     <div class="hint">已完成 4 大环节（信息转述及询问合并为第④环节）。下面是各环节实际得分；失分最多的环节就是下一轮先补的地方。离线规则自评，分数为参考分。</div>
     <div class="exam-summary"></div>
@@ -1626,7 +1699,103 @@ function renderCompare(text, missed){
     return `<span class="word">${w}</span>${ap}${p}`;
   });
 }
-/* 打分环节：尾音红标 + 重做循环（离线"规则自评"；接API后可自动生成红标） */
+/* ============================================================
+   跟读对比卡（LITE_MODE）：不评分，只做「原声 → 录音 → 对比」
+   ============================================================ */
+function buildCompareStage(container, m, t, audioUrl, onRedo){
+  container.innerHTML='';
+  const box=el(`<div class="checklist">
+    <h4>🔁 原声 vs 我的录音</h4>
+    <div class="hint">录完先别走：先听原声，再听自己的；最好点「一键连播」让两段连着放。对比只看三件事：<b>尾音</b>（-s/-ed/-t/-d 有没有发出来）、<b>连读</b>、<b>意群停顿</b>。本版不打分，也不保存分数。</div>
+    <div class="cmpGrid">
+      <div class="cmpCard">
+        <div class="cmpHead">🔊 原声范读（浏览器语音）</div>
+        <div class="btn-row">
+          <button class="btn gold" id="cmpRef">▶ 正常语速</button>
+          <button class="btn" id="cmpRefSlow">🐢 慢速 0.6×</button>
+          <button class="btn ghost" id="cmpStop">⏹ 停止</button>
+        </div>
+        <div class="hint">听不清就反复点；慢速用来抠连读和尾音。</div>
+      </div>
+      <div class="cmpCard">
+        <div class="cmpHead">🎙 我的录音</div>
+        <div id="cmpMine"></div>
+      </div>
+    </div>
+    <div class="cmpStatus" id="cmpStatus"></div>
+    <div class="btn-row">
+      <button class="btn gold" id="cmpAB">▶ 一键连播：原声 → 我的录音</button>
+      <button class="btn" id="cmpABSlow">🐢 慢速连播</button>
+      <button class="btn" id="cmpRedo">🔁 再录一次</button>
+      <button class="btn gold" id="cmpDone">${examMode?'进入下一题 →':'✓ 完成本关并继续'}</button>
+    </div>
+  </div>`);
+  container.appendChild(box);
+
+  const mine=box.querySelector('#cmpMine'), statusEl=box.querySelector('#cmpStatus');
+  let myAudio=null;
+  if(audioUrl){
+    mine.appendChild(el(`<audio controls id="cmpAudio" src="${audioUrl}"></audio>`));
+    myAudio=mine.querySelector('#cmpAudio');
+    const ext=(recMime||'').indexOf('mp4')>=0?'m4a':'webm';
+    mine.appendChild(el(`<div class="btn-row"><a class="btn ghost" style="text-decoration:none" href="${audioUrl}" download="跟读录音-${t.id||'task'}.${ext}">⬇ 保存这段录音</a></div>`));
+  }else{
+    mine.appendChild(el(`<div class="warnbox">没录到音频。先点首页「🎤 录音自检」确认设备，再点「再录一次」；也可以先只听原声做听读训练。</div>`));
+  }
+  const say=s=>{ if(alive(statusEl)) statusEl.textContent=s; };
+  if(myAudio) myAudio.addEventListener('ended',()=>say('✓ 对比完成 —— 回听重点：尾音 / 连读 / 意群停顿。不满意就点「再录一次」。'));
+
+  let seq=0;
+  function stopAll(){
+    seq++;
+    try{ speechSynthesis.cancel(); }catch(e){}
+    if(myAudio){ try{ myAudio.pause(); myAudio.currentTime=0; }catch(e){} }
+  }
+  async function playRef(slow){
+    const tok=++seq;
+    if(myAudio){ try{ myAudio.pause(); }catch(e){} }
+    say('① 正在播放原声范读'+(slow?'（慢速 0.6×）':'')+'…');
+    let ok=false;
+    try{ ok=await speak(t.text,{slow:slow}); }catch(e){}
+    if(tok!==seq || !alive(box)) return;
+    say(ok?'✓ 原声播放完毕。现在点右边「我的录音」听自己的。'
+          :'⚠ 本机没有发出原声：点首页「🔊 测试声音」检查语音包；你的录音仍可正常回放。');
+  }
+  async function playAB(slow){
+    const tok=++seq;
+    if(myAudio){ try{ myAudio.pause(); myAudio.currentTime=0; }catch(e){} }
+    say('① 先听原声范读'+(slow?'（慢速）':'')+'…');
+    let ok=false;
+    try{ ok=await speak(t.text,{slow:slow}); }catch(e){}
+    if(tok!==seq || !alive(box)) return;
+    if(!myAudio){ say(ok?'原声播完了：还没有录音，点「再录一次」录一遍。':'没有原声也没有录音：先做首页「🔊 测试声音」和「🎤 录音自检」。'); return; }
+    say('② 现在听我的录音…');
+    try{ myAudio.currentTime=0; await myAudio.play(); }
+    catch(e){ say('原声播完了，点右边播放器听我的录音（浏览器拦了自动播放）。'); }
+  }
+  box.querySelector('#cmpRef').onclick=()=>playRef(false);
+  box.querySelector('#cmpRefSlow').onclick=()=>playRef(true);
+  box.querySelector('#cmpAB').onclick=()=>playAB(false);
+  box.querySelector('#cmpABSlow').onclick=()=>playAB(true);
+  box.querySelector('#cmpStop').onclick=()=>{ stopAll(); say('已停止。'); };
+  box.querySelector('#cmpRedo').onclick=()=>{ stopAll(); try{ onRedo&&onRedo(); }catch(e){} };
+  box.querySelector('#cmpDone').onclick=()=>{
+    stopAll();
+    if(examMode){ examAdvance(); }
+    else { try{ markDone(m.id,t.id); }catch(e){} toast('已完成，进度已保存'); }
+  };
+
+  /* 对照原文（教学参考，不核对、不打分） */
+  const ref=el(`<div class="checklist"><h4>📖 对照原文（红色是易吞的尾音）</h4>
+    <div class="textbox">${highlightEndings(t.text)}</div></div>`);
+  container.appendChild(ref);
+  try{ container.appendChild(el(renderChunkBox(t.text,currentLevel))); }catch(e){}
+  container.appendChild(el(`<div class="hint">对比时手指跟着原文走：尾音有没有读出来、连读有没有连上、停顿是不是落在金色 <b style="color:var(--gold)">/</b> 处。</div>`));
+  if(IS_IOS) container.appendChild(el(`<div class="hint"><span class="warnbox">iPad 提示：若「边听边录」听不到范读，请改用「① 模考模式」先听后录；对比卡里原声与录音是分开播放的，不会互相抢音频。</span></div>`));
+}
+
+/* 打分环节：尾音红标 + 重做循环（离线"规则自评"；接API后可自动生成红标）
+   LITE_MODE=true 时不会被调用，代码保留供以后接 API 恢复。 */
 function buildScoring(container, m, t, audioUrl, onRedo, exam){
   container.innerHTML='';
   const endings=getEndingWords(t.text);
@@ -1758,9 +1927,20 @@ function renderExamMode(holder,m,t,exam){
     const rec=el(`<div><div class="timer"><span class="rec-dot"></span><div class="tnum" id="tr">--</div><div class="tbar"><i id="br"></i></div></div><div class="btn-row"><button class="btn gold" id="sr">开始录音</button><button class="btn" id="er" disabled>停止并回放</button></div><div id="aud"></div></div>`);
     stageArea.appendChild(rec);
     const errBox=el(`<div></div>`); stageArea.appendChild(errBox);
+    function failStage(msg){
+      recBusy=false;
+      if(!alive(stageArea)) return;
+      if(LITE_MODE){
+        goStage(null);                       // 权限/设备失败也一定出现对比卡（可听原声、可重录）
+        const w=el('<div class="warnbox"></div>'); w.textContent=msg;
+        stageArea.insertBefore(w, stageArea.firstChild);
+      }else{
+        errBox.innerHTML='<div class="warnbox">'+msg+'</div>';
+      }
+    }
     rec.querySelector('#sr').onclick=async()=>{
       const env=recEnvInfo();
-      if(!recSupported || env.reason){ errBox.innerHTML='<div class="warnbox">⚠ '+(env.reason||'当前环境不支持麦克风')+'。可先用「听范读 + 自评」继续练，回首页点「🎤 录音自检」定位问题。</div>'; return; }
+      if(!recSupported || env.reason){ failStage('⚠ '+(env.reason||'当前环境不支持麦克风')+'。可先反复听范读做听读训练，回首页点「🎤 录音自检」定位问题。'); return; }
       if(recBusy){ toast('已有录音在进行，请先停止'); return; }
       recBusy=true;
       try{
@@ -1769,7 +1949,7 @@ function renderExamMode(holder,m,t,exam){
         beep(880,0.18); toast('开始录音，请朗读');
         rec.querySelector('#sr').disabled=true; rec.querySelector('#er').disabled=false;
         runTimer(recS, rec.querySelector('#tr'), rec.querySelector('#br'), ()=>doStop(true));
-      }catch(e){ recBusy=false; rec.querySelector('#sr').disabled=false; if(alive(stageArea)) errBox.innerHTML='<div class="warnbox">无法访问麦克风：'+(e.message||e)+'。请点首页「🎤 录音自检」看具体原因。</div>'; }
+      }catch(e){ rec.querySelector('#sr').disabled=false; failStage('无法访问麦克风：'+(e.message||e)+'。请点首页「🎤 录音自检」看具体原因。'); }
     };
     async function doStop(auto){
       if(recStopped) return; recStopped=true;
@@ -1778,12 +1958,14 @@ function renderExamMode(holder,m,t,exam){
       recBusy=false;
       if(!alive(stageArea)) return;          // 已返回/切页：不再写 DOM
       beep(520,0.22);
-      if(!u){ const w=el('<div class="warnbox">⚠ 没录到音频（权限或设备被占用）。已进入自评打分，可点「再练一次」重录。</div>'); stageArea.insertBefore(w, stageArea.firstChild); }
-      showAudio(u); goScore(u);
+      showAudio(u); goStage(u);
     }
     rec.querySelector('#er').onclick=()=>doStop(false);
-    function showAudio(u){ if(!u) return; rec.querySelector('#aud').innerHTML=''; rec.querySelector('#aud').appendChild(el(`<div class="audio-row"><span>我的录音：</span><audio controls src="${u}"></audio></div>`)); }
-    function goScore(u){ buildScoring(stageArea, m, t, u, buildRecStage, exam); }
+    function showAudio(u){ if(!u || LITE_MODE) return; rec.querySelector('#aud').innerHTML=''; rec.querySelector('#aud').appendChild(el(`<div class="audio-row"><span>我的录音：</span><audio controls src="${u}"></audio></div>`)); }
+    function goStage(u){
+      if(LITE_MODE) buildCompareStage(stageArea, m, t, u, buildRecStage);
+      else buildScoring(stageArea, m, t, u, buildRecStage, exam);
+    }
   }
 }
 
@@ -1882,11 +2064,13 @@ function renderShadowMode(holder,m,t){
   function renderGate(){
     if(!alive(st)) return;
     st.innerHTML = `已听 <b style="color:var(--gold)">${listenCount}</b> 遍。` +
-      (listenCount>=2 ? ' ✅ 已达标' : (listenCount===1 ? ' 再听一遍，重点捕捉停顿位置。' : ' 点上面按钮开始。'));
-    if(listenCount>=2){
-      gate.querySelector('div').innerHTML='<div style="font-size:15px;font-weight:800;color:var(--gold);margin-bottom:6px">✅ STEP 2 · 影子跟读（边听边说）已解锁</div><div>点下面的按钮：系统会<b>同时</b>播放范读并开始录音，你在听到声音后延迟约 <b>0.5 秒</b>同步开口。读错不回头、不重读，直接继续。</div>';
+      (LITE_MODE ? ' （跟读对比版不限遍数，可随时开口）' : (listenCount>=2 ? ' ✅ 已达标' : (listenCount===1 ? ' 再听一遍，重点捕捉停顿位置。' : ' 点上面按钮开始。')));
+    if(LITE_MODE || listenCount>=2){
+      gate.querySelector('div').innerHTML= LITE_MODE
+        ? '<div style="font-size:15px;font-weight:800;color:var(--gold);margin-bottom:6px">✅ STEP 2 · 影子跟读已开放</div><div>建议先听 2 遍范读，但<b>不再强制门禁</b>（iPad 上语音包偶尔不发声也不会卡住）。点下面的「▶ 播放并同步跟读」：系统同时播放范读并开始录音，你延迟约 <b>0.5 秒</b>开口，录完直接进原声 / 录音对比。</div>'
+        : '<div style="font-size:15px;font-weight:800;color:var(--gold);margin-bottom:6px">✅ STEP 2 · 影子跟读（边听边说）已解锁</div><div>点下面的按钮：系统会<b>同时</b>播放范读并开始录音，你在听到声音后延迟约 <b>0.5 秒</b>同步开口。读错不回头、不重读，直接继续。</div>';
       goBtn.disabled=false;
-      gateHint.textContent='进度：已听 '+listenCount+' / 2 遍 ✅';
+      gateHint.textContent = LITE_MODE ? ('已听 '+listenCount+' 遍 · 可直接跟读') : ('进度：已听 '+listenCount+' / 2 遍 ✅');
       ctrl.style.display='';
       stageArea.style.display='';
     }else{
@@ -1901,16 +2085,21 @@ function renderShadowMode(holder,m,t){
   let shadowing=false;
   async function doShadow(slow){
     const env=recEnvInfo();
-    if(!recSupported || env.reason){ if(alive(ctrl)) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">⚠ '+(env.reason||'当前环境不支持麦克风')+'。仍可用 STEP 1 反复听范读做听读训练；设备修好后回首页点「🎤 录音自检」确认。</span>'; return; }
-    if(listenCount<2){ toast('请先完成 STEP 1：至少听 2 遍范读'); return; }
+    if(!recSupported || env.reason){
+      const msg='⚠ '+(env.reason||'当前环境不支持麦克风')+'。仍可用 STEP 1 反复听范读做听读训练；设备修好后回首页点「🎤 录音自检」确认。';
+      if(alive(ctrl)) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">'+msg+'</span>';
+      if(LITE_MODE) buildCompareStage(stageArea, m, t, null, ()=>doShadow(false));   // 无录音也给对比卡，至少能听原声
+      return;
+    }
+    if(!LITE_MODE && listenCount<2){ toast('请先完成 STEP 1：至少听 2 遍范读'); return; }
     if(shadowing) return;
     shadowing=true;
     ctrl.querySelector('#shPlay').disabled=true; ctrl.querySelector('#shSlow').disabled=true;
     ctrl.querySelector('#shStop').disabled=false;
     const tok=navSeq;
     let finished=false, early=false;
-    /* 统一收尾：无论录音成功、失败、被提前结束，都一定进入评分，
-       不再出现「录完没反应 / 最后评不了分」。 */
+    /* 统一收尾：无论录音成功、失败、被提前结束，都一定出现「原声 vs 录音」对比卡，
+       不再出现「录完没反应 / 最后什么都没有」。 */
     async function finish(){
       if(finished) return; finished=true;
       try{ speechSynthesis.cancel(); }catch(e){}
@@ -1918,11 +2107,12 @@ function renderShadowMode(holder,m,t){
       curRecStop=null;
       if(!alive(ctrl) || tok!==navSeq) return;
       ctrl.querySelector('#shAud').innerHTML='';
-      if(u) ctrl.querySelector('#shAud').appendChild(el(`<div class="audio-row"><span>我的跟读：</span><audio controls src="${u}"></audio></div>`));
-      buildScoring(stageArea, m, t, u, ()=>doShadow(slow));
+      if(u && !LITE_MODE) ctrl.querySelector('#shAud').appendChild(el(`<div class="audio-row"><span>我的跟读：</span><audio controls src="${u}"></audio></div>`));
+      if(LITE_MODE) buildCompareStage(stageArea, m, t, u, ()=>doShadow(slow));
+      else buildScoring(stageArea, m, t, u, ()=>doShadow(slow));
       ctrl.querySelector('#shStatus').innerHTML = u
-        ? '✓ 跟读完成。回放对比范读，重点查三件事：<b>尾音</b>（-s/-ed/-t/-d 有没有发出来）、<b>连读</b>、<b>意群停顿</b>。'
-        : '<span class="warnbox">⚠ 没录到音频（权限或设备被占用）。已进入自评打分，可点「再练一次」重录；iPad 请先做首页「🎤 录音自检」。</span>';
+        ? '✓ 跟读完成。下面用对比卡听原声、听自己的，重点查三件事：<b>尾音</b>（-s/-ed/-t/-d 有没有发出来）、<b>连读</b>、<b>意群停顿</b>。'
+        : '<span class="warnbox">⚠ 没录到音频（权限或设备被占用）。对比卡已出现，可点「再录一次」重录；iPad 请先做首页「🎤 录音自检」。</span>';
     }
     curRecStop=()=>{ early=true; finish(); };   // 「⏹ 提前结束」现在真正生效
     try{
@@ -1936,14 +2126,18 @@ function renderShadowMode(holder,m,t){
       await finish();
     }catch(e){
       curRecStop=null;
-      if(alive(ctrl) && tok===navSeq) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">麦克风错误：'+(e.message||e)+'。已进入自评打分，可稍后重录。</span>';
+      if(alive(ctrl) && tok===navSeq) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">麦克风错误：'+(e.message||e)+'。对比卡仍会出现，可稍后重录。</span>';
       await finish();
     }finally{
       shadowing=false;
       if(alive(ctrl)){ ctrl.querySelector('#shPlay').disabled=false; ctrl.querySelector('#shSlow').disabled=false; ctrl.querySelector('#shStop').disabled=true; }
     }
   }
-  goBtn.onclick=()=>{ ctrl.style.display=''; stageArea.style.display=''; toast('开始跟读：听到声音后延迟约 0.5 秒开口'); doShadow(false); };
+  goBtn.onclick=()=>{
+    ctrl.style.display=''; stageArea.style.display='';
+    if(LITE_MODE){ toast('跟读区已开放：点「▶ 播放并同步跟读」开始录音'); return; }
+    toast('开始跟读：听到声音后延迟约 0.5 秒开口'); doShadow(false);
+  };
   ctrl.querySelector('#shPlay').onclick=()=>doShadow(false);
   ctrl.querySelector('#shSlow').onclick=()=>doShadow(true);
   ctrl.querySelector('#shStop').onclick=()=>{ try{ curRecStop&&curRecStop(); }catch(e){} };
@@ -2240,6 +2434,7 @@ async function taskListenAnswer(m,t,exam){
   const judges=new Array(t.questions.length).fill(-1);   // 0=没答到 1=答到一半 2=完全答对
   const JUDGE_LABEL=['没答到','答到一半','完全答对'];
   function showJudge(i,qq){
+    if(LITE_MODE) return;   // 跟读对比版：不出现「自评给分」按钮
     const host=ovBody.querySelector('#judge'+i);
     if(!host||host.dataset.on) return;
     host.dataset.on='1';
@@ -2409,26 +2604,26 @@ function gradeNotes(t, raw, box){
     ? '🎉 要点全部记到了！'
     : `⚠ 还漏了 <b style="color:var(--red)">${missed.length}</b> 个要点，60 秒复述时这些内容你一定说不出来。`;
 
+  const estHtml = LITE_MODE ? '' : `<span>预估得分：<b style="color:${est>=5.4?'var(--ok)':'var(--gold)'};font-size:22px">${est.toFixed(1)}</b> / 6 分</span>`;
+  const dimHtml = LITE_MODE ? '' : `<div style="margin:12px 0 4px;font-weight:700;color:var(--gold-soft)">得分构成（预估）</div>
+    <div class="endRow"><span style="flex:1">① 要点齐全（权重最高）</span><b style="color:var(--gold)">${coverScore.toFixed(1)} / 4.5</b></div>
+    <div class="endRow"><span style="flex:1">② 结构串联 ${hasLink?'<span style="color:var(--ok)">✔ 已用连接词</span>':'<span style="color:var(--red)">✘ 没看到 First/Then/After that/Finally</span>'}</span><b style="color:var(--gold)">${structScore.toFixed(1)} / 1.0</b></div>
+    <div class="endRow"><span style="flex:1">③ 细节具体（记到人名/地点/名物）</span><b style="color:var(--gold)">${detailScore.toFixed(1)} / 0.5</b></div>`;
+  const tipHtml = LITE_MODE
+    ? '本版只核对「要点记到没」，不估分、不记分。漏哪条就补哪条，再录一遍回听自己的录音。'
+    : '<b>对照表：</b>全部记到 + 有连接词 ≈ <b>6 分（满分）</b>；全部记到但没连接词 ≈ 5.5 分；漏 1 条 ≈ 4–5 分；漏一半 ≈ 2–3 分；只记开头 ≈ 1 分。<br><b>提分顺序：</b>先补漏掉的要点（最值钱）→ 再加连接词 → 最后抠语法。';
   box.innerHTML='';
   const main=el(`<div class="checklist" style="margin-top:12px">
-    <h4>📝 笔记批改结果</h4>
+    <h4>📝 ${LITE_MODE?'笔记核对结果':'笔记批改结果'}</h4>
     <div style="display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;margin:6px 0 10px">
       <span>要点覆盖：<b style="color:var(--gold);font-size:20px">${hit}/${total}</b>（${Math.round(rate*100)}%）</span>
-      <span>预估得分：<b style="color:${est>=5.4?'var(--ok)':'var(--gold)'};font-size:22px">${est.toFixed(1)}</b> / 6 分</span>
+      ${estHtml}
     </div>
     <div class="hint">${extraHint}</div>
     <div style="margin:10px 0 4px;font-weight:700;color:var(--gold-soft)">逐条核对（✔ = 你的笔记里记到了）</div>
     <div id="gRows"></div>
-
-    <div style="margin:12px 0 4px;font-weight:700;color:var(--gold-soft)">得分构成（预估）</div>
-    <div class="endRow"><span style="flex:1">① 要点齐全（权重最高）</span><b style="color:var(--gold)">${coverScore.toFixed(1)} / 4.5</b></div>
-    <div class="endRow"><span style="flex:1">② 结构串联 ${hasLink?'<span style="color:var(--ok)">✔ 已用连接词</span>':'<span style="color:var(--red)">✘ 没看到 First/Then/After that/Finally</span>'}</span><b style="color:var(--gold)">${structScore.toFixed(1)} / 1.0</b></div>
-    <div class="endRow"><span style="flex:1">③ 细节具体（记到人名/地点/名物）</span><b style="color:var(--gold)">${detailScore.toFixed(1)} / 0.5</b></div>
-
-    <div class="hint" style="margin-top:10px">
-      <b>对照表：</b>全部记到 + 有连接词 ≈ <b>6 分（满分）</b>；全部记到但没连接词 ≈ 5.5 分；漏 1 条 ≈ 4–5 分；漏一半 ≈ 2–3 分；只记开头 ≈ 1 分。
-      <br><b>提分顺序：</b>先补漏掉的要点（最值钱）→ 再加连接词 → 最后抠语法。
-    </div>
+    ${dimHtml}
+    <div class="hint" style="margin-top:10px">${tipHtml}</div>
   </div>`);
   box.appendChild(main);
   const rs=main.querySelector('#gRows');
@@ -2445,7 +2640,7 @@ function gradeNotes(t, raw, box){
       <b>补救建议：</b>把这 ${missed.length} 条的关键信息补进笔记，再点一次批改。漏掉的要点在正式考试里会直接丢分。
     </div>`));
   }
-  toast(`批改完成：覆盖 ${hit}/${total}，预估 ${est.toFixed(1)}/6 分`);
+  toast(LITE_MODE ? `核对完成：要点覆盖 ${hit}/${total}` : `批改完成：覆盖 ${hit}/${total}，预估 ${est.toFixed(1)}/6 分`);
 }
 
 /* —— 信息转述 —— */
@@ -2508,11 +2703,11 @@ async function taskRetell(m,t,exam){
   if(t.firstLine){
     ovBody.appendChild(el(`<div class="checklist" style="margin:8px 0"><h4>✍️ 首句提示（复述必须以这句开头）</h4><div class="textbox" style="font-size:15px;border-color:rgba(255,214,102,.45)">${t.firstLine}</div></div>`));
   }
-  ovBody.appendChild(el(`<div class="hint">考试这里是纸笔速记，本页用文本框模拟。写完点「批改我的笔记」，系统会自动对照要点告诉你<b>漏了哪条</b>、<b>预估能得多少分</b>。</div>`));
+  ovBody.appendChild(el(`<div class="hint">考试这里是纸笔速记，本页用文本框模拟。写完点「核对我的笔记」，系统会自动对照要点告诉你<b>漏了哪条</b>${LITE_MODE?'':'、<b>预估能得多少分</b>'}。</div>`));
   const notes=el(`<textarea class="notes" id="rtNotes" placeholder="把你的速记要点写在这里，用 / 或换行分隔都可以。例如：&#10;Tom / get up 7 / breakfast / school / football / home 5"></textarea>`);
   ovBody.appendChild(notes);
   const chkRow=el(`<div><div class="btn-row">
-      <button class="btn gold" id="rtCheck">🔍 批改我的笔记（看漏了哪条 + 预估分）</button>
+      <button class="btn gold" id="rtCheck">${LITE_MODE?'🔍 核对我的笔记（看漏了哪条）':'🔍 批改我的笔记（看漏了哪条 + 预估分）'}</button>
       <button class="btn" id="rtClear">清空重写</button>
       <button class="btn ghost" id="rtFill">不会写？看范例笔记</button>
     </div></div>`);
@@ -2541,10 +2736,10 @@ async function taskRetell(m,t,exam){
     const errBox=el(`<div></div>`); ovBody.appendChild(errBox);
     rec.querySelector('#sr').onclick=async()=>{
       const env=recEnvInfo();
-      if(!recSupported || env.reason){ errBox.innerHTML='<div class="warnbox">⚠ '+(env.reason||'当前环境不支持录音')+'。可口头复述后对照要点自评。</div>'; return; }
+      if(!recSupported || env.reason){ errBox.innerHTML='<div class="warnbox">⚠ '+(env.reason||'当前环境不支持录音')+'。可口头复述后对照要点核对。</div>'; if(LITE_MODE) finish(); return; }
       try{ await startRecording(); beep(880,0.18); rec.querySelector('#sr').disabled=true; rec.querySelector('#er').disabled=false;
         runTimer(retRecS, rec.querySelector('#tr'), rec.querySelector('#br'), async()=>{ beep(520,0.22); const u=await stopRecording(); showA(u); finish(); });
-      }catch(e){ errBox.innerHTML='<div class="warnbox">无法访问麦克风：'+(e.message||e)+'。已进入自评打分，可口头复述后对照要点核对。</div>'; finish(); }
+      }catch(e){ errBox.innerHTML='<div class="warnbox">无法访问麦克风：'+(e.message||e)+'。已跳过录音，可口头复述后对照要点核对。</div>'; finish(); }
     };
     rec.querySelector('#er').onclick=async()=>{ stopTimer(); const u=await stopRecording(); showA(u); finish(); };
     function showA(u){ if(!u) return; rec.querySelector('#aud').innerHTML=''; rec.querySelector('#aud').appendChild(el(`<div class="audio-row"><span>我的复述：</span><audio controls src="${u}"></audio></div>`)); }
@@ -2658,6 +2853,7 @@ async function taskAsk(m,t,exam){
   const judges=[];   // judges[i] = {qw:0|0.5|1, aux:..., tone:...}
   const JD=['做错了','对了一半','完全正确'];
   function showJudge(i,pp){
+    if(LITE_MODE) return;   // 跟读对比版：不出现「逐项自评」按钮
     const host=ovBody.querySelector('#ans'+i);
     if(!host) return;
     judges[i]=judges[i]||{};
@@ -2749,7 +2945,7 @@ async function taskAsk(m,t,exam){
 let recBusy=false, curRecStop=null, curRecMount=null;
 async function recordShort(sec, mountEl, onAutoStop, btn){
   const env=recEnvInfo();
-  if(!recSupported || env.reason){ mountEl.innerHTML='<div class="warnbox">⚠ '+(env.reason||'当前环境不支持录音')+'，可直接口头作答后对照答案自评；回首页点「🎤 录音自检」定位问题。</div>'; return; }
+  if(!recSupported || env.reason){ mountEl.innerHTML='<div class="warnbox">⚠ '+(env.reason||'当前环境不支持录音')+'，可直接口头作答后对照答案核对；回首页点「🎤 录音自检」定位问题。</div>'; return; }
   if(recBusy){ toast('上一段录音还在进行，请先「提前结束」或等倒计时结束'); return; }
   try{ if(curRecStop) curRecStop(); }catch(e){}
   try{ stopTimer(); }catch(e){}
@@ -2786,7 +2982,7 @@ async function recordShort(sec, mountEl, onAutoStop, btn){
     recBusy=false; curRecStop=null;
     if(btn) btn.disabled=false;
     if(!alive(mountEl)) return;
-    ui.innerHTML='<div class="warnbox">无法访问麦克风：'+(e.message||e)+'。已跳过录音，可继续口头作答并对照答案自评。</div>';
+    ui.innerHTML='<div class="warnbox">无法访问麦克风：'+(e.message||e)+'。已跳过录音，可继续口头作答并对照答案核对。</div>';
     if(onAutoStop) onAutoStop();   // 关键：录音失败也放行作答/评分，避免整关卡死
   }
 }
@@ -2942,7 +3138,16 @@ function buildOfficialPapers(){
 SITE_DATA.official = { papers: buildOfficialPapers() };
 
 /* 初始化 */
-renderLevels(); renderCards(); refreshProgress(); renderScoreTable(); renderMyReport(); renderBadgeWall(); renderOfficial();
+(function applyLiteMode(){
+  if(!LITE_MODE) return;
+  document.querySelectorAll('.score-feature').forEach(n=>{ n.style.display='none'; });   // 分值表 / 成绩单 / 徽章墙
+  const notice=document.getElementById('liteNotice'); if(notice) notice.style.display='';
+  const eb=document.getElementById('examBtn'); if(eb) eb.textContent='🎯 全真模考（跟读对比版 · 不出分）';
+  const eh=document.getElementById('examHint'); if(eh) eh.textContent='四环节连做、严格计时；本版考完只看完成情况，不出分数。重点仍是每关录完音后回听对比。';
+})();
+renderLevels(); renderCards(); refreshProgress();
+if(!LITE_MODE){ renderScoreTable(); renderMyReport(); renderBadgeWall(); }
+renderOfficial();
 document.getElementById('examBtn').onclick=runMockExam;
 document.getElementById('rate').oninput=e=>{ cfg.rate=+e.target.value; document.getElementById('rateV').textContent=(+e.target.value).toFixed(2)+'×'; };
 </script>

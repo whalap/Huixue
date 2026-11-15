@@ -1,7 +1,7 @@
 /* E听说练习 Service Worker：缓存应用外壳，支持离线。
    页面（html / 导航）走「网络优先」：修完 bug 重新发布后，iPad 不会继续拿旧缓存。
    改版本号会清掉旧缓存，避免旧代码一直生效。 */
-const CACHE = 'eershuo-v2';
+const CACHE = 'eershuo-v3';
 const ASSETS = [
   './',
   './index.html',

@@ -185,7 +185,9 @@
     <span style="margin-left:8px">音色：</span>
     <select id="voiceSel"></select>
     <button class="btn" id="testSound" style="margin-left:8px;padding:6px 12px;font-size:13px">🔊 测试声音</button>
+    <button class="btn" id="testMic" style="margin-left:8px;padding:6px 12px;font-size:13px">🎤 录音自检</button>
     <span id="soundDiag" style="font-size:12px;color:var(--gold-soft);margin-left:6px"></span>
+    <span id="micDiag" style="font-size:12px;margin-left:6px"></span>
     <span class="progress-mini" id="progressMini"></span>
   </div>
 
@@ -483,30 +485,103 @@ function runTimer(seconds, el, barEl, onDone){
 }
 function stopTimer(){ if(timerObj){ clearInterval(timerObj); timerObj=null; } }
 
-/* 录音 */
-let mediaRecorder=null, recChunks=[], recUrl=null, recStream=null;
+/* 录音 —— 兼容 Chrome/Edge 的 webm 与 iPad Safari 的 mp4
+   已修两处会导致「录不了 / 最后评不了分」的老问题：
+   ① 原来固定把 Blob 标成 audio/webm，iPad 上 MediaRecorder 产出的是 mp4，回放直接失败；
+   ② 原来只靠 onstop 回调 resolve，某些浏览器 onstop 不触发时 await stopRecording()
+      会永久挂起，后面的评分面板永远不出现。现在加 2.5 秒兜底，录音失败也放行评分。 */
+let mediaRecorder=null, recChunks=[], recUrl=null, recStream=null, recMime='';
+const IS_IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+const IS_STANDALONE = (window.navigator.standalone===true) || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
 let recSupported = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder);
+function recEnvInfo(){
+  const secure=(window.isSecureContext!==false);
+  const hasGUM=!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  const hasMR=!!window.MediaRecorder;
+  let reason='', warn='';
+  if(!secure) reason='当前不是安全上下文（用 http 局域网地址或从「文件」App 直接打开 html 都会禁用麦克风），请改用 https 网址或电脑上的 http://localhost';
+  else if(!hasGUM) reason='浏览器没有提供麦克风接口（iPad 常见原因：从主屏图标 / 独立 App 模式打开，请回 Safari 地址栏打开本页）';
+  else if(!hasMR) reason='浏览器不支持 MediaRecorder（iPadOS 需 14.3 或更新版本）';
+  if(IS_IOS && IS_STANDALONE) warn='当前是 iOS 主屏图标（独立 App）模式：部分 iPadOS 版本不弹麦克风授权，若试录失败请回 Safari 地址栏打开本页。';
+  return {secure, hasGUM, hasMR, ios:IS_IOS, standalone:IS_STANDALONE, reason, warn};
+}
+function pickRecMime(){
+  if(!window.MediaRecorder || !MediaRecorder.isTypeSupported) return '';
+  // iPad Safari 只支持 audio/mp4；Chrome/Edge 优先 webm+opus
+  const list=['audio/webm;codecs=opus','audio/webm','audio/mp4','audio/aac','audio/ogg;codecs=opus'];
+  return list.find(t=>MediaRecorder.isTypeSupported(t))||'';
+}
 async function startRecording(){
-  if(!recSupported) throw new Error('unsupported');
+  const info=recEnvInfo();
+  if(!recSupported || info.reason) throw new Error(info.reason||'当前环境不支持录音');
+  // 清理上一路流：iPad 上叠着多条录音轨道会直接录不到声音
+  try{ if(recStream) recStream.getTracks().forEach(t=>t.stop()); }catch(e){}
+  recStream=null;
   recStream=await navigator.mediaDevices.getUserMedia({audio:true});
   recChunks=[];
-  mediaRecorder=new MediaRecorder(recStream);
-  mediaRecorder.ondataavailable=e=>{ if(e.data.size>0) recChunks.push(e.data); };
-  mediaRecorder.start();
+  const mime=pickRecMime();
+  try{ mediaRecorder = mime ? new MediaRecorder(recStream,{mimeType:mime}) : new MediaRecorder(recStream); }
+  catch(e){ mediaRecorder = new MediaRecorder(recStream); }
+  recMime=mediaRecorder.mimeType||mime||'';
+  mediaRecorder.ondataavailable=e=>{ if(e.data && e.data.size>0) recChunks.push(e.data); };
+  try{
+    if(IS_IOS) mediaRecorder.start();            // iPad Safari 只在 stop 时给一次数据
+    else mediaRecorder.start(250);               // 桌面分段产出，避免长录音丢尾
+  }catch(e){ try{ mediaRecorder.start(); }catch(e2){} }
 }
 function stopRecording(){
   return new Promise((resolve)=>{
     if(!mediaRecorder || mediaRecorder.state==='inactive'){ resolve(null); return; }
-    mediaRecorder.onstop=()=>{
-      const blob=new Blob(recChunks,{type:'audio/webm'});
-      if(recUrl) URL.revokeObjectURL(recUrl);
-      recUrl=URL.createObjectURL(blob);
-      if(recStream) recStream.getTracks().forEach(t=>t.stop());
-      resolve(recUrl);
+    let done=false, guard=null;
+    const finish=()=>{
+      if(done) return; done=true;
+      if(guard) clearTimeout(guard);
+      const type=recMime||mediaRecorder.mimeType||'audio/webm';
+      const blob=new Blob(recChunks,{type:type});
+      let url=null;
+      if(recChunks.length && blob.size>0){
+        if(recUrl){ try{ URL.revokeObjectURL(recUrl); }catch(e){} }
+        recUrl=URL.createObjectURL(blob);
+        url=recUrl;
+      }
+      try{ if(recStream) recStream.getTracks().forEach(t=>t.stop()); }catch(e){}
+      recStream=null;
+      resolve(url);
     };
-    mediaRecorder.stop();
+    guard=setTimeout(finish,2500);   // 关键兜底：onstop 不触发也不能卡住评分
+    mediaRecorder.onstop=finish;
+    try{ mediaRecorder.stop(); }catch(e){ finish(); }
   });
 }
+
+/* 首页「🎤 录音自检」：把环境、权限、格式一次说清楚，别再靠猜 */
+(function(){
+  const btn=document.getElementById('testMic'), diag=document.getElementById('micDiag');
+  if(!btn||!diag) return;
+  const set=(html,ok)=>{ diag.innerHTML=html; diag.style.color=ok?'var(--ok)':'var(--red)'; };
+  const env=recEnvInfo();
+  const base=`环境：${env.secure?'安全 ✓':'不安全 ✗'} · ${env.ios?'iPad/iOS':'桌面'} · 麦克风接口 ${env.hasGUM?'✓':'✗'} · 录制器 ${env.hasMR?'✓':'✗'}`;
+  if(env.reason) set('⚠ '+env.reason,false);
+  else if(env.warn) set('⚠ '+env.warn+' '+base,false);
+  else set(base+' —— 点右侧按钮试录 1 秒',true);
+  btn.onclick=async()=>{
+    btn.disabled=true; set('正在申请麦克风并试录 1 秒…',true);
+    try{
+      await startRecording();
+      await new Promise(r=>setTimeout(r,1000));
+      const u=await stopRecording();
+      if(u) set('✅ 录音正常（格式 '+(recMime||'浏览器默认')+'）。可以开始跟读评分。',true);
+      else set('⚠ 权限给了但没录到数据：关掉其它占用麦克风的应用再试；iPad 请留在 Safari 里打开本页。',false);
+    }catch(e){
+      const n=(e&&e.name)||'';
+      let tip=e&&e.message?e.message:String(e);
+      if(n==='NotAllowedError') tip='权限被拒绝。Safari「设置 → 网站 → 麦克风」改为允许；若从主屏图标打开，请改用 Safari 地址栏打开。';
+      else if(n==='NotFoundError') tip='没有找到麦克风设备。';
+      else if(n==='NotReadableError') tip='麦克风被其它应用占用，或页面被系统挂到后台。';
+      set('❌ 无法录音：'+tip,false);
+    }finally{ btn.disabled=false; }
+  };
+})();
 
 /* 进度 */
 function progKey(){ return 'eet_prog_'+currentLevel; }
@@ -1234,10 +1309,12 @@ function buildScorePanel(opts){
     const t=Math.round(total*10)/10;
     box.querySelector('#scNum').textContent=t;
     const msg=box.querySelector('#scMsg');
-    const pass=full*0.8;
+    const pass=Math.round(full*0.8*10)/10;   // 修：原来 6*0.8 会显示成 4.800000000000001
+    const passTxt=pass.toFixed(1);
     if(t>=full*0.95){ msg.textContent=`${t} 分 ✅ 优秀 —— 达到满分线附近，可挑战下一关`; msg.className='scoreMsg ok'; }
-    else if(t>=pass){ msg.textContent=`${t} 分 —— 达标（≥${pass}），但还有提升空间，看下面建议`; msg.className='scoreMsg ok'; }
-    else { msg.textContent=`${t} 分 —— 未达标（需 ≥${pass}），先按建议补最弱的一项`; msg.className='scoreMsg bad'; }
+    else if(t>=pass){ msg.textContent=`${t} 分 —— 达标（≥${passTxt}），但还有提升空间，看下面建议`; msg.className='scoreMsg ok'; }
+    else if(t<=0){ msg.textContent=`0 分（待核对）—— 勾选上面的自评项 / 标记尾音后自动更新，达标线 ${passTxt} 分`; msg.className='scoreMsg'; }
+    else { msg.textContent=`${t} 分 —— 未达标（需 ≥${passTxt}），先按建议补最弱的一项`; msg.className='scoreMsg bad'; }
     // 改进建议：按失分最多的维度排序
     const adv=box.querySelector('#scAdvice');
     const weak=dims.map(d=>({d,loss:d.full-(dimEarned[d.id]||0)})).filter(x=>x.loss>0.01).sort((a,b)=>b.loss-a.loss);
@@ -1257,6 +1334,8 @@ function buildScorePanel(opts){
     if(exam){ sb.textContent='进入下一题 →'; sb.disabled=false; }
     else { sb.disabled=false; sb.textContent='✓ 保存成绩并继续'; }
     recordScore(modId, taskId, dimEarned, t, full);
+    // 模考：把每个环节的实时得分记下来，最后的汇总才能给出真实总分
+    if(examMode){ examMode.liveScores=examMode.liveScores||{}; examMode.liveScores[modId]={modId:modId, taskId:taskId, score:t, full:full, dims:Object.assign({},dimEarned)}; }
     try{ renderMyReport(); }catch(e){}
   }
   recalc();
@@ -1425,8 +1504,8 @@ function renderExamStep(){
   ovBody.innerHTML='';
   ovBody.appendChild(stageLabel(`模考进度 ${examMode.idx+1}/${examMode.steps.length} · ${step.label}`));
   // 设备故障兜底：麦克风不可用时提供跳过出口，避免模考卡死无法继续
-  if(!recSupported){
-    const warn=el(`<div class="warnbox">⚠ 当前环境无法使用麦克风（需通过 <b>http://localhost</b> 或 <b>https</b> 打开本页面，并在浏览器中允许麦克风权限）。为避免模考卡住，可先跳过本环节，设备就绪后再重考。</div>
+  if(!recSupported || recEnvInfo().reason){
+    const warn=el(`<div class="warnbox">⚠ ${recEnvInfo().reason||'当前环境无法使用麦克风'}。为避免模考卡住，可先跳过本环节，设备就绪后再重考；回首页点「🎤 录音自检」可看具体原因。</div>
       <div class="btn-row"><button class="btn gold" id="skipStep">跳过本环节，进入下一题 →</button></div>`);
     ovBody.appendChild(warn);
     warn.querySelector('#skipStep').onclick=()=>examAdvance();
@@ -1448,8 +1527,8 @@ function examAdvance(){
 function renderExamSummary(){
   ovBody.innerHTML='';
   ovBody.appendChild(stageLabel('模考完成 · 汇总'));
-  const box=el(`<div class="checklist"><h4>🎯 全真模考汇总（${currentLevel}）</h4>
-    <div class="hint">已完成 4 大环节（信息转述及询问合并为第④环节）。每环节的得分与失分点请在该环节的自评/打分清单中确认；建议错题回练习模式重做。</div>
+  const box=el(`<div class="checklist"><h4>🎯 全真模考成绩单（${currentLevel}）</h4>
+    <div class="hint">已完成 4 大环节（信息转述及询问合并为第④环节）。下面是各环节实际得分；失分最多的环节就是下一轮先补的地方。离线规则自评，分数为参考分。</div>
     <div class="exam-summary"></div>
     <div class="btn-row">
       <button class="btn gold" id="redoExam">🔁 再考一次（换题）</button>
@@ -1457,15 +1536,24 @@ function renderExamSummary(){
     </div></div>`);
   ovBody.appendChild(box);
   const sum=box.querySelector('.exam-summary');
-  let total=0;
+  let total=0, earned=0, weak=null;
+  const live=(examMode&&examMode.liveScores)||{};
   examMode.steps.forEach(s=>{
     const mod=SITE_DATA.modules.find(x=>x.id===s.type);
     const sc=OFFICIAL_SCORE[s.type]||0;
-    if(s.type!=='ask') total+=sc; else total+=sc;
-    sum.appendChild(el(`<div class="chk"><input type="checkbox" checked disabled><label>${s.label} · ${mod.name}（${sc} 分） — 已完成 ✓</label></div>`));
+    total+=sc;
+    const r=live[s.type];
+    const got=r?Math.max(0,Math.min(sc,Number(r.score)||0)):0;
+    earned+=got;
+    const loss=sc-got;
+    if(!weak || loss>weak.loss) weak={name:s.label+' · '+mod.name, loss:loss};
+    sum.appendChild(el(`<div class="chk"><input type="checkbox" checked disabled><label>${s.label} · ${mod.name}（${sc} 分） — <b style="color:${got>=sc*0.8?'var(--ok)':'var(--red)'}">${r?got+' 分':'未完成 / 0 分'}</b></label></div>`));
   });
+  earned=Math.round(earned*10)/10;
+  const rate=total?Math.round(earned/total*100):0;
   sum.appendChild(el(`<div style="margin-top:10px;padding:10px;background:rgba(255,214,102,.08);border:1px solid rgba(255,214,102,.3);border-radius:10px;display:flex;justify-content:space-between;font-weight:800">
-    <span style="color:var(--muted)">本次模考满分合计</span><span style="color:var(--gold);font-size:18px">${total} 分</span></div>`));
+    <span style="color:var(--muted)">本次模考得分 / 满分</span><span style="color:var(--gold);font-size:18px">${earned} / ${total} 分（${rate}%）</span></div>`));
+  if(weak && weak.loss>0) sum.appendChild(el(`<div class="hint" style="margin-top:8px;color:var(--red)">最该补的环节：${weak.name}（失 ${Math.round(weak.loss*10)/10} 分）。回练习模式单练这一题型，再回来重考。</div>`));
   box.querySelector('#redoExam').onclick=()=>runMockExam();
   box.querySelector('#backHome').onclick=()=>{ stopTimer(); speechSynthesis.cancel(); examMode=null; overlay.classList.remove('show'); renderCards(); };
 }
@@ -1579,7 +1667,7 @@ function buildScoring(container, m, t, audioUrl, onRedo, exam){
       // 更新逐题明细（尾音词逐个列出）
       const inner=scoreArea.querySelector('#scItems');
       if(inner){
-        const rows=inner.querySelectorAll('#scItems .endRow');
+        const rows=inner.querySelectorAll('.endRow');
         endings.forEach((w,i)=>{
           const r=rows[i]; if(!r) return;
           const v=top.querySelector(`input[name=end_${i}]:checked`);
@@ -1662,14 +1750,17 @@ function renderExamMode(holder,m,t,exam){
   };
   prep.querySelector('#spSkip').onclick=()=>{ try{ stopTimer(); }catch(e){} buildRecStage(); };
 
+  let recStopped=false;
   function buildRecStage(){
+    recStopped=false;
     stageArea.innerHTML='';
     stageArea.appendChild(stageLabel(`STEP 3 · 录音朗读（${recS}秒）`));
     const rec=el(`<div><div class="timer"><span class="rec-dot"></span><div class="tnum" id="tr">--</div><div class="tbar"><i id="br"></i></div></div><div class="btn-row"><button class="btn gold" id="sr">开始录音</button><button class="btn" id="er" disabled>停止并回放</button></div><div id="aud"></div></div>`);
     stageArea.appendChild(rec);
     const errBox=el(`<div></div>`); stageArea.appendChild(errBox);
     rec.querySelector('#sr').onclick=async()=>{
-      if(!recSupported){ errBox.innerHTML='<div class="warnbox">当前环境不支持麦克风录音（需通过 http://localhost 或 https 打开，并允许麦克风权限）。本关可继续用"听范读+自评"模式练习。</div>'; return; }
+      const env=recEnvInfo();
+      if(!recSupported || env.reason){ errBox.innerHTML='<div class="warnbox">⚠ '+(env.reason||'当前环境不支持麦克风')+'。可先用「听范读 + 自评」继续练，回首页点「🎤 录音自检」定位问题。</div>'; return; }
       if(recBusy){ toast('已有录音在进行，请先停止'); return; }
       recBusy=true;
       try{
@@ -1678,14 +1769,16 @@ function renderExamMode(holder,m,t,exam){
         beep(880,0.18); toast('开始录音，请朗读');
         rec.querySelector('#sr').disabled=true; rec.querySelector('#er').disabled=false;
         runTimer(recS, rec.querySelector('#tr'), rec.querySelector('#br'), ()=>doStop(true));
-      }catch(e){ recBusy=false; rec.querySelector('#sr').disabled=false; if(alive(stageArea)) errBox.innerHTML='<div class="warnbox">无法访问麦克风：'+e.message+'。请检查浏览器权限，并通过 localhost/https 打开。</div>'; }
+      }catch(e){ recBusy=false; rec.querySelector('#sr').disabled=false; if(alive(stageArea)) errBox.innerHTML='<div class="warnbox">无法访问麦克风：'+(e.message||e)+'。请点首页「🎤 录音自检」看具体原因。</div>'; }
     };
     async function doStop(auto){
+      if(recStopped) return; recStopped=true;
       try{ stopTimer(); }catch(e){}
-      const u=await stopRecording();
+      const u=await stopRecording();        // 带超时兜底，任何情况都会往下走
       recBusy=false;
       if(!alive(stageArea)) return;          // 已返回/切页：不再写 DOM
       beep(520,0.22);
+      if(!u){ const w=el('<div class="warnbox">⚠ 没录到音频（权限或设备被占用）。已进入自评打分，可点「再练一次」重录。</div>'); stageArea.insertBefore(w, stageArea.firstChild); }
       showAudio(u); goScore(u);
     }
     rec.querySelector('#er').onclick=()=>doStop(false);
@@ -1777,7 +1870,9 @@ function renderShadowMode(holder,m,t){
       <button class="btn ghost" id="shReplay">🔊 再听一遍范读</button>
     </div>
     <div class="audio-row" id="shAud"></div>
-    <div id="shStatus" class="hint"></div></div>`);
+    <div id="shStatus" class="hint"></div>
+    <div class="hint" id="shIosTip"></div></div>`);
+  if(IS_IOS) ctrl.querySelector('#shIosTip').innerHTML='<span class="warnbox">iPad 提示：iOS 不允许「一边播范读一边录音」稳定共存。若跟读时听不到范读或回放无声，请改用「① 模考模式」（先听后录）；录音前务必在 Safari 里打开本页并点首页「🎤 录音自检」。</span>';
   const stageArea=el(`<div></div>`);
   holder.appendChild(ctrl);
   holder.appendChild(stageArea);
@@ -1805,27 +1900,44 @@ function renderShadowMode(holder,m,t){
 
   let shadowing=false;
   async function doShadow(slow){
-    if(!recSupported){ if(alive(ctrl)) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">当前环境不支持麦克风（需通过 http://localhost 或 https 打开，并允许麦克风权限）。仍可用 STEP 1 反复听范读做听读训练。</span>'; return; }
+    const env=recEnvInfo();
+    if(!recSupported || env.reason){ if(alive(ctrl)) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">⚠ '+(env.reason||'当前环境不支持麦克风')+'。仍可用 STEP 1 反复听范读做听读训练；设备修好后回首页点「🎤 录音自检」确认。</span>'; return; }
     if(listenCount<2){ toast('请先完成 STEP 1：至少听 2 遍范读'); return; }
     if(shadowing) return;
     shadowing=true;
     ctrl.querySelector('#shPlay').disabled=true; ctrl.querySelector('#shSlow').disabled=true;
     ctrl.querySelector('#shStop').disabled=false;
     const tok=navSeq;
-    try{
-      await startRecording();
-      if(!alive(ctrl) || tok!==navSeq){ try{ await stopRecording(); }catch(e){} return; }
-      ctrl.querySelector('#shStatus').innerHTML='<b style="color:var(--red)">● 录音中</b> —— 听到声音后延迟约 0.5 秒开口，读错不回头。';
-      beep(880,0.15);
-      await speak(t.text,{slow:slow});
-      await new Promise(r=>setTimeout(r, slow?1400:900));
-      const u=await stopRecording();
+    let finished=false, early=false;
+    /* 统一收尾：无论录音成功、失败、被提前结束，都一定进入评分，
+       不再出现「录完没反应 / 最后评不了分」。 */
+    async function finish(){
+      if(finished) return; finished=true;
+      try{ speechSynthesis.cancel(); }catch(e){}
+      const u=await stopRecording();     // 内部有 2.5 秒兜底，不会永久挂起
+      curRecStop=null;
       if(!alive(ctrl) || tok!==navSeq) return;
       ctrl.querySelector('#shAud').innerHTML='';
-      if(u){ ctrl.querySelector('#shAud').appendChild(el(`<div class="audio-row"><span>我的跟读：</span><audio controls src="${u}"></audio></div>`)); buildScoring(stageArea, m, t, u, ()=>doShadow(slow)); }
-      ctrl.querySelector('#shStatus').innerHTML='✓ 跟读完成。回放对比范读，重点查三件事：<b>尾音</b>（-s/-ed/-t/-d 有没有发出来）、<b>连读</b>、<b>意群停顿</b>。';
+      if(u) ctrl.querySelector('#shAud').appendChild(el(`<div class="audio-row"><span>我的跟读：</span><audio controls src="${u}"></audio></div>`));
+      buildScoring(stageArea, m, t, u, ()=>doShadow(slow));
+      ctrl.querySelector('#shStatus').innerHTML = u
+        ? '✓ 跟读完成。回放对比范读，重点查三件事：<b>尾音</b>（-s/-ed/-t/-d 有没有发出来）、<b>连读</b>、<b>意群停顿</b>。'
+        : '<span class="warnbox">⚠ 没录到音频（权限或设备被占用）。已进入自评打分，可点「再练一次」重录；iPad 请先做首页「🎤 录音自检」。</span>';
+    }
+    curRecStop=()=>{ early=true; finish(); };   // 「⏹ 提前结束」现在真正生效
+    try{
+      await startRecording();
+      if(!alive(ctrl) || tok!==navSeq){ await finish(); return; }
+      ctrl.querySelector('#shStatus').innerHTML='<b style="color:var(--red)">● 录音中</b> —— 听到声音后延迟约 0.5 秒开口，读错不回头。';
+      beep(880,0.15);
+      await speak(t.text,{slow:slow});   // iPad 上范读可能不发声，但不阻断录音与评分
+      if(early){ await finish(); return; }
+      await new Promise(r=>setTimeout(r, slow?1400:900));
+      await finish();
     }catch(e){
-      if(alive(ctrl) && tok===navSeq) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">麦克风错误：'+e.message+'</span>';
+      curRecStop=null;
+      if(alive(ctrl) && tok===navSeq) ctrl.querySelector('#shStatus').innerHTML='<span class="warnbox">麦克风错误：'+(e.message||e)+'。已进入自评打分，可稍后重录。</span>';
+      await finish();
     }finally{
       shadowing=false;
       if(alive(ctrl)){ ctrl.querySelector('#shPlay').disabled=false; ctrl.querySelector('#shSlow').disabled=false; ctrl.querySelector('#shStop').disabled=true; }
@@ -2028,7 +2140,7 @@ async function taskListenChoose(m,t,exam){
       const inner=scoreBox.querySelector('#lcPanel');
       if(inner){
         const items=buildItems();
-        const rows=inner.querySelectorAll('#scItems .endRow');
+        const rows=inner.querySelectorAll('.endRow');
         items.forEach((it,i)=>{
           const r=rows[i]; if(!r) return;
           r.innerHTML=`<span style="flex:1">${it.label}${it.note?`<span class="hint" style="display:block;margin:2px 0 0">${it.note}</span>`:''}</span>
@@ -2186,7 +2298,7 @@ async function taskListenAnswer(m,t,exam){
     }else{
       const inner=scoreBox.querySelector('#laPanel');
       if(inner){
-        const rows=inner.querySelectorAll('#scItems .endRow');
+        const rows=inner.querySelectorAll('.endRow');
         buildItems().forEach((it,i)=>{
           const r=rows[i]; if(!r) return;
           r.innerHTML=`<span style="flex:1">${it.label}${it.note?`<span class="hint" style="display:block;margin:2px 0 0">${it.note}</span>`:''}</span>
@@ -2428,16 +2540,19 @@ async function taskRetell(m,t,exam){
     ovBody.appendChild(rec);
     const errBox=el(`<div></div>`); ovBody.appendChild(errBox);
     rec.querySelector('#sr').onclick=async()=>{
-      if(!recSupported){ errBox.innerHTML='<div class="warnbox">当前环境不支持录音（需 localhost/https）。可口头复述后对照要点自评。</div>'; return; }
+      const env=recEnvInfo();
+      if(!recSupported || env.reason){ errBox.innerHTML='<div class="warnbox">⚠ '+(env.reason||'当前环境不支持录音')+'。可口头复述后对照要点自评。</div>'; return; }
       try{ await startRecording(); beep(880,0.18); rec.querySelector('#sr').disabled=true; rec.querySelector('#er').disabled=false;
         runTimer(retRecS, rec.querySelector('#tr'), rec.querySelector('#br'), async()=>{ beep(520,0.22); const u=await stopRecording(); showA(u); finish(); });
-      }catch(e){ errBox.innerHTML='<div class="warnbox">无法访问麦克风：'+e.message+'</div>'; }
+      }catch(e){ errBox.innerHTML='<div class="warnbox">无法访问麦克风：'+(e.message||e)+'。已进入自评打分，可口头复述后对照要点核对。</div>'; finish(); }
     };
     rec.querySelector('#er').onclick=async()=>{ stopTimer(); const u=await stopRecording(); showA(u); finish(); };
     function showA(u){ if(!u) return; rec.querySelector('#aud').innerHTML=''; rec.querySelector('#aud').appendChild(el(`<div class="audio-row"><span>我的复述：</span><audio controls src="${u}"></audio></div>`)); }
   }
 
+  let scored=false;
   function finish(){
+    if(scored) return; scored=true;   // 防止录音失败/重复点击导致评分面板叠多份
     // 录音后自评：结合笔记覆盖率给出官方 6 分制
     const noteVal=(document.getElementById('rtNotes')||{}).value||'';
     const noteNorm=norm(noteVal);
@@ -2612,7 +2727,7 @@ async function taskAsk(m,t,exam){
     }else{
       const inner=scoreBox.querySelector('#akPanel');
       if(inner){
-        const rows=inner.querySelectorAll('#scItems .endRow');
+        const rows=inner.querySelectorAll('.endRow');
         buildItems().forEach((it,i)=>{
           const r=rows[i]; if(!r) return;
           r.innerHTML=`<span style="flex:1">${it.label}<span class="hint" style="display:block;margin:2px 0 0">${it.note}</span></span>
@@ -2633,7 +2748,8 @@ async function taskAsk(m,t,exam){
    4) recBusy 互斥，防止两个按钮同时开录 */
 let recBusy=false, curRecStop=null, curRecMount=null;
 async function recordShort(sec, mountEl, onAutoStop, btn){
-  if(!recSupported){ mountEl.innerHTML='<div class="warnbox">当前环境不支持录音（需通过 http://localhost 或 https 打开，并允许麦克风权限），可直接口头作答后对照答案自评。</div>'; return; }
+  const env=recEnvInfo();
+  if(!recSupported || env.reason){ mountEl.innerHTML='<div class="warnbox">⚠ '+(env.reason||'当前环境不支持录音')+'，可直接口头作答后对照答案自评；回首页点「🎤 录音自检」定位问题。</div>'; return; }
   if(recBusy){ toast('上一段录音还在进行，请先「提前结束」或等倒计时结束'); return; }
   try{ if(curRecStop) curRecStop(); }catch(e){}
   try{ stopTimer(); }catch(e){}
@@ -2670,7 +2786,8 @@ async function recordShort(sec, mountEl, onAutoStop, btn){
     recBusy=false; curRecStop=null;
     if(btn) btn.disabled=false;
     if(!alive(mountEl)) return;
-    mountEl.innerHTML='<div class="warnbox">无法访问麦克风：'+e.message+'。请检查地址栏的麦克风权限，并确认用 localhost / https 打开。</div>';
+    ui.innerHTML='<div class="warnbox">无法访问麦克风：'+(e.message||e)+'。已跳过录音，可继续口头作答并对照答案自评。</div>';
+    if(onAutoStop) onAutoStop();   // 关键：录音失败也放行作答/评分，避免整关卡死
   }
 }
 

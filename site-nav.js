@@ -26,6 +26,7 @@
   if (/\/A1-B1网页\/$/.test(DIR))               up = '../';
   else if (/\/E听说练习\/$/.test(DIR))           up = '../';
   else if (/\/大脑远征队\/$/.test(DIR))          up = '../';
+  else if (/\/跟读包\/$/.test(DIR))              up = '../';
   else if (/\/点读学习包\/$/.test(DIR))          up = '../../';
   else if (/\/单元习题与测试\/$/.test(DIR))      up = '../../';
   else if (/\/01_课本同步_沪教版七上\/$/.test(DIR)) up = '../';
@@ -64,6 +65,10 @@
     if (/^Ch0-大脑营地/.test(FILE))       local = { label: '网站总页', href: SITE };
     else if (/^Ch0-通关地图/.test(FILE))  local = { label: '远征大本营', href: 'Ch0-大脑营地.html' };
     else                                  local = { label: '通关地图', href: 'Ch0-通关地图.html' };
+  } else if (/\/跟读包\/$/.test(DIR)) {
+    local = /^Unit0_总目录/.test(FILE)
+      ? { label: '网站总页', href: SITE }
+      : { label: '点读学习总目录', href: 'Unit0_总目录_点读学习中心.html' };
   } else {
     local = null;                                    /* 仓库根：不显示返回 */
   }
@@ -108,6 +113,7 @@
     } else {
       h += '<a href="' + ARCHIVE + '" title="汇总四条线的练习记录与错题，可导出发给老师">📋 学习档案</a>';
     }
+    h += '<a id="hx-account-link" href="' + (up + '我的账号.html') + '" title="注册 / 登录账号">👤 我的账号</a>';
     if (AT_ROOT) {
       h += '<span class="hx-cur">🏠 当前：网站总页</span>';
     } else {
@@ -138,9 +144,39 @@
     }
   }
 
+  /* ---------- 5.2 隐藏页面自带面包屑（避免与全局栏重复显示） ---------- */
+  function hideCrumbs() {
+    var crumbs = document.querySelectorAll('.crumbs, .breadcrumb, [class*="breadcrumb"]');
+    for (var i = 0; i < crumbs.length; i++) {
+      crumbs[i].style.display = 'none';
+      crumbs[i].setAttribute('data-hx-hidden-crumbs', '1');
+    }
+  }
+
+  /* ---------- 5.5 账号入口（读取本地登录态，自动显示昵称 / 登录） ---------- */
+  function updateAccountLink() {
+    var a = document.getElementById('hx-account-link');
+    if (!a) return;
+    if (window.Account) {
+      var c = Account.current();
+      a.textContent = c ? ('👤 ' + (c.nick || '我的账号')) : '👤 登录';
+    }
+  }
+  function ensureAccount() {
+    if (window.Account) { updateAccountLink(); return; }
+    var s = document.createElement('script');
+    s.src = up + 'account.js';
+    s.onload = function () { updateAccountLink(); };
+    s.onerror = function () {};
+    (document.head || document.documentElement).appendChild(s);
+  }
+
   function boot() {
     try { inject(); } catch (e) {}
     try { killLegacy(); } catch (e) {}
+    try { hideCrumbs(); } catch (e) {}
+    try { ensureAccount(); } catch (e) {}
+    try { window.addEventListener('hx-account-ready', updateAccountLink); } catch (e) {}
   }
 
   if (document.readyState === 'loading') {

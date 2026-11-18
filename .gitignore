@@ -12,6 +12,10 @@ _probe.txt
 *backup*/
 *_backup*/
 
+# 七上独立包：仅本地打包外发，不随全站推送到 GitHub
+七上学习包/
+七上学习包.zip
+
 # 测试/探针文件
 __*.html
 *autotest*

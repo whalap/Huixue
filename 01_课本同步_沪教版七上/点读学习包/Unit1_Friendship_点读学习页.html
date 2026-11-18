@@ -252,6 +252,37 @@
   .clz-listen:hover{background:var(--teal,#0F6E56);color:#fff;}
   .clz-listen svg{width:17px;height:17px;fill:currentColor;}
 
+
+  .tr-box{background:#FBF8FF;border:2px solid #E4D9F5;border-radius:16px;padding:16px 16px 18px;}
+  .tr-head{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding-bottom:12px;border-bottom:1px dashed #D8C9EE;margin-bottom:12px;}
+  .tr-theme{display:flex;flex-direction:column;gap:2px;}
+  .tr-theme b{font-size:16px;color:#4A2C6B;}
+  .tr-theme span{font-size:12.5px;color:#7B6A93;}
+  .tr-scene{flex:1 1 200px;font-size:13px;color:#5B6470;background:#F3EDFC;border-radius:999px;padding:5px 14px;}
+  .tr-actions{display:flex;gap:8px;margin-left:auto;}
+  .tr-btn{border:none;background:#6B44A0;color:#fff;border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:700;cursor:pointer;}
+  .tr-btn.ghost{background:#EFE6FA;color:#5B3A8E;}
+  .tr-btn:hover{filter:brightness(1.08);}
+  .tr-lines{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .tr-line{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #EADFF7;border-radius:12px;padding:11px 13px;transition:box-shadow .18s,border-color .18s;}
+  .tr-line.cur{border-color:#6B44A0;box-shadow:0 0 0 3px rgba(107,68,160,.16);}
+  .tr-no{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:#EFE6FA;color:#5B3A8E;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+  .tr-body-line{flex:1 1 auto;min-width:0;}
+  .tr-en{font-size:15.5px;line-height:1.75;color:var(--ink);}
+  .tr-zh{font-size:13.5px;color:#5B6470;margin-top:2px;}
+  .tr-kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;}
+  .tr-chip{font-size:11.5px;border-radius:999px;padding:3px 10px;background:#EAF6F2;color:#0F6E56;border:1px solid #C9E7DE;}
+  .tr-chip.phr{background:#FDF3E4;color:#8A5A12;border-color:#F0DCB8;}
+  .tr-chip i{font-style:normal;opacity:.75;margin-left:5px;}
+  .tr-hit{border-radius:5px;padding:0 3px;cursor:pointer;font-weight:600;}
+  .tr-hit.wd{background:#DFF3EC;color:#0B5E49;border-bottom:2px solid #46B39A;}
+  .tr-hit.phr{background:#FCEBCE;color:#7A4E0A;border-bottom:2px solid #E0A94F;}
+  .tr-listen{flex:0 0 34px;width:34px;height:34px;border-radius:50%;border:none;background:#F3EDFC;color:#5B3A8E;font-size:15px;cursor:pointer;margin-top:2px;}
+  .tr-listen:hover{background:#6B44A0;color:#fff;}
+  .tr-foot{margin-top:16px;padding-top:12px;border-top:1px dashed #D8C9EE;}
+  .tr-used b{font-size:13px;color:#4A2C6B;}
+  .tr-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -370,6 +401,7 @@
     <a href="#quiz">⑥ 小测</a>
     <a href="#cloze">⑦ 填空</a>
     <a href="#sentcloze">⑧ 句填</a>
+    <a href="#themeread">⑨ 主题阅读</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -545,6 +577,18 @@
     </div>
   </section>
 
+
+  <!-- ================= 主题阅读 · 同主题多语境 ================= -->
+  <section class="block" id="themeread">
+    <div class="sec-head">
+      <div class="no" style="background:#8A5AA6;">9</div>
+      <h2>主题阅读 · 同主题多语境</h2>
+      <p>同一个主题下的多种场景表达 · 同一词条在不同语境里的用法对比 · 点句子听发音，点高亮词听单词，看释义</p>
+      <span class="count-badge" id="trBadge"></span>
+    </div>
+    <div class="q-tabs" id="trTabs"></div>
+    <div class="tr-box" id="trBody"></div>
+  </section>
   <!-- ================= 词缀拓展 ================= -->
   <section class="block" id="wordbuilding">
     <div class="sec-head">
@@ -1532,22 +1576,9 @@
     loadGM();
   });
   loadGM();
-})();
-</script>
-
-<button id="toTop" class="to-top" type="button" aria-label="回到顶部" title="回到顶部">↑</button>
-<div class="wrap"><div class="mob-note"><b>手机 / iPad 提示：</b>请用 <b>Safari 或 Chrome</b> 打开本文件以获得完整点读功能（"文件"App 里的预览不能交互）。如点击发音没有声音：① 检查设备侧边的<b>静音键</b>与音量；② 在「<b>设置 → 辅助功能 → 朗读内容 → 声音</b>」中下载 English 语音（如 Samantha）。</div></div>
-<script>
-(function(){
-  try{
-    var b=document.getElementById('toTop'); if(!b) return;
-    var show=function(){ b.style.display = (window.scrollY>600) ? 'flex' : 'none'; };
-    window.addEventListener('scroll',show,{passive:true}); show();
-    b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
-  }catch(e){}
-})();
 
   /* ========== 句子填空（独立例句·合并精简页） ========== */
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   var SC_SETS = [{"name":"核心单词","data":[{"s":"Tom plays the ____ after dinner.","ans":"guitar","opts":["personal","guitar","confident","basic"],"d":{"guitar":"吉他","personal":"","confident":"","basic":""}},{"s":"Lily is an ____ girl and never tells lies.","ans":"honest","opts":["survey","guitar","same","honest"],"d":{"honest":"诚实的","survey":"","guitar":"","same":""}},{"s":"A good teacher is ____ with slow students.","ans":"patient","opts":["respect","dark","heart","patient"],"d":{"patient":"有耐心的","respect":"","dark":"","heart":""}},{"s":"I want to ____ my English this term.","ans":"improve","opts":["admiration","describe","improve","end"],"d":{"improve":"改进；改善","admiration":"","describe":"","end":""}},{"s":"Ben feels ____ before the big exam.","ans":"confident","opts":["caring","however","confident","friendship"],"d":{"confident":"自信的","caring":"","however":"","friendship":""}},{"s":"It takes ____ to speak in front of the class.","ans":"courage","opts":["patient","quality","courage","thought"],"d":{"courage":"勇气；胆量","patient":"","quality":"","thought":""}},{"s":"True ____ lasts for many years.","ans":"friendship","opts":["trust","friendship","basic","honest"],"d":{"friendship":"友谊；朋友关系","trust":"","basic":"","honest":""}},{"s":"We look at the hero with great ____.","ans":"admiration","opts":["support","admiration","guitar","straight"],"d":{"admiration":"钦佩；赞赏","support":"","guitar":"","straight":""}},{"s":"Students should show ____ to their teachers.","ans":"respect","opts":["admiration","respect","appearance","rise"],"d":{"respect":"尊敬；尊重","admiration":"","appearance":"","rise":""}},{"s":"Thank you for your ____ when I was ill.","ans":"support","opts":["confident","describe","glad","support"],"d":{"support":"支持；鼓励","confident":"","describe":"","glad":""}},{"s":"I have great ____ in my best friend.","ans":"trust","opts":["personal","however","improve","trust"],"d":{"trust":"信任；信赖","personal":"","however":"","improve":""}},{"s":"We did a ____ about reading habits in our class.","ans":"survey","opts":["trust","same","survey","patient"],"d":{"survey":"调查","trust":"","same":"","patient":""}},{"s":"Please keep this ____ information private.","ans":"personal","opts":["heart","support","personal","dark"],"d":{"personal":"个人的","heart":"","support":"","dark":""}},{"s":"Kindness is a good ____ in a friend.","ans":"quality","opts":["friendship","quality","straight","end"],"d":{"quality":"品质；品德","friendship":"","straight":"","end":""}},{"s":"Ada is a ____ person who helps others.","ans":"caring","opts":["courage","caring","rise","quality"],"d":{"caring":"关心他人的；体贴人的","courage":"","rise":"","quality":""}},{"s":"Can you ____ the picture to me?","ans":"describe","opts":["personal","describe","confident","thought"],"d":{"describe":"描述；形容","personal":"","confident":"","thought":""}},{"s":"Do not judge a person by his ____.","ans":"appearance","opts":["survey","honest","basic","appearance"],"d":{"appearance":"外貌","survey":"","honest":"","basic":""}},{"s":"The girl has long ____ hair.","ans":"straight","opts":["respect","same","guitar","straight"],"d":{"straight":"直的","respect":"","same":"","guitar":""}},{"s":"He has ____ eyes and short hair.","ans":"dark","opts":["admiration","describe","dark","heart"],"d":{"dark":"褐色的；乌黑的","admiration":"","describe":"","heart":""}},{"s":"Tom and I are in the ____ class.","ans":"same","opts":["caring","glad","same","friendship"],"d":{"same":"同一的；相同的","caring":"","glad":"","friendship":""}},{"s":"We learn ____ English skills at school.","ans":"basic","opts":["improve","quality","basic","however"],"d":{"basic":"基本的；基础的","improve":"","quality":"","however":""}},{"s":"A good ____ came to my mind.","ans":"thought","opts":["trust","thought","basic","patient"],"d":{"thought":"想法","trust":"","basic":"","patient":""}},{"s":"I like the book; ____, it is too long.","ans":"however","opts":["support","however","honest","straight"],"d":{"however":"然而；不过","support":"","honest":"","straight":""}},{"s":"I am ____ to hear the good news.","ans":"glad","opts":["respect","glad","appearance","end"],"d":{"glad":"高兴的；愉快的","respect":"","appearance":"","end":""}},{"s":"The sun will ____ in the east.","ans":"rise","opts":["courage","describe","glad","rise"],"d":{"rise":"上升","courage":"","describe":"","glad":""}},{"s":"We watched the film from beginning to ____.","ans":"end","opts":["personal","however","confident","end"],"d":{"end":"结局","personal":"","however":"","confident":""}},{"s":"She has a kind ____ and helps everyone.","ans":"heart","opts":["survey","same","heart","improve"],"d":{"heart":"心","survey":"","same":"","improve":""}}]},{"name":"补充词汇","data":[{"s":"Our new classmate is very ____.","ans":"friendly","opts":["curly","friendly","polite","swim"],"d":{"friendly":"友好的","curly":"","polite":"","swim":""}},{"s":"Jerry is a ____ student and studies late.","ans":"hard-working","opts":["hobby","polite","player","hard-working"],"d":{"hard-working":"勤奋的","hobby":"","polite":"","player":""}},{"s":"Eva is ____ and always helps me with maths.","ans":"helpful","opts":["hobby","friendly","supportive","helpful"],"d":{"helpful":"乐于助人的","hobby":"","friendly":"","supportive":""}},{"s":"My grandmother is very ____ to everyone.","ans":"kind","opts":["dance","friendly","kind","short"],"d":{"kind":"善良的","dance":"","friendly":"","short":""}},{"s":"It is ____ to say thank you.","ans":"polite","opts":["helpful","short","polite","paint"],"d":{"polite":"有礼貌的","helpful":"","short":"","paint":""}},{"s":"The story is so ____ that we all laugh.","ans":"funny","opts":["paint","polite","funny","medium"],"d":{"funny":"有趣的","paint":"","polite":"","medium":""}},{"s":"My parents are ____ when I feel sad.","ans":"supportive","opts":["polite","supportive","modern","singer"],"d":{"supportive":"给予支持的","polite":"","modern":"","singer":""}},{"s":"David is the ____ boy in our class.","ans":"tall","opts":["supportive","tall","hard-working","modern"],"d":{"tall":"高的","supportive":"","hard-working":"","modern":""}},{"s":"Tom is ____, but his brother is tall.","ans":"short","opts":["curly","short","swim","hard-working"],"d":{"short":"矮的；短的","curly":"","swim":"","hard-working":""}},{"s":"She has ____ brown hair.","ans":"curly","opts":["short","player","kind","curly"],"d":{"curly":"卷曲的","short":"","player":"","kind":""}},{"s":"My brother is of ____ height.","ans":"medium","opts":["player","funny","hobby","medium"],"d":{"medium":"中等的","player":"","funny":"","hobby":""}},{"s":"My ____ is collecting stamps.","ans":"hobby","opts":["friendly","funny","hobby","dance"],"d":{"hobby":"爱好","friendly":"","funny":"","dance":""}},{"s":"We learn about ____ art in class.","ans":"modern","opts":["dance","helpful","modern","tall"],"d":{"modern":"现代的","dance":"","helpful":"","tall":""}},{"s":"Lily can ____ very well.","ans":"dance","opts":["helpful","dance","curly","paint"],"d":{"dance":"跳舞","helpful":"","curly":"","paint":""}},{"s":"We like to ____ in the pool.","ans":"swim","opts":["polite","swim","singer","curly"],"d":{"swim":"游泳","polite":"","singer":"","curly":""}},{"s":"Ada likes to ____ pictures in her free time.","ans":"paint","opts":["hobby","paint","supportive","singer"],"d":{"paint":"绘画","hobby":"","supportive":"","singer":""}},{"s":"He is a good football ____.","ans":"player","opts":["dance","supportive","hard-working","player"],"d":{"player":"运动员；选手","dance":"","supportive":"","hard-working":""}},{"s":"She wants to be a famous ____ one day.","ans":"singer","opts":["dance","kind","short","singer"],"d":{"singer":"歌手","dance":"","kind":"","short":""}}]},{"name":"重点短语","data":[{"s":"My sister ____ dancing.","ans":"be good at","opts":["watch over","be good at","thanks to","come and go"],"d":{"be good at":"擅长……","watch over":"","thanks to":"","come and go":""}},{"s":"When you are in trouble, you can ____.","ans":"turn to somebody for help","opts":["cry out","count on","come along","turn to somebody for help"],"d":{"turn to somebody for help":"求助于某人","cry out":"","count on":"","come along":""}},{"s":"We often play sports ____.","ans":"after school","opts":["cry oneself to sleep","turn to somebody for help","modern dance","after school"],"d":{"after school":"放学后","cry oneself to sleep":"","turn to somebody for help":"","modern dance":""}},{"s":"Lily ____ help others.","ans":"be willing to do something","opts":["come and go","after school","be willing to do something","watch over"],"d":{"be willing to do something":"愿意做某事","come and go":"","after school":"","watch over":""}},{"s":"____ the teacher, I found the answer.","ans":"thanks to","opts":["count on","rise into","thanks to","come along"],"d":{"thanks to":"幸亏；由于；因为","count on":"","rise into":"","come along":""}},{"s":"You can ____ him; he never lies.","ans":"count on","opts":["be good at","modern dance","count on","cry oneself to sleep"],"d":{"count on":"依靠（某人做某事）","be good at":"","modern dance":"","cry oneself to sleep":""}},{"s":"My brother is ____.","ans":"medium height","opts":["take care of","medium height","come and go","after school"],"d":{"medium height":"中等身高","take care of":"","come and go":"","after school":""}},{"s":"She takes a ____ class.","ans":"modern dance","opts":["rise into","modern dance","thanks to","take somebody's place"],"d":{"modern dance":"现代舞","rise into":"","thanks to":"","take somebody's place":""}},{"s":"Please ____ my cat for me.","ans":"take care of","opts":["cry oneself to sleep","take care of","be good at","count on"],"d":{"take care of":"照顾；照料","cry oneself to sleep":"","be good at":"","count on":""}},{"s":"The farmer ____ his sheep.","ans":"watch over","opts":["wake up","after school","modern dance","watch over"],"d":{"watch over":"照管；监督","wake up":"","after school":"","modern dance":""}},{"s":"The smoke ____ the sky.","ans":"rise into","opts":["be willing to do something","watch over","take somebody's place","rise into"],"d":{"rise into":"上升到","be willing to do something":"","watch over":"","take somebody's place":""}},{"s":"The boy ____ when he saw the snake.","ans":"cry out","opts":["count on","rise into","cry out","be good at"],"d":{"cry out":"大叫；叫喊","count on":"","rise into":"","be good at":""}},{"s":"The tired child ____ last night.","ans":"cry oneself to sleep","opts":["turn to somebody for help","modern dance","cry oneself to sleep","wake up"],"d":{"cry oneself to sleep":"哭着入睡","turn to somebody for help":"","modern dance":"","wake up":""}},{"s":"I ____ early every morning.","ans":"wake up","opts":["take care of","wake up","take somebody's place","be willing to do something"],"d":{"wake up":"醒；醒来","take care of":"","take somebody's place":"","be willing to do something":""}},{"s":"People ____ in the busy street.","ans":"come and go","opts":["rise into","come and go","count on","come along"],"d":{"come and go":"来去","rise into":"","count on":"","come along":""}},{"s":"Tom was ill, so Lily ____.","ans":"take somebody's place","opts":["turn to somebody for help","take somebody's place","cry oneself to sleep","medium height"],"d":{"take somebody's place":"替代某人","turn to somebody for help":"","cry oneself to sleep":"","medium height":""}},{"s":"A good chance ____ at last.","ans":"come along","opts":["be willing to do something","wake up","take care of","come along"],"d":{"come along":"出现","be willing to do something":"","wake up":"","take care of":""}}]},{"name":"短语语境拓展","data":[{"s":"He ____ maths and often helps me.","ans":"be good at","opts":["watch over","be good at","thanks to","come and go"],"d":{"be good at":"擅长……","watch over":"","thanks to":"","come and go":""}},{"s":"I ____ when I cannot solve a problem.","ans":"turn to somebody for help","opts":["cry out","count on","come along","turn to somebody for help"],"d":{"turn to somebody for help":"求助于某人","cry out":"","count on":"","come along":""}},{"s":"I go to the library ____.","ans":"after school","opts":["cry oneself to sleep","turn to somebody for help","modern dance","after school"],"d":{"after school":"放学后","cry oneself to sleep":"","turn to somebody for help":"","modern dance":""}},{"s":"Are you ____ join us?","ans":"be willing to do something","opts":["come and go","after school","be willing to do something","watch over"],"d":{"be willing to do something":"愿意做某事","come and go":"","after school":"","watch over":""}},{"s":"____ your help, we finished on time.","ans":"thanks to","opts":["count on","rise into","thanks to","come along"],"d":{"thanks to":"幸亏；由于；因为","count on":"","rise into":"","come along":""}},{"s":"We can ____ our friends for support.","ans":"count on","opts":["be good at","modern dance","count on","cry oneself to sleep"],"d":{"count on":"依靠（某人做某事）","be good at":"","modern dance":"","cry oneself to sleep":""}},{"s":"The new teacher is ____.","ans":"medium height","opts":["take care of","medium height","come and go","after school"],"d":{"medium height":"中等身高","take care of":"","come and go":"","after school":""}},{"s":"She is interested in ____.","ans":"modern dance","opts":["rise into","modern dance","thanks to","take somebody's place"],"d":{"modern dance":"现代舞","rise into":"","thanks to":"","take somebody's place":""}},{"s":"Nurses ____ sick people.","ans":"take care of","opts":["cry oneself to sleep","take care of","be good at","count on"],"d":{"take care of":"照顾；照料","cry oneself to sleep":"","be good at":"","count on":""}},{"s":"The dog will ____ the house.","ans":"watch over","opts":["wake up","after school","modern dance","watch over"],"d":{"watch over":"照管；监督","wake up":"","after school":"","modern dance":""}},{"s":"The balloon ____ the air.","ans":"rise into","opts":["be willing to do something","watch over","take somebody's place","rise into"],"d":{"rise into":"上升到","be willing to do something":"","watch over":"","take somebody's place":""}},{"s":"She ____ with joy.","ans":"cry out","opts":["count on","rise into","cry out","be good at"],"d":{"cry out":"大叫；叫喊","count on":"","rise into":"","be good at":""}},{"s":"The baby ____ after crying for hours.","ans":"cry oneself to sleep","opts":["turn to somebody for help","modern dance","cry oneself to sleep","wake up"],"d":{"cry oneself to sleep":"哭着入睡","turn to somebody for help":"","modern dance":"","wake up":""}},{"s":"The loud noise made me ____.","ans":"wake up","opts":["take care of","wake up","take somebody's place","be willing to do something"],"d":{"wake up":"醒；醒来","take care of":"","take somebody's place":"","be willing to do something":""}},{"s":"Cars ____ on this road all day.","ans":"come and go","opts":["rise into","come and go","count on","come along"],"d":{"come and go":"来去","rise into":"","count on":"","come along":""}},{"s":"Who will ____ in the game?","ans":"take somebody's place","opts":["turn to somebody for help","take somebody's place","cry oneself to sleep","medium height"],"d":{"take somebody's place":"替代某人","turn to somebody for help":"","cry oneself to sleep":"","medium height":""}},{"s":"Do not worry; a chance will ____.","ans":"come along","opts":["be willing to do something","wake up","take care of","come along"],"d":{"come along":"出现","be willing to do something":"","wake up":"","take care of":""}}]}];
   var scSet=0, sci=0, scscore=0, scans=false, sccurrent=null;
   var scSent=document.getElementById('scSent'), scOpts=document.getElementById('scOpts'),
@@ -1632,6 +1663,107 @@
   scBadge.textContent=SC_SETS[0].name+' · '+SC_SETS[0].data.length+' 题';
   scLoad();
 
+
+  /* ========== 主题阅读 · 同主题多语境 ========== */
+  var TR_GROUPS = [{"theme":"Meeting a New Classmate","themeZh":"结识新同学","scene":"教室里的第一天","lines":[{"s":"Our new classmate Tom is friendly and polite to everyone in our class.","zh":"我们的新同学汤姆对班里每个人都友好、礼貌。","ks":[{"k":"friendly","zh":"友好的","t":"w"},{"k":"polite","zh":"有礼貌的","t":"w"}]},{"s":"He has short curly hair, so his appearance is easy to describe.","zh":"他留着短短的卷发，所以他的外貌很好描述。","ks":[{"k":"short","zh":"矮的；短的","t":"w"},{"k":"curly","zh":"卷曲的","t":"w"},{"k":"appearance","zh":"外貌","t":"w"},{"k":"describe","zh":"描述；形容","t":"w"}]},{"s":"His hobby is playing the guitar, and he is really good at it.","zh":"他的爱好是弹吉他，而且他确实很擅长。","ks":[{"k":"hobby","zh":"爱好","t":"w"},{"k":"guitar","zh":"吉他","t":"w"},{"k":"be good at","zh":"擅长……","t":"p"}]},{"s":"After school, he invites me to play, and I am willing to do it.","zh":"放学后，他邀请我一起演奏，我愿意这样做。","ks":[{"k":"after school","zh":"放学后","t":"p"},{"k":"be willing to do something","zh":"愿意做某事","t":"p"}]},{"s":"Thanks to his patient help, I can play three simple songs now.","zh":"多亏了他耐心的帮助，我现在会弹三首简单的歌了。","ks":[{"k":"thanks to","zh":"幸亏；由于；因为","t":"p"},{"k":"patient","zh":"有耐心的","t":"w"}]},{"s":"At first I was afraid to sing, but now I feel very glad.","zh":"起初我害怕唱歌，但现在我感到很开心。","ks":[{"k":"glad","zh":"高兴的；愉快的","t":"w"}]},{"s":"I am lucky to meet such a caring person on my first school day.","zh":"在上学第一天遇到这样体贴的人，我很幸运。","ks":[{"k":"caring","zh":"关心他人的；体贴人的","t":"w"}]}],"chips":[{"k":"friendly","zh":"友好的","t":"w"},{"k":"polite","zh":"有礼貌的","t":"w"},{"k":"short","zh":"矮的；短的","t":"w"},{"k":"curly","zh":"卷曲的","t":"w"},{"k":"appearance","zh":"外貌","t":"w"},{"k":"describe","zh":"描述；形容","t":"w"},{"k":"hobby","zh":"爱好","t":"w"},{"k":"guitar","zh":"吉他","t":"w"},{"k":"be good at","zh":"擅长……","t":"p"},{"k":"after school","zh":"放学后","t":"p"},{"k":"be willing to do something","zh":"愿意做某事","t":"p"},{"k":"thanks to","zh":"幸亏；由于；因为","t":"p"},{"k":"patient","zh":"有耐心的","t":"w"},{"k":"glad","zh":"高兴的；愉快的","t":"w"},{"k":"caring","zh":"关心他人的；体贴人的","t":"w"}]},{"theme":"Growing Closer in the Sports Club","themeZh":"运动社里的互相支持","scene":"下午的社团训练场","lines":[{"s":"Lucy is a strong player on our school swim team.","zh":"露西是我们学校游泳队里一名强劲的选手。","ks":[{"k":"player","zh":"运动员；选手","t":"w"},{"k":"swim","zh":"游泳","t":"w"}]},{"s":"Although she is only of medium height, she always wins our class race.","zh":"虽然她只是中等身高，但她总能赢下我们班的比赛。","ks":[{"k":"medium height","zh":"中等身高","t":"p"}]},{"s":"Ben teaches modern dance to us after school in the activity room.","zh":"放学后，本在活动室里教我们跳现代舞。","ks":[{"k":"modern dance","zh":"现代舞","t":"p"},{"k":"after school","zh":"放学后","t":"p"}]},{"s":"When I fall behind, my friends always come along and run with me.","zh":"当我落在后面时，我的朋友们总会跟上来和我一起跑。","ks":[{"k":"come along","zh":"出现","t":"p"}]},{"s":"Lucy says she can count on me to watch over her younger brother.","zh":"露西说她可以指望我照看她弟弟。","ks":[{"k":"count on","zh":"依靠（某人做某事）","t":"p"},{"k":"watch over","zh":"照管；监督","t":"p"}]},{"s":"Thanks to their support, I have the courage to join the relay race.","zh":"多亏了他们的支持，我有勇气参加接力赛。","ks":[{"k":"thanks to","zh":"幸亏；由于；因为","t":"p"},{"k":"support","zh":"支持；鼓励","t":"w"},{"k":"courage","zh":"勇气；胆量","t":"w"}]},{"s":"Daily practice improves my playing and makes me confident.","zh":"每天练习提高了我演奏的水平，也让我变得自信。","ks":[{"k":"improve","zh":"改进；改善","t":"w"},{"k":"confident","zh":"自信的","t":"w"}]},{"s":"When our team wins the game, I am so glad to be part of it.","zh":"当我们队赢了比赛时，我非常高兴自己是其中一员。","ks":[{"k":"glad","zh":"高兴的；愉快的","t":"w"}]}],"chips":[{"k":"player","zh":"运动员；选手","t":"w"},{"k":"swim","zh":"游泳","t":"w"},{"k":"medium height","zh":"中等身高","t":"p"},{"k":"modern dance","zh":"现代舞","t":"p"},{"k":"after school","zh":"放学后","t":"p"},{"k":"come along","zh":"出现","t":"p"},{"k":"count on","zh":"依靠（某人做某事）","t":"p"},{"k":"watch over","zh":"照管；监督","t":"p"},{"k":"thanks to","zh":"幸亏；由于；因为","t":"p"},{"k":"support","zh":"支持；鼓励","t":"w"},{"k":"courage","zh":"勇气；胆量","t":"w"},{"k":"improve","zh":"改进；改善","t":"w"},{"k":"confident","zh":"自信的","t":"w"},{"k":"glad","zh":"高兴的；愉快的","t":"w"}]},{"theme":"A Pen Pal and a Real Friendship","themeZh":"笔友与真正的友谊","scene":"深夜的问卷调查与书信","lines":[{"s":"Last month our class did a survey about friendship, and my answers were quite personal.","zh":"上个月我们班做了一次关于友谊的调查，我的回答相当私人。","ks":[{"k":"survey","zh":"调查","t":"w"},{"k":"friendship","zh":"友谊；朋友关系","t":"w"},{"k":"personal","zh":"个人的","t":"w"}]},{"s":"Most students said trust and honest words matter more than a shared hobby.","zh":"大多数同学说，信任和诚实的话语比共同的爱好更重要。","ks":[{"k":"trust","zh":"信任；信赖","t":"w"},{"k":"honest","zh":"诚实的","t":"w"},{"k":"hobby","zh":"爱好","t":"w"}]},{"s":"My pen pal Ada writes to me every week, and she sounds caring and funny.","zh":"我的笔友艾达每周给我写信，她听起来既体贴又风趣。","ks":[{"k":"caring","zh":"关心他人的；体贴人的","t":"w"},{"k":"funny","zh":"有趣的","t":"w"}]},{"s":"She is a singer, and I am a beginner guitarist with a small dream.","zh":"她是一名歌手，而我是一个怀着小心愿的吉他初学者。","ks":[{"k":"singer","zh":"歌手","t":"w"},{"k":"guitar","zh":"吉他","t":"w"}]},{"s":"We often talk about our worries, and her kind words reach my heart.","zh":"我们常常谈起各自的烦恼，她温暖的话语直达我心。","ks":[{"k":"kind","zh":"善良的","t":"w"},{"k":"heart","zh":"心","t":"w"}]},{"s":"Thanks to her warm letters, I can count on Ada in any difficult moment.","zh":"多亏她温暖的信，在任何困难时刻我都能指望艾达。","ks":[{"k":"thanks to","zh":"幸亏；由于；因为","t":"p"},{"k":"count on","zh":"依靠（某人做某事）","t":"p"}]},{"s":"However, I still turn to somebody for help when I feel lonely.","zh":"然而，当我觉得孤单时，我还是会去求助别人。","ks":[{"k":"however","zh":"然而；不过","t":"w"},{"k":"turn to somebody for help","zh":"求助于某人","t":"p"}]},{"s":"She is patient with me, and my admiration and respect for her courage grow.","zh":"她对我很有耐心，我对她勇气的钦佩与尊敬与日俱增。","ks":[{"k":"patient","zh":"有耐心的","t":"w"},{"k":"admiration","zh":"钦佩；赞赏","t":"w"},{"k":"respect","zh":"尊敬；尊重","t":"w"},{"k":"courage","zh":"勇气；胆量","t":"w"}]}],"chips":[{"k":"survey","zh":"调查","t":"w"},{"k":"friendship","zh":"友谊；朋友关系","t":"w"},{"k":"personal","zh":"个人的","t":"w"},{"k":"trust","zh":"信任；信赖","t":"w"},{"k":"honest","zh":"诚实的","t":"w"},{"k":"hobby","zh":"爱好","t":"w"},{"k":"caring","zh":"关心他人的；体贴人的","t":"w"},{"k":"funny","zh":"有趣的","t":"w"},{"k":"singer","zh":"歌手","t":"w"},{"k":"guitar","zh":"吉他","t":"w"},{"k":"kind","zh":"善良的","t":"w"},{"k":"heart","zh":"心","t":"w"},{"k":"thanks to","zh":"幸亏；由于；因为","t":"p"},{"k":"count on","zh":"依靠（某人做某事）","t":"p"},{"k":"however","zh":"然而；不过","t":"w"},{"k":"turn to somebody for help","zh":"求助于某人","t":"p"},{"k":"patient","zh":"有耐心的","t":"w"},{"k":"admiration","zh":"钦佩；赞赏","t":"w"},{"k":"respect","zh":"尊敬；尊重","t":"w"},{"k":"courage","zh":"勇气；胆量","t":"w"}]}];
+  var trIdx=0, trPlaying=false, trStop=false;
+  var trBody=document.getElementById('trBody'), trTabs=document.getElementById('trTabs'), trBadge=document.getElementById('trBadge');
+  function trCur(){ return TR_GROUPS[trIdx]; }
+  function trHi(s, ks){
+    // 按词条高亮（长词优先）
+    var items=ks.map(function(x){return {k:x.k, zh:x.zh, t:x.t};});
+    items.sort(function(a,b){return b.k.length-a.k.length;});
+    var html='', rest=s;
+    var guard=0;
+    while(rest && guard<40){
+      guard++;
+      var best=-1,bestK='',bestZh='',bestT='w';
+      items.forEach(function(it){
+        var idx=rest.toLowerCase().indexOf(it.k);
+        if(idx>=0 && (best<0 || idx<best || (idx===best && it.k.length>bestK.length))){best=idx;bestK=it.k;bestZh=it.zh;bestT=it.t;}
+      });
+      if(best<0){ html+=esc(rest); break; }
+      html+=esc(rest.slice(0,best));
+      html+='<span class="tr-hit '+(bestT==='p'?'phr':'wd')+'" role="button" tabindex="0" data-zh="'+esc(bestZh)+'">'+esc(rest.substr(best,bestK.length))+'</span>';
+      rest=rest.substr(best+bestK.length);
+    }
+    return html;
+  }
+  function trRender(){
+    var g=trCur();
+    var html='<div class="tr-head"><div class="tr-theme"><b>'+esc(g.themeZh)+'</b><span>'+esc(g.theme)+'</span></div>'
+      +'<div class="tr-scene">场景：'+esc(g.scene)+'</div>'
+      +'<div class="tr-actions"><button class="tr-btn" id="trPlay" type="button">▶ 整段连读</button><button class="tr-btn ghost" id="trStop" type="button">■ 停止</button></div></div>';
+    html+='<ol class="tr-lines">';
+    g.lines.forEach(function(l,i){
+      html+='<li class="tr-line"><span class="tr-no">'+(i+1)+'</span>'
+        +'<div class="tr-body-line"><div class="tr-en">'+trHi(l.s,l.ks)+'</div>'
+        +'<div class="tr-zh">'+esc(l.zh)+'</div>'
+        +'<div class="tr-kw">'+l.ks.map(function(x){return '<span class="tr-chip '+(x.t==='p'?'phr':'wd')+'">'+esc(x.k)+(x.zh?'<i>'+esc(x.zh)+'</i>':'')+'</span>';}).join('')+'</div>'
+        +'</div><button class="tr-listen" data-i="'+i+'" type="button" aria-label="朗读第'+(i+1)+'句">🔊</button></li>';
+    });
+    html+='</ol>';
+    html+='<div class="tr-foot"><div class="tr-used"><b>本组用到的词条（'+g.chips.length+'）</b><div class="tr-chips">'
+      +g.chips.map(function(c){return '<span class="tr-chip '+(c.t==='p'?'phr':'wd')+'">'+esc(c.k)+(c.zh?'<i>'+esc(c.zh)+'</i>':'')+'</span>';}).join('')
+      +'</div></div></div>';
+    trBody.innerHTML=html;
+    trBody.querySelectorAll('.tr-listen').forEach(function(b){
+      b.addEventListener('click',function(){
+        var i=parseInt(b.getAttribute('data-i'),10);
+        speak(trCur().lines[i].s,0.85);
+      });
+    });
+    trBody.querySelectorAll('.tr-hit').forEach(function(el){
+      el.addEventListener('click',function(){ speak(el.textContent,0.85); });
+    });
+    trBody.querySelector('#trPlay').addEventListener('click',function(){ trPlayAll(); });
+    trBody.querySelector('#trStop').addEventListener('click',function(){ trStopAll(); });
+  }
+  function trPlayAll(){
+    trStopAll();
+    trPlaying=true; trStop=false;
+    var lines=trCur().lines;
+    var i=0;
+    function next(){
+      if(trStop||!trPlaying){trPlaying=false;return;}
+      if(i>=lines.length){trPlaying=false;return;}
+      var idx=i++;
+      var li=trBody.querySelectorAll('.tr-line')[idx];
+      if(li){ trBody.querySelectorAll('.tr-line').forEach(function(x){x.classList.remove('cur');}); li.classList.add('cur'); li.scrollIntoView({block:'nearest'}); }
+      speak(lines[idx].s,0.85,function(){ setTimeout(next,320); });
+    }
+    next();
+  }
+  function trStopAll(){ trStop=true; trPlaying=false; try{window.speechSynthesis.cancel();}catch(e){} trBody.querySelectorAll('.tr-line').forEach(function(x){x.classList.remove('cur');}); }
+  TR_GROUPS.forEach(function(g,i){
+    var tb=document.createElement('button'); tb.className='q-tab'+(i===0?' active':''); tb.type='button';
+    tb.textContent=(i+1)+'. '+g.themeZh+'（'+g.lines.length+'句）';
+    tb.addEventListener('click',function(){
+      trStopAll(); trIdx=i;
+      var tabs=trTabs.querySelectorAll('.q-tab'); for(var k=0;k<tabs.length;k++)tabs[k].classList.remove('active');
+      tb.classList.add('active');
+      trBadge.textContent=g.themeZh+' · '+g.lines.length+' 句 · '+g.chips.length+' 词条';
+      trRender();
+    });
+    trTabs.appendChild(tb);
+  });
+  trBadge.textContent=TR_GROUPS[0].themeZh+' · '+TR_GROUPS[0].lines.length+' 句 · '+TR_GROUPS[0].chips.length+' 词条';
+  trRender();
+
+})();
+</script>
+
+<button id="toTop" class="to-top" type="button" aria-label="回到顶部" title="回到顶部">↑</button>
+<div class="wrap"><div class="mob-note"><b>手机 / iPad 提示：</b>请用 <b>Safari 或 Chrome</b> 打开本文件以获得完整点读功能（"文件"App 里的预览不能交互）。如点击发音没有声音：① 检查设备侧边的<b>静音键</b>与音量；② 在「<b>设置 → 辅助功能 → 朗读内容 → 声音</b>」中下载 English 语音（如 Samantha）。</div></div>
+<script>
+(function(){
+  try{
+    var b=document.getElementById('toTop'); if(!b) return;
+    var show=function(){ b.style.display = (window.scrollY>600) ? 'flex' : 'none'; };
+    window.addEventListener('scroll',show,{passive:true}); show();
+    b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  }catch(e){}
+})();
 </script>
 <style>
 .pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}

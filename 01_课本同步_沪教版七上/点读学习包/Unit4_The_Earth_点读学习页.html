@@ -252,6 +252,37 @@
   .clz-listen:hover{background:var(--teal,#0F6E56);color:#fff;}
   .clz-listen svg{width:17px;height:17px;fill:currentColor;}
 
+
+  .tr-box{background:#FBF8FF;border:2px solid #E4D9F5;border-radius:16px;padding:16px 16px 18px;}
+  .tr-head{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding-bottom:12px;border-bottom:1px dashed #D8C9EE;margin-bottom:12px;}
+  .tr-theme{display:flex;flex-direction:column;gap:2px;}
+  .tr-theme b{font-size:16px;color:#4A2C6B;}
+  .tr-theme span{font-size:12.5px;color:#7B6A93;}
+  .tr-scene{flex:1 1 200px;font-size:13px;color:#5B6470;background:#F3EDFC;border-radius:999px;padding:5px 14px;}
+  .tr-actions{display:flex;gap:8px;margin-left:auto;}
+  .tr-btn{border:none;background:#6B44A0;color:#fff;border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:700;cursor:pointer;}
+  .tr-btn.ghost{background:#EFE6FA;color:#5B3A8E;}
+  .tr-btn:hover{filter:brightness(1.08);}
+  .tr-lines{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .tr-line{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #EADFF7;border-radius:12px;padding:11px 13px;transition:box-shadow .18s,border-color .18s;}
+  .tr-line.cur{border-color:#6B44A0;box-shadow:0 0 0 3px rgba(107,68,160,.16);}
+  .tr-no{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:#EFE6FA;color:#5B3A8E;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+  .tr-body-line{flex:1 1 auto;min-width:0;}
+  .tr-en{font-size:15.5px;line-height:1.75;color:var(--ink);}
+  .tr-zh{font-size:13.5px;color:#5B6470;margin-top:2px;}
+  .tr-kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;}
+  .tr-chip{font-size:11.5px;border-radius:999px;padding:3px 10px;background:#EAF6F2;color:#0F6E56;border:1px solid #C9E7DE;}
+  .tr-chip.phr{background:#FDF3E4;color:#8A5A12;border-color:#F0DCB8;}
+  .tr-chip i{font-style:normal;opacity:.75;margin-left:5px;}
+  .tr-hit{border-radius:5px;padding:0 3px;cursor:pointer;font-weight:600;}
+  .tr-hit.wd{background:#DFF3EC;color:#0B5E49;border-bottom:2px solid #46B39A;}
+  .tr-hit.phr{background:#FCEBCE;color:#7A4E0A;border-bottom:2px solid #E0A94F;}
+  .tr-listen{flex:0 0 34px;width:34px;height:34px;border-radius:50%;border:none;background:#F3EDFC;color:#5B3A8E;font-size:15px;cursor:pointer;margin-top:2px;}
+  .tr-listen:hover{background:#6B44A0;color:#fff;}
+  .tr-foot{margin-top:16px;padding-top:12px;border-top:1px dashed #D8C9EE;}
+  .tr-used b{font-size:13px;color:#4A2C6B;}
+  .tr-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -371,6 +402,7 @@
     <a href="#quiz">⑥ 小测</a>
     <a href="#cloze">⑦ 填空</a>
     <a href="#sentcloze">⑧ 句填</a>
+    <a href="#themeread">⑨ 主题阅读</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -550,6 +582,18 @@
     </div>
   </section>
 
+
+  <!-- ================= 主题阅读 · 同主题多语境 ================= -->
+  <section class="block" id="themeread">
+    <div class="sec-head">
+      <div class="no" style="background:#8A5AA6;">9</div>
+      <h2>主题阅读 · 同主题多语境</h2>
+      <p>同一个主题下的多种场景表达 · 同一词条在不同语境里的用法对比 · 点句子听发音，点高亮词听单词，看释义</p>
+      <span class="count-badge" id="trBadge"></span>
+    </div>
+    <div class="q-tabs" id="trTabs"></div>
+    <div class="tr-box" id="trBody"></div>
+  </section>
   <!-- ================= 词缀拓展 ================= -->
   <section class="block" id="wordbuilding">
     <div class="sec-head">
@@ -1646,22 +1690,9 @@
     loadGM();
   });
   loadGM();
-})();
-</script>
-
-<button id="toTop" class="to-top" type="button" aria-label="回到顶部" title="回到顶部">↑</button>
-<div class="wrap"><div class="mob-note"><b>手机 / iPad 提示：</b>请用 <b>Safari 或 Chrome</b> 打开本文件以获得完整点读功能（"文件"App 里的预览不能交互）。如点击发音没有声音：① 检查设备侧边的<b>静音键</b>与音量；② 在「<b>设置 → 辅助功能 → 朗读内容 → 声音</b>」中下载 English 语音（如 Samantha）。</div></div>
-<script>
-(function(){
-  try{
-    var b=document.getElementById('toTop'); if(!b) return;
-    var show=function(){ b.style.display = (window.scrollY>600) ? 'flex' : 'none'; };
-    window.addEventListener('scroll',show,{passive:true}); show();
-    b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
-  }catch(e){}
-})();
 
   /* ========== 句子填空（独立例句·合并精简页） ========== */
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   var SC_SETS = [{"name":"核心单词","data":[{"s":"The solar ____ has eight planets.","ans":"system","opts":["butterfly","system","billion","harmful"],"d":{"system":"系统","butterfly":"","billion":"","harmful":""}},{"s":"I put the important information in a ____ on my computer.","ans":"file","opts":["metre","solution","chemical","file"],"d":{"file":"档案","metre":"","solution":"","chemical":""}},{"s":"The view of the earth from space is ____.","ans":"amazing","opts":["cover","explore","own","amazing"],"d":{"amazing":"令人大为惊奇的","cover":"","explore":"","own":""}},{"s":"The earth is a ____ that goes around the sun.","ans":"planet","opts":["generation","reach","planet","burn"],"d":{"planet":"行星","generation":"","reach":"","burn":""}},{"s":"There are about eight ____ people in the world.","ans":"billion","opts":["freezing","disappear","billion","hunt"],"d":{"billion":"十亿","freezing":"","disappear":"","hunt":""}},{"s":"Oceans ____ most of the earth.","ans":"cover","opts":["oil","file","cover","wide"],"d":{"cover":"盖；覆盖","oil":"","file":"","wide":""}},{"s":"The Sahara is a large ____ of sand in Africa.","ans":"area","opts":["war","area","pole","pollution"],"d":{"area":"地区；地域","war":"","pole":"","pollution":""}},{"s":"It is ____ at the North Pole.","ans":"freezing","opts":["harmful","freezing","butterfly","amazing"],"d":{"freezing":"极冷的","harmful":"","butterfly":"","amazing":""}},{"s":"Canada is in the ____ of North America.","ans":"north","opts":["chemical","north","solution","desert"],"d":{"north":"北；北方","chemical":"","solution":"","desert":""}},{"s":"It is very cold at the North ____.","ans":"pole","opts":["provide","own","billion","pole"],"d":{"pole":"（行星的）极；地极","provide":"","own":"","billion":""}},{"s":"A ____ is a dry place with little rain.","ans":"desert","opts":["groundwater","generation","reach","desert"],"d":{"desert":"沙漠；荒漠","groundwater":"","generation":"","reach":""}},{"s":"One ____ is a hundred centimetres.","ans":"metre","opts":["disappear","emperor","metre","area"],"d":{"metre":"米","disappear":"","emperor":"","area":""}},{"s":"The tree is so tall that I cannot ____ the top.","ans":"reach","opts":["system","wide","reach","oil"],"d":{"reach":"足够达到","system":"","wide":"","oil":""}},{"s":"A ____ of sand is very small.","ans":"grain","opts":["freezing","grain","pollution","war"],"d":{"grain":"谷粒","freezing":"","pollution":"","war":""}},{"s":"The river is very ____ and deep.","ans":"wide","opts":["amazing","wide","harmful","whale"],"d":{"wide":"宽的；宽阔的","amazing":"","harmful":"","whale":""}},{"s":"The ____ is the largest animal in the sea.","ans":"whale","opts":["pole","whale","solution","protect"],"d":{"whale":"鲸","pole":"","solution":"","protect":""}},{"s":"A colorful ____ flew over the flowers.","ans":"butterfly","opts":["billion","website","provide","butterfly"],"d":{"butterfly":"蝴蝶","billion":"","website":"","provide":""}},{"s":"Trees ____ us with wood and fresh air.","ans":"provide","opts":["blow","metre","groundwater","provide"],"d":{"provide":"提供；供应","blow":"","metre":"","groundwater":""}},{"s":"Scientists want to ____ the bottom of the ocean.","ans":"explore","opts":["emperor","cover","explore","disappear"],"d":{"explore":"探索","emperor":"","cover":"","disappear":""}},{"s":"Some wild animals may ____ forever if we do nothing.","ans":"disappear","opts":["system","reach","disappear","oil"],"d":{"disappear":"消失；不见","system":"","reach":"","oil":""}},{"s":"____ does not break down easily and pollutes the sea.","ans":"plastic","opts":["disappear","war","plastic","freezing"],"d":{"plastic":"塑料","disappear":"","war":"","freezing":""}},{"s":"Air ____ is a big problem in many cities.","ans":"pollution","opts":["gas","pollution","amazing","wide"],"d":{"pollution":"污染","gas":"","amazing":"","wide":""}},{"s":"We must ____ wild animals and their home.","ans":"protect","opts":["pollution","protect","pole","sandstorm"],"d":{"protect":"保护","pollution":"","pole":"","sandstorm":""}},{"s":"This ____ can be harmful to the water.","ans":"chemical","opts":["butterfly","chemical","website","planet"],"d":{"chemical":"化学制品；化学品","butterfly":"","website":"","planet":""}},{"s":"____ is the water found under the ground.","ans":"groundwater","opts":["desert","chemical","blow","groundwater"],"d":{"groundwater":"地下水","desert":"","chemical":"","blow":""}},{"s":"If you ____ rubbish, it makes the air dirty.","ans":"burn","opts":["provide","emperor","cover","burn"],"d":{"burn":"燃烧；烧毁","provide":"","emperor":"","cover":""}},{"s":"People take ____ from under the ground to make fuel.","ans":"oil","opts":["reach","groundwater","oil","system"],"d":{"oil":"石油；原油","reach":"","groundwater":"","system":""}},{"s":"Many homes use ____ for cooking and heating.","ans":"gas","opts":["hunt","freezing","gas","disappear"],"d":{"gas":"天然气","hunt":"","freezing":"","disappear":""}},{"s":"Smoking is ____ to your health.","ans":"harmful","opts":["file","harmful","wide","oil"],"d":{"harmful":"有害的","file":"","wide":"","oil":""}},{"s":"I found the information on a ____ about the earth.","ans":"website","opts":["sandstorm","website","pollution","north"],"d":{"website":"网站","sandstorm":"","pollution":"","north":""}},{"s":"I want to have my ____ room.","ans":"own","opts":["planet","own","harmful","whale"],"d":{"own":"自己的；本人的","planet":"","harmful":"","whale":""}},{"s":"The ____ lived in a big palace and wore a crown.","ans":"emperor","opts":["blow","protect","desert","emperor"],"d":{"emperor":"皇帝","blow":"","protect":"","desert":""}},{"s":"People used to ____ wild animals for food.","ans":"hunt","opts":["website","cover","provide","hunt"],"d":{"hunt":"打猎","website":"","cover":"","provide":""}},{"s":"The two countries fought a long ____.","ans":"war","opts":["groundwater","generation","war","reach"],"d":{"war":"战争","groundwater":"","generation":"","reach":""}},{"s":"In a ____, strong winds carry a lot of sand.","ans":"sandstorm","opts":["emperor","area","sandstorm","disappear"],"d":{"sandstorm":"沙暴","emperor":"","area":"","disappear":""}},{"s":"We need to find a ____ to the pollution problem.","ans":"solution","opts":["grain","oil","solution","file"],"d":{"solution":"解决办法","grain":"","oil":"","file":""}},{"s":"Strong winds can ____ the sand away.","ans":"blow","opts":["plastic","blow","war","north"],"d":{"blow":"刮；吹","plastic":"","war":"","north":""}},{"s":"This story was passed down from one ____ to the next.","ans":"generation","opts":["whale","generation","planet","gas"],"d":{"generation":"（统称）一代人","whale":"","planet":"","gas":""}}]},{"name":"补充词汇","data":[{"s":"The ____ is an imaginary line around the middle of the earth.","ans":"equator","opts":["support","equator","sea","nature"],"d":{"equator":"赤道","support":"","sea":"","nature":""}},{"s":"The cows are eating grass in the ____.","ans":"field","opts":["support","mountain","nature","field"],"d":{"field":"田野；田地","support":"","mountain":"","nature":""}},{"s":"Mount Qomolangma is the highest ____ in the world.","ans":"mountain","opts":["seahorse","nature","field","mountain"],"d":{"mountain":"山；高山","seahorse":"","nature":"","field":""}},{"s":"Many birds and animals live in the ____.","ans":"forest","opts":["seahorse","recycle","forest","field"],"d":{"forest":"森林","seahorse":"","recycle":"","field":""}},{"s":"Whales live in the ____.","ans":"sea","opts":["recycle","sky","sea","seahorse"],"d":{"sea":"海；海洋","recycle":"","sky":"","seahorse":""}},{"s":"The small town is close to sea ____.","ans":"level","opts":["plant","recycle","level","sky"],"d":{"level":"水平；高度","plant":"","recycle":"","sky":""}},{"s":"The ocean is very ____ in some places.","ans":"deep","opts":["pollute","deep","sky","plant"],"d":{"deep":"深的","pollute":"","sky":"","plant":""}},{"s":"Every ____ needs water and sunlight to grow.","ans":"plant","opts":["pollute","plant","deep","life"],"d":{"plant":"植物","pollute":"","deep":"","life":""}},{"s":"What is the ____ of this mountain?","ans":"height","opts":["pollute","height","life","sea"],"d":{"height":"高度","pollute":"","life":"","sea":""}},{"s":"A ____ is a small sea animal that looks like a horse.","ans":"seahorse","opts":["ocean","life","sea","seahorse"],"d":{"seahorse":"海马","ocean":"","life":"","sea":""}},{"s":"The sun gives us light and ____.","ans":"energy","opts":["danger","sea","ocean","energy"],"d":{"energy":"能量；能源","danger":"","sea":"","ocean":""}},{"s":"Strong roots ____ the tall tree.","ans":"support","opts":["danger","mountain","support","ocean"],"d":{"support":"支撑；供养","danger":"","mountain":"","ocean":""}},{"s":"The ____ covers most of the earth.","ans":"ocean","opts":["seahorse","danger","ocean","mountain"],"d":{"ocean":"海洋","seahorse":"","danger":"","mountain":""}},{"s":"The outer ____ of the earth is covered with water.","ans":"surface","opts":["environment","surface","mountain","seahorse"],"d":{"surface":"表面；表层","environment":"","mountain":"","seahorse":""}},{"s":"Rubbish can ____ the water and the air.","ans":"pollute","opts":["environment","pollute","seahorse","equator"],"d":{"pollute":"污染","environment":"","seahorse":"","equator":""}},{"s":"Please put the ____ in the bin.","ans":"rubbish","opts":["equator","rubbish","environment","plant"],"d":{"rubbish":"垃圾","equator":"","environment":"","plant":""}},{"s":"We should ____ paper, glass and plastic.","ans":"recycle","opts":["equator","pollute","plant","recycle"],"d":{"recycle":"回收利用","equator":"","pollute":"","plant":""}},{"s":"We must keep the ____ clean.","ans":"environment","opts":["land","plant","pollute","environment"],"d":{"environment":"环境","land":"","plant":"","pollute":""}},{"s":"We should love and protect ____.","ans":"nature","opts":["land","level","nature","pollute"],"d":{"nature":"大自然","land":"","level":"","pollute":""}},{"s":"The tigers are in ____ because people take their land.","ans":"danger","opts":["level","ocean","danger","land"],"d":{"danger":"危险","level":"","ocean":"","land":""}},{"s":"All ____ things need water to survive.","ans":"living","opts":["danger","level","living","ocean"],"d":{"living":"活着的","danger":"","level":"","ocean":""}},{"s":"There is no ____ on the moon because it is too hot and dry.","ans":"life","opts":["forest","life","ocean","danger"],"d":{"life":"生命","forest":"","ocean":"","danger":""}},{"s":"The ship reached ____ after a long voyage.","ans":"land","opts":["forest","land","danger","energy"],"d":{"land":"陆地；土地","forest":"","danger":"","energy":""}},{"s":"Birds fly in the ____.","ans":"sky","opts":["forest","sky","energy","environment"],"d":{"sky":"天空","forest":"","energy":"","environment":""}}]},{"name":"重点短语","data":[{"s":"The earth is part of the ____.","ans":"solar system","opts":["the solar system","solar system","sea level","such as"],"d":{"solar system":"太阳系","the solar system":"","sea level":"","such as":""}},{"s":"Read the ____ and answer the questions.","ans":"fact file","opts":["the solar system","sea level","such as","fact file"],"d":{"fact file":"事实档案","the solar system":"","sea level":"","such as":""}},{"s":"The ground ____ snow.","ans":"be covered by","opts":["the solar system","such as","sea level","be covered by"],"d":{"be covered by":"被……覆盖","the solar system":"","such as":"","sea level":""}},{"s":"____, he is honest.","ans":"as far as we know","opts":["the solar system","such as","as far as we know","sea level"],"d":{"as far as we know":"据我们所知","the solar system":"","such as":"","sea level":""}},{"s":"The city is below ____.","ans":"sea level","opts":["such as","as far as we know","sea level","the solar system"],"d":{"sea level":"海平面","such as":"","as far as we know":"","the solar system":""}},{"s":"He is smart; ____, he is kind.","ans":"what's more","opts":["the solar system","such as","what's more","as far as we know"],"d":{"what's more":"更重要的是","the solar system":"","such as":"","as far as we know":""}},{"s":"Trees ____ us ____ wood.","ans":"provide ... with ...","opts":["such as","provide ... with ...","as far as we know","the solar system"],"d":{"provide ... with ...":"提供；供应；给予","such as":"","as far as we know":"","the solar system":""}},{"s":"____ is bad for the sea.","ans":"plastic pollution","opts":["such as","plastic pollution","the solar system","as far as we know"],"d":{"plastic pollution":"塑料污染","such as":"","the solar system":"","as far as we know":""}},{"s":"People ____ too many trees.","ans":"cut down","opts":["such as","cut down","as far as we know","the solar system"],"d":{"cut down":"砍倒","such as":"","as far as we know":"","the solar system":""}},{"s":"There are ____ birds in the sky.","ans":"hundreds of","opts":["such as","as far as we know","the solar system","hundreds of"],"d":{"hundreds of":"数以百计","such as":"","as far as we know":"","the solar system":""}},{"s":"The wind ____ the leaves.","ans":"blow away","opts":["as far as we know","the solar system","such as","blow away"],"d":{"blow away":"吹走","as far as we know":"","the solar system":"","such as":""}},{"s":"There are eight planets in ____.","ans":"the solar system","opts":["as far as we know","blow away","the solar system","such as"],"d":{"the solar system":"太阳系","as far as we know":"","blow away":"","such as":""}},{"s":"It is very cold at ____.","ans":"the North Pole","opts":["such as","as far as we know","the North Pole","blow away"],"d":{"the north pole":"北极","such as":"","as far as we know":"","blow away":""}},{"s":"Penguins live near ____.","ans":"the South Pole","opts":["as far as we know","the South Pole","blow away","such as"],"d":{"the south pole":"南极","as far as we know":"","blow away":"","such as":""}},{"s":"The river is ____ 100 km long.","ans":"more than","opts":["as far as we know","more than","such as","blow away"],"d":{"more than":"超过；多于","as far as we know":"","such as":"","blow away":""}},{"s":"The ant is ____ a grain of rice.","ans":"as small as","opts":["blow away","as small as","as far as we know","such as"],"d":{"as small as":"和……一样小","blow away":"","as far as we know":"","such as":""}},{"s":"The forest ____ many animals.","ans":"be home to","opts":["blow away","as far as we know","such as","be home to"],"d":{"be home to":"是……的家园","blow away":"","as far as we know":"","such as":""}},{"s":"It's cheap; ____, it's useful.","ans":"and what's more","opts":["blow away","such as","as far as we know","and what's more"],"d":{"and what's more":"而且；更重要的是","blow away":"","such as":"","as far as we know":""}},{"s":"I like fruits ____ apples and pears.","ans":"such as","opts":["blow away","and what's more","such as","as far as we know"],"d":{"such as":"例如","blow away":"","and what's more":"","as far as we know":""}},{"s":"The tigers are ____.","ans":"in danger","opts":["and what's more","as far as we know","in danger","blow away"],"d":{"in danger":"处于危险中","and what's more":"","as far as we know":"","blow away":""}},{"s":"We should ____ the earth.","ans":"take care of","opts":["blow away","and what's more","take care of","as far as we know"],"d":{"take care of":"照顾；照料","blow away":"","and what's more":"","as far as we know":""}},{"s":"Birds fly ____.","ans":"in the air","opts":["and what's more","in the air","as far as we know","blow away"],"d":{"in the air":"在空气中","and what's more":"","as far as we know":"","blow away":""}}]},{"name":"短语语境拓展","data":[{"s":"Mars is in the ____.","ans":"solar system","opts":["the solar system","solar system","sea level","such as"],"d":{"solar system":"太阳系","the solar system":"","sea level":"","such as":""}},{"s":"This ____ tells us about the moon.","ans":"fact file","opts":["the solar system","sea level","such as","fact file"],"d":{"fact file":"事实档案","the solar system":"","sea level":"","such as":""}},{"s":"The hill ____ green trees.","ans":"be covered by","opts":["the solar system","such as","sea level","be covered by"],"d":{"be covered by":"被……覆盖","the solar system":"","such as":"","sea level":""}},{"s":"____, no one was hurt.","ans":"as far as we know","opts":["the solar system","such as","as far as we know","sea level"],"d":{"as far as we know":"据我们所知","the solar system":"","such as":"","sea level":""}},{"s":"The island is close to ____.","ans":"sea level","opts":["such as","as far as we know","sea level","the solar system"],"d":{"sea level":"海平面","such as":"","as far as we know":"","the solar system":""}},{"s":"The book is fun; ____, it is short.","ans":"what's more","opts":["the solar system","such as","what's more","as far as we know"],"d":{"what's more":"更重要的是","the solar system":"","such as":"","as far as we know":""}},{"s":"The school ____ students ____ books.","ans":"provide ... with ...","opts":["such as","provide ... with ...","as far as we know","the solar system"],"d":{"provide ... with ...":"提供；供应；给予","such as":"","as far as we know":"","the solar system":""}},{"s":"We should stop ____.","ans":"plastic pollution","opts":["such as","plastic pollution","the solar system","as far as we know"],"d":{"plastic pollution":"塑料污染","such as":"","the solar system":"","as far as we know":""}},{"s":"Do not ____ the trees.","ans":"cut down","opts":["such as","cut down","as far as we know","the solar system"],"d":{"cut down":"砍倒","such as":"","as far as we know":"","the solar system":""}},{"s":"____ students joined the club.","ans":"hundreds of","opts":["such as","as far as we know","the solar system","hundreds of"],"d":{"hundreds of":"数以百计","such as":"","as far as we know":"","the solar system":""}},{"s":"The storm ____ the roof.","ans":"blow away","opts":["as far as we know","the solar system","such as","blow away"],"d":{"blow away":"吹走","as far as we know":"","the solar system":"","such as":""}},{"s":"The sun is the center of ____.","ans":"the solar system","opts":["as far as we know","blow away","the solar system","such as"],"d":{"the solar system":"太阳系","as far as we know":"","blow away":"","such as":""}},{"s":"Ice covers ____.","ans":"the North Pole","opts":["such as","as far as we know","the North Pole","blow away"],"d":{"the north pole":"北极","such as":"","as far as we know":"","blow away":""}},{"s":"It is colder at ____.","ans":"the South Pole","opts":["as far as we know","the South Pole","blow away","such as"],"d":{"the south pole":"南极","as far as we know":"","blow away":"","such as":""}},{"s":"There are ____ 200 books here.","ans":"more than","opts":["as far as we know","more than","such as","blow away"],"d":{"more than":"超过；多于","as far as we know":"","such as":"","blow away":""}},{"s":"The baby is ____ a cat.","ans":"as small as","opts":["blow away","as small as","as far as we know","such as"],"d":{"as small as":"和……一样小","blow away":"","as far as we know":"","such as":""}},{"s":"The lake ____ many fish.","ans":"be home to","opts":["blow away","as far as we know","such as","be home to"],"d":{"be home to":"是……的家园","blow away":"","as far as we know":"","such as":""}},{"s":"He is fast; ____, he never tires.","ans":"and what's more","opts":["blow away","such as","as far as we know","and what's more"],"d":{"and what's more":"而且；更重要的是","blow away":"","such as":"","as far as we know":""}},{"s":"Sports ____ football are popular.","ans":"such as","opts":["blow away","and what's more","such as","as far as we know"],"d":{"such as":"例如","blow away":"","and what's more":"","as far as we know":""}},{"s":"The whales are ____.","ans":"in danger","opts":["and what's more","as far as we know","in danger","blow away"],"d":{"in danger":"处于危险中","and what's more":"","as far as we know":"","blow away":""}},{"s":"Please ____ the plants.","ans":"take care of","opts":["blow away","and what's more","take care of","as far as we know"],"d":{"take care of":"照顾；照料","blow away":"","and what's more":"","as far as we know":""}},{"s":"Smoke is ____.","ans":"in the air","opts":["and what's more","in the air","as far as we know","blow away"],"d":{"in the air":"在空气中","and what's more":"","as far as we know":"","blow away":""}}]}];
   var scSet=0, sci=0, scscore=0, scans=false, sccurrent=null;
   var scSent=document.getElementById('scSent'), scOpts=document.getElementById('scOpts'),
@@ -1746,6 +1777,107 @@
   scBadge.textContent=SC_SETS[0].name+' · '+SC_SETS[0].data.length+' 题';
   scLoad();
 
+
+  /* ========== 主题阅读 · 同主题多语境 ========== */
+  var TR_GROUPS = [{"theme":"A Green Week for the Earth","themeZh":"地球环保周","scene":"十月的校园环保活动","lines":[{"s":"Last week our class began an environment week about our planet.","zh":"上周，我们班开展了一个关于我们这个星球的环保周活动。","ks":[{"k":"environment","zh":"环境","t":"w"},{"k":"planet","zh":"行星","t":"w"}]},{"s":"We looked for rubbish in the park and put plastic bottles into the recycle bin.","zh":"我们在公园里捡垃圾，把塑料瓶放进回收箱。","ks":[{"k":"rubbish","zh":"垃圾","t":"w"},{"k":"plastic","zh":"塑料","t":"w"},{"k":"recycle","zh":"回收利用","t":"w"}]},{"s":"Plastic pollution is harmful to living things in the ocean.","zh":"塑料污染会危害海洋里的生物。","ks":[{"k":"plastic pollution","zh":"塑料污染","t":"p"},{"k":"harmful","zh":"有害的","t":"w"},{"k":"living","zh":"活着的","t":"w"},{"k":"ocean","zh":"海洋","t":"w"}]},{"s":"Our fact file shows the sea level, the mountain height and the groundwater below.","zh":"我们的档案里写着海平面、山的高度以及地下的地下水。","ks":[{"k":"fact file","zh":"事实档案","t":"p"},{"k":"sea level","zh":"海平面","t":"p"},{"k":"height","zh":"高度","t":"w"},{"k":"mountain","zh":"山；高山","t":"w"},{"k":"groundwater","zh":"地下水","t":"w"}]},{"s":"The sun provides the earth with light and heat, and every field needs them.","zh":"太阳为地球提供光和热，每一块田地都需要它们。","ks":[{"k":"provide ... with ...","zh":"提供；供应；给予","t":"p"},{"k":"field","zh":"田野；田地","t":"w"}]},{"s":"Saving water and energy in our homes is the simplest way to protect nature.","zh":"在家节约用水和能源，是保护大自然最简单的办法。","ks":[{"k":"energy","zh":"能量；能源","t":"w"},{"k":"protect","zh":"保护","t":"w"},{"k":"nature","zh":"大自然","t":"w"}]},{"s":"Lucy says her class plants trees, and the school takes care of them every day.","zh":"露西说她们班种了树，学校每天都会照料它们。","ks":[{"k":"plant","zh":"植物","t":"w"},{"k":"take care of","zh":"照顾；照料","t":"p"}]},{"s":"We put our ideas on the school website, and other classes want to help.","zh":"我们把想法放在学校网站上，其他班级也想出一份力。","ks":[{"k":"website","zh":"网站","t":"w"}]}],"chips":[{"k":"environment","zh":"环境","t":"w"},{"k":"planet","zh":"行星","t":"w"},{"k":"rubbish","zh":"垃圾","t":"w"},{"k":"plastic","zh":"塑料","t":"w"},{"k":"recycle","zh":"回收利用","t":"w"},{"k":"plastic pollution","zh":"塑料污染","t":"p"},{"k":"harmful","zh":"有害的","t":"w"},{"k":"living","zh":"活着的","t":"w"},{"k":"ocean","zh":"海洋","t":"w"},{"k":"fact file","zh":"事实档案","t":"p"},{"k":"sea level","zh":"海平面","t":"p"},{"k":"height","zh":"高度","t":"w"},{"k":"mountain","zh":"山；高山","t":"w"},{"k":"groundwater","zh":"地下水","t":"w"},{"k":"provide ... with ...","zh":"提供；供应；给予","t":"p"},{"k":"field","zh":"田野；田地","t":"w"},{"k":"energy","zh":"能量；能源","t":"w"},{"k":"protect","zh":"保护","t":"w"},{"k":"nature","zh":"大自然","t":"w"},{"k":"plant","zh":"植物","t":"w"},{"k":"take care of","zh":"照顾；照料","t":"p"},{"k":"website","zh":"网站","t":"w"}]},{"theme":"After the Sandstorm","themeZh":"沙暴过后的家园","scene":"沙漠边缘的小镇","lines":[{"s":"A small area near the desert nearly disappears in a terrible sandstorm.","zh":"沙漠附近的一小片地方几乎在一场可怕的沙暴中消失了。","ks":[{"k":"area","zh":"地区；地域","t":"w"},{"k":"desert","zh":"沙漠；荒漠","t":"w"},{"k":"sandstorm","zh":"沙暴","t":"w"}]},{"s":"Strong winds blow the dust into the air, and the sky turns dark.","zh":"强风把尘土吹到空中，天空变得昏暗。","ks":[{"k":"blow","zh":"刮；吹","t":"w"},{"k":"in the air","zh":"在空气中","t":"p"},{"k":"sky","zh":"天空","t":"w"}]},{"s":"The wind can blow away the roofs of the oldest houses in the village.","zh":"这场风能把村庄里最老的房屋屋顶吹走。","ks":[{"k":"blow away","zh":"吹走","t":"p"}]},{"s":"People are in danger, but a wall of green trees can protect the land.","zh":"人们处于危险之中，但一道绿色树墙能保护这里的土地。","ks":[{"k":"in danger","zh":"处于危险中","t":"p"},{"k":"protect","zh":"保护","t":"w"},{"k":"land","zh":"陆地；土地","t":"w"}]},{"s":"The sand covers the field, and breathing the dust is harmful to our health.","zh":"沙子盖住了田野，吸入这些尘土有害我们的健康。","ks":[{"k":"cover","zh":"盖；覆盖","t":"w"},{"k":"field","zh":"田野；田地","t":"w"},{"k":"harmful","zh":"有害的","t":"w"}]},{"s":"The best solution is simple: stop the pollution, plant more trees and cut down nothing.","zh":"最好的办法很简单：停止污染，多种树，不砍任何树。","ks":[{"k":"solution","zh":"解决办法","t":"w"},{"k":"pollution","zh":"污染","t":"w"},{"k":"plant","zh":"植物","t":"w"},{"k":"cut down","zh":"砍倒","t":"p"}]},{"s":"The green area is home to hundreds of animals, such as small desert foxes.","zh":"这片绿色区域是数百种动物的家园，比如小小的沙漠狐狸。","ks":[{"k":"be home to","zh":"是……的家园","t":"p"},{"k":"hundreds of","zh":"数以百计","t":"p"},{"k":"such as","zh":"例如","t":"p"}]},{"s":"We put our photos on the school website to tell other people.","zh":"我们把照片放到学校网站上，告诉其他人这里发生的事。","ks":[{"k":"website","zh":"网站","t":"w"}]}],"chips":[{"k":"area","zh":"地区；地域","t":"w"},{"k":"desert","zh":"沙漠；荒漠","t":"w"},{"k":"sandstorm","zh":"沙暴","t":"w"},{"k":"blow","zh":"刮；吹","t":"w"},{"k":"in the air","zh":"在空气中","t":"p"},{"k":"sky","zh":"天空","t":"w"},{"k":"blow away","zh":"吹走","t":"p"},{"k":"in danger","zh":"处于危险中","t":"p"},{"k":"protect","zh":"保护","t":"w"},{"k":"land","zh":"陆地；土地","t":"w"},{"k":"cover","zh":"盖；覆盖","t":"w"},{"k":"field","zh":"田野；田地","t":"w"},{"k":"harmful","zh":"有害的","t":"w"},{"k":"solution","zh":"解决办法","t":"w"},{"k":"pollution","zh":"污染","t":"w"},{"k":"plant","zh":"植物","t":"w"},{"k":"cut down","zh":"砍倒","t":"p"},{"k":"be home to","zh":"是……的家园","t":"p"},{"k":"hundreds of","zh":"数以百计","t":"p"},{"k":"such as","zh":"例如","t":"p"},{"k":"website","zh":"网站","t":"w"}]},{"theme":"A Fact File of Our Planet","themeZh":"我们星球的档案","scene":"科学社团的资料展","lines":[{"s":"Today our science club opens a new fact file about the solar system.","zh":"今天，我们科学社团开放了一份关于太阳系的新档案。","ks":[{"k":"fact file","zh":"事实档案","t":"p"},{"k":"the solar system","zh":"太阳系","t":"p"}]},{"s":"As far as we know, it has eight planets and many moons.","zh":"据我们所知，太阳系有八大行星和许多卫星。","ks":[{"k":"as far as we know","zh":"据我们所知","t":"p"},{"k":"planet","zh":"行星","t":"w"}]},{"s":"There are billions of living things on the land and under the sea.","zh":"陆地上和海底有数十亿种生物。","ks":[{"k":"billion","zh":"十亿","t":"w"},{"k":"living","zh":"活着的","t":"w"},{"k":"land","zh":"陆地；土地","t":"w"},{"k":"sea","zh":"海；海洋","t":"w"}]},{"s":"The North Pole is covered by ice, and the air there is freezing.","zh":"北极终年被冰雪覆盖，那里的空气极冷。","ks":[{"k":"the north pole","zh":"北极","t":"p"},{"k":"be covered by","zh":"被……覆盖","t":"p"},{"k":"freezing","zh":"极冷的","t":"w"}]},{"s":"The South Pole is a continent of ice more than two thousand metres deep.","zh":"南极是一片两千多米深的冰大陆。","ks":[{"k":"the south pole","zh":"南极","t":"p"},{"k":"more than","zh":"超过；多于","t":"p"},{"k":"metre","zh":"米","t":"w"},{"k":"deep","zh":"深的","t":"w"}]},{"s":"At the equator the Earth is the widest, and the weather is warm all year.","zh":"在赤道上，地球最宽，那里一年四季都很温暖。","ks":[{"k":"equator","zh":"赤道","t":"w"},{"k":"wide","zh":"宽的；宽阔的","t":"w"}]},{"s":"Whales travel hundreds of miles through the ocean, and seahorses hide among plants.","zh":"鲸鱼在海洋中游行几百英里，海马则躲在植物中间。","ks":[{"k":"whale","zh":"鲸","t":"w"},{"k":"hundreds of","zh":"数以百计","t":"p"},{"k":"ocean","zh":"海洋","t":"w"},{"k":"seahorse","zh":"海马","t":"w"},{"k":"plant","zh":"植物","t":"w"}]},{"s":"A butterfly in our display is as small as my hand, and it is amazing.","zh":"我们班级展示中的一只蝴蝶和我的手一样小，看起来很神奇。","ks":[{"k":"butterfly","zh":"蝴蝶","t":"w"},{"k":"as small as","zh":"和……一样小","t":"p"},{"k":"amazing","zh":"令人大为惊奇的","t":"w"}]}],"chips":[{"k":"fact file","zh":"事实档案","t":"p"},{"k":"the solar system","zh":"太阳系","t":"p"},{"k":"as far as we know","zh":"据我们所知","t":"p"},{"k":"planet","zh":"行星","t":"w"},{"k":"billion","zh":"十亿","t":"w"},{"k":"living","zh":"活着的","t":"w"},{"k":"land","zh":"陆地；土地","t":"w"},{"k":"sea","zh":"海；海洋","t":"w"},{"k":"the north pole","zh":"北极","t":"p"},{"k":"be covered by","zh":"被……覆盖","t":"p"},{"k":"freezing","zh":"极冷的","t":"w"},{"k":"the south pole","zh":"南极","t":"p"},{"k":"more than","zh":"超过；多于","t":"p"},{"k":"metre","zh":"米","t":"w"},{"k":"deep","zh":"深的","t":"w"},{"k":"equator","zh":"赤道","t":"w"},{"k":"wide","zh":"宽的；宽阔的","t":"w"},{"k":"whale","zh":"鲸","t":"w"},{"k":"hundreds of","zh":"数以百计","t":"p"},{"k":"ocean","zh":"海洋","t":"w"},{"k":"seahorse","zh":"海马","t":"w"},{"k":"plant","zh":"植物","t":"w"},{"k":"butterfly","zh":"蝴蝶","t":"w"},{"k":"as small as","zh":"和……一样小","t":"p"},{"k":"amazing","zh":"令人大为惊奇的","t":"w"}]}];
+  var trIdx=0, trPlaying=false, trStop=false;
+  var trBody=document.getElementById('trBody'), trTabs=document.getElementById('trTabs'), trBadge=document.getElementById('trBadge');
+  function trCur(){ return TR_GROUPS[trIdx]; }
+  function trHi(s, ks){
+    // 按词条高亮（长词优先）
+    var items=ks.map(function(x){return {k:x.k, zh:x.zh, t:x.t};});
+    items.sort(function(a,b){return b.k.length-a.k.length;});
+    var html='', rest=s;
+    var guard=0;
+    while(rest && guard<40){
+      guard++;
+      var best=-1,bestK='',bestZh='',bestT='w';
+      items.forEach(function(it){
+        var idx=rest.toLowerCase().indexOf(it.k);
+        if(idx>=0 && (best<0 || idx<best || (idx===best && it.k.length>bestK.length))){best=idx;bestK=it.k;bestZh=it.zh;bestT=it.t;}
+      });
+      if(best<0){ html+=esc(rest); break; }
+      html+=esc(rest.slice(0,best));
+      html+='<span class="tr-hit '+(bestT==='p'?'phr':'wd')+'" role="button" tabindex="0" data-zh="'+esc(bestZh)+'">'+esc(rest.substr(best,bestK.length))+'</span>';
+      rest=rest.substr(best+bestK.length);
+    }
+    return html;
+  }
+  function trRender(){
+    var g=trCur();
+    var html='<div class="tr-head"><div class="tr-theme"><b>'+esc(g.themeZh)+'</b><span>'+esc(g.theme)+'</span></div>'
+      +'<div class="tr-scene">场景：'+esc(g.scene)+'</div>'
+      +'<div class="tr-actions"><button class="tr-btn" id="trPlay" type="button">▶ 整段连读</button><button class="tr-btn ghost" id="trStop" type="button">■ 停止</button></div></div>';
+    html+='<ol class="tr-lines">';
+    g.lines.forEach(function(l,i){
+      html+='<li class="tr-line"><span class="tr-no">'+(i+1)+'</span>'
+        +'<div class="tr-body-line"><div class="tr-en">'+trHi(l.s,l.ks)+'</div>'
+        +'<div class="tr-zh">'+esc(l.zh)+'</div>'
+        +'<div class="tr-kw">'+l.ks.map(function(x){return '<span class="tr-chip '+(x.t==='p'?'phr':'wd')+'">'+esc(x.k)+(x.zh?'<i>'+esc(x.zh)+'</i>':'')+'</span>';}).join('')+'</div>'
+        +'</div><button class="tr-listen" data-i="'+i+'" type="button" aria-label="朗读第'+(i+1)+'句">🔊</button></li>';
+    });
+    html+='</ol>';
+    html+='<div class="tr-foot"><div class="tr-used"><b>本组用到的词条（'+g.chips.length+'）</b><div class="tr-chips">'
+      +g.chips.map(function(c){return '<span class="tr-chip '+(c.t==='p'?'phr':'wd')+'">'+esc(c.k)+(c.zh?'<i>'+esc(c.zh)+'</i>':'')+'</span>';}).join('')
+      +'</div></div></div>';
+    trBody.innerHTML=html;
+    trBody.querySelectorAll('.tr-listen').forEach(function(b){
+      b.addEventListener('click',function(){
+        var i=parseInt(b.getAttribute('data-i'),10);
+        speak(trCur().lines[i].s,0.85);
+      });
+    });
+    trBody.querySelectorAll('.tr-hit').forEach(function(el){
+      el.addEventListener('click',function(){ speak(el.textContent,0.85); });
+    });
+    trBody.querySelector('#trPlay').addEventListener('click',function(){ trPlayAll(); });
+    trBody.querySelector('#trStop').addEventListener('click',function(){ trStopAll(); });
+  }
+  function trPlayAll(){
+    trStopAll();
+    trPlaying=true; trStop=false;
+    var lines=trCur().lines;
+    var i=0;
+    function next(){
+      if(trStop||!trPlaying){trPlaying=false;return;}
+      if(i>=lines.length){trPlaying=false;return;}
+      var idx=i++;
+      var li=trBody.querySelectorAll('.tr-line')[idx];
+      if(li){ trBody.querySelectorAll('.tr-line').forEach(function(x){x.classList.remove('cur');}); li.classList.add('cur'); li.scrollIntoView({block:'nearest'}); }
+      speak(lines[idx].s,0.85,function(){ setTimeout(next,320); });
+    }
+    next();
+  }
+  function trStopAll(){ trStop=true; trPlaying=false; try{window.speechSynthesis.cancel();}catch(e){} trBody.querySelectorAll('.tr-line').forEach(function(x){x.classList.remove('cur');}); }
+  TR_GROUPS.forEach(function(g,i){
+    var tb=document.createElement('button'); tb.className='q-tab'+(i===0?' active':''); tb.type='button';
+    tb.textContent=(i+1)+'. '+g.themeZh+'（'+g.lines.length+'句）';
+    tb.addEventListener('click',function(){
+      trStopAll(); trIdx=i;
+      var tabs=trTabs.querySelectorAll('.q-tab'); for(var k=0;k<tabs.length;k++)tabs[k].classList.remove('active');
+      tb.classList.add('active');
+      trBadge.textContent=g.themeZh+' · '+g.lines.length+' 句 · '+g.chips.length+' 词条';
+      trRender();
+    });
+    trTabs.appendChild(tb);
+  });
+  trBadge.textContent=TR_GROUPS[0].themeZh+' · '+TR_GROUPS[0].lines.length+' 句 · '+TR_GROUPS[0].chips.length+' 词条';
+  trRender();
+
+})();
+</script>
+
+<button id="toTop" class="to-top" type="button" aria-label="回到顶部" title="回到顶部">↑</button>
+<div class="wrap"><div class="mob-note"><b>手机 / iPad 提示：</b>请用 <b>Safari 或 Chrome</b> 打开本文件以获得完整点读功能（"文件"App 里的预览不能交互）。如点击发音没有声音：① 检查设备侧边的<b>静音键</b>与音量；② 在「<b>设置 → 辅助功能 → 朗读内容 → 声音</b>」中下载 English 语音（如 Samantha）。</div></div>
+<script>
+(function(){
+  try{
+    var b=document.getElementById('toTop'); if(!b) return;
+    var show=function(){ b.style.display = (window.scrollY>600) ? 'flex' : 'none'; };
+    window.addEventListener('scroll',show,{passive:true}); show();
+    b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  }catch(e){}
+})();
 </script>
 <style>
 .pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}

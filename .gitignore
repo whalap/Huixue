@@ -2,6 +2,7 @@
 *.bak
 *.bak[0-9]*
 *.bak-*
+*.bak_*
 *.tmp
 临时*.txt
 _probe.txt

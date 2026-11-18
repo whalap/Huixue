@@ -246,6 +246,12 @@
        background:var(--coral);color:#fff;border:none;font-size:20px;line-height:1;cursor:pointer;
        box-shadow:0 3px 10px rgba(0,0,0,.18);z-index:60;display:none;align-items:center;justify-content:center;}
   .to-top:hover{background:#D64520;}
+
+  .clz-dict, .clz-line{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .clz-listen{border:none;background:var(--teal-soft,#E6F4EF);color:var(--teal,#0F6E56);width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 40px;}
+  .clz-listen:hover{background:var(--teal,#0F6E56);color:#fff;}
+  .clz-listen svg{width:17px;height:17px;fill:currentColor;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -364,6 +370,7 @@
     <a href="#grammar">⑤ 语法</a>
     <a href="#quiz">⑥ 小测</a>
     <a href="#cloze">⑦ 填空</a>
+    <a href="#sentcloze">⑧ 句填</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -516,6 +523,30 @@
       <div class="q-feedback" id="clzFb"></div>
       <button class="q-next" id="clzNext" type="button">下一题 →</button>
       <div class="q-done" id="clzDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 句子填空（独立例句·合并精简页） ================= -->
+  <section class="block" id="sentcloze">
+    <div class="sec-head">
+      <div class="no" style="background:var(--teal);">8</div>
+      <h2>句子填空 · 独立例句</h2>
+      <p>按当前课本词表编写 · 核心词 / 补充词 / 重点短语 / 短语语境拓展 · 点句子听发音，点单词看词义</p>
+      <span class="count-badge" id="scBadge"></span>
+    </div>
+    <div class="q-tabs" id="scTabs"></div>
+    <div class="cloze-box">
+      <div class="clz-top">
+        <div class="clz-progress" id="scHint">第 1 题</div>
+        <div class="q-score" id="scScore">得分：0</div>
+      </div>
+      <div class="clz-sent" id="scSent"></div>
+      <div class="clz-dict" id="scDict" style="display:none;margin-top:10px;padding:10px 14px;background:#FDF9F3;border:1px solid #EAD9AC;border-radius:12px;font-size:15px;color:#7A5200;"></div>
+      <div class="clz-opts" id="scOpts"></div>
+      <div class="q-feedback" id="scFb"></div>
+      <button class="q-next" id="scNext" type="button">下一题 →</button>
+      <div class="q-done" id="scDone"></div>
     </div>
   </section>
 
@@ -1589,6 +1620,92 @@
     b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
   }catch(e){}
 })();
+
+  /* ========== 句子填空（独立例句·合并精简页） ========== */
+  var SC_SETS = [{"name":"核心单词","data":[{"s":"Tom enjoys reading novels and poems because he likes ____.","ans":"literature","opts":["hike","literature","definitely","event"],"d":{"literature":"文学；文学作品","hike":"","definitely":"","event":""}},{"s":"Ben will ____ the role of a doctor in the school play.","ans":"act","opts":["member","literature","difference","act"],"d":{"act":"扮演（戏剧、电影中的角色）","member":"","literature":"","difference":""}},{"s":"We should ____ good music and art in the club.","ans":"appreciate","opts":["shout","snack","pie","appreciate"],"d":{"appreciate":"欣赏；赏识","shout":"","snack":"","pie":""}},{"s":"Lily wants to ____ the science club this term.","ans":"join","opts":["rocket","attend","join","fantastic"],"d":{"join":"成为……的一员；参加","rocket":"","attend":"","fantastic":""}},{"s":"The school show will ____ be a great success.","ans":"definitely","opts":["hike","event","definitely","join"],"d":{"definitely":"肯定；没问题；当然；确实","hike":"","event":"","join":""}},{"s":"We bought some old books at the school ____ last Sunday.","ans":"fair","opts":["literature","member","fair","difference"],"d":{"fair":"集市","literature":"","member":"","difference":""}},{"s":"The science club made a model ____ and flew it.","ans":"rocket","opts":["shout","rocket","snack","pie"],"d":{"rocket":"火箭","shout":"","snack":"","pie":""}},{"s":"They will ____ the model rocket into the sky.","ans":"launch","opts":["fair","launch","fantastic","attend"],"d":{"launch":"发射","fair":"","fantastic":"","attend":""}},{"s":"Please do not ____ in the reading room.","ans":"shout","opts":["join","shout","hike","event"],"d":{"shout":"大声说；叫","join":"","hike":"","event":""}},{"s":"This little toy car runs on solar ____.","ans":"power","opts":["literature","member","difference","power"],"d":{"power":"力量；能量","literature":"","member":"","difference":""}},{"s":"Wait a ____, and I will come with you.","ans":"moment","opts":["launch","snack","pie","moment"],"d":{"moment":"片刻；瞬间","launch":"","snack":"","pie":""}},{"s":"Every ____ of the club must come to the meeting.","ans":"member","opts":["fair","attend","member","fantastic"],"d":{"member":"成员","fair":"","attend":"","fantastic":""}},{"s":"The big cake is in the ____ of a star.","ans":"shape","opts":["event","join","shape","hike"],"d":{"shape":"形状；外形","event":"","join":"","hike":""}},{"s":"Our club will ____ in the mountains this weekend.","ans":"hike","opts":["literature","hike","moment","difference"],"d":{"hike":"去……远足；做徒步旅行","literature":"","moment":"","difference":""}},{"s":"Tom has made many new friends ____.","ans":"recently","opts":["pie","recently","snack","launch"],"d":{"recently":"不久前；最近","pie":"","snack":"","launch":""}},{"s":"All students must ____ the school meeting on Friday.","ans":"attend","opts":["fair","attend","fantastic","recently"],"d":{"attend":"出席；参加","fair":"","fantastic":"","recently":""}},{"s":"The club raises money for a local ____ every year.","ans":"charity","opts":["join","event","shape","charity"],"d":{"charity":"慈善机构（或组织）","join":"","event":"","shape":""}},{"s":"The old books are on ____ at the school fair.","ans":"sale","opts":["literature","moment","difference","sale"],"d":{"sale":"出售；销售","literature":"","moment":"","difference":""}},{"s":"I had a small ____ after the club activity.","ans":"snack","opts":["pie","launch","snack","sale"],"d":{"snack":"点心；小吃","pie":"","launch":"","sale":""}},{"s":"We will ____ the classroom with colourful balloons.","ans":"decorate","opts":["fair","recently","decorate","fantastic"],"d":{"decorate":"装饰；装潢","fair":"","recently":"","fantastic":""}},{"s":"Small actions can make a ____ to our school.","ans":"difference","opts":["event","join","difference","shape"],"d":{"difference":"差别；差异","event":"","join":"","shape":""}},{"s":"Ben will ____ in the race next week.","ans":"compete","opts":["literature","compete","moment","decorate"],"d":{"compete":"参加比赛（或竞赛）","literature":"","moment":"","decorate":""}},{"s":"The school fair is a big ____ every autumn.","ans":"event","opts":["pie","event","sale","launch"],"d":{"event":"公开活动；社交场合","pie":"","sale":"","launch":""}},{"s":"Please pass me a ____ for the soup.","ans":"spoon","opts":["fantastic","spoon","fair","recently"],"d":{"spoon":"勺；匙","fantastic":"","fair":"","recently":""}},{"s":"Our school holds an ____ sports meeting in October.","ans":"annual","opts":["compete","join","shape","annual"],"d":{"annual":"每年的；一年一次的","compete":"","join":"","shape":""}},{"s":"The club show last night was ____!","ans":"fantastic","opts":["literature","moment","decorate","fantastic"],"d":{"fantastic":"极好的；了不起的","literature":"","moment":"","decorate":""}},{"s":"One ____ is enough to buy this pencil.","ans":"dollar","opts":["pie","launch","dollar","sale"],"d":{"dollar":"元（美国、加拿大、澳大利亚等国的货币单位）","pie":"","launch":"","sale":""}},{"s":"My mother made an apple ____ for the fair.","ans":"pie","opts":["recently","annual","pie","fair"],"d":{"pie":"果馅饼；果馅派","recently":"","annual":"","fair":""}},{"s":"The club bought new sports ____ for the students.","ans":"equipment","opts":["compete","equipment","join","shape"],"d":{"equipment":"设备；器材","compete":"","join":"","shape":""}}]},{"name":"补充词汇","data":[{"s":"Lily joined the drama ____ at school.","ans":"club","opts":["raise","club","baking","hobby"],"d":{"club":"社团","raise":"","baking":"","hobby":""}},{"s":"She made a beautiful ____ for the window.","ans":"paper-cut","opts":["machine","craft","volunteer","paper-cut"],"d":{"paper-cut":"剪纸","machine":"","craft":"","volunteer":""}},{"s":"We did an interesting ____ in science class.","ans":"experiment","opts":["sun","playground","drama","experiment"],"d":{"experiment":"实验","sun":"","playground":"","drama":""}},{"s":"The gift from Tom was a big ____ to me.","ans":"surprise","opts":["ground","club","surprise","science"],"d":{"surprise":"惊奇；意外之事","ground":"","club":"","science":""}},{"s":"I joined the ____ club because I love making cakes.","ans":"baking","opts":["paper-cut","poster","baking","fun"],"d":{"baking":"烘焙","paper-cut":"","poster":"","fun":""}},{"s":"Making paper flowers is a popular ____ in our club.","ans":"craft","opts":["exciting","experiment","craft","competition"],"d":{"craft":"工艺；手艺","exciting":"","experiment":"","competition":""}},{"s":"Ben acts in the ____ club every Friday.","ans":"drama","opts":["surprise","drama","raise","hobby"],"d":{"drama":"戏剧","surprise":"","raise":"","hobby":""}},{"s":"We do fun experiments in ____ class.","ans":"science","opts":["baking","science","volunteer","machine"],"d":{"science":"科学","baking":"","volunteer":"","machine":""}},{"s":"They made a colourful ____ for the club fair.","ans":"poster","opts":["craft","poster","sun","playground"],"d":{"poster":"海报","craft":"","sun":"","playground":""}},{"s":"Our team won first place in the ____.","ans":"competition","opts":["drama","ground","club","competition"],"d":{"competition":"比赛；竞赛","drama":"","ground":"","club":""}},{"s":"The students will ____ money for charity.","ans":"raise","opts":["fun","paper-cut","science","raise"],"d":{"raise":"筹集（钱）","fun":"","paper-cut":"","science":""}},{"s":"This ____ can make paper flowers quickly.","ans":"machine","opts":["exciting","experiment","machine","poster"],"d":{"machine":"机器","exciting":"","experiment":"","poster":""}},{"s":"The ____ gives us light and warmth.","ans":"sun","opts":["competition","hobby","sun","surprise"],"d":{"sun":"太阳","competition":"","hobby":"","surprise":""}},{"s":"The children sat on the ____ and had a rest.","ans":"ground","opts":["volunteer","ground","baking","raise"],"d":{"ground":"地面；场地","volunteer":"","baking":"","raise":""}},{"s":"The group game at the fair is really ____.","ans":"fun","opts":["playground","fun","machine","craft"],"d":{"fun":"有趣的","playground":"","machine":"","craft":""}},{"s":"The rocket show was very ____.","ans":"exciting","opts":["drama","exciting","club","sun"],"d":{"exciting":"令人兴奋的","drama":"","club":"","sun":""}},{"s":"My favourite ____ is collecting old coins.","ans":"hobby","opts":["science","paper-cut","ground","hobby"],"d":{"hobby":"爱好","science":"","paper-cut":"","ground":""}},{"s":"Lily will ____ at the school fair tomorrow.","ans":"volunteer","opts":["poster","fun","experiment","volunteer"],"d":{"volunteer":"自愿做","poster":"","fun":"","experiment":""}},{"s":"The boys play football on the ____ after school.","ans":"playground","opts":["competition","exciting","playground","surprise"],"d":{"playground":"操场；运动场","competition":"","exciting":"","surprise":""}}]},{"name":"重点短语","data":[{"s":"There is a ____ at school.","ans":"clubs fair","opts":["after-school activities","clubs fair","turn around","have a try"],"d":{"clubs fair":"社团招募展","after-school activities":"","turn around":"","have a try":""}},{"s":"The lamp uses ____.","ans":"solar power","opts":["watch out","make a difference","put on a play","solar power"],"d":{"solar power":"太阳能","watch out":"","make a difference":"","put on a play":""}},{"s":"Can you help me? ____!","ans":"of course","opts":["fly past","solar power","fall off","of course"],"d":{"of course":"当然","fly past":"","solar power":"","fall off":""}},{"s":"I use a ____ for the toy car.","ans":"remote control","opts":["have a try","of course","remote control","after-school activities"],"d":{"remote control":"遥控器","have a try":"","of course":"","after-school activities":""}},{"s":"Please ____ and face me.","ans":"turn around","opts":["make a difference","take off","turn around","put on a play"],"d":{"turn around":"转身","make a difference":"","take off":"","put on a play":""}},{"s":"Small actions can ____.","ans":"make a difference","opts":["clubs fair","fall off","make a difference","fly past"],"d":{"make a difference":"有作用；有影响","clubs fair":"","fall off":"","fly past":""}},{"s":"My brother is in ____.","ans":"primary school","opts":["take part in","primary school","have a try","of course"],"d":{"primary school":"小学","take part in":"","have a try":"","of course":""}},{"s":"The boy ____ his bike.","ans":"fall off","opts":["take off","fall off","turn around","sign up"],"d":{"fall off":"掉落","take off":"","turn around":"","sign up":""}},{"s":"I will ____ the club.","ans":"take part in","opts":["fly past","take part in","clubs fair","make a difference"],"d":{"take part in":"参加","fly past":"","clubs fair":"","make a difference":""}},{"s":"We have many ____.","ans":"after-school activities","opts":["sports ground","of course","fall off","after-school activities"],"d":{"after-school activities":"课外活动","sports ground":"","of course":"","fall off":""}},{"s":"The plane will ____ soon.","ans":"take off","opts":["remote control","after-school activities","sign up","take off"],"d":{"take off":"起飞","remote control":"","after-school activities":"","sign up":""}},{"s":"____! The car is coming.","ans":"watch out","opts":["make a difference","take off","watch out","clubs fair"],"d":{"watch out":"当心；小心","make a difference":"","take off":"","clubs fair":""}},{"s":"A bird ____ the window.","ans":"fly past","opts":["solar power","fall off","fly past","sports ground"],"d":{"fly past":"飞过","solar power":"","fall off":"","sports ground":""}},{"s":"We run on the ____.","ans":"sports ground","opts":["take part in","sports ground","sign up","remote control"],"d":{"sports ground":"运动场","take part in":"","sign up":"","remote control":""}},{"s":"Come on, ____!","ans":"have a try","opts":["take off","have a try","make a difference","put on a play"],"d":{"have a try":"试一试","take off":"","make a difference":"","put on a play":""}},{"s":"I want to ____ for the club.","ans":"sign up","opts":["solar power","sign up","fly past","primary school"],"d":{"sign up":"报名","solar power":"","fly past":"","primary school":""}},{"s":"The class will ____.","ans":"put on a play","opts":["remote control","sports ground","take part in","put on a play"],"d":{"put on a play":"上演戏剧","remote control":"","sports ground":"","take part in":""}}]},{"name":"短语语境拓展","data":[{"s":"We joined the ____.","ans":"clubs fair","opts":["after-school activities","clubs fair","turn around","have a try"],"d":{"clubs fair":"社团招募展","after-school activities":"","turn around":"","have a try":""}},{"s":"The house uses ____.","ans":"solar power","opts":["watch out","make a difference","put on a play","solar power"],"d":{"solar power":"太阳能","watch out":"","make a difference":"","put on a play":""}},{"s":"May I sit here? ____.","ans":"of course","opts":["fly past","solar power","fall off","of course"],"d":{"of course":"当然","fly past":"","solar power":"","fall off":""}},{"s":"The drone has a ____.","ans":"remote control","opts":["have a try","of course","remote control","after-school activities"],"d":{"remote control":"遥控器","have a try":"","of course":"","after-school activities":""}},{"s":"She ____ and smiled.","ans":"turn around","opts":["make a difference","take off","turn around","put on a play"],"d":{"turn around":"转身","make a difference":"","take off":"","put on a play":""}},{"s":"Your help will ____.","ans":"make a difference","opts":["clubs fair","fall off","make a difference","fly past"],"d":{"make a difference":"有作用；有影响","clubs fair":"","fall off":"","fly past":""}},{"s":"I studied in a ____.","ans":"primary school","opts":["take part in","primary school","have a try","of course"],"d":{"primary school":"小学","take part in":"","have a try":"","of course":""}},{"s":"Leaves ____ the tree.","ans":"fall off","opts":["take off","fall off","turn around","sign up"],"d":{"fall off":"掉落","take off":"","turn around":"","sign up":""}},{"s":"She ____ the race.","ans":"take part in","opts":["fly past","take part in","clubs fair","make a difference"],"d":{"take part in":"参加","fly past":"","clubs fair":"","make a difference":""}},{"s":"I like our ____.","ans":"after-school activities","opts":["sports ground","of course","fall off","after-school activities"],"d":{"after-school activities":"课外活动","sports ground":"","of course":"","fall off":""}},{"s":"The bird will ____.","ans":"take off","opts":["remote control","after-school activities","sign up","take off"],"d":{"take off":"起飞","remote control":"","after-school activities":"","sign up":""}},{"s":"____ for the steps.","ans":"watch out","opts":["make a difference","take off","watch out","clubs fair"],"d":{"watch out":"当心；小心","make a difference":"","take off":"","clubs fair":""}},{"s":"The kite ____ the tree.","ans":"fly past","opts":["solar power","fall off","fly past","sports ground"],"d":{"fly past":"飞过","solar power":"","fall off":"","sports ground":""}},{"s":"The game is on the ____.","ans":"sports ground","opts":["take part in","sports ground","sign up","remote control"],"d":{"sports ground":"运动场","take part in":"","sign up":"","remote control":""}},{"s":"Why not ____?","ans":"have a try","opts":["take off","have a try","make a difference","put on a play"],"d":{"have a try":"试一试","take off":"","make a difference":"","put on a play":""}},{"s":"Please ____ before Friday.","ans":"sign up","opts":["solar power","sign up","fly past","primary school"],"d":{"sign up":"报名","solar power":"","fly past":"","primary school":""}},{"s":"We will ____ at the party.","ans":"put on a play","opts":["remote control","sports ground","take part in","put on a play"],"d":{"put on a play":"上演戏剧","remote control":"","sports ground":"","take part in":""}}]}];
+  var scSet=0, sci=0, scscore=0, scans=false, sccurrent=null;
+  var scSent=document.getElementById('scSent'), scOpts=document.getElementById('scOpts'),
+      scFb=document.getElementById('scFb'), scNext=document.getElementById('scNext'),
+      scDone=document.getElementById('scDone'), scHint=document.getElementById('scHint'),
+      scScore=document.getElementById('scScore'), scDict=document.getElementById('scDict'),
+      scTabs=document.getElementById('scTabs'), scBadge=document.getElementById('scBadge');
+  function scCur(){ return SC_SETS[scSet].data; }
+  function scWordify(t, dict){
+    var html='', re=/([A-Za-z']+)([^A-Za-z']*)/g, last=0, m;
+    while((m=re.exec(t))!==null){
+      html+=t.slice(last,m.index);
+      var w=m[1], key=w.toLowerCase(), zh=dict&&dict[key]?dict[key]:'';
+      html+='<span class="clz-w" role="button" tabindex="0"'+(zh?' data-zh="'+zh+'"':'')+'>'+w+'</span>'+m[2];
+      last=m.index+m[0].length;
+    }
+    html+=t.slice(last); return html;
+  }
+  function scSentHtml(s, fill, dict){
+    var parts=s.split('____'), html='';
+    for(var i=0;i<parts.length;i++){
+      html+=scWordify(parts[i],dict);
+      if(i<parts.length-1){
+        var fkey=fill?fill.toLowerCase():'', fzh=dict&&fill&&dict[fkey]?dict[fkey]:'';
+        html+=fill?'<span class="clz-w fill" role="button" tabindex="0"'+(fzh?' data-zh="'+fzh+'"':'')+'>'+fill+'</span>':'<span class="clz-blank">______</span>';
+      }
+    }
+    return html;
+  }
+  function scShowDict(w,zh){ if(!scDict)return; if(zh){scDict.textContent=w+' — '+zh;scDict.style.display='block';}else{scDict.style.display='none';} }
+  scSent.addEventListener('click',function(e){
+    var t=e.target; if(!t||!t.classList||!t.classList.contains('clz-w'))return;
+    speak(t.textContent,0.8); scShowDict(t.textContent,t.getAttribute('data-zh'));
+  });
+  function scLoad(){
+    scans=false; sccurrent=scCur()[sci];
+    scHint.textContent='第 '+(sci+1)+' / '+scCur().length+' 题 · 点选填空（点单词听发音、看词义）';
+    scFb.textContent=''; scNext.style.display='none'; scNext.textContent='下一题 →'; scDone.style.display='none';
+    scSent.innerHTML=scSentHtml(sccurrent.s,'',sccurrent.d); scShowDict('','');
+    scOpts.innerHTML='';
+    shuffle(sccurrent.opts).forEach(function(o){
+      var b=document.createElement('button'); b.className='q-opt'; b.type='button'; b.textContent=o;
+      b.addEventListener('click',function(){
+        speak(o,0.8);
+        if(scans){ scShowDict(o,sccurrent.d[o.toLowerCase()]); return; }
+        scans=true;
+        var correct=(o===sccurrent.ans);
+        if(correct){ scscore++; b.classList.add('correct'); scFb.innerHTML='答对啦！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--green)'; }
+        else { b.classList.add('wrong'); var bs=scOpts.querySelectorAll('.q-opt'); for(var k=0;k<bs.length;k++){if(bs[k].textContent===sccurrent.ans){bs[k].classList.add('correct');break;}} scFb.innerHTML='再想想！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--red)'; }
+        scSent.innerHTML='';
+        var line=document.createElement('div'); line.className='clz-line';
+        line.innerHTML=scSentHtml(sccurrent.s,sccurrent.ans,sccurrent.d);
+        var lb=document.createElement('button'); lb.className='clz-listen'; lb.type='button';
+        lb.setAttribute('aria-label','朗读本句'); lb.title='朗读本句'; lb.innerHTML=SPK;
+        lb.addEventListener('click',function(){ speak(sccurrent.s.replace('____',sccurrent.ans)); });
+        line.appendChild(lb); scSent.appendChild(line);
+        scScore.textContent='得分：'+scscore;
+        setTimeout(function(){ speak(sccurrent.ans,0.8); },700);
+        scNext.style.display='inline-block';
+        if(sci>=scCur().length-1){ scNext.textContent='再来一轮'; scDone.style.display='block';
+          scDone.textContent='完成！共 '+scCur().length+' 题，答对 '+scscore+' 题。'+(scscore===scCur().length?' 太棒了，全部正确！':(scscore>=scCur().length*0.6?' 很好，继续加油！':' 建议回到例句部分再听一听。'));
+        }
+      });
+      scOpts.appendChild(b);
+    });
+  }
+  scNext.addEventListener('click',function(){
+    if(sci>=scCur().length-1){ sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; }
+    else sci++;
+    scLoad();
+  });
+  SC_SETS.forEach(function(st,i){
+    var tb=document.createElement('button'); tb.className='q-tab'+(i===0?' active':''); tb.type='button';
+    tb.textContent=st.name+'（'+st.data.length+' 题）';
+    tb.addEventListener('click',function(){
+      scSet=i; sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; scFb.textContent='';
+      var tabs=scTabs.querySelectorAll('.q-tab'); for(var k=0;k<tabs.length;k++)tabs[k].classList.remove('active');
+      tb.classList.add('active'); scBadge.textContent=st.name+' · '+st.data.length+' 题'; scLoad();
+    });
+    scTabs.appendChild(tb);
+  });
+  scBadge.textContent=SC_SETS[0].name+' · '+SC_SETS[0].data.length+' 题';
+  scLoad();
+
 </script>
 <style>
 .pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
@@ -1610,7 +1727,6 @@
       <a class="up" href="Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
       <a href="Unit6_Travelling_around_Asia_点读学习页.html">← 上一单元</a>
       <a href="Unit8_Collecting_as_a_Hobby_点读学习页.html">下一单元 →</a>
-      <a href="Unit7_Fun_after_School_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit7_习题与测试.html">📝 本单元习题与测试</a>
       <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>

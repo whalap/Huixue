@@ -246,6 +246,12 @@
        background:var(--coral);color:#fff;border:none;font-size:20px;line-height:1;cursor:pointer;
        box-shadow:0 3px 10px rgba(0,0,0,.18);z-index:60;display:none;align-items:center;justify-content:center;}
   .to-top:hover{background:#D64520;}
+
+  .clz-dict, .clz-line{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .clz-listen{border:none;background:var(--teal-soft,#E6F4EF);color:var(--teal,#0F6E56);width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 40px;}
+  .clz-listen:hover{background:var(--teal,#0F6E56);color:#fff;}
+  .clz-listen svg{width:17px;height:17px;fill:currentColor;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -364,6 +370,7 @@
     <a href="#grammar">⑤ 语法</a>
     <a href="#quiz">⑥ 小测</a>
     <a href="#cloze">⑦ 填空</a>
+    <a href="#sentcloze">⑧ 句填</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -516,6 +523,30 @@
       <div class="q-feedback" id="clzFb"></div>
       <button class="q-next" id="clzNext" type="button">下一题 →</button>
       <div class="q-done" id="clzDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 句子填空（独立例句·合并精简页） ================= -->
+  <section class="block" id="sentcloze">
+    <div class="sec-head">
+      <div class="no" style="background:var(--teal);">8</div>
+      <h2>句子填空 · 独立例句</h2>
+      <p>按当前课本词表编写 · 核心词 / 补充词 / 重点短语 / 短语语境拓展 · 点句子听发音，点单词看词义</p>
+      <span class="count-badge" id="scBadge"></span>
+    </div>
+    <div class="q-tabs" id="scTabs"></div>
+    <div class="cloze-box">
+      <div class="clz-top">
+        <div class="clz-progress" id="scHint">第 1 题</div>
+        <div class="q-score" id="scScore">得分：0</div>
+      </div>
+      <div class="clz-sent" id="scSent"></div>
+      <div class="clz-dict" id="scDict" style="display:none;margin-top:10px;padding:10px 14px;background:#FDF9F3;border:1px solid #EAD9AC;border-radius:12px;font-size:15px;color:#7A5200;"></div>
+      <div class="clz-opts" id="scOpts"></div>
+      <div class="q-feedback" id="scFb"></div>
+      <button class="q-next" id="scNext" type="button">下一题 →</button>
+      <div class="q-done" id="scDone"></div>
     </div>
   </section>
 
@@ -1632,6 +1663,92 @@
     b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
   }catch(e){}
 })();
+
+  /* ========== 句子填空（独立例句·合并精简页） ========== */
+  var SC_SETS = [{"name":"核心单词","data":[{"s":"Before leaving the space station, Tom put on his ____.","ans":"spacesuit","opts":["chance","spacesuit","weak","determination"],"d":{"spacesuit":"航天服；宇航服","chance":"","weak":"","determination":""}},{"s":"Astronauts ____ rocks from the moon and bring them home.","ans":"collect","opts":["pass","release","island","collect"],"d":{"collect":"收集；采集","pass":"","release":"","island":""}},{"s":"The spaceship will ____ the earth at nine tomorrow.","ans":"leave","opts":["tie","view","century","leave"],"d":{"leave":"离开","tie":"","view":"","century":""}},{"s":"One ____ is one thousand metres.","ans":"kilometre","opts":["spacesuit","experiment","kilometre","express"],"d":{"kilometre":"千米；公里","spacesuit":"","experiment":"","express":""}},{"s":"After the long trip, Ben felt ____ and needed a rest.","ans":"weak","opts":["breathe","someday","weak","surface"],"d":{"weak":"虚弱的；无力的","breathe":"","someday":"","surface":""}},{"s":"In space, you must ____ your sleeping bag to the wall.","ans":"tie","opts":["determination","kilometre","tie","chance"],"d":{"tie":"（用线、绳等）拴","determination":"","kilometre":"","chance":""}},{"s":"The temperature in outer space is very ____.","ans":"low","opts":["release","low","pass","island"],"d":{"low":"低于通常（或平均）数量（或水平、价值）的","release":"","pass":"","island":""}},{"s":"How much does this moon rock ____?","ans":"weigh","opts":["century","weigh","view","weak"],"d":{"weigh":"有……重；重","century":"","view":"","weak":""}},{"s":"Astronauts cannot ____ outside the spaceship.","ans":"breathe","opts":["express","breathe","spacesuit","experiment"],"d":{"breathe":"呼吸","express":"","spacesuit":"","experiment":""}},{"s":"A gym is an important ____ on the space station.","ans":"facility","opts":["someday","surface","weigh","facility"],"d":{"facility":"设施；设备","someday":"","surface":"","weigh":""}},{"s":"Travelling to Mars would be a wonderful ____.","ans":"adventure","opts":["determination","kilometre","chance","adventure"],"d":{"adventure":"冒险经历；奇遇","determination":"","kilometre":"","chance":""}},{"s":"Our ship will ____ slowly through the cloud.","ans":"pass","opts":["island","release","pass","adventure"],"d":{"pass":"沿某方向前进；向某方向移动","island":"","release":"","adventure":""}},{"s":"The scientists did an ____ on the station.","ans":"experiment","opts":["weak","view","experiment","century"],"d":{"experiment":"实验；试验","weak":"","view":"","century":""}},{"s":"We need to ____ for the space trip.","ans":"prepare","opts":["pass","prepare","express","spacesuit"],"d":{"prepare":"使做好准备；把……预备好","pass":"","express":"","spacesuit":""}},{"s":"Visiting the moon is the ____ of many children.","ans":"dream","opts":["weigh","dream","surface","someday"],"d":{"dream":"梦想；理想","weigh":"","surface":"","someday":""}},{"s":"This is a good ____ to see the earth from above.","ans":"chance","opts":["dream","chance","kilometre","determination"],"d":{"chance":"机会；机遇","dream":"","kilometre":"","determination":""}},{"s":"Tom will ____ an email to his family from space.","ans":"send","opts":["adventure","release","island","send"],"d":{"send":"邮寄；发送","adventure":"","release":"","island":""}},{"s":"Please read the ____ before the first chapter.","ans":"introduction","opts":["weak","view","century","introduction"],"d":{"introduction":"序言；引言","weak":"","view":"","century":""}},{"s":"From the window we enjoyed a beautiful ____ of the earth.","ans":"view","opts":["spacesuit","pass","view","express"],"d":{"view":"景色；风景","spacesuit":"","pass":"","express":""}},{"s":"I hope to walk on the moon ____.","ans":"someday","opts":["weigh","view","someday","surface"],"d":{"someday":"总有一天；有朝一日","weigh":"","view":"","surface":""}},{"s":"Walking in space was an amazing ____.","ans":"experience","opts":["determination","kilometre","experience","dream"],"d":{"experience":"经历；阅历","determination":"","kilometre":"","dream":""}},{"s":"The ____ touched down safely on the planet.","ans":"lander","opts":["release","lander","adventure","island"],"d":{"lander":"着陆器","release":"","adventure":"","island":""}},{"s":"There is a small ____ in the middle of the sea.","ans":"island","opts":["century","island","introduction","weak"],"d":{"island":"岛","century":"","introduction":"","weak":""}},{"s":"We learned about an ____ city with a long history.","ans":"ancient","opts":["express","ancient","spacesuit","pass"],"d":{"ancient":"古老的；很老的","express":"","spacesuit":"","pass":""}},{"s":"Lily wrote a short ____ about the stars.","ans":"poem","opts":["view","surface","weigh","poem"],"d":{"poem":"诗","view":"","surface":"","weigh":""}},{"s":"He used the poem to ____ his feelings.","ans":"express","opts":["determination","kilometre","dream","express"],"d":{"express":"表示；表达；表露","determination":"","kilometre":"","dream":""}},{"s":"With great ____, Ada trained hard for the mission.","ans":"determination","opts":["lander","release","determination","adventure"],"d":{"determination":"决心；坚毅；坚定","lander":"","release":"","adventure":""}},{"s":"The ____ is much bigger than we think.","ans":"universe","opts":["weak","introduction","universe","century"],"d":{"universe":"宇宙","weak":"","introduction":"","century":""}},{"s":"The astronauts have ____ arrived at the station.","ans":"already","opts":["pass","already","poem","spacesuit"],"d":{"already":"已经；早已","pass":"","poem":"","spacesuit":""}},{"s":"People first flew into space in the twentieth ____.","ans":"century","opts":["weigh","century","surface","view"],"d":{"century":"世纪","weigh":"","surface":"","view":""}},{"s":"My ____ is very interested in rockets.","ans":"neighbour","opts":["dream","neighbour","kilometre","express"],"d":{"neighbour":"邻居","dream":"","kilometre":"","express":""}},{"s":"The satellite will ____ the earth many times.","ans":"circle","opts":["adventure","release","lander","circle"],"d":{"circle":"环行","adventure":"","release":"","lander":""}},{"s":"The lander moved slowly across the ____ of the moon.","ans":"surface","opts":["weak","introduction","already","surface"],"d":{"surface":"表面；表层；面","weak":"","introduction":"","already":""}},{"s":"Be careful not to ____ the rope in space.","ans":"release","opts":["spacesuit","pass","release","poem"],"d":{"release":"放开；松开；使自由移动（或飞翔、降落等）","spacesuit":"","pass":"","poem":""}},{"s":"This bag of space food weighs one ____.","ans":"kilogram","opts":["weigh","view","kilogram","circle"],"d":{"kilogram":"千克；公斤","weigh":"","view":"","circle":""}},{"s":"The space ____ aims to send a robot to Mars.","ans":"programme","opts":["express","kilometre","programme","dream"],"d":{"programme":"计划；方案","express":"","kilometre":"","dream":""}}]},{"name":"补充词汇","data":[{"s":"The ____ carried the astronauts into space.","ans":"spaceship","opts":["mysterious","spaceship","float","satellite"],"d":{"spaceship":"宇宙飞船","mysterious":"","float":"","satellite":""}},{"s":"There is no air in ____.","ans":"space","opts":["wear","journey","mission","space"],"d":{"space":"太空","wear":"","journey":"","mission":""}},{"s":"I want to ____ into space one day.","ans":"travel","opts":["away","plan","station","travel"],"d":{"travel":"旅行；行进","away":"","plan":"","station":""}},{"s":"Without ____, everything floats in the station.","ans":"gravity","opts":["travel","strange","gravity","rocket"],"d":{"gravity":"重力；引力","travel":"","strange":"","rocket":""}},{"s":"In space, water will ____ in the air.","ans":"float","opts":["jump","astronaut","float","return"],"d":{"float":"漂浮；浮动","jump":"","astronaut":"","return":""}},{"s":"Astronauts ____ in special bags on the station.","ans":"sleep","opts":["test","body","sleep","future"],"d":{"sleep":"睡觉","test":"","body":"","future":""}},{"s":"The spaceship flew far ____ from the earth.","ans":"away","opts":["space","away","mysterious","satellite"],"d":{"away":"离开；不在","space":"","mysterious":"","satellite":""}},{"s":"Daily exercise keeps the ____ of an astronaut strong.","ans":"body","opts":["journey","body","mission","arrive"],"d":{"body":"身体","journey":"","mission":"","arrive":""}},{"s":"Astronauts do ____ every day to stay strong.","ans":"exercise","opts":["station","exercise","sleep","wonderful"],"d":{"exercise":"锻炼；运动","station":"","sleep":"","wonderful":""}},{"s":"The spaceship will ____ at the station soon.","ans":"arrive","opts":["orbit","travel","strange","arrive"],"d":{"arrive":"到达","orbit":"","travel":"","strange":""}},{"s":"On the moon you can ____ very high.","ans":"jump","opts":["star","arrive","astronaut","jump"],"d":{"jump":"跳；跳跃","star":"","arrive":"","astronaut":""}},{"s":"You must ____ a helmet in space.","ans":"wear","opts":["test","float","wear","future"],"d":{"wear":"穿；戴","test":"","float":"","future":""}},{"s":"There is no ____ in space, so it is very quiet.","ans":"sound","opts":["wear","satellite","sound","space"],"d":{"sound":"声音","wear":"","satellite":"","space":""}},{"s":"The moon rock had a ____ shape.","ans":"strange","opts":["trip","strange","journey","exercise"],"d":{"strange":"奇怪的；陌生的","trip":"","journey":"","exercise":""}},{"s":"The dark side of the planet looks ____.","ans":"mysterious","opts":["wonderful","mysterious","sleep","weightless"],"d":{"mysterious":"神秘的","wonderful":"","sleep":"","weightless":""}},{"s":"Tom took a ____ of the earth from space.","ans":"photo","opts":["orbit","photo","sound","spaceship"],"d":{"photo":"照片","orbit":"","sound":"","spaceship":""}},{"s":"We had a ____ view of the blue earth.","ans":"wonderful","opts":["astronaut","body","star","wonderful"],"d":{"wonderful":"精彩的；绝妙的","astronaut":"","body":"","star":""}},{"s":"Maybe in the ____ we can live on Mars.","ans":"future","opts":["mysterious","test","float","future"],"d":{"future":"未来；将来","mysterious":"","test":"","float":""}},{"s":"Our ____ is to visit the moon next year.","ans":"plan","opts":["wear","land","plan","space"],"d":{"plan":"计划","wear":"","land":"","space":""}},{"s":"The space ____ was exciting from start to end.","ans":"trip","opts":["plan","rock","trip","exercise"],"d":{"trip":"旅行","plan":"","rock":"","exercise":""}},{"s":"An ____ walked on the moon in 1969.","ans":"astronaut","opts":["gravity","photo","astronaut","weightless"],"d":{"astronaut":"宇航员","gravity":"","photo":"","weightless":""}},{"s":"The ____ to Mars was a great success.","ans":"mission","opts":["jump","mission","orbit","spaceship"],"d":{"mission":"任务；使命","jump":"","orbit":"","spaceship":""}},{"s":"The spaceship will ____ on the moon.","ans":"land","opts":["body","land","star","future"],"d":{"land":"着陆；降落","body":"","star":"","future":""}},{"s":"The satellite moves in an ____ around the earth.","ans":"orbit","opts":["float","orbit","mysterious","rocket"],"d":{"orbit":"轨道","float":"","mysterious":"","rocket":""}},{"s":"A ____ goes around the earth.","ans":"satellite","opts":["return","wear","mission","satellite"],"d":{"satellite":"卫星","return":"","wear":"","mission":""}},{"s":"The ____ carried the spaceship into the sky.","ans":"rocket","opts":["away","plan","rock","rocket"],"d":{"rocket":"火箭","away":"","plan":"","rock":""}},{"s":"In space, astronauts are ____.","ans":"weightless","opts":["gravity","strange","weightless","rocket"],"d":{"weightless":"失重的","gravity":"","strange":"","rocket":""}},{"s":"We will have a science ____ next week.","ans":"test","opts":["astronaut","spaceship","test","jump"],"d":{"test":"试验；测试","astronaut":"","spaceship":"","jump":""}},{"s":"Six astronauts live and work on the space ____.","ans":"station","opts":["test","station","body","future"],"d":{"station":"站；台","test":"","body":"","future":""}},{"s":"Astronauts brought back a ____ from the moon.","ans":"rock","opts":["satellite","rock","mysterious","travel"],"d":{"rock":"岩石","satellite":"","mysterious":"","travel":""}},{"s":"The sun is the nearest ____ to the earth.","ans":"star","opts":["return","star","mission","arrive"],"d":{"star":"恒星；星星","return":"","mission":"","arrive":""}},{"s":"The ____ to the moon took three days.","ans":"journey","opts":["station","wonderful","away","journey"],"d":{"journey":"旅程；旅行","station":"","wonderful":"","away":""}},{"s":"The astronauts will ____ to earth next week.","ans":"return","opts":["orbit","gravity","strange","return"],"d":{"return":"返回；回来","orbit":"","gravity":"","strange":""}}]},{"name":"重点短语","data":[{"s":"The astronauts live in the ____.","ans":"space station","opts":["sleeping bag","space station","thousands of","look forward to"],"d":{"space station":"空间站","sleeping bag":"","thousands of":"","look forward to":""}},{"s":"We ____ every day.","ans":"do exercise","opts":["walk on the Moon","thousands of","travel back to","do exercise"],"d":{"do exercise":"锻炼；运动","walk on the moon":"","thousands of":"","travel back to":""}},{"s":"I ____ of the beautiful view.","ans":"take photos","opts":["walk on the Moon","space station","one of the first students","take photos"],"d":{"take photos":"拍照","walk on the moon":"","space station":"","one of the first students":""}},{"s":"The satellite will ____.","ans":"get into orbit","opts":["as many as","space station","get into orbit","in space"],"d":{"get into orbit":"进入轨道","as many as":"","space station":"","in space":""}},{"s":"____ stars are in the sky.","ans":"thousands of","opts":["take photos","in space","thousands of","in the future"],"d":{"thousands of":"数以千计；成千上万","take photos":"","in space":"","in the future":""}},{"s":"I want to ____ one day.","ans":"travel into space","opts":["in the future","thousands of","travel into space","float away"],"d":{"travel into space":"进入太空旅行","in the future":"","thousands of":"","float away":""}},{"s":"He was ____ to go there.","ans":"one of the first students","opts":["thousands of","one of the first students","wear a spacesuit","a wonderful trip"],"d":{"one of the first students":"首批学生之一","thousands of":"","wear a spacesuit":"","a wonderful trip":""}},{"s":"I ____ to see you.","ans":"can't wait","opts":["one of the first students","can't wait","do exercise","wear a spacesuit"],"d":{"can't wait":"迫不及待","one of the first students":"","do exercise":"","wear a spacesuit":""}},{"s":"There is no gravity ____.","ans":"in space","opts":["sleeping bag","in space","look forward to","do exercise"],"d":{"in space":"在太空","sleeping bag":"","look forward to":"","do exercise":""}},{"s":"He slept in a ____.","ans":"sleeping bag","opts":["in space","travel back to","get into orbit","sleeping bag"],"d":{"sleeping bag":"睡袋","in space":"","travel back to":"","get into orbit":""}},{"s":"The balloon will ____.","ans":"float away","opts":["travel back to","travel into space","walk on the Moon","float away"],"d":{"float away":"飘走","travel back to":"","travel into space":"","walk on the moon":""}},{"s":"Astronauts ____.","ans":"walk on the Moon","opts":["space station","travel into space","walk on the Moon","as many as"],"d":{"walk on the moon":"在月球上行走","space station":"","travel into space":"","as many as":""}},{"s":"You must ____ in space.","ans":"wear a spacesuit","opts":["as many as","take photos","wear a spacesuit","can't wait"],"d":{"wear a spacesuit":"穿航天服","as many as":"","take photos":"","can't wait":""}},{"s":"You can take ____ you like.","ans":"as many as","opts":["take photos","as many as","sleeping bag","in the future"],"d":{"as many as":"尽可能多的","take photos":"","sleeping bag":"","in the future":""}},{"s":"We ____ the trip.","ans":"look forward to","opts":["thousands of","look forward to","a wonderful trip","sleeping bag"],"d":{"look forward to":"期待","thousands of":"","a wonderful trip":"","sleeping bag":""}},{"s":"Cars will fly ____.","ans":"in the future","opts":["walk on the Moon","in the future","one of the first students","a wonderful trip"],"d":{"in the future":"在未来","walk on the moon":"","one of the first students":"","a wonderful trip":""}},{"s":"They will ____ the earth.","ans":"travel back to","opts":["as many as","one of the first students","do exercise","travel back to"],"d":{"travel back to":"返回……","as many as":"","one of the first students":"","do exercise":""}},{"s":"We had ____.","ans":"a wonderful trip","opts":["as many as","get into orbit","in space","a wonderful trip"],"d":{"a wonderful trip":"一次精彩的旅行","as many as":"","get into orbit":"","in space":""}}]},{"name":"短语语境拓展","data":[{"s":"The ship reached the ____.","ans":"space station","opts":["sleeping bag","space station","thousands of","look forward to"],"d":{"space station":"空间站","sleeping bag":"","thousands of":"","look forward to":""}},{"s":"She ____ in the morning.","ans":"do exercise","opts":["walk on the Moon","thousands of","travel back to","do exercise"],"d":{"do exercise":"锻炼；运动","walk on the moon":"","thousands of":"","travel back to":""}},{"s":"Let's ____ here.","ans":"take photos","opts":["walk on the Moon","space station","one of the first students","take photos"],"d":{"take photos":"拍照","walk on the moon":"","space station":"","one of the first students":""}},{"s":"The rocket will ____ soon.","ans":"get into orbit","opts":["as many as","space station","get into orbit","in space"],"d":{"get into orbit":"进入轨道","as many as":"","space station":"","in space":""}},{"s":"____ people watched the show.","ans":"thousands of","opts":["take photos","in space","thousands of","in the future"],"d":{"thousands of":"数以千计；成千上万","take photos":"","in space":"","in the future":""}},{"s":"It is exciting to ____.","ans":"travel into space","opts":["in the future","thousands of","travel into space","float away"],"d":{"travel into space":"进入太空旅行","in the future":"","thousands of":"","float away":""}},{"s":"She was ____ in our class.","ans":"one of the first students","opts":["thousands of","one of the first students","wear a spacesuit","a wonderful trip"],"d":{"one of the first students":"首批学生之一","thousands of":"","wear a spacesuit":"","a wonderful trip":""}},{"s":"The kids ____ for the holiday.","ans":"can't wait","opts":["one of the first students","can't wait","do exercise","wear a spacesuit"],"d":{"can't wait":"迫不及待","one of the first students":"","do exercise":"","wear a spacesuit":""}},{"s":"Everything floats ____.","ans":"in space","opts":["sleeping bag","in space","look forward to","do exercise"],"d":{"in space":"在太空","sleeping bag":"","look forward to":"","do exercise":""}},{"s":"Take a ____ for the camp.","ans":"sleeping bag","opts":["in space","travel back to","get into orbit","sleeping bag"],"d":{"sleeping bag":"睡袋","in space":"","travel back to":"","get into orbit":""}},{"s":"The paper will ____ in water.","ans":"float away","opts":["travel back to","travel into space","walk on the Moon","float away"],"d":{"float away":"飘走","travel back to":"","travel into space":"","walk on the moon":""}},{"s":"It is hard to ____.","ans":"walk on the Moon","opts":["space station","travel into space","walk on the Moon","as many as"],"d":{"walk on the moon":"在月球上行走","space station":"","travel into space":"","as many as":""}},{"s":"They ____ before the launch.","ans":"wear a spacesuit","opts":["as many as","take photos","wear a spacesuit","can't wait"],"d":{"wear a spacesuit":"穿航天服","as many as":"","take photos":"","can't wait":""}},{"s":"There are ____ fifty students.","ans":"as many as","opts":["take photos","as many as","sleeping bag","in the future"],"d":{"as many as":"尽可能多的","take photos":"","sleeping bag":"","in the future":""}},{"s":"I ____ your reply.","ans":"look forward to","opts":["thousands of","look forward to","a wonderful trip","sleeping bag"],"d":{"look forward to":"期待","thousands of":"","a wonderful trip":"","sleeping bag":""}},{"s":"Robots will help us ____.","ans":"in the future","opts":["walk on the Moon","in the future","one of the first students","a wonderful trip"],"d":{"in the future":"在未来","walk on the moon":"","one of the first students":"","a wonderful trip":""}},{"s":"The spaceship will ____ earth.","ans":"travel back to","opts":["as many as","one of the first students","do exercise","travel back to"],"d":{"travel back to":"返回……","as many as":"","one of the first students":"","do exercise":""}},{"s":"The space trip was ____.","ans":"a wonderful trip","opts":["as many as","get into orbit","in space","a wonderful trip"],"d":{"a wonderful trip":"一次精彩的旅行","as many as":"","get into orbit":"","in space":""}}]}];
+  var scSet=0, sci=0, scscore=0, scans=false, sccurrent=null;
+  var scSent=document.getElementById('scSent'), scOpts=document.getElementById('scOpts'),
+      scFb=document.getElementById('scFb'), scNext=document.getElementById('scNext'),
+      scDone=document.getElementById('scDone'), scHint=document.getElementById('scHint'),
+      scScore=document.getElementById('scScore'), scDict=document.getElementById('scDict'),
+      scTabs=document.getElementById('scTabs'), scBadge=document.getElementById('scBadge');
+  function scCur(){ return SC_SETS[scSet].data; }
+  function scWordify(t, dict){
+    var html='', re=/([A-Za-z']+)([^A-Za-z']*)/g, last=0, m;
+    while((m=re.exec(t))!==null){
+      html+=t.slice(last,m.index);
+      var w=m[1], key=w.toLowerCase(), zh=dict&&dict[key]?dict[key]:'';
+      html+='<span class="clz-w" role="button" tabindex="0"'+(zh?' data-zh="'+zh+'"':'')+'>'+w+'</span>'+m[2];
+      last=m.index+m[0].length;
+    }
+    html+=t.slice(last); return html;
+  }
+  function scSentHtml(s, fill, dict){
+    var parts=s.split('____'), html='';
+    for(var i=0;i<parts.length;i++){
+      html+=scWordify(parts[i],dict);
+      if(i<parts.length-1){
+        var fkey=fill?fill.toLowerCase():'', fzh=dict&&fill&&dict[fkey]?dict[fkey]:'';
+        html+=fill?'<span class="clz-w fill" role="button" tabindex="0"'+(fzh?' data-zh="'+fzh+'"':'')+'>'+fill+'</span>':'<span class="clz-blank">______</span>';
+      }
+    }
+    return html;
+  }
+  function scShowDict(w,zh){ if(!scDict)return; if(zh){scDict.textContent=w+' — '+zh;scDict.style.display='block';}else{scDict.style.display='none';} }
+  scSent.addEventListener('click',function(e){
+    var t=e.target; if(!t||!t.classList||!t.classList.contains('clz-w'))return;
+    speak(t.textContent,0.8); scShowDict(t.textContent,t.getAttribute('data-zh'));
+  });
+  function scLoad(){
+    scans=false; sccurrent=scCur()[sci];
+    scHint.textContent='第 '+(sci+1)+' / '+scCur().length+' 题 · 点选填空（点单词听发音、看词义）';
+    scFb.textContent=''; scNext.style.display='none'; scNext.textContent='下一题 →'; scDone.style.display='none';
+    scSent.innerHTML=scSentHtml(sccurrent.s,'',sccurrent.d); scShowDict('','');
+    scOpts.innerHTML='';
+    shuffle(sccurrent.opts).forEach(function(o){
+      var b=document.createElement('button'); b.className='q-opt'; b.type='button'; b.textContent=o;
+      b.addEventListener('click',function(){
+        speak(o,0.8);
+        if(scans){ scShowDict(o,sccurrent.d[o.toLowerCase()]); return; }
+        scans=true;
+        var correct=(o===sccurrent.ans);
+        if(correct){ scscore++; b.classList.add('correct'); scFb.innerHTML='答对啦！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--green)'; }
+        else { b.classList.add('wrong'); var bs=scOpts.querySelectorAll('.q-opt'); for(var k=0;k<bs.length;k++){if(bs[k].textContent===sccurrent.ans){bs[k].classList.add('correct');break;}} scFb.innerHTML='再想想！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--red)'; }
+        scSent.innerHTML='';
+        var line=document.createElement('div'); line.className='clz-line';
+        line.innerHTML=scSentHtml(sccurrent.s,sccurrent.ans,sccurrent.d);
+        var lb=document.createElement('button'); lb.className='clz-listen'; lb.type='button';
+        lb.setAttribute('aria-label','朗读本句'); lb.title='朗读本句'; lb.innerHTML=SPK;
+        lb.addEventListener('click',function(){ speak(sccurrent.s.replace('____',sccurrent.ans)); });
+        line.appendChild(lb); scSent.appendChild(line);
+        scScore.textContent='得分：'+scscore;
+        setTimeout(function(){ speak(sccurrent.ans,0.8); },700);
+        scNext.style.display='inline-block';
+        if(sci>=scCur().length-1){ scNext.textContent='再来一轮'; scDone.style.display='block';
+          scDone.textContent='完成！共 '+scCur().length+' 题，答对 '+scscore+' 题。'+(scscore===scCur().length?' 太棒了，全部正确！':(scscore>=scCur().length*0.6?' 很好，继续加油！':' 建议回到例句部分再听一听。'));
+        }
+      });
+      scOpts.appendChild(b);
+    });
+  }
+  scNext.addEventListener('click',function(){
+    if(sci>=scCur().length-1){ sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; }
+    else sci++;
+    scLoad();
+  });
+  SC_SETS.forEach(function(st,i){
+    var tb=document.createElement('button'); tb.className='q-tab'+(i===0?' active':''); tb.type='button';
+    tb.textContent=st.name+'（'+st.data.length+' 题）';
+    tb.addEventListener('click',function(){
+      scSet=i; sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; scFb.textContent='';
+      var tabs=scTabs.querySelectorAll('.q-tab'); for(var k=0;k<tabs.length;k++)tabs[k].classList.remove('active');
+      tb.classList.add('active'); scBadge.textContent=st.name+' · '+st.data.length+' 题'; scLoad();
+    });
+    scTabs.appendChild(tb);
+  });
+  scBadge.textContent=SC_SETS[0].name+' · '+SC_SETS[0].data.length+' 题';
+  scLoad();
+
 </script>
 <style>
 .pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
@@ -1653,7 +1770,6 @@
       <a class="up" href="Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
       <a href="Unit4_The_Earth_点读学习页.html">← 上一单元</a>
       <a href="Unit6_Travelling_around_Asia_点读学习页.html">下一单元 →</a>
-      <a href="Unit5_Off_to_Space_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit5_习题与测试.html">📝 本单元习题与测试</a>
       <a href="Unit5_Off_to_Space_点读学习页.html#reading">🎧 课文跟读</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>

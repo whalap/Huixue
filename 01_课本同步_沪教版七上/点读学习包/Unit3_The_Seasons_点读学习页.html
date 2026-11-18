@@ -246,6 +246,12 @@
        background:var(--coral);color:#fff;border:none;font-size:20px;line-height:1;cursor:pointer;
        box-shadow:0 3px 10px rgba(0,0,0,.18);z-index:60;display:none;align-items:center;justify-content:center;}
   .to-top:hover{background:#D64520;}
+
+  .clz-dict, .clz-line{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .clz-listen{border:none;background:var(--teal-soft,#E6F4EF);color:var(--teal,#0F6E56);width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 40px;}
+  .clz-listen:hover{background:var(--teal,#0F6E56);color:#fff;}
+  .clz-listen svg{width:17px;height:17px;fill:currentColor;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -364,6 +370,7 @@
     <a href="#grammar">⑤ 语法</a>
     <a href="#quiz">⑥ 小测</a>
     <a href="#cloze">⑦ 填空</a>
+    <a href="#sentcloze">⑧ 句填</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -516,6 +523,30 @@
       <div class="q-feedback" id="clzFb"></div>
       <button class="q-next" id="clzNext" type="button">下一题 →</button>
       <div class="q-done" id="clzDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 句子填空（独立例句·合并精简页） ================= -->
+  <section class="block" id="sentcloze">
+    <div class="sec-head">
+      <div class="no" style="background:var(--teal);">8</div>
+      <h2>句子填空 · 独立例句</h2>
+      <p>按当前课本词表编写 · 核心词 / 补充词 / 重点短语 / 短语语境拓展 · 点句子听发音，点单词看词义</p>
+      <span class="count-badge" id="scBadge"></span>
+    </div>
+    <div class="q-tabs" id="scTabs"></div>
+    <div class="cloze-box">
+      <div class="clz-top">
+        <div class="clz-progress" id="scHint">第 1 题</div>
+        <div class="q-score" id="scScore">得分：0</div>
+      </div>
+      <div class="clz-sent" id="scSent"></div>
+      <div class="clz-dict" id="scDict" style="display:none;margin-top:10px;padding:10px 14px;background:#FDF9F3;border:1px solid #EAD9AC;border-radius:12px;font-size:15px;color:#7A5200;"></div>
+      <div class="clz-opts" id="scOpts"></div>
+      <div class="q-feedback" id="scFb"></div>
+      <button class="q-next" id="scNext" type="button">下一题 →</button>
+      <div class="q-done" id="scDone"></div>
     </div>
   </section>
 
@@ -1591,6 +1622,92 @@
     b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
   }catch(e){}
 })();
+
+  /* ========== 句子填空（独立例句·合并精简页） ========== */
+  var SC_SETS = [{"name":"核心单词","data":[{"s":"Tom left a single ____ in the wet sand when he ran on the beach.","ans":"footprint","opts":["gather","footprint","kick","follow"],"d":{"footprint":"脚印；足迹","gather":"","kick":"","follow":""}},{"s":"The ground was ____ after the heavy rain.","ans":"wet","opts":["lightning","continue","alive","wet"],"d":{"wet":"潮湿的","lightning":"","continue":"","alive":""}},{"s":"The water in the river is very ____; do not swim here.","ans":"deep","opts":["south","article","local","deep"],"d":{"deep":"深的","south":"","article":"","local":""}},{"s":"The children played on the ____ beach by the sea.","ans":"sandy","opts":["town","peaceful","sandy","crop"],"d":{"sandy":"铺满沙子的；含沙的","town":"","peaceful":"","crop":""}},{"s":"Tom likes to ____ the ball with his foot in the park.","ans":"kick","opts":["fresh","sandcastle","kick","deep"],"d":{"kick":"踢；踹","fresh":"","sandcastle":"","deep":""}},{"s":"My grandparents live in a small ____ near the sea.","ans":"town","opts":["tradition","thunder","town","reason"],"d":{"town":"镇；市镇","tradition":"","thunder":"","reason":""}},{"s":"A special ____ of this town is its old bridge.","ans":"feature","opts":["town","feature","part","culture"],"d":{"feature":"特色；特征","town":"","part":"","culture":""}},{"s":"Hainan is in the ____ of China.","ans":"south","opts":["sandy","south","decide","gather"],"d":{"south":"南；南方","sandy":"","decide":"","gather":""}},{"s":"It was a ____ day, so we could see the blue sky.","ans":"clear","opts":["wet","clear","lightning","alive"],"d":{"clear":"晴朗的","wet":"","lightning":"","alive":""}},{"s":"The noisy children laughed ____ in the classroom.","ans":"loudly","opts":["local","clear","article","loudly"],"d":{"loudly":"喧闹地；响亮地","local":"","clear":"","article":""}},{"s":"We heard loud ____ during the storm.","ans":"thunder","opts":["kick","through","crop","thunder"],"d":{"thunder":"雷","kick":"","through":"","crop":""}},{"s":"A flash of ____ lit up the dark sky.","ans":"lightning","opts":["deep","fresh","lightning","divide"],"d":{"lightning":"闪电","deep":"","fresh":"","divide":""}},{"s":"The air in the countryside is ____ and clean.","ans":"fresh","opts":["reason","footprint","fresh","loudly"],"d":{"fresh":"新鲜的","reason":"","footprint":"","loudly":""}},{"s":"Farmers ____ the crops in autumn.","ans":"gather","opts":["culture","gather","south","part"],"d":{"gather":"采集（植物、水果等）","culture":"","south":"","part":""}},{"s":"The small village is quiet and ____.","ans":"peaceful","opts":["decide","peaceful","snake","sandy"],"d":{"peaceful":"安静的；平静的","decide":"","snake":"","sandy":""}},{"s":"Lily was afraid when she saw a ____ in the grass.","ans":"snake","opts":["wet","snake","follow","thunder"],"d":{"snake":"蛇","wet":"","follow":"","thunder":""}},{"s":"It rained ____ the whole day, so we stayed at home.","ans":"through","opts":["continue","article","clear","through"],"d":{"through":"自始至终；从头到尾","continue":"","article":"","clear":""}},{"s":"The northern ____ of the country is very cold.","ans":"part","opts":["crop","feature","snake","part"],"d":{"part":"区域；地区","crop":"","feature":"","snake":""}},{"s":"I read an interesting ____ about the four seasons in the magazine.","ans":"article","opts":["divide","deep","article","gather"],"d":{"article":"文章","divide":"","deep":"","gather":""}},{"s":"Can you tell me the ____ why the leaves turn yellow in autumn?","ans":"reason","opts":["footprint","loudly","reason","sandcastle"],"d":{"reason":"原因；理由","footprint":"","loudly":"","sandcastle":""}},{"s":"The fish is still ____; it is swimming in the water.","ans":"alive","opts":["through","tradition","alive","south"],"d":{"alive":"有生气；有活力","through":"","tradition":"","south":""}},{"s":"The children built a ____ on the beach.","ans":"sandcastle","opts":["decide","sandcastle","town","peaceful"],"d":{"sandcastle":"沙堡","decide":"","town":"","peaceful":""}},{"s":"The four seasons ____ one after another.","ans":"follow","opts":["sandcastle","follow","fresh","wet"],"d":{"follow":"按……方式发展","sandcastle":"","fresh":"","wet":""}},{"s":"The teacher will ____ the class into four groups.","ans":"divide","opts":["reason","divide","continue","clear"],"d":{"divide":"（使）分开","reason":"","continue":"","clear":""}},{"s":"We need to ____ where to go for the school outing.","ans":"decide","opts":["snake","local","feature","decide"],"d":{"decide":"对……作出抉择；决定","snake":"","local":"","feature":""}},{"s":"Rice is an important ____ in the south of China.","ans":"crop","opts":["follow","kick","gather","crop"],"d":{"crop":"庄稼；作物","follow":"","kick":"","gather":""}},{"s":"The Spring Festival is an important part of Chinese ____.","ans":"culture","opts":["alive","footprint","culture","lightning"],"d":{"culture":"文化；文明","alive":"","footprint":"","lightning":""}},{"s":"We bought fresh fruit at the ____ market.","ans":"local","opts":["south","article","local","tradition"],"d":{"local":"地方的；当地的","south":"","article":"","tradition":""}},{"s":"It is a ____ to eat dumplings at the Spring Festival.","ans":"tradition","opts":["peaceful","tradition","crop","town"],"d":{"tradition":"传统","peaceful":"","crop":"","town":""}},{"s":"The rain will ____ for another two days.","ans":"continue","opts":["fresh","continue","sandy","sandcastle"],"d":{"continue":"持续；继续存在","fresh":"","sandy":"","sandcastle":""}}]},{"name":"补充词汇","data":[{"s":"How is the ____ today? It is rainy.","ans":"weather","opts":["skiing","weather","windy","farmer"],"d":{"weather":"天气","skiing":"","windy":"","farmer":""}},{"s":"It is a ____ day, so the ground is all white.","ans":"snowy","opts":["leaves","windy","outing","snowy"],"d":{"snowy":"下雪的","leaves":"","windy":"","outing":""}},{"s":"Take an umbrella; it is a ____ day.","ans":"rainy","opts":["leaves","weather","beach","rainy"],"d":{"rainy":"多雨的","leaves":"","weather":"","beach":""}},{"s":"The sky is ____; I think it will rain.","ans":"cloudy","opts":["cicada","weather","cloudy","swimming"],"d":{"cloudy":"多云的","cicada":"","weather":"","swimming":""}},{"s":"It is ____ today, so the kite flies high.","ans":"windy","opts":["rainy","swimming","windy","outdoors"],"d":{"windy":"有风的","rainy":"","swimming":"","outdoors":""}},{"s":"The ____ is thirty degrees in summer.","ans":"temperature","opts":["outdoors","windy","temperature","harvest"],"d":{"temperature":"温度","outdoors":"","windy":"","harvest":""}},{"s":"We played on the ____ and swam in the sea.","ans":"beach","opts":["windy","beach","squirrel","ice cream"],"d":{"beach":"海滩","windy":"","squirrel":"","ice cream":""}},{"s":"My grandparents live in the ____, far from the city.","ans":"countryside","opts":["beach","countryside","snowy","squirrel"],"d":{"countryside":"乡村；农村","beach":"","snowy":"","squirrel":""}},{"s":"____ is a good sport in hot summer.","ans":"swimming","opts":["skiing","swimming","farmer","snowy"],"d":{"swimming":"游泳","skiing":"","farmer":"","snowy":""}},{"s":"____ is popular in the cold north in winter.","ans":"skiing","opts":["swimming","outing","cloudy","skiing"],"d":{"skiing":"滑雪","swimming":"","outing":"","cloudy":""}},{"s":"Autumn is the time of ____ for farmers.","ans":"harvest","opts":["outing","temperature","leaves","harvest"],"d":{"harvest":"收获","outing":"","temperature":"","leaves":""}},{"s":"The ____ turn yellow and fall from the trees in autumn.","ans":"leaves","opts":["weather","temperature","leaves","cicada"],"d":{"leaves":"树叶（leaf 的复数）","weather":"","temperature":"","cicada":""}},{"s":"The ____ stores nuts for the cold winter.","ans":"squirrel","opts":["cicada","rainy","squirrel","countryside"],"d":{"squirrel":"松鼠","cicada":"","rainy":"","countryside":""}},{"s":"The ____ makes a loud noise in the hot summer.","ans":"cicada","opts":["rainy","cicada","skiing","outdoors"],"d":{"cicada":"蝉","rainy":"","skiing":"","outdoors":""}},{"s":"A ____ works in the fields and grows crops.","ans":"farmer","opts":["windy","farmer","ice cream","skiing"],"d":{"farmer":"农民","windy":"","ice cream":"","skiing":""}},{"s":"We like to play ____ when the weather is nice.","ans":"outdoors","opts":["leaves","outdoors","beach","ice cream"],"d":{"outdoors":"在户外","leaves":"","beach":"","ice cream":""}},{"s":"Our class had a happy ____ in the park last Sunday.","ans":"outing","opts":["cicada","beach","snowy","outing"],"d":{"outing":"远足；郊游","cicada":"","beach":"","snowy":""}},{"s":"I like to eat ____ in hot weather.","ans":"ice cream","opts":["cicada","cloudy","swimming","ice cream"],"d":{"ice cream":"冰淇淋","cicada":"","cloudy":"","swimming":""}}]},{"name":"重点短语","data":[{"s":"We ____ in the park on Sunday.","ans":"have picnics","opts":["come back","have picnics","in fact","go on a family outing"],"d":{"have picnics":"野餐","come back":"","in fact":"","go on a family outing":""}},{"s":"Farmers ____ in spring.","ans":"work one's land","opts":["swim in the sea","be divided into","in the countryside","work one's land"],"d":{"work one's land":"耕种土地","swim in the sea":"","be divided into":"","in the countryside":""}},{"s":"Our family will ____ to Beijing.","ans":"take a trip","opts":["eat ice cream","work one's land","play an important part in","take a trip"],"d":{"take a trip":"去旅行","eat ice cream":"","work one's land":"","play an important part in":""}},{"s":"Qingming is a ____.","ans":"solar term","opts":["go on a family outing","take a trip","solar term","come back"],"d":{"solar term":"节气","go on a family outing":"","take a trip":"","come back":""}},{"s":"____, he is very kind.","ans":"in fact","opts":["be divided into","go to the beach","in fact","in the countryside"],"d":{"in fact":"事实上","be divided into":"","go to the beach":"","in the countryside":""}},{"s":"The class ____ four groups.","ans":"be divided into","opts":["have picnics","play an important part in","be divided into","eat ice cream"],"d":{"be divided into":"被划分成……","have picnics":"","play an important part in":"","eat ice cream":""}},{"s":"The story ____ a true event.","ans":"be based on","opts":["wake up","be based on","go on a family outing","take a trip"],"d":{"be based on":"基于……","wake up":"","go on a family outing":"","take a trip":""}},{"s":"Education ____ our life.","ans":"play an important part in","opts":["go to the beach","play an important part in","in fact","outdoor activities"],"d":{"play an important part in":"在……上发挥重要作用","go to the beach":"","in fact":"","outdoor activities":""}},{"s":"I ____ early in winter.","ans":"wake up","opts":["eat ice cream","wake up","have picnics","be divided into"],"d":{"wake up":"醒来；唤醒","eat ice cream":"","have picnics":"","be divided into":""}},{"s":"My father will ____ tomorrow.","ans":"come back","opts":["play in the snow","take a trip","play an important part in","come back"],"d":{"come back":"回来","play in the snow":"","take a trip":"","play an important part in":""}},{"s":"We ____ in summer.","ans":"go to the beach","opts":["solar term","come back","outdoor activities","go to the beach"],"d":{"go to the beach":"去海滩","solar term":"","come back":"","outdoor activities":""}},{"s":"Children ____ happily.","ans":"swim in the sea","opts":["be divided into","go to the beach","swim in the sea","have picnics"],"d":{"swim in the sea":"在海里游泳","be divided into":"","go to the beach":"","have picnics":""}},{"s":"I ____ in hot weather.","ans":"eat ice cream","opts":["work one's land","play an important part in","eat ice cream","play in the snow"],"d":{"eat ice cream":"吃冰淇淋","work one's land":"","play an important part in":"","play in the snow":""}},{"s":"The kids ____ in winter.","ans":"play in the snow","opts":["wake up","play in the snow","outdoor activities","solar term"],"d":{"play in the snow":"玩雪","wake up":"","outdoor activities":"","solar term":""}},{"s":"We ____ last weekend.","ans":"go on a family outing","opts":["go to the beach","go on a family outing","be divided into","in the countryside"],"d":{"go on a family outing":"家庭出游","go to the beach":"","be divided into":"","in the countryside":""}},{"s":"We enjoy ____ in autumn.","ans":"outdoor activities","opts":["work one's land","outdoor activities","eat ice cream","be based on"],"d":{"outdoor activities":"户外活动","work one's land":"","eat ice cream":"","be based on":""}},{"s":"My grandparents live ____.","ans":"in the countryside","opts":["solar term","play in the snow","wake up","in the countryside"],"d":{"in the countryside":"在乡村","solar term":"","play in the snow":"","wake up":""}}]},{"name":"短语语境拓展","data":[{"s":"They ____ near the lake.","ans":"have picnics","opts":["come back","have picnics","in fact","go on a family outing"],"d":{"have picnics":"野餐","come back":"","in fact":"","go on a family outing":""}},{"s":"The old man still ____.","ans":"work one's land","opts":["swim in the sea","be divided into","in the countryside","work one's land"],"d":{"work one's land":"耕种土地","swim in the sea":"","be divided into":"","in the countryside":""}},{"s":"We ____ to the seaside.","ans":"take a trip","opts":["eat ice cream","work one's land","play an important part in","take a trip"],"d":{"take a trip":"去旅行","eat ice cream":"","work one's land":"","play an important part in":""}},{"s":"There are twenty-four ____ in China.","ans":"solar term","opts":["go on a family outing","take a trip","solar term","come back"],"d":{"solar term":"节气","go on a family outing":"","take a trip":"","come back":""}},{"s":"____, I do not agree.","ans":"in fact","opts":["be divided into","go to the beach","in fact","in the countryside"],"d":{"in fact":"事实上","be divided into":"","go to the beach":"","in the countryside":""}},{"s":"The year ____ four seasons.","ans":"be divided into","opts":["have picnics","play an important part in","be divided into","eat ice cream"],"d":{"be divided into":"被划分成……","have picnics":"","play an important part in":"","eat ice cream":""}},{"s":"The film ____ a real story.","ans":"be based on","opts":["wake up","be based on","go on a family outing","take a trip"],"d":{"be based on":"基于……","wake up":"","go on a family outing":"","take a trip":""}},{"s":"Water ____ our daily life.","ans":"play an important part in","opts":["go to the beach","play an important part in","in fact","outdoor activities"],"d":{"play an important part in":"在……上发挥重要作用","go to the beach":"","in fact":"","outdoor activities":""}},{"s":"The bird ____ at dawn.","ans":"wake up","opts":["eat ice cream","wake up","have picnics","be divided into"],"d":{"wake up":"醒来；唤醒","eat ice cream":"","have picnics":"","be divided into":""}},{"s":"Please ____ before dark.","ans":"come back","opts":["play in the snow","take a trip","play an important part in","come back"],"d":{"come back":"回来","play in the snow":"","take a trip":"","play an important part in":""}},{"s":"Let's ____ this afternoon.","ans":"go to the beach","opts":["solar term","come back","outdoor activities","go to the beach"],"d":{"go to the beach":"去海滩","solar term":"","come back":"","outdoor activities":""}},{"s":"It is fun to ____.","ans":"swim in the sea","opts":["be divided into","go to the beach","swim in the sea","have picnics"],"d":{"swim in the sea":"在海里游泳","be divided into":"","go to the beach":"","have picnics":""}},{"s":"She likes to ____.","ans":"eat ice cream","opts":["work one's land","play an important part in","eat ice cream","play in the snow"],"d":{"eat ice cream":"吃冰淇淋","work one's land":"","play an important part in":"","play in the snow":""}},{"s":"We ____ after the snowfall.","ans":"play in the snow","opts":["wake up","play in the snow","outdoor activities","solar term"],"d":{"play in the snow":"玩雪","wake up":"","outdoor activities":"","solar term":""}},{"s":"The family ____ every spring.","ans":"go on a family outing","opts":["go to the beach","go on a family outing","be divided into","in the countryside"],"d":{"go on a family outing":"家庭出游","go to the beach":"","be divided into":"","in the countryside":""}},{"s":"Hiking is one of the ____.","ans":"outdoor activities","opts":["work one's land","outdoor activities","eat ice cream","be based on"],"d":{"outdoor activities":"户外活动","work one's land":"","eat ice cream":"","be based on":""}},{"s":"We picked apples ____.","ans":"in the countryside","opts":["solar term","play in the snow","wake up","in the countryside"],"d":{"in the countryside":"在乡村","solar term":"","play in the snow":"","wake up":""}}]}];
+  var scSet=0, sci=0, scscore=0, scans=false, sccurrent=null;
+  var scSent=document.getElementById('scSent'), scOpts=document.getElementById('scOpts'),
+      scFb=document.getElementById('scFb'), scNext=document.getElementById('scNext'),
+      scDone=document.getElementById('scDone'), scHint=document.getElementById('scHint'),
+      scScore=document.getElementById('scScore'), scDict=document.getElementById('scDict'),
+      scTabs=document.getElementById('scTabs'), scBadge=document.getElementById('scBadge');
+  function scCur(){ return SC_SETS[scSet].data; }
+  function scWordify(t, dict){
+    var html='', re=/([A-Za-z']+)([^A-Za-z']*)/g, last=0, m;
+    while((m=re.exec(t))!==null){
+      html+=t.slice(last,m.index);
+      var w=m[1], key=w.toLowerCase(), zh=dict&&dict[key]?dict[key]:'';
+      html+='<span class="clz-w" role="button" tabindex="0"'+(zh?' data-zh="'+zh+'"':'')+'>'+w+'</span>'+m[2];
+      last=m.index+m[0].length;
+    }
+    html+=t.slice(last); return html;
+  }
+  function scSentHtml(s, fill, dict){
+    var parts=s.split('____'), html='';
+    for(var i=0;i<parts.length;i++){
+      html+=scWordify(parts[i],dict);
+      if(i<parts.length-1){
+        var fkey=fill?fill.toLowerCase():'', fzh=dict&&fill&&dict[fkey]?dict[fkey]:'';
+        html+=fill?'<span class="clz-w fill" role="button" tabindex="0"'+(fzh?' data-zh="'+fzh+'"':'')+'>'+fill+'</span>':'<span class="clz-blank">______</span>';
+      }
+    }
+    return html;
+  }
+  function scShowDict(w,zh){ if(!scDict)return; if(zh){scDict.textContent=w+' — '+zh;scDict.style.display='block';}else{scDict.style.display='none';} }
+  scSent.addEventListener('click',function(e){
+    var t=e.target; if(!t||!t.classList||!t.classList.contains('clz-w'))return;
+    speak(t.textContent,0.8); scShowDict(t.textContent,t.getAttribute('data-zh'));
+  });
+  function scLoad(){
+    scans=false; sccurrent=scCur()[sci];
+    scHint.textContent='第 '+(sci+1)+' / '+scCur().length+' 题 · 点选填空（点单词听发音、看词义）';
+    scFb.textContent=''; scNext.style.display='none'; scNext.textContent='下一题 →'; scDone.style.display='none';
+    scSent.innerHTML=scSentHtml(sccurrent.s,'',sccurrent.d); scShowDict('','');
+    scOpts.innerHTML='';
+    shuffle(sccurrent.opts).forEach(function(o){
+      var b=document.createElement('button'); b.className='q-opt'; b.type='button'; b.textContent=o;
+      b.addEventListener('click',function(){
+        speak(o,0.8);
+        if(scans){ scShowDict(o,sccurrent.d[o.toLowerCase()]); return; }
+        scans=true;
+        var correct=(o===sccurrent.ans);
+        if(correct){ scscore++; b.classList.add('correct'); scFb.innerHTML='答对啦！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--green)'; }
+        else { b.classList.add('wrong'); var bs=scOpts.querySelectorAll('.q-opt'); for(var k=0;k<bs.length;k++){if(bs[k].textContent===sccurrent.ans){bs[k].classList.add('correct');break;}} scFb.innerHTML='再想想！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--red)'; }
+        scSent.innerHTML='';
+        var line=document.createElement('div'); line.className='clz-line';
+        line.innerHTML=scSentHtml(sccurrent.s,sccurrent.ans,sccurrent.d);
+        var lb=document.createElement('button'); lb.className='clz-listen'; lb.type='button';
+        lb.setAttribute('aria-label','朗读本句'); lb.title='朗读本句'; lb.innerHTML=SPK;
+        lb.addEventListener('click',function(){ speak(sccurrent.s.replace('____',sccurrent.ans)); });
+        line.appendChild(lb); scSent.appendChild(line);
+        scScore.textContent='得分：'+scscore;
+        setTimeout(function(){ speak(sccurrent.ans,0.8); },700);
+        scNext.style.display='inline-block';
+        if(sci>=scCur().length-1){ scNext.textContent='再来一轮'; scDone.style.display='block';
+          scDone.textContent='完成！共 '+scCur().length+' 题，答对 '+scscore+' 题。'+(scscore===scCur().length?' 太棒了，全部正确！':(scscore>=scCur().length*0.6?' 很好，继续加油！':' 建议回到例句部分再听一听。'));
+        }
+      });
+      scOpts.appendChild(b);
+    });
+  }
+  scNext.addEventListener('click',function(){
+    if(sci>=scCur().length-1){ sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; }
+    else sci++;
+    scLoad();
+  });
+  SC_SETS.forEach(function(st,i){
+    var tb=document.createElement('button'); tb.className='q-tab'+(i===0?' active':''); tb.type='button';
+    tb.textContent=st.name+'（'+st.data.length+' 题）';
+    tb.addEventListener('click',function(){
+      scSet=i; sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; scFb.textContent='';
+      var tabs=scTabs.querySelectorAll('.q-tab'); for(var k=0;k<tabs.length;k++)tabs[k].classList.remove('active');
+      tb.classList.add('active'); scBadge.textContent=st.name+' · '+st.data.length+' 题'; scLoad();
+    });
+    scTabs.appendChild(tb);
+  });
+  scBadge.textContent=SC_SETS[0].name+' · '+SC_SETS[0].data.length+' 题';
+  scLoad();
+
 </script>
 <style>
 .pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
@@ -1612,7 +1729,6 @@
       <a class="up" href="Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
       <a href="Unit2_School_Life_点读学习页.html">← 上一单元</a>
       <a href="Unit4_The_Earth_点读学习页.html">下一单元 →</a>
-      <a href="Unit3_The_Seasons_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit3_习题与测试.html">📝 本单元习题与测试</a>
       <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>

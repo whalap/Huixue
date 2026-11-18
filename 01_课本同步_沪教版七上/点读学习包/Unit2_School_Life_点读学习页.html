@@ -246,6 +246,12 @@
        background:var(--coral);color:#fff;border:none;font-size:20px;line-height:1;cursor:pointer;
        box-shadow:0 3px 10px rgba(0,0,0,.18);z-index:60;display:none;align-items:center;justify-content:center;}
   .to-top:hover{background:#D64520;}
+
+  .clz-dict, .clz-line{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .clz-listen{border:none;background:var(--teal-soft,#E6F4EF);color:var(--teal,#0F6E56);width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 40px;}
+  .clz-listen:hover{background:var(--teal,#0F6E56);color:#fff;}
+  .clz-listen svg{width:17px;height:17px;fill:currentColor;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -364,6 +370,7 @@
     <a href="#grammar">⑤ 语法</a>
     <a href="#quiz">⑥ 小测</a>
     <a href="#cloze">⑦ 填空</a>
+    <a href="#sentcloze">⑧ 句填</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -513,6 +520,30 @@
       <div class="q-feedback" id="clzFb"></div>
       <button class="q-next" id="clzNext" type="button">下一题 →</button>
       <div class="q-done" id="clzDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 句子填空（独立例句·合并精简页） ================= -->
+  <section class="block" id="sentcloze">
+    <div class="sec-head">
+      <div class="no" style="background:var(--teal);">8</div>
+      <h2>句子填空 · 独立例句</h2>
+      <p>按当前课本词表编写 · 核心词 / 补充词 / 重点短语 / 短语语境拓展 · 点句子听发音，点单词看词义</p>
+      <span class="count-badge" id="scBadge"></span>
+    </div>
+    <div class="q-tabs" id="scTabs"></div>
+    <div class="cloze-box">
+      <div class="clz-top">
+        <div class="clz-progress" id="scHint">第 1 题</div>
+        <div class="q-score" id="scScore">得分：0</div>
+      </div>
+      <div class="clz-sent" id="scSent"></div>
+      <div class="clz-dict" id="scDict" style="display:none;margin-top:10px;padding:10px 14px;background:#FDF9F3;border:1px solid #EAD9AC;border-radius:12px;font-size:15px;color:#7A5200;"></div>
+      <div class="clz-opts" id="scOpts"></div>
+      <div class="q-feedback" id="scFb"></div>
+      <button class="q-next" id="scNext" type="button">下一题 →</button>
+      <div class="q-done" id="scDone"></div>
     </div>
   </section>
 
@@ -1561,6 +1592,92 @@
     b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
   }catch(e){}
 })();
+
+  /* ========== 句子填空（独立例句·合并精简页） ========== */
+  var SC_SETS = [{"name":"核心单词","data":[{"s":"We learn about mountains and rivers in ____ class.","ans":"geography","opts":["energy","geography","practise","presentation"],"d":{"geography":"地理（学）","energy":"","practise":"","presentation":""}},{"s":"There is a bookshop at the ____ of the street.","ans":"corner","opts":["greeting","geography","luckily","corner"],"d":{"corner":"角；墙角","greeting":"","geography":"","luckily":""}},{"s":"Swimming is a popular ____ in summer.","ans":"activity","opts":["teen","poster","success","activity"],"d":{"activity":"活动","teen":"","poster":"","success":""}},{"s":"I joined the music ____ at school.","ans":"club","opts":["develop","sincerely","club","pack"],"d":{"club":"社团","develop":"","sincerely":"","pack":""}},{"s":"You must ____ the piano every day.","ans":"practise","opts":["energy","presentation","practise","club"],"d":{"practise":"练习；训练","energy":"","presentation":"","club":""}},{"s":"Can you ____ this maths problem?","ans":"solve","opts":["geography","greeting","solve","luckily"],"d":{"solve":"解答","geography":"","greeting":"","luckily":""}},{"s":"Reading helps us ____ good habits.","ans":"develop","opts":["teen","develop","poster","success"],"d":{"develop":"加强；增强","teen":"","poster":"","success":""}},{"s":"Listening is an important ____ in English.","ans":"skill","opts":["solve","skill","pack","sincerely"],"d":{"skill":"技术；技能","solve":"","pack":"","sincerely":""}},{"s":"This magazine is for ____ readers.","ans":"teen","opts":["club","teen","energy","presentation"],"d":{"teen":"青少年的","club":"","energy":"","presentation":""}},{"s":"This ____ has lots of pictures and comes out every month.","ans":"magazine","opts":["geography","greeting","luckily","magazine"],"d":{"magazine":"杂志","geography":"","greeting":"","luckily":""}},{"s":"A ____ is a person between 13 and 19.","ans":"teenager","opts":["skill","poster","success","teenager"],"d":{"teenager":"（13至19岁之间的）青少年","skill":"","poster":"","success":""}},{"s":"Hello is a common ____.","ans":"greeting","opts":["solve","sincerely","greeting","pack"],"d":{"greeting":"问候；招呼","solve":"","sincerely":"","pack":""}},{"s":"What ____ are you in at school?","ans":"grade","opts":["presentation","club","grade","energy"],"d":{"grade":"年级","presentation":"","club":"","energy":""}},{"s":"Running gives me a lot of ____.","ans":"energy","opts":["geography","energy","teenager","luckily"],"d":{"energy":"精力；活力","geography":"","teenager":"","luckily":""}},{"s":"We will put on a ____ at the school show.","ans":"drama","opts":["success","drama","poster","skill"],"d":{"drama":"戏；剧","success":"","poster":"","skill":""}},{"s":"Yours ____ is a common way to end a letter.","ans":"sincerely","opts":["solve","sincerely","pack","drama"],"d":{"sincerely":"真诚地；诚实地","solve":"","pack":"","drama":""}},{"s":"I write in my ____ every evening.","ans":"diary","opts":["club","presentation","grade","diary"],"d":{"diary":"日记；日记簿","club":"","presentation":"","grade":""}},{"s":"Our science ____ is about plants.","ans":"project","opts":["geography","teenager","luckily","project"],"d":{"project":"课题","geography":"","teenager":"","luckily":""}},{"s":"We made a ____ for the school show.","ans":"poster","opts":["success","skill","poster","project"],"d":{"poster":"海报","success":"","skill":"","project":""}},{"s":"I did not ____ my mistake at first.","ans":"realize","opts":["solve","drama","realize","pack"],"d":{"realize":"意识到","solve":"","drama":"","pack":""}},{"s":"____, we caught the last bus.","ans":"luckily","opts":["presentation","club","luckily","grade"],"d":{"luckily":"幸运地；幸好","presentation":"","club":"","grade":""}},{"s":"I ____ finished my homework.","ans":"just","opts":["geography","just","teenager","realize"],"d":{"just":"恰好","geography":"","teenager":"","realize":""}},{"s":"She gave a ____ to the class.","ans":"presentation","opts":["success","presentation","project","skill"],"d":{"presentation":"演示","success":"","project":"","skill":""}},{"s":"He is in a good ____ today.","ans":"mood","opts":["pack","mood","solve","drama"],"d":{"mood":"情绪；心情","pack":"","solve":"","drama":""}},{"s":"Do you ____ if I open the window?","ans":"mind","opts":["just","club","grade","mind"],"d":{"mind":"介意","just":"","club":"","grade":""}},{"s":"Please ____ your bag before the trip.","ans":"pack","opts":["geography","teenager","realize","pack"],"d":{"pack":"（把……）打包","geography":"","teenager":"","realize":""}},{"s":"We will ____ my birthday with a cake.","ans":"celebrate","opts":["success","skill","celebrate","project"],"d":{"celebrate":"庆祝；庆贺","success":"","skill":"","project":""}},{"s":"Hard work leads to ____.","ans":"success","opts":["drama","mind","success","solve"],"d":{"success":"成功","drama":"","mind":"","solve":""}},{"s":"The road is ____ and hard to walk on.","ans":"rocky","opts":["just","rocky","club","grade"],"d":{"rocky":"困难的","just":"","club":"","grade":""}}]},{"name":"补充词汇","data":[{"s":"The film will ____ at seven.","ans":"start","opts":["member","start","canteen","student"],"d":{"start":"开始","member":"","canteen":"","student":""}},{"s":"My favourite ____ at school is maths.","ans":"subject","opts":["junior","canteen","interesting","subject"],"d":{"subject":"科目；学科","junior":"","canteen":"","interesting":""}},{"s":"We have a ten-minute ____ between classes.","ans":"break","opts":["junior","start","read","break"],"d":{"break":"休息","junior":"","start":"","read":""}},{"s":"Morning ____ is good for our health.","ans":"exercise","opts":["homework","start","exercise","match"],"d":{"exercise":"锻炼；运动","homework":"","start":"","match":""}},{"s":"We have lunch in the school ____.","ans":"canteen","opts":["break","match","canteen","food"],"d":{"canteen":"食堂","break":"","match":"","food":""}},{"s":"You can ____ one book from the shelf.","ans":"choose","opts":["food","canteen","choose","exciting"],"d":{"choose":"选择","food":"","canteen":"","exciting":""}},{"s":"I like to ____ storybooks at night.","ans":"read","opts":["canteen","read","ocean","ground"],"d":{"read":"阅读","canteen":"","ocean":"","ground":""}},{"s":"We ____ to visit the museum tomorrow.","ans":"plan","opts":["read","plan","subject","ocean"],"d":{"plan":"计划","read":"","subject":"","ocean":""}},{"s":"There is a football ____ after school.","ans":"match","opts":["member","match","student","subject"],"d":{"match":"比赛","member":"","student":"","subject":""}},{"s":"She is a ____ of the reading club.","ans":"member","opts":["match","interesting","exercise","member"],"d":{"member":"成员","match":"","interesting":"","exercise":""}},{"s":"The game was very ____.","ans":"exciting","opts":["interesting","choose","junior","exciting"],"d":{"exciting":"令人兴奋的","interesting":"","choose":"","junior":""}},{"s":"He studies in a ____ high school.","ans":"junior","opts":["start","choose","junior","homework"],"d":{"junior":"初级的","start":"","choose":"","homework":""}},{"s":"Many fish live in the ____.","ans":"ocean","opts":["homework","break","ocean","plan"],"d":{"ocean":"海洋","homework":"","break":"","plan":""}},{"s":"I do my ____ after dinner.","ans":"homework","opts":["break","homework","member","food"],"d":{"homework":"家庭作业","break":"","member":"","food":""}},{"s":"Every ____ should study hard.","ans":"student","opts":["canteen","student","ground","member"],"d":{"student":"学生","canteen":"","ground":"","member":""}},{"s":"We need ____ and water to live.","ans":"food","opts":["junior","food","read","ground"],"d":{"food":"食物","junior":"","read":"","ground":""}},{"s":"This book is very ____.","ans":"interesting","opts":["homework","read","subject","interesting"],"d":{"interesting":"有趣的","homework":"","read":"","subject":""}},{"s":"The children play on the ____.","ans":"ground","opts":["homework","exercise","match","ground"],"d":{"ground":"场地","homework":"","exercise":"","match":""}}]},{"name":"重点短语","data":[{"s":"I help my mother ____ after dinner.","ans":"do the dishes","opts":["pick up","do the dishes","daily life","book corner"],"d":{"do the dishes":"洗碗","pick up":"","daily life":"","book corner":""}},{"s":"My sister studies in a ____.","ans":"junior high school","opts":["clean up","look forward to","sports ground","junior high school"],"d":{"junior high school":"初级中学","clean up":"","look forward to":"","sports ground":""}},{"s":"We will ____ the sports meeting.","ans":"take part in","opts":["put on","after-school activities","junior high school","take part in"],"d":{"take part in":"参与","put on":"","after-school activities":"","junior high school":""}},{"s":"I ____ the summer holiday.","ans":"look forward to","opts":["get ... ready for","have a good time","look forward to","do the dishes"],"d":{"look forward to":"期待；盼望","get ... ready for":"","have a good time":"","do the dishes":""}},{"s":"The phone is part of our ____.","ans":"daily life","opts":["do some morning exercise","in time","daily life","full of energy"],"d":{"daily life":"日常生活","do some morning exercise":"","in time":"","full of energy":""}},{"s":"I ____ at ten every night.","ans":"go to bed","opts":["on foot","play a ball game","go to bed","get to school"],"d":{"go to bed":"去睡觉","on foot":"","play a ball game":"","get to school":""}},{"s":"I ____ at six every morning.","ans":"get up","opts":["do one's homework","get up","eat out","go to bed"],"d":{"get up":"起床","do one's homework":"","eat out":"","go to bed":""}},{"s":"She goes to school ____.","ans":"on foot","opts":["go to school on foot","on foot","daily life","have a lunch break"],"d":{"on foot":"步行","go to school on foot":"","daily life":"","have a lunch break":""}},{"s":"The children are ____.","ans":"full of energy","opts":["pick up","full of energy","book corner","look forward to"],"d":{"full of energy":"充满活力","pick up":"","book corner":"","look forward to":""}},{"s":"We need to ____ the coming test.","ans":"get ... ready for","opts":["clean up","sports ground","take part in","get ... ready for"],"d":{"get ... ready for":"准备好……","clean up":"","sports ground":"","take part in":""}},{"s":"The school will ____ a play.","ans":"put on","opts":["after-school activities","junior high school","get ... ready for","put on"],"d":{"put on":"举办；上演","after-school activities":"","junior high school":"","get ... ready for":""}},{"s":"Please ____ your room.","ans":"clean up","opts":["have a good time","do the dishes","clean up","full of energy"],"d":{"clean up":"打扫干净","have a good time":"","do the dishes":"","full of energy":""}},{"s":"Can you ____ the book for me?","ans":"pick up","opts":["on foot","do some morning exercise","pick up","in time"],"d":{"pick up":"取（某物）","on foot":"","do some morning exercise":"","in time":""}},{"s":"I ____ every day.","ans":"go to school on foot","opts":["play a ball game","go to school on foot","get to school","get up"],"d":{"go to school on foot":"步行上学","play a ball game":"","get to school":"","get up":""}},{"s":"I ____ after dinner.","ans":"do one's homework","opts":["go to school on foot","do one's homework","go to bed","eat out"],"d":{"do one's homework":"做作业","go to school on foot":"","go to bed":"","eat out":""}},{"s":"The boys ____ on the playground.","ans":"play a ball game","opts":["have a lunch break","play a ball game","pick up","daily life"],"d":{"play a ball game":"打球","have a lunch break":"","pick up":"","daily life":""}},{"s":"We ____ before class.","ans":"do some morning exercise","opts":["book corner","clean up","look forward to","do some morning exercise"],"d":{"do some morning exercise":"做早操","book corner":"","clean up":"","look forward to":""}},{"s":"We ____ at the party.","ans":"have a good time","opts":["sports ground","take part in","put on","have a good time"],"d":{"have a good time":"玩得开心","sports ground":"","take part in":"","put on":""}},{"s":"There are many ____.","ans":"after-school activities","opts":["have a good time","junior high school","after-school activities","get ... ready for"],"d":{"after-school activities":"课后活动","have a good time":"","junior high school":"","get ... ready for":""}},{"s":"The students run on the ____.","ans":"sports ground","opts":["do the dishes","full of energy","sports ground","do some morning exercise"],"d":{"sports ground":"运动场","do the dishes":"","full of energy":"","do some morning exercise":""}},{"s":"We read books at the ____.","ans":"book corner","opts":["play a ball game","in time","book corner","on foot"],"d":{"book corner":"图书角","play a ball game":"","in time":"","on foot":""}},{"s":"We ____ at noon.","ans":"have a lunch break","opts":["get to school","have a lunch break","get up","do one's homework"],"d":{"have a lunch break":"午休","get to school":"","get up":"","do one's homework":""}},{"s":"We ____ on Sundays.","ans":"eat out","opts":["have a lunch break","eat out","go to school on foot","go to bed"],"d":{"eat out":"外出就餐","have a lunch break":"","go to school on foot":"","go to bed":""}},{"s":"I ____ at seven.","ans":"get to school","opts":["book corner","get to school","daily life","pick up"],"d":{"get to school":"到校","book corner":"","daily life":"","pick up":""}},{"s":"We arrived ____ for the film.","ans":"in time","opts":["sports ground","look forward to","clean up","in time"],"d":{"in time":"及时","sports ground":"","look forward to":"","clean up":""}}]},{"name":"短语语境拓展","data":[{"s":"Who will ____ tonight?","ans":"do the dishes","opts":["pick up","do the dishes","daily life","book corner"],"d":{"do the dishes":"洗碗","pick up":"","daily life":"","book corner":""}},{"s":"He is a ____ student.","ans":"junior high school","opts":["clean up","look forward to","sports ground","junior high school"],"d":{"junior high school":"初级中学","clean up":"","look forward to":"","sports ground":""}},{"s":"Everyone can ____ the game.","ans":"take part in","opts":["put on","after-school activities","junior high school","take part in"],"d":{"take part in":"参与","put on":"","after-school activities":"","junior high school":""}},{"s":"We ____ the school trip.","ans":"look forward to","opts":["get ... ready for","have a good time","look forward to","do the dishes"],"d":{"look forward to":"期待；盼望","get ... ready for":"","have a good time":"","do the dishes":""}},{"s":"Email is useful in our ____.","ans":"daily life","opts":["do some morning exercise","in time","daily life","full of energy"],"d":{"daily life":"日常生活","do some morning exercise":"","in time":"","full of energy":""}},{"s":"Do not ____ too late.","ans":"go to bed","opts":["on foot","play a ball game","go to bed","get to school"],"d":{"go to bed":"去睡觉","on foot":"","play a ball game":"","get to school":""}},{"s":"I ____ before the sun rises.","ans":"get up","opts":["do one's homework","get up","eat out","go to bed"],"d":{"get up":"起床","do one's homework":"","eat out":"","go to bed":""}},{"s":"We went there ____.","ans":"on foot","opts":["go to school on foot","on foot","daily life","have a lunch break"],"d":{"on foot":"步行","go to school on foot":"","daily life":"","have a lunch break":""}},{"s":"After a rest, he was ____ again.","ans":"full of energy","opts":["pick up","full of energy","book corner","look forward to"],"d":{"full of energy":"充满活力","pick up":"","book corner":"","look forward to":""}},{"s":"Please ____ everything before the guests come.","ans":"get ... ready for","opts":["clean up","sports ground","take part in","get ... ready for"],"d":{"get ... ready for":"准备好……","clean up":"","sports ground":"","take part in":""}},{"s":"The club will ____ a show.","ans":"put on","opts":["after-school activities","junior high school","get ... ready for","put on"],"d":{"put on":"举办；上演","after-school activities":"","junior high school":"","get ... ready for":""}},{"s":"Let's ____ the park.","ans":"clean up","opts":["have a good time","do the dishes","clean up","full of energy"],"d":{"clean up":"打扫干净","have a good time":"","do the dishes":"","full of energy":""}},{"s":"He ____ the pen from the floor.","ans":"pick up","opts":["on foot","do some morning exercise","pick up","in time"],"d":{"pick up":"取（某物）","on foot":"","do some morning exercise":"","in time":""}},{"s":"She ____ because she lives nearby.","ans":"go to school on foot","opts":["play a ball game","go to school on foot","get to school","get up"],"d":{"go to school on foot":"步行上学","play a ball game":"","get to school":"","get up":""}},{"s":"I ____ in the evening.","ans":"do one's homework","opts":["go to school on foot","do one's homework","go to bed","eat out"],"d":{"do one's homework":"做作业","go to school on foot":"","go to bed":"","eat out":""}},{"s":"They ____ after school.","ans":"play a ball game","opts":["have a lunch break","play a ball game","pick up","daily life"],"d":{"play a ball game":"打球","have a lunch break":"","pick up":"","daily life":""}},{"s":"We ____ at seven a.m.","ans":"do some morning exercise","opts":["book corner","clean up","look forward to","do some morning exercise"],"d":{"do some morning exercise":"做早操","book corner":"","clean up":"","look forward to":""}},{"s":"Did you ____ in Beijing?","ans":"have a good time","opts":["sports ground","take part in","put on","have a good time"],"d":{"have a good time":"玩得开心","sports ground":"","take part in":"","put on":""}},{"s":"I join two ____.","ans":"after-school activities","opts":["have a good time","junior high school","after-school activities","get ... ready for"],"d":{"after-school activities":"课后活动","have a good time":"","junior high school":"","get ... ready for":""}},{"s":"We play football on the ____.","ans":"sports ground","opts":["do the dishes","full of energy","sports ground","do some morning exercise"],"d":{"sports ground":"运动场","do the dishes":"","full of energy":"","do some morning exercise":""}},{"s":"There is a ____ in our classroom.","ans":"book corner","opts":["play a ball game","in time","book corner","on foot"],"d":{"book corner":"图书角","play a ball game":"","in time":"","on foot":""}},{"s":"We ____ from twelve to one.","ans":"have a lunch break","opts":["get to school","have a lunch break","get up","do one's homework"],"d":{"have a lunch break":"午休","get to school":"","get up":"","do one's homework":""}},{"s":"Let's ____ tonight.","ans":"eat out","opts":["have a lunch break","eat out","go to school on foot","go to bed"],"d":{"eat out":"外出就餐","have a lunch break":"","go to school on foot":"","go to bed":""}},{"s":"How do you ____ every day?","ans":"get to school","opts":["book corner","get to school","daily life","pick up"],"d":{"get to school":"到校","book corner":"","daily life":"","pick up":""}},{"s":"The doctor came ____.","ans":"in time","opts":["sports ground","look forward to","clean up","in time"],"d":{"in time":"及时","sports ground":"","look forward to":"","clean up":""}}]}];
+  var scSet=0, sci=0, scscore=0, scans=false, sccurrent=null;
+  var scSent=document.getElementById('scSent'), scOpts=document.getElementById('scOpts'),
+      scFb=document.getElementById('scFb'), scNext=document.getElementById('scNext'),
+      scDone=document.getElementById('scDone'), scHint=document.getElementById('scHint'),
+      scScore=document.getElementById('scScore'), scDict=document.getElementById('scDict'),
+      scTabs=document.getElementById('scTabs'), scBadge=document.getElementById('scBadge');
+  function scCur(){ return SC_SETS[scSet].data; }
+  function scWordify(t, dict){
+    var html='', re=/([A-Za-z']+)([^A-Za-z']*)/g, last=0, m;
+    while((m=re.exec(t))!==null){
+      html+=t.slice(last,m.index);
+      var w=m[1], key=w.toLowerCase(), zh=dict&&dict[key]?dict[key]:'';
+      html+='<span class="clz-w" role="button" tabindex="0"'+(zh?' data-zh="'+zh+'"':'')+'>'+w+'</span>'+m[2];
+      last=m.index+m[0].length;
+    }
+    html+=t.slice(last); return html;
+  }
+  function scSentHtml(s, fill, dict){
+    var parts=s.split('____'), html='';
+    for(var i=0;i<parts.length;i++){
+      html+=scWordify(parts[i],dict);
+      if(i<parts.length-1){
+        var fkey=fill?fill.toLowerCase():'', fzh=dict&&fill&&dict[fkey]?dict[fkey]:'';
+        html+=fill?'<span class="clz-w fill" role="button" tabindex="0"'+(fzh?' data-zh="'+fzh+'"':'')+'>'+fill+'</span>':'<span class="clz-blank">______</span>';
+      }
+    }
+    return html;
+  }
+  function scShowDict(w,zh){ if(!scDict)return; if(zh){scDict.textContent=w+' — '+zh;scDict.style.display='block';}else{scDict.style.display='none';} }
+  scSent.addEventListener('click',function(e){
+    var t=e.target; if(!t||!t.classList||!t.classList.contains('clz-w'))return;
+    speak(t.textContent,0.8); scShowDict(t.textContent,t.getAttribute('data-zh'));
+  });
+  function scLoad(){
+    scans=false; sccurrent=scCur()[sci];
+    scHint.textContent='第 '+(sci+1)+' / '+scCur().length+' 题 · 点选填空（点单词听发音、看词义）';
+    scFb.textContent=''; scNext.style.display='none'; scNext.textContent='下一题 →'; scDone.style.display='none';
+    scSent.innerHTML=scSentHtml(sccurrent.s,'',sccurrent.d); scShowDict('','');
+    scOpts.innerHTML='';
+    shuffle(sccurrent.opts).forEach(function(o){
+      var b=document.createElement('button'); b.className='q-opt'; b.type='button'; b.textContent=o;
+      b.addEventListener('click',function(){
+        speak(o,0.8);
+        if(scans){ scShowDict(o,sccurrent.d[o.toLowerCase()]); return; }
+        scans=true;
+        var correct=(o===sccurrent.ans);
+        if(correct){ scscore++; b.classList.add('correct'); scFb.innerHTML='答对啦！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--green)'; }
+        else { b.classList.add('wrong'); var bs=scOpts.querySelectorAll('.q-opt'); for(var k=0;k<bs.length;k++){if(bs[k].textContent===sccurrent.ans){bs[k].classList.add('correct');break;}} scFb.innerHTML='再想想！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--red)'; }
+        scSent.innerHTML='';
+        var line=document.createElement('div'); line.className='clz-line';
+        line.innerHTML=scSentHtml(sccurrent.s,sccurrent.ans,sccurrent.d);
+        var lb=document.createElement('button'); lb.className='clz-listen'; lb.type='button';
+        lb.setAttribute('aria-label','朗读本句'); lb.title='朗读本句'; lb.innerHTML=SPK;
+        lb.addEventListener('click',function(){ speak(sccurrent.s.replace('____',sccurrent.ans)); });
+        line.appendChild(lb); scSent.appendChild(line);
+        scScore.textContent='得分：'+scscore;
+        setTimeout(function(){ speak(sccurrent.ans,0.8); },700);
+        scNext.style.display='inline-block';
+        if(sci>=scCur().length-1){ scNext.textContent='再来一轮'; scDone.style.display='block';
+          scDone.textContent='完成！共 '+scCur().length+' 题，答对 '+scscore+' 题。'+(scscore===scCur().length?' 太棒了，全部正确！':(scscore>=scCur().length*0.6?' 很好，继续加油！':' 建议回到例句部分再听一听。'));
+        }
+      });
+      scOpts.appendChild(b);
+    });
+  }
+  scNext.addEventListener('click',function(){
+    if(sci>=scCur().length-1){ sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; }
+    else sci++;
+    scLoad();
+  });
+  SC_SETS.forEach(function(st,i){
+    var tb=document.createElement('button'); tb.className='q-tab'+(i===0?' active':''); tb.type='button';
+    tb.textContent=st.name+'（'+st.data.length+' 题）';
+    tb.addEventListener('click',function(){
+      scSet=i; sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; scFb.textContent='';
+      var tabs=scTabs.querySelectorAll('.q-tab'); for(var k=0;k<tabs.length;k++)tabs[k].classList.remove('active');
+      tb.classList.add('active'); scBadge.textContent=st.name+' · '+st.data.length+' 题'; scLoad();
+    });
+    scTabs.appendChild(tb);
+  });
+  scBadge.textContent=SC_SETS[0].name+' · '+SC_SETS[0].data.length+' 题';
+  scLoad();
+
 </script>
 <style>
 .pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
@@ -1582,7 +1699,6 @@
       <a class="up" href="Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
       <a href="Unit1_Friendship_点读学习页.html">← 上一单元</a>
       <a href="Unit3_The_Seasons_点读学习页.html">下一单元 →</a>
-      <a href="Unit2_School_Life_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit2_习题与测试.html">📝 本单元习题与测试</a>
       <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>

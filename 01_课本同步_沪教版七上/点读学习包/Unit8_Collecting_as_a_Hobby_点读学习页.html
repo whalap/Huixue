@@ -246,6 +246,12 @@
        background:var(--coral);color:#fff;border:none;font-size:20px;line-height:1;cursor:pointer;
        box-shadow:0 3px 10px rgba(0,0,0,.18);z-index:60;display:none;align-items:center;justify-content:center;}
   .to-top:hover{background:#D64520;}
+
+  .clz-dict, .clz-line{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .clz-listen{border:none;background:var(--teal-soft,#E6F4EF);color:var(--teal,#0F6E56);width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 40px;}
+  .clz-listen:hover{background:var(--teal,#0F6E56);color:#fff;}
+  .clz-listen svg{width:17px;height:17px;fill:currentColor;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -363,6 +369,7 @@
     <a href="#grammar">⑤ 语法</a>
     <a href="#quiz">⑥ 小测</a>
     <a href="#cloze">⑦ 填空</a>
+    <a href="#sentcloze">⑧ 句填</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -515,6 +522,30 @@
       <div class="q-feedback" id="clzFb"></div>
       <button class="q-next" id="clzNext" type="button">下一题 →</button>
       <div class="q-done" id="clzDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 句子填空（独立例句·合并精简页） ================= -->
+  <section class="block" id="sentcloze">
+    <div class="sec-head">
+      <div class="no" style="background:var(--teal);">8</div>
+      <h2>句子填空 · 独立例句</h2>
+      <p>按当前课本词表编写 · 核心词 / 补充词 / 重点短语 / 短语语境拓展 · 点句子听发音，点单词看词义</p>
+      <span class="count-badge" id="scBadge"></span>
+    </div>
+    <div class="q-tabs" id="scTabs"></div>
+    <div class="cloze-box">
+      <div class="clz-top">
+        <div class="clz-progress" id="scHint">第 1 题</div>
+        <div class="q-score" id="scScore">得分：0</div>
+      </div>
+      <div class="clz-sent" id="scSent"></div>
+      <div class="clz-dict" id="scDict" style="display:none;margin-top:10px;padding:10px 14px;background:#FDF9F3;border:1px solid #EAD9AC;border-radius:12px;font-size:15px;color:#7A5200;"></div>
+      <div class="clz-opts" id="scOpts"></div>
+      <div class="q-feedback" id="scFb"></div>
+      <button class="q-next" id="scNext" type="button">下一题 →</button>
+      <div class="q-done" id="scDone"></div>
     </div>
   </section>
 
@@ -1631,6 +1662,92 @@
     b.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
   }catch(e){}
 })();
+
+  /* ========== 句子填空（独立例句·合并精简页） ========== */
+  var SC_SETS = [{"name":"核心单词","data":[{"s":"Ada wears a gold ____ on her finger.","ans":"ring","opts":["similar","ring","handle","pattern"],"d":{"ring":"环状物；圆形的东西","similar":"","handle":"","pattern":""}},{"s":"Tom has a large ____ of old stamps.","ans":"collection","opts":["single","treasure","wrapper","collection"],"d":{"collection":"（常指同类的）收集物","single":"","treasure":"","wrapper":""}},{"s":"I ____ a small box of valuable coins.","ans":"own","opts":["glove","sticker","insect","own"],"d":{"own":"拥有；有","glove":"","sticker":"","insect":""}},{"s":"This old coin is very ____.","ans":"valuable","opts":["ring","nail","valuable","size"],"d":{"valuable":"贵重的","ring":"","nail":"","size":""}},{"s":"Please ____ the old book with great care.","ans":"handle","opts":["absolutely","waste","handle","language"],"d":{"handle":"（用手）触","absolutely":"","waste":"","language":""}},{"s":"He put on a ____ before picking up the glass.","ans":"glove","opts":["pattern","valuable","glove","similar"],"d":{"glove":"（分手指的）手套","pattern":"","valuable":"","similar":""}},{"s":"Please ____ a little water to the cup.","ans":"add","opts":["treasure","add","single","wrapper"],"d":{"add":"增加；添加","treasure":"","single":"","wrapper":""}},{"s":"I put the stamp on the ____ and sent it.","ans":"envelope","opts":["insect","envelope","sticker","handle"],"d":{"envelope":"信封","insect":"","sticker":"","handle":""}},{"s":"I am ____ sure about the answer.","ans":"absolutely","opts":["size","absolutely","ring","nail"],"d":{"absolutely":"极其","size":"","ring":"","nail":""}},{"s":"You ____ to know a lot about old coins.","ans":"seem","opts":["waste","language","envelope","seem"],"d":{"seem":"好像；似乎","waste":"","language":"","envelope":""}},{"s":"It is ____ to finish the work in one day.","ans":"impossible","opts":["pattern","valuable","similar","impossible"],"d":{"impossible":"不可能的","pattern":"","valuable":"","similar":""}},{"s":"There is not a ____ coin in the box.","ans":"single","opts":["wrapper","treasure","single","impossible"],"d":{"single":"单个的","wrapper":"","treasure":"","impossible":""}},{"s":"Ben hit the ____ with a small hammer.","ans":"nail","opts":["handle","sticker","nail","insect"],"d":{"nail":"钉；钉子","handle":"","sticker":"","insect":""}},{"s":"Can you ____ the rule of the game again?","ans":"explain","opts":["single","explain","size","ring"],"d":{"explain":"解释；说明","single":"","size":"","ring":""}},{"s":"I know a ____ about the history of stamps.","ans":"bit","opts":["envelope","bit","language","waste"],"d":{"bit":"一部分","envelope":"","language":"","waste":""}},{"s":"Your stamp is very ____ to mine.","ans":"similar","opts":["bit","similar","valuable","pattern"],"d":{"similar":"相像的；类似的","bit":"","valuable":"","pattern":""}},{"s":"My father keeps a gold ____ in the box.","ans":"coin","opts":["impossible","treasure","wrapper","coin"],"d":{"coin":"（一枚）硬币","impossible":"","treasure":"","wrapper":""}},{"s":"The old cloth feels very ____.","ans":"soft","opts":["handle","sticker","insect","soft"],"d":{"soft":"软的","handle":"","sticker":"","insect":""}},{"s":"Lily put a colourful ____ on her notebook.","ans":"sticker","opts":["ring","single","sticker","size"],"d":{"sticker":"贴纸","ring":"","single":"","size":""}},{"s":"Playing games all day is a ____ of time.","ans":"waste","opts":["envelope","sticker","waste","language"],"d":{"waste":"白费；糟蹋","envelope":"","sticker":"","language":""}},{"s":"Each ____ in the museum has a small number.","ans":"item","opts":["pattern","valuable","item","bit"],"d":{"item":"一件商品（或物品）","pattern":"","valuable":"","bit":""}},{"s":"The ____ of the test is very good.","ans":"result","opts":["treasure","result","impossible","wrapper"],"d":{"result":"后果；结果","treasure":"","impossible":"","wrapper":""}},{"s":"This ____ came from a bar of chocolate.","ans":"wrapper","opts":["insect","wrapper","soft","handle"],"d":{"wrapper":"包装纸","insect":"","soft":"","handle":""}},{"s":"Eva ate a ____ of chocolate after lunch.","ans":"bar","opts":["size","bar","ring","single"],"d":{"bar":"（长方形）条","size":"","ring":"","single":""}},{"s":"The price will ____ the nice box.","ans":"include","opts":["sticker","language","envelope","include"],"d":{"include":"包括；包含","sticker":"","language":"","envelope":""}},{"s":"This box is the right ____ for the cards.","ans":"size","opts":["pattern","valuable","bit","size"],"d":{"size":"大小","pattern":"","valuable":"","bit":""}},{"s":"The ____ on the old stamp is beautiful.","ans":"pattern","opts":["result","treasure","pattern","impossible"],"d":{"pattern":"图案；花样","result":"","treasure":"","impossible":""}},{"s":"The factory will ____ small toy cars.","ans":"produce","opts":["handle","soft","produce","insect"],"d":{"produce":"生产；制造","handle":"","soft":"","insect":""}},{"s":"Bright colours ____ insects in the garden.","ans":"attract","opts":["single","attract","include","ring"],"d":{"attract":"吸引；招引","single":"","include":"","ring":""}},{"s":"A bee is a kind of ____.","ans":"insect","opts":["envelope","insect","language","sticker"],"d":{"insect":"昆虫","envelope":"","language":"","sticker":""}},{"s":"This old ____ is quite valuable.","ans":"object","opts":["bit","object","valuable","size"],"d":{"object":"物体；物品","bit":"","valuable":"","size":""}},{"s":"The surface of the stone is ____.","ans":"flat","opts":["impossible","treasure","result","flat"],"d":{"flat":"平滑的","impossible":"","treasure":"","result":""}},{"s":"English is a useful ____ for us.","ans":"language","opts":["handle","soft","attract","language"],"d":{"language":"语言","handle":"","soft":"","attract":""}},{"s":"The old map led them to the hidden ____.","ans":"treasure","opts":["ring","single","treasure","include"],"d":{"treasure":"珍宝；宝物","ring":"","single":"","include":""}},{"s":"This book helps us ____ the secret of the coin.","ans":"unlock","opts":["envelope","sticker","unlock","flat"],"d":{"unlock":"发现；揭示","envelope":"","sticker":"","flat":""}},{"s":"Is this a ____ gold ring?","ans":"real","opts":["size","valuable","real","bit"],"d":{"real":"真的","size":"","valuable":"","bit":""}}]},{"name":"补充词汇","data":[{"s":"I like to ____ stamps from different countries.","ans":"collect","opts":["key ring","collect","care","drawer"],"d":{"collect":"收集；收藏","key ring":"","care":"","drawer":""}},{"s":"Collecting shells is my favourite ____.","ans":"hobby","opts":["interested","pencil","box","hobby"],"d":{"hobby":"爱好","interested":"","pencil":"","box":""}},{"s":"This beautiful ____ is from Japan.","ans":"stamp","opts":["story","curious","toy","stamp"],"d":{"stamp":"邮票","story":"","curious":"","toy":""}},{"s":"The museum has two ____ old coins.","ans":"thousand","opts":["care","key ring","thousand","paper clip"],"d":{"thousand":"一千","care":"","key ring":"","paper clip":""}},{"s":"Please handle the old stamp with ____.","ans":"care","opts":["interested","box","care","collect"],"d":{"care":"照料；小心","interested":"","box":"","collect":""}},{"s":"We should ____ the old building in the town.","ans":"protect","opts":["toy","lesson","protect","curious"],"d":{"protect":"保护","toy":"","lesson":"","curious":""}},{"s":"I sent a ____ to my friend from Beijing.","ans":"postcard","opts":["thousand","postcard","model","paper clip"],"d":{"postcard":"明信片","thousand":"","model":"","paper clip":""}},{"s":"My grandma told me a ____ about the old coin.","ans":"story","opts":["collect","story","album","interested"],"d":{"story":"故事","collect":"","album":"","interested":""}},{"s":"The museum trip was a useful ____ for me.","ans":"lesson","opts":["card","lesson","story","curious"],"d":{"lesson":"课；教训","card":"","story":"","curious":""}},{"s":"Blue is my ____ colour.","ans":"favourite","opts":["paper clip","care","model","favourite"],"d":{"favourite":"最喜欢的","paper clip":"","care":"","model":""}},{"s":"The king lived in a big ____.","ans":"palace","opts":["collect","country","album","palace"],"d":{"palace":"宫殿","collect":"","country":"","album":""}},{"s":"I am ____ in collecting old coins.","ans":"interested","opts":["card","story","interested","unusual"],"d":{"interested":"感兴趣的","card":"","story":"","unusual":""}},{"s":"China is a large ____ in Asia.","ans":"country","opts":["model","badge","country","care"],"d":{"country":"国家","model":"","badge":"","care":""}},{"s":"We found a pretty ____ on the beach.","ans":"shell","opts":["album","shell","hobby","interested"],"d":{"shell":"贝壳","album":"","hobby":"","interested":""}},{"s":"David keeps his keys on a ____.","ans":"key ring","opts":["unusual","key ring","lesson","card"],"d":{"key ring":"钥匙扣","unusual":"","lesson":"","card":""}},{"s":"Tom made a small ____ plane by himself.","ans":"model","opts":["badge","model","collector","care"],"d":{"model":"模型","badge":"","collector":"","care":""}},{"s":"My uncle is a famous stamp ____.","ans":"collector","opts":["shelf","interested","hobby","collector"],"d":{"collector":"收藏家","shelf":"","interested":"","hobby":""}},{"s":"We will ____ the truth behind the old map.","ans":"discover","opts":["unusual","eraser","lesson","discover"],"d":{"discover":"发现","unusual":"","eraser":"","lesson":""}},{"s":"The child is ____ about everything new.","ans":"curious","opts":["model","badge","curious","protect"],"d":{"curious":"好奇的","model":"","badge":"","protect":""}},{"s":"This old stamp is very ____.","ans":"unusual","opts":["shelf","hobby","unusual","country"],"d":{"unusual":"不寻常的","shelf":"","hobby":"","country":""}},{"s":"The photo is a happy ____ for me.","ans":"memory","opts":["lesson","unusual","memory","eraser"],"d":{"memory":"回忆；记忆","lesson":"","unusual":"","eraser":""}},{"s":"She keeps her cards in a small ____.","ans":"box","opts":["model","box","doll","protect"],"d":{"box":"盒子","model":"","doll":"","protect":""}},{"s":"I put my new stamps in an ____.","ans":"album","opts":["country","album","stamp","shelf"],"d":{"album":"集邮册；相册","country":"","stamp":"","shelf":""}},{"s":"The old coins are on the ____.","ans":"shelf","opts":["favourite","shelf","unusual","eraser"],"d":{"shelf":"架子","favourite":"","unusual":"","eraser":""}},{"s":"He put the key in the ____.","ans":"drawer","opts":["protect","collector","doll","drawer"],"d":{"drawer":"抽屉","protect":"","collector":"","doll":""}},{"s":"Use a ____ to hold these papers together.","ans":"paper clip","opts":["country","shelf","stamp","paper clip"],"d":{"paper clip":"回形针","country":"","shelf":"","stamp":""}},{"s":"Eva wears a school ____ every day.","ans":"badge","opts":["favourite","unusual","badge","pencil"],"d":{"badge":"徽章","favourite":"","unusual":"","pencil":""}},{"s":"The little girl got a new ____.","ans":"doll","opts":["badge","postcard","doll","collector"],"d":{"doll":"洋娃娃","badge":"","postcard":"","collector":""}},{"s":"This old ____ is still my favourite.","ans":"toy","opts":["stamp","toy","shell","shelf"],"d":{"toy":"玩具","stamp":"","shell":"","shelf":""}},{"s":"I sent a birthday ____ to Lily.","ans":"card","opts":["pencil","card","memory","favourite"],"d":{"card":"卡片","pencil":"","memory":"","favourite":""}},{"s":"I use an ____ to clean the pencil marks.","ans":"eraser","opts":["postcard","eraser","doll","collector"],"d":{"eraser":"橡皮","postcard":"","doll":"","collector":""}},{"s":"Write your name with a ____.","ans":"pencil","opts":["thousand","shelf","shell","pencil"],"d":{"pencil":"铅笔","thousand":"","shelf":"","shell":""}}]},{"name":"重点短语","data":[{"s":"Please ____ some sugar ____ the tea.","ans":"add ... to...","opts":["take ... from ...","add ... to...","all over the world","more and more"],"d":{"add ... to...":"把……添加到……","take ... from ...":"","all over the world":"","more and more":""}},{"s":"Cola is a ____.","ans":"soft drink","opts":["a history lesson","all over the world","chocolate wrappers","soft drink"],"d":{"soft drink":"软饮料（不含酒精）","a history lesson":"","all over the world":"","chocolate wrappers":""}},{"s":"Playing games all day is ____.","ans":"a waste of time","opts":["a history lesson","sweet memories","stamp collection","a waste of time"],"d":{"a waste of time":"浪费时间","a history lesson":"","sweet memories":"","stamp collection":""}},{"s":"I spend my ____ on books.","ans":"pocket money","opts":["the Palace Museum","sweet memories","pocket money","thanks to"],"d":{"pocket money":"（父母给孩子的）零花钱","the palace museum":"","sweet memories":"","thanks to":""}},{"s":"People ____ collect coins.","ans":"all over the world","opts":["paper money","thanks to","all over the world","hundreds of years ago"],"d":{"all over the world":"全世界","paper money":"","thanks to":"","hundreds of years ago":""}},{"s":"My hobby is ____.","ans":"stamp collection","opts":["hundreds of years ago","add ... to...","stamp collection","take care of"],"d":{"stamp collection":"集邮","hundreds of years ago":"","add ... to...":"","take care of":""}},{"s":"____ you, I learned a lot.","ans":"thanks to","opts":["add ... to...","thanks to","with great care","a single nail"],"d":{"thanks to":"多亏；由于","add ... to...":"","with great care":"","a single nail":""}},{"s":"He ____ his stamp album.","ans":"take care of","opts":["soft drink","take care of","become interested in","with great care"],"d":{"take care of":"照顾；保管","soft drink":"","become interested in":"","with great care":""}},{"s":"She opened the box ____.","ans":"with great care","opts":["a waste of time","with great care","add ... to ...","become interested in"],"d":{"with great care":"非常小心地","a waste of time":"","add ... to ...":"","become interested in":""}},{"s":"____ the milk ____ the coffee.","ans":"add ... to ...","opts":["a waste of time","take ... from ...","more and more","add ... to ..."],"d":{"add ... to ...":"把……加入……","a waste of time":"","take ... from ...":"","more and more":""}},{"s":"He ____ a stamp ____ the album.","ans":"take ... from ...","opts":["add ... to ...","chocolate wrappers","pocket money","take ... from ..."],"d":{"take ... from ...":"从……取下……","add ... to ...":"","chocolate wrappers":"","pocket money":""}},{"s":"The museum was ____.","ans":"a history lesson","opts":["take ... from ...","chocolate wrappers","a history lesson","all over the world"],"d":{"a history lesson":"一堂历史课","take ... from ...":"","chocolate wrappers":"","all over the world":""}},{"s":"We visited ____ in Beijing.","ans":"the Palace Museum","opts":["all over the world","a history lesson","the Palace Museum","sweet memories"],"d":{"the palace museum":"故宫博物院","all over the world":"","a history lesson":"","sweet memories":""}},{"s":"The temple was built ____.","ans":"hundreds of years ago","opts":["a history lesson","hundreds of years ago","paper money","stamp collection"],"d":{"hundreds of years ago":"几百年前","a history lesson":"","paper money":"","stamp collection":""}},{"s":"He found ____ on the floor.","ans":"a single nail","opts":["the Palace Museum","a single nail","thanks to","paper money"],"d":{"a single nail":"一颗钉子","the palace museum":"","thanks to":"","paper money":""}},{"s":"I ____ collecting coins.","ans":"become interested in","opts":["add ... to...","become interested in","hundreds of years ago","thanks to"],"d":{"become interested in":"对……产生兴趣","add ... to...":"","hundreds of years ago":"","thanks to":""}},{"s":"____ people like reading.","ans":"more and more","opts":["soft drink","hundreds of years ago","take care of","more and more"],"d":{"more and more":"越来越多","soft drink":"","hundreds of years ago":"","take care of":""}},{"s":"She collects ____.","ans":"chocolate wrappers","opts":["soft drink","with great care","a single nail","chocolate wrappers"],"d":{"chocolate wrappers":"巧克力包装纸","soft drink":"","with great care":"","a single nail":""}},{"s":"The photos bring back ____.","ans":"sweet memories","opts":["a waste of time","with great care","sweet memories","become interested in"],"d":{"sweet memories":"甜蜜的回忆","a waste of time":"","with great care":"","become interested in":""}},{"s":"I collect ____ from different countries.","ans":"paper money","opts":["add ... to ...","become interested in","paper money","pocket money"],"d":{"paper money":"纸币","add ... to ...":"","become interested in":"","pocket money":""}}]},{"name":"短语语境拓展","data":[{"s":"____ the eggs ____ the bowl.","ans":"add ... to...","opts":["take ... from ...","add ... to...","all over the world","more and more"],"d":{"add ... to...":"把……添加到……","take ... from ...":"","all over the world":"","more and more":""}},{"s":"Water is better than a ____.","ans":"soft drink","opts":["a history lesson","all over the world","chocolate wrappers","soft drink"],"d":{"soft drink":"软饮料（不含酒精）","a history lesson":"","all over the world":"","chocolate wrappers":""}},{"s":"Watching TV all day is ____.","ans":"a waste of time","opts":["a history lesson","sweet memories","stamp collection","a waste of time"],"d":{"a waste of time":"浪费时间","a history lesson":"","sweet memories":"","stamp collection":""}},{"s":"I save my ____.","ans":"pocket money","opts":["the Palace Museum","sweet memories","pocket money","thanks to"],"d":{"pocket money":"（父母给孩子的）零花钱","the palace museum":"","sweet memories":"","thanks to":""}},{"s":"Friends are ____.","ans":"all over the world","opts":["paper money","thanks to","all over the world","hundreds of years ago"],"d":{"all over the world":"全世界","paper money":"","thanks to":"","hundreds of years ago":""}},{"s":"His ____ is amazing.","ans":"stamp collection","opts":["hundreds of years ago","add ... to...","stamp collection","take care of"],"d":{"stamp collection":"集邮","hundreds of years ago":"","add ... to...":"","take care of":""}},{"s":"____ the book, I know more.","ans":"thanks to","opts":["add ... to...","thanks to","with great care","a single nail"],"d":{"thanks to":"多亏；由于","add ... to...":"","with great care":"","a single nail":""}},{"s":"Please ____ your toys.","ans":"take care of","opts":["soft drink","take care of","become interested in","with great care"],"d":{"take care of":"照顾；保管","soft drink":"","become interested in":"","with great care":""}},{"s":"He handled the glass ____.","ans":"with great care","opts":["a waste of time","with great care","add ... to ...","become interested in"],"d":{"with great care":"非常小心地","a waste of time":"","add ... to ...":"","become interested in":""}},{"s":"____ some salt ____ the soup.","ans":"add ... to ...","opts":["a waste of time","take ... from ...","more and more","add ... to ..."],"d":{"add ... to ...":"把……加入……","a waste of time":"","take ... from ...":"","more and more":""}},{"s":"She ____ a book ____ the shelf.","ans":"take ... from ...","opts":["add ... to ...","chocolate wrappers","pocket money","take ... from ..."],"d":{"take ... from ...":"从……取下……","add ... to ...":"","chocolate wrappers":"","pocket money":""}},{"s":"The old city is like ____.","ans":"a history lesson","opts":["take ... from ...","chocolate wrappers","a history lesson","all over the world"],"d":{"a history lesson":"一堂历史课","take ... from ...":"","chocolate wrappers":"","all over the world":""}},{"s":"____ has many treasures.","ans":"the Palace Museum","opts":["all over the world","a history lesson","the Palace Museum","sweet memories"],"d":{"the palace museum":"故宫博物院","all over the world":"","a history lesson":"","sweet memories":""}},{"s":"People lived here ____.","ans":"hundreds of years ago","opts":["a history lesson","hundreds of years ago","paper money","stamp collection"],"d":{"hundreds of years ago":"几百年前","a history lesson":"","paper money":"","stamp collection":""}},{"s":"He fixed it with ____.","ans":"a single nail","opts":["the Palace Museum","a single nail","thanks to","paper money"],"d":{"a single nail":"一颗钉子","the palace museum":"","thanks to":"","paper money":""}},{"s":"She ____ stamps last year.","ans":"become interested in","opts":["add ... to...","become interested in","hundreds of years ago","thanks to"],"d":{"become interested in":"对……产生兴趣","add ... to...":"","hundreds of years ago":"","thanks to":""}},{"s":"It gets ____ cold.","ans":"more and more","opts":["soft drink","hundreds of years ago","take care of","more and more"],"d":{"more and more":"越来越多","soft drink":"","hundreds of years ago":"","take care of":""}},{"s":"He keeps ____.","ans":"chocolate wrappers","opts":["soft drink","with great care","a single nail","chocolate wrappers"],"d":{"chocolate wrappers":"巧克力包装纸","soft drink":"","with great care":"","a single nail":""}},{"s":"The song brings ____.","ans":"sweet memories","opts":["a waste of time","with great care","sweet memories","become interested in"],"d":{"sweet memories":"甜蜜的回忆","a waste of time":"","with great care":"","become interested in":""}},{"s":"This ____ is from Japan.","ans":"paper money","opts":["add ... to ...","become interested in","paper money","pocket money"],"d":{"paper money":"纸币","add ... to ...":"","become interested in":"","pocket money":""}}]}];
+  var scSet=0, sci=0, scscore=0, scans=false, sccurrent=null;
+  var scSent=document.getElementById('scSent'), scOpts=document.getElementById('scOpts'),
+      scFb=document.getElementById('scFb'), scNext=document.getElementById('scNext'),
+      scDone=document.getElementById('scDone'), scHint=document.getElementById('scHint'),
+      scScore=document.getElementById('scScore'), scDict=document.getElementById('scDict'),
+      scTabs=document.getElementById('scTabs'), scBadge=document.getElementById('scBadge');
+  function scCur(){ return SC_SETS[scSet].data; }
+  function scWordify(t, dict){
+    var html='', re=/([A-Za-z']+)([^A-Za-z']*)/g, last=0, m;
+    while((m=re.exec(t))!==null){
+      html+=t.slice(last,m.index);
+      var w=m[1], key=w.toLowerCase(), zh=dict&&dict[key]?dict[key]:'';
+      html+='<span class="clz-w" role="button" tabindex="0"'+(zh?' data-zh="'+zh+'"':'')+'>'+w+'</span>'+m[2];
+      last=m.index+m[0].length;
+    }
+    html+=t.slice(last); return html;
+  }
+  function scSentHtml(s, fill, dict){
+    var parts=s.split('____'), html='';
+    for(var i=0;i<parts.length;i++){
+      html+=scWordify(parts[i],dict);
+      if(i<parts.length-1){
+        var fkey=fill?fill.toLowerCase():'', fzh=dict&&fill&&dict[fkey]?dict[fkey]:'';
+        html+=fill?'<span class="clz-w fill" role="button" tabindex="0"'+(fzh?' data-zh="'+fzh+'"':'')+'>'+fill+'</span>':'<span class="clz-blank">______</span>';
+      }
+    }
+    return html;
+  }
+  function scShowDict(w,zh){ if(!scDict)return; if(zh){scDict.textContent=w+' — '+zh;scDict.style.display='block';}else{scDict.style.display='none';} }
+  scSent.addEventListener('click',function(e){
+    var t=e.target; if(!t||!t.classList||!t.classList.contains('clz-w'))return;
+    speak(t.textContent,0.8); scShowDict(t.textContent,t.getAttribute('data-zh'));
+  });
+  function scLoad(){
+    scans=false; sccurrent=scCur()[sci];
+    scHint.textContent='第 '+(sci+1)+' / '+scCur().length+' 题 · 点选填空（点单词听发音、看词义）';
+    scFb.textContent=''; scNext.style.display='none'; scNext.textContent='下一题 →'; scDone.style.display='none';
+    scSent.innerHTML=scSentHtml(sccurrent.s,'',sccurrent.d); scShowDict('','');
+    scOpts.innerHTML='';
+    shuffle(sccurrent.opts).forEach(function(o){
+      var b=document.createElement('button'); b.className='q-opt'; b.type='button'; b.textContent=o;
+      b.addEventListener('click',function(){
+        speak(o,0.8);
+        if(scans){ scShowDict(o,sccurrent.d[o.toLowerCase()]); return; }
+        scans=true;
+        var correct=(o===sccurrent.ans);
+        if(correct){ scscore++; b.classList.add('correct'); scFb.innerHTML='答对啦！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--green)'; }
+        else { b.classList.add('wrong'); var bs=scOpts.querySelectorAll('.q-opt'); for(var k=0;k<bs.length;k++){if(bs[k].textContent===sccurrent.ans){bs[k].classList.add('correct');break;}} scFb.innerHTML='再想想！正确答案是 <b>'+esc(sccurrent.ans)+'</b>'; scFb.style.color='var(--red)'; }
+        scSent.innerHTML='';
+        var line=document.createElement('div'); line.className='clz-line';
+        line.innerHTML=scSentHtml(sccurrent.s,sccurrent.ans,sccurrent.d);
+        var lb=document.createElement('button'); lb.className='clz-listen'; lb.type='button';
+        lb.setAttribute('aria-label','朗读本句'); lb.title='朗读本句'; lb.innerHTML=SPK;
+        lb.addEventListener('click',function(){ speak(sccurrent.s.replace('____',sccurrent.ans)); });
+        line.appendChild(lb); scSent.appendChild(line);
+        scScore.textContent='得分：'+scscore;
+        setTimeout(function(){ speak(sccurrent.ans,0.8); },700);
+        scNext.style.display='inline-block';
+        if(sci>=scCur().length-1){ scNext.textContent='再来一轮'; scDone.style.display='block';
+          scDone.textContent='完成！共 '+scCur().length+' 题，答对 '+scscore+' 题。'+(scscore===scCur().length?' 太棒了，全部正确！':(scscore>=scCur().length*0.6?' 很好，继续加油！':' 建议回到例句部分再听一听。'));
+        }
+      });
+      scOpts.appendChild(b);
+    });
+  }
+  scNext.addEventListener('click',function(){
+    if(sci>=scCur().length-1){ sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; }
+    else sci++;
+    scLoad();
+  });
+  SC_SETS.forEach(function(st,i){
+    var tb=document.createElement('button'); tb.className='q-tab'+(i===0?' active':''); tb.type='button';
+    tb.textContent=st.name+'（'+st.data.length+' 题）';
+    tb.addEventListener('click',function(){
+      scSet=i; sci=0; scscore=0; scScore.textContent='得分：0'; scDone.style.display='none'; scDone.textContent=''; scFb.textContent='';
+      var tabs=scTabs.querySelectorAll('.q-tab'); for(var k=0;k<tabs.length;k++)tabs[k].classList.remove('active');
+      tb.classList.add('active'); scBadge.textContent=st.name+' · '+st.data.length+' 题'; scLoad();
+    });
+    scTabs.appendChild(tb);
+  });
+  scBadge.textContent=SC_SETS[0].name+' · '+SC_SETS[0].data.length+' 题';
+  scLoad();
+
 </script>
 <style>
 .pgnav{background:#FFFDF9;border-top:1px solid #EFE6DA;margin-top:30px;padding:16px 0 22px;}
@@ -1651,7 +1768,6 @@
     <div class="pg-row">
       <a class="up" href="Unit0_总目录_点读学习中心.html">‹ 返回七上总目录</a>
       <a href="Unit7_Fun_after_School_点读学习页.html">← 上一单元</a>
-      <a href="Unit8_Collecting_as_a_Hobby_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit8_习题与测试.html">📝 本单元习题与测试</a>
       <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>

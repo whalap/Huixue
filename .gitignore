@@ -1,0 +1,21 @@
+# 备份与临时文件（不推送到 GitHub）
+*.bak
+*.bak[0-9]*
+*.bak-*
+*.tmp
+临时*.txt
+_probe.txt
+
+# 备份目录
+*备份*/
+*backup*/
+*_backup*/
+
+# 测试/探针文件
+__*.html
+*autotest*
+*.tmp
+
+# 系统文件
+.DS_Store
+Thumbs.db

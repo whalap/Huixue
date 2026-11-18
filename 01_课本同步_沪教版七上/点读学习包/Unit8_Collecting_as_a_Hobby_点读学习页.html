@@ -371,7 +371,7 @@
       <div class="no">1</div>
       <h2>核心单词</h2>
       <p>点击卡片朗读整词，点击分色音节逐音节跟读</p>
-      <span class="count-badge">本单元词汇表 · 30 词</span>
+      <span class="count-badge">本单元词汇表 · 36 词</span>
     </div>
     <div class="word-grid" id="wordGrid"></div>
 
@@ -379,7 +379,7 @@
       <div class="no" style="background:var(--teal);">+</div>
       <h2>单元补充词汇</h2>
       <p>收藏 · 爱好 · 珍宝（课文与听说活动）</p>
-      <span class="count-badge">18 词</span>
+      <span class="count-badge">32 词</span>
     </div>
     <div class="word-grid" id="extraGrid"></div>
   </section>
@@ -390,7 +390,7 @@
       <div class="no">2</div>
       <h2>重点短语</h2>
       <p>来自单元词汇表，点击即可点读</p>
-      <span class="count-badge">17 个</span>
+      <span class="count-badge">20 个</span>
     </div>
     <div class="phrase-list" id="phraseList"></div>
   </section>
@@ -560,62 +560,80 @@
 
   <footer>
     <p>内容依据：上海教育出版社《义务教育教科书 英语 七年级上册》Unit 8 Collecting as a hobby（2024 广州新版）</p>
-    <p>单词点读基于浏览器语音合成（Web Speech API）；课文跟读使用教材 Reading 原声录音切片，建议使用 Chrome / Edge 打开</p>
+    <p>单词与课文朗读均基于浏览器语音合成（AI 自然音 / Web Speech API），无需下载音频文件，建议使用 Chrome / Edge 打开</p>
   </footer>
 </div>
 
-<script src="原声跟读引擎.js"></script>
 <script>
 (function(){
   'use strict';
-  var YS_UNIT = 8; /* 本单元编号：课文原声切片用 */
   var SPK = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
 
   /* ========== 数据 ========== */
   var WORDS = [
-    {w:'collection', syl:['col','lec','tion'], st:1, ipa:'/kəˈlekʃn/', pos:'n.', zh:'收集物；收藏品'},
+    {w:'ring', syl:['ring'], st:0, ipa:'/rɪŋ/', pos:'n.', zh:'环状物；圆形的东西'},
+    {w:'collection', syl:['col','lec','tion'], st:1, ipa:'/kəˈlekʃn/', pos:'n.', zh:'（常指同类的）收集物'},
+    {w:'own', syl:['own'], st:0, ipa:'/əʊn/', pos:'v.', zh:'拥有；有'},
+    {w:'valuable', syl:['val','u','a','ble'], st:0, ipa:'/ˈvæljuəbl/', pos:'adj.', zh:'贵重的'},
+    {w:'handle', syl:['han','dle'], st:0, ipa:'/ˈhændl/', pos:'v.', zh:'（用手）触', star:true},
+    {w:'glove', syl:['glove'], st:0, ipa:'/ɡlʌv/', pos:'n.', zh:'（分手指的）手套'},
+    {w:'add', syl:['add'], st:0, ipa:'/æd/', pos:'v.', zh:'增加；添加'},
+    {w:'envelope', syl:['en','ve','lope'], st:0, ipa:'/ˈenvələʊp/', pos:'n.', zh:'信封'},
+    {w:'absolutely', syl:['ab','so','lute','ly'], st:0, ipa:'/ˈæbsəluːtli/', pos:'adv.', zh:'极其'},
+    {w:'seem', syl:['seem'], st:0, ipa:'/siːm/', pos:'v.', zh:'好像；似乎'},
+    {w:'impossible', syl:['im','pos','si','ble'], st:1, ipa:'/ɪmˈpɒsəbl/', pos:'adj.', zh:'不可能的'},
+    {w:'single', syl:['sin','gle'], st:0, ipa:'/ˈsɪŋɡl/', pos:'adj.', zh:'单个的'},
+    {w:'nail', syl:['nail'], st:0, ipa:'/neɪl/', pos:'n.', zh:'钉；钉子', star:true},
+    {w:'explain', syl:['ex','plain'], st:1, ipa:'/ɪkˈspleɪn/', pos:'v.', zh:'解释；说明'},
+    {w:'bit', syl:['bit'], st:0, ipa:'/bɪt/', pos:'n.', zh:'一部分'},
+    {w:'similar', syl:['sim','i','lar'], st:0, ipa:'/ˈsɪmələ(r)/', pos:'adj.', zh:'相像的；类似的'},
+    {w:'coin', syl:['coin'], st:0, ipa:'/kɔɪn/', pos:'n.', zh:'（一枚）硬币'},
+    {w:'soft', syl:['soft'], st:0, ipa:'/sɒft/', pos:'adj.', zh:'软的'},
+    {w:'sticker', syl:['stick','er'], st:0, ipa:'/ˈstɪkə(r)/', pos:'n.', zh:'贴纸'},
+    {w:'waste', syl:['waste'], st:0, ipa:'/weɪst/', pos:'n.', zh:'白费；糟蹋'},
+    {w:'item', syl:['i','tem'], st:0, ipa:'/ˈaɪtəm/', pos:'n.', zh:'一件商品（或物品）', star:true},
+    {w:'result', syl:['re','sult'], st:1, ipa:'/rɪˈzʌlt/', pos:'n.', zh:'后果；结果'},
+    {w:'wrapper', syl:['wrap','per'], st:0, ipa:'/ˈræpə(r)/', pos:'n.', zh:'包装纸', star:true},
+    {w:'bar', syl:['bar'], st:0, ipa:'/bɑː(r)/', pos:'n.', zh:'（长方形）条'},
+    {w:'include', syl:['in','clude'], st:1, ipa:'/ɪnˈkluːd/', pos:'v.', zh:'包括；包含'},
+    {w:'size', syl:['size'], st:0, ipa:'/saɪz/', pos:'n.', zh:'大小'},
+    {w:'pattern', syl:['pat','tern'], st:0, ipa:'/ˈpætn/', pos:'n.', zh:'图案；花样'},
+    {w:'produce', syl:['pro','duce'], st:1, ipa:'/prəˈdjuːs/', pos:'v.', zh:'生产；制造'},
+    {w:'attract', syl:['at','tract'], st:1, ipa:'/əˈtrækt/', pos:'v.', zh:'吸引；招引'},
+    {w:'insect', syl:['in','sect'], st:0, ipa:'/ˈɪnsekt/', pos:'n.', zh:'昆虫'},
+    {w:'object', syl:['ob','ject'], st:0, ipa:'/ˈɒbdʒɪkt/', pos:'n.', zh:'物体；物品'},
+    {w:'flat', syl:['flat'], st:0, ipa:'/flæt/', pos:'adj.', zh:'平滑的'},
+    {w:'language', syl:['lan','guage'], st:0, ipa:'/ˈlæŋɡwɪdʒ/', pos:'n.', zh:'语言'},
+    {w:'treasure', syl:['trea','sure'], st:0, ipa:'/ˈtreʒə(r)/', pos:'n.', zh:'珍宝；宝物'},
+    {w:'unlock', syl:['un','lock'], st:1, ipa:'/ʌnˈlɒk/', pos:'v.', zh:'发现；揭示'},
+    {w:'real', syl:['real'], st:0, ipa:'/rɪəl/', pos:'adj.', zh:'真的'}
+  ];
+  var EXTRAS = [
     {w:'collect', syl:['col','lect'], st:1, ipa:'/kəˈlekt/', pos:'v.', zh:'收集；收藏'},
     {w:'hobby', syl:['hob','by'], st:0, ipa:'/ˈhɒbi/', pos:'n.', zh:'爱好'},
     {w:'stamp', syl:['stamp'], st:0, ipa:'/stæmp/', pos:'n.', zh:'邮票'},
-    {w:'own', syl:['own'], st:0, ipa:'/əʊn/', pos:'v.', zh:'拥有'},
     {w:'thousand', syl:['thou','sand'], st:0, ipa:'/ˈθaʊznd/', pos:'n.', zh:'一千'},
-    {w:'valuable', syl:['val','u','a','ble'], st:0, ipa:'/ˈvæljuəbl/', pos:'adj.', zh:'贵重的；宝贵的'},
     {w:'care', syl:['care'], st:0, ipa:'/keə(r)/', pos:'n.', zh:'照料；小心'},
     {w:'protect', syl:['pro','tect'], st:1, ipa:'/prəˈtekt/', pos:'v.', zh:'保护'},
-    {w:'glove', syl:['glove'], st:0, ipa:'/ɡlʌv/', pos:'n.', zh:'手套'},
-    {w:'envelope', syl:['en','ve','lope'], st:0, ipa:'/ˈenvələʊp/', pos:'n.', zh:'信封'},
     {w:'postcard', syl:['post','card'], st:0, ipa:'/ˈpəʊstkɑːd/', pos:'n.', zh:'明信片'},
     {w:'story', syl:['sto','ry'], st:0, ipa:'/ˈstɔːri/', pos:'n.', zh:'故事'},
     {w:'lesson', syl:['les','son'], st:0, ipa:'/ˈlesn/', pos:'n.', zh:'课；教训'},
-    {w:'absolutely', syl:['ab','so','lute','ly'], st:0, ipa:'/ˈæbsəluːtli/', pos:'adv.', zh:'绝对地；完全地'},
     {w:'favourite', syl:['fa','vou','rite'], st:0, ipa:'/ˈfeɪvərɪt/', pos:'adj.', zh:'最喜欢的'},
-    {w:'impossible', syl:['im','pos','si','ble'], st:1, ipa:'/ɪmˈpɒsəbl/', pos:'adj.', zh:'不可能的'},
-    {w:'nail', syl:['nail'], st:0, ipa:'/neɪl/', pos:'n.', zh:'钉子'},
-    {w:'explain', syl:['ex','plain'], st:1, ipa:'/ɪkˈspleɪn/', pos:'v.', zh:'解释；说明'},
-    {w:'bit', syl:['bit'], st:0, ipa:'/bɪt/', pos:'n.', zh:'少量；一点'},
     {w:'palace', syl:['pal','ace'], st:0, ipa:'/ˈpæləs/', pos:'n.', zh:'宫殿'},
     {w:'interested', syl:['in','te','res','ted'], st:0, ipa:'/ˈɪntrəstɪd/', pos:'adj.', zh:'感兴趣的'},
-    {w:'similar', syl:['sim','i','lar'], st:0, ipa:'/ˈsɪmələ(r)/', pos:'adj.', zh:'相似的'},
     {w:'country', syl:['coun','try'], st:0, ipa:'/ˈkʌntri/', pos:'n.', zh:'国家'},
-    {w:'treasure', syl:['trea','sure'], st:0, ipa:'/ˈtreʒə(r)/', pos:'n.', zh:'珍宝；宝物'},
     {w:'shell', syl:['shell'], st:0, ipa:'/ʃel/', pos:'n.', zh:'贝壳'},
-    {w:'coin', syl:['coin'], st:0, ipa:'/kɔɪn/', pos:'n.', zh:'硬币'},
     {w:'key ring', syl:['key','ring'], st:0, ipa:'/ˈkiː rɪŋ/', pos:'n.', zh:'钥匙扣'},
     {w:'model', syl:['mod','el'], st:0, ipa:'/ˈmɒdl/', pos:'n.', zh:'模型'},
-    {w:'wrapper', syl:['wrap','per'], st:0, ipa:'/ˈræpə(r)/', pos:'n.', zh:'包装纸'}
-  ];
-  var EXTRAS = [
     {w:'collector', syl:['col','lec','tor'], st:1, ipa:'/kəˈlektə(r)/', pos:'n.', zh:'收藏家'},
     {w:'discover', syl:['dis','cov','er'], st:1, ipa:'/dɪˈskʌvə(r)/', pos:'v.', zh:'发现'},
     {w:'curious', syl:['cu','ri','ous'], st:0, ipa:'/ˈkjʊəriəs/', pos:'adj.', zh:'好奇的'},
-    {w:'pattern', syl:['pat','tern'], st:0, ipa:'/ˈpætn/', pos:'n.', zh:'图案；花样'},
     {w:'unusual', syl:['un','u','su','al'], st:1, ipa:'/ʌnˈjuːʒuəl/', pos:'adj.', zh:'不寻常的'},
     {w:'memory', syl:['mem','o','ry'], st:0, ipa:'/ˈmeməri/', pos:'n.', zh:'回忆；记忆'},
     {w:'box', syl:['box'], st:0, ipa:'/bɒks/', pos:'n.', zh:'盒子'},
     {w:'album', syl:['al','bum'], st:0, ipa:'/ˈælbəm/', pos:'n.', zh:'集邮册；相册'},
     {w:'shelf', syl:['shelf'], st:0, ipa:'/ʃelf/', pos:'n.', zh:'架子'},
     {w:'drawer', syl:['draw','er'], st:0, ipa:'/drɔː(r)/', pos:'n.', zh:'抽屉'},
-    {w:'sticker', syl:['stick','er'], st:0, ipa:'/ˈstɪkə(r)/', pos:'n.', zh:'贴纸'},
     {w:'paper clip', syl:['pa','per','clip'], st:0, ipa:'/ˈpeɪpə klɪp/', pos:'n.', zh:'回形针'},
     {w:'badge', syl:['badge'], st:0, ipa:'/bædʒ/', pos:'n.', zh:'徽章'},
     {w:'doll', syl:['doll'], st:0, ipa:'/dɒl/', pos:'n.', zh:'洋娃娃'},
@@ -625,9 +643,12 @@
     {w:'pencil', syl:['pen','cil'], st:0, ipa:'/ˈpensl/', pos:'n.', zh:'铅笔'}
   ];
   var PHRASES = [
-    {p:'stamp collection', zh:'集邮'},
+    {p:'add ... to...', zh:'把……添加到……'},
+    {p:'soft drink', zh:'软饮料（不含酒精）'},
+    {p:'a waste of time', zh:'浪费时间'},
+    {p:'pocket money', zh:'（父母给孩子的）零花钱'},
     {p:'all over the world', zh:'全世界'},
-    {p:'pocket money', zh:'零花钱'},
+    {p:'stamp collection', zh:'集邮'},
     {p:'thanks to', zh:'多亏；由于'},
     {p:'take care of', zh:'照顾；保管'},
     {p:'with great care', zh:'非常小心地'},
@@ -686,49 +707,69 @@
     {q:'It may seem impossible, but they built them without using a single nail!', zh:'这似乎不可能，但他们建造时没有用一颗钉子！'}
   ];
   var QUIZ = [
-    {w:'collection', zh:'收集物；收藏品', opts:['爱好','邮票','故事']},
-    {w:'collect', zh:'收集；收藏', opts:['扔掉','分发','购买']},
-    {w:'hobby', zh:'爱好', opts:['工作','作业','习惯']},
-    {w:'stamp', zh:'邮票', opts:['信封','明信片','标签']},
-    {w:'own', zh:'拥有', opts:['借用','出售','丢失']},
-    {w:'thousand', zh:'一千', opts:['一百','一万','百万']},
-    {w:'valuable', zh:'贵重的；宝贵的', opts:['便宜的','普通的','无用的']},
-    {w:'care', zh:'照料；小心', opts:['粗心','帮助','保护']},
-    {w:'protect', zh:'保护', opts:['伤害','暴露','清洗']},
-    {w:'glove', zh:'手套', opts:['袜子','帽子','围巾']},
+    {w:'ring', zh:'环状物；圆形的东西', opts:['一件商品（或物品）','（常指同类的）收集物','（分手指的）手套']},
+    {w:'collection', zh:'（常指同类的）收集物', opts:['环状物；圆形的东西','一件商品（或物品）','（分手指的）手套']},
+    {w:'own', zh:'拥有；有', opts:['（用手）触','增加；添加','好像；似乎']},
+    {w:'valuable', zh:'贵重的', opts:['单个的','平滑的','好奇的']},
+    {w:'handle', zh:'（用手）触', opts:['增加；添加','好像；似乎','解释；说明']},
+    {w:'glove', zh:'（分手指的）手套', opts:['环状物；圆形的东西','一件商品（或物品）','（常指同类的）收集物']},
+    {w:'add', zh:'增加；添加', opts:['（用手）触','好像；似乎','解释；说明']},
     {w:'envelope', zh:'信封', opts:['信纸','邮票','包裹']},
-    {w:'postcard', zh:'明信片', opts:['照片','贺卡','杂志']},
-    {w:'story', zh:'故事', opts:['诗歌','歌曲','新闻']},
-    {w:'lesson', zh:'课；教训', opts:['假期','休息','练习']},
-    {w:'absolutely', zh:'绝对地；完全地', opts:['部分地','几乎','可能']},
-    {w:'favourite', zh:'最喜欢的', opts:['讨厌的','普通的','唯一的']},
+    {w:'absolutely', zh:'极其', opts:['信封','软的','贴纸']},
+    {w:'seem', zh:'好像；似乎', opts:['（用手）触','增加；添加','解释；说明']},
     {w:'impossible', zh:'不可能的', opts:['可能的','困难的','容易的']},
-    {w:'nail', zh:'钉子', opts:['螺丝','锤子','绳子']},
+    {w:'single', zh:'单个的', opts:['贵重的','平滑的','好奇的']},
+    {w:'nail', zh:'钉；钉子', opts:['课；教训','一部分','白费；糟蹋']},
     {w:'explain', zh:'解释；说明', opts:['隐藏','怀疑','提问']},
-    {w:'bit', zh:'少量；一点', opts:['大量','全部','一半']},
-    {w:'palace', zh:'宫殿', opts:['城堡','寺庙','教堂']},
-    {w:'interested', zh:'感兴趣的', opts:['无聊的','兴奋的','惊讶的']},
-    {w:'similar', zh:'相似的', opts:['不同的','相同的','相反的']},
-    {w:'country', zh:'国家', opts:['城市','乡村','大陆']},
+    {w:'bit', zh:'一部分', opts:['包装纸','明信片','钥匙扣']},
+    {w:'similar', zh:'相像的；类似的', opts:['不可能的','最喜欢的','感兴趣的']},
+    {w:'coin', zh:'（一枚）硬币', opts:['（长方形）条','集邮册；相册','白费；糟蹋']},
+    {w:'soft', zh:'软的', opts:['真的','贵重的','单个的']},
+    {w:'sticker', zh:'贴纸', opts:['信封','大小','昆虫']},
+    {w:'waste', zh:'白费；糟蹋', opts:['后果；结果','图案；花样','物体；物品']},
+    {w:'item', zh:'一件商品（或物品）', opts:['环状物；圆形的东西','（常指同类的）收集物','（分手指的）手套']},
+    {w:'result', zh:'后果；结果', opts:['白费；糟蹋','图案；花样','物体；物品']},
+    {w:'wrapper', zh:'包装纸', opts:['报纸','信纸','海报']},
+    {w:'bar', zh:'（长方形）条', opts:['（一枚）硬币','集邮册；相册','白费；糟蹋']},
+    {w:'include', zh:'包括；包含', opts:['（用手）触','增加；添加','好像；似乎']},
+    {w:'size', zh:'大小', opts:['信封','贴纸','昆虫']},
+    {w:'pattern', zh:'图案；花样', opts:['白费；糟蹋','后果；结果','物体；物品']},
+    {w:'produce', zh:'生产；制造', opts:['（用手）触','增加；添加','好像；似乎']},
+    {w:'attract', zh:'吸引；招引', opts:['（用手）触','增加；添加','好像；似乎']},
+    {w:'insect', zh:'昆虫', opts:['信封','贴纸','大小']},
+    {w:'object', zh:'物体；物品', opts:['白费；糟蹋','后果；结果','图案；花样']},
+    {w:'flat', zh:'平滑的', opts:['贵重的','单个的','好奇的']},
+    {w:'language', zh:'语言', opts:['信封','贴纸','大小']},
     {w:'treasure', zh:'珍宝；宝物', opts:['垃圾','礼物','证书']},
-    {w:'shell', zh:'贝壳', opts:['石头','沙子','珍珠']},
-    {w:'coin', zh:'硬币', opts:['纸币','支票','信用卡']},
-    {w:'key ring', zh:'钥匙扣', opts:['钥匙','锁','门铃']},
-    {w:'model', zh:'模型', opts:['原型','玩具','样品']},
-    {w:'wrapper', zh:'包装纸', opts:['报纸','信纸','海报']}
+    {w:'unlock', zh:'发现；揭示', opts:['（用手）触','增加；添加','好像；似乎']},
+    {w:'real', zh:'真的', opts:['软的','贵重的','单个的']}
   ];
   var QUIZ_EXTRA = [
+    {w:'collect', zh:'收集；收藏', opts:['（用手）触','增加；添加','好像；似乎']},
+    {w:'hobby', zh:'爱好', opts:['信封','贴纸','大小']},
+    {w:'stamp', zh:'邮票', opts:['信封','贴纸','大小']},
+    {w:'thousand', zh:'一千', opts:['信封','贴纸','大小']},
+    {w:'care', zh:'照料；小心', opts:['白费；糟蹋','后果；结果','图案；花样']},
+    {w:'protect', zh:'保护', opts:['发现','拥有；有','（用手）触']},
+    {w:'postcard', zh:'明信片', opts:['一部分','包装纸','钥匙扣']},
+    {w:'story', zh:'故事', opts:['信封','贴纸','大小']},
+    {w:'lesson', zh:'课；教训', opts:['钉；钉子','一部分','白费；糟蹋']},
+    {w:'favourite', zh:'最喜欢的', opts:['不可能的','感兴趣的','不寻常的']},
+    {w:'palace', zh:'宫殿', opts:['信封','贴纸','大小']},
+    {w:'interested', zh:'感兴趣的', opts:['不可能的','最喜欢的','不寻常的']},
+    {w:'country', zh:'国家', opts:['信封','贴纸','大小']},
+    {w:'shell', zh:'贝壳', opts:['信封','贴纸','大小']},
+    {w:'key ring', zh:'钥匙扣', opts:['一部分','包装纸','明信片']},
+    {w:'model', zh:'模型', opts:['信封','贴纸','大小']},
     {w:'collector', zh:'收藏家', opts:['顾客','读者','游客']},
     {w:'discover', zh:'发现', opts:['发明','创造','隐藏']},
     {w:'curious', zh:'好奇的', opts:['漠不关心的','害怕的','兴奋的']},
-    {w:'pattern', zh:'图案；花样', opts:['颜色','形状','设计']},
     {w:'unusual', zh:'不寻常的', opts:['普通的','常见的','奇怪的']},
     {w:'memory', zh:'回忆；记忆', opts:['梦想','未来','经历']},
     {w:'box', zh:'盒子', opts:['袋子','篮子','瓶子']},
     {w:'album', zh:'集邮册；相册', opts:['画册','笔记本','字典']},
     {w:'shelf', zh:'架子', opts:['桌子','椅子','柜子']},
     {w:'drawer', zh:'抽屉', opts:['门','窗','书架']},
-    {w:'sticker', zh:'贴纸', opts:['标签','邮票','胶带']},
     {w:'paper clip', zh:'回形针', opts:['订书钉','橡皮筋','别针']},
     {w:'badge', zh:'徽章', opts:['奖牌','硬币','钥匙扣']},
     {w:'doll', zh:'洋娃娃', opts:['玩具熊','机器人','木偶']},
@@ -738,9 +779,12 @@
     {w:'pencil', zh:'铅笔', opts:['钢笔','蜡笔','毛笔']}
   ];
   var QUIZ_PHRASE = [
-    {w:'stamp collection', zh:'集邮', opts:['收藏邮票','邮票展','集邮册']},
+    {w:'add ... to...', zh:'把……添加到……', opts:['（分手指的）手套','软饮料（不含酒精）','把……加入……']},
+    {w:'soft drink', zh:'软饮料（不含酒精）', opts:['环状物；圆形的东西','一件商品（或物品）','把……添加到……']},
+    {w:'a waste of time', zh:'浪费时间', opts:['几百年前','一颗钉子','越来越多']},
+    {w:'pocket money', zh:'（父母给孩子的）零花钱', opts:['（常指同类的）收集物','软饮料（不含酒精）','环状物；圆形的东西']},
     {w:'all over the world', zh:'全世界', opts:['世界各地都有','环绕世界','世界尽头']},
-    {w:'pocket money', zh:'零花钱', opts:['压岁钱','存款','工资']},
+    {w:'stamp collection', zh:'集邮', opts:['收藏邮票','邮票展','集邮册']},
     {w:'thanks to', zh:'多亏；由于', opts:['感谢','因为……而','拒绝']},
     {w:'take care of', zh:'照顾；保管', opts:['放弃','关注','忽视']},
     {w:'with great care', zh:'非常小心地', opts:['毫不在意地','粗心地','仔细地']},
@@ -806,6 +850,7 @@
 
   function speak(text, rate, onend){
     if (!synth) { alert('当前浏览器不支持语音合成（Web Speech API），建议使用 Chrome 或 Edge。'); return; }
+    readAllToken++;
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text);
     var v = getVoice();
@@ -816,8 +861,10 @@
     synth.speak(u);
   }
 
+  var readAllToken = 0;
   function stopSpeak(){
     if (synth) synth.cancel();
+    readAllToken++;
     var els = document.querySelectorAll('.speaking');
     for (var i = 0; i < els.length; i++) els[i].classList.remove('speaking');
   }
@@ -1001,66 +1048,43 @@
     var btn = document.createElement('button');
     btn.className = 'sent-btn';
     btn.type = 'button';
-    btn.setAttribute('aria-label', '播放本句原声');
-    btn.title = '播放本句原声（教材 Reading 录音切片）';
+    btn.setAttribute('aria-label', 'AI 朗读本句');
+    btn.title = 'AI 朗读本句';
     btn.innerHTML = SPK;
     btn.addEventListener('click', function(){
       var sents = passage.querySelectorAll('.sent');
       for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
       p.classList.add('active');
-      YS.playSentence(YS_UNIT, i, {
-        btn: btn,
-        onend: function(){ p.classList.remove('active'); },
-        onmissing: function(){
-          /* 仅当教材录音未收录该句时，才用 AI 朗读兜底 */
-          speak(clean, undefined);
-        }
-      });
+      speak(clean, undefined, function(){ p.classList.remove('active'); });
     });
     ops.appendChild(btn);
-    var bRec = document.createElement('button');
-    bRec.className = 'sent-btn rec';
-    bRec.type = 'button';
-    bRec.setAttribute('aria-label', '录音跟读');
-    bRec.title = '🎤 跟读本句，录完自动回放对比';
-    bRec.textContent = '🎤';
-    bRec.addEventListener('click', function(){ YS.toggleRec(YS_UNIT, i, p, bRec); });
-    ops.appendChild(bRec);
     p.appendChild(ops);
-    var mine = document.createElement('div');
-    mine.className = 'mine';
-    var tg = document.createElement('span'); tg.className = 'tagx'; tg.textContent = '我的录音';
-    var au = document.createElement('audio'); au.controls = true; au.preload = 'auto';
-    var clr = document.createElement('button'); clr.className = 'clr'; clr.type = 'button'; clr.textContent = '删除';
-    clr.addEventListener('click', function(){
-      try{ au.pause(); au.removeAttribute('src'); }catch(e){}
-      mine.classList.remove('on');
-      bRec.textContent = '🎤';
-    });
-    mine.appendChild(tg); mine.appendChild(au); mine.appendChild(clr);
-    p.appendChild(mine);
     passage.appendChild(p);
   });
 
-  /* 原声全文连读：逐句播放教材 Reading 原声切片（未收录句用 AI 兜底） */
+  /* 全文连读：逐句用 AI 自然音朗读 */
   document.getElementById('readAllBtn').addEventListener('click', function(){
-    if (window.YS) YS.stop();
+    /* AI 自然音逐句连读：每句用浏览器语音合成朗读，句间停顿 320ms */
+    var token = ++readAllToken;
     if (synth) synth.cancel();
     var sents = passage.querySelectorAll('.sent');
-    YS.playAll(YS_UNIT, PASSAGE.length, {
-      gap: 320,
-      onstart: function(i){
+    var i = 0;
+    function step(){
+      if (token !== readAllToken) return;
+      if (i >= sents.length){
         for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
-        sents[i].classList.add('active');
-        if (i > 0 && sents[i].scrollIntoView) sents[i].scrollIntoView({behavior:'smooth', block:'center'});
-      },
-      onmissing: function(i, next){
-        speak(PASSAGE[i].replace(/["“”]/g, ''), undefined, function(){ next(); });
-      },
-      onend: function(){
-        for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+        return;
       }
-    });
+      var idx = i; i++;
+      for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+      sents[idx].classList.add('active');
+      if (idx > 0 && sents[idx].scrollIntoView) sents[idx].scrollIntoView({behavior:'smooth', block:'center'});
+      speak(PASSAGE[idx].replace(/["“”]/g, ''), undefined, function(){
+        if (token === readAllToken) setTimeout(step, 320);
+      });
+      token = readAllToken;
+    }
+    step();
   });
 
   /* ========== 语音训练 ========== */
@@ -1629,7 +1653,7 @@
       <a href="Unit7_Fun_after_School_点读学习页.html">← 上一单元</a>
       <a href="Unit8_Collecting_as_a_Hobby_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit8_习题与测试.html">📝 本单元习题与测试</a>
-      <a href="#reading">🎧 课文原声跟读（本页）</a>
+      <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
       <a href="游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
       <a href="采花成长记_蜜蜂进化_八单元.html">🐝 蜜蜂采花</a>

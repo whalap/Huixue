@@ -301,7 +301,7 @@
       <div class="no">1</div>
       <h2>核心单词</h2>
       <p>点击卡片朗读整词，点击分色音节逐音节跟读</p>
-      <span class="count-badge">本单元词汇表 · 30 词</span>
+      <span class="count-badge">本单元词汇表 · 36 词</span>
     </div>
     <div class="word-grid" id="wordGrid"></div>
 
@@ -309,7 +309,7 @@
       <div class="no" style="background:var(--teal);">+</div>
       <h2>单元补充词汇</h2>
       <p>太空 · 旅行 · 探索（课文与听说活动）</p>
-      <span class="count-badge">18 词</span>
+      <span class="count-badge">33 词</span>
     </div>
     <div class="word-grid" id="extraGrid"></div>
   </section>
@@ -320,7 +320,7 @@
       <div class="no">2</div>
       <h2>重点短语</h2>
       <p>来自单元词汇表，点击即可点读</p>
-      <span class="count-badge">17 个</span>
+      <span class="count-badge">18 个</span>
     </div>
     <div class="phrase-list" id="phraseList"></div>
   </section>
@@ -392,25 +392,56 @@
 
   /* ========== 数据 ========== */
   var WORDS = [
+    {w:'spacesuit', syl:['space','suit'], st:0, ipa:'/ˈspeɪssuːt/', pos:'n.', zh:'航天服；宇航服'},
+    {w:'collect', syl:['col','lect'], st:1, ipa:'/kəˈlekt/', pos:'v.', zh:'收集；采集'},
+    {w:'leave', syl:['leave'], st:0, ipa:'/liːv/', pos:'v.', zh:'离开'},
+    {w:'kilometre', syl:['ki','lo','me','tre'], st:0, ipa:'/ˈkɪləmiːtə(r)/', pos:'n.', zh:'千米；公里'},
+    {w:'weak', syl:['weak'], st:0, ipa:'/wiːk/', pos:'adj.', zh:'虚弱的；无力的'},
+    {w:'tie', syl:['tie'], st:0, ipa:'/taɪ/', pos:'v.', zh:'（用线、绳等）拴'},
+    {w:'low', syl:['low'], st:0, ipa:'/ləʊ/', pos:'adj.', zh:'低于通常（或平均）数量（或水平、价值）的'},
+    {w:'weigh', syl:['weigh'], st:0, ipa:'/weɪ/', pos:'v.', zh:'有……重；重'},
+    {w:'breathe', syl:['breathe'], st:0, ipa:'/briːð/', pos:'v.', zh:'呼吸'},
+    {w:'facility', syl:['fa','cil','i','ty'], st:0, ipa:'/fəˈsɪləti/', pos:'n.', zh:'设施；设备'},
+    {w:'adventure', syl:['ad','ven','ture'], st:1, ipa:'/ədˈventʃə(r)/', pos:'n.', zh:'冒险经历；奇遇'},
+    {w:'pass', syl:['pass'], st:0, ipa:'/pɑːs/', pos:'v.', zh:'沿某方向前进；向某方向移动'},
+    {w:'experiment', syl:['ex','pe','ri','ment'], st:1, ipa:'/ɪkˈsperɪmənt/', pos:'n.', zh:'实验；试验'},
+    {w:'prepare', syl:['pre','pare'], st:1, ipa:'/prɪˈpeə(r)/', pos:'v.', zh:'使做好准备；把……预备好'},
+    {w:'dream', syl:['dream'], st:0, ipa:'/driːm/', pos:'n.', pos2:'v.', zh:'梦想；理想', zh2:'做梦；梦见'},
+    {w:'chance', syl:['chance'], st:0, ipa:'/tʃɑːns/', pos:'n.', zh:'机会；机遇'},
+    {w:'send', syl:['send'], st:0, ipa:'/send/', pos:'v.', zh:'邮寄；发送'},
+    {w:'introduction', syl:['in','tro','duc','tion'], st:2, ipa:'/ˌɪntrəˈdʌkʃn/', pos:'n.', zh:'序言；引言'},
+    {w:'view', syl:['view'], st:0, ipa:'/vjuː/', pos:'n.', zh:'景色；风景'},
+    {w:'someday', syl:['some','day'], st:0, ipa:'/ˈsʌmdeɪ/', pos:'adv.', zh:'总有一天；有朝一日'},
+    {w:'experience', syl:['ex','pe','ri','ence'], st:2, ipa:'/ɪkˈspɪəriəns/', pos:'n.', zh:'经历；阅历'},
+    {w:'lander', syl:['land','er'], st:0, ipa:'/ˈlændə(r)/', pos:'n.', zh:'着陆器'},
+    {w:'island', syl:['is','land'], st:0, ipa:'/ˈaɪlənd/', pos:'n.', zh:'岛'},
+    {w:'ancient', syl:['an','cient'], st:0, ipa:'/ˈeɪnʃənt/', pos:'adj.', zh:'古老的；很老的'},
+    {w:'poem', syl:['po','em'], st:0, ipa:'/ˈpəʊɪm/', pos:'n.', zh:'诗'},
+    {w:'express', syl:['ex','press'], st:1, ipa:'/ɪkˈspres/', pos:'v.', zh:'表示；表达；表露'},
+    {w:'determination', syl:['de','ter','mi','na','tion'], st:3, ipa:'/dɪˌtɜːmɪˈneɪʃn/', pos:'n.', zh:'决心；坚毅；坚定'},
+    {w:'universe', syl:['u','ni','verse'], st:0, ipa:'/ˈjuːnɪvɜːs/', pos:'n.', zh:'宇宙'},
+    {w:'already', syl:['al','rea','dy'], st:1, ipa:'/ɔːlˈredi/', pos:'adv.', zh:'已经；早已'},
+    {w:'century', syl:['cen','tu','ry'], st:0, ipa:'/ˈsentʃəri/', pos:'n.', zh:'世纪'},
+    {w:'neighbour', syl:['neigh','bour'], st:0, ipa:'/ˈneɪbə(r)/', pos:'n.', zh:'邻居'},
+    {w:'circle', syl:['cir','cle'], st:0, ipa:'/ˈsɜːkl/', pos:'v.', zh:'环行'},
+    {w:'surface', syl:['sur','face'], st:0, ipa:'/ˈsɜːfɪs/', pos:'n.', zh:'表面；表层；面'},
+    {w:'release', syl:['re','lease'], st:1, ipa:'/rɪˈliːs/', pos:'v.', zh:'放开；松开；使自由移动（或飞翔、降落等）', star:true},
+    {w:'kilogram', syl:['ki','lo','gram'], st:0, ipa:'/ˈkɪləɡræm/', pos:'n.', zh:'千克；公斤'},
+    {w:'programme', syl:['pro','gramme'], st:0, ipa:'/ˈprəʊɡræm/', pos:'n.', zh:'计划；方案'}
+  ];
+  var EXTRAS = [
     {w:'spaceship', syl:['space','ship'], st:0, ipa:'/ˈspeɪsʃɪp/', pos:'n.', zh:'宇宙飞船'},
     {w:'space', syl:['space'], st:0, ipa:'/speɪs/', pos:'n.', zh:'太空'},
-    {w:'spacesuit', syl:['space','suit'], st:0, ipa:'/ˈspeɪssuːt/', pos:'n.', zh:'航天服；宇航服'},
     {w:'travel', syl:['trav','el'], st:0, ipa:'/ˈtrævl/', pos:'v.', zh:'旅行；行进'},
-    {w:'leave', syl:['leave'], st:0, ipa:'/liːv/', pos:'v.', zh:'离开；出发'},
-    {w:'kilometre', syl:['ki','lo','me','tre'], st:0, ipa:'/ˈkɪləmiːtə(r)/', pos:'n.', zh:'千米；公里'},
     {w:'gravity', syl:['grav','i','ty'], st:0, ipa:'/ˈɡrævəti/', pos:'n.', zh:'重力；引力'},
-    {w:'weak', syl:['weak'], st:0, ipa:'/wiːk/', pos:'adj.', zh:'弱的；无力的'},
     {w:'float', syl:['float'], st:0, ipa:'/fləʊt/', pos:'v.', zh:'漂浮；浮动'},
     {w:'sleep', syl:['sleep'], st:0, ipa:'/sliːp/', pos:'v.', zh:'睡觉'},
-    {w:'tie', syl:['tie'], st:0, ipa:'/taɪ/', pos:'v.', zh:'（用线、绳等）拴'},
     {w:'away', syl:['a','way'], st:1, ipa:'/əˈweɪ/', pos:'adv.', zh:'离开；不在'},
     {w:'body', syl:['bod','y'], st:0, ipa:'/ˈbɒdi/', pos:'n.', zh:'身体'},
     {w:'exercise', syl:['ex','er','cise'], st:0, ipa:'/ˈeksəsaɪz/', pos:'n.', zh:'锻炼；运动'},
     {w:'arrive', syl:['ar','rive'], st:1, ipa:'/əˈraɪv/', pos:'v.', zh:'到达'},
-    {w:'weigh', syl:['weigh'], st:0, ipa:'/weɪ/', pos:'v.', zh:'有……重；重'},
     {w:'jump', syl:['jump'], st:0, ipa:'/dʒʌmp/', pos:'v.', zh:'跳；跳跃'},
     {w:'wear', syl:['wear'], st:0, ipa:'/weə(r)/', pos:'v.', zh:'穿；戴'},
-    {w:'breathe', syl:['breathe'], st:0, ipa:'/briːð/', pos:'v.', zh:'呼吸'},
     {w:'sound', syl:['sound'], st:0, ipa:'/saʊnd/', pos:'n.', zh:'声音'},
     {w:'strange', syl:['strange'], st:0, ipa:'/streɪndʒ/', pos:'adj.', zh:'奇怪的；陌生的'},
     {w:'mysterious', syl:['mys','te','ri','ous'], st:1, ipa:'/mɪˈstɪəriəs/', pos:'adj.', zh:'神秘的'},
@@ -421,23 +452,13 @@
     {w:'trip', syl:['trip'], st:0, ipa:'/trɪp/', pos:'n.', zh:'旅行'},
     {w:'astronaut', syl:['as','tro','naut'], st:0, ipa:'/ˈæstrənɔːt/', pos:'n.', zh:'宇航员'},
     {w:'mission', syl:['mis','sion'], st:0, ipa:'/ˈmɪʃn/', pos:'n.', zh:'任务；使命'},
-    {w:'land', syl:['land'], st:0, ipa:'/lænd/', pos:'v.', zh:'着陆；降落'}
-  ];
-  var EXTRAS = [
+    {w:'land', syl:['land'], st:0, ipa:'/lænd/', pos:'v.', zh:'着陆；降落'},
     {w:'orbit', syl:['or','bit'], st:0, ipa:'/ˈɔːbɪt/', pos:'n.', zh:'轨道'},
     {w:'satellite', syl:['sat','el','lite'], st:0, ipa:'/ˈsætəlaɪt/', pos:'n.', zh:'卫星'},
     {w:'rocket', syl:['rock','et'], st:0, ipa:'/ˈrɒkɪt/', pos:'n.', zh:'火箭'},
-    {w:'lander', syl:['land','er'], st:0, ipa:'/ˈlændə/', pos:'n.', zh:'着陆器'},
-    {w:'universe', syl:['u','ni','verse'], st:0, ipa:'/ˈjuːnɪvɜːs/', pos:'n.', zh:'宇宙'},
-    {w:'kilogram', syl:['ki','lo','gram'], st:0, ipa:'/ˈkɪləɡræm/', pos:'n.', zh:'千克；公斤'},
-    {w:'pass', syl:['pass'], st:0, ipa:'/pɑːs/', pos:'v.', zh:'沿某方向前进'},
-    {w:'low', syl:['low'], st:0, ipa:'/ləʊ/', pos:'adj.', zh:'低于通常的'},
     {w:'weightless', syl:['weight','less'], st:0, ipa:'/ˈweɪtləs/', pos:'adj.', zh:'失重的'},
-    {w:'dream', syl:['dream'], st:0, ipa:'/driːm/', pos:'n.', zh:'梦想'},
     {w:'test', syl:['test'], st:0, ipa:'/test/', pos:'n.', zh:'试验；测试'},
     {w:'station', syl:['sta','tion'], st:0, ipa:'/ˈsteɪʃn/', pos:'n.', zh:'站；台'},
-    {w:'view', syl:['view'], st:0, ipa:'/vjuː/', pos:'n.', zh:'景色；视野'},
-    {w:'surface', syl:['sur','face'], st:0, ipa:'/ˈsɜːfɪs/', pos:'n.', zh:'表面；表层'},
     {w:'rock', syl:['rock'], st:0, ipa:'/rɒk/', pos:'n.', zh:'岩石'},
     {w:'star', syl:['star'], st:0, ipa:'/stɑː(r)/', pos:'n.', zh:'恒星；星星'},
     {w:'journey', syl:['jour','ney'], st:0, ipa:'/ˈdʒɜːni/', pos:'n.', zh:'旅程；旅行'},
@@ -445,17 +466,18 @@
   ];
   var PHRASES = [
     {p:'space station', zh:'空间站'},
+    {p:'do exercise', zh:'锻炼；运动'},
+    {p:'take photos', zh:'拍照'},
     {p:'get into orbit', zh:'进入轨道'},
+    {p:'thousands of', zh:'数以千计；成千上万'},
     {p:'travel into space', zh:'进入太空旅行'},
     {p:'one of the first students', zh:'首批学生之一'},
     {p:'can\'t wait', zh:'迫不及待'},
     {p:'in space', zh:'在太空'},
     {p:'sleeping bag', zh:'睡袋'},
     {p:'float away', zh:'飘走'},
-    {p:'do exercise', zh:'做锻炼'},
     {p:'walk on the Moon', zh:'在月球上行走'},
     {p:'wear a spacesuit', zh:'穿航天服'},
-    {p:'take photos', zh:'拍照'},
     {p:'as many as', zh:'尽可能多的'},
     {p:'look forward to', zh:'期待'},
     {p:'in the future', zh:'在未来'},
@@ -463,52 +485,73 @@
     {p:'a wonderful trip', zh:'一次精彩的旅行'}
   ];
   var QUIZ = [
-    {w:'spaceship', zh:'宇宙飞船', opts:['航天服','空间站','火箭']},
-    {w:'space', zh:'太空', opts:['天空','海洋','宇宙']},
     {w:'spacesuit', zh:'航天服；宇航服', opts:['宇宙飞船','睡袋','安全带']},
-    {w:'travel', zh:'旅行；行进', opts:['到达','返回','停留']},
-    {w:'leave', zh:'离开；出发', opts:['到达','着陆','漂浮']},
+    {w:'collect', zh:'收集；采集', opts:['邮寄；发送','旅行；行进','漂浮；浮动']},
+    {w:'leave', zh:'离开', opts:['呼吸','环行','睡觉']},
     {w:'kilometre', zh:'千米；公里', opts:['千克；公斤','米','英里']},
-    {w:'gravity', zh:'重力；引力', opts:['能量','轨道','速度']},
-    {w:'weak', zh:'弱的；无力的', opts:['强的','快的','重的']},
-    {w:'float', zh:'漂浮；浮动', opts:['下沉','飞行','降落']},
-    {w:'sleep', zh:'睡觉', opts:['醒来','锻炼','休息']},
+    {w:'weak', zh:'虚弱的；无力的', opts:['古老的；很老的','奇怪的；陌生的','精彩的；绝妙的']},
     {w:'tie', zh:'（用线、绳等）拴', opts:['松开','打结','剪断']},
-    {w:'away', zh:'离开；不在', opts:['附近','里面','上面']},
-    {w:'body', zh:'身体', opts:['头脑','影子','衣服']},
-    {w:'exercise', zh:'锻炼；运动', opts:['休息','睡觉','吃饭']},
-    {w:'arrive', zh:'到达', opts:['离开','出发','返回']},
+    {w:'low', zh:'低于通常（或平均）数量（或水平、价值）的', opts:['虚弱的；无力的','古老的；很老的','奇怪的；陌生的']},
     {w:'weigh', zh:'有……重；重', opts:['称重量','测量','跳跃']},
-    {w:'jump', zh:'跳；跳跃', opts:['走','跑','爬']},
-    {w:'wear', zh:'穿；戴', opts:['洗','买','拿']},
     {w:'breathe', zh:'呼吸', opts:['说话','吃饭','喝水']},
-    {w:'sound', zh:'声音', opts:['光','空气','图像']},
-    {w:'strange', zh:'奇怪的；陌生的', opts:['熟悉的','常见的','神秘的']},
-    {w:'mysterious', zh:'神秘的', opts:['奇怪的','有趣的','美丽的']},
-    {w:'photo', zh:'照片', opts:['画笔','地图','明信片']},
-    {w:'wonderful', zh:'精彩的；绝妙的', opts:['普通的','糟糕的','无聊的']},
-    {w:'future', zh:'未来；将来', opts:['过去','现在','昨天']},
-    {w:'plan', zh:'计划', opts:['梦想','任务','习惯']},
-    {w:'trip', zh:'旅行', opts:['散步','跑步','工作']},
-    {w:'astronaut', zh:'宇航员', opts:['科学家','飞行员','老师']},
-    {w:'mission', zh:'任务；使命', opts:['梦想','旅行','冒险']},
-    {w:'land', zh:'着陆；降落', opts:['起飞','漂浮','坠落']}
+    {w:'facility', zh:'设施；设备', opts:['千米；公里','实验；试验','梦想；理想']},
+    {w:'adventure', zh:'冒险经历；奇遇', opts:['航天服；宇航服','表面；表层；面','决心；坚毅；坚定']},
+    {w:'pass', zh:'沿某方向前进；向某方向移动', opts:['使做好准备；把……预备好','（用线、绳等）拴','表示；表达；表露']},
+    {w:'experiment', zh:'实验；试验', opts:['千米；公里','设施；设备','梦想；理想']},
+    {w:'prepare', zh:'使做好准备；把……预备好', opts:['沿某方向前进；向某方向移动','（用线、绳等）拴','表示；表达；表露']},
+    {w:'dream', zh:'梦想；理想', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'chance', zh:'机会；机遇', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'send', zh:'邮寄；发送', opts:['收集；采集','旅行；行进','漂浮；浮动']},
+    {w:'introduction', zh:'序言；引言', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'view', zh:'景色；风景', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'someday', zh:'总有一天；有朝一日', opts:['（用线、绳等）拴','表示；表达；表露','决心；坚毅；坚定']},
+    {w:'experience', zh:'经历；阅历', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'lander', zh:'着陆器', opts:['宇航员','站；台','宇宙']},
+    {w:'island', zh:'岛', opts:['诗','宇宙','世纪']},
+    {w:'ancient', zh:'古老的；很老的', opts:['虚弱的；无力的','奇怪的；陌生的','精彩的；绝妙的']},
+    {w:'poem', zh:'诗', opts:['岛','宇宙','世纪']},
+    {w:'express', zh:'表示；表达；表露', opts:['（用线、绳等）拴','有……重；重','收集；采集']},
+    {w:'determination', zh:'决心；坚毅；坚定', opts:['航天服；宇航服','冒险经历；奇遇','表面；表层；面']},
+    {w:'universe', zh:'宇宙', opts:['世纪','邻居','太空']},
+    {w:'already', zh:'已经；早已', opts:['收集；采集','千米；公里','设施；设备']},
+    {w:'century', zh:'世纪', opts:['宇宙','邻居','太空']},
+    {w:'neighbour', zh:'邻居', opts:['宇宙','世纪','太空']},
+    {w:'circle', zh:'环行', opts:['离开','呼吸','睡觉']},
+    {w:'surface', zh:'表面；表层；面', opts:['航天服；宇航服','冒险经历；奇遇','决心；坚毅；坚定']},
+    {w:'release', zh:'放开；松开；使自由移动（或飞翔、降落等）', opts:['沿某方向前进；向某方向移动','使做好准备；把……预备好','（用线、绳等）拴']},
+    {w:'kilogram', zh:'千克；公斤', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'programme', zh:'计划；方案', opts:['千米；公里','设施；设备','实验；试验']}
   ];
   var QUIZ_EXTRA = [
+    {w:'spaceship', zh:'宇宙飞船', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'space', zh:'太空', opts:['宇宙','世纪','邻居']},
+    {w:'travel', zh:'旅行；行进', opts:['收集；采集','邮寄；发送','漂浮；浮动']},
+    {w:'gravity', zh:'重力；引力', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'float', zh:'漂浮；浮动', opts:['收集；采集','邮寄；发送','旅行；行进']},
+    {w:'sleep', zh:'睡觉', opts:['离开','呼吸','环行']},
+    {w:'away', zh:'离开；不在', opts:['收集；采集','千米；公里','设施；设备']},
+    {w:'body', zh:'身体', opts:['宇宙','世纪','邻居']},
+    {w:'exercise', zh:'锻炼；运动', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'arrive', zh:'到达', opts:['离开','呼吸','环行']},
+    {w:'jump', zh:'跳；跳跃', opts:['收集；采集','邮寄；发送','旅行；行进']},
+    {w:'wear', zh:'穿；戴', opts:['离开','呼吸','环行']},
+    {w:'sound', zh:'声音', opts:['宇宙','世纪','邻居']},
+    {w:'strange', zh:'奇怪的；陌生的', opts:['虚弱的；无力的','古老的；很老的','精彩的；绝妙的']},
+    {w:'mysterious', zh:'神秘的', opts:['失重的','虚弱的；无力的','古老的；很老的']},
+    {w:'photo', zh:'照片', opts:['宇宙','世纪','邻居']},
+    {w:'wonderful', zh:'精彩的；绝妙的', opts:['虚弱的；无力的','古老的；很老的','奇怪的；陌生的']},
+    {w:'future', zh:'未来；将来', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'plan', zh:'计划', opts:['宇宙','世纪','邻居']},
+    {w:'trip', zh:'旅行', opts:['宇宙','世纪','邻居']},
+    {w:'astronaut', zh:'宇航员', opts:['着陆器','站；台','宇宙']},
+    {w:'mission', zh:'任务；使命', opts:['千米；公里','设施；设备','实验；试验']},
+    {w:'land', zh:'着陆；降落', opts:['收集；采集','邮寄；发送','旅行；行进']},
     {w:'orbit', zh:'轨道', opts:['卫星','火箭','着陆器']},
     {w:'satellite', zh:'卫星', opts:['轨道','火箭','探测器']},
     {w:'rocket', zh:'火箭', opts:['卫星','飞机','气球']},
-    {w:'lander', zh:'着陆器', opts:['轨道','卫星','探测器']},
-    {w:'universe', zh:'宇宙', opts:['太空','银河','天空']},
-    {w:'kilogram', zh:'千克；公斤', opts:['千米；公里','克','米']},
-    {w:'pass', zh:'沿某方向前进', opts:['停止','返回','停留']},
-    {w:'low', zh:'低于通常的', opts:['高的','强的','快的']},
     {w:'weightless', zh:'失重的', opts:['超重的','轻的','漂浮的']},
-    {w:'dream', zh:'梦想', opts:['计划','任务','目标']},
     {w:'test', zh:'试验；测试', opts:['比赛','表演','旅行']},
     {w:'station', zh:'站；台', opts:['港口','机场','车站']},
-    {w:'view', zh:'景色；视野', opts:['照片','地图','声音']},
-    {w:'surface', zh:'表面；表层', opts:['内部','中心','边缘']},
     {w:'rock', zh:'岩石', opts:['沙子','泥土','金属']},
     {w:'star', zh:'恒星；星星', opts:['月亮','太阳','行星']},
     {w:'journey', zh:'旅程；旅行', opts:['梦想','计划','任务']},
@@ -516,17 +559,18 @@
   ];
   var QUIZ_PHRASE = [
     {w:'space station', zh:'空间站', opts:['航天服','宇宙飞船','太空旅行']},
+    {w:'do exercise', zh:'锻炼；运动', opts:['尽可能多的','收集；采集','千米；公里']},
+    {w:'take photos', zh:'拍照', opts:['录像','画画','写信']},
     {w:'get into orbit', zh:'进入轨道', opts:['进入太空','离开地球','着陆']},
+    {w:'thousands of', zh:'数以千计；成千上万', opts:['总有一天；有朝一日','（用线、绳等）拴','表示；表达；表露']},
     {w:'travel into space', zh:'进入太空旅行', opts:['回到地球','飞向月球','太空漫步']},
     {w:'one of the first students', zh:'首批学生之一', opts:['唯一的学生','优秀的学生','最后的学生']},
     {w:'can\'t wait', zh:'迫不及待', opts:['等不及要走','不能等待太久','不着急']},
     {w:'in space', zh:'在太空', opts:['在天空','在轨道','在月球']},
     {w:'sleeping bag', zh:'睡袋', opts:['床垫','枕头','毯子']},
     {w:'float away', zh:'飘走', opts:['飞走','飘落','下沉']},
-    {w:'do exercise', zh:'做锻炼', opts:['做实验','做作业','玩游戏']},
     {w:'walk on the Moon', zh:'在月球上行走', opts:['在月球上睡觉','绕月球飞行','登月']},
     {w:'wear a spacesuit', zh:'穿航天服', opts:['戴头盔','穿外套','系安全带']},
-    {w:'take photos', zh:'拍照', opts:['录像','画画','写信']},
     {w:'as many as', zh:'尽可能多的', opts:['和……一样多','尽可能少的','多于']},
     {w:'look forward to', zh:'期待', opts:['回头看','向前看','放弃']},
     {w:'in the future', zh:'在未来', opts:['在过去','在现在','在昨天']},
@@ -1114,7 +1158,7 @@
       <a href="Unit6_Travelling_around_Asia_点读学习页.html">下一单元 →</a>
       <a href="Unit5_Off_to_Space_点读学习页.html">📖 本单元点读学习页</a>
       <a href="../单元习题与测试/Unit5_习题与测试.html">📝 本单元习题与测试</a>
-      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="Unit5_Off_to_Space_点读学习页.html#reading">🎧 课文跟读</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
       <a href="游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
       <a href="采花成长记_蜜蜂进化_八单元.html">🐝 蜜蜂采花</a>

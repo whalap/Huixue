@@ -331,7 +331,7 @@
 
     <div class="tips">
       <span class="tip">点击任意单词 / 音节，即可听到标准发音</span>
-      <span class="tip">课文跟读用教材原声：逐句听原声、录音回放对比</span>
+      <span class="tip">课文跟读用 AI 自然音：逐句朗读、全文连读</span>
       <span class="tip">支持切换语速与发音人</span>
       <span class="tip">听音选词 + 课文填空双练习</span>
     </div>
@@ -372,7 +372,7 @@
       <div class="no">1</div>
       <h2>核心单词</h2>
       <p>点击卡片朗读整词，点击分色音节逐音节跟读</p>
-      <span class="count-badge">本单元词汇表 · 30 词</span>
+      <span class="count-badge">本单元词汇表 · 38 词</span>
     </div>
     <div class="word-grid" id="wordGrid"></div>
 
@@ -380,7 +380,7 @@
       <div class="no" style="background:var(--teal);">+</div>
       <h2>单元补充词汇</h2>
       <p>地球 · 环境 · 保护（课文与听说活动）</p>
-      <span class="count-badge">18 词</span>
+      <span class="count-badge">24 词</span>
     </div>
     <div class="word-grid" id="extraGrid"></div>
   </section>
@@ -391,7 +391,7 @@
       <div class="no">2</div>
       <h2>重点短语</h2>
       <p>来自单元词汇表，点击即可点读</p>
-      <span class="count-badge">17 个</span>
+      <span class="count-badge">22 个</span>
     </div>
     <div class="phrase-list" id="phraseList"></div>
   </section>
@@ -411,7 +411,7 @@
           <div class="nm">The amazing planet</div>
           <div class="dt">说明文 · 地球的奇妙</div>
         </div>
-        <button class="read-all" id="readAllBtn" type="button" title="逐句播放本单元教材原声">▶ 原声连读</button>
+        <button class="read-all" id="readAllBtn" type="button" title="逐句朗读本单元课文">▶ 全文连读</button>
       </div>
       <div id="passage"></div>
       <div class="reading-note">
@@ -562,59 +562,71 @@
 
   <footer>
     <p>内容依据：上海教育出版社《义务教育教科书 英语 七年级上册》Unit 4 The Earth（2024 广州新版）</p>
-    <p>单词点读基于浏览器语音合成（Web Speech API）；课文跟读使用教材 Reading 原声录音切片，建议使用 Chrome / Edge 打开</p>
+    <p>单词与课文朗读均基于浏览器语音合成（AI 自然音 / Web Speech API），无需下载音频文件，建议使用 Chrome / Edge 打开</p>
   </footer>
 </div>
 
-<script src="原声跟读引擎.js"></script>
 <script>
 (function(){
   'use strict';
-  var YS_UNIT = 4; /* 本单元编号：课文原声切片用 */
   var SPK = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
 
   /* ========== 数据 ========== */
   var WORDS = [
+    {w:'system', syl:['sys','tem'], st:0, ipa:'/ˈsɪstəm/', pos:'n.', zh:'系统'},
+    {w:'file', syl:['file'], st:0, ipa:'/faɪl/', pos:'n.', zh:'档案'},
     {w:'amazing', syl:['a','ma','zing'], st:1, ipa:'/əˈmeɪzɪŋ/', pos:'adj.', zh:'令人大为惊奇的'},
     {w:'planet', syl:['plan','et'], st:0, ipa:'/ˈplænɪt/', pos:'n.', zh:'行星'},
-    {w:'area', syl:['a','re','a'], st:0, ipa:'/ˈeəriə/', pos:'n.', zh:'地区；区域'},
-    {w:'equator', syl:['e','qua','tor'], st:1, ipa:'/ɪˈkweɪtə(r)/', pos:'n.', zh:'赤道'},
+    {w:'billion', syl:['bil','lion'], st:0, ipa:'/ˈbɪljən/', pos:'num.', zh:'十亿', star:true},
+    {w:'cover', syl:['cov','er'], st:0, ipa:'/ˈkʌvə(r)/', pos:'v.', zh:'盖；覆盖'},
+    {w:'area', syl:['a','re','a'], st:0, ipa:'/ˈeəriə/', pos:'n.', zh:'地区；地域'},
     {w:'freezing', syl:['freez','ing'], st:0, ipa:'/ˈfriːzɪŋ/', pos:'adj.', zh:'极冷的'},
+    {w:'north', syl:['north'], st:0, ipa:'/nɔːθ/', pos:'n.', zh:'北；北方'},
     {w:'pole', syl:['pole'], st:0, ipa:'/pəʊl/', pos:'n.', zh:'（行星的）极；地极'},
+    {w:'desert', syl:['de','sert'], st:0, ipa:'/ˈdezət/', pos:'n.', zh:'沙漠；荒漠'},
+    {w:'metre', syl:['me','tre'], st:0, ipa:'/ˈmiːtə(r)/', pos:'n.', zh:'米'},
+    {w:'reach', syl:['reach'], st:0, ipa:'/riːtʃ/', pos:'v.', zh:'足够达到'},
+    {w:'grain', syl:['grain'], st:0, ipa:'/ɡreɪn/', pos:'n.', zh:'谷粒', star:true},
+    {w:'wide', syl:['wide'], st:0, ipa:'/waɪd/', pos:'adj.', zh:'宽的；宽阔的'},
+    {w:'whale', syl:['whale'], st:0, ipa:'/weɪl/', pos:'n.', zh:'鲸'},
+    {w:'butterfly', syl:['but','ter','fly'], st:0, ipa:'/ˈbʌtəflaɪ/', pos:'n.', zh:'蝴蝶'},
+    {w:'provide', syl:['pro','vide'], st:1, ipa:'/prəˈvaɪd/', pos:'v.', zh:'提供；供应'},
+    {w:'explore', syl:['ex','plore'], st:1, ipa:'/ɪkˈsplɔː(r)/', pos:'v.', zh:'探索'},
+    {w:'disappear', syl:['dis','ap','pear'], st:2, ipa:'/ˌdɪsəˈpɪə(r)/', pos:'v.', zh:'消失；不见'},
+    {w:'plastic', syl:['plas','tic'], st:0, ipa:'/ˈplæstɪk/', pos:'n.', zh:'塑料'},
+    {w:'pollution', syl:['pol','lu','tion'], st:1, ipa:'/pəˈluːʃn/', pos:'n.', zh:'污染'},
+    {w:'protect', syl:['pro','tect'], st:1, ipa:'/prəˈtekt/', pos:'v.', zh:'保护'},
+    {w:'chemical', syl:['che','mi','cal'], st:0, ipa:'/ˈkemɪkl/', pos:'n.', zh:'化学制品；化学品', star:true},
+    {w:'groundwater', syl:['ground','wa','ter'], st:0, ipa:'/ˈɡraʊndwɔːtə(r)/', pos:'n.', zh:'地下水'},
+    {w:'burn', syl:['burn'], st:0, ipa:'/bɜːn/', pos:'v.', zh:'燃烧；烧毁'},
+    {w:'oil', syl:['oil'], st:0, ipa:'/ɔɪl/', pos:'n.', zh:'石油；原油'},
+    {w:'gas', syl:['gas'], st:0, ipa:'/ɡæs/', pos:'n.', zh:'天然气'},
+    {w:'harmful', syl:['harm','ful'], st:0, ipa:'/ˈhɑːmfl/', pos:'adj.', zh:'有害的'},
+    {w:'website', syl:['web','site'], st:0, ipa:'/ˈwebsaɪt/', pos:'n.', zh:'网站'},
+    {w:'own', syl:['own'], st:0, ipa:'/əʊn/', pos:'adj.', zh:'自己的；本人的'},
+    {w:'emperor', syl:['em','per','or'], st:0, ipa:'/ˈempərə(r)/', pos:'n.', zh:'皇帝'},
+    {w:'hunt', syl:['hunt'], st:0, ipa:'/hʌnt/', pos:'v.', zh:'打猎'},
+    {w:'war', syl:['war'], st:0, ipa:'/wɔː(r)/', pos:'n.', zh:'战争'},
+    {w:'sandstorm', syl:['sand','storm'], st:0, ipa:'/ˈsændstɔːm/', pos:'n.', zh:'沙暴'},
+    {w:'solution', syl:['so','lu','tion'], st:2, ipa:'/səˈluːʃn/', pos:'n.', zh:'解决办法'},
+    {w:'blow', syl:['blow'], st:0, ipa:'/bləʊ/', pos:'v.', zh:'刮；吹'},
+    {w:'generation', syl:['gen','e','ra','tion'], st:2, ipa:'/ˌdʒenəˈreɪʃn/', pos:'n.', zh:'（统称）一代人'}
+  ];
+  var EXTRAS = [
+    {w:'equator', syl:['e','qua','tor'], st:1, ipa:'/ɪˈkweɪtə(r)/', pos:'n.', zh:'赤道'},
     {w:'field', syl:['field'], st:0, ipa:'/fiːld/', pos:'n.', zh:'田野；田地'},
     {w:'mountain', syl:['moun','tain'], st:0, ipa:'/ˈmaʊntən/', pos:'n.', zh:'山；高山'},
     {w:'forest', syl:['for','est'], st:0, ipa:'/ˈfɒrɪst/', pos:'n.', zh:'森林'},
-    {w:'desert', syl:['de','sert'], st:0, ipa:'/ˈdezət/', pos:'n.', zh:'沙漠；荒漠'},
     {w:'sea', syl:['sea'], st:0, ipa:'/siː/', pos:'n.', zh:'海；海洋'},
     {w:'level', syl:['lev','el'], st:0, ipa:'/ˈlevl/', pos:'n.', zh:'水平；高度'},
     {w:'deep', syl:['deep'], st:0, ipa:'/diːp/', pos:'adj.', zh:'深的'},
     {w:'plant', syl:['plant'], st:0, ipa:'/plɑːnt/', pos:'n.', zh:'植物'},
-    {w:'reach', syl:['reach'], st:0, ipa:'/riːtʃ/', pos:'v.', zh:'达到；到达'},
     {w:'height', syl:['height'], st:0, ipa:'/haɪt/', pos:'n.', zh:'高度'},
-    {w:'grain', syl:['grain'], st:0, ipa:'/ɡreɪn/', pos:'n.', zh:'谷粒'},
-    {w:'whale', syl:['whale'], st:0, ipa:'/weɪl/', pos:'n.', zh:'鲸'},
-    {w:'butterfly', syl:['but','ter','fly'], st:0, ipa:'/ˈbʌtəflaɪ/', pos:'n.', zh:'蝴蝶'},
     {w:'seahorse', syl:['sea','horse'], st:0, ipa:'/ˈsiːhɔːs/', pos:'n.', zh:'海马'},
-    {w:'provide', syl:['pro','vide'], st:1, ipa:'/prəˈvaɪd/', pos:'v.', zh:'提供；供应'},
     {w:'energy', syl:['e','ner','gy'], st:0, ipa:'/ˈenədʒi/', pos:'n.', zh:'能量；能源'},
     {w:'support', syl:['sup','port'], st:1, ipa:'/səˈpɔːt/', pos:'v.', zh:'支撑；供养'},
-    {w:'explore', syl:['ex','plore'], st:1, ipa:'/ɪkˈsplɔː(r)/', pos:'v.', zh:'探索；探究'},
-    {w:'pollution', syl:['pol','lu','tion'], st:1, ipa:'/pəˈluːʃn/', pos:'n.', zh:'污染'},
-    {w:'protect', syl:['pro','tect'], st:1, ipa:'/prəˈtekt/', pos:'v.', zh:'保护'},
-    {w:'plastic', syl:['plas','tic'], st:0, ipa:'/ˈplæstɪk/', pos:'n.', zh:'塑料'},
-    {w:'harmful', syl:['harm','ful'], st:0, ipa:'/ˈhɑːmfl/', pos:'adj.', zh:'有害的'},
-    {w:'disappear', syl:['dis','ap','pear'], st:2, ipa:'/ˌdɪsəˈpɪə(r)/', pos:'v.', zh:'消失；不见'},
-    {w:'ocean', syl:['o','cean'], st:0, ipa:'/ˈəʊʃn/', pos:'n.', zh:'海洋'}
-  ];
-  var EXTRAS = [
-    {w:'system', syl:['sys','tem'], st:0, ipa:'/ˈsɪstəm/', pos:'n.', zh:'系统'},
-    {w:'file', syl:['file'], st:0, ipa:'/faɪl/', pos:'n.', zh:'档案'},
-    {w:'cover', syl:['cov','er'], st:0, ipa:'/ˈkʌvə(r)/', pos:'v.', zh:'覆盖'},
+    {w:'ocean', syl:['o','cean'], st:0, ipa:'/ˈəʊʃn/', pos:'n.', zh:'海洋'},
     {w:'surface', syl:['sur','face'], st:0, ipa:'/ˈsɜːfɪs/', pos:'n.', zh:'表面；表层'},
-    {w:'burn', syl:['burn'], st:0, ipa:'/bɜːn/', pos:'v.', zh:'燃烧；烧'},
-    {w:'chemical', syl:['che','mi','cal'], st:0, ipa:'/ˈkemɪkl/', pos:'n.', zh:'化学制品'},
-    {w:'gas', syl:['gas'], st:0, ipa:'/ɡæs/', pos:'n.', zh:'天然气'},
-    {w:'oil', syl:['oil'], st:0, ipa:'/ɔɪl/', pos:'n.', zh:'石油；原油'},
     {w:'pollute', syl:['pol','lute'], st:1, ipa:'/pəˈluːt/', pos:'v.', zh:'污染'},
     {w:'rubbish', syl:['rub','bish'], st:0, ipa:'/ˈrʌbɪʃ/', pos:'n.', zh:'垃圾'},
     {w:'recycle', syl:['re','cy','cle'], st:1, ipa:'/ˌriːˈsaɪkl/', pos:'v.', zh:'回收利用'},
@@ -627,21 +639,26 @@
     {w:'sky', syl:['sky'], st:0, ipa:'/skaɪ/', pos:'n.', zh:'天空'}
   ];
   var PHRASES = [
+    {p:'solar system', zh:'太阳系'},
+    {p:'fact file', zh:'事实档案'},
+    {p:'be covered by', zh:'被……覆盖'},
+    {p:'as far as we know', zh:'据我们所知'},
+    {p:'sea level', zh:'海平面'},
+    {p:'what\'s more', zh:'更重要的是'},
+    {p:'provide ... with ...', zh:'提供；供应；给予'},
+    {p:'plastic pollution', zh:'塑料污染'},
+    {p:'cut down', zh:'砍倒'},
+    {p:'hundreds of', zh:'数以百计'},
+    {p:'blow away', zh:'吹走'},
     {p:'the solar system', zh:'太阳系'},
     {p:'the North Pole', zh:'北极'},
     {p:'the South Pole', zh:'南极'},
-    {p:'sea level', zh:'海平面'},
-    {p:'be covered by', zh:'被……覆盖'},
     {p:'more than', zh:'超过；多于'},
-    {p:'as far as we know', zh:'据我们所知'},
     {p:'as small as', zh:'和……一样小'},
     {p:'be home to', zh:'是……的家园'},
-    {p:'provide ... with ...', zh:'为……提供……'},
     {p:'and what\'s more', zh:'而且；更重要的是'},
     {p:'such as', zh:'例如'},
-    {p:'plastic pollution', zh:'塑料污染'},
     {p:'in danger', zh:'处于危险中'},
-    {p:'cut down', zh:'砍倒'},
     {p:'take care of', zh:'照顾；照料'},
     {p:'in the air', zh:'在空气中'}
   ];
@@ -692,46 +709,60 @@
     {q:'There are five big oceans on Earth.', zh:'地球上有五大洋'}
   ];
   var QUIZ = [
+    {w:'system', zh:'系统', opts:['档案','行星','谷粒']},
+    {w:'file', zh:'档案', opts:['系统','行星','谷粒']},
     {w:'amazing', zh:'令人大为惊奇的', opts:['极冷的','深色的','安静的']},
     {w:'planet', zh:'行星', opts:['恒星','卫星','地球']},
-    {w:'area', zh:'地区；区域', opts:['高度','表面','山谷']},
-    {w:'equator', zh:'赤道', opts:['地极','海洋','沙漠']},
+    {w:'billion', zh:'十亿', opts:['系统','档案','行星']},
+    {w:'cover', zh:'盖；覆盖', opts:['足够达到','回收利用','提供；供应']},
+    {w:'area', zh:'地区；地域', opts:['沙漠；荒漠','石油；原油','田野；田地']},
     {w:'freezing', zh:'极冷的', opts:['令人惊奇的','潮湿的','新鲜的']},
+    {w:'north', zh:'北；北方', opts:['解决办法','山；高山','海；海洋']},
     {w:'pole', zh:'（行星的）极；地极', opts:['赤道','海洋','森林']},
-    {w:'field', zh:'田野；田地', opts:['森林','沙漠','高山']},
-    {w:'mountain', zh:'山；高山', opts:['田野','河谷','平原']},
-    {w:'forest', zh:'森林', opts:['沙漠','海洋','田野']},
     {w:'desert', zh:'沙漠；荒漠', opts:['森林','田野','高山']},
-    {w:'sea', zh:'海；海洋', opts:['湖泊','河流','天空']},
-    {w:'level', zh:'水平；高度', opts:['表面','深度','宽度']},
-    {w:'deep', zh:'深的', opts:['浅的','高的','宽的']},
-    {w:'plant', zh:'植物', opts:['动物','矿物','塑料']},
-    {w:'reach', zh:'达到；到达', opts:['离开','提供','探索']},
-    {w:'height', zh:'高度', opts:['水平','深度','重量']},
+    {w:'metre', zh:'米', opts:['鲸','系统','档案']},
+    {w:'reach', zh:'足够达到', opts:['盖；覆盖','回收利用','提供；供应']},
     {w:'grain', zh:'谷粒', opts:['种子','果实','树叶']},
+    {w:'wide', zh:'宽的；宽阔的', opts:['令人大为惊奇的','自己的；本人的','极冷的']},
     {w:'whale', zh:'鲸', opts:['海马','蝴蝶','鲨鱼']},
     {w:'butterfly', zh:'蝴蝶', opts:['鲸','海马','蜜蜂']},
-    {w:'seahorse', zh:'海马', opts:['鲸','蝴蝶','海星']},
     {w:'provide', zh:'提供；供应', opts:['保护','探索','达到']},
-    {w:'energy', zh:'能量；能源', opts:['污染','环境','资源']},
-    {w:'support', zh:'支撑；供养', opts:['提供','覆盖','消失']},
-    {w:'explore', zh:'探索；探究', opts:['保护','污染','燃烧']},
+    {w:'explore', zh:'探索', opts:['保护','打猎','污染']},
+    {w:'disappear', zh:'消失；不见', opts:['出现','消失后重现','覆盖']},
+    {w:'plastic', zh:'塑料', opts:['玻璃','金属','木材']},
     {w:'pollution', zh:'污染', opts:['保护','环境','能量']},
     {w:'protect', zh:'保护', opts:['污染','探索','提供']},
-    {w:'plastic', zh:'塑料', opts:['玻璃','金属','木材']},
+    {w:'chemical', zh:'化学制品；化学品', opts:['（行星的）极；地极','（统称）一代人','地区；地域']},
+    {w:'groundwater', zh:'地下水', opts:['天然气','大自然','系统']},
+    {w:'burn', zh:'燃烧；烧毁', opts:['提供；供应','消失；不见','支撑；供养']},
+    {w:'oil', zh:'石油；原油', opts:['地区；地域','沙漠；荒漠','田野；田地']},
+    {w:'gas', zh:'天然气', opts:['地下水','大自然','系统']},
     {w:'harmful', zh:'有害的', opts:['有益的','安全的','干净的']},
-    {w:'disappear', zh:'消失；不见', opts:['出现','消失后重现','覆盖']},
-    {w:'ocean', zh:'海洋', opts:['湖泊','天空','沙漠']}
+    {w:'website', zh:'网站', opts:['系统','档案','行星']},
+    {w:'own', zh:'自己的；本人的', opts:['令人大为惊奇的','宽的；宽阔的','极冷的']},
+    {w:'emperor', zh:'皇帝', opts:['系统','档案','行星']},
+    {w:'hunt', zh:'打猎', opts:['探索','保护','污染']},
+    {w:'war', zh:'战争', opts:['系统','档案','行星']},
+    {w:'sandstorm', zh:'沙暴', opts:['系统','档案','行星']},
+    {w:'solution', zh:'解决办法', opts:['北；北方','山；高山','海；海洋']},
+    {w:'blow', zh:'刮；吹', opts:['盖；覆盖','足够达到','探索']},
+    {w:'generation', zh:'（统称）一代人', opts:['化学制品；化学品','地区；地域','（行星的）极；地极']}
   ];
   var QUIZ_EXTRA = [
-    {w:'system', zh:'系统', opts:['档案','表面','能源']},
-    {w:'file', zh:'档案', opts:['系统','目录','标签']},
-    {w:'cover', zh:'覆盖', opts:['暴露','分开','燃烧']},
+    {w:'equator', zh:'赤道', opts:['系统','档案','行星']},
+    {w:'field', zh:'田野；田地', opts:['地区；地域','沙漠；荒漠','石油；原油']},
+    {w:'mountain', zh:'山；高山', opts:['北；北方','解决办法','海；海洋']},
+    {w:'forest', zh:'森林', opts:['系统','档案','行星']},
+    {w:'sea', zh:'海；海洋', opts:['北；北方','解决办法','山；高山']},
+    {w:'level', zh:'水平；高度', opts:['地区；地域','沙漠；荒漠','石油；原油']},
+    {w:'deep', zh:'深的', opts:['极冷的','有害的','活着的']},
+    {w:'plant', zh:'植物', opts:['系统','档案','行星']},
+    {w:'height', zh:'高度', opts:['系统','档案','行星']},
+    {w:'seahorse', zh:'海马', opts:['系统','档案','行星']},
+    {w:'energy', zh:'能量；能源', opts:['地区；地域','沙漠；荒漠','石油；原油']},
+    {w:'support', zh:'支撑；供养', opts:['提供；供应','消失；不见','燃烧；烧毁']},
+    {w:'ocean', zh:'海洋', opts:['系统','档案','行星']},
     {w:'surface', zh:'表面；表层', opts:['内部','中心','边缘']},
-    {w:'burn', zh:'燃烧；烧', opts:['回收','熄灭','冷却']},
-    {w:'chemical', zh:'化学制品', opts:['天然气','石油','矿物']},
-    {w:'gas', zh:'天然气', opts:['石油','化学制品','煤炭']},
-    {w:'oil', zh:'石油；原油', opts:['天然气','水','空气']},
     {w:'pollute', zh:'污染', opts:['保护','清洁','回收']},
     {w:'rubbish', zh:'垃圾', opts:['宝藏','礼物','食物']},
     {w:'recycle', zh:'回收利用', opts:['浪费','丢弃','燃烧']},
@@ -744,21 +775,26 @@
     {w:'sky', zh:'天空', opts:['大地','海洋','山谷']}
   ];
   var QUIZ_PHRASE = [
+    {w:'solar system', zh:'太阳系', opts:['海平面','极冷的','地下水']},
+    {w:'fact file', zh:'事实档案', opts:['塑料污染','数以百计','在空气中']},
+    {w:'be covered by', zh:'被……覆盖', opts:['被……分开','被……包围','被……保护']},
+    {w:'as far as we know', zh:'据我们所知', opts:['众所周知','事实上','简而言之']},
+    {w:'sea level', zh:'海平面', opts:['海拔','地平线','水面上']},
+    {w:'what\'s more', zh:'更重要的是', opts:['被……覆盖','据我们所知','超过；多于']},
+    {w:'provide ... with ...', zh:'提供；供应；给予', opts:['而且；更重要的是','化学制品；化学品','令人大为惊奇的']},
+    {w:'plastic pollution', zh:'塑料污染', opts:['空气污染','水污染','噪音污染']},
+    {w:'cut down', zh:'砍倒', opts:['种植','保护','修剪']},
+    {w:'hundreds of', zh:'数以百计', opts:['事实档案','塑料污染','在空气中']},
+    {w:'blow away', zh:'吹走', opts:['砍倒','北极','南极']},
     {w:'the solar system', zh:'太阳系', opts:['银河系','宇宙','轨道']},
     {w:'the North Pole', zh:'北极', opts:['南极','赤道','海平面']},
     {w:'the South Pole', zh:'南极', opts:['北极','赤道','海平面']},
-    {w:'sea level', zh:'海平面', opts:['海拔','地平线','水面上']},
-    {w:'be covered by', zh:'被……覆盖', opts:['被……分开','被……包围','被……保护']},
     {w:'more than', zh:'超过；多于', opts:['少于','恰好','大约']},
-    {w:'as far as we know', zh:'据我们所知', opts:['众所周知','事实上','简而言之']},
     {w:'as small as', zh:'和……一样小', opts:['和……一样大','小到','大到']},
     {w:'be home to', zh:'是……的家园', opts:['位于……','属于……','来自……']},
-    {w:'provide ... with ...', zh:'为……提供……', opts:['从……拿走……','把……交给……','向……学习……']},
     {w:'and what\'s more', zh:'而且；更重要的是', opts:['然而','与此同时','首先']},
     {w:'such as', zh:'例如', opts:['尤其是','包括','代替']},
-    {w:'plastic pollution', zh:'塑料污染', opts:['空气污染','水污染','噪音污染']},
     {w:'in danger', zh:'处于危险中', opts:['安全','失控','失踪']},
-    {w:'cut down', zh:'砍倒', opts:['种植','保护','修剪']},
     {w:'take care of', zh:'照顾；照料', opts:['放弃','关注','忽视']},
     {w:'in the air', zh:'在空气中', opts:['在地面上','在水中','在太空里']}
   ];
@@ -812,6 +848,7 @@
 
   function speak(text, rate, onend){
     if (!synth) { alert('当前浏览器不支持语音合成（Web Speech API），建议使用 Chrome 或 Edge。'); return; }
+    readAllToken++;
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text);
     var v = getVoice();
@@ -822,9 +859,10 @@
     synth.speak(u);
   }
 
+  var readAllToken = 0;
   function stopSpeak(){
     if (synth) synth.cancel();
-    if (window.YS) YS.stop();
+    readAllToken++;
     var els = document.querySelectorAll('.speaking');
     for (var i = 0; i < els.length; i++) els[i].classList.remove('speaking');
   }
@@ -1008,66 +1046,43 @@
     var btn = document.createElement('button');
     btn.className = 'sent-btn';
     btn.type = 'button';
-    btn.setAttribute('aria-label', '播放本句原声');
-    btn.title = '播放本句原声（教材 Reading 录音切片）';
+    btn.setAttribute('aria-label', 'AI 朗读本句');
+    btn.title = 'AI 朗读本句';
     btn.innerHTML = SPK;
     btn.addEventListener('click', function(){
       var sents = passage.querySelectorAll('.sent');
       for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
       p.classList.add('active');
-      YS.playSentence(YS_UNIT, i, {
-        btn: btn,
-        onend: function(){ p.classList.remove('active'); },
-        onmissing: function(){
-          /* 仅当教材录音未收录该句时，才用 AI 朗读兜底 */
-          speak(clean, undefined);
-        }
-      });
+      speak(clean, undefined, function(){ p.classList.remove('active'); });
     });
     ops.appendChild(btn);
-    var bRec = document.createElement('button');
-    bRec.className = 'sent-btn rec';
-    bRec.type = 'button';
-    bRec.setAttribute('aria-label', '录音跟读');
-    bRec.title = '🎤 跟读本句，录完自动回放对比';
-    bRec.textContent = '🎤';
-    bRec.addEventListener('click', function(){ YS.toggleRec(YS_UNIT, i, p, bRec); });
-    ops.appendChild(bRec);
     p.appendChild(ops);
-    var mine = document.createElement('div');
-    mine.className = 'mine';
-    var tg = document.createElement('span'); tg.className = 'tagx'; tg.textContent = '我的录音';
-    var au = document.createElement('audio'); au.controls = true; au.preload = 'auto';
-    var clr = document.createElement('button'); clr.className = 'clr'; clr.type = 'button'; clr.textContent = '删除';
-    clr.addEventListener('click', function(){
-      try{ au.pause(); au.removeAttribute('src'); }catch(e){}
-      mine.classList.remove('on');
-      bRec.textContent = '🎤';
-    });
-    mine.appendChild(tg); mine.appendChild(au); mine.appendChild(clr);
-    p.appendChild(mine);
     passage.appendChild(p);
   });
 
-  /* 原声全文连读：逐句播放教材 Reading 原声切片（未收录句用 AI 兜底） */
+  /* 全文连读：逐句用 AI 自然音朗读 */
   document.getElementById('readAllBtn').addEventListener('click', function(){
-    if (window.YS) YS.stop();
+    /* AI 自然音逐句连读：每句用浏览器语音合成朗读，句间停顿 320ms */
+    var token = ++readAllToken;
     if (synth) synth.cancel();
     var sents = passage.querySelectorAll('.sent');
-    YS.playAll(YS_UNIT, PASSAGE.length, {
-      gap: 320,
-      onstart: function(i){
+    var i = 0;
+    function step(){
+      if (token !== readAllToken) return;
+      if (i >= sents.length){
         for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
-        sents[i].classList.add('active');
-        if (i > 0 && sents[i].scrollIntoView) sents[i].scrollIntoView({behavior:'smooth', block:'center'});
-      },
-      onmissing: function(i, next){
-        speak(PASSAGE[i].replace(/["“”]/g, ''), undefined, function(){ next(); });
-      },
-      onend: function(){
-        for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+        return;
       }
-    });
+      var idx = i; i++;
+      for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+      sents[idx].classList.add('active');
+      if (idx > 0 && sents[idx].scrollIntoView) sents[idx].scrollIntoView({behavior:'smooth', block:'center'});
+      speak(PASSAGE[idx].replace(/["“”]/g, ''), undefined, function(){
+        if (token === readAllToken) setTimeout(step, 320);
+      });
+      token = readAllToken;
+    }
+    step();
   });
 
   /* ========== 语音训练 ========== */
@@ -1637,7 +1652,7 @@
       <a href="Unit5_Off_to_Space_点读学习页.html">下一单元 →</a>
       <a href="Unit4_The_Earth_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit4_习题与测试.html">📝 本单元习题与测试</a>
-      <a href="#reading">🎧 课文原声跟读（本页）</a>
+      <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
       <a href="游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
       <a href="采花成长记_蜜蜂进化_八单元.html">🐝 蜜蜂采花</a>

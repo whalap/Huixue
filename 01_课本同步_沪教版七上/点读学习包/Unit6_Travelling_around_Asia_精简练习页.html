@@ -301,7 +301,7 @@
       <div class="no">1</div>
       <h2>核心单词</h2>
       <p>点击卡片朗读整词，点击分色音节逐音节跟读</p>
-      <span class="count-badge">本单元词汇表 · 30 词</span>
+      <span class="count-badge">本单元词汇表 · 33 词</span>
     </div>
     <div class="word-grid" id="wordGrid"></div>
 
@@ -309,7 +309,7 @@
       <div class="no" style="background:var(--teal);">+</div>
       <h2>单元补充词汇</h2>
       <p>城市 · 景点 · 旅行（课文与听说活动）</p>
-      <span class="count-badge">18 词</span>
+      <span class="count-badge">39 词</span>
     </div>
     <div class="word-grid" id="extraGrid"></div>
   </section>
@@ -320,7 +320,7 @@
       <div class="no">2</div>
       <h2>重点短语</h2>
       <p>来自单元词汇表，点击即可点读</p>
-      <span class="count-badge">17 个</span>
+      <span class="count-badge">20 个</span>
     </div>
     <div class="phrase-list" id="phraseList"></div>
   </section>
@@ -393,8 +393,40 @@
   /* ========== 数据 ========== */
   var WORDS = [
     {w:'guide', syl:['guide'], st:0, ipa:'/ɡaɪd/', pos:'n.', zh:'指南；手册'},
-    {w:'east', syl:['east'], st:0, ipa:'/iːst/', pos:'n.', zh:'东；东方'},
-    {w:'west', syl:['west'], st:0, ipa:'/west/', pos:'n.', zh:'西；西方'},
+    {w:'east', syl:['east'], st:0, ipa:'/iːst/', pos:'n.', pos2:'adv.', zh:'东；东方', zh2:'朝东'},
+    {w:'west', syl:['west'], st:0, ipa:'/west/', pos:'n.', pos2:'adv.', zh:'西；西方', zh2:'朝西'},
+    {w:'mix', syl:['mix'], st:0, ipa:'/mɪks/', pos:'n.', zh:'混合；结合'},
+    {w:'western', syl:['west','ern'], st:0, ipa:'/ˈwestən/', pos:'adj.', zh:'西方的；西方国家的'},
+    {w:'style', syl:['style'], st:0, ipa:'/staɪl/', pos:'n.', zh:'风格'},
+    {w:'popular', syl:['pop','u','lar'], st:0, ipa:'/ˈpɒpjələ(r)/', pos:'adj.', zh:'大众喜爱的；广受欢迎的'},
+    {w:'site', syl:['site'], st:0, ipa:'/saɪt/', pos:'n.', zh:'（建筑物、城镇等的）地点'},
+    {w:'across', syl:['a','cross'], st:1, ipa:'/əˈkrɒs/', pos:'prep.', zh:'在……对面；在……对过'},
+    {w:'adult', syl:['a','dult'], st:0, ipa:'/ˈædʌlt/', pos:'n.', zh:'成年人'},
+    {w:'senior', syl:['se','nior'], st:0, ipa:'/ˈsiːniə(r)/', pos:'n.', zh:'老年人；长者'},
+    {w:'customer', syl:['cus','tom','er'], st:0, ipa:'/ˈkʌstəmə(r)/', pos:'n.', zh:'顾客；主顾；客户'},
+    {w:'design', syl:['de','sign'], st:1, ipa:'/dɪˈzaɪn/', pos:'n.', zh:'设计'},
+    {w:'else', syl:['else'], st:0, ipa:'/els/', pos:'adv.', zh:'其他的；别的'},
+    {w:'suggestion', syl:['sug','ges','tion'], st:1, ipa:'/səˈdʒestʃən/', pos:'n.', zh:'建议；提议'},
+    {w:'tip', syl:['tip'], st:0, ipa:'/tɪp/', pos:'n.', zh:'指点；实用的提示'},
+    {w:'historic', syl:['his','tor','ic'], st:1, ipa:'/hɪˈstɒrɪk/', pos:'adj.', zh:'历史上著名（或重要）的；可名垂青史的'},
+    {w:'list', syl:['list'], st:0, ipa:'/lɪst/', pos:'n.', zh:'名单；清单', star:true},
+    {w:'landscape', syl:['land','scape'], st:0, ipa:'/ˈlændskeɪp/', pos:'n.', zh:'风景；景色'},
+    {w:'memory', syl:['me','mo','ry'], st:0, ipa:'/ˈmeməri/', pos:'n.', zh:'回忆；记忆'},
+    {w:'general', syl:['gen','er','al'], st:0, ipa:'/ˈdʒenrəl/', pos:'n.', zh:'将军'},
+    {w:'sight', syl:['sight'], st:0, ipa:'/saɪt/', pos:'n.', zh:'看见'},
+    {w:'natural', syl:['nat','u','ral'], st:0, ipa:'/ˈnætʃrəl/', pos:'adj.', zh:'自然的；天然的'},
+    {w:'almost', syl:['al','most'], st:0, ipa:'/ˈɔːlməʊst/', pos:'adv.', zh:'几乎；差不多'},
+    {w:'become', syl:['be','come'], st:1, ipa:'/bɪˈkʌm/', pos:'v.', zh:'开始变得；变成'},
+    {w:'gateway', syl:['gate','way'], st:0, ipa:'/ˈɡeɪtweɪ/', pos:'n.', zh:'（通往其他地区的）门户'},
+    {w:'influence', syl:['in','flu','ence'], st:0, ipa:'/ˈɪnfluəns/', pos:'v.', zh:'影响；对……起作用'},
+    {w:'artwork', syl:['art','work'], st:0, ipa:'/ˈɑːtwɜːk/', pos:'n.', zh:'艺术作品'},
+    {w:'painting', syl:['paint','ing'], st:0, ipa:'/ˈpeɪntɪŋ/', pos:'n.', zh:'绘画'},
+    {w:'scene', syl:['scene'], st:0, ipa:'/siːn/', pos:'n.', zh:'场面；情景'},
+    {w:'wife', syl:['wife'], st:0, ipa:'/waɪf/', pos:'n.', zh:'妻子'},
+    {w:'stone', syl:['stone'], st:0, ipa:'/stəʊn/', pos:'n.', zh:'石头；石料'},
+    {w:'reflection', syl:['re','flec','tion'], st:2, ipa:'/rɪˈflekʃn/', pos:'n.', zh:'映像；映照出的影像'}
+  ];
+  var EXTRAS = [
     {w:'meet', syl:['meet'], st:0, ipa:'/miːt/', pos:'v.', zh:'相遇；会合'},
     {w:'tradition', syl:['tra','di','tion'], st:1, ipa:'/trəˈdɪʃn/', pos:'n.', zh:'传统'},
     {w:'modernity', syl:['mo','der','ni','ty'], st:1, ipa:'/məˈdɜːnəti/', pos:'n.', zh:'现代；现代性'},
@@ -405,9 +437,6 @@
     {w:'spot', syl:['spot'], st:0, ipa:'/spɒt/', pos:'n.', zh:'地点；场所'},
     {w:'building', syl:['build','ing'], st:0, ipa:'/ˈbɪldɪŋ/', pos:'n.', zh:'建筑物'},
     {w:'century', syl:['cen','tu','ry'], st:0, ipa:'/ˈsentʃəri/', pos:'n.', zh:'世纪'},
-    {w:'mix', syl:['mix'], st:0, ipa:'/mɪks/', pos:'n.', zh:'混合'},
-    {w:'style', syl:['style'], st:0, ipa:'/staɪl/', pos:'n.', zh:'风格'},
-    {w:'popular', syl:['pop','u','lar'], st:0, ipa:'/ˈpɒpjələ(r)/', pos:'adj.', zh:'受欢迎的'},
     {w:'restaurant', syl:['res','tau','rant'], st:0, ipa:'/ˈrestrɒnt/', pos:'n.', zh:'餐馆；饭店'},
     {w:'museum', syl:['mu','se','um'], st:1, ipa:'/mjuˈziːəm/', pos:'n.', zh:'博物馆'},
     {w:'history', syl:['his','to','ry'], st:0, ipa:'/ˈhɪstri/', pos:'n.', zh:'历史'},
@@ -420,10 +449,7 @@
     {w:'traditional', syl:['tra','di','tion','al'], st:1, ipa:'/trəˈdɪʃənl/', pos:'adj.', zh:'传统的'},
     {w:'local', syl:['lo','cal'], st:0, ipa:'/ˈləʊkl/', pos:'adj.', zh:'当地的'},
     {w:'gift', syl:['gift'], st:0, ipa:'/ɡɪft/', pos:'n.', zh:'礼物'},
-    {w:'western', syl:['west','ern'], st:0, ipa:'/ˈwestən/', pos:'adj.', zh:'西方的'},
-    {w:'view', syl:['view'], st:0, ipa:'/vjuː/', pos:'n.', zh:'景色；风景'}
-  ];
-  var EXTRAS = [
+    {w:'view', syl:['view'], st:0, ipa:'/vjuː/', pos:'n.', zh:'景色；风景'},
     {w:'guidebook', syl:['guide','book'], st:0, ipa:'/ˈɡaɪdbʊk/', pos:'n.', zh:'旅游指南'},
     {w:'landmark', syl:['land','mark'], st:0, ipa:'/ˈlændmɑːk/', pos:'n.', zh:'地标'},
     {w:'temple', syl:['tem','ple'], st:0, ipa:'/ˈtempl/', pos:'n.', zh:'寺庙'},
@@ -437,20 +463,21 @@
     {w:'crowded', syl:['crowd','ed'], st:0, ipa:'/ˈkraʊdɪd/', pos:'adj.', zh:'拥挤的'},
     {w:'delicious', syl:['de','li','cious'], st:1, ipa:'/dɪˈlɪʃəs/', pos:'adj.', zh:'美味的'},
     {w:'recommend', syl:['re','com','mend'], st:2, ipa:'/ˌrekəˈmend/', pos:'v.', zh:'推荐'},
-    {w:'suggestion', syl:['sug','ges','tion'], st:1, ipa:'/səˈdʒestʃən/', pos:'n.', zh:'建议；提议'},
-    {w:'design', syl:['de','sign'], st:1, ipa:'/dɪˈzaɪn/', pos:'n.', zh:'设计'},
     {w:'wonder', syl:['won','der'], st:0, ipa:'/ˈwʌndə(r)/', pos:'n.', zh:'奇迹；奇观'},
     {w:'abroad', syl:['a','broad'], st:1, ipa:'/əˈbrɔːd/', pos:'adv.', zh:'在国外'},
     {w:'welcome', syl:['wel','come'], st:0, ipa:'/ˈwelkəm/', pos:'v.', zh:'欢迎'}
   ];
   var PHRASES = [
     {p:'tourist spot', zh:'旅游景点'},
+    {p:'light up', zh:'点亮；照亮'},
+    {p:'in the centre of', zh:'在……的中心'},
+    {p:'be interested in', zh:'对……有兴趣'},
+    {p:'historic site', zh:'古迹；历史遗迹'},
+    {p:'in memory of', zh:'作为对……的纪念'},
     {p:'travel guide', zh:'旅游指南'},
     {p:'East meets West', zh:'东西方交汇'},
     {p:'be famous for', zh:'因……而闻名'},
     {p:'a mix of ... and ...', zh:'……与……的融合'},
-    {p:'in the centre of', zh:'在……的中心'},
-    {p:'light up', zh:'点亮；照亮'},
     {p:'look east', zh:'向东看'},
     {p:'across the river', zh:'河对岸'},
     {p:'in the 19th century', zh:'在 19 世纪'},
@@ -466,35 +493,61 @@
     {w:'guide', zh:'指南；手册', opts:['地图','门票','游客']},
     {w:'east', zh:'东；东方', opts:['西；西方','南；南方','北；北方']},
     {w:'west', zh:'西；西方', opts:['东；东方','南；南方','北；北方']},
-    {w:'meet', zh:'相遇；会合', opts:['分别','等待','离开']},
-    {w:'tradition', zh:'传统', opts:['文化','历史','现代']},
-    {w:'modernity', zh:'现代；现代性', opts:['传统','历史','文明']},
-    {w:'visit', zh:'参观；游览', opts:['离开','居住','工作']},
-    {w:'explore', zh:'探索；探究', opts:['保护','参观','购买']},
-    {w:'famous', zh:'著名的', opts:['普通的','安静的','拥挤的']},
-    {w:'tourist', zh:'游客；观光客', opts:['导游','居民','商人']},
-    {w:'spot', zh:'地点；场所', opts:['门票','纪念品','路线']},
-    {w:'building', zh:'建筑物', opts:['花园','街道','广场']},
-    {w:'century', zh:'世纪', opts:['十年','年代','月份']},
-    {w:'mix', zh:'混合', opts:['分开','收集','选择']},
+    {w:'mix', zh:'混合；结合', opts:['指南；手册','建议；提议','名单；清单']},
+    {w:'western', zh:'西方的；西方国家的', opts:['大众喜爱的；广受欢迎的','自然的；天然的','古代的；古老的']},
     {w:'style', zh:'风格', opts:['形状','颜色','尺寸']},
-    {w:'popular', zh:'受欢迎的', opts:['不受欢迎的','普通的','安静的']},
-    {w:'restaurant', zh:'餐馆；饭店', opts:['博物馆','商店','公园']},
-    {w:'museum', zh:'博物馆', opts:['剧院','图书馆','体育馆']},
-    {w:'history', zh:'历史', opts:['地理','科学','文化']},
-    {w:'skyscraper', zh:'摩天大楼', opts:['古塔','桥梁','高楼']},
-    {w:'light', zh:'点亮；照亮', opts:['熄灭','关闭','吹灭']},
-    {w:'sky', zh:'天空', opts:['海洋','大地','云朵']},
-    {w:'garden', zh:'花园', opts:['公园','农田','森林']},
-    {w:'centre', zh:'中心', opts:['边缘','角落','郊区']},
-    {w:'culture', zh:'文化', opts:['传统','历史','语言']},
-    {w:'traditional', zh:'传统的', opts:['现代的','古老的','流行的']},
-    {w:'local', zh:'当地的', opts:['外国的','远处的','国家的']},
-    {w:'gift', zh:'礼物', opts:['美食','纪念品','门票']},
-    {w:'western', zh:'西方的', opts:['东方的','南方的','北方的']},
-    {w:'view', zh:'景色；风景', opts:['照片','声音','气味']}
+    {w:'popular', zh:'大众喜爱的；广受欢迎的', opts:['西方的；西方国家的','自然的；天然的','古代的；古老的']},
+    {w:'site', zh:'（建筑物、城镇等的）地点', opts:['（通往其他地区的）门户','映像；映照出的影像','顾客；主顾；客户']},
+    {w:'across', zh:'在……对面；在……对过', opts:['大众喜爱的；广受欢迎的','（通往其他地区的）门户','（建筑物、城镇等的）地点']},
+    {w:'adult', zh:'成年人', opts:['建筑物','博物馆','河；江']},
+    {w:'senior', zh:'老年人；长者', opts:['现代；现代性','游客；观光客','指南；手册']},
+    {w:'customer', zh:'顾客；主顾；客户', opts:['指点；实用的提示','映像；映照出的影像','老年人；长者']},
+    {w:'design', zh:'设计', opts:['风格','将军','看见']},
+    {w:'else', zh:'其他的；别的', opts:['老年人；长者','几乎；差不多','现代；现代性']},
+    {w:'suggestion', zh:'建议；提议', opts:['指南；手册','混合；结合','名单；清单']},
+    {w:'tip', zh:'指点；实用的提示', opts:['顾客；主顾；客户','映像；映照出的影像','老年人；长者']},
+    {w:'historic', zh:'历史上著名（或重要）的；可名垂青史的', opts:['大众喜爱的；广受欢迎的','西方的；西方国家的','自然的；天然的']},
+    {w:'list', zh:'名单；清单', opts:['指南；手册','混合；结合','建议；提议']},
+    {w:'landscape', zh:'风景；景色', opts:['指南；手册','混合；结合','建议；提议']},
+    {w:'memory', zh:'回忆；记忆', opts:['指南；手册','混合；结合','建议；提议']},
+    {w:'general', zh:'将军', opts:['风格','设计','看见']},
+    {w:'sight', zh:'看见', opts:['风格','设计','将军']},
+    {w:'natural', zh:'自然的；天然的', opts:['古代的；古老的','西方的；西方国家的','大众喜爱的；广受欢迎的']},
+    {w:'almost', zh:'几乎；差不多', opts:['老年人；长者','其他的；别的','现代；现代性']},
+    {w:'become', zh:'开始变得；变成', opts:['影响；对……起作用','相遇；会合','参观；游览']},
+    {w:'gateway', zh:'（通往其他地区的）门户', opts:['（建筑物、城镇等的）地点','映像；映照出的影像','顾客；主顾；客户']},
+    {w:'influence', zh:'影响；对……起作用', opts:['开始变得；变成','相遇；会合','参观；游览']},
+    {w:'artwork', zh:'艺术作品', opts:['东；东方','西；西方','摩天大楼']},
+    {w:'painting', zh:'绘画', opts:['风格','设计','将军']},
+    {w:'scene', zh:'场面；情景', opts:['指南；手册','混合；结合','建议；提议']},
+    {w:'wife', zh:'妻子', opts:['风格','设计','将军']},
+    {w:'stone', zh:'石头；石料', opts:['指南；手册','混合；结合','建议；提议']},
+    {w:'reflection', zh:'映像；映照出的影像', opts:['顾客；主顾；客户','指点；实用的提示','（通往其他地区的）门户']}
   ];
   var QUIZ_EXTRA = [
+    {w:'meet', zh:'相遇；会合', opts:['参观；游览','探索；探究','点亮；照亮']},
+    {w:'tradition', zh:'传统', opts:['风格','设计','将军']},
+    {w:'modernity', zh:'现代；现代性', opts:['老年人；长者','游客；观光客','指南；手册']},
+    {w:'visit', zh:'参观；游览', opts:['相遇；会合','探索；探究','点亮；照亮']},
+    {w:'explore', zh:'探索；探究', opts:['相遇；会合','参观；游览','点亮；照亮']},
+    {w:'famous', zh:'著名的', opts:['传统的','当地的','现代的']},
+    {w:'tourist', zh:'游客；观光客', opts:['老年人；长者','现代；现代性','指南；手册']},
+    {w:'spot', zh:'地点；场所', opts:['指南；手册','混合；结合','建议；提议']},
+    {w:'building', zh:'建筑物', opts:['成年人','博物馆','河；江']},
+    {w:'century', zh:'世纪', opts:['风格','设计','将军']},
+    {w:'restaurant', zh:'餐馆；饭店', opts:['指南；手册','混合；结合','建议；提议']},
+    {w:'museum', zh:'博物馆', opts:['成年人','建筑物','河；江']},
+    {w:'history', zh:'历史', opts:['风格','设计','将军']},
+    {w:'skyscraper', zh:'摩天大楼', opts:['东；东方','西；西方','艺术作品']},
+    {w:'light', zh:'点亮；照亮', opts:['相遇；会合','参观；游览','探索；探究']},
+    {w:'sky', zh:'天空', opts:['风格','设计','将军']},
+    {w:'garden', zh:'花园', opts:['风格','设计','将军']},
+    {w:'centre', zh:'中心', opts:['风格','设计','将军']},
+    {w:'culture', zh:'文化', opts:['风格','设计','将军']},
+    {w:'traditional', zh:'传统的', opts:['著名的','当地的','现代的']},
+    {w:'local', zh:'当地的', opts:['著名的','传统的','现代的']},
+    {w:'gift', zh:'礼物', opts:['风格','设计','将军']},
+    {w:'view', zh:'景色；风景', opts:['指南；手册','混合；结合','建议；提议']},
     {w:'guidebook', zh:'旅游指南', opts:['地图册','相册','日记本']},
     {w:'landmark', zh:'地标', opts:['景点','边界','里程碑']},
     {w:'temple', zh:'寺庙', opts:['教堂','宫殿','博物馆']},
@@ -508,20 +561,21 @@
     {w:'crowded', zh:'拥挤的', opts:['空旷的','安静的','热闹的']},
     {w:'delicious', zh:'美味的', opts:['难吃的','新鲜的','健康的']},
     {w:'recommend', zh:'推荐', opts:['拒绝','介绍','命令']},
-    {w:'suggestion', zh:'建议；提议', opts:['决定','要求','计划']},
-    {w:'design', zh:'设计', opts:['建造','绘制','装饰']},
     {w:'wonder', zh:'奇迹；奇观', opts:['普通事物','景观','传说']},
     {w:'abroad', zh:'在国外', opts:['在国内','在本地','在远方']},
     {w:'welcome', zh:'欢迎', opts:['欢送','告别','邀请']}
   ];
   var QUIZ_PHRASE = [
     {w:'tourist spot', zh:'旅游景点', opts:['购物中心','公交站','公园']},
+    {w:'light up', zh:'点亮；照亮', opts:['熄灭','关灯','燃烧']},
+    {w:'in the centre of', zh:'在……的中心', opts:['在……的旁边','在……的边缘','在……的对面']},
+    {w:'be interested in', zh:'对……有兴趣', opts:['在……的中心','因……而闻名','中共一大会址']},
+    {w:'historic site', zh:'古迹；历史遗迹', opts:['在 19 世纪','自然的；天然的','开始变得；变成']},
+    {w:'in memory of', zh:'作为对……的纪念', opts:['……与……的融合','买当地美食和礼物','顾客；主顾；客户']},
     {w:'travel guide', zh:'旅游指南', opts:['地图','游记','攻略书']},
     {w:'East meets West', zh:'东西方交汇', opts:['东西方分离','中西合璧','东方文化']},
     {w:'be famous for', zh:'因……而闻名', opts:['因……而著名于','以……为荣','远离……']},
     {w:'a mix of ... and ...', zh:'……与……的融合', opts:['……与……的对比','……与……的分开','……或……']},
-    {w:'in the centre of', zh:'在……的中心', opts:['在……的旁边','在……的边缘','在……的对面']},
-    {w:'light up', zh:'点亮；照亮', opts:['熄灭','关灯','燃烧']},
     {w:'look east', zh:'向东看', opts:['向东走','向东飞','朝东']},
     {w:'across the river', zh:'河对岸', opts:['沿河','河面上','桥下']},
     {w:'in the 19th century', zh:'在 19 世纪', opts:['在 19 世纪之前','在 19 世纪之后','在 19 年代']},
@@ -1114,7 +1168,7 @@
       <a href="Unit7_Fun_after_School_点读学习页.html">下一单元 →</a>
       <a href="Unit6_Travelling_around_Asia_点读学习页.html">📖 本单元点读学习页</a>
       <a href="../单元习题与测试/Unit6_习题与测试.html">📝 本单元习题与测试</a>
-      <a href="../原声课文跟读.html">🎧 原声课文跟读</a>
+      <a href="Unit6_Travelling_around_Asia_点读学习页.html#reading">🎧 课文跟读</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
       <a href="游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
       <a href="采花成长记_蜜蜂进化_八单元.html">🐝 蜜蜂采花</a>

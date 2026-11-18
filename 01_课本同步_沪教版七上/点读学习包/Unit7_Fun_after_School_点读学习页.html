@@ -372,7 +372,7 @@
       <div class="no">1</div>
       <h2>核心单词</h2>
       <p>点击卡片朗读整词，点击分色音节逐音节跟读</p>
-      <span class="count-badge">本单元词汇表 · 30 词</span>
+      <span class="count-badge">本单元词汇表 · 29 词</span>
     </div>
     <div class="word-grid" id="wordGrid"></div>
 
@@ -380,7 +380,7 @@
       <div class="no" style="background:var(--teal);">+</div>
       <h2>单元补充词汇</h2>
       <p>社团 · 活动 · 义卖（课文与听说活动）</p>
-      <span class="count-badge">18 词</span>
+      <span class="count-badge">19 词</span>
     </div>
     <div class="word-grid" id="extraGrid"></div>
   </section>
@@ -561,52 +561,52 @@
 
   <footer>
     <p>内容依据：上海教育出版社《义务教育教科书 英语 七年级上册》Unit 7 Fun after school（2024 广州新版）</p>
-    <p>单词点读基于浏览器语音合成（Web Speech API）；课文跟读使用教材 Reading 原声录音切片，建议使用 Chrome / Edge 打开</p>
+    <p>单词与课文朗读均基于浏览器语音合成（AI 自然音 / Web Speech API），无需下载音频文件，建议使用 Chrome / Edge 打开</p>
   </footer>
 </div>
 
-<script src="原声跟读引擎.js"></script>
 <script>
 (function(){
   'use strict';
-  var YS_UNIT = 7; /* 本单元编号：课文原声切片用 */
   var SPK = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
 
   /* ========== 数据 ========== */
   var WORDS = [
     {w:'literature', syl:['lit','er','a','ture'], st:0, ipa:'/ˈlɪtrətʃə(r)/', pos:'n.', zh:'文学；文学作品'},
-    {w:'act', syl:['act'], st:0, ipa:'/ækt/', pos:'v.', zh:'扮演'},
+    {w:'act', syl:['act'], st:0, ipa:'/ækt/', pos:'v.', zh:'扮演（戏剧、电影中的角色）'},
+    {w:'appreciate', syl:['ap','pre','ci','ate'], st:2, ipa:'/əˈpriːʃieɪt/', pos:'v.', zh:'欣赏；赏识', star:true},
     {w:'join', syl:['join'], st:0, ipa:'/dʒɔɪn/', pos:'v.', zh:'成为……的一员；参加'},
-    {w:'definitely', syl:['def','i','nite','ly'], st:0, ipa:'/ˈdefɪnətli/', pos:'adv.', zh:'肯定；当然'},
+    {w:'definitely', syl:['def','i','nite','ly'], st:0, ipa:'/ˈdefɪnətli/', pos:'adv.', zh:'肯定；没问题；当然；确实'},
     {w:'fair', syl:['fair'], st:0, ipa:'/feə(r)/', pos:'n.', zh:'集市'},
     {w:'rocket', syl:['rock','et'], st:0, ipa:'/ˈrɒkɪt/', pos:'n.', zh:'火箭'},
-    {w:'launch', syl:['launch'], st:0, ipa:'/lɔːntʃ/', pos:'v.', zh:'发射'},
+    {w:'launch', syl:['launch'], st:0, ipa:'/lɔːntʃ/', pos:'v.', zh:'发射', star:true},
     {w:'shout', syl:['shout'], st:0, ipa:'/ʃaʊt/', pos:'v.', zh:'大声说；叫'},
     {w:'power', syl:['pow','er'], st:0, ipa:'/ˈpaʊə(r)/', pos:'n.', zh:'力量；能量'},
     {w:'moment', syl:['mo','ment'], st:0, ipa:'/ˈməʊmənt/', pos:'n.', zh:'片刻；瞬间'},
     {w:'member', syl:['mem','ber'], st:0, ipa:'/ˈmembə(r)/', pos:'n.', zh:'成员'},
     {w:'shape', syl:['shape'], st:0, ipa:'/ʃeɪp/', pos:'n.', zh:'形状；外形'},
-    {w:'hike', syl:['hike'], st:0, ipa:'/haɪk/', pos:'v.', zh:'去……远足'},
+    {w:'hike', syl:['hike'], st:0, ipa:'/haɪk/', pos:'v.', zh:'去……远足；做徒步旅行'},
     {w:'recently', syl:['re','cent','ly'], st:0, ipa:'/ˈriːsntli/', pos:'adv.', zh:'不久前；最近'},
     {w:'attend', syl:['at','tend'], st:1, ipa:'/əˈtend/', pos:'v.', zh:'出席；参加'},
-    {w:'charity', syl:['char','i','ty'], st:0, ipa:'/ˈtʃærəti/', pos:'n.', zh:'慈善机构'},
+    {w:'charity', syl:['char','i','ty'], st:0, ipa:'/ˈtʃærəti/', pos:'n.', zh:'慈善机构（或组织）'},
     {w:'sale', syl:['sale'], st:0, ipa:'/seɪl/', pos:'n.', zh:'出售；销售'},
     {w:'snack', syl:['snack'], st:0, ipa:'/snæk/', pos:'n.', zh:'点心；小吃'},
     {w:'decorate', syl:['dec','o','rate'], st:0, ipa:'/ˈdekəreɪt/', pos:'v.', zh:'装饰；装潢'},
     {w:'difference', syl:['dif','fe','rence'], st:0, ipa:'/ˈdɪfrəns/', pos:'n.', zh:'差别；差异'},
-    {w:'compete', syl:['com','pete'], st:1, ipa:'/kəmˈpiːt/', pos:'v.', zh:'参加比赛'},
-    {w:'event', syl:['e','vent'], st:1, ipa:'/ɪˈvent/', pos:'n.', zh:'公开活动'},
+    {w:'compete', syl:['com','pete'], st:1, ipa:'/kəmˈpiːt/', pos:'v.', zh:'参加比赛（或竞赛）'},
+    {w:'event', syl:['e','vent'], st:1, ipa:'/ɪˈvent/', pos:'n.', zh:'公开活动；社交场合'},
     {w:'spoon', syl:['spoon'], st:0, ipa:'/spuːn/', pos:'n.', zh:'勺；匙'},
     {w:'annual', syl:['an','nu','al'], st:0, ipa:'/ˈænjuəl/', pos:'adj.', zh:'每年的；一年一次的'},
     {w:'fantastic', syl:['fan','tas','tic'], st:1, ipa:'/fænˈtæstɪk/', pos:'adj.', zh:'极好的；了不起的'},
-    {w:'equipment', syl:['e','quip','ment'], st:1, ipa:'/ɪˈkwɪpmənt/', pos:'n.', zh:'设备；器材'},
+    {w:'dollar', syl:['dol','lar'], st:0, ipa:'/ˈdɒlə(r)/', pos:'n.', zh:'元（美国、加拿大、澳大利亚等国的货币单位）'},
+    {w:'pie', syl:['pie'], st:0, ipa:'/paɪ/', pos:'n.', zh:'果馅饼；果馅派'},
+    {w:'equipment', syl:['e','quip','ment'], st:1, ipa:'/ɪˈkwɪpmənt/', pos:'n.', zh:'设备；器材'}
+  ];
+  var EXTRAS = [
     {w:'club', syl:['club'], st:0, ipa:'/klʌb/', pos:'n.', zh:'社团'},
     {w:'paper-cut', syl:['pa','per','cut'], st:0, ipa:'/ˈpeɪpəkʌt/', pos:'n.', zh:'剪纸'},
     {w:'experiment', syl:['ex','pe','ri','ment'], st:1, ipa:'/ɪkˈsperɪmənt/', pos:'n.', zh:'实验'},
-    {w:'surprise', syl:['sur','prise'], st:1, ipa:'/səˈpraɪz/', pos:'n.', zh:'惊奇；意外之事'}
-  ];
-  var EXTRAS = [
-    {w:'appreciate', syl:['ap','pre','ci','ate'], st:2, ipa:'/əˈpriːʃieɪt/', pos:'v.', zh:'欣赏；赏识'},
+    {w:'surprise', syl:['sur','prise'], st:1, ipa:'/səˈpraɪz/', pos:'n.', zh:'惊奇；意外之事'},
     {w:'baking', syl:['bak','ing'], st:0, ipa:'/ˈbeɪkɪŋ/', pos:'n.', zh:'烘焙'},
     {w:'craft', syl:['craft'], st:0, ipa:'/krɑːft/', pos:'n.', zh:'工艺；手艺'},
     {w:'drama', syl:['dra','ma'], st:0, ipa:'/ˈdrɑːmə/', pos:'n.', zh:'戏剧'},
@@ -614,8 +614,6 @@
     {w:'poster', syl:['post','er'], st:0, ipa:'/ˈpəʊstə(r)/', pos:'n.', zh:'海报'},
     {w:'competition', syl:['com','pe','ti','tion'], st:2, ipa:'/ˌkɒmpəˈtɪʃn/', pos:'n.', zh:'比赛；竞赛'},
     {w:'raise', syl:['raise'], st:0, ipa:'/reɪz/', pos:'v.', zh:'筹集（钱）'},
-    {w:'dollar', syl:['dol','lar'], st:0, ipa:'/ˈdɒlə(r)/', pos:'n.', zh:'元（货币单位）'},
-    {w:'pie', syl:['pie'], st:0, ipa:'/paɪ/', pos:'n.', zh:'果馅饼'},
     {w:'machine', syl:['ma','chine'], st:1, ipa:'/məˈʃiːn/', pos:'n.', zh:'机器'},
     {w:'sun', syl:['sun'], st:0, ipa:'/sʌn/', pos:'n.', zh:'太阳'},
     {w:'ground', syl:['ground'], st:0, ipa:'/ɡraʊnd/', pos:'n.', zh:'地面；场地'},
@@ -648,20 +646,24 @@
     'Li Na and Liu Wei are new students at Yangguang Junior High School.',
     'Last month, they went to the Clubs Fair.',
     'The fair was very crowded, but it was also a lot of fun.',
-    'First, Li Na and Liu Wei learnt about the Rocket Club.',
-    '"Our club will teach you how to design and build rockets," a boy said.',
-    'He took a rocket and launched it into the sky.',
-    'The rocket took off and disappeared. Li Na and Liu Wei were very surprised.',
+    '"Our club will teach you how to design and build rockets. Then you can launch them into the sky," a boy said.',
+    '"Watch!" He took a rocket and launched it.',
+    'The rocket took off into the sky and disappeared.',
+    'Li Na and Liu Wei were very surprised.',
     'A girl suddenly shouted, "Watch out!"',
-    'A moment later, a toy plane quickly flew past them.',
-    '"I\'m so sorry! It runs on solar power," said the girl.',
+    'A moment later, a toy plane quickly flew past Li Na and Liu Wei.',
+    '"I\'m so sorry!" said the girl.',
+    '"It\'s a cool plane, isn\'t it? It runs on solar power."',
     '"It\'s amazing! Which club are you in?" asked Li Na.',
-    '"The Solar Power Club, of course! We build all kinds of wonderful machines."',
+    '"The Solar Power Club, of course! We build all kinds of wonderful machines. They get their energy from the sun."',
     'The girl then passed the remote control to Li Na.',
     '"It is fun to fly the plane around the sports ground!" said Li Na.',
     '"Wow, look at those beautiful paper-cuts over there," Liu Wei said excitedly.',
-    'A member of the Craft Club told them, "If you join our club, you will learn how to cut paper into many different pretty shapes."',
-    'Li Na and Liu Wei were very excited. "I want to join all the clubs!" said Li Na. "Me too!" said Liu Wei.'
+    'Li Na turned around and looked at the Craft Club\'s table.',
+    'A member of the club started telling them about their club activities, "If you join our club, you will learn how to cut paper into many different pretty shapes. Would you like to have a try?"',
+    'Li Na and Liu Wei were very excited about those clubs.',
+    '"I want to join all the clubs!" said Li Na.',
+    '"Me too!" said Liu Wei.'
   ];
   var PHON = [
     {ph:'/t/', words:['launched','remote','rocket','teach'], sent:'Last month, Li Na and Liu Wei attended the Clubs Fair.'},
@@ -687,9 +689,10 @@
   ];
   var QUIZ = [
     {w:'literature', zh:'文学；文学作品', opts:['历史','戏剧','科学']},
-    {w:'act', zh:'扮演', opts:['跳舞','唱歌','说话']},
+    {w:'act', zh:'扮演（戏剧、电影中的角色）', opts:['去……远足；做徒步旅行','成为……的一员；参加','参加比赛（或竞赛）']},
+    {w:'appreciate', zh:'欣赏；赏识', opts:['大声说；叫','出席；参加','装饰；装潢']},
     {w:'join', zh:'成为……的一员；参加', opts:['离开','组织','领导']},
-    {w:'definitely', zh:'肯定；当然', opts:['可能','也许','大概']},
+    {w:'definitely', zh:'肯定；没问题；当然；确实', opts:['扮演（戏剧、电影中的角色）','去……远足；做徒步旅行','成为……的一员；参加']},
     {w:'fair', zh:'集市', opts:['公园','商场','操场']},
     {w:'rocket', zh:'火箭', opts:['飞机','卫星','气球']},
     {w:'launch', zh:'发射', opts:['降落','回收','修理']},
@@ -698,27 +701,28 @@
     {w:'moment', zh:'片刻；瞬间', opts:['小时','分钟','星期']},
     {w:'member', zh:'成员', opts:['队长','教练','观众']},
     {w:'shape', zh:'形状；外形', opts:['颜色','大小','高度']},
-    {w:'hike', zh:'去……远足', opts:['游泳','骑车','爬山']},
+    {w:'hike', zh:'去……远足；做徒步旅行', opts:['成为……的一员；参加','扮演（戏剧、电影中的角色）','参加比赛（或竞赛）']},
     {w:'recently', zh:'不久前；最近', opts:['很久以前','马上','经常']},
     {w:'attend', zh:'出席；参加', opts:['缺席','举办','取消']},
-    {w:'charity', zh:'慈善机构', opts:['公司','学校','医院']},
+    {w:'charity', zh:'慈善机构（或组织）', opts:['公开活动；社交场合','文学；文学作品','果馅饼；果馅派']},
     {w:'sale', zh:'出售；销售', opts:['购买','赠送','交换']},
     {w:'snack', zh:'点心；小吃', opts:['正餐','饮料','水果']},
     {w:'decorate', zh:'装饰；装潢', opts:['清理','拆除','粉刷']},
     {w:'difference', zh:'差别；差异', opts:['相同点','变化','进步']},
-    {w:'compete', zh:'参加比赛', opts:['合作','练习','放弃']},
-    {w:'event', zh:'公开活动', opts:['私事','会议','假期']},
+    {w:'compete', zh:'参加比赛（或竞赛）', opts:['成为……的一员；参加','去……远足；做徒步旅行','扮演（戏剧、电影中的角色）']},
+    {w:'event', zh:'公开活动；社交场合', opts:['慈善机构（或组织）','文学；文学作品','果馅饼；果馅派']},
     {w:'spoon', zh:'勺；匙', opts:['筷子','刀','叉子']},
     {w:'annual', zh:'每年的；一年一次的', opts:['每月的','每周的','每日的']},
     {w:'fantastic', zh:'极好的；了不起的', opts:['糟糕的','普通的','可怕的']},
-    {w:'equipment', zh:'设备；器材', opts:['服装','食物','药品']},
-    {w:'club', zh:'社团', opts:['班级','年级','学校']},
-    {w:'paper-cut', zh:'剪纸', opts:['折纸','画画','书法']},
-    {w:'experiment', zh:'实验', opts:['比赛','表演','展览']},
-    {w:'surprise', zh:'惊奇；意外之事', opts:['喜悦','失望','愤怒']}
+    {w:'dollar', zh:'元（美国、加拿大、澳大利亚等国的货币单位）', opts:['慈善机构（或组织）','公开活动；社交场合','文学；文学作品']},
+    {w:'pie', zh:'果馅饼；果馅派', opts:['文学；文学作品','惊奇；意外之事','操场；运动场']},
+    {w:'equipment', zh:'设备；器材', opts:['服装','食物','药品']}
   ];
   var QUIZ_EXTRA = [
-    {w:'appreciate', zh:'欣赏；赏识', opts:['批评','忽视','感谢']},
+    {w:'club', zh:'社团', opts:['集市','火箭','成员']},
+    {w:'paper-cut', zh:'剪纸', opts:['集市','火箭','成员']},
+    {w:'experiment', zh:'实验', opts:['集市','火箭','成员']},
+    {w:'surprise', zh:'惊奇；意外之事', opts:['文学；文学作品','果馅饼；果馅派','操场；运动场']},
     {w:'baking', zh:'烘焙', opts:['烹饪','煮饭','烧烤']},
     {w:'craft', zh:'工艺；手艺', opts:['艺术','技术','技巧']},
     {w:'drama', zh:'戏剧', opts:['电影','音乐','舞蹈']},
@@ -726,8 +730,6 @@
     {w:'poster', zh:'海报', opts:['报纸','杂志','广告牌']},
     {w:'competition', zh:'比赛；竞赛', opts:['合作','练习','课程']},
     {w:'raise', zh:'筹集（钱）', opts:['花掉','捐赠','节省']},
-    {w:'dollar', zh:'元（货币单位）', opts:['分','角','英镑']},
-    {w:'pie', zh:'果馅饼', opts:['蛋糕','面包','饼干']},
     {w:'machine', zh:'机器', opts:['工具','家具','车辆']},
     {w:'sun', zh:'太阳', opts:['月亮','星星','地球']},
     {w:'ground', zh:'地面；场地', opts:['天空','屋顶','地下']},
@@ -806,6 +808,7 @@
 
   function speak(text, rate, onend){
     if (!synth) { alert('当前浏览器不支持语音合成（Web Speech API），建议使用 Chrome 或 Edge。'); return; }
+    readAllToken++;
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text);
     var v = getVoice();
@@ -816,8 +819,10 @@
     synth.speak(u);
   }
 
+  var readAllToken = 0;
   function stopSpeak(){
     if (synth) synth.cancel();
+    readAllToken++;
     var els = document.querySelectorAll('.speaking');
     for (var i = 0; i < els.length; i++) els[i].classList.remove('speaking');
   }
@@ -1001,66 +1006,43 @@
     var btn = document.createElement('button');
     btn.className = 'sent-btn';
     btn.type = 'button';
-    btn.setAttribute('aria-label', '播放本句原声');
-    btn.title = '播放本句原声（教材 Reading 录音切片）';
+    btn.setAttribute('aria-label', 'AI 朗读本句');
+    btn.title = 'AI 朗读本句';
     btn.innerHTML = SPK;
     btn.addEventListener('click', function(){
       var sents = passage.querySelectorAll('.sent');
       for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
       p.classList.add('active');
-      YS.playSentence(YS_UNIT, i, {
-        btn: btn,
-        onend: function(){ p.classList.remove('active'); },
-        onmissing: function(){
-          /* 仅当教材录音未收录该句时，才用 AI 朗读兜底 */
-          speak(clean, undefined);
-        }
-      });
+      speak(clean, undefined, function(){ p.classList.remove('active'); });
     });
     ops.appendChild(btn);
-    var bRec = document.createElement('button');
-    bRec.className = 'sent-btn rec';
-    bRec.type = 'button';
-    bRec.setAttribute('aria-label', '录音跟读');
-    bRec.title = '🎤 跟读本句，录完自动回放对比';
-    bRec.textContent = '🎤';
-    bRec.addEventListener('click', function(){ YS.toggleRec(YS_UNIT, i, p, bRec); });
-    ops.appendChild(bRec);
     p.appendChild(ops);
-    var mine = document.createElement('div');
-    mine.className = 'mine';
-    var tg = document.createElement('span'); tg.className = 'tagx'; tg.textContent = '我的录音';
-    var au = document.createElement('audio'); au.controls = true; au.preload = 'auto';
-    var clr = document.createElement('button'); clr.className = 'clr'; clr.type = 'button'; clr.textContent = '删除';
-    clr.addEventListener('click', function(){
-      try{ au.pause(); au.removeAttribute('src'); }catch(e){}
-      mine.classList.remove('on');
-      bRec.textContent = '🎤';
-    });
-    mine.appendChild(tg); mine.appendChild(au); mine.appendChild(clr);
-    p.appendChild(mine);
     passage.appendChild(p);
   });
 
-  /* 原声全文连读：逐句播放教材 Reading 原声切片（未收录句用 AI 兜底） */
+  /* 全文连读：逐句用 AI 自然音朗读 */
   document.getElementById('readAllBtn').addEventListener('click', function(){
-    if (window.YS) YS.stop();
+    /* AI 自然音逐句连读：每句用浏览器语音合成朗读，句间停顿 320ms */
+    var token = ++readAllToken;
     if (synth) synth.cancel();
     var sents = passage.querySelectorAll('.sent');
-    YS.playAll(YS_UNIT, PASSAGE.length, {
-      gap: 320,
-      onstart: function(i){
+    var i = 0;
+    function step(){
+      if (token !== readAllToken) return;
+      if (i >= sents.length){
         for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
-        sents[i].classList.add('active');
-        if (i > 0 && sents[i].scrollIntoView) sents[i].scrollIntoView({behavior:'smooth', block:'center'});
-      },
-      onmissing: function(i, next){
-        speak(PASSAGE[i].replace(/["“”]/g, ''), undefined, function(){ next(); });
-      },
-      onend: function(){
-        for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+        return;
       }
-    });
+      var idx = i; i++;
+      for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+      sents[idx].classList.add('active');
+      if (idx > 0 && sents[idx].scrollIntoView) sents[idx].scrollIntoView({behavior:'smooth', block:'center'});
+      speak(PASSAGE[idx].replace(/["“”]/g, ''), undefined, function(){
+        if (token === readAllToken) setTimeout(step, 320);
+      });
+      token = readAllToken;
+    }
+    step();
   });
 
   /* ========== 语音训练 ========== */
@@ -1630,7 +1612,7 @@
       <a href="Unit8_Collecting_as_a_Hobby_点读学习页.html">下一单元 →</a>
       <a href="Unit7_Fun_after_School_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit7_习题与测试.html">📝 本单元习题与测试</a>
-      <a href="#reading">🎧 课文原声跟读（本页）</a>
+      <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
       <a href="游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
       <a href="采花成长记_蜜蜂进化_八单元.html">🐝 蜜蜂采花</a>

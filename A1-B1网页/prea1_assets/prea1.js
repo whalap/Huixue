@@ -149,7 +149,7 @@ window.PA1 = (function () {
       + '<a href="' + href('B1 主页.html') + '">🌉 B1 过渡线</a>'
       + '<a href="' + href('index.html') + '">🏛️ 四级总站</a>'
       + '<a href="' + href('../01_课本同步_沪教版七上/点读学习包/Unit0_总目录_点读学习中心.html') + '">📚 课本同步</a>'
-      + '<a href="' + href('../01_课本同步_沪教版七上/原声课文跟读.html') + '">🎧 原声课文</a>'
+      + '<a href="' + href('../01_课本同步_沪教版七上/点读学习包/Unit0_总目录_点读学习中心.html') + '">🎧 课文跟读</a>'
       + '<a href="' + href('../E听说练习/index.html') + '">🎤 中考 E 听说</a>'
       + '<a href="' + href('../index.html') + '">🏠 慧学首页</a>'
       + '</div></div>';

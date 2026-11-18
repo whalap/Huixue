@@ -331,7 +331,7 @@
 
     <div class="tips">
       <span class="tip">点击任意单词 / 音节，即可听到标准发音</span>
-      <span class="tip">课文跟读用教材原声：逐句听原声、录音回放对比</span>
+      <span class="tip">课文跟读用 AI 自然音：逐句朗读、全文连读</span>
       <span class="tip">支持切换语速与发音人</span>
       <span class="tip">听音选词 + 课文填空双练习</span>
     </div>
@@ -411,7 +411,7 @@
           <div class="nm">The four seasons</div>
           <div class="dt">说明文 · 四季的特征</div>
         </div>
-        <button class="read-all" id="readAllBtn" type="button" title="逐句播放本单元教材原声">▶ 原声连读</button>
+        <button class="read-all" id="readAllBtn" type="button" title="逐句朗读本单元课文">▶ 全文连读</button>
       </div>
       <div id="passage"></div>
       <div class="reading-note">
@@ -562,15 +562,13 @@
 
   <footer>
     <p>内容依据：上海教育出版社《义务教育教科书 英语 七年级上册》Unit 3 The seasons（2024 广州新版）</p>
-    <p>单词点读基于浏览器语音合成（Web Speech API）；课文跟读使用教材 Reading 原声录音切片，建议使用 Chrome / Edge 打开</p>
+    <p>单词与课文朗读均基于浏览器语音合成（AI 自然音 / Web Speech API），无需下载音频文件，建议使用 Chrome / Edge 打开</p>
   </footer>
 </div>
 
-<script src="原声跟读引擎.js"></script>
 <script>
 (function(){
   'use strict';
-  var YS_UNIT = 3; /* 本单元编号：课文原声切片用 */
   var SPK = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
 
   /* ========== 数据 ========== */
@@ -596,11 +594,11 @@
     {w:'article', syl:['ar','ti','cle'], st:0, ipa:'/ˈɑːtɪkl/', pos:'n.', zh:'文章'},
     {w:'reason', syl:['rea','son'], st:0, ipa:'/ˈriːzn/', pos:'n.', zh:'原因；理由'},
     {w:'alive', syl:['a','live'], st:1, ipa:'/əˈlaɪv/', pos:'adj.', zh:'有生气；有活力'},
-    {w:'sandcastle', syl:['sand','cas','tle'], st:0, ipa:'/ˈsændkɑːsl/', pos:'n.', zh:'沙堡'},
+    {w:'sandcastle', syl:['sand','cas','tle'], st:0, ipa:'/ˈsændkɑːsl/', pos:'n.', zh:'沙堡', star:true},
     {w:'follow', syl:['fol','low'], st:0, ipa:'/ˈfɒləʊ/', pos:'v.', zh:'按……方式发展'},
     {w:'divide', syl:['di','vide'], st:1, ipa:'/dɪˈvaɪd/', pos:'v.', zh:'（使）分开'},
     {w:'decide', syl:['de','cide'], st:1, ipa:'/dɪˈsaɪd/', pos:'v.', zh:'对……作出抉择；决定'},
-    {w:'crop', syl:['crop'], st:0, ipa:'/krɒp/', pos:'n.', zh:'庄稼；作物'},
+    {w:'crop', syl:['crop'], st:0, ipa:'/krɒp/', pos:'n.', zh:'庄稼；作物', star:true},
     {w:'culture', syl:['cul','ture'], st:0, ipa:'/ˈkʌltʃə(r)/', pos:'n.', zh:'文化；文明'},
     {w:'local', syl:['lo','cal'], st:0, ipa:'/ˈləʊkl/', pos:'adj.', zh:'地方的；当地的'},
     {w:'tradition', syl:['tra','di','tion'], st:1, ipa:'/trəˈdɪʃn/', pos:'n.', zh:'传统'},
@@ -628,8 +626,8 @@
   ];
   var PHRASES = [
     {p:'have picnics', zh:'野餐'},
-    {p:'take a trip', zh:'去旅行'},
     {p:'work one\'s land', zh:'耕种土地'},
+    {p:'take a trip', zh:'去旅行'},
     {p:'solar term', zh:'节气'},
     {p:'in fact', zh:'事实上'},
     {p:'be divided into', zh:'被划分成……'},
@@ -746,8 +744,8 @@
   ];
   var QUIZ_PHRASE = [
     {w:'have picnics', zh:'野餐', opts:['去旅行','耕种土地','去海滩']},
-    {w:'take a trip', zh:'去旅行', opts:['野餐','醒来；唤醒','回来']},
     {w:'work one\'s land', zh:'耕种土地', opts:['野餐','去旅行','玩雪']},
+    {w:'take a trip', zh:'去旅行', opts:['野餐','醒来；唤醒','回来']},
     {w:'solar term', zh:'节气', opts:['传统','文化；文明','原因；理由']},
     {w:'in fact', zh:'事实上', opts:['及时','按时','准时']},
     {w:'be divided into', zh:'被划分成……', opts:['基于……','发挥重要作用','持续']},
@@ -813,6 +811,7 @@
 
   function speak(text, rate, onend){
     if (!synth) { alert('当前浏览器不支持语音合成（Web Speech API），建议使用 Chrome 或 Edge。'); return; }
+    readAllToken++;
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text);
     var v = getVoice();
@@ -823,9 +822,10 @@
     synth.speak(u);
   }
 
+  var readAllToken = 0;
   function stopSpeak(){
     if (synth) synth.cancel();
-    if (window.YS) YS.stop();
+    readAllToken++;
     var els = document.querySelectorAll('.speaking');
     for (var i = 0; i < els.length; i++) els[i].classList.remove('speaking');
   }
@@ -1009,66 +1009,43 @@
     var btn = document.createElement('button');
     btn.className = 'sent-btn';
     btn.type = 'button';
-    btn.setAttribute('aria-label', '播放本句原声');
-    btn.title = '播放本句原声（教材 Reading 录音切片）';
+    btn.setAttribute('aria-label', 'AI 朗读本句');
+    btn.title = 'AI 朗读本句';
     btn.innerHTML = SPK;
     btn.addEventListener('click', function(){
       var sents = passage.querySelectorAll('.sent');
       for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
       p.classList.add('active');
-      YS.playSentence(YS_UNIT, i, {
-        btn: btn,
-        onend: function(){ p.classList.remove('active'); },
-        onmissing: function(){
-          /* 仅当教材录音未收录该句时，才用 AI 朗读兜底 */
-          speak(clean, undefined);
-        }
-      });
+      speak(clean, undefined, function(){ p.classList.remove('active'); });
     });
     ops.appendChild(btn);
-    var bRec = document.createElement('button');
-    bRec.className = 'sent-btn rec';
-    bRec.type = 'button';
-    bRec.setAttribute('aria-label', '录音跟读');
-    bRec.title = '🎤 跟读本句，录完自动回放对比';
-    bRec.textContent = '🎤';
-    bRec.addEventListener('click', function(){ YS.toggleRec(YS_UNIT, i, p, bRec); });
-    ops.appendChild(bRec);
     p.appendChild(ops);
-    var mine = document.createElement('div');
-    mine.className = 'mine';
-    var tg = document.createElement('span'); tg.className = 'tagx'; tg.textContent = '我的录音';
-    var au = document.createElement('audio'); au.controls = true; au.preload = 'auto';
-    var clr = document.createElement('button'); clr.className = 'clr'; clr.type = 'button'; clr.textContent = '删除';
-    clr.addEventListener('click', function(){
-      try{ au.pause(); au.removeAttribute('src'); }catch(e){}
-      mine.classList.remove('on');
-      bRec.textContent = '🎤';
-    });
-    mine.appendChild(tg); mine.appendChild(au); mine.appendChild(clr);
-    p.appendChild(mine);
     passage.appendChild(p);
   });
 
-  /* 原声全文连读：逐句播放教材 Reading 原声切片（未收录句用 AI 兜底） */
+  /* 全文连读：逐句用 AI 自然音朗读 */
   document.getElementById('readAllBtn').addEventListener('click', function(){
-    if (window.YS) YS.stop();
+    /* AI 自然音逐句连读：每句用浏览器语音合成朗读，句间停顿 320ms */
+    var token = ++readAllToken;
     if (synth) synth.cancel();
     var sents = passage.querySelectorAll('.sent');
-    YS.playAll(YS_UNIT, PASSAGE.length, {
-      gap: 320,
-      onstart: function(i){
+    var i = 0;
+    function step(){
+      if (token !== readAllToken) return;
+      if (i >= sents.length){
         for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
-        sents[i].classList.add('active');
-        if (i > 0 && sents[i].scrollIntoView) sents[i].scrollIntoView({behavior:'smooth', block:'center'});
-      },
-      onmissing: function(i, next){
-        speak(PASSAGE[i].replace(/["“”]/g, ''), undefined, function(){ next(); });
-      },
-      onend: function(){
-        for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+        return;
       }
-    });
+      var idx = i; i++;
+      for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+      sents[idx].classList.add('active');
+      if (idx > 0 && sents[idx].scrollIntoView) sents[idx].scrollIntoView({behavior:'smooth', block:'center'});
+      speak(PASSAGE[idx].replace(/["“”]/g, ''), undefined, function(){
+        if (token === readAllToken) setTimeout(step, 320);
+      });
+      token = readAllToken;
+    }
+    step();
   });
 
   /* ========== 语音训练 ========== */
@@ -1637,7 +1614,7 @@
       <a href="Unit4_The_Earth_点读学习页.html">下一单元 →</a>
       <a href="Unit3_The_Seasons_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit3_习题与测试.html">📝 本单元习题与测试</a>
-      <a href="#reading">🎧 课文原声跟读（本页）</a>
+      <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
       <a href="游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
       <a href="采花成长记_蜜蜂进化_八单元.html">🐝 蜜蜂采花</a>

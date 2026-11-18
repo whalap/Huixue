@@ -330,7 +330,7 @@
 
     <div class="tips">
       <span class="tip">点击任意单词 / 音节，即可听到标准发音</span>
-      <span class="tip">课文跟读用教材原声：逐句听原声、录音回放对比</span>
+      <span class="tip">课文跟读用 AI 自然音：逐句朗读、全文连读</span>
       <span class="tip">支持切换语速与发音人</span>
       <span class="tip">听音选词 + 课文填空双练习</span>
     </div>
@@ -410,7 +410,7 @@
           <div class="nm">Chen Ming, 13</div>
           <div class="dt">8:00 p.m. · 校园贴文</div>
         </div>
-        <button class="read-all" id="readAllBtn" type="button" title="逐句播放本单元教材原声">▶ 原声连读</button>
+        <button class="read-all" id="readAllBtn" type="button" title="逐句朗读本单元课文">▶ 全文连读</button>
       </div>
       <div id="passage"></div>
       <div class="reading-note">
@@ -572,15 +572,13 @@
 
   <footer>
     <p>内容依据：上海教育出版社《义务教育教科书 英语 七年级上册》Unit 1 Friendship（2024 广州新版）</p>
-    <p>单词点读基于浏览器语音合成（Web Speech API）；课文跟读使用教材 Reading 原声录音切片，建议使用 Chrome / Edge 打开</p>
+    <p>单词与课文朗读均基于浏览器语音合成（AI 自然音 / Web Speech API），无需下载音频文件，建议使用 Chrome / Edge 打开</p>
   </footer>
 </div>
 
-<script src="原声跟读引擎.js"></script>
 <script>
 (function(){
   'use strict';
-  var YS_UNIT = 1; /* 本单元编号：课文原声切片用 */
   var SPK = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
 
   /* ========== 数据 ========== */
@@ -591,7 +589,7 @@
     {w:'improve', syl:['im','prove'], st:1, ipa:'/ɪmˈpruːv/', pos:'v.', zh:'改进；改善'},
     {w:'confident', syl:['con','fi','dent'], st:0, ipa:'/ˈkɒnfɪdənt/', pos:'adj.', zh:'自信的'},
     {w:'courage', syl:['cour','age'], st:0, ipa:'/ˈkʌrɪdʒ/', pos:'n.', zh:'勇气；胆量'},
-    {w:'friendship', syl:['friend','ship'], st:0, ipa:'/ˈfrendʃɪp/', pos:'n.', zh:'友谊'},
+    {w:'friendship', syl:['friend','ship'], st:0, ipa:'/ˈfrendʃɪp/', pos:'n.', zh:'友谊；朋友关系'},
     {w:'admiration', syl:['ad','mi','ra','tion'], st:2, ipa:'/ˌædməˈreɪʃn/', pos:'n.', zh:'钦佩；赞赏'},
     {w:'respect', syl:['re','spect'], st:1, ipa:'/rɪˈspekt/', pos:'n.', zh:'尊敬；尊重'},
     {w:'support', syl:['sup','port'], st:1, ipa:'/səˈpɔːt/', pos:'n.', zh:'支持；鼓励'},
@@ -599,16 +597,16 @@
     {w:'survey', syl:['sur','vey'], st:0, ipa:'/ˈsɜːveɪ/', pos:'n.', zh:'调查'},
     {w:'personal', syl:['per','son','al'], st:0, ipa:'/ˈpɜːsənl/', pos:'adj.', zh:'个人的'},
     {w:'quality', syl:['qual','i','ty'], st:0, ipa:'/ˈkwɒləti/', pos:'n.', zh:'品质；品德'},
-    {w:'caring', syl:['car','ing'], st:0, ipa:'/ˈkeərɪŋ/', pos:'adj.', zh:'关心他人的'},
+    {w:'caring', syl:['car','ing'], st:0, ipa:'/ˈkeərɪŋ/', pos:'adj.', zh:'关心他人的；体贴人的'},
     {w:'describe', syl:['de','scribe'], st:1, ipa:'/dɪˈskraɪb/', pos:'v.', zh:'描述；形容'},
     {w:'appearance', syl:['ap','pear','ance'], st:1, ipa:'/əˈpɪərəns/', pos:'n.', zh:'外貌'},
     {w:'straight', syl:['straight'], st:0, ipa:'/streɪt/', pos:'adj.', zh:'直的'},
     {w:'dark', syl:['dark'], st:0, ipa:'/dɑːk/', pos:'adj.', zh:'褐色的；乌黑的'},
     {w:'same', syl:['same'], st:0, ipa:'/seɪm/', pos:'adj.', zh:'同一的；相同的'},
-    {w:'basic', syl:['ba','sic'], st:0, ipa:'/ˈbeɪsɪk/', pos:'adj.', zh:'基本的'},
+    {w:'basic', syl:['ba','sic'], st:0, ipa:'/ˈbeɪsɪk/', pos:'adj.', zh:'基本的；基础的'},
     {w:'thought', syl:['thought'], st:0, ipa:'/θɔːt/', pos:'n.', zh:'想法'},
     {w:'however', syl:['how','ev','er'], st:1, ipa:'/haʊˈevə(r)/', pos:'adv.', zh:'然而；不过'},
-    {w:'glad', syl:['glad'], st:0, ipa:'/ɡlæd/', pos:'adj.', zh:'高兴的'},
+    {w:'glad', syl:['glad'], st:0, ipa:'/ɡlæd/', pos:'adj.', zh:'高兴的；愉快的'},
     {w:'rise', syl:['rise'], st:0, ipa:'/raɪz/', pos:'v.', zh:'上升'},
     {w:'end', syl:['end'], st:0, ipa:'/end/', pos:'n.', zh:'结局'},
     {w:'heart', syl:['heart'], st:0, ipa:'/hɑːt/', pos:'n.', zh:'心'}
@@ -691,7 +689,7 @@
     {w:'improve', zh:'改进；改善', opts:['描述；形容','上升','支持；鼓励']},
     {w:'confident', zh:'自信的', opts:['关心他人的','高兴的','有耐心的']},
     {w:'courage', zh:'勇气；胆量', opts:['友谊','调查','品质；品德']},
-    {w:'friendship', zh:'友谊', opts:['外貌','尊敬；尊重','想法']},
+    {w:'friendship', zh:'友谊；朋友关系', opts:['运动员；选手','勇气；胆量','钦佩；赞赏']},
     {w:'admiration', zh:'钦佩；赞赏', opts:['信任；信赖','支持；鼓励','尊敬；尊重']},
     {w:'respect', zh:'尊敬；尊重', opts:['钦佩；赞赏','支持；鼓励','想法']},
     {w:'support', zh:'支持；鼓励', opts:['尊敬；尊重','信任；信赖','调查']},
@@ -699,16 +697,16 @@
     {w:'survey', zh:'调查', opts:['吉他','心','想法']},
     {w:'personal', zh:'个人的', opts:['基本的','同一的；相同的','直的']},
     {w:'quality', zh:'品质；品德', opts:['友谊','勇气；胆量','想法']},
-    {w:'caring', zh:'关心他人的', opts:['高兴的','自信的','诚实的']},
+    {w:'caring', zh:'关心他人的；体贴人的', opts:['褐色的；乌黑的','同一的；相同的','基本的；基础的']},
     {w:'describe', zh:'描述；形容', opts:['上升','改进；改善','调查']},
     {w:'appearance', zh:'外貌', opts:['心','友谊','支持；鼓励']},
     {w:'straight', zh:'直的', opts:['基本的','个人的','同一的；相同的']},
     {w:'dark', zh:'褐色的；乌黑的', opts:['直的','基本的','高兴的']},
     {w:'same', zh:'同一的；相同的', opts:['个人的','基本的','直的']},
-    {w:'basic', zh:'基本的', opts:['个人的','同一的；相同的','直的']},
+    {w:'basic', zh:'基本的；基础的', opts:['褐色的；乌黑的','同一的；相同的','高兴的；愉快的']},
     {w:'thought', zh:'想法', opts:['调查','心','结局']},
     {w:'however', zh:'然而；不过', opts:['上升','描述；形容','改进；改善']},
-    {w:'glad', zh:'高兴的', opts:['有耐心的','自信的','诚实的']},
+    {w:'glad', zh:'高兴的；愉快的', opts:['褐色的；乌黑的','同一的；相同的','基本的；基础的']},
     {w:'rise', zh:'上升', opts:['改进；改善','描述；形容','信任；信赖']},
     {w:'end', zh:'结局', opts:['想法','心','调查']},
     {w:'heart', zh:'心', opts:['结局','想法','调查']}
@@ -802,6 +800,7 @@
 
   function speak(text, rate, onend){
     if (!synth) { alert('当前浏览器不支持语音合成（Web Speech API），建议使用 Chrome 或 Edge。'); return; }
+    readAllToken++;
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text);
     var v = getVoice();
@@ -812,9 +811,10 @@
     synth.speak(u);
   }
 
+  var readAllToken = 0;
   function stopSpeak(){
     if (synth) synth.cancel();
-    if (window.YS) YS.stop();
+    readAllToken++;
     var els = document.querySelectorAll('.speaking');
     for (var i = 0; i < els.length; i++) els[i].classList.remove('speaking');
   }
@@ -998,66 +998,43 @@
     var btn = document.createElement('button');
     btn.className = 'sent-btn';
     btn.type = 'button';
-    btn.setAttribute('aria-label', '播放本句原声');
-    btn.title = '播放本句原声（教材 Reading 录音切片）';
+    btn.setAttribute('aria-label', 'AI 朗读本句');
+    btn.title = 'AI 朗读本句';
     btn.innerHTML = SPK;
     btn.addEventListener('click', function(){
       var sents = passage.querySelectorAll('.sent');
       for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
       p.classList.add('active');
-      YS.playSentence(YS_UNIT, i, {
-        btn: btn,
-        onend: function(){ p.classList.remove('active'); },
-        onmissing: function(){
-          /* 仅当教材录音未收录该句时，才用 AI 朗读兜底 */
-          speak(clean, undefined);
-        }
-      });
+      speak(clean, undefined, function(){ p.classList.remove('active'); });
     });
     ops.appendChild(btn);
-    var bRec = document.createElement('button');
-    bRec.className = 'sent-btn rec';
-    bRec.type = 'button';
-    bRec.setAttribute('aria-label', '录音跟读');
-    bRec.title = '🎤 跟读本句，录完自动回放对比';
-    bRec.textContent = '🎤';
-    bRec.addEventListener('click', function(){ YS.toggleRec(YS_UNIT, i, p, bRec); });
-    ops.appendChild(bRec);
     p.appendChild(ops);
-    var mine = document.createElement('div');
-    mine.className = 'mine';
-    var tg = document.createElement('span'); tg.className = 'tagx'; tg.textContent = '我的录音';
-    var au = document.createElement('audio'); au.controls = true; au.preload = 'auto';
-    var clr = document.createElement('button'); clr.className = 'clr'; clr.type = 'button'; clr.textContent = '删除';
-    clr.addEventListener('click', function(){
-      try{ au.pause(); au.removeAttribute('src'); }catch(e){}
-      mine.classList.remove('on');
-      bRec.textContent = '🎤';
-    });
-    mine.appendChild(tg); mine.appendChild(au); mine.appendChild(clr);
-    p.appendChild(mine);
     passage.appendChild(p);
   });
 
-  /* 原声全文连读：逐句播放教材 Reading 原声切片（未收录句用 AI 兜底） */
+  /* 全文连读：逐句用 AI 自然音朗读 */
   document.getElementById('readAllBtn').addEventListener('click', function(){
-    if (window.YS) YS.stop();
+    /* AI 自然音逐句连读：每句用浏览器语音合成朗读，句间停顿 320ms */
+    var token = ++readAllToken;
     if (synth) synth.cancel();
     var sents = passage.querySelectorAll('.sent');
-    YS.playAll(YS_UNIT, PASSAGE.length, {
-      gap: 320,
-      onstart: function(i){
+    var i = 0;
+    function step(){
+      if (token !== readAllToken) return;
+      if (i >= sents.length){
         for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
-        sents[i].classList.add('active');
-        if (i > 0 && sents[i].scrollIntoView) sents[i].scrollIntoView({behavior:'smooth', block:'center'});
-      },
-      onmissing: function(i, next){
-        speak(PASSAGE[i].replace(/["“”]/g, ''), undefined, function(){ next(); });
-      },
-      onend: function(){
-        for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+        return;
       }
-    });
+      var idx = i; i++;
+      for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+      sents[idx].classList.add('active');
+      if (idx > 0 && sents[idx].scrollIntoView) sents[idx].scrollIntoView({behavior:'smooth', block:'center'});
+      speak(PASSAGE[idx].replace(/["“”]/g, ''), undefined, function(){
+        if (token === readAllToken) setTimeout(step, 320);
+      });
+      token = readAllToken;
+    }
+    step();
   });
 
   /* ========== 语音训练 ========== */
@@ -1560,7 +1537,7 @@
       <a href="Unit2_School_Life_点读学习页.html">下一单元 →</a>
       <a href="Unit1_Friendship_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit1_习题与测试.html">📝 本单元习题与测试</a>
-      <a href="#reading">🎧 课文原声跟读（本页）</a>
+      <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
       <a href="游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
       <a href="采花成长记_蜜蜂进化_八单元.html">🐝 蜜蜂采花</a>

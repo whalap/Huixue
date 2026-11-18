@@ -331,7 +331,7 @@
 
     <div class="tips">
       <span class="tip">点击任意单词 / 音节，即可听到标准发音</span>
-      <span class="tip">课文跟读用教材原声：逐句听原声、录音回放对比</span>
+      <span class="tip">课文跟读用 AI 自然音：逐句朗读、全文连读</span>
       <span class="tip">支持切换语速与发音人</span>
       <span class="tip">听音选词 + 课文填空双练习</span>
     </div>
@@ -391,7 +391,7 @@
       <div class="no">2</div>
       <h2>重点短语</h2>
       <p>来自单元词汇表，点击即可点读</p>
-      <span class="count-badge">17 个</span>
+      <span class="count-badge">25 个</span>
     </div>
     <div class="phrase-list" id="phraseList"></div>
   </section>
@@ -411,7 +411,7 @@
           <div class="nm">Li Hua · 初中新生</div>
           <div class="dt">My school day · 校园生活自述</div>
         </div>
-        <button class="read-all" id="readAllBtn" type="button" title="逐句播放本单元教材原声">▶ 原声连读</button>
+        <button class="read-all" id="readAllBtn" type="button" title="逐句朗读本单元课文">▶ 全文连读</button>
       </div>
       <div id="passage"></div>
       <div class="reading-note">
@@ -559,20 +559,18 @@
 
   <footer>
     <p>内容依据：上海教育出版社《义务教育教科书 英语 七年级上册》Unit 2 School life（2024 广州新版）</p>
-    <p>单词点读基于浏览器语音合成（Web Speech API）；课文跟读使用教材 Reading 原声录音切片，建议使用 Chrome / Edge 打开</p>
+    <p>单词与课文朗读均基于浏览器语音合成（AI 自然音 / Web Speech API），无需下载音频文件，建议使用 Chrome / Edge 打开</p>
   </footer>
 </div>
 
-<script src="原声跟读引擎.js"></script>
 <script>
 (function(){
   'use strict';
-  var YS_UNIT = 2; /* 本单元编号：课文原声切片用 */
   var SPK = '<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>';
 
   /* ========== 数据 ========== */
   var WORDS = [
-    {w:'geography', syl:['ge','og','ra','phy'], st:1, ipa:'/dʒɪˈɒɡrəfi/', pos:'n.', zh:'地理（学）'},
+    {w:'geography', syl:['ge','og','ra','phy'], st:1, ipa:'/dʒiˈɒɡrəfi/', pos:'n.', zh:'地理（学）'},
     {w:'corner', syl:['cor','ner'], st:0, ipa:'/ˈkɔːnə(r)/', pos:'n.', zh:'角；墙角'},
     {w:'activity', syl:['ac','ti','vi','ty'], st:1, ipa:'/ækˈtɪvəti/', pos:'n.', zh:'活动'},
     {w:'club', syl:['club'], st:0, ipa:'/klʌb/', pos:'n.', zh:'社团'},
@@ -582,20 +580,20 @@
     {w:'skill', syl:['skill'], st:0, ipa:'/skɪl/', pos:'n.', zh:'技术；技能'},
     {w:'teen', syl:['teen'], st:0, ipa:'/tiːn/', pos:'adj.', zh:'青少年的'},
     {w:'magazine', syl:['mag','a','zine'], st:2, ipa:'/ˌmæɡəˈziːn/', pos:'n.', zh:'杂志'},
-    {w:'teenager', syl:['teen','ag','er'], st:0, ipa:'/ˈtiːneɪdʒə(r)/', pos:'n.', zh:'青少年'},
+    {w:'teenager', syl:['teen','ag','er'], st:0, ipa:'/ˈtiːneɪdʒə(r)/', pos:'n.', zh:'（13至19岁之间的）青少年'},
     {w:'greeting', syl:['greet','ing'], st:0, ipa:'/ˈɡriːtɪŋ/', pos:'n.', zh:'问候；招呼'},
     {w:'grade', syl:['grade'], st:0, ipa:'/ɡreɪd/', pos:'n.', zh:'年级'},
-    {w:'energy', syl:['en','er','gy'], st:0, ipa:'/ˈenədʒi/', pos:'n.', zh:'精力；活力'},
+    {w:'energy', syl:['e','ner','gy'], st:0, ipa:'/ˈenədʒi/', pos:'n.', zh:'精力；活力'},
     {w:'drama', syl:['dra','ma'], st:0, ipa:'/ˈdrɑːmə/', pos:'n.', zh:'戏；剧'},
-    {w:'sincerely', syl:['sin','cere','ly'], st:1, ipa:'/sɪnˈsɪəli/', pos:'adv.', zh:'真诚地；诚实地'},
+    {w:'sincerely', syl:['sin','cere','ly'], st:1, ipa:'/sɪnˈsɪəli/', pos:'adv.', zh:'真诚地；诚实地', star:true},
     {w:'diary', syl:['di','a','ry'], st:0, ipa:'/ˈdaɪəri/', pos:'n.', zh:'日记；日记簿'},
     {w:'project', syl:['proj','ect'], st:0, ipa:'/ˈprɒdʒekt/', pos:'n.', zh:'课题'},
     {w:'poster', syl:['post','er'], st:0, ipa:'/ˈpəʊstə(r)/', pos:'n.', zh:'海报'},
     {w:'realize', syl:['re','al','ize'], st:0, ipa:'/ˈriːəlaɪz/', pos:'v.', zh:'意识到'},
     {w:'luckily', syl:['luck','i','ly'], st:0, ipa:'/ˈlʌkɪli/', pos:'adv.', zh:'幸运地；幸好'},
     {w:'just', syl:['just'], st:0, ipa:'/dʒʌst/', pos:'adv.', zh:'恰好'},
-    {w:'presentation', syl:['pre','sen','ta','tion'], st:2, ipa:'/ˌprezənˈteɪʃn/', pos:'n.', zh:'演示'},
-    {w:'mood', syl:['mood'], st:0, ipa:'/muːd/', pos:'n.', zh:'情绪；心情'},
+    {w:'presentation', syl:['pre','sen','ta','tion'], st:2, ipa:'/ˌpreznˈteɪʃn/', pos:'n.', zh:'演示', star:true},
+    {w:'mood', syl:['mood'], st:0, ipa:'/muːd/', pos:'n.', zh:'情绪；心情', star:true},
     {w:'mind', syl:['mind'], st:0, ipa:'/maɪnd/', pos:'v.', zh:'介意'},
     {w:'pack', syl:['pack'], st:0, ipa:'/pæk/', pos:'v.', zh:'（把……）打包'},
     {w:'celebrate', syl:['cel','e','brate'], st:0, ipa:'/ˈselɪbreɪt/', pos:'v.', zh:'庆祝；庆贺'},
@@ -623,17 +621,25 @@
     {w:'ground', syl:['ground'], st:0, ipa:'/ɡraʊnd/', pos:'n.', zh:'场地'}
   ];
   var PHRASES = [
-    {p:'take part in', zh:'参与；参加'},
+    {p:'do the dishes', zh:'洗碗'},
+    {p:'junior high school', zh:'初级中学'},
+    {p:'take part in', zh:'参与'},
     {p:'look forward to', zh:'期待；盼望'},
+    {p:'daily life', zh:'日常生活'},
+    {p:'go to bed', zh:'去睡觉'},
     {p:'get up', zh:'起床'},
-    {p:'go to bed', zh:'上床睡觉'},
+    {p:'on foot', zh:'步行'},
+    {p:'full of energy', zh:'充满活力'},
+    {p:'get ... ready for', zh:'准备好……'},
+    {p:'put on', zh:'举办；上演'},
+    {p:'clean up', zh:'打扫干净'},
+    {p:'pick up', zh:'取（某物）'},
     {p:'go to school on foot', zh:'步行上学'},
     {p:'do one\'s homework', zh:'做作业'},
     {p:'play a ball game', zh:'打球'},
     {p:'do some morning exercise', zh:'做早操'},
     {p:'have a good time', zh:'玩得开心'},
     {p:'after-school activities', zh:'课后活动'},
-    {p:'junior high school', zh:'初中'},
     {p:'sports ground', zh:'运动场'},
     {p:'book corner', zh:'图书角'},
     {p:'have a lunch break', zh:'午休'},
@@ -697,7 +703,7 @@
     {w:'skill', zh:'技术；技能', opts:['精力；活力','活动','成功']},
     {w:'teen', zh:'青少年的', opts:['真诚地；诚实地','幸运地；幸好','恰好']},
     {w:'magazine', zh:'杂志', opts:['海报','课题','日记']},
-    {w:'teenager', zh:'青少年', opts:['年级','精力；活力','海报']},
+    {w:'teenager', zh:'（13至19岁之间的）青少年', opts:['日记；日记簿','地理（学）','技术；技能']},
     {w:'greeting', zh:'问候；招呼', opts:['杂志','日记','海报']},
     {w:'grade', zh:'年级', opts:['海报','活动','技术；技能']},
     {w:'energy', zh:'精力；活力', opts:['技术；技能','成功','情绪；心情']},
@@ -738,17 +744,25 @@
     {w:'ground', zh:'场地', opts:['房间','大厅','角落']}
   ];
   var QUIZ_PHRASE = [
-    {w:'take part in', zh:'参与；参加', opts:['期待；盼望','起床','上床睡觉']},
+    {w:'do the dishes', zh:'洗碗', opts:['参与','起床','步行']},
+    {w:'junior high school', zh:'初级中学', opts:['日常生活','充满活力','打扫干净']},
+    {w:'take part in', zh:'参与', opts:['洗碗','起床','步行']},
     {w:'look forward to', zh:'期待；盼望', opts:['参与；参加','步行上学','做作业']},
+    {w:'daily life', zh:'日常生活', opts:['初级中学','充满活力','打扫干净']},
+    {w:'go to bed', zh:'去睡觉', opts:['做作业','做早操','运动场']},
     {w:'get up', zh:'起床', opts:['上床睡觉','外出就餐','到校']},
-    {w:'go to bed', zh:'上床睡觉', opts:['起床','外出就餐','到校']},
+    {w:'on foot', zh:'步行', opts:['洗碗','参与','起床']},
+    {w:'full of energy', zh:'充满活力', opts:['初级中学','日常生活','打扫干净']},
+    {w:'get ... ready for', zh:'准备好……', opts:['期待；盼望','举办；上演','取（某物）']},
+    {w:'put on', zh:'举办；上演', opts:['期待；盼望','准备好……','取（某物）']},
+    {w:'clean up', zh:'打扫干净', opts:['初级中学','日常生活','充满活力']},
+    {w:'pick up', zh:'取（某物）', opts:['期待；盼望','准备好……','举办；上演']},
     {w:'go to school on foot', zh:'步行上学', opts:['骑车上学','坐公交上学','到校']},
     {w:'do one\'s homework', zh:'做作业', opts:['做早操','打球','整理床铺']},
     {w:'play a ball game', zh:'打球', opts:['做早操','做作业','吃午餐']},
     {w:'do some morning exercise', zh:'做早操', opts:['打球','做作业','外出就餐']},
     {w:'have a good time', zh:'玩得开心', opts:['及时','到校','参与；参加']},
     {w:'after-school activities', zh:'课后活动', opts:['初中','运动场','图书角']},
-    {w:'junior high school', zh:'初中', opts:['课后活动','运动场','图书角']},
     {w:'sports ground', zh:'运动场', opts:['图书角','课后活动','初中']},
     {w:'book corner', zh:'图书角', opts:['运动场','初中','午休']},
     {w:'have a lunch break', zh:'午休', opts:['吃午餐','图书角','到校']},
@@ -806,6 +820,7 @@
 
   function speak(text, rate, onend){
     if (!synth) { alert('当前浏览器不支持语音合成（Web Speech API），建议使用 Chrome 或 Edge。'); return; }
+    readAllToken++;
     synth.cancel();
     var u = new SpeechSynthesisUtterance(text);
     var v = getVoice();
@@ -816,9 +831,10 @@
     synth.speak(u);
   }
 
+  var readAllToken = 0;
   function stopSpeak(){
     if (synth) synth.cancel();
-    if (window.YS) YS.stop();
+    readAllToken++;
     var els = document.querySelectorAll('.speaking');
     for (var i = 0; i < els.length; i++) els[i].classList.remove('speaking');
   }
@@ -1002,66 +1018,43 @@
     var btn = document.createElement('button');
     btn.className = 'sent-btn';
     btn.type = 'button';
-    btn.setAttribute('aria-label', '播放本句原声');
-    btn.title = '播放本句原声（教材 Reading 录音切片）';
+    btn.setAttribute('aria-label', 'AI 朗读本句');
+    btn.title = 'AI 朗读本句';
     btn.innerHTML = SPK;
     btn.addEventListener('click', function(){
       var sents = passage.querySelectorAll('.sent');
       for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
       p.classList.add('active');
-      YS.playSentence(YS_UNIT, i, {
-        btn: btn,
-        onend: function(){ p.classList.remove('active'); },
-        onmissing: function(){
-          /* 仅当教材录音未收录该句时，才用 AI 朗读兜底 */
-          speak(clean, undefined);
-        }
-      });
+      speak(clean, undefined, function(){ p.classList.remove('active'); });
     });
     ops.appendChild(btn);
-    var bRec = document.createElement('button');
-    bRec.className = 'sent-btn rec';
-    bRec.type = 'button';
-    bRec.setAttribute('aria-label', '录音跟读');
-    bRec.title = '🎤 跟读本句，录完自动回放对比';
-    bRec.textContent = '🎤';
-    bRec.addEventListener('click', function(){ YS.toggleRec(YS_UNIT, i, p, bRec); });
-    ops.appendChild(bRec);
     p.appendChild(ops);
-    var mine = document.createElement('div');
-    mine.className = 'mine';
-    var tg = document.createElement('span'); tg.className = 'tagx'; tg.textContent = '我的录音';
-    var au = document.createElement('audio'); au.controls = true; au.preload = 'auto';
-    var clr = document.createElement('button'); clr.className = 'clr'; clr.type = 'button'; clr.textContent = '删除';
-    clr.addEventListener('click', function(){
-      try{ au.pause(); au.removeAttribute('src'); }catch(e){}
-      mine.classList.remove('on');
-      bRec.textContent = '🎤';
-    });
-    mine.appendChild(tg); mine.appendChild(au); mine.appendChild(clr);
-    p.appendChild(mine);
     passage.appendChild(p);
   });
 
-  /* 原声全文连读：逐句播放教材 Reading 原声切片（未收录句用 AI 兜底） */
+  /* 全文连读：逐句用 AI 自然音朗读 */
   document.getElementById('readAllBtn').addEventListener('click', function(){
-    if (window.YS) YS.stop();
+    /* AI 自然音逐句连读：每句用浏览器语音合成朗读，句间停顿 320ms */
+    var token = ++readAllToken;
     if (synth) synth.cancel();
     var sents = passage.querySelectorAll('.sent');
-    YS.playAll(YS_UNIT, PASSAGE.length, {
-      gap: 320,
-      onstart: function(i){
+    var i = 0;
+    function step(){
+      if (token !== readAllToken) return;
+      if (i >= sents.length){
         for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
-        sents[i].classList.add('active');
-        if (i > 0 && sents[i].scrollIntoView) sents[i].scrollIntoView({behavior:'smooth', block:'center'});
-      },
-      onmissing: function(i, next){
-        speak(PASSAGE[i].replace(/["“”]/g, ''), undefined, function(){ next(); });
-      },
-      onend: function(){
-        for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+        return;
       }
-    });
+      var idx = i; i++;
+      for (var k = 0; k < sents.length; k++) sents[k].classList.remove('active');
+      sents[idx].classList.add('active');
+      if (idx > 0 && sents[idx].scrollIntoView) sents[idx].scrollIntoView({behavior:'smooth', block:'center'});
+      speak(PASSAGE[idx].replace(/["“”]/g, ''), undefined, function(){
+        if (token === readAllToken) setTimeout(step, 320);
+      });
+      token = readAllToken;
+    }
+    step();
   });
 
   /* ========== 语音训练 ========== */
@@ -1591,7 +1584,7 @@
       <a href="Unit3_The_Seasons_点读学习页.html">下一单元 →</a>
       <a href="Unit2_School_Life_精简练习页.html">✏️ 本单元精简练习</a>
       <a href="../单元习题与测试/Unit2_习题与测试.html">📝 本单元习题与测试</a>
-      <a href="#reading">🎧 课文原声跟读（本页）</a>
+      <a href="#reading">🎧 课文跟读（本页）</a>
       <a href="全单元单词短语_翻页闪卡.html">🃏 单词短语闪卡</a>
       <a href="游戏1_气球掉落_听音射击.html">🎈 气球射击</a>
       <a href="采花成长记_蜜蜂进化_八单元.html">🐝 蜜蜂采花</a>

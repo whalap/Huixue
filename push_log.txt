@@ -8,3 +8,6 @@ branch 'main' set up to track 'origin/main'.
 [2026-11-15 20:46:54] Starting push (recording/scoring fix)
 To https://github.com/whalap/Huixue.git
    9dec4af..4182b77  main -> main
+[2026-11-15 21:44:56] Starting push (lite compare mode)
+To https://github.com/whalap/Huixue.git
+   4182b77..1d5d5a0  main -> main

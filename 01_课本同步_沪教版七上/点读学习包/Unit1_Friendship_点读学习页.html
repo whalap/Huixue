@@ -355,6 +355,9 @@
   .fq-blank:focus{border-bottom-color:var(--coral); background:#fff;}
   .fq-hint{font-size:14px; color:var(--sub); margin:4px 0 10px;}
   .fq-hint b{color:var(--amber);}
+  .fq-zh{flex:0 0 100%; font-size:14.5px; color:#7A5200; background:#FDF9F3; border:1px dashed #EAD9AC;
+       border-radius:8px; padding:7px 12px; line-height:1.7;}
+  .fq-zh b{color:var(--ink);}
   .fq-actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px;}
   .fq-btn{border:none; background:var(--teal); color:#fff; font-size:15px; padding:9px 20px; border-radius:999px; cursor:pointer;}
   .fq-btn:hover{background:#0B7369;}
@@ -755,7 +758,7 @@
       <div class="no" style="background:var(--amber);">❖</div>
       <h2>词族扩展 · 一个词根，一串家人</h2>
       <p>学一个词，顺带认识它的“家人”——同根词。点任意单词、词组或句子即可跟读。</p>
-      <span class="count-badge" id="famBadge">8 题</span>
+      <span class="count-badge" id="famBadge">9 题</span>
     </div>
     <div class="fam-box">
 <div class="fam-family">
@@ -836,7 +839,7 @@
       <span class="fam-root-badge">词根 care · 关心（广州版高频）</span>
       <button class="fm-read" type="button" data-readall="care">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">care（关心）加 -ful 变形容词 careful（小心的），加 -ly 变副词 carefully（仔细地），加 -less 变反义 careless（粗心的）。</div>
+    <div class="fam-tip">care（关心）加 -ful 变形容词 careful（小心的），再加 -ly 变副词 carefully（仔细地）；加 -less 变反义 careless（粗心的），再加 -ly 变副词 carelessly（粗心地）。同一个词根，两条相反方向的词链。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="care">care</span>
@@ -880,9 +883,9 @@
       <div class="fm-zh">仔细地</div>
       <div class="fm-ph"><div class="ph-line" data-say="listen carefully">listen carefully<em>认真听</em></div><div class="ph-line" data-say="work carefully">work carefully<em>仔细地做</em></div></div>
       <div class="fm-sent">
-        <span class="en" data-say="She does her homework carefully.">She does her homework carefully.</span>
-        <button class="clz-listen fam-speak" type="button" data-say="She does her homework carefully." aria-label="朗读例句"></button>
-        <span class="zh">她认真地做作业。</span>
+        <span class="en" data-say="She is careful, so she does her homework carefully.">She is careful, so she does her homework carefully.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="She is careful, so she does her homework carefully." aria-label="朗读例句"></button>
+        <span class="zh">她很细心，所以做作业很认真。</span>
       </div>
     </div>
 <div class="fm-card">
@@ -900,21 +903,37 @@
         <button class="clz-listen fam-speak" type="button" data-say="A careless mistake cost him the game." aria-label="朗读例句"></button>
         <span class="zh">一个粗心的错误让他输了比赛。</span>
       </div>
+    </div>
+<div class="fm-card">
+      <div class="fm-head">
+        <span class="fm-word" data-say="carelessly">carelessly</span>
+        <button class="clz-listen fam-speak" type="button" data-say="carelessly" aria-label="朗读 carelessly"></button>
+        <span class="fm-ipa">/ˈkeələsli/</span>
+        <span class="fm-pos">adv.</span>
+        <span class="fm-role">careless + -ly</span>
+      </div>
+      <div class="fm-zh">粗心地</div>
+      <div class="fm-ph"><div class="ph-line" data-say="do homework carelessly">do homework carelessly<em>粗心地做作业</em></div><div class="ph-line" data-say="work carelessly">work carelessly<em>粗心地工作</em></div></div>
+      <div class="fm-sent">
+        <span class="en" data-say="She is careless, so she does her homework carelessly.">She is careless, so she does her homework carelessly.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="She is careless, so she does her homework carelessly." aria-label="朗读例句"></button>
+        <span class="zh">她很粗心，所以做作业很马虎。</span>
+      </div>
     </div></div>
   </div>
 
     </div>
     <div class="fam-box fam-quiz">
-      <div class="fam-tip">下面的填空只在本词族里选词——先判断空格需要哪种词性，再选对那个“家人”。</div>
+      <div class="fam-tip">下面的句子都用<strong>上文学过的单词的适当形式</strong>填空——先自己判断空格需要哪种词性，卡住了再点「看提示」，会给出中文句意和选项。</div>
       <div class="fq-top" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-        <span class="fq-progress" id="fqProgress">第 1 / 8 题</span>
+        <span class="fq-progress" id="fqProgress">第 1 / 9 题</span>
         <span class="q-score" id="fqScore" style="margin-left:auto;">得分：0</span>
       </div>
       <div class="fq-sent" id="fqSent"></div>
       <div class="fq-hint" id="fqHint"></div>
       <div class="fq-actions">
         <button class="fq-btn" id="fqCheck" type="button">提交答案</button>
-        <button class="fq-btn ghost" id="fqHintBtn" type="button">💡 看选项提示</button>
+        <button class="fq-btn ghost" id="fqHintBtn" type="button">💡 看提示（中文句意+选项）</button>
         <button class="fq-next" id="fqNext" type="button">下一题 →</button>
       </div>
       <div class="fq-opts" id="fqOpts"></div>
@@ -2100,7 +2119,7 @@
   
 
   /* ========== 词族扩展 ========== */
-  var FAM_QUIZ = [{"s":"He is my best ____.","a":"friend","h":"friend","z":"他是我最好的朋友。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"Our new classmate is very ____.","a":"friendly","h":"friend","z":"我们的新同学非常友好。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"True ____ needs trust.","a":"friendship","h":"friend","z":"真正的友谊需要信任。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"Don't be ____ to others.","a":"unfriendly","h":"friend","z":"不要对别人不友好。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"We should ____ about our friends.","a":"care","h":"care","z":"我们应该关心我们的朋友。","o":["care","careful","carefully","careless"],"fam":"care"},{"s":"Be ____ when you cross the road.","a":"careful","h":"care","z":"过马路时要小心。","o":["care","careful","carefully","careless"],"fam":"care"},{"s":"She does her homework ____.","a":"carefully","h":"care","z":"她认真地做作业。","o":["care","careful","carefully","careless"],"fam":"care"},{"s":"A ____ mistake cost him the game.","a":"careless","h":"care","z":"一个粗心的错误让他输了比赛。","o":["care","careful","carefully","careless"],"fam":"care"}];
+  var FAM_QUIZ = [{"s":"He is my best ____.","a":"friend","h":"friend","z":"他是我最好的朋友。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"Our new classmate is very ____.","a":"friendly","h":"friend","z":"我们的新同学非常友好。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"True ____ needs trust.","a":"friendship","h":"friend","z":"真正的友谊需要信任。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"Don't be ____ to others.","a":"unfriendly","h":"friend","z":"不要对别人不友好。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"We should ____ about our friends.","a":"care","h":"care","z":"我们应该关心我们的朋友。","o":["care","careful","carefully","careless","carelessly"],"fam":"care"},{"s":"Be ____ when you cross the road.","a":"careful","h":"care","z":"过马路时要小心。","o":["care","careful","carefully","careless","carelessly"],"fam":"care"},{"s":"She is careful, so she does her homework ____.","a":"carefully","h":"care","z":"她很细心，所以做作业很认真。","o":["care","careful","carefully","careless","carelessly"],"fam":"care"},{"s":"A ____ mistake cost him the game.","a":"careless","h":"care","z":"一个粗心的错误让他输了比赛。","o":["care","careful","carefully","careless","carelessly"],"fam":"care"},{"s":"She is careless, so she does her homework ____.","a":"carelessly","h":"care","z":"她很粗心，所以做作业很马虎。","o":["care","careful","carefully","careless","carelessly"],"fam":"care"}];
   var fqIdx=0, fqScore=0, fqAnswered=false, fqCur=null;
   var fqSent=document.getElementById('fqSent'), fqHint=document.getElementById('fqHint'),
       fqFb=document.getElementById('fqFb'), fqOpts=document.getElementById('fqOpts'),
@@ -2143,7 +2162,7 @@
     fqAnswered=false; fqCur=FAM_QUIZ[fqIdx];
     fqFb.innerHTML=''; fqOpts.innerHTML=''; fqNext.style.display='none'; fqDone.style.display='none';
     fqProg.textContent='第 '+(fqIdx+1)+' / '+FAM_QUIZ.length+' 题';
-    fqHint.innerHTML='词根提示：<b>'+esc(fqCur.h)+'</b>　（从 '+esc(fqCur.fam)+' 词族里选）';
+    fqHint.innerHTML='用上文学过的单词的<b>适当形式</b>填空　·　词根提示：<b>'+esc(fqCur.h)+'</b>　（从 '+esc(fqCur.fam)+' 词族里选）';
     var parts=fqCur.s.split('____');
     fqSent.innerHTML='';
     fqSent.appendChild(document.createTextNode(parts[0]));
@@ -2192,8 +2211,11 @@
   function fqShowOpts(){
     if(fqAnswered) return;
     fqOpts.innerHTML='';
-    var lb=document.createElement('span'); lb.style.cssText='font-size:13px;color:var(--sub);margin-right:4px;';
-    lb.textContent='选一个填入：'; fqOpts.appendChild(lb);
+    var zh=document.createElement('div'); zh.className='fq-zh';
+    zh.innerHTML='<b>中文句意：</b>'+esc(fqCur.z);
+    fqOpts.appendChild(zh);
+    var lb=document.createElement('div'); lb.style.cssText='font-size:13px;color:var(--sub);margin:6px 0 0;flex:0 0 100%;';
+    lb.textContent='选一个适当形式填入：'; fqOpts.appendChild(lb);
     shuffle(fqCur.o.slice()).forEach(function(o){
       var b=document.createElement('button'); b.className='fq-opt'; b.type='button'; b.textContent=o;
       b.addEventListener('click',function(){

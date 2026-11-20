@@ -309,6 +309,68 @@
        font-size:15px; color:#0B5F55; line-height:1.7;}
   @media(max-width:640px){ .wf-sent{font-size:17px;} .wf-blank{min-width:96px;font-size:16px;} }
 
+
+  /* ===== 词族扩展 ===== */
+  .fam-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; margin-bottom:18px;}
+  .fam-tip{font-size:13.5px; color:var(--sub); background:#FDF9F3; border:1px dashed #EAD9AC;
+       border-radius:10px; padding:8px 12px; margin-bottom:14px; line-height:1.8;}
+  .fam-family + .fam-family{margin-top:22px; padding-top:20px; border-top:1px solid var(--line);}
+  .fam-title{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px;}
+  .fam-title h3{font-size:18px; margin:0; color:var(--ink);}
+  .fam-title .fam-root-badge{font-size:13px; background:var(--amber-soft); color:#8A5A00; padding:3px 10px; border-radius:999px;}
+  .fm-row{display:flex; flex-wrap:wrap; gap:10px; align-items:stretch; margin-bottom:10px;}
+  .fm-card{flex:1 1 210px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px;}
+  .fm-head{display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .fm-word{font-size:20px; font-weight:700; color:var(--teal); cursor:pointer;}
+  .fm-word:hover{text-decoration:underline;}
+  .fm-ipa{font-size:13px; color:var(--sub);}
+  .fm-pos{font-size:12px; background:var(--teal-soft); color:var(--teal); padding:1px 7px; border-radius:6px;}
+  .fm-role{font-size:12px; color:#B07600; background:#FDF4E3; padding:1px 8px; border-radius:6px;}
+  .fm-zh{font-size:14.5px; color:var(--ink); margin-top:6px;}
+  .fm-ph{margin-top:8px; font-size:13px; line-height:1.9; color:#3B4A46;}
+  .fm-ph .ph-line{cursor:pointer;}
+  .fm-ph .ph-line:hover{color:var(--teal);}
+  .fm-ph .ph-line em{font-style:normal; color:var(--sub); margin-left:6px;}
+  .fm-sent{margin-top:8px; font-size:14px; line-height:1.7; border-left:3px solid var(--amber); padding-left:10px;}
+  .fm-sent .en{cursor:pointer; color:var(--ink);}
+  .fm-sent .en:hover{color:var(--teal);}
+  .fm-sent .zh{display:block; font-size:12.5px; color:var(--sub); margin-top:2px;}
+  .fm-read{border:none; background:var(--coral); color:#fff; font-size:13px; padding:7px 15px; border-radius:999px; cursor:pointer; margin-top:4px;}
+  .fm-read:hover{background:#C5411E;}
+  .fam-review{margin-top:8px;}
+  .fam-review .rv-head{font-size:15px; font-weight:700; color:var(--ink); margin-bottom:10px;}
+  .rv-card{background:#fff; border:1px solid var(--line); border-radius:10px; padding:9px 12px; margin-bottom:8px; font-size:13.5px; line-height:1.8;}
+  .rv-card .rv-u{font-size:12px; color:#fff; background:var(--teal); padding:1px 7px; border-radius:6px; margin-right:8px;}
+  .rv-card .rv-root{font-weight:700; color:var(--ink); cursor:pointer;}
+  .rv-card .rv-root:hover{color:var(--teal);}
+  .rv-card .rv-w{cursor:pointer; color:#0B6E63; margin-left:4px;}
+  .rv-card .rv-w:hover{text-decoration:underline;}
+  .rv-card .rv-w:not(:last-child)::after{content:' ·'; color:var(--sub);}
+  .fam-quiz{margin-top:6px;}
+  .fq-progress{font-size:14px; color:var(--sub);}
+  .fq-sent{font-size:18px; line-height:1.9; margin:12px 0 6px; min-height:44px;}
+  .fq-blank{display:inline-block; min-width:110px; border:none; border-bottom:2px solid var(--amber);
+       background:var(--amber-soft); border-radius:6px 6px 0 0; padding:4px 10px; margin:0 4px;
+       font-size:17px; font-family:'Segoe UI',Arial,sans-serif; color:var(--ink); outline:none;}
+  .fq-blank:focus{border-bottom-color:var(--coral); background:#fff;}
+  .fq-hint{font-size:14px; color:var(--sub); margin:4px 0 10px;}
+  .fq-hint b{color:var(--amber);}
+  .fq-actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px;}
+  .fq-btn{border:none; background:var(--teal); color:#fff; font-size:15px; padding:9px 20px; border-radius:999px; cursor:pointer;}
+  .fq-btn:hover{background:#0B7369;}
+  .fq-btn.ghost{background:#fff; color:var(--teal); border:1.5px solid var(--teal);}
+  .fq-btn.ghost:hover{background:var(--teal-soft);}
+  .fq-next{margin-top:12px; border:none; background:var(--coral); color:#fff; font-size:15px; padding:9px 20px; border-radius:999px; cursor:pointer; display:none;}
+  .fq-next:hover{background:#D64520;}
+  .fq-opts{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+  .fq-opt{border:1.5px solid var(--line); background:#fff; border-radius:10px; padding:7px 16px; font-size:16px; cursor:pointer;}
+  .fq-opt:hover{border-color:var(--coral);}
+  .fq-opt.correct{border-color:var(--green); background:#EAF6EF; color:var(--green); font-weight:700;}
+  .fq-opt.wrong{border-color:var(--red); background:#FCEBEB; color:var(--red);}
+  .fq-fb{margin-top:12px; min-height:24px; font-size:15px; line-height:1.7;}
+  .fq-done{margin-top:12px; display:none; background:var(--teal-soft); border-radius:12px; padding:12px 16px; font-size:15px; color:#0B5F55; line-height:1.7;}
+  @media(max-width:640px){ .fm-card{flex:1 1 100%;} .fq-sent{font-size:16px;} .fq-blank{min-width:90px;font-size:15px;} }
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -428,6 +490,7 @@
     <a href="#cloze">⑦ 填空</a>
     <a href="#sentcloze">⑧ 句填</a>
     <a href="#wordform">⑨ 词形变换</a>
+    <a href="#wordfamily">⑩ 词族扩展</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -683,6 +746,180 @@
       <div class="wf-opts" id="wfOpts"></div>
       <div class="wf-fb" id="wfFb"></div>
       <div class="wf-done" id="wfDone"></div>
+    </div>
+  </section>
+
+  <!-- ================= 词族扩展 ================= -->
+  <section class="block" id="wordfamily">
+    <div class="sec-head">
+      <div class="no" style="background:var(--amber);">❖</div>
+      <h2>词族扩展 · 一个词根，一串家人</h2>
+      <p>学一个词，顺带认识它的“家人”——同根词。点任意单词、词组或句子即可跟读。</p>
+      <span class="count-badge" id="famBadge">8 题</span>
+    </div>
+    <div class="fam-box">
+<div class="fam-family">
+    <div class="fam-title">
+      <h3>friend 词族</h3>
+      <span class="fam-root-badge">词根 friend · 朋友</span>
+      <button class="fm-read" type="button" data-readall="friend">▶ 跟读本词族</button>
+    </div>
+    <div class="fam-tip">friend（朋友）加 -ly 变形容词 friendly（友好的），加 -ship 变名词 friendship（友谊），加 un- 变反义 unfriendly（不友好的）。</div>
+    <div class="fm-row"><div class="fm-card">
+      <div class="fm-head">
+        <span class="fm-word" data-say="friend">friend</span>
+        <button class="clz-listen fam-speak" type="button" data-say="friend" aria-label="朗读 friend"></button>
+        <span class="fm-ipa">/frend/</span>
+        <span class="fm-pos">n.</span>
+        <span class="fm-role">词根</span>
+      </div>
+      <div class="fm-zh">朋友</div>
+      <div class="fm-ph"><div class="ph-line" data-say="best friend">best friend<em>最好的朋友</em></div><div class="ph-line" data-say="make friends">make friends<em>交朋友</em></div></div>
+      <div class="fm-sent">
+        <span class="en" data-say="He is my best friend.">He is my best friend.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="He is my best friend." aria-label="朗读例句"></button>
+        <span class="zh">他是我最好的朋友。</span>
+      </div>
+    </div>
+<div class="fm-card">
+      <div class="fm-head">
+        <span class="fm-word" data-say="friendly">friendly</span>
+        <button class="clz-listen fam-speak" type="button" data-say="friendly" aria-label="朗读 friendly"></button>
+        <span class="fm-ipa">/ˈfrendli/</span>
+        <span class="fm-pos">adj.</span>
+        <span class="fm-role">friend + -ly</span>
+      </div>
+      <div class="fm-zh">友好的</div>
+      <div class="fm-ph"><div class="ph-line" data-say="be friendly to">be friendly to<em>对……友好</em></div><div class="ph-line" data-say="a friendly smile">a friendly smile<em>友好的微笑</em></div></div>
+      <div class="fm-sent">
+        <span class="en" data-say="Our new classmate is very friendly.">Our new classmate is very friendly.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="Our new classmate is very friendly." aria-label="朗读例句"></button>
+        <span class="zh">我们的新同学非常友好。</span>
+      </div>
+    </div>
+<div class="fm-card">
+      <div class="fm-head">
+        <span class="fm-word" data-say="friendship">friendship</span>
+        <button class="clz-listen fam-speak" type="button" data-say="friendship" aria-label="朗读 friendship"></button>
+        <span class="fm-ipa">/ˈfrendʃɪp/</span>
+        <span class="fm-pos">n.</span>
+        <span class="fm-role">friend + -ship</span>
+      </div>
+      <div class="fm-zh">友谊</div>
+      <div class="fm-ph"><div class="ph-line" data-say="true friendship">true friendship<em>真正的友谊</em></div><div class="ph-line" data-say="friendship between us">friendship between us<em>我们之间的友谊</em></div></div>
+      <div class="fm-sent">
+        <span class="en" data-say="True friendship needs trust.">True friendship needs trust.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="True friendship needs trust." aria-label="朗读例句"></button>
+        <span class="zh">真正的友谊需要信任。</span>
+      </div>
+    </div>
+<div class="fm-card">
+      <div class="fm-head">
+        <span class="fm-word" data-say="unfriendly">unfriendly</span>
+        <button class="clz-listen fam-speak" type="button" data-say="unfriendly" aria-label="朗读 unfriendly"></button>
+        <span class="fm-ipa">/ʌnˈfrendli/</span>
+        <span class="fm-pos">adj.</span>
+        <span class="fm-role">un- + friendly</span>
+      </div>
+      <div class="fm-zh">不友好的</div>
+      <div class="fm-ph"><div class="ph-line" data-say="be unfriendly to">be unfriendly to<em>对……不友好</em></div><div class="ph-line" data-say="an unfriendly man">an unfriendly man<em>一个不友好的人</em></div></div>
+      <div class="fm-sent">
+        <span class="en" data-say="Don't be unfriendly to others.">Don't be unfriendly to others.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="Don't be unfriendly to others." aria-label="朗读例句"></button>
+        <span class="zh">不要对别人不友好。</span>
+      </div>
+    </div></div>
+  </div>
+<div class="fam-family">
+    <div class="fam-title">
+      <h3>care 词族</h3>
+      <span class="fam-root-badge">词根 care · 关心（广州版高频）</span>
+      <button class="fm-read" type="button" data-readall="care">▶ 跟读本词族</button>
+    </div>
+    <div class="fam-tip">care（关心）加 -ful 变形容词 careful（小心的），加 -ly 变副词 carefully（仔细地），加 -less 变反义 careless（粗心的）。</div>
+    <div class="fm-row"><div class="fm-card">
+      <div class="fm-head">
+        <span class="fm-word" data-say="care">care</span>
+        <button class="clz-listen fam-speak" type="button" data-say="care" aria-label="朗读 care"></button>
+        <span class="fm-ipa">/keə(r)/</span>
+        <span class="fm-pos">n./v.</span>
+        <span class="fm-role">词根</span>
+      </div>
+      <div class="fm-zh">关心；照顾</div>
+      <div class="fm-ph"><div class="ph-line" data-say="take care of">take care of<em>照顾</em></div><div class="ph-line" data-say="care about">care about<em>关心</em></div></div>
+      <div class="fm-sent">
+        <span class="en" data-say="We should care about our friends.">We should care about our friends.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="We should care about our friends." aria-label="朗读例句"></button>
+        <span class="zh">我们应该关心我们的朋友。</span>
+      </div>
+    </div>
+<div class="fm-card">
+      <div class="fm-head">
+        <span class="fm-word" data-say="careful">careful</span>
+        <button class="clz-listen fam-speak" type="button" data-say="careful" aria-label="朗读 careful"></button>
+        <span class="fm-ipa">/ˈkeəfl/</span>
+        <span class="fm-pos">adj.</span>
+        <span class="fm-role">care + -ful</span>
+      </div>
+      <div class="fm-zh">小心的</div>
+      <div class="fm-ph"><div class="ph-line" data-say="be careful">be careful<em>小心</em></div><div class="ph-line" data-say="a careful student">a careful student<em>细心的学生</em></div></div>
+      <div class="fm-sent">
+        <span class="en" data-say="Be careful when you cross the road.">Be careful when you cross the road.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="Be careful when you cross the road." aria-label="朗读例句"></button>
+        <span class="zh">过马路时要小心。</span>
+      </div>
+    </div>
+<div class="fm-card">
+      <div class="fm-head">
+        <span class="fm-word" data-say="carefully">carefully</span>
+        <button class="clz-listen fam-speak" type="button" data-say="carefully" aria-label="朗读 carefully"></button>
+        <span class="fm-ipa">/ˈkeəfəli/</span>
+        <span class="fm-pos">adv.</span>
+        <span class="fm-role">careful + -ly</span>
+      </div>
+      <div class="fm-zh">仔细地</div>
+      <div class="fm-ph"><div class="ph-line" data-say="listen carefully">listen carefully<em>认真听</em></div><div class="ph-line" data-say="work carefully">work carefully<em>仔细地做</em></div></div>
+      <div class="fm-sent">
+        <span class="en" data-say="She does her homework carefully.">She does her homework carefully.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="She does her homework carefully." aria-label="朗读例句"></button>
+        <span class="zh">她认真地做作业。</span>
+      </div>
+    </div>
+<div class="fm-card">
+      <div class="fm-head">
+        <span class="fm-word" data-say="careless">careless</span>
+        <button class="clz-listen fam-speak" type="button" data-say="careless" aria-label="朗读 careless"></button>
+        <span class="fm-ipa">/ˈkeələs/</span>
+        <span class="fm-pos">adj.</span>
+        <span class="fm-role">care + -less</span>
+      </div>
+      <div class="fm-zh">粗心的</div>
+      <div class="fm-ph"><div class="ph-line" data-say="a careless mistake">a careless mistake<em>粗心的错误</em></div><div class="ph-line" data-say="be careless">be careless<em>粗心</em></div></div>
+      <div class="fm-sent">
+        <span class="en" data-say="A careless mistake cost him the game.">A careless mistake cost him the game.</span>
+        <button class="clz-listen fam-speak" type="button" data-say="A careless mistake cost him the game." aria-label="朗读例句"></button>
+        <span class="zh">一个粗心的错误让他输了比赛。</span>
+      </div>
+    </div></div>
+  </div>
+
+    </div>
+    <div class="fam-box fam-quiz">
+      <div class="fam-tip">下面的填空只在本词族里选词——先判断空格需要哪种词性，再选对那个“家人”。</div>
+      <div class="fq-top" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <span class="fq-progress" id="fqProgress">第 1 / 8 题</span>
+        <span class="q-score" id="fqScore" style="margin-left:auto;">得分：0</span>
+      </div>
+      <div class="fq-sent" id="fqSent"></div>
+      <div class="fq-hint" id="fqHint"></div>
+      <div class="fq-actions">
+        <button class="fq-btn" id="fqCheck" type="button">提交答案</button>
+        <button class="fq-btn ghost" id="fqHintBtn" type="button">💡 看选项提示</button>
+        <button class="fq-next" id="fqNext" type="button">下一题 →</button>
+      </div>
+      <div class="fq-opts" id="fqOpts"></div>
+      <div class="fq-fb" id="fqFb"></div>
+      <div class="fq-done" id="fqDone"></div>
     </div>
   </section>
 
@@ -1860,6 +2097,122 @@
     wfLoad();
   });
   wfLoad();
+  
+
+  /* ========== 词族扩展 ========== */
+  var FAM_QUIZ = [{"s":"He is my best ____.","a":"friend","h":"friend","z":"他是我最好的朋友。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"Our new classmate is very ____.","a":"friendly","h":"friend","z":"我们的新同学非常友好。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"True ____ needs trust.","a":"friendship","h":"friend","z":"真正的友谊需要信任。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"Don't be ____ to others.","a":"unfriendly","h":"friend","z":"不要对别人不友好。","o":["friend","friendly","friendship","unfriendly"],"fam":"friend"},{"s":"We should ____ about our friends.","a":"care","h":"care","z":"我们应该关心我们的朋友。","o":["care","careful","carefully","careless"],"fam":"care"},{"s":"Be ____ when you cross the road.","a":"careful","h":"care","z":"过马路时要小心。","o":["care","careful","carefully","careless"],"fam":"care"},{"s":"She does her homework ____.","a":"carefully","h":"care","z":"她认真地做作业。","o":["care","careful","carefully","careless"],"fam":"care"},{"s":"A ____ mistake cost him the game.","a":"careless","h":"care","z":"一个粗心的错误让他输了比赛。","o":["care","careful","carefully","careless"],"fam":"care"}];
+  var fqIdx=0, fqScore=0, fqAnswered=false, fqCur=null;
+  var fqSent=document.getElementById('fqSent'), fqHint=document.getElementById('fqHint'),
+      fqFb=document.getElementById('fqFb'), fqOpts=document.getElementById('fqOpts'),
+      fqNext=document.getElementById('fqNext'), fqDone=document.getElementById('fqDone'),
+      fqProg=document.getElementById('fqProgress'), fqScoreEl=document.getElementById('fqScore');
+  /* 词族点读：词 / 词组 / 例句 / 回顾词条 / 朗读按钮 统一委托 */
+  (function(){
+    var box=document.getElementById('wordfamily'); if(!box) return;
+    /* 喇叭按钮填图标 */
+    var spk=box.querySelectorAll('.fam-speak');
+    for(var s=0;s<spk.length;s++) spk[s].innerHTML=SPK;
+    box.addEventListener('click', function(e){
+      var t=e.target.closest('[data-say]'); if(!t) return;
+      var txt=t.getAttribute('data-say'); if(txt) speak(txt, 0.9);
+    });
+    var readBtns=box.querySelectorAll('[data-readall]');
+    for(var i=0;i<readBtns.length;i++){
+      (function(btn){
+        btn.innerHTML=SPK + '<span style="margin-left:4px;">跟读本词族</span>';
+        btn.addEventListener('click', function(){
+          var fam=btn.getAttribute('data-readall');
+          var card=btn.closest('.fam-family'); if(!card) return;
+          var items=card.querySelectorAll('[data-say]');
+          var token=++readAllToken; if(synth) synth.cancel();
+          var k=0;
+          function step(){
+            if(token!==readAllToken) return;
+            if(k>=items.length) return;
+            var el=items[k++];
+            speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
+          }
+          step();
+        });
+      })(readBtns[i]);
+    }
+  })();
+  function fqNorm(x){ return String(x||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+  function fqLoad(){
+    if(!fqSent) return;
+    fqAnswered=false; fqCur=FAM_QUIZ[fqIdx];
+    fqFb.innerHTML=''; fqOpts.innerHTML=''; fqNext.style.display='none'; fqDone.style.display='none';
+    fqProg.textContent='第 '+(fqIdx+1)+' / '+FAM_QUIZ.length+' 题';
+    fqHint.innerHTML='词根提示：<b>'+esc(fqCur.h)+'</b>　（从 '+esc(fqCur.fam)+' 词族里选）';
+    var parts=fqCur.s.split('____');
+    fqSent.innerHTML='';
+    fqSent.appendChild(document.createTextNode(parts[0]));
+    var inp=document.createElement('input'); inp.className='fq-blank'; inp.type='text'; inp.id='fqInput';
+    inp.autocomplete='off'; inp.setAttribute('aria-label','填入词族中正确的词');
+    fqSent.appendChild(inp);
+    fqSent.appendChild(document.createTextNode(parts.slice(1).join('____')));
+    var lb=document.createElement('button'); lb.className='clz-listen'; lb.type='button'; lb.innerHTML=SPK;
+    lb.style.marginLeft='8px'; lb.title='朗读句子';
+    lb.addEventListener('click',function(){ speak(fqCur.s.replace('____', fqCur.a)); });
+    fqSent.appendChild(lb);
+    inp.addEventListener('keydown',function(e){ if(e.key==='Enter') fqCheck(); });
+    inp.focus();
+  }
+  function fqCheck(){
+    if(fqAnswered) return;
+    var inp=document.getElementById('fqInput'); if(!inp) return;
+    var val=inp.value;
+    if(!fqNorm(val)){ fqFb.innerHTML='请先填入答案，或点“看选项提示”。'; fqFb.style.color='var(--sub)'; inp.focus(); return; }
+    fqAnswered=true;
+    var ok=fqNorm(val)===fqNorm(fqCur.a);
+    if(ok) fqScore++;
+    fqScoreEl.textContent='得分：'+fqScore;
+    fqOpts.innerHTML='';
+    shuffle(fqCur.o.slice()).forEach(function(o){
+      var b=document.createElement('button'); b.className='fq-opt'; b.type='button'; b.textContent=o;
+      var isAns=fqNorm(o)===fqNorm(fqCur.a);
+      if(isAns) b.classList.add('correct');
+      else if(!ok && fqNorm(o)===fqNorm(val)) b.classList.add('wrong');
+      b.addEventListener('click',function(){ speak(o,0.9); });
+      fqOpts.appendChild(b);
+    });
+    if(ok){
+      fqFb.innerHTML='✅ 答对了！<b>'+esc(fqCur.a)+'</b> — '+esc(fqCur.z); fqFb.style.color='var(--green)';
+    }else{
+      fqFb.innerHTML='❌ 正确答案：<b>'+esc(fqCur.a)+'</b> — '+esc(fqCur.z); fqFb.style.color='var(--red)';
+    }
+    fqNext.style.display='inline-block';
+    setTimeout(function(){ speak(fqCur.s.replace('____', fqCur.a)); }, 500);
+    if(fqIdx>=FAM_QUIZ.length-1){
+      fqNext.textContent='再来一轮'; fqDone.style.display='block';
+      fqDone.textContent='完成！共 '+FAM_QUIZ.length+' 题，答对 '+fqScore+' 题。'+
+        (fqScore===FAM_QUIZ.length?' 太棒了，全部正确！':(fqScore>=FAM_QUIZ.length*0.6?' 很好，继续加油！':' 回到上面的词族卡片再读一读。'));
+    } else fqNext.textContent='下一题 →';
+  }
+  function fqShowOpts(){
+    if(fqAnswered) return;
+    fqOpts.innerHTML='';
+    var lb=document.createElement('span'); lb.style.cssText='font-size:13px;color:var(--sub);margin-right:4px;';
+    lb.textContent='选一个填入：'; fqOpts.appendChild(lb);
+    shuffle(fqCur.o.slice()).forEach(function(o){
+      var b=document.createElement('button'); b.className='fq-opt'; b.type='button'; b.textContent=o;
+      b.addEventListener('click',function(){
+        if(fqAnswered) return;
+        var inp=document.getElementById('fqInput'); if(inp){ inp.value=o; }
+        fqOpts.innerHTML=''; fqCheck();
+      });
+      fqOpts.appendChild(b);
+    });
+  }
+  var fqCheckBtn=document.getElementById('fqCheck'), fqHintBtn=document.getElementById('fqHintBtn');
+  if(fqCheckBtn) fqCheckBtn.addEventListener('click',fqCheck);
+  if(fqHintBtn) fqHintBtn.addEventListener('click',fqShowOpts);
+  if(fqNext) fqNext.addEventListener('click',function(){
+    if(fqIdx>=FAM_QUIZ.length-1){ fqIdx=0; fqScore=0; fqScoreEl.textContent='得分：0'; }
+    else fqIdx++;
+    fqLoad();
+  });
+  fqLoad();
   
 })();
 </script>

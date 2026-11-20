@@ -111,6 +111,10 @@ details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-hei
   .opt.sel{border-color:#999; background:#fff}
   .q{break-inside:avoid}
 }
+
+  .wfq-blank{display:inline-block; min-width:70px; border-bottom:2px solid #E0A32E;
+       color:#B07A10; font-weight:700; letter-spacing:1px;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -203,7 +207,19 @@ const PAPERS = [
     {stem:'The toy plane flew past them <u>quickly</u>.（对划线部分提问）',type:'text',a:'How did the toy plane fly past them?',a2:['How did the toy plane fly past them?'],ph:'写完整问句，句末加 ?'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（名词 + -ful → 形容词）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"A dictionary is very <span class=\"wfq-blank\">＿＿</span> (use) for students.",type:'text',a:"useful",ph:'填入所给词的正确形式'},
+    {stem:"She is a <span class=\"wfq-blank\">＿＿</span> (help) girl and always helps others.",type:'text',a:"helpful",ph:'填入所给词的正确形式'},
+    {stem:"Be <span class=\"wfq-blank\">＿＿</span> (care) when you cross the road.",type:'text',a:"careful",ph:'填入所给词的正确形式'},
+    {stem:"The garden looks <span class=\"wfq-blank\">＿＿</span> (colour) in spring.",type:'text',a:"colourful",ph:'填入所给词的正确形式'},
+    {stem:"We had a <span class=\"wfq-blank\">＿＿</span> (wonder) time at the party.",type:'text',a:"wonderful",ph:'填入所给词的正确形式'},
+    {stem:"He is a <span class=\"wfq-blank\">＿＿</span> (success) businessman.",type:'text',a:"successful",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p2', title:'练习二 · 语法与句型', time:'20 分钟',
@@ -259,7 +275,19 @@ const PAPERS = [
     {stem:'A girl shouted, \'Watch out!\'（改为一般疑问句）',type:'text',a:'Did a girl shout \'Watch out!\'?',a2:['Did a girl shout \'Watch out!\'?','Did a girl shout "Watch out!"?']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（名词 + -ful → 形容词）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"She is a <span class=\"wfq-blank\">＿＿</span> (help) girl and always helps others.",type:'text',a:"helpful",ph:'填入所给词的正确形式'},
+    {stem:"Be <span class=\"wfq-blank\">＿＿</span> (care) when you cross the road.",type:'text',a:"careful",ph:'填入所给词的正确形式'},
+    {stem:"The garden looks <span class=\"wfq-blank\">＿＿</span> (colour) in spring.",type:'text',a:"colourful",ph:'填入所给词的正确形式'},
+    {stem:"We had a <span class=\"wfq-blank\">＿＿</span> (wonder) time at the party.",type:'text',a:"wonderful",ph:'填入所给词的正确形式'},
+    {stem:"He is a <span class=\"wfq-blank\">＿＿</span> (success) businessman.",type:'text',a:"successful",ph:'填入所给词的正确形式'},
+    {stem:"A dictionary is very <span class=\"wfq-blank\">＿＿</span> (use) for students.",type:'text',a:"useful",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p3', title:'练习三 · 课文与阅读', time:'25 分钟',
@@ -309,7 +337,19 @@ const PAPERS = [
     {stem:'Why were Li Na and Liu Wei very excited?',type:'text',a:'Because the clubs were fun / they wanted to join all clubs',a2:['Because the clubs were fun.','Because they wanted to join all the clubs.']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（名词 + -ful → 形容词）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"Be <span class=\"wfq-blank\">＿＿</span> (care) when you cross the road.",type:'text',a:"careful",ph:'填入所给词的正确形式'},
+    {stem:"The garden looks <span class=\"wfq-blank\">＿＿</span> (colour) in spring.",type:'text',a:"colourful",ph:'填入所给词的正确形式'},
+    {stem:"We had a <span class=\"wfq-blank\">＿＿</span> (wonder) time at the party.",type:'text',a:"wonderful",ph:'填入所给词的正确形式'},
+    {stem:"He is a <span class=\"wfq-blank\">＿＿</span> (success) businessman.",type:'text',a:"successful",ph:'填入所给词的正确形式'},
+    {stem:"A dictionary is very <span class=\"wfq-blank\">＿＿</span> (use) for students.",type:'text',a:"useful",ph:'填入所给词的正确形式'},
+    {stem:"She is a <span class=\"wfq-blank\">＿＿</span> (help) girl and always helps others.",type:'text',a:"helpful",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p4', title:'练习四 · 阅读新篇章', time:'25 分钟',
@@ -361,7 +401,19 @@ const PAPERS = [
     {stem:'Why was it a fantastic day?',type:'text',a:'Because the clubs were fun and they wanted to join',a2:['Because the clubs were fun.','Because they wanted to join all the clubs.']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（名词 + -ful → 形容词）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"The garden looks <span class=\"wfq-blank\">＿＿</span> (colour) in spring.",type:'text',a:"colourful",ph:'填入所给词的正确形式'},
+    {stem:"We had a <span class=\"wfq-blank\">＿＿</span> (wonder) time at the party.",type:'text',a:"wonderful",ph:'填入所给词的正确形式'},
+    {stem:"He is a <span class=\"wfq-blank\">＿＿</span> (success) businessman.",type:'text',a:"successful",ph:'填入所给词的正确形式'},
+    {stem:"A dictionary is very <span class=\"wfq-blank\">＿＿</span> (use) for students.",type:'text',a:"useful",ph:'填入所给词的正确形式'},
+    {stem:"She is a <span class=\"wfq-blank\">＿＿</span> (help) girl and always helps others.",type:'text',a:"helpful",ph:'填入所给词的正确形式'},
+    {stem:"Be <span class=\"wfq-blank\">＿＿</span> (care) when you cross the road.",type:'text',a:"careful",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p5', title:'练习五 · 中国课余雅趣', time:'20 分钟',
@@ -401,7 +453,19 @@ const PAPERS = [
     {stem:'Name one Chinese after-school interest from the text.',type:'text',a:'Calligraphy / folk music / Go',a2:['Calligraphy.','Folk music.','Go (Weiqi).']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（名词 + -ful → 形容词）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"We had a <span class=\"wfq-blank\">＿＿</span> (wonder) time at the party.",type:'text',a:"wonderful",ph:'填入所给词的正确形式'},
+    {stem:"He is a <span class=\"wfq-blank\">＿＿</span> (success) businessman.",type:'text',a:"successful",ph:'填入所给词的正确形式'},
+    {stem:"A dictionary is very <span class=\"wfq-blank\">＿＿</span> (use) for students.",type:'text',a:"useful",ph:'填入所给词的正确形式'},
+    {stem:"She is a <span class=\"wfq-blank\">＿＿</span> (help) girl and always helps others.",type:'text',a:"helpful",ph:'填入所给词的正确形式'},
+    {stem:"Be <span class=\"wfq-blank\">＿＿</span> (care) when you cross the road.",type:'text',a:"careful",ph:'填入所给词的正确形式'},
+    {stem:"The garden looks <span class=\"wfq-blank\">＿＿</span> (colour) in spring.",type:'text',a:"colourful",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'t1', title:'测试卷一 · Unit 7 单元测试', time:'60 分钟',
@@ -534,7 +598,19 @@ const PAPERS = [
     {stem:'<b>题目：My Favourite School Club（我最喜欢的学校社团）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 clubs fair, launch, rocket, solar power, take part in, join, member, paper-cut, after-school activities, fantastic, shout, turn around）；③ 用一般过去时讲述你参加/了解社团的经历；④ 句首大写、句末标点。',type:'essay',score:10,ph:'My Favourite School Club\n\nLast month, I went to...',check:['有没有写清社团名字和你做了什么（一般过去时）？','有没有用 launch / rocket / solar power 等本单元词汇？','有没有用 take part in / join / member？','有没有用 fantastic / excited 等词表达感受？','句首大写、句末标点了吗？'],sample:'<div class="en">My Favourite School Club<br><br>Last month, our school had a clubs fair. I went there with my friend. First, we saw the Rocket Club. A boy took a rocket and launched it into the sky. It was amazing! Then I joined the Craft Club and became a member. A girl taught me to cut paper into pretty shapes. I was very excited and had a fantastic day. I want to take part in more after-school activities.</div><div class="zh">（参考范文：用一般过去时写了参加社团招募展、看火箭发射、加入手工社团并学剪纸，用了 clubs fair / launch / rocket / joined / member / take part in / after-school activities / fantastic / excited 等本单元词汇，注意了句首大写。）</div>'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（名词 + -ful → 形容词）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"He is a <span class=\"wfq-blank\">＿＿</span> (success) businessman.",type:'text',a:"successful",ph:'填入所给词的正确形式'},
+    {stem:"A dictionary is very <span class=\"wfq-blank\">＿＿</span> (use) for students.",type:'text',a:"useful",ph:'填入所给词的正确形式'},
+    {stem:"She is a <span class=\"wfq-blank\">＿＿</span> (help) girl and always helps others.",type:'text',a:"helpful",ph:'填入所给词的正确形式'},
+    {stem:"Be <span class=\"wfq-blank\">＿＿</span> (care) when you cross the road.",type:'text',a:"careful",ph:'填入所给词的正确形式'},
+    {stem:"The garden looks <span class=\"wfq-blank\">＿＿</span> (colour) in spring.",type:'text',a:"colourful",ph:'填入所给词的正确形式'},
+    {stem:"We had a <span class=\"wfq-blank\">＿＿</span> (wonder) time at the party.",type:'text',a:"wonderful",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'t2', title:'测试卷二 · Unit 7 单元测试', time:'60 分钟',
@@ -667,7 +743,19 @@ const PAPERS = [
     {stem:'<b>题目：A School Activity I Took Part In（我参加的一次学校活动）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 take part in, club, member, charity, sale, decorate, raise, fantastic, excited, snack, poster）；③ 用一般过去时叙述活动的经过；④ 句首大写、句末标点。',type:'essay',score:10,ph:'A School Activity I Took Part In\n\nLast weekend, I...',check:['有没有用一般过去时叙述活动经过？','有没有用 take part in / club / member？','有没有用 charity / sale / raise 等词汇？','有没有用 fantastic / excited 表达感受？','句首大写、句末标点了吗？'],sample:'<div class="en">A School Activity I Took Part In<br><br>Last weekend, our class had a charity sale. I took part in it and became a member of the team. We sold snacks and drinks. A boy put posters on the wall, and girls cut beautiful paper-cuts. We decorated the classroom with flowers and raised money for a charity. It was a fantastic day and I was very excited. I want to join more after-school activities.</div><div class="zh">（参考范文：用一般过去时写了班级义卖，用了 take part in / member / club / charity / sale / decorate / raise / fantastic / excited / snack / poster 等本单元词汇，注意了句首大写。）</div>'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（名词 + -ful → 形容词）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"A dictionary is very <span class=\"wfq-blank\">＿＿</span> (use) for students.",type:'text',a:"useful",ph:'填入所给词的正确形式'},
+    {stem:"She is a <span class=\"wfq-blank\">＿＿</span> (help) girl and always helps others.",type:'text',a:"helpful",ph:'填入所给词的正确形式'},
+    {stem:"Be <span class=\"wfq-blank\">＿＿</span> (care) when you cross the road.",type:'text',a:"careful",ph:'填入所给词的正确形式'},
+    {stem:"The garden looks <span class=\"wfq-blank\">＿＿</span> (colour) in spring.",type:'text',a:"colourful",ph:'填入所给词的正确形式'},
+    {stem:"We had a <span class=\"wfq-blank\">＿＿</span> (wonder) time at the party.",type:'text',a:"wonderful",ph:'填入所给词的正确形式'},
+    {stem:"He is a <span class=\"wfq-blank\">＿＿</span> (success) businessman.",type:'text',a:"successful",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'t3', title:'测试卷三 · Unit 7 单元测试', time:'60 分钟',
@@ -800,7 +888,19 @@ const PAPERS = [
     {stem:'<b>题目：My Favourite After-school Activity（我最喜欢的课外活动）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 after-school activities, take part in, club, member, join, fantastic, excited, practise, act, compete, hobby）；③ 用一般过去时叙述一次经历；④ 句首大写、句末标点。',type:'essay',score:10,ph:'My Favourite After-school Activity\n\nI like...',check:['有没有用一般过去时叙述一次课外活动经历？','有没有用 after-school activities / take part in / club / member？','有没有用 fantastic / excited 表达感受？','有没有用 practise / act / compete 等动词？','句首大写、句末标点了吗？'],sample:'<div class="en">My Favourite After-school Activity<br><br>I like after-school activities. Last month, I took part in the school play. I joined the Drama Club and became a member. A teacher taught us to act, and we practised every day. We put on a fantastic show and many students came to watch. I was very excited and happy. I want to take part in more activities next term.</div><div class="zh">（参考范文：用一般过去时写了参加学校戏剧表演，用了 after-school activities / take part in / join / member / club / fantastic / excited / practise / act 等本单元词汇，注意了句首大写。）</div>'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（名词 + -ful → 形容词）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"She is a <span class=\"wfq-blank\">＿＿</span> (help) girl and always helps others.",type:'text',a:"helpful",ph:'填入所给词的正确形式'},
+    {stem:"Be <span class=\"wfq-blank\">＿＿</span> (care) when you cross the road.",type:'text',a:"careful",ph:'填入所给词的正确形式'},
+    {stem:"The garden looks <span class=\"wfq-blank\">＿＿</span> (colour) in spring.",type:'text',a:"colourful",ph:'填入所给词的正确形式'},
+    {stem:"We had a <span class=\"wfq-blank\">＿＿</span> (wonder) time at the party.",type:'text',a:"wonderful",ph:'填入所给词的正确形式'},
+    {stem:"He is a <span class=\"wfq-blank\">＿＿</span> (success) businessman.",type:'text',a:"successful",ph:'填入所给词的正确形式'},
+    {stem:"A dictionary is very <span class=\"wfq-blank\">＿＿</span> (use) for students.",type:'text',a:"useful",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   }
 ];
 

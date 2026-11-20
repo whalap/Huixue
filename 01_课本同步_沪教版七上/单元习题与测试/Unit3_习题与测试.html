@@ -111,6 +111,10 @@ details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-hei
   .opt.sel{border-color:#999; background:#fff}
   .q{break-inside:avoid}
 }
+
+  .wfq-blank{display:inline-block; min-width:70px; border-bottom:2px solid #E0A32E;
+       color:#B07A10; font-weight:700; letter-spacing:1px;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -203,7 +207,19 @@ const PAPERS = [
     {stem:'The children are playing <u>in the park</u>.（对划线部分提问）',type:'text',a:'Where are the children playing?',a2:['Where are the children playing?'],ph:'写完整问句，句末加 ?'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（形容词后缀 -y）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"It is a <span class=\"wfq-blank\">＿＿</span> (snow) day; let's make a snowman.",type:'text',a:"snowy",ph:'填入所给词的正确形式'},
+    {stem:"What a <span class=\"wfq-blank\">＿＿</span> (sun) day! Let's go out.",type:'text',a:"sunny",ph:'填入所给词的正确形式'},
+    {stem:"Take an umbrella; it's a <span class=\"wfq-blank\">＿＿</span> (rain) day.",type:'text',a:"rainy",ph:'填入所给词的正确形式'},
+    {stem:"Look at the <span class=\"wfq-blank\">＿＿</span> (cloud) sky.",type:'text',a:"cloudy",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (wind), so let's fly a kite.",type:'text',a:"windy",ph:'填入所给词的正确形式'},
+    {stem:"We can't see far on a <span class=\"wfq-blank\">＿＿</span> (fog) morning.",type:'text',a:"foggy",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p2', title:'练习二 · 语法与句型', time:'20 分钟',
@@ -259,7 +275,19 @@ const PAPERS = [
     {stem:'Spring is warm and rainy.（对 warm and rainy 提问）',type:'text',a:'What is spring like?',a2:['What is the weather like in spring?']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（形容词后缀 -y）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"What a <span class=\"wfq-blank\">＿＿</span> (sun) day! Let's go out.",type:'text',a:"sunny",ph:'填入所给词的正确形式'},
+    {stem:"Take an umbrella; it's a <span class=\"wfq-blank\">＿＿</span> (rain) day.",type:'text',a:"rainy",ph:'填入所给词的正确形式'},
+    {stem:"Look at the <span class=\"wfq-blank\">＿＿</span> (cloud) sky.",type:'text',a:"cloudy",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (wind), so let's fly a kite.",type:'text',a:"windy",ph:'填入所给词的正确形式'},
+    {stem:"We can't see far on a <span class=\"wfq-blank\">＿＿</span> (fog) morning.",type:'text',a:"foggy",ph:'填入所给词的正确形式'},
+    {stem:"It is a <span class=\"wfq-blank\">＿＿</span> (snow) day; let's make a snowman.",type:'text',a:"snowy",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p3', title:'练习三 · 课文与阅读', time:'25 分钟',
@@ -309,7 +337,19 @@ const PAPERS = [
     {stem:'When is it great to go on a family outing?',type:'text',a:'In autumn',a2:['In autumn.','At this time of year.','At harvest time.']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（形容词后缀 -y）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"Take an umbrella; it's a <span class=\"wfq-blank\">＿＿</span> (rain) day.",type:'text',a:"rainy",ph:'填入所给词的正确形式'},
+    {stem:"Look at the <span class=\"wfq-blank\">＿＿</span> (cloud) sky.",type:'text',a:"cloudy",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (wind), so let's fly a kite.",type:'text',a:"windy",ph:'填入所给词的正确形式'},
+    {stem:"We can't see far on a <span class=\"wfq-blank\">＿＿</span> (fog) morning.",type:'text',a:"foggy",ph:'填入所给词的正确形式'},
+    {stem:"It is a <span class=\"wfq-blank\">＿＿</span> (snow) day; let's make a snowman.",type:'text',a:"snowy",ph:'填入所给词的正确形式'},
+    {stem:"What a <span class=\"wfq-blank\">＿＿</span> (sun) day! Let's go out.",type:'text',a:"sunny",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p4', title:'练习四 · 阅读新篇章', time:'25 分钟',
@@ -361,7 +401,19 @@ const PAPERS = [
     {stem:'What does Grandma say about every season?',type:'text',a:'Every season is a gift',a2:['Every season is a gift.','She says every season is a gift.']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（形容词后缀 -y）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"Look at the <span class=\"wfq-blank\">＿＿</span> (cloud) sky.",type:'text',a:"cloudy",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (wind), so let's fly a kite.",type:'text',a:"windy",ph:'填入所给词的正确形式'},
+    {stem:"We can't see far on a <span class=\"wfq-blank\">＿＿</span> (fog) morning.",type:'text',a:"foggy",ph:'填入所给词的正确形式'},
+    {stem:"It is a <span class=\"wfq-blank\">＿＿</span> (snow) day; let's make a snowman.",type:'text',a:"snowy",ph:'填入所给词的正确形式'},
+    {stem:"What a <span class=\"wfq-blank\">＿＿</span> (sun) day! Let's go out.",type:'text',a:"sunny",ph:'填入所给词的正确形式'},
+    {stem:"Take an umbrella; it's a <span class=\"wfq-blank\">＿＿</span> (rain) day.",type:'text',a:"rainy",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p5', title:'练习五 · 中国节气与四季', time:'20 分钟',
@@ -401,7 +453,19 @@ const PAPERS = [
     {stem:'Why are the solar terms important?',type:'text',a:'They help farmers know when to plant and harvest',a2:['They help farmers know when to plant and harvest.','Because they play an important part in farming.','They help farmers plant and harvest.']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（形容词后缀 -y）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (wind), so let's fly a kite.",type:'text',a:"windy",ph:'填入所给词的正确形式'},
+    {stem:"We can't see far on a <span class=\"wfq-blank\">＿＿</span> (fog) morning.",type:'text',a:"foggy",ph:'填入所给词的正确形式'},
+    {stem:"It is a <span class=\"wfq-blank\">＿＿</span> (snow) day; let's make a snowman.",type:'text',a:"snowy",ph:'填入所给词的正确形式'},
+    {stem:"What a <span class=\"wfq-blank\">＿＿</span> (sun) day! Let's go out.",type:'text',a:"sunny",ph:'填入所给词的正确形式'},
+    {stem:"Take an umbrella; it's a <span class=\"wfq-blank\">＿＿</span> (rain) day.",type:'text',a:"rainy",ph:'填入所给词的正确形式'},
+    {stem:"Look at the <span class=\"wfq-blank\">＿＿</span> (cloud) sky.",type:'text',a:"cloudy",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'t1', title:'测试卷一 · Unit 3 单元测试', time:'60 分钟',
@@ -534,7 +598,19 @@ const PAPERS = [
     {stem:'<b>题目：My Favourite Season（我最喜欢的季节）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 season, weather, clear, warm, fresh, thunder, lightning, have picnics, take a trip, in the countryside, play in the snow）；③ 注意形容词和句首大写。',type:'essay',score:10,ph:'My Favourite Season\n\nMy favourite season is...',check:['有没有写季节名称和天气特点？','有没有写人们在这个季节做什么？','有没有写你为什么喜欢这个季节？','形容词用得对吗（be + 形容词）？','句首大写、句末标点了吗？'],sample:'<div class="en">My Favourite Season<br><br>My favourite season is autumn. The weather is cool and dry, and the sky is often clear. The leaves turn brown, red and yellow, and the whole countryside looks beautiful. My family often takes a trip to the countryside and has picnics on the grass. Farmers are busy with the harvest, and the markets are full of fresh fruit. I like autumn because it is peaceful and full of colour.</div><div class="zh">（参考范文：写了季节、天气、景色、活动和喜欢的原因，用了 weather / cool and dry / clear / leaves / countryside / takes a trip / has picnics / harvest / fresh / peaceful 等本单元词汇短语，注意了 be 动词后接形容词。）</div>'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（形容词后缀 -y）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"We can't see far on a <span class=\"wfq-blank\">＿＿</span> (fog) morning.",type:'text',a:"foggy",ph:'填入所给词的正确形式'},
+    {stem:"It is a <span class=\"wfq-blank\">＿＿</span> (snow) day; let's make a snowman.",type:'text',a:"snowy",ph:'填入所给词的正确形式'},
+    {stem:"What a <span class=\"wfq-blank\">＿＿</span> (sun) day! Let's go out.",type:'text',a:"sunny",ph:'填入所给词的正确形式'},
+    {stem:"Take an umbrella; it's a <span class=\"wfq-blank\">＿＿</span> (rain) day.",type:'text',a:"rainy",ph:'填入所给词的正确形式'},
+    {stem:"Look at the <span class=\"wfq-blank\">＿＿</span> (cloud) sky.",type:'text',a:"cloudy",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (wind), so let's fly a kite.",type:'text',a:"windy",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'t2', title:'测试卷二 · Unit 3 单元测试', time:'60 分钟',
@@ -667,7 +743,19 @@ const PAPERS = [
     {stem:'<b>题目：Seasons in My Hometown（我家乡的四季）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 season, weather, warm, hot, cool, cold, clear, snowy, rainy, thunder, in the countryside, outdoor activities）；③ 注意形容词和句首大写。',type:'essay',score:10,ph:'Seasons in My Hometown\n\nThere are four seasons in...',check:['有没有写家乡在哪里、有哪几个季节？','有没有写每个季节的天气特点？','有没有写人们在各个季节做什么？','有没有写你最喜欢哪个季节、为什么？','形容词和 be 动词搭配合适吗？'],sample:'<div class="en">Seasons in My Hometown<br><br>My hometown is in the south of China. There are four seasons here. Spring is warm and wet, and the whole city looks alive. Summer is hot, and there is often thunder and lightning. Many families go to the beach and swim in the sea. Autumn is cool and dry. It is the best time for outdoor activities. Winter is short and peaceful, and it seldom snows. I love my hometown in every season.</div><div class="zh">（参考范文：写了家乡位置、四季天气、四季活动和感受，用了 warm and wet / alive / hot / thunder and lightning / go to the beach / swim in the sea / cool and dry / outdoor activities / short and peaceful 等本单元词汇短语。）</div>'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（形容词后缀 -y）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"It is a <span class=\"wfq-blank\">＿＿</span> (snow) day; let's make a snowman.",type:'text',a:"snowy",ph:'填入所给词的正确形式'},
+    {stem:"What a <span class=\"wfq-blank\">＿＿</span> (sun) day! Let's go out.",type:'text',a:"sunny",ph:'填入所给词的正确形式'},
+    {stem:"Take an umbrella; it's a <span class=\"wfq-blank\">＿＿</span> (rain) day.",type:'text',a:"rainy",ph:'填入所给词的正确形式'},
+    {stem:"Look at the <span class=\"wfq-blank\">＿＿</span> (cloud) sky.",type:'text',a:"cloudy",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (wind), so let's fly a kite.",type:'text',a:"windy",ph:'填入所给词的正确形式'},
+    {stem:"We can't see far on a <span class=\"wfq-blank\">＿＿</span> (fog) morning.",type:'text',a:"foggy",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'t3', title:'测试卷三 · Unit 3 单元测试', time:'60 分钟',
@@ -800,7 +888,19 @@ const PAPERS = [
     {stem:'<b>题目：An Outdoor Activity I Like（我喜欢的一项户外活动）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 season, weather, outdoor activities, have picnics, take a trip, in the countryside, go to the beach, play in the snow, fresh）；③ 注意形容词和句首大写。',type:'essay',score:10,ph:'An Outdoor Activity I Like\n\nMy favourite outdoor activity is...',check:['有没有写活动名称和在什么季节做？','有没有写和谁一起、在哪里做？','有没有写为什么喜欢（用了形容词吗）？','有没有写天气或感受？','句首大写、句末标点了吗？'],sample:'<div class="en">An Outdoor Activity I Like<br><br>My favourite outdoor activity is having picnics in the countryside. I often do it in spring with my family. The weather is warm and the rain is fresh. We take a trip to the countryside and have picnics on the green grass. The whole countryside looks alive, and the air is clean. After lunch, we gather wild flowers and fly kites in the clear sky. I like this activity because it is relaxing and fun.</div><div class="zh">（参考范文：写了活动名称、季节、同伴、地点、原因和感受，用了 outdoor activity / having picnics / in the countryside / in spring / fresh / take a trip / alive / clear / gather 等本单元词汇短语。）</div>'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（形容词后缀 -y）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"What a <span class=\"wfq-blank\">＿＿</span> (sun) day! Let's go out.",type:'text',a:"sunny",ph:'填入所给词的正确形式'},
+    {stem:"Take an umbrella; it's a <span class=\"wfq-blank\">＿＿</span> (rain) day.",type:'text',a:"rainy",ph:'填入所给词的正确形式'},
+    {stem:"Look at the <span class=\"wfq-blank\">＿＿</span> (cloud) sky.",type:'text',a:"cloudy",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (wind), so let's fly a kite.",type:'text',a:"windy",ph:'填入所给词的正确形式'},
+    {stem:"We can't see far on a <span class=\"wfq-blank\">＿＿</span> (fog) morning.",type:'text',a:"foggy",ph:'填入所给词的正确形式'},
+    {stem:"It is a <span class=\"wfq-blank\">＿＿</span> (snow) day; let's make a snowman.",type:'text',a:"snowy",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   }
 ];
 

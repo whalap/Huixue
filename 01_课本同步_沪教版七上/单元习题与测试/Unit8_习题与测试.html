@@ -111,6 +111,10 @@ details.rdtr .rdzh{margin-top:8px; font-size:13.5px; color:var(--ink2); line-hei
   .opt.sel{border-color:#999; background:#fff}
   .q{break-inside:avoid}
 }
+
+  .wfq-blank{display:inline-block; min-width:70px; border-bottom:2px solid #E0A32E;
+       color:#B07A10; font-weight:700; letter-spacing:1px;}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -203,7 +207,19 @@ const PAPERS = [
     {stem:'I have <u>over a hundred</u> stamps now.（对划线部分提问）',type:'text',a:'How many stamps do you have now?',a2:['How many stamps do you have now?'],ph:'写完整问句，句末加 ?'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（否定前缀 in- / im-）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"It is <span class=\"wfq-blank\">＿＿</span> (possible) to finish the work in one day.",type:'text',a:"impossible",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (polite) to laugh at others.",type:'text',a:"impolite",ph:'填入所给词的正确形式'},
+    {stem:"Don't be <span class=\"wfq-blank\">＿＿</span> (patient); wait for your turn.",type:'text',a:"impatient",ph:'填入所给词的正确形式'},
+    {stem:"Your answer is <span class=\"wfq-blank\">＿＿</span> (correct); please try again.",type:'text',a:"incorrect",ph:'填入所给词的正确形式'},
+    {stem:"The homework is <span class=\"wfq-blank\">＿＿</span> (complete); you still need to do more.",type:'text',a:"incomplete",ph:'填入所给词的正确形式'},
+    {stem:"This bag is cheap; it is <span class=\"wfq-blank\">＿＿</span> (expensive).",type:'text',a:"inexpensive",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p2', title:'练习二 · 语法与句型', time:'20 分钟',
@@ -259,7 +275,19 @@ const PAPERS = [
     {stem:'The stamp is mine. → It is ____ stamp.（改为同义句）',type:'text',a:'my',a2:['my']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（否定前缀 in- / im-）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (polite) to laugh at others.",type:'text',a:"impolite",ph:'填入所给词的正确形式'},
+    {stem:"Don't be <span class=\"wfq-blank\">＿＿</span> (patient); wait for your turn.",type:'text',a:"impatient",ph:'填入所给词的正确形式'},
+    {stem:"Your answer is <span class=\"wfq-blank\">＿＿</span> (correct); please try again.",type:'text',a:"incorrect",ph:'填入所给词的正确形式'},
+    {stem:"The homework is <span class=\"wfq-blank\">＿＿</span> (complete); you still need to do more.",type:'text',a:"incomplete",ph:'填入所给词的正确形式'},
+    {stem:"This bag is cheap; it is <span class=\"wfq-blank\">＿＿</span> (expensive).",type:'text',a:"inexpensive",ph:'填入所给词的正确形式'},
+    {stem:"It is <span class=\"wfq-blank\">＿＿</span> (possible) to finish the work in one day.",type:'text',a:"impossible",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p3', title:'练习三 · 课文与阅读', time:'25 分钟',
@@ -309,7 +337,19 @@ const PAPERS = [
     {stem:'How many stamps does the writer have now?',type:'text',a:'Over a hundred',a2:['Over a hundred.','More than a hundred.']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（否定前缀 in- / im-）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"Don't be <span class=\"wfq-blank\">＿＿</span> (patient); wait for your turn.",type:'text',a:"impatient",ph:'填入所给词的正确形式'},
+    {stem:"Your answer is <span class=\"wfq-blank\">＿＿</span> (correct); please try again.",type:'text',a:"incorrect",ph:'填入所给词的正确形式'},
+    {stem:"The homework is <span class=\"wfq-blank\">＿＿</span> (complete); you still need to do more.",type:'text',a:"incomplete",ph:'填入所给词的正确形式'},
+    {stem:"This bag is cheap; it is <span class=\"wfq-blank\">＿＿</span> (expensive).",type:'text',a:"inexpensive",ph:'填入所给词的正确形式'},
+    {stem:"It is <span class=\"wfq-blank\">＿＿</span> (possible) to finish the work in one day.",type:'text',a:"impossible",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (polite) to laugh at others.",type:'text',a:"impolite",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p4', title:'练习四 · 阅读新篇章', time:'25 分钟',
@@ -361,7 +401,19 @@ const PAPERS = [
     {stem:'What is collecting to the writer?',type:'text',a:'A small bit of joy',a2:['A small bit of joy.','It is a bit of joy.']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（否定前缀 in- / im-）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"Your answer is <span class=\"wfq-blank\">＿＿</span> (correct); please try again.",type:'text',a:"incorrect",ph:'填入所给词的正确形式'},
+    {stem:"The homework is <span class=\"wfq-blank\">＿＿</span> (complete); you still need to do more.",type:'text',a:"incomplete",ph:'填入所给词的正确形式'},
+    {stem:"This bag is cheap; it is <span class=\"wfq-blank\">＿＿</span> (expensive).",type:'text',a:"inexpensive",ph:'填入所给词的正确形式'},
+    {stem:"It is <span class=\"wfq-blank\">＿＿</span> (possible) to finish the work in one day.",type:'text',a:"impossible",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (polite) to laugh at others.",type:'text',a:"impolite",ph:'填入所给词的正确形式'},
+    {stem:"Don't be <span class=\"wfq-blank\">＿＿</span> (patient); wait for your turn.",type:'text',a:"impatient",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'p5', title:'练习五 · 中国收藏文化', time:'20 分钟',
@@ -401,7 +453,19 @@ const PAPERS = [
     {stem:'Name one kind of Chinese collection from the text.',type:'text',a:'Stamps / porcelain / coins and paper money',a2:['Stamps.','Porcelain.','Coins and paper money.']}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（否定前缀 in- / im-）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"The homework is <span class=\"wfq-blank\">＿＿</span> (complete); you still need to do more.",type:'text',a:"incomplete",ph:'填入所给词的正确形式'},
+    {stem:"This bag is cheap; it is <span class=\"wfq-blank\">＿＿</span> (expensive).",type:'text',a:"inexpensive",ph:'填入所给词的正确形式'},
+    {stem:"It is <span class=\"wfq-blank\">＿＿</span> (possible) to finish the work in one day.",type:'text',a:"impossible",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (polite) to laugh at others.",type:'text',a:"impolite",ph:'填入所给词的正确形式'},
+    {stem:"Don't be <span class=\"wfq-blank\">＿＿</span> (patient); wait for your turn.",type:'text',a:"impatient",ph:'填入所给词的正确形式'},
+    {stem:"Your answer is <span class=\"wfq-blank\">＿＿</span> (correct); please try again.",type:'text',a:"incorrect",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'t1', title:'测试卷一 · Unit 8 单元测试', time:'60 分钟',
@@ -534,7 +598,19 @@ const PAPERS = [
     {stem:'<b>题目：My Collection（我的收藏）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 collect, collection, stamp, coin, shell, key ring, hobby, take care of, with great care, valuable, treasure, album, all over the world, become interested in, more and more）；③ 用正确的人称代词和物主代词（my / your / his / her / our / their / me / him / her / us / them）；④ 句首大写、句末标点。',type:'essay',score:10,ph:'My Collection\n\nI like collecting...',check:['有没有写清你收藏什么（collect / collection）？','有没有用 take care of / with great care 表达保管？','有没有用对人称代词和物主代词（my / his / her / our / them 等）？','有没有用 valuable / treasure / album 等词汇？','句首大写、句末标点了吗？'],sample:'<div class="en">My Collection<br><br>I like collecting stamps as a hobby. My grandpa gave me my first stamp, and it is my favourite. Now I have over a hundred stamps from all over the world. They are very valuable, so I take care of them with great care. I keep them in an album. Thanks to my grandpa, I became interested in Chinese history and culture. I am learning more and more about the world. Collecting is my treasure and my sweet memory.</div><div class="zh">（参考范文：写了收藏邮票，用了 collect / collection / hobby / stamp / favourite / all over the world / valuable / take care of / with great care / album / became interested in / more and more / treasure / sweet memories 等本单元词汇，并正确使用了 my / me / them / I 等代词，注意了句首大写。）</div>'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（否定前缀 in- / im-）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"This bag is cheap; it is <span class=\"wfq-blank\">＿＿</span> (expensive).",type:'text',a:"inexpensive",ph:'填入所给词的正确形式'},
+    {stem:"It is <span class=\"wfq-blank\">＿＿</span> (possible) to finish the work in one day.",type:'text',a:"impossible",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (polite) to laugh at others.",type:'text',a:"impolite",ph:'填入所给词的正确形式'},
+    {stem:"Don't be <span class=\"wfq-blank\">＿＿</span> (patient); wait for your turn.",type:'text',a:"impatient",ph:'填入所给词的正确形式'},
+    {stem:"Your answer is <span class=\"wfq-blank\">＿＿</span> (correct); please try again.",type:'text',a:"incorrect",ph:'填入所给词的正确形式'},
+    {stem:"The homework is <span class=\"wfq-blank\">＿＿</span> (complete); you still need to do more.",type:'text',a:"incomplete",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'t2', title:'测试卷二 · Unit 8 单元测试', time:'60 分钟',
@@ -667,7 +743,19 @@ const PAPERS = [
     {stem:'<b>题目：A Collector in My Family（我家的收藏家）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 collector, own, thousands of, stamp, coin, shell, valuable, protect, glove, envelope, postcard, the Palace Museum, hundreds of years ago, explain, interested, treasure）；③ 用正确的人称代词和物主代词（he / him / his / she / her / hers / they / them 等）；④ 句首大写、句末标点。',type:'essay',score:10,ph:'A Collector in My Family\n\nMy grandpa...',check:['有没有写清家里谁收藏、收藏什么？','有没有用 own / thousands of / valuable 等词汇？','有没有用对 he / him / his 或 she / her 等代词？','有没有用 protect / explain / treasure 等词汇？','句首大写、句末标点了吗？'],sample:'<div class="en">A Collector in My Family<br><br>My grandpa is a stamp collector. He owns thousands of stamps. Some of them are very valuable, so he wears white gloves to protect them. Every Sunday he adds new ones to his collection. He takes old stamps from envelopes and postcards. He explains the history of the Palace Museum to me. Thanks to him, I became interested in traditional Chinese buildings. His collection is a real treasure to our family.</div><div class="zh">（参考范文：写了爷爷集邮，用了 collector / own / thousands of / valuable / protect / glove / envelope / postcard / the Palace Museum / explain / interested / treasure 等本单元词汇，并正确使用了 he / him / his / me / them 等代词，注意了句首大写。）</div>'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（否定前缀 in- / im-）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"It is <span class=\"wfq-blank\">＿＿</span> (possible) to finish the work in one day.",type:'text',a:"impossible",ph:'填入所给词的正确形式'},
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (polite) to laugh at others.",type:'text',a:"impolite",ph:'填入所给词的正确形式'},
+    {stem:"Don't be <span class=\"wfq-blank\">＿＿</span> (patient); wait for your turn.",type:'text',a:"impatient",ph:'填入所给词的正确形式'},
+    {stem:"Your answer is <span class=\"wfq-blank\">＿＿</span> (correct); please try again.",type:'text',a:"incorrect",ph:'填入所给词的正确形式'},
+    {stem:"The homework is <span class=\"wfq-blank\">＿＿</span> (complete); you still need to do more.",type:'text',a:"incomplete",ph:'填入所给词的正确形式'},
+    {stem:"This bag is cheap; it is <span class=\"wfq-blank\">＿＿</span> (expensive).",type:'text',a:"inexpensive",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   },
   {
     id:'t3', title:'测试卷三 · Unit 8 单元测试', time:'60 分钟',
@@ -800,7 +888,19 @@ const PAPERS = [
     {stem:'<b>题目：My Favourite Hobby（我最喜欢的爱好）。</b>要求：① 5–6 句话；② 至少用 5 个本单元词汇或短语（如 hobby, collect, collection, stamp, shell, coin, key ring, model, pocket money, add ... to ..., become interested in, similar, more and more, sweet memories）；③ 用正确的人称代词和物主代词；④ 句首大写、句末标点。',type:'essay',score:10,ph:'My Favourite Hobby\n\nMy hobby is...',check:['有没有写清爱好是什么（hobby / collect）？','有没有用 add ... to ... / become interested in / more and more？','有没有用对人称代词和物主代词？','有没有用 sweet memories / similar 等词汇？','句首大写、句末标点了吗？'],sample:'<div class="en">My Favourite Hobby<br><br>My hobby is collecting key rings and shells. I buy them with my pocket money. Every week I add new ones to my box. Some of them look similar, but each has a story. Thanks to my friend, I became interested in collecting. Now I have more and more of them. They are my sweet memories and I love my hobby.</div><div class="zh">（参考范文：写了收藏钥匙扣和贝壳，用了 hobby / collect / collection / key ring / shell / pocket money / add ... to ... / become interested in / more and more / sweet memories / similar 等本单元词汇，并正确使用了 my / them / I 等代词，注意了句首大写。）</div>'}
   ]
     }
-    ]
+    ,
+    {
+      name:'词形变换 · 用所给词的适当形式填空（否定前缀 in- / im-）', note:'根据句子意思，把括号里的词变成正确的形式填入。共 6 题，每题 1 分。变形规则见点读页“词形变换练习”。',
+      items:[
+    {stem:"It's <span class=\"wfq-blank\">＿＿</span> (polite) to laugh at others.",type:'text',a:"impolite",ph:'填入所给词的正确形式'},
+    {stem:"Don't be <span class=\"wfq-blank\">＿＿</span> (patient); wait for your turn.",type:'text',a:"impatient",ph:'填入所给词的正确形式'},
+    {stem:"Your answer is <span class=\"wfq-blank\">＿＿</span> (correct); please try again.",type:'text',a:"incorrect",ph:'填入所给词的正确形式'},
+    {stem:"The homework is <span class=\"wfq-blank\">＿＿</span> (complete); you still need to do more.",type:'text',a:"incomplete",ph:'填入所给词的正确形式'},
+    {stem:"This bag is cheap; it is <span class=\"wfq-blank\">＿＿</span> (expensive).",type:'text',a:"inexpensive",ph:'填入所给词的正确形式'},
+    {stem:"It is <span class=\"wfq-blank\">＿＿</span> (possible) to finish the work in one day.",type:'text',a:"impossible",ph:'填入所给词的正确形式'}
+  ]
+    }
+  ]
   }
 ];
 

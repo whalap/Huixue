@@ -274,6 +274,41 @@
   .pchip-ctx .cx button:hover{border-color:var(--teal); color:var(--teal);}
   .pchip .pmore{font-size:11px; color:var(--teal); margin-left:auto; font-weight:600; white-space:nowrap;}
 
+
+  /* ===== 词形变换练习 ===== */
+  .wf-box{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px;}
+  .wf-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:6px;}
+  .wf-progress{font-size:14px; color:var(--sub);}
+  .wf-sent{font-size:19px; line-height:1.9; margin:14px 0 6px; min-height:46px;}
+  .wf-blank{display:inline-block; min-width:120px; border:none; border-bottom:2px solid var(--amber);
+       background:var(--amber-soft); border-radius:6px 6px 0 0; padding:4px 10px; margin:0 4px;
+       font-size:18px; font-family:'Segoe UI',Arial,sans-serif; color:var(--ink); outline:none;}
+  .wf-blank:focus{border-bottom-color:var(--coral); background:#fff;}
+  .wf-hintline{font-size:14px; color:var(--sub); margin:4px 0 12px;}
+  .wf-hintline b{color:var(--amber);}
+  .wf-actions{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:10px;}
+  .wf-btn{border:none; background:var(--teal); color:#fff; font-size:15px; padding:9px 20px; border-radius:999px; cursor:pointer;}
+  .wf-btn:hover{background:#0B7369;}
+  .wf-btn.ghost{background:#fff; color:var(--teal); border:1.5px solid var(--teal);}
+  .wf-btn.ghost:hover{background:var(--teal-soft);}
+  .wf-opts{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;}
+  .wf-opt{border:1.5px solid var(--line); background:#fff; border-radius:10px; padding:7px 16px;
+       font-size:16px; cursor:pointer;}
+  .wf-opt:hover{border-color:var(--coral);}
+  .wf-opt.correct{border-color:var(--green); background:#EAF6EF; color:var(--green); font-weight:700;}
+  .wf-opt.wrong{border-color:var(--red); background:#FCEBEB; color:var(--red);}
+  .wf-fb{margin-top:12px; min-height:24px; font-size:15px; line-height:1.7;}
+  .wf-fb .rule{display:block; margin-top:4px; color:#7A5200; background:#FDF9F3; border-left:3px solid var(--amber);
+       padding:6px 10px; border-radius:0 8px 8px 0;}
+  .wf-tip{font-size:13.5px; color:var(--sub); background:#FDF9F3; border:1px dashed #EAD9AC;
+       border-radius:10px; padding:8px 12px; margin-bottom:14px; line-height:1.7;}
+  .wf-next{margin-top:12px; border:none; background:var(--coral); color:#fff; font-size:15px;
+       padding:9px 20px; border-radius:999px; cursor:pointer; display:none;}
+  .wf-next:hover{background:#D64520;}
+  .wf-done{margin-top:12px; display:none; background:var(--teal-soft); border-radius:12px; padding:12px 16px;
+       font-size:15px; color:#0B5F55; line-height:1.7;}
+  @media(max-width:640px){ .wf-sent{font-size:17px;} .wf-blank{min-width:96px;font-size:16px;} }
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -393,6 +428,7 @@
     <a href="#quiz">⑥ 小测</a>
     <a href="#cloze">⑦ 填空</a>
     <a href="#sentcloze">⑧ 句填</a>
+    <a href="#wordform">⑨ 词形变换</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -609,6 +645,33 @@
         <div class="pw"><span data-w="air">air</span><span data-w="airport">airport</span></div>
         <div class="ps">空气 + 港口 → 机场</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= 词形变换练习 ================= -->
+  <section class="block" id="wordform">
+    <div class="sec-head">
+      <div class="no" style="background:var(--teal);">✎</div>
+      <h2>词形变换练习 · 复合名词</h2>
+      <p>两个词合在一起 → 一个新词</p>
+      <span class="count-badge" id="wfBadge">6 题</span>
+    </div>
+    <div class="wf-box">
+      <div class="wf-tip">把两个词“拼”成一个新词。多数连写（space+ship→spaceship），少数分写（space+station→space station）。记住课本里的固定写法。</div>
+      <div class="wf-top">
+        <span class="wf-progress" id="wfProgress">第 1 / 6 题</span>
+        <span class="q-score" id="wfScore" style="margin-left:auto;">得分：0</span>
+      </div>
+      <div class="wf-sent" id="wfSent"></div>
+      <div class="wf-hintline" id="wfHint"></div>
+      <div class="wf-actions">
+        <button class="wf-btn" id="wfCheck" type="button">提交答案</button>
+        <button class="wf-btn ghost" id="wfHintBtn" type="button">💡 看选项提示</button>
+        <button class="wf-next" id="wfNext" type="button">下一题 →</button>
+      </div>
+      <div class="wf-opts" id="wfOpts"></div>
+      <div class="wf-fb" id="wfFb"></div>
+      <div class="wf-done" id="wfDone"></div>
     </div>
   </section>
 
@@ -1820,6 +1883,101 @@
     }
   })();
 
+
+  /* ========== 词形变换练习 ========== */
+  var WF_ITEMS = [{"s":"Astronauts travel to space in a ____ (space + ship).","a":"spaceship","h":"space + ship","z":"宇航员乘宇宙飞船去太空。","r":"space + ship = spaceship（宇宙飞船，连写）","o":["spaceship","spacesuit","space station","airport"]},{"s":"An astronaut wears a ____ (space + suit).","a":"spacesuit","h":"space + suit","z":"宇航员穿着航天服。","r":"space + suit = spacesuit（航天服，连写）","o":["spacesuit","spaceship","moonlight","starfish"]},{"s":"They live and work in a ____ (space + station).","a":"space station","h":"space + station","z":"他们在空间站里生活和工作。","r":"space + station = space station（空间站，分写）","o":["space station","spaceship","spacesuit","airport"]},{"s":"The ____ (moon + light) is bright tonight.","a":"moonlight","h":"moon + light","z":"今晚的月光很明亮。","r":"moon + light = moonlight（月光，连写）","o":["moonlight","starfish","spacesuit","airport"]},{"s":"A ____ (star + fish) lives in the sea.","a":"starfish","h":"star + fish","z":"海星生活在海里。","r":"star + fish = starfish（海星，连写）","o":["starfish","moonlight","spaceship","spacesuit"]},{"s":"We take a plane at the ____ (air + port).","a":"airport","h":"air + port","z":"我们在机场坐飞机。","r":"air + port = airport（机场，连写）","o":["airport","spaceship","starfish","moonlight"]}];
+  var WF_META = {"title":"复合名词","suffix":"两个词合在一起 → 一个新词","tip":"把两个词“拼”成一个新词。多数连写（space+ship→spaceship），少数分写（space+station→space station）。记住课本里的固定写法。"};
+  var wfIdx=0, wfScore=0, wfAnswered=false, wfCur=null;
+  var wfSent=document.getElementById('wfSent'), wfHint=document.getElementById('wfHint'),
+      wfFb=document.getElementById('wfFb'), wfOpts=document.getElementById('wfOpts'),
+      wfNext=document.getElementById('wfNext'), wfDone=document.getElementById('wfDone'),
+      wfProg=document.getElementById('wfProgress'), wfScoreEl=document.getElementById('wfScore');
+  function wfNorm(x){ return String(x||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
+  function wfSentHtml(s){ return esc(s).replace('____',''); }
+  function wfLoad(){
+    if(!wfSent) return;
+    wfAnswered=false; wfCur=WF_ITEMS[wfIdx];
+    wfProg.textContent='第 '+(wfIdx+1)+' / '+WF_ITEMS.length+' 题';
+    wfFb.innerHTML=''; wfOpts.innerHTML=''; wfNext.style.display='none'; wfDone.style.display='none';
+    wfHint.innerHTML='提示词：<b>'+esc(wfCur.h)+'</b>';
+    /* 句子：把 ____ 换成输入框，括号提示词保留 */
+    var parts=wfCur.s.split('____');
+    wfSent.innerHTML='';
+    wfSent.appendChild(document.createTextNode(parts[0]));
+    var inp=document.createElement('input'); inp.className='wf-blank'; inp.type='text';
+    inp.id='wfInput'; inp.autocomplete='off'; inp.setAttribute('aria-label','填入单词的正确形式');
+    wfSent.appendChild(inp);
+    wfSent.appendChild(document.createTextNode(parts.slice(1).join('____')));
+    var lb=document.createElement('button'); lb.className='clz-listen'; lb.type='button';
+    lb.title='朗读提示词'; lb.setAttribute('aria-label','朗读提示词'); lb.innerHTML=SPK;
+    lb.style.marginLeft='8px';
+    lb.addEventListener('click',function(){ speak(wfCur.h.replace(/\+/g,' plus'),0.8); });
+    wfSent.appendChild(lb);
+    inp.addEventListener('keydown',function(e){ if(e.key==='Enter') wfCheck(); });
+    inp.focus();
+  }
+  function wfCheck(){
+    if(wfAnswered) return;
+    var inp=document.getElementById('wfInput'); if(!inp) return;
+    var val=inp.value;
+    if(!wfNorm(val)){ wfFb.innerHTML='请先填入答案，或点“看选项提示”。'; wfFb.style.color='var(--sub)'; inp.focus(); return; }
+    wfAnswered=true;
+    var ok=wfNorm(val)===wfNorm(wfCur.a);
+    if(ok) wfScore++;
+    wfScoreEl.textContent='得分：'+wfScore;
+    /* 选项反馈：显示4项并标记 */
+    wfOpts.innerHTML='';
+    shuffle(wfCur.o).forEach(function(o){
+      var b=document.createElement('button'); b.className='wf-opt'; b.type='button'; b.textContent=o;
+      var isAns=wfNorm(o)===wfNorm(wfCur.a);
+      if(isAns) b.classList.add('correct');
+      else if(!ok && wfNorm(o)===wfNorm(val)) b.classList.add('wrong');
+      b.addEventListener('click',function(){ speak(o,0.8); });
+      wfOpts.appendChild(b);
+    });
+    if(ok){
+      wfFb.innerHTML='✅ 答对了！<b>'+esc(wfCur.a)+'</b> — '+esc(wfCur.z)+
+        '<span class="rule">💡 '+esc(wfCur.r)+'</span>';
+      wfFb.style.color='var(--green)';
+    }else{
+      wfFb.innerHTML='❌ 正确答案：<b>'+esc(wfCur.a)+'</b> — '+esc(wfCur.z)+
+        '<span class="rule">💡 '+esc(wfCur.r)+'</span>';
+      wfFb.style.color='var(--red)';
+    }
+    wfNext.style.display='inline-block';
+    /* 朗读完整句 */
+    setTimeout(function(){ speak(wfCur.s.replace('____',wfCur.a).replace(/\([^)]*\)/g,'')); },500);
+    if(wfIdx>=WF_ITEMS.length-1){
+      wfNext.textContent='再来一轮'; wfDone.style.display='block';
+      wfDone.textContent='完成！共 '+WF_ITEMS.length+' 题，答对 '+wfScore+' 题。'+
+        (wfScore===WF_ITEMS.length?' 太棒了，全部正确！':(wfScore>=WF_ITEMS.length*0.6?' 很好，继续加油！':' 建议回到词缀拓展再看看变形规则。'));
+    } else wfNext.textContent='下一题 →';
+  }
+  function wfShowOpts(){
+    if(wfAnswered) return;
+    wfOpts.innerHTML='';
+    var lb=document.createElement('span'); lb.style.cssText='font-size:13px;color:var(--sub);margin-right:4px;';
+    lb.textContent='选一个填入：'; wfOpts.appendChild(lb);
+    shuffle(wfCur.o).forEach(function(o){
+      var b=document.createElement('button'); b.className='wf-opt'; b.type='button'; b.textContent=o;
+      b.addEventListener('click',function(){
+        if(wfAnswered) return;
+        var inp=document.getElementById('wfInput'); if(inp){ inp.value=o; }
+        wfOpts.innerHTML=''; wfCheck();
+      });
+      wfOpts.appendChild(b);
+    });
+  }
+  var wfCheckBtn=document.getElementById('wfCheck'), wfHintBtn=document.getElementById('wfHintBtn');
+  if(wfCheckBtn) wfCheckBtn.addEventListener('click',wfCheck);
+  if(wfHintBtn) wfHintBtn.addEventListener('click',wfShowOpts);
+  if(wfNext) wfNext.addEventListener('click',function(){
+    if(wfIdx>=WF_ITEMS.length-1){ wfIdx=0; wfScore=0; wfScoreEl.textContent='得分：0'; }
+    else wfIdx++;
+    wfLoad();
+  });
+  wfLoad();
+  
 })();
 </script>
 

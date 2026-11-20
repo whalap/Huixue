@@ -331,6 +331,12 @@
   .fm-ph .ph-line{cursor:pointer;}
   .fm-ph .ph-line:hover{color:var(--teal);}
   .fm-ph .ph-line em{font-style:normal; color:var(--sub); margin-left:6px;}
+  .fm-ph .ph-ex{font-size:12px; line-height:1.6; color:#5A6E68; margin:1px 0 5px 1px; padding-left:9px; border-left:2px solid var(--line);}
+  .fm-ph .ph-ex-en{cursor:pointer;}
+  .fm-ph .ph-ex-en:hover{color:var(--teal);}
+  .fm-ph .ph-ex-spk{width:14px; height:14px; vertical-align:-2px; margin-left:3px;}
+  .fm-ph .ph-ex-spk svg{width:12px; height:12px;}
+  .fm-ph .ph-ex-zh{display:block; color:var(--sub); font-size:11.5px;}
   .fm-sent{margin-top:8px; font-size:14px; line-height:1.7; border-left:3px solid var(--amber); padding-left:10px;}
   .fm-sent .en{cursor:pointer; color:var(--ink);}
   .fm-sent .en:hover{color:var(--teal);}
@@ -373,6 +379,16 @@
   .fq-fb{margin-top:12px; min-height:24px; font-size:15px; line-height:1.7;}
   .fq-done{margin-top:12px; display:none; background:var(--teal-soft); border-radius:12px; padding:12px 16px; font-size:15px; color:#0B5F55; line-height:1.7;}
   @media(max-width:640px){ .fm-card{flex:1 1 100%;} .fq-sent{font-size:16px;} .fq-blank{min-width:90px;font-size:15px;} }
+
+
+  /* ===== 导航 tab 分组切换 ===== */
+  nav.secnav{position:sticky; top:52px; z-index:40; background:var(--bg,#FFF9F0); padding:8px 0 10px; margin-bottom:6px;}
+  nav.secnav a{transition:background .15s, color .15s;}
+  nav.secnav a.tab-active{background:var(--teal) !important; color:#fff !important; font-weight:700; box-shadow:0 2px 8px rgba(11,110,99,.25);}
+  body.tab-ready section.block[data-tab-sec]{display:none;}
+  body.tab-ready section.block[data-tab-sec].tab-show{display:block;}
+  .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
+    border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
 </style>
 <script src="../../site-nav.js" defer></script>
@@ -755,7 +771,6 @@
     <div class="fam-title">
       <h3>culture 词族</h3>
       <span class="fam-root-badge">词根 culture · 文化</span>
-      <button class="fm-read" type="button" data-readall="culture">▶ 跟读本词族</button>
     </div>
     <div class="fam-tip">culture 是名词（文化）。加后缀 -al（「…的」）→ 形容词 cultural（文化的）：-al 把名词变成形容词；再加 -ly → 副词 culturally（文化上）。规律：名词 + -al → 形容词，形容词 + -ly → 副词。</div>
     <div class="fm-row"><div class="fm-card">
@@ -767,7 +782,7 @@
         <span class="fm-role">词根</span>
       </div>
       <div class="fm-zh">文化</div>
-      <div class="fm-ph"><div class="ph-line" data-say="Chinese culture">Chinese culture<em>中国文化</em></div><div class="ph-line" data-say="local culture">local culture<em>当地文化</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="Chinese culture">Chinese culture<em>中国文化</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Chinese culture has a long history.">Chinese culture has a long history.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Chinese culture has a long history." aria-label="朗读例句"></button><span class="ph-ex-zh">中国文化历史悠久。</span></div><div class="ph-line" data-say="local culture">local culture<em>当地文化</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="We enjoyed the local culture in Yunnan.">We enjoyed the local culture in Yunnan.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="We enjoyed the local culture in Yunnan." aria-label="朗读例句"></button><span class="ph-ex-zh">我们在云南领略了当地文化。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="We learn about Chinese culture.">We learn about Chinese culture.</span>
         <button class="clz-listen fam-speak" type="button" data-say="We learn about Chinese culture." aria-label="朗读例句"></button>
@@ -783,7 +798,7 @@
         <span class="fm-role">culture + -al</span>
       </div>
       <div class="fm-zh">文化的</div>
-      <div class="fm-ph"><div class="ph-line" data-say="cultural differences">cultural differences<em>文化差异</em></div><div class="ph-line" data-say="cultural heritage">cultural heritage<em>文化遗产</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="cultural differences">cultural differences<em>文化差异</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Cultural differences can be interesting.">Cultural differences can be interesting.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Cultural differences can be interesting." aria-label="朗读例句"></button><span class="ph-ex-zh">文化差异可能很有趣。</span></div><div class="ph-line" data-say="cultural heritage">cultural heritage<em>文化遗产</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="The old town is cultural heritage.">The old town is cultural heritage.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="The old town is cultural heritage." aria-label="朗读例句"></button><span class="ph-ex-zh">这座古镇是文化遗产。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="There are cultural differences between countries.">There are cultural differences between countries.</span>
         <button class="clz-listen fam-speak" type="button" data-say="There are cultural differences between countries." aria-label="朗读例句"></button>
@@ -799,7 +814,7 @@
         <span class="fm-role">cultural + -ly</span>
       </div>
       <div class="fm-zh">文化上地</div>
-      <div class="fm-ph"><div class="ph-line" data-say="culturally different">culturally different<em>文化上不同</em></div><div class="ph-line" data-say="culturally rich">culturally rich<em>文化丰富</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="culturally different">culturally different<em>文化上不同</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="They are culturally different from us.">They are culturally different from us.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="They are culturally different from us." aria-label="朗读例句"></button><span class="ph-ex-zh">他们在文化上与我们不同。</span></div><div class="ph-line" data-say="culturally rich">culturally rich<em>文化丰富</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Xi'an is a culturally rich city.">Xi'an is a culturally rich city.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Xi'an is a culturally rich city." aria-label="朗读例句"></button><span class="ph-ex-zh">西安是一座文化丰富的城市。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="The two cities are culturally different.">The two cities are culturally different.</span>
         <button class="clz-listen fam-speak" type="button" data-say="The two cities are culturally different." aria-label="朗读例句"></button>
@@ -2110,27 +2125,6 @@
       var t=e.target.closest('[data-say]'); if(!t) return;
       var txt=t.getAttribute('data-say'); if(txt) speak(txt, 0.9);
     });
-    var readBtns=box.querySelectorAll('[data-readall]');
-    for(var i=0;i<readBtns.length;i++){
-      (function(btn){
-        btn.innerHTML=SPK + '<span style="margin-left:4px;">跟读本词族</span>';
-        btn.addEventListener('click', function(){
-          var fam=btn.getAttribute('data-readall');
-          var card=btn.closest('.fam-family'); if(!card) return;
-          var items=card.querySelectorAll('[data-say]');
-          var token=++readAllToken; if(synth) synth.cancel();
-          var k=0;
-          function step(){
-            if(token!==readAllToken) return;
-            if(k>=items.length) return;
-            var el=items[k++];
-            speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
-            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
-          }
-          step();
-        });
-      })(readBtns[i]);
-    }
   })();
   function fqNorm(x){ return String(x||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
   function fqLoad(){
@@ -2211,6 +2205,70 @@
     fqLoad();
   });
   fqLoad();
+  
+
+  /* ========== 导航 tab 分组切换 ========== */
+  window.__SECTABS = true;
+  (function(){
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var nav = document.querySelector('nav.secnav');
+    if(!nav) return;
+    var links = nav.querySelectorAll('a[href^="#"]');
+    /* 给 section 打标记 */
+    ALL.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.setAttribute('data-tab-sec', id);
+    });
+    document.body.classList.add('tab-ready');
+    /* 顶部提示条（一次） */
+    if(!document.querySelector('.tab-hint')){
+      var hint = document.createElement('div');
+      hint.className = 'tab-hint';
+      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      nav.parentNode.insertBefore(hint, nav.nextSibling);
+    }
+    function showByHash(hash, doScroll){
+      var group = null;
+      for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===hash){ group=MAP[i]; break; } }
+      if(!group) group = MAP[0];
+      /* 高亮导航 */
+      for(var j=0;j<links.length;j++){
+        links[j].classList.toggle('tab-active', links[j].getAttribute('href')===group[0]);
+      }
+      /* 显示目标 section */
+      ALL.forEach(function(id){
+        var el = document.getElementById(id); if(!el) return;
+        el.classList.toggle('tab-show', group[1].indexOf(id)>=0);
+      });
+      if(doScroll){ window.scrollTo(0,0); }
+    }
+    /* 绑定导航点击 */
+    for(var k=0;k<links.length;k++){
+      (function(a){
+        a.addEventListener('click', function(e){
+          var href = a.getAttribute('href');
+          var isTab = false;
+          for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===href){ isTab=true; break; } }
+          if(!isTab) return; /* 非 tab 导航（如底部跳转）走默认 */
+          e.preventDefault();
+          showByHash(href, true);
+          if(history.replaceState) history.replaceState(null, '', href);
+        });
+      })(links[k]);
+    }
+    /* 带 hash 打开：初始化到对应 tab */
+    var initHash = location.hash;
+    var valid = false;
+    for(var m=0;m<MAP.length;m++){ if(MAP[m][0]===initHash){ valid=true; break; } }
+    showByHash(valid ? initHash : MAP[0][0], false);
+    /* hash 变化（外部链接/前进后退）也跟随 */
+    window.addEventListener('hashchange', function(){
+      var h = location.hash, ok=false;
+      for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===h){ ok=true; break; } }
+      if(ok) showByHash(h, true);
+    });
+  })();
   
 })();
 </script>

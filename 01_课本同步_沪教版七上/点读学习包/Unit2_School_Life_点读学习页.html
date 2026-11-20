@@ -331,6 +331,12 @@
   .fm-ph .ph-line{cursor:pointer;}
   .fm-ph .ph-line:hover{color:var(--teal);}
   .fm-ph .ph-line em{font-style:normal; color:var(--sub); margin-left:6px;}
+  .fm-ph .ph-ex{font-size:12px; line-height:1.6; color:#5A6E68; margin:1px 0 5px 1px; padding-left:9px; border-left:2px solid var(--line);}
+  .fm-ph .ph-ex-en{cursor:pointer;}
+  .fm-ph .ph-ex-en:hover{color:var(--teal);}
+  .fm-ph .ph-ex-spk{width:14px; height:14px; vertical-align:-2px; margin-left:3px;}
+  .fm-ph .ph-ex-spk svg{width:12px; height:12px;}
+  .fm-ph .ph-ex-zh{display:block; color:var(--sub); font-size:11.5px;}
   .fm-sent{margin-top:8px; font-size:14px; line-height:1.7; border-left:3px solid var(--amber); padding-left:10px;}
   .fm-sent .en{cursor:pointer; color:var(--ink);}
   .fm-sent .en:hover{color:var(--teal);}
@@ -373,6 +379,16 @@
   .fq-fb{margin-top:12px; min-height:24px; font-size:15px; line-height:1.7;}
   .fq-done{margin-top:12px; display:none; background:var(--teal-soft); border-radius:12px; padding:12px 16px; font-size:15px; color:#0B5F55; line-height:1.7;}
   @media(max-width:640px){ .fm-card{flex:1 1 100%;} .fq-sent{font-size:16px;} .fq-blank{min-width:90px;font-size:15px;} }
+
+
+  /* ===== 导航 tab 分组切换 ===== */
+  nav.secnav{position:sticky; top:52px; z-index:40; background:var(--bg,#FFF9F0); padding:8px 0 10px; margin-bottom:6px;}
+  nav.secnav a{transition:background .15s, color .15s;}
+  nav.secnav a.tab-active{background:var(--teal) !important; color:#fff !important; font-weight:700; box-shadow:0 2px 8px rgba(11,110,99,.25);}
+  body.tab-ready section.block[data-tab-sec]{display:none;}
+  body.tab-ready section.block[data-tab-sec].tab-show{display:block;}
+  .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
+    border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
 </style>
 <script src="../../site-nav.js" defer></script>
@@ -752,7 +768,6 @@
     <div class="fam-title">
       <h3>success 词族</h3>
       <span class="fam-root-badge">词根 success · 成功</span>
-      <button class="fm-read" type="button" data-readall="success">▶ 跟读本词族</button>
     </div>
     <div class="fam-tip">success 是名词（成功）；succeed 是动词（成功），这是名词变动词的特殊变化。名词加后缀 -ful（「充满…的」）→ 形容词 successful（成功的），再加 -ly → 副词 successfully（成功地）。看词尾认词性：-ful 多为形容词，-ly 多为副词。一个家族，四种词性。</div>
     <div class="fm-row"><div class="fm-card">
@@ -764,7 +779,7 @@
         <span class="fm-role">词根</span>
       </div>
       <div class="fm-zh">成功</div>
-      <div class="fm-ph"><div class="ph-line" data-say="wish you success">wish you success<em>祝你成功</em></div><div class="ph-line" data-say="a great success">a great success<em>巨大的成功</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="wish you success">wish you success<em>祝你成功</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="We wish you success in the competition.">We wish you success in the competition.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="We wish you success in the competition." aria-label="朗读例句"></button><span class="ph-ex-zh">我们祝你在比赛中成功。</span></div><div class="ph-line" data-say="a great success">a great success<em>巨大的成功</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="The school show was a great success.">The school show was a great success.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="The school show was a great success." aria-label="朗读例句"></button><span class="ph-ex-zh">学校的演出非常成功。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="Hard work leads to success.">Hard work leads to success.</span>
         <button class="clz-listen fam-speak" type="button" data-say="Hard work leads to success." aria-label="朗读例句"></button>
@@ -780,7 +795,7 @@
         <span class="fm-role">success → succeed</span>
       </div>
       <div class="fm-zh">成功；达到目的</div>
-      <div class="fm-ph"><div class="ph-line" data-say="succeed in doing">succeed in doing<em>成功做成</em></div><div class="ph-line" data-say="succeed at school">succeed at school<em>学业有成</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="succeed in doing">succeed in doing<em>成功做成</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="They succeeded in climbing the mountain.">They succeeded in climbing the mountain.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="They succeeded in climbing the mountain." aria-label="朗读例句"></button><span class="ph-ex-zh">他们成功登上了山顶。</span></div><div class="ph-line" data-say="succeed at school">succeed at school<em>学业有成</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="She wants to succeed at school.">She wants to succeed at school.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="She wants to succeed at school." aria-label="朗读例句"></button><span class="ph-ex-zh">她想在学校取得好成绩。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="If you try, you will succeed.">If you try, you will succeed.</span>
         <button class="clz-listen fam-speak" type="button" data-say="If you try, you will succeed." aria-label="朗读例句"></button>
@@ -796,7 +811,7 @@
         <span class="fm-role">success + -ful</span>
       </div>
       <div class="fm-zh">成功的</div>
-      <div class="fm-ph"><div class="ph-line" data-say="a successful person">a successful person<em>成功的人</em></div><div class="ph-line" data-say="be successful in">be successful in<em>在……上成功</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="a successful person">a successful person<em>成功的人</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="My uncle is a successful person.">My uncle is a successful person.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="My uncle is a successful person." aria-label="朗读例句"></button><span class="ph-ex-zh">我叔叔是一位成功人士。</span></div><div class="ph-line" data-say="be successful in">be successful in<em>在……上成功</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="She is successful in her studies.">She is successful in her studies.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="She is successful in her studies." aria-label="朗读例句"></button><span class="ph-ex-zh">她在学业上很成功。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="She is a successful writer.">She is a successful writer.</span>
         <button class="clz-listen fam-speak" type="button" data-say="She is a successful writer." aria-label="朗读例句"></button>
@@ -812,7 +827,7 @@
         <span class="fm-role">successful + -ly</span>
       </div>
       <div class="fm-zh">成功地</div>
-      <div class="fm-ph"><div class="ph-line" data-say="finish successfully">finish successfully<em>成功完成</em></div><div class="ph-line" data-say="work successfully">work successfully<em>成功地工作</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="finish successfully">finish successfully<em>成功完成</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="The team finished the task successfully.">The team finished the task successfully.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="The team finished the task successfully." aria-label="朗读例句"></button><span class="ph-ex-zh">团队成功完成了任务。</span></div><div class="ph-line" data-say="work successfully">work successfully<em>成功地工作</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="The machine works successfully now.">The machine works successfully now.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="The machine works successfully now." aria-label="朗读例句"></button><span class="ph-ex-zh">这台机器现在能成功运作了。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="We finished the project successfully.">We finished the project successfully.</span>
         <button class="clz-listen fam-speak" type="button" data-say="We finished the project successfully." aria-label="朗读例句"></button>
@@ -2096,27 +2111,6 @@
       var t=e.target.closest('[data-say]'); if(!t) return;
       var txt=t.getAttribute('data-say'); if(txt) speak(txt, 0.9);
     });
-    var readBtns=box.querySelectorAll('[data-readall]');
-    for(var i=0;i<readBtns.length;i++){
-      (function(btn){
-        btn.innerHTML=SPK + '<span style="margin-left:4px;">跟读本词族</span>';
-        btn.addEventListener('click', function(){
-          var fam=btn.getAttribute('data-readall');
-          var card=btn.closest('.fam-family'); if(!card) return;
-          var items=card.querySelectorAll('[data-say]');
-          var token=++readAllToken; if(synth) synth.cancel();
-          var k=0;
-          function step(){
-            if(token!==readAllToken) return;
-            if(k>=items.length) return;
-            var el=items[k++];
-            speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
-            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
-          }
-          step();
-        });
-      })(readBtns[i]);
-    }
   })();
   function fqNorm(x){ return String(x||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
   function fqLoad(){
@@ -2197,6 +2191,70 @@
     fqLoad();
   });
   fqLoad();
+  
+
+  /* ========== 导航 tab 分组切换 ========== */
+  window.__SECTABS = true;
+  (function(){
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var nav = document.querySelector('nav.secnav');
+    if(!nav) return;
+    var links = nav.querySelectorAll('a[href^="#"]');
+    /* 给 section 打标记 */
+    ALL.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.setAttribute('data-tab-sec', id);
+    });
+    document.body.classList.add('tab-ready');
+    /* 顶部提示条（一次） */
+    if(!document.querySelector('.tab-hint')){
+      var hint = document.createElement('div');
+      hint.className = 'tab-hint';
+      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      nav.parentNode.insertBefore(hint, nav.nextSibling);
+    }
+    function showByHash(hash, doScroll){
+      var group = null;
+      for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===hash){ group=MAP[i]; break; } }
+      if(!group) group = MAP[0];
+      /* 高亮导航 */
+      for(var j=0;j<links.length;j++){
+        links[j].classList.toggle('tab-active', links[j].getAttribute('href')===group[0]);
+      }
+      /* 显示目标 section */
+      ALL.forEach(function(id){
+        var el = document.getElementById(id); if(!el) return;
+        el.classList.toggle('tab-show', group[1].indexOf(id)>=0);
+      });
+      if(doScroll){ window.scrollTo(0,0); }
+    }
+    /* 绑定导航点击 */
+    for(var k=0;k<links.length;k++){
+      (function(a){
+        a.addEventListener('click', function(e){
+          var href = a.getAttribute('href');
+          var isTab = false;
+          for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===href){ isTab=true; break; } }
+          if(!isTab) return; /* 非 tab 导航（如底部跳转）走默认 */
+          e.preventDefault();
+          showByHash(href, true);
+          if(history.replaceState) history.replaceState(null, '', href);
+        });
+      })(links[k]);
+    }
+    /* 带 hash 打开：初始化到对应 tab */
+    var initHash = location.hash;
+    var valid = false;
+    for(var m=0;m<MAP.length;m++){ if(MAP[m][0]===initHash){ valid=true; break; } }
+    showByHash(valid ? initHash : MAP[0][0], false);
+    /* hash 变化（外部链接/前进后退）也跟随 */
+    window.addEventListener('hashchange', function(){
+      var h = location.hash, ok=false;
+      for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===h){ ok=true; break; } }
+      if(ok) showByHash(h, true);
+    });
+  })();
   
 })();
 </script>

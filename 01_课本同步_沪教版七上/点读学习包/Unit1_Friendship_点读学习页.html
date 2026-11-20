@@ -331,6 +331,12 @@
   .fm-ph .ph-line{cursor:pointer;}
   .fm-ph .ph-line:hover{color:var(--teal);}
   .fm-ph .ph-line em{font-style:normal; color:var(--sub); margin-left:6px;}
+  .fm-ph .ph-ex{font-size:12px; line-height:1.6; color:#5A6E68; margin:1px 0 5px 1px; padding-left:9px; border-left:2px solid var(--line);}
+  .fm-ph .ph-ex-en{cursor:pointer;}
+  .fm-ph .ph-ex-en:hover{color:var(--teal);}
+  .fm-ph .ph-ex-spk{width:14px; height:14px; vertical-align:-2px; margin-left:3px;}
+  .fm-ph .ph-ex-spk svg{width:12px; height:12px;}
+  .fm-ph .ph-ex-zh{display:block; color:var(--sub); font-size:11.5px;}
   .fm-sent{margin-top:8px; font-size:14px; line-height:1.7; border-left:3px solid var(--amber); padding-left:10px;}
   .fm-sent .en{cursor:pointer; color:var(--ink);}
   .fm-sent .en:hover{color:var(--teal);}
@@ -373,6 +379,16 @@
   .fq-fb{margin-top:12px; min-height:24px; font-size:15px; line-height:1.7;}
   .fq-done{margin-top:12px; display:none; background:var(--teal-soft); border-radius:12px; padding:12px 16px; font-size:15px; color:#0B5F55; line-height:1.7;}
   @media(max-width:640px){ .fm-card{flex:1 1 100%;} .fq-sent{font-size:16px;} .fq-blank{min-width:90px;font-size:15px;} }
+
+
+  /* ===== 导航 tab 分组切换 ===== */
+  nav.secnav{position:sticky; top:52px; z-index:40; background:var(--bg,#FFF9F0); padding:8px 0 10px; margin-bottom:6px;}
+  nav.secnav a{transition:background .15s, color .15s;}
+  nav.secnav a.tab-active{background:var(--teal) !important; color:#fff !important; font-weight:700; box-shadow:0 2px 8px rgba(11,110,99,.25);}
+  body.tab-ready section.block[data-tab-sec]{display:none;}
+  body.tab-ready section.block[data-tab-sec].tab-show{display:block;}
+  .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
+    border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
 </style>
 <script src="../../site-nav.js" defer></script>
@@ -765,7 +781,6 @@
     <div class="fam-title">
       <h3>friend 词族</h3>
       <span class="fam-root-badge">词根 friend · 朋友</span>
-      <button class="fm-read" type="button" data-readall="friend">▶ 跟读本词族</button>
     </div>
     <div class="fam-tip">friend 是名词（朋友）。加后缀 -ly → 形容词 friendly（友好的）：注意 -ly 通常是副词后缀，但放在名词后能造出形容词；加后缀 -ship → 抽象名词 friendship（友谊）：-ship 表示「关系、身份、状态」；形容词 friendly 再加前缀 un- → unfriendly（不友好的）：un- 表示「不、相反」，放在形容词前构成反义词。记住：后缀主要改变词性，前缀主要改变词义。</div>
     <div class="fm-row"><div class="fm-card">
@@ -777,7 +792,7 @@
         <span class="fm-role">词根</span>
       </div>
       <div class="fm-zh">朋友</div>
-      <div class="fm-ph"><div class="ph-line" data-say="best friend">best friend<em>最好的朋友</em></div><div class="ph-line" data-say="make friends">make friends<em>交朋友</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="best friend">best friend<em>最好的朋友</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Lily is my best friend at school.">Lily is my best friend at school.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Lily is my best friend at school." aria-label="朗读例句"></button><span class="ph-ex-zh">莉莉是我在学校最好的朋友。</span></div><div class="ph-line" data-say="make friends">make friends<em>交朋友</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="It is easy to make friends at a new school.">It is easy to make friends at a new school.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="It is easy to make friends at a new school." aria-label="朗读例句"></button><span class="ph-ex-zh">在新学校交朋友很容易。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="He is my best friend.">He is my best friend.</span>
         <button class="clz-listen fam-speak" type="button" data-say="He is my best friend." aria-label="朗读例句"></button>
@@ -793,7 +808,7 @@
         <span class="fm-role">friend + -ly</span>
       </div>
       <div class="fm-zh">友好的</div>
-      <div class="fm-ph"><div class="ph-line" data-say="be friendly to">be friendly to<em>对……友好</em></div><div class="ph-line" data-say="a friendly smile">a friendly smile<em>友好的微笑</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="be friendly to">be friendly to<em>对……友好</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Our neighbours are friendly to everyone.">Our neighbours are friendly to everyone.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Our neighbours are friendly to everyone." aria-label="朗读例句"></button><span class="ph-ex-zh">我们的邻居对每个人都很友好。</span></div><div class="ph-line" data-say="a friendly smile">a friendly smile<em>友好的微笑</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="The teacher gave me a friendly smile.">The teacher gave me a friendly smile.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="The teacher gave me a friendly smile." aria-label="朗读例句"></button><span class="ph-ex-zh">老师给了我一个友好的微笑。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="Our new classmate is very friendly.">Our new classmate is very friendly.</span>
         <button class="clz-listen fam-speak" type="button" data-say="Our new classmate is very friendly." aria-label="朗读例句"></button>
@@ -809,7 +824,7 @@
         <span class="fm-role">friend + -ship</span>
       </div>
       <div class="fm-zh">友谊</div>
-      <div class="fm-ph"><div class="ph-line" data-say="true friendship">true friendship<em>真正的友谊</em></div><div class="ph-line" data-say="friendship between us">friendship between us<em>我们之间的友谊</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="true friendship">true friendship<em>真正的友谊</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="True friendship does not need many words.">True friendship does not need many words.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="True friendship does not need many words." aria-label="朗读例句"></button><span class="ph-ex-zh">真正的友谊不需要很多话。</span></div><div class="ph-line" data-say="friendship between us">friendship between us<em>我们之间的友谊</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="The friendship between us will last.">The friendship between us will last.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="The friendship between us will last." aria-label="朗读例句"></button><span class="ph-ex-zh">我们之间的友谊会长久。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="True friendship needs trust.">True friendship needs trust.</span>
         <button class="clz-listen fam-speak" type="button" data-say="True friendship needs trust." aria-label="朗读例句"></button>
@@ -825,7 +840,7 @@
         <span class="fm-role">un- + friendly</span>
       </div>
       <div class="fm-zh">不友好的</div>
-      <div class="fm-ph"><div class="ph-line" data-say="be unfriendly to">be unfriendly to<em>对……不友好</em></div><div class="ph-line" data-say="an unfriendly man">an unfriendly man<em>一个不友好的人</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="be unfriendly to">be unfriendly to<em>对……不友好</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Please don't be unfriendly to new students.">Please don't be unfriendly to new students.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Please don't be unfriendly to new students." aria-label="朗读例句"></button><span class="ph-ex-zh">请不要对新同学不友好。</span></div><div class="ph-line" data-say="an unfriendly man">an unfriendly man<em>一个不友好的人</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="The shopkeeper was an unfriendly man.">The shopkeeper was an unfriendly man.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="The shopkeeper was an unfriendly man." aria-label="朗读例句"></button><span class="ph-ex-zh">店主是个不友好的人。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="Don't be unfriendly to others.">Don't be unfriendly to others.</span>
         <button class="clz-listen fam-speak" type="button" data-say="Don't be unfriendly to others." aria-label="朗读例句"></button>
@@ -837,7 +852,6 @@
     <div class="fam-title">
       <h3>care 词族</h3>
       <span class="fam-root-badge">词根 care · 关心（广州版高频）</span>
-      <button class="fm-read" type="button" data-readall="care">▶ 跟读本词族</button>
     </div>
     <div class="fam-tip">care 是名词/动词（关心）。加后缀 -ful（「充满…的」）→ 形容词 careful（小心的），再加后缀 -ly → 副词 carefully（仔细地）：-ly 在这里是典型的副词后缀；care 加后缀 -less（「没有…的」，与 -ful 意思相反）→ 形容词 careless（粗心的），再加 -ly → 副词 carelessly（粗心地）。-ful 与 -less 是一对意思相反的后缀。</div>
     <div class="fm-row"><div class="fm-card">
@@ -849,7 +863,7 @@
         <span class="fm-role">词根</span>
       </div>
       <div class="fm-zh">关心；照顾</div>
-      <div class="fm-ph"><div class="ph-line" data-say="take care of">take care of<em>照顾</em></div><div class="ph-line" data-say="care about">care about<em>关心</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="take care of">take care of<em>照顾</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="My mother takes care of the baby.">My mother takes care of the baby.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="My mother takes care of the baby." aria-label="朗读例句"></button><span class="ph-ex-zh">我妈妈照顾这个婴儿。</span></div><div class="ph-line" data-say="care about">care about<em>关心</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Good friends care about each other.">Good friends care about each other.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Good friends care about each other." aria-label="朗读例句"></button><span class="ph-ex-zh">好朋友互相关心。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="We should care about our friends.">We should care about our friends.</span>
         <button class="clz-listen fam-speak" type="button" data-say="We should care about our friends." aria-label="朗读例句"></button>
@@ -865,7 +879,7 @@
         <span class="fm-role">care + -ful</span>
       </div>
       <div class="fm-zh">小心的</div>
-      <div class="fm-ph"><div class="ph-line" data-say="be careful">be careful<em>小心</em></div><div class="ph-line" data-say="a careful student">a careful student<em>细心的学生</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="be careful">be careful<em>小心</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Be careful with the hot water.">Be careful with the hot water.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Be careful with the hot water." aria-label="朗读例句"></button><span class="ph-ex-zh">小心热水。</span></div><div class="ph-line" data-say="a careful student">a careful student<em>细心的学生</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Tom is a careful student in class.">Tom is a careful student in class.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Tom is a careful student in class." aria-label="朗读例句"></button><span class="ph-ex-zh">汤姆是课上细心的学生。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="Be careful when you cross the road.">Be careful when you cross the road.</span>
         <button class="clz-listen fam-speak" type="button" data-say="Be careful when you cross the road." aria-label="朗读例句"></button>
@@ -881,7 +895,7 @@
         <span class="fm-role">careful + -ly</span>
       </div>
       <div class="fm-zh">仔细地</div>
-      <div class="fm-ph"><div class="ph-line" data-say="listen carefully">listen carefully<em>认真听</em></div><div class="ph-line" data-say="work carefully">work carefully<em>仔细地做</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="listen carefully">listen carefully<em>认真听</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="We listen carefully to the teacher.">We listen carefully to the teacher.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="We listen carefully to the teacher." aria-label="朗读例句"></button><span class="ph-ex-zh">我们认真听老师讲课。</span></div><div class="ph-line" data-say="work carefully">work carefully<em>仔细地做</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="She works carefully on her project.">She works carefully on her project.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="She works carefully on her project." aria-label="朗读例句"></button><span class="ph-ex-zh">她认真地做她的课题。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="She is careful, so she does her homework carefully.">She is careful, so she does her homework carefully.</span>
         <button class="clz-listen fam-speak" type="button" data-say="She is careful, so she does her homework carefully." aria-label="朗读例句"></button>
@@ -897,7 +911,7 @@
         <span class="fm-role">care + -less</span>
       </div>
       <div class="fm-zh">粗心的</div>
-      <div class="fm-ph"><div class="ph-line" data-say="a careless mistake">a careless mistake<em>粗心的错误</em></div><div class="ph-line" data-say="be careless">be careless<em>粗心</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="a careless mistake">a careless mistake<em>粗心的错误</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="He made a careless mistake in the test.">He made a careless mistake in the test.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="He made a careless mistake in the test." aria-label="朗读例句"></button><span class="ph-ex-zh">他在测验中犯了个粗心的错误。</span></div><div class="ph-line" data-say="be careless">be careless<em>粗心</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Don't be careless with your keys.">Don't be careless with your keys.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Don't be careless with your keys." aria-label="朗读例句"></button><span class="ph-ex-zh">别对你的钥匙粗心大意。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="A careless mistake cost him the game.">A careless mistake cost him the game.</span>
         <button class="clz-listen fam-speak" type="button" data-say="A careless mistake cost him the game." aria-label="朗读例句"></button>
@@ -913,7 +927,7 @@
         <span class="fm-role">careless + -ly</span>
       </div>
       <div class="fm-zh">粗心地</div>
-      <div class="fm-ph"><div class="ph-line" data-say="do homework carelessly">do homework carelessly<em>粗心地做作业</em></div><div class="ph-line" data-say="work carelessly">work carelessly<em>粗心地工作</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="do homework carelessly">do homework carelessly<em>粗心地做作业</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="He does his homework carelessly at night.">He does his homework carelessly at night.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="He does his homework carelessly at night." aria-label="朗读例句"></button><span class="ph-ex-zh">他晚上做作业很马虎。</span></div><div class="ph-line" data-say="work carelessly">work carelessly<em>粗心地工作</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Working carelessly can cause accidents.">Working carelessly can cause accidents.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Working carelessly can cause accidents." aria-label="朗读例句"></button><span class="ph-ex-zh">粗心工作可能引发事故。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="She is careless, so she does her homework carelessly.">She is careless, so she does her homework carelessly.</span>
         <button class="clz-listen fam-speak" type="button" data-say="She is careless, so she does her homework carelessly." aria-label="朗读例句"></button>
@@ -2135,27 +2149,6 @@
       var t=e.target.closest('[data-say]'); if(!t) return;
       var txt=t.getAttribute('data-say'); if(txt) speak(txt, 0.9);
     });
-    var readBtns=box.querySelectorAll('[data-readall]');
-    for(var i=0;i<readBtns.length;i++){
-      (function(btn){
-        btn.innerHTML=SPK + '<span style="margin-left:4px;">跟读本词族</span>';
-        btn.addEventListener('click', function(){
-          var fam=btn.getAttribute('data-readall');
-          var card=btn.closest('.fam-family'); if(!card) return;
-          var items=card.querySelectorAll('[data-say]');
-          var token=++readAllToken; if(synth) synth.cancel();
-          var k=0;
-          function step(){
-            if(token!==readAllToken) return;
-            if(k>=items.length) return;
-            var el=items[k++];
-            speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
-            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
-          }
-          step();
-        });
-      })(readBtns[i]);
-    }
   })();
   function fqNorm(x){ return String(x||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
   function fqLoad(){
@@ -2236,6 +2229,70 @@
     fqLoad();
   });
   fqLoad();
+  
+
+  /* ========== 导航 tab 分组切换 ========== */
+  window.__SECTABS = true;
+  (function(){
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var nav = document.querySelector('nav.secnav');
+    if(!nav) return;
+    var links = nav.querySelectorAll('a[href^="#"]');
+    /* 给 section 打标记 */
+    ALL.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.setAttribute('data-tab-sec', id);
+    });
+    document.body.classList.add('tab-ready');
+    /* 顶部提示条（一次） */
+    if(!document.querySelector('.tab-hint')){
+      var hint = document.createElement('div');
+      hint.className = 'tab-hint';
+      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      nav.parentNode.insertBefore(hint, nav.nextSibling);
+    }
+    function showByHash(hash, doScroll){
+      var group = null;
+      for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===hash){ group=MAP[i]; break; } }
+      if(!group) group = MAP[0];
+      /* 高亮导航 */
+      for(var j=0;j<links.length;j++){
+        links[j].classList.toggle('tab-active', links[j].getAttribute('href')===group[0]);
+      }
+      /* 显示目标 section */
+      ALL.forEach(function(id){
+        var el = document.getElementById(id); if(!el) return;
+        el.classList.toggle('tab-show', group[1].indexOf(id)>=0);
+      });
+      if(doScroll){ window.scrollTo(0,0); }
+    }
+    /* 绑定导航点击 */
+    for(var k=0;k<links.length;k++){
+      (function(a){
+        a.addEventListener('click', function(e){
+          var href = a.getAttribute('href');
+          var isTab = false;
+          for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===href){ isTab=true; break; } }
+          if(!isTab) return; /* 非 tab 导航（如底部跳转）走默认 */
+          e.preventDefault();
+          showByHash(href, true);
+          if(history.replaceState) history.replaceState(null, '', href);
+        });
+      })(links[k]);
+    }
+    /* 带 hash 打开：初始化到对应 tab */
+    var initHash = location.hash;
+    var valid = false;
+    for(var m=0;m<MAP.length;m++){ if(MAP[m][0]===initHash){ valid=true; break; } }
+    showByHash(valid ? initHash : MAP[0][0], false);
+    /* hash 变化（外部链接/前进后退）也跟随 */
+    window.addEventListener('hashchange', function(){
+      var h = location.hash, ok=false;
+      for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===h){ ok=true; break; } }
+      if(ok) showByHash(h, true);
+    });
+  })();
   
 })();
 </script>

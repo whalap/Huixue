@@ -331,6 +331,12 @@
   .fm-ph .ph-line{cursor:pointer;}
   .fm-ph .ph-line:hover{color:var(--teal);}
   .fm-ph .ph-line em{font-style:normal; color:var(--sub); margin-left:6px;}
+  .fm-ph .ph-ex{font-size:12px; line-height:1.6; color:#5A6E68; margin:1px 0 5px 1px; padding-left:9px; border-left:2px solid var(--line);}
+  .fm-ph .ph-ex-en{cursor:pointer;}
+  .fm-ph .ph-ex-en:hover{color:var(--teal);}
+  .fm-ph .ph-ex-spk{width:14px; height:14px; vertical-align:-2px; margin-left:3px;}
+  .fm-ph .ph-ex-spk svg{width:12px; height:12px;}
+  .fm-ph .ph-ex-zh{display:block; color:var(--sub); font-size:11.5px;}
   .fm-sent{margin-top:8px; font-size:14px; line-height:1.7; border-left:3px solid var(--amber); padding-left:10px;}
   .fm-sent .en{cursor:pointer; color:var(--ink);}
   .fm-sent .en:hover{color:var(--teal);}
@@ -373,6 +379,16 @@
   .fq-fb{margin-top:12px; min-height:24px; font-size:15px; line-height:1.7;}
   .fq-done{margin-top:12px; display:none; background:var(--teal-soft); border-radius:12px; padding:12px 16px; font-size:15px; color:#0B5F55; line-height:1.7;}
   @media(max-width:640px){ .fm-card{flex:1 1 100%;} .fq-sent{font-size:16px;} .fq-blank{min-width:90px;font-size:15px;} }
+
+
+  /* ===== 导航 tab 分组切换 ===== */
+  nav.secnav{position:sticky; top:52px; z-index:40; background:var(--bg,#FFF9F0); padding:8px 0 10px; margin-bottom:6px;}
+  nav.secnav a{transition:background .15s, color .15s;}
+  nav.secnav a.tab-active{background:var(--teal) !important; color:#fff !important; font-weight:700; box-shadow:0 2px 8px rgba(11,110,99,.25);}
+  body.tab-ready section.block[data-tab-sec]{display:none;}
+  body.tab-ready section.block[data-tab-sec].tab-show{display:block;}
+  .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
+    border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
 </style>
 <script src="../../site-nav.js" defer></script>
@@ -755,7 +771,6 @@
     <div class="fam-title">
       <h3>protect 词族</h3>
       <span class="fam-root-badge">词根 protect · 保护</span>
-      <button class="fm-read" type="button" data-readall="protect">▶ 跟读本词族</button>
     </div>
     <div class="fam-tip">protect 是动词（保护）。加后缀 -ion（表示「行为、结果」）→ 名词 protection（保护）：-ion 把动词变成名词；加后缀 -ive（「有…性质的」）→ 形容词 protective（保护的）：-ive 把动词变成形容词。规律：-ion 造名词，-ive 造形容词。</div>
     <div class="fm-row"><div class="fm-card">
@@ -767,7 +782,7 @@
         <span class="fm-role">词根</span>
       </div>
       <div class="fm-zh">保护</div>
-      <div class="fm-ph"><div class="ph-line" data-say="protect the earth">protect the earth<em>保护地球</em></div><div class="ph-line" data-say="protect animals">protect animals<em>保护动物</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="protect the earth">protect the earth<em>保护地球</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="We plant trees to protect the earth.">We plant trees to protect the earth.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="We plant trees to protect the earth." aria-label="朗读例句"></button><span class="ph-ex-zh">我们种树来保护地球。</span></div><div class="ph-line" data-say="protect animals">protect animals<em>保护动物</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="We should protect animals in danger.">We should protect animals in danger.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="We should protect animals in danger." aria-label="朗读例句"></button><span class="ph-ex-zh">我们应该保护濒危动物。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="We must protect the earth.">We must protect the earth.</span>
         <button class="clz-listen fam-speak" type="button" data-say="We must protect the earth." aria-label="朗读例句"></button>
@@ -783,7 +798,7 @@
         <span class="fm-role">protect + -ion</span>
       </div>
       <div class="fm-zh">保护</div>
-      <div class="fm-ph"><div class="ph-line" data-say="environmental protection">environmental protection<em>环境保护</em></div><div class="ph-line" data-say="for protection">for protection<em>为了防护</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="environmental protection">environmental protection<em>环境保护</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Environmental protection is important.">Environmental protection is important.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Environmental protection is important." aria-label="朗读例句"></button><span class="ph-ex-zh">环境保护很重要。</span></div><div class="ph-line" data-say="for protection">for protection<em>为了防护</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="The hat is for protection from the sun.">The hat is for protection from the sun.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="The hat is for protection from the sun." aria-label="朗读例句"></button><span class="ph-ex-zh">这顶帽子是用来防晒的。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="The forest needs our protection.">The forest needs our protection.</span>
         <button class="clz-listen fam-speak" type="button" data-say="The forest needs our protection." aria-label="朗读例句"></button>
@@ -799,7 +814,7 @@
         <span class="fm-role">protect + -ive</span>
       </div>
       <div class="fm-zh">保护的；防护的</div>
-      <div class="fm-ph"><div class="ph-line" data-say="protective clothing">protective clothing<em>防护服</em></div><div class="ph-line" data-say="be protective of">be protective of<em>保护……的</em></div></div>
+      <div class="fm-ph"><div class="ph-line" data-say="protective clothing">protective clothing<em>防护服</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="Firefighters wear protective clothing.">Firefighters wear protective clothing.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="Firefighters wear protective clothing." aria-label="朗读例句"></button><span class="ph-ex-zh">消防员穿着防护服。</span></div><div class="ph-line" data-say="be protective of">be protective of<em>保护……的</em></div><div class="ph-ex"><span class="ph-ex-en" data-say="A mother is protective of her children.">A mother is protective of her children.</span><button class="ph-ex-spk clz-listen fam-speak" type="button" data-say="A mother is protective of her children." aria-label="朗读例句"></button><span class="ph-ex-zh">母亲会保护自己的孩子。</span></div></div>
       <div class="fm-sent">
         <span class="en" data-say="Workers wear protective clothing.">Workers wear protective clothing.</span>
         <button class="clz-listen fam-speak" type="button" data-say="Workers wear protective clothing." aria-label="朗读例句"></button>
@@ -2148,27 +2163,6 @@
       var t=e.target.closest('[data-say]'); if(!t) return;
       var txt=t.getAttribute('data-say'); if(txt) speak(txt, 0.9);
     });
-    var readBtns=box.querySelectorAll('[data-readall]');
-    for(var i=0;i<readBtns.length;i++){
-      (function(btn){
-        btn.innerHTML=SPK + '<span style="margin-left:4px;">跟读本词族</span>';
-        btn.addEventListener('click', function(){
-          var fam=btn.getAttribute('data-readall');
-          var card=btn.closest('.fam-family'); if(!card) return;
-          var items=card.querySelectorAll('[data-say]');
-          var token=++readAllToken; if(synth) synth.cancel();
-          var k=0;
-          function step(){
-            if(token!==readAllToken) return;
-            if(k>=items.length) return;
-            var el=items[k++];
-            speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
-            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
-          }
-          step();
-        });
-      })(readBtns[i]);
-    }
   })();
   function fqNorm(x){ return String(x||'').trim().toLowerCase().replace(/[.,!?;:'"]/g,'').replace(/\s+/g,' '); }
   function fqLoad(){
@@ -2249,6 +2243,70 @@
     fqLoad();
   });
   fqLoad();
+  
+
+  /* ========== 导航 tab 分组切换 ========== */
+  window.__SECTABS = true;
+  (function(){
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var nav = document.querySelector('nav.secnav');
+    if(!nav) return;
+    var links = nav.querySelectorAll('a[href^="#"]');
+    /* 给 section 打标记 */
+    ALL.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.setAttribute('data-tab-sec', id);
+    });
+    document.body.classList.add('tab-ready');
+    /* 顶部提示条（一次） */
+    if(!document.querySelector('.tab-hint')){
+      var hint = document.createElement('div');
+      hint.className = 'tab-hint';
+      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      nav.parentNode.insertBefore(hint, nav.nextSibling);
+    }
+    function showByHash(hash, doScroll){
+      var group = null;
+      for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===hash){ group=MAP[i]; break; } }
+      if(!group) group = MAP[0];
+      /* 高亮导航 */
+      for(var j=0;j<links.length;j++){
+        links[j].classList.toggle('tab-active', links[j].getAttribute('href')===group[0]);
+      }
+      /* 显示目标 section */
+      ALL.forEach(function(id){
+        var el = document.getElementById(id); if(!el) return;
+        el.classList.toggle('tab-show', group[1].indexOf(id)>=0);
+      });
+      if(doScroll){ window.scrollTo(0,0); }
+    }
+    /* 绑定导航点击 */
+    for(var k=0;k<links.length;k++){
+      (function(a){
+        a.addEventListener('click', function(e){
+          var href = a.getAttribute('href');
+          var isTab = false;
+          for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===href){ isTab=true; break; } }
+          if(!isTab) return; /* 非 tab 导航（如底部跳转）走默认 */
+          e.preventDefault();
+          showByHash(href, true);
+          if(history.replaceState) history.replaceState(null, '', href);
+        });
+      })(links[k]);
+    }
+    /* 带 hash 打开：初始化到对应 tab */
+    var initHash = location.hash;
+    var valid = false;
+    for(var m=0;m<MAP.length;m++){ if(MAP[m][0]===initHash){ valid=true; break; } }
+    showByHash(valid ? initHash : MAP[0][0], false);
+    /* hash 变化（外部链接/前进后退）也跟随 */
+    window.addEventListener('hashchange', function(){
+      var h = location.hash, ok=false;
+      for(var i=0;i<MAP.length;i++){ if(MAP[i][0]===h){ ok=true; break; } }
+      if(ok) showByHash(h, true);
+    });
+  })();
   
 })();
 </script>

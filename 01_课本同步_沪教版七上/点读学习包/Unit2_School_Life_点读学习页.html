@@ -754,7 +754,7 @@
       <span class="fam-root-badge">词根 success · 成功</span>
       <button class="fm-read" type="button" data-readall="success">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">success（成功，名词）→ succeed（成功，动词）→ successful（成功的，形容词）→ successfully（成功地，副词）。一个家族，四种词性。</div>
+    <div class="fam-tip">success 是名词（成功）；succeed 是动词（成功），这是名词变动词的特殊变化。名词加后缀 -ful（「充满…的」）→ 形容词 successful（成功的），再加 -ly → 副词 successfully（成功地）。看词尾认词性：-ful 多为形容词，-ly 多为副词。一个家族，四种词性。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="success">success</span>
@@ -2111,6 +2111,7 @@
             if(k>=items.length) return;
             var el=items[k++];
             speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
+            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
           }
           step();
         });

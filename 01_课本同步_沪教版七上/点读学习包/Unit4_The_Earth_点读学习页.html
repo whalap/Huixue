@@ -757,7 +757,7 @@
       <span class="fam-root-badge">词根 protect · 保护</span>
       <button class="fm-read" type="button" data-readall="protect">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">protect（保护，动词）加 -ion 变名词 protection（保护），加 -ive 变形容词 protective（保护的）。</div>
+    <div class="fam-tip">protect 是动词（保护）。加后缀 -ion（表示「行为、结果」）→ 名词 protection（保护）：-ion 把动词变成名词；加后缀 -ive（「有…性质的」）→ 形容词 protective（保护的）：-ive 把动词变成形容词。规律：-ion 造名词，-ive 造形容词。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="protect">protect</span>
@@ -2163,6 +2163,7 @@
             if(k>=items.length) return;
             var el=items[k++];
             speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
+            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
           }
           step();
         });

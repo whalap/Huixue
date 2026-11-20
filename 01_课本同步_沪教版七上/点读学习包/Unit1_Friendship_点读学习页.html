@@ -767,7 +767,7 @@
       <span class="fam-root-badge">词根 friend · 朋友</span>
       <button class="fm-read" type="button" data-readall="friend">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">friend（朋友）加 -ly 变形容词 friendly（友好的），加 -ship 变名词 friendship（友谊），加 un- 变反义 unfriendly（不友好的）。</div>
+    <div class="fam-tip">friend 是名词（朋友）。加后缀 -ly → 形容词 friendly（友好的）：注意 -ly 通常是副词后缀，但放在名词后能造出形容词；加后缀 -ship → 抽象名词 friendship（友谊）：-ship 表示「关系、身份、状态」；形容词 friendly 再加前缀 un- → unfriendly（不友好的）：un- 表示「不、相反」，放在形容词前构成反义词。记住：后缀主要改变词性，前缀主要改变词义。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="friend">friend</span>
@@ -839,7 +839,7 @@
       <span class="fam-root-badge">词根 care · 关心（广州版高频）</span>
       <button class="fm-read" type="button" data-readall="care">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">care（关心）加 -ful 变形容词 careful（小心的），再加 -ly 变副词 carefully（仔细地）；加 -less 变反义 careless（粗心的），再加 -ly 变副词 carelessly（粗心地）。同一个词根，两条相反方向的词链。</div>
+    <div class="fam-tip">care 是名词/动词（关心）。加后缀 -ful（「充满…的」）→ 形容词 careful（小心的），再加后缀 -ly → 副词 carefully（仔细地）：-ly 在这里是典型的副词后缀；care 加后缀 -less（「没有…的」，与 -ful 意思相反）→ 形容词 careless（粗心的），再加 -ly → 副词 carelessly（粗心地）。-ful 与 -less 是一对意思相反的后缀。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="care">care</span>
@@ -2150,6 +2150,7 @@
             if(k>=items.length) return;
             var el=items[k++];
             speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
+            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
           }
           step();
         });

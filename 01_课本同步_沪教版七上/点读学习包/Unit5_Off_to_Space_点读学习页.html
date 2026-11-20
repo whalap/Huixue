@@ -756,7 +756,7 @@
       <span class="fam-root-badge">词根 collect · 收集</span>
       <button class="fm-read" type="button" data-readall="collect">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">collect（收集，动词）加 -ion 变名词 collection（收藏品），加 -or 变名词 collector（收藏家）。注意：collective（集体的）是更高阶的词，本阶段不学。</div>
+    <div class="fam-tip">collect 是动词（收集）。加后缀 -ion → 名词 collection（收藏品；收集）：-ion 把动词变名词，表示动作或结果；加后缀 -or（「做…的人」）→ 名词 collector（收藏家）：-or 表示从事这个动作的人。两个后缀都造名词，但意思不同。注意：collective（集体的）是更高阶的词，本阶段不学。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="collect">collect</span>
@@ -2166,6 +2166,7 @@
             if(k>=items.length) return;
             var el=items[k++];
             speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
+            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
           }
           step();
         });

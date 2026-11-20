@@ -755,7 +755,7 @@
       <span class="fam-root-badge">词根 attract · 吸引</span>
       <button class="fm-read" type="button" data-readall="attract">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">attract（吸引，动词）加 -ion 变名词 attraction（吸引力；景点），加 -ive 变形容词 attractive（有吸引力的）。U8 到尾声，页面下方会一并回顾前面七个单元学过的全部词族。</div>
+    <div class="fam-tip">attract 是动词（吸引）。加后缀 -ion → 名词 attraction（吸引力；景点），加后缀 -ive → 形容词 attractive（有吸引力的）。和 protect → protection / protective 是同一条规律：-ion 造名词，-ive 造形容词。U8 到尾声，页面下方会一并回顾前面七个单元学过的全部词族。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="attract">attract</span>
@@ -2164,6 +2164,7 @@
             if(k>=items.length) return;
             var el=items[k++];
             speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
+            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
           }
           step();
         });

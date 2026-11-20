@@ -757,7 +757,7 @@
       <span class="fam-root-badge">词根 culture · 文化</span>
       <button class="fm-read" type="button" data-readall="culture">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">culture（文化，名词）加 -al 变形容词 cultural（文化的），再加 -ly 变副词 culturally（文化上）。</div>
+    <div class="fam-tip">culture 是名词（文化）。加后缀 -al（「…的」）→ 形容词 cultural（文化的）：-al 把名词变成形容词；再加 -ly → 副词 culturally（文化上）。规律：名词 + -al → 形容词，形容词 + -ly → 副词。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="culture">culture</span>
@@ -2125,6 +2125,7 @@
             if(k>=items.length) return;
             var el=items[k++];
             speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
+            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
           }
           step();
         });

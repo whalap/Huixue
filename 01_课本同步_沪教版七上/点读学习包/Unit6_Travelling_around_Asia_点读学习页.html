@@ -756,7 +756,7 @@
       <span class="fam-root-badge">词根 nature · 自然</span>
       <button class="fm-read" type="button" data-readall="nature">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">nature（自然，名词）加 -al 变形容词 natural（自然的），再加 -ly 变副词 naturally（自然地）。natural 是本单元课本词。</div>
+    <div class="fam-tip">nature 是名词（自然）。加后缀 -al → 形容词 natural（自然的），再加 -ly → 副词 naturally（自然地）。和 culture → cultural 是同一条规律：名词 + -al → 形容词，形容词 + -ly → 副词。natural 是本单元课本词。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="nature">nature</span>
@@ -2176,6 +2176,7 @@
             if(k>=items.length) return;
             var el=items[k++];
             speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
+            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
           }
           step();
         });

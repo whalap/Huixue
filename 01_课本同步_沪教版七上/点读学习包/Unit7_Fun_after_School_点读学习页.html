@@ -756,7 +756,7 @@
       <span class="fam-root-badge">词根 decorate · 装饰</span>
       <button class="fm-read" type="button" data-readall="decorate">▶ 跟读本词族</button>
     </div>
-    <div class="fam-tip">decorate（装饰，动词）加 -ion 变名词 decoration（装饰品），加 -ed 变形容词 decorated（装饰过的）。</div>
+    <div class="fam-tip">decorate 是动词（装饰）。加后缀 -ion → 名词 decoration（装饰品）：-ion 造名词；加后缀 -ed（「被…的」）→ 形容词 decorated（装饰过的）：-ed 把动词变成形容词，表示「被怎样了的」。规律：同一个动词，-ion 造名词、-ed 造形容词。</div>
     <div class="fm-row"><div class="fm-card">
       <div class="fm-head">
         <span class="fm-word" data-say="decorate">decorate</span>
@@ -2123,6 +2123,7 @@
             if(k>=items.length) return;
             var el=items[k++];
             speak(el.getAttribute('data-say'), 0.9, function(){ if(token===readAllToken) setTimeout(step, 260); });
+            token = readAllToken; /* speak() 内部会 readAllToken++，须同步，否则上面判断永远为假、只读第一个 */
           }
           step();
         });

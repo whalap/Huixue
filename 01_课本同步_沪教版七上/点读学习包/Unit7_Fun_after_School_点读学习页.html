@@ -390,6 +390,34 @@
   .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
     border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
+
+  /* ===== ⑪ 连词成句 ===== */
+  .so-wrap{background:var(--card); border:1.5px solid var(--line); border-radius:18px; padding:18px;}
+  .so-stage{margin-top:4px;}
+  .so-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .so-tipbar{margin-top:10px; font-size:13px; color:#7A5200; background:var(--amber-soft);
+    border-radius:10px; padding:8px 12px; line-height:1.7;}
+  .so-label{margin:14px 0 8px; font-size:13px; color:var(--sub); font-weight:600;}
+  .so-ans{min-height:62px; border:2px dashed #B7DED6; border-radius:12px; padding:12px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; background:#FBFEFD;}
+  .so-bank{display:flex; flex-wrap:wrap; gap:8px; padding:12px; border:1.5px solid var(--line);
+    border-radius:12px; background:#FFFCF8; min-height:62px;}
+  .so-tok{border:1.5px solid var(--line); background:#fff; color:var(--ink); border-radius:10px;
+    padding:8px 12px; font-size:16px; cursor:pointer; font-family:inherit; line-height:1.2;
+    transition:background .12s, border-color .12s;}
+  .so-tok:hover{border-color:var(--teal); background:var(--teal-soft);}
+  .so-tok.picked{background:var(--teal); border-color:var(--teal); color:#fff;}
+  .so-tok.picked:hover{background:#0B7369;}
+  .so-tok.many{font-size:14px; padding:6px 9px;}
+  .so-hintline{margin-top:12px; font-size:15px; color:#0B5F55; background:var(--teal-soft);
+    border-radius:10px; padding:10px 12px; letter-spacing:.3px; line-height:1.8;}
+  .so-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  .so-btn{border:none; background:var(--teal); color:#fff; font-size:14px; font-weight:600;
+    border-radius:10px; padding:10px 16px; cursor:pointer; font-family:inherit;}
+  .so-btn:hover{background:#0B7369;}
+  .so-btn.ghost{background:#fff; color:var(--teal); border:1.5px solid var(--teal);}
+  .so-btn.ghost:hover{background:var(--teal-soft);}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -511,6 +539,7 @@
     <a href="#sentcloze">⑧ 句填</a>
     <a href="#wordform">⑨ 词形变换</a>
     <a href="#wordfamily">⑩ 词族扩展</a>
+    <a href="#sentorder">⑪ 连词成句</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -842,6 +871,40 @@
       <div class="fq-opts" id="fqOpts"></div>
       <div class="fq-fb" id="fqFb"></div>
       <div class="fq-done" id="fqDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 连词成句 ================= -->
+  <section class="block" id="sentorder">
+    <div class="sec-head">
+      <div class="no" style="background:var(--coral);">⑪</div>
+      <h2>连词成句 · 点词拼句</h2>
+      <p>点下方打乱的单词，按正确顺序拼成句子；点已选的词可撤回。组句后点「提交」自查。</p>
+      <span class="count-badge" id="soBadge"></span>
+    </div>
+    <div class="so-wrap">
+      <div class="q-tabs" id="soTabs"></div>
+      <div class="so-stage">
+        <div class="so-top">
+          <span class="clz-progress" id="soHint">第 1 题</span>
+          <span class="q-score" id="soScore" style="margin-left:auto;">得分：0</span>
+        </div>
+        <div class="so-tipbar" id="soTip"></div>
+        <div class="so-label">你拼的句子（点词可撤回）：</div>
+        <div class="so-ans" id="soAns"></div>
+        <div class="so-label">词块（点选拼句）：</div>
+        <div class="so-bank" id="soBank"></div>
+        <div class="so-hintline" id="soHintLine" style="display:none;"></div>
+        <div class="q-feedback" id="soFb" style="display:none;"></div>
+        <div class="so-actions">
+          <button class="so-btn" id="soCheck" type="button">提交答案</button>
+          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（听整句+首字母）</button>
+          <button class="so-btn ghost" id="soReset" type="button">↻ 重排本题</button>
+          <button class="q-next" id="soNext" type="button" style="margin-top:0;">下一题 →</button>
+        </div>
+        <div class="q-done" id="soDone"></div>
+      </div>
     </div>
   </section>
 
@@ -2205,11 +2268,116 @@
   fqLoad();
   
 
+
+  /* ========== ⑪ 连词成句 ========== */
+  window.__SENTORDER = true;
+  (function(){
+    var SO = [{"name":"课文原句","tip":"先做：听发音，把打乱的单词拼回课文原句","items":[{"en":"Li Na and Liu Wei are new students at Yangguang Junior High School.","zh":""},{"en":"Last month, they went to the Clubs Fair.","zh":""},{"en":"The fair was very crowded, but it was also a lot of fun.","zh":""},{"en":"\"Our club will teach you how to design and build rockets. Then you can launch them into the sky,\" a boy said.","zh":""},{"en":"\"Watch!\" He took a rocket and launched it.","zh":""},{"en":"The rocket took off into the sky and disappeared.","zh":""},{"en":"Li Na and Liu Wei were very surprised.","zh":""},{"en":"A girl suddenly shouted, \"Watch out!\"","zh":""},{"en":"A moment later, a toy plane quickly flew past Li Na and Liu Wei.","zh":""},{"en":"\"I'm so sorry!\" said the girl.","zh":""},{"en":"\"It's a cool plane, isn't it? It runs on solar power.\"","zh":""},{"en":"\"It's amazing! Which club are you in?\" asked Li Na.","zh":""},{"en":"\"The Solar Power Club, of course! We build all kinds of wonderful machines. They get their energy from the sun.\"","zh":""},{"en":"The girl then passed the remote control to Li Na.","zh":""},{"en":"\"It is fun to fly the plane around the sports ground!\" said Li Na.","zh":""},{"en":"\"Wow, look at those beautiful paper-cuts over there,\" Liu Wei said excitedly.","zh":""},{"en":"Li Na turned around and looked at the Craft Club's table.","zh":""},{"en":"A member of the club started telling them about their club activities, \"If you join our club, you will learn how to cut paper into many different pretty shapes. Would you like to have a try?\"","zh":""},{"en":"Li Na and Liu Wei were very excited about those clubs.","zh":""},{"en":"\"I want to join all the clubs!\" said Li Na.","zh":""},{"en":"\"Me too!\" said Liu Wei.","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句，拼回原句巩固记忆","items":[{"en":"Tom enjoys reading novels and poems because he likes literature.","zh":"literature 文学；文学作品"},{"en":"Ben will act the role of a doctor in the school play.","zh":"act 扮演（戏剧、电影中的角色）"},{"en":"We should appreciate good music and art in the club.","zh":"appreciate 欣赏；赏识"},{"en":"Lily wants to join the science club this term.","zh":"join 成为……的一员；参加"},{"en":"The school show will definitely be a great success.","zh":"definitely 肯定；没问题；当然；确实"},{"en":"We bought some old books at the school fair last Sunday.","zh":"fair 集市"},{"en":"The science club made a model rocket and flew it.","zh":"rocket 火箭"},{"en":"They will launch the model rocket into the sky.","zh":"launch 发射"},{"en":"Please do not shout in the reading room.","zh":"shout 大声说；叫"},{"en":"This little toy car runs on solar power.","zh":"power 力量；能量"},{"en":"Wait a moment, and I will come with you.","zh":"moment 片刻；瞬间"},{"en":"Every member of the club must come to the meeting.","zh":"member 成员"},{"en":"The big cake is in the shape of a star.","zh":"shape 形状；外形"},{"en":"Our club will hike in the mountains this weekend.","zh":"hike 去……远足；做徒步旅行"},{"en":"Tom has made many new friends recently.","zh":"recently 不久前；最近"},{"en":"All students must attend the school meeting on Friday.","zh":"attend 出席；参加"},{"en":"The club raises money for a local charity every year.","zh":"charity 慈善机构（或组织）"},{"en":"The old books are on sale at the school fair.","zh":"sale 出售；销售"},{"en":"I had a small snack after the club activity.","zh":"snack 点心；小吃"},{"en":"We will decorate the classroom with colourful balloons.","zh":"decorate 装饰；装潢"},{"en":"Small actions can make a difference to our school.","zh":"difference 差别；差异"},{"en":"Ben will compete in the race next week.","zh":"compete 参加比赛（或竞赛）"},{"en":"The school fair is a big event every autumn.","zh":"event 公开活动；社交场合"},{"en":"Please pass me a spoon for the soup.","zh":"spoon 勺；匙"},{"en":"Our school holds an annual sports meeting in October.","zh":"annual 每年的；一年一次的"},{"en":"The club show last night was fantastic!","zh":"fantastic 极好的；了不起的"},{"en":"One dollar is enough to buy this pencil.","zh":"dollar 元（美国、加拿大、澳大利亚等国的货币单位）"},{"en":"My mother made an apple pie for the fair.","zh":"pie 果馅饼；果馅派"},{"en":"The club bought new sports equipment for the students.","zh":"equipment 设备；器材"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句，拼回原句巩固记忆","items":[{"en":"Lily joined the drama club at school.","zh":"club 社团"},{"en":"She made a beautiful paper-cut for the window.","zh":""},{"en":"We did an interesting experiment in science class.","zh":"experiment 实验"},{"en":"The gift from Tom was a big surprise to me.","zh":"surprise 惊奇；意外之事"},{"en":"I joined the baking club because I love making cakes.","zh":"baking 烘焙"},{"en":"Making paper flowers is a popular craft in our club.","zh":"craft 工艺；手艺"},{"en":"Ben acts in the drama club every Friday.","zh":"drama 戏剧"},{"en":"We do fun experiments in science class.","zh":"science 科学"},{"en":"They made a colourful poster for the club fair.","zh":"poster 海报"},{"en":"Our team won first place in the competition.","zh":"competition 比赛；竞赛"},{"en":"The students will raise money for charity.","zh":"raise 筹集（钱）"},{"en":"This machine can make paper flowers quickly.","zh":"machine 机器"},{"en":"The sun gives us light and warmth.","zh":"sun 太阳"},{"en":"The children sat on the ground and had a rest.","zh":"ground 地面；场地"},{"en":"The group game at the fair is really fun.","zh":"fun 有趣的"},{"en":"The rocket show was very exciting.","zh":"exciting 令人兴奋的"},{"en":"My favourite hobby is collecting old coins.","zh":"hobby 爱好"},{"en":"Lily will volunteer at the school fair tomorrow.","zh":"volunteer 自愿做"},{"en":"The boys play football on the playground after school.","zh":"playground 操场；运动场"}]},{"name":"重点短语句","tip":"选做：重点短语的例句，拼回原句巩固记忆","items":[{"en":"There is a clubs fair at school.","zh":""},{"en":"The lamp uses solar power.","zh":""},{"en":"Can you help me? of course!","zh":""},{"en":"I use a remote control for the toy car.","zh":""},{"en":"Please turn around and face me.","zh":""},{"en":"Small actions can make a difference.","zh":""},{"en":"My brother is in primary school.","zh":""},{"en":"The boy falls off his bike.","zh":""},{"en":"I will take part in the club.","zh":""},{"en":"We have many after-school activities.","zh":""},{"en":"The plane will take off soon.","zh":""},{"en":"watch out! The car is coming.","zh":""},{"en":"A bird flies past the window.","zh":""},{"en":"We run on the sports ground.","zh":""},{"en":"Come on, have a try!","zh":""},{"en":"I want to sign up for the club.","zh":""},{"en":"The class will put on a play.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句，拼回原句巩固记忆","items":[{"en":"We joined the clubs fair.","zh":""},{"en":"The house uses solar power.","zh":""},{"en":"May I sit here? of course.","zh":""},{"en":"The drone has a remote control.","zh":""},{"en":"She turns around and smiled.","zh":""},{"en":"Your help will make a difference.","zh":""},{"en":"I studied in a primary school.","zh":""},{"en":"Leaves fall off the tree.","zh":""},{"en":"She takes part in the race.","zh":""},{"en":"I like our after-school activities.","zh":""},{"en":"The bird will take off.","zh":""},{"en":"watch out for the steps.","zh":""},{"en":"The kite flies past the tree.","zh":""},{"en":"The game is on the sports ground.","zh":""},{"en":"Why not have a try?","zh":""},{"en":"Please sign up before Friday.","zh":""},{"en":"We will put on a play at the party.","zh":""}]}];
+    var soG=0, soIdx=SO.map(function(){return 0;}), soScore=0;
+    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soMany=false;
+    var el = function(id){return document.getElementById(id);};
+    var soTabs=el('soTabs'), soBadge=el('soBadge'), soTip=el('soTip'), soHint=el('soHint'),
+        soScoreEl=el('soScore'), soAnsEl=el('soAns'), soBankEl=el('soBank'),
+        soHintLine=el('soHintLine'), soFb=el('soFb'), soDone=el('soDone'),
+        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soReset=el('soReset'), soNext=el('soNext');
+    if(!soTabs || !SO.length) return;
+
+    function shuf(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+    function renderTabs(){
+      soTabs.innerHTML='';
+      SO.forEach(function(g,i){
+        var b=document.createElement('button'); b.type='button';
+        b.className='q-tab'+(i===soG?' active':'');
+        b.textContent=(i===0?'① ':'')+g.name+' ('+g.items.length+')';
+        b.addEventListener('click',function(){ soG=i; soDone.style.display='none'; renderTabs(); load(); });
+        soTabs.appendChild(b);
+      });
+      soBadge.textContent=SO.reduce(function(a,g){return a+g.items.length;},0)+' 句 · 课文优先，其余选做';
+    }
+    function load(){
+      var g=SO[soG], item=g.items[soIdx[soG]];
+      if(!item){ soDone.style.display='block'; return; }
+      var toks=item.en.match(/\S+/g)||[];
+      soMany = toks.length>20;
+      soBank = shuf(toks.map(function(t,i){return {t:t, oi:i};}));
+      soAns=[]; soSubmitted=false; soHintOn=false;
+      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      soFb.textContent=''; soFb.style.display='none';
+      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，慢慢拼）':'');
+      soTip.textContent = item.zh ? ('关键词提示：'+item.zh) : g.tip;
+      soScoreEl.textContent='得分：'+soScore;
+      soNext.textContent = soIdx[soG]>=g.items.length-1 ? '下一题（本组完成）→' : '下一题 →';
+      soNext.style.display='inline-block';
+      soDone.style.display='none';
+      render();
+    }
+    function render(){
+      soAnsEl.innerHTML=''; soBankEl.innerHTML='';
+      soAns.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok picked'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){ speak(o.t,0.9); soBank.push(o); soAns.splice(k,1); render(); });
+        soAnsEl.appendChild(b);
+      });
+      soBank.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){
+          if(soSubmitted) return;
+          speak(o.t,0.9); soAns.push(o); soBank.splice(k,1); render();
+        });
+        soBankEl.appendChild(b);
+      });
+    }
+    function outline(en){
+      return (en.match(/\S+/g)||[]).map(function(t){
+        var m=t.match(/[A-Za-z]/); if(!m) return t;
+        var first=t.indexOf(m[0]);
+        return t.slice(0,first)+m[0]+('_'.repeat(Math.max(1,Math.min(t.length-first-1,9))));
+      }).join(' ');
+    }
+    soCheck.addEventListener('click',function(){
+      if(soSubmitted) return;
+      if(!soAns.length){ soFb.textContent='请先点选词块拼句'; soFb.style.color='var(--sub)'; soFb.style.display='block'; return; }
+      var item=SO[soG].items[soIdx[soG]];
+      var toks=item.en.match(/\S+/g)||[];
+      var ok = soAns.length===toks.length;
+      if(ok){ for(var i=0;i<toks.length;i++){ if(soAns[i].oi!==i){ ok=false; break; } } }
+      soSubmitted=true;
+      soFb.style.display='block';
+      if(ok){ soScore++; soFb.textContent='✅ 正确！这句记住了。'; soFb.style.color='var(--green)'; }
+      else { soFb.textContent='❌ 顺序还不对。正确句子：'+item.en; soFb.style.color='var(--red)'; }
+      soScoreEl.textContent='得分：'+soScore;
+      setTimeout(function(){ speak(item.en,0.9); }, 500);
+    });
+    soSeeHint.addEventListener('click',function(){
+      var item=SO[soG].items[soIdx[soG]];
+      soHintOn=!soHintOn;
+      if(soHintOn){
+        soHintLine.textContent='首字母提示：'+outline(item.en);
+        soHintLine.style.display='block';
+        soSeeHint.textContent='🙈 收起提示';
+      } else {
+        soHintLine.style.display='none';
+        soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      }
+      speak(item.en,0.85);
+    });
+    soReset.addEventListener('click',function(){ load(); });
+    soNext.addEventListener('click',function(){
+      var g=SO[soG];
+      if(soIdx[soG]>=g.items.length-1){ soIdx[soG]=0; }
+      else soIdx[soG]++;
+      load();
+    });
+    renderTabs(); load();
+  })();
+  
   /* ========== 导航 tab 分组切换 ========== */
   window.__SECTABS = true;
   (function(){
-    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
-    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]],["#sentorder",["sentorder"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily","sentorder"];
     var nav = document.querySelector('nav.secnav');
     if(!nav) return;
     var links = nav.querySelectorAll('a[href^="#"]');
@@ -2223,7 +2391,7 @@
     if(!document.querySelector('.tab-hint')){
       var hint = document.createElement('div');
       hint.className = 'tab-hint';
-      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      hint.textContent = '一次只学一组：点上面的 ①-⑪ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
       nav.parentNode.insertBefore(hint, nav.nextSibling);
     }
     function showByHash(hash, doScroll){

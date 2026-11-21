@@ -390,6 +390,34 @@
   .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
     border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
+
+  /* ===== ⑪ 连词成句 ===== */
+  .so-wrap{background:var(--card); border:1.5px solid var(--line); border-radius:18px; padding:18px;}
+  .so-stage{margin-top:4px;}
+  .so-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .so-tipbar{margin-top:10px; font-size:13px; color:#7A5200; background:var(--amber-soft);
+    border-radius:10px; padding:8px 12px; line-height:1.7;}
+  .so-label{margin:14px 0 8px; font-size:13px; color:var(--sub); font-weight:600;}
+  .so-ans{min-height:62px; border:2px dashed #B7DED6; border-radius:12px; padding:12px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; background:#FBFEFD;}
+  .so-bank{display:flex; flex-wrap:wrap; gap:8px; padding:12px; border:1.5px solid var(--line);
+    border-radius:12px; background:#FFFCF8; min-height:62px;}
+  .so-tok{border:1.5px solid var(--line); background:#fff; color:var(--ink); border-radius:10px;
+    padding:8px 12px; font-size:16px; cursor:pointer; font-family:inherit; line-height:1.2;
+    transition:background .12s, border-color .12s;}
+  .so-tok:hover{border-color:var(--teal); background:var(--teal-soft);}
+  .so-tok.picked{background:var(--teal); border-color:var(--teal); color:#fff;}
+  .so-tok.picked:hover{background:#0B7369;}
+  .so-tok.many{font-size:14px; padding:6px 9px;}
+  .so-hintline{margin-top:12px; font-size:15px; color:#0B5F55; background:var(--teal-soft);
+    border-radius:10px; padding:10px 12px; letter-spacing:.3px; line-height:1.8;}
+  .so-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  .so-btn{border:none; background:var(--teal); color:#fff; font-size:14px; font-weight:600;
+    border-radius:10px; padding:10px 16px; cursor:pointer; font-family:inherit;}
+  .so-btn:hover{background:#0B7369;}
+  .so-btn.ghost{background:#fff; color:var(--teal); border:1.5px solid var(--teal);}
+  .so-btn.ghost:hover{background:var(--teal-soft);}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -510,6 +538,7 @@
     <a href="#sentcloze">⑧ 句填</a>
     <a href="#wordform">⑨ 词形变换</a>
     <a href="#wordfamily">⑩ 词族扩展</a>
+    <a href="#sentorder">⑪ 连词成句</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -841,6 +870,40 @@
       <div class="fq-opts" id="fqOpts"></div>
       <div class="fq-fb" id="fqFb"></div>
       <div class="fq-done" id="fqDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 连词成句 ================= -->
+  <section class="block" id="sentorder">
+    <div class="sec-head">
+      <div class="no" style="background:var(--coral);">⑪</div>
+      <h2>连词成句 · 点词拼句</h2>
+      <p>点下方打乱的单词，按正确顺序拼成句子；点已选的词可撤回。组句后点「提交」自查。</p>
+      <span class="count-badge" id="soBadge"></span>
+    </div>
+    <div class="so-wrap">
+      <div class="q-tabs" id="soTabs"></div>
+      <div class="so-stage">
+        <div class="so-top">
+          <span class="clz-progress" id="soHint">第 1 题</span>
+          <span class="q-score" id="soScore" style="margin-left:auto;">得分：0</span>
+        </div>
+        <div class="so-tipbar" id="soTip"></div>
+        <div class="so-label">你拼的句子（点词可撤回）：</div>
+        <div class="so-ans" id="soAns"></div>
+        <div class="so-label">词块（点选拼句）：</div>
+        <div class="so-bank" id="soBank"></div>
+        <div class="so-hintline" id="soHintLine" style="display:none;"></div>
+        <div class="q-feedback" id="soFb" style="display:none;"></div>
+        <div class="so-actions">
+          <button class="so-btn" id="soCheck" type="button">提交答案</button>
+          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（听整句+首字母）</button>
+          <button class="so-btn ghost" id="soReset" type="button">↻ 重排本题</button>
+          <button class="q-next" id="soNext" type="button" style="margin-top:0;">下一题 →</button>
+        </div>
+        <div class="q-done" id="soDone"></div>
+      </div>
     </div>
   </section>
 
@@ -2246,11 +2309,116 @@
   fqLoad();
   
 
+
+  /* ========== ⑪ 连词成句 ========== */
+  window.__SENTORDER = true;
+  (function(){
+    var SO = [{"name":"课文原句","tip":"先做：听发音，把打乱的单词拼回课文原句","items":[{"en":"Today, I'm going to talk about my hobby.","zh":""},{"en":"Some people play sports and others build models, but my hobby is collecting stamps.","zh":""},{"en":"I love stamps because they are very beautiful.","zh":""},{"en":"They can also teach me about the history and culture of different countries.","zh":""},{"en":"I developed this hobby thanks to my grandpa.","zh":""},{"en":"He is a stamp collector, and he owns thousands of stamps.","zh":""},{"en":"Some of them are valuable, so he always handles them with great care.","zh":""},{"en":"He even wears white gloves to protect his stamps!","zh":""},{"en":"Every Sunday my grandpa adds new ones to his collection, and I sometimes help him take old stamps from envelopes and postcards.","zh":""},{"en":"It is almost like a history lesson.","zh":""},{"en":"Let me show you an absolutely wonderful stamp of the Palace Museum.","zh":""},{"en":"It is my favourite because it was my first one.","zh":""},{"en":"\"They built these buildings hundreds of years ago. It may seem impossible, but they built them without using a single nail!\" he explained.","zh":""},{"en":"My grandpa also shared many other interesting bits of history about the old palace.","zh":""},{"en":"Thanks to this stamp, I became interested in traditional Chinese buildings.","zh":""},{"en":"I started to collect similar stamps. Now I have over a hundred of them.","zh":""},{"en":"I am learning more and more about Chinese history and culture.","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句，拼回原句巩固记忆","items":[{"en":"Ada wears a gold ring on her finger.","zh":"ring 环状物；圆形的东西"},{"en":"Tom has a large collection of old stamps.","zh":"collection （常指同类的）收集物"},{"en":"I own a small box of valuable coins.","zh":"own 拥有；有"},{"en":"This old coin is very valuable.","zh":"valuable 贵重的"},{"en":"Please handle the old book with great care.","zh":"handle （用手）触"},{"en":"He put on a glove before picking up the glass.","zh":"glove （分手指的）手套"},{"en":"Please add a little water to the cup.","zh":"add 增加；添加"},{"en":"I put the stamp on the envelope and sent it.","zh":"envelope 信封"},{"en":"I am absolutely sure about the answer.","zh":"absolutely 极其"},{"en":"You seem to know a lot about old coins.","zh":"seem 好像；似乎"},{"en":"It is impossible to finish the work in one day.","zh":"impossible 不可能的"},{"en":"There is not a single coin in the box.","zh":"single 单个的"},{"en":"Ben hit the nail with a small hammer.","zh":"nail 钉；钉子"},{"en":"Can you explain the rule of the game again?","zh":"explain 解释；说明"},{"en":"I know a bit about the history of stamps.","zh":"bit 一部分"},{"en":"Your stamp is very similar to mine.","zh":"similar 相像的；类似的"},{"en":"My father keeps a gold coin in the box.","zh":"coin （一枚）硬币"},{"en":"The old cloth feels very soft.","zh":"soft 软的"},{"en":"Lily put a colourful sticker on her notebook.","zh":"sticker 贴纸"},{"en":"Playing games all day is a waste of time.","zh":"waste 白费；糟蹋"},{"en":"Each item in the museum has a small number.","zh":"item 一件商品（或物品）"},{"en":"The result of the test is very good.","zh":"result 后果；结果"},{"en":"This wrapper came from a bar of chocolate.","zh":"wrapper 包装纸"},{"en":"Eva ate a bar of chocolate after lunch.","zh":"bar （长方形）条"},{"en":"The price will include the nice box.","zh":"include 包括；包含"},{"en":"This box is the right size for the cards.","zh":"size 大小"},{"en":"The pattern on the old stamp is beautiful.","zh":"pattern 图案；花样"},{"en":"The factory will produce small toy cars.","zh":"produce 生产；制造"},{"en":"Bright colours attract insects in the garden.","zh":"attract 吸引；招引"},{"en":"A bee is a kind of insect.","zh":"insect 昆虫"},{"en":"This old object is quite valuable.","zh":"object 物体；物品"},{"en":"The surface of the stone is flat.","zh":"flat 平滑的"},{"en":"English is a useful language for us.","zh":"language 语言"},{"en":"The old map led them to the hidden treasure.","zh":"treasure 珍宝；宝物"},{"en":"This book helps us unlock the secret of the coin.","zh":"unlock 发现；揭示"},{"en":"Is this a real gold ring?","zh":"real 真的"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句，拼回原句巩固记忆","items":[{"en":"I like to collect stamps from different countries.","zh":"collect 收集；收藏"},{"en":"Collecting shells is my favourite hobby.","zh":"hobby 爱好"},{"en":"This beautiful stamp is from Japan.","zh":"stamp 邮票"},{"en":"The museum has two thousand old coins.","zh":"thousand 一千"},{"en":"Please handle the old stamp with care.","zh":"care 照料；小心"},{"en":"We should protect the old building in the town.","zh":"protect 保护"},{"en":"I sent a postcard to my friend from Beijing.","zh":"postcard 明信片"},{"en":"My grandma told me a story about the old coin.","zh":"story 故事"},{"en":"The museum trip was a useful lesson for me.","zh":"lesson 课；教训"},{"en":"Blue is my favourite colour.","zh":"favourite 最喜欢的"},{"en":"The king lived in a big palace.","zh":"palace 宫殿"},{"en":"I am interested in collecting old coins.","zh":"interested 感兴趣的"},{"en":"China is a large country in Asia.","zh":"country 国家"},{"en":"We found a pretty shell on the beach.","zh":"shell 贝壳"},{"en":"David keeps his keys on a key ring.","zh":""},{"en":"Tom made a small model plane by himself.","zh":"model 模型"},{"en":"My uncle is a famous stamp collector.","zh":"collector 收藏家"},{"en":"We will discover the truth behind the old map.","zh":"discover 发现"},{"en":"The child is curious about everything new.","zh":"curious 好奇的"},{"en":"This old stamp is very unusual.","zh":"unusual 不寻常的"},{"en":"The photo is a happy memory for me.","zh":"memory 回忆；记忆"},{"en":"She keeps her cards in a small box.","zh":"box 盒子"},{"en":"I put my new stamps in an album.","zh":"album 集邮册；相册"},{"en":"The old coins are on the shelf.","zh":"shelf 架子"},{"en":"He put the key in the drawer.","zh":"drawer 抽屉"},{"en":"Use a paper clip to hold these papers together.","zh":""},{"en":"Eva wears a school badge every day.","zh":"badge 徽章"},{"en":"The little girl got a new doll.","zh":"doll 洋娃娃"},{"en":"This old toy is still my favourite.","zh":"toy 玩具"},{"en":"I sent a birthday card to Lily.","zh":"card 卡片"},{"en":"I use an eraser to clean the pencil marks.","zh":"eraser 橡皮"},{"en":"Write your name with a pencil.","zh":"pencil 铅笔"}]},{"name":"重点短语句","tip":"选做：重点短语的例句，拼回原句巩固记忆","items":[{"en":"Please add some sugar to the tea.","zh":""},{"en":"Cola is a soft drink.","zh":""},{"en":"Playing games all day is a waste of time.","zh":""},{"en":"I spend my pocket money on books.","zh":""},{"en":"People all over the world collect coins.","zh":""},{"en":"My hobby is stamp collection.","zh":""},{"en":"thanks to you, I learned a lot.","zh":""},{"en":"He takes care of his stamp album.","zh":""},{"en":"She opened the box with great care.","zh":""},{"en":"He takes a stamp from the album.","zh":""},{"en":"The museum was a history lesson.","zh":""},{"en":"We visited the Palace Museum in Beijing.","zh":""},{"en":"The temple was built hundreds of years ago.","zh":""},{"en":"He found a single nail on the floor.","zh":""},{"en":"I become interested in collecting coins.","zh":""},{"en":"more and more people like reading.","zh":""},{"en":"She collects chocolate wrappers.","zh":""},{"en":"The photos bring back sweet memories.","zh":""},{"en":"I collect paper money from different countries.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句，拼回原句巩固记忆","items":[{"en":"add the eggs to the bowl.","zh":""},{"en":"add the milk to the coffee.","zh":""},{"en":"add some salt to the soup.","zh":""},{"en":"Water is better than a soft drink.","zh":""},{"en":"Watching TV all day is a waste of time.","zh":""},{"en":"I save my pocket money.","zh":""},{"en":"Friends are all over the world.","zh":""},{"en":"His stamp collection is amazing.","zh":""},{"en":"thanks to the book, I know more.","zh":""},{"en":"Please take care of your toys.","zh":""},{"en":"He handled the glass with great care.","zh":""},{"en":"She takes a book from the shelf.","zh":""},{"en":"The old city is like a history lesson.","zh":""},{"en":"the Palace Museum has many treasures.","zh":""},{"en":"People lived here hundreds of years ago.","zh":""},{"en":"He fixed it with a single nail.","zh":""},{"en":"She becomes interested in stamps last year.","zh":""},{"en":"It gets more and more cold.","zh":""},{"en":"He keeps chocolate wrappers.","zh":""},{"en":"The song brings sweet memories.","zh":""},{"en":"This paper money is from Japan.","zh":""}]}];
+    var soG=0, soIdx=SO.map(function(){return 0;}), soScore=0;
+    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soMany=false;
+    var el = function(id){return document.getElementById(id);};
+    var soTabs=el('soTabs'), soBadge=el('soBadge'), soTip=el('soTip'), soHint=el('soHint'),
+        soScoreEl=el('soScore'), soAnsEl=el('soAns'), soBankEl=el('soBank'),
+        soHintLine=el('soHintLine'), soFb=el('soFb'), soDone=el('soDone'),
+        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soReset=el('soReset'), soNext=el('soNext');
+    if(!soTabs || !SO.length) return;
+
+    function shuf(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+    function renderTabs(){
+      soTabs.innerHTML='';
+      SO.forEach(function(g,i){
+        var b=document.createElement('button'); b.type='button';
+        b.className='q-tab'+(i===soG?' active':'');
+        b.textContent=(i===0?'① ':'')+g.name+' ('+g.items.length+')';
+        b.addEventListener('click',function(){ soG=i; soDone.style.display='none'; renderTabs(); load(); });
+        soTabs.appendChild(b);
+      });
+      soBadge.textContent=SO.reduce(function(a,g){return a+g.items.length;},0)+' 句 · 课文优先，其余选做';
+    }
+    function load(){
+      var g=SO[soG], item=g.items[soIdx[soG]];
+      if(!item){ soDone.style.display='block'; return; }
+      var toks=item.en.match(/\S+/g)||[];
+      soMany = toks.length>20;
+      soBank = shuf(toks.map(function(t,i){return {t:t, oi:i};}));
+      soAns=[]; soSubmitted=false; soHintOn=false;
+      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      soFb.textContent=''; soFb.style.display='none';
+      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，慢慢拼）':'');
+      soTip.textContent = item.zh ? ('关键词提示：'+item.zh) : g.tip;
+      soScoreEl.textContent='得分：'+soScore;
+      soNext.textContent = soIdx[soG]>=g.items.length-1 ? '下一题（本组完成）→' : '下一题 →';
+      soNext.style.display='inline-block';
+      soDone.style.display='none';
+      render();
+    }
+    function render(){
+      soAnsEl.innerHTML=''; soBankEl.innerHTML='';
+      soAns.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok picked'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){ speak(o.t,0.9); soBank.push(o); soAns.splice(k,1); render(); });
+        soAnsEl.appendChild(b);
+      });
+      soBank.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){
+          if(soSubmitted) return;
+          speak(o.t,0.9); soAns.push(o); soBank.splice(k,1); render();
+        });
+        soBankEl.appendChild(b);
+      });
+    }
+    function outline(en){
+      return (en.match(/\S+/g)||[]).map(function(t){
+        var m=t.match(/[A-Za-z]/); if(!m) return t;
+        var first=t.indexOf(m[0]);
+        return t.slice(0,first)+m[0]+('_'.repeat(Math.max(1,Math.min(t.length-first-1,9))));
+      }).join(' ');
+    }
+    soCheck.addEventListener('click',function(){
+      if(soSubmitted) return;
+      if(!soAns.length){ soFb.textContent='请先点选词块拼句'; soFb.style.color='var(--sub)'; soFb.style.display='block'; return; }
+      var item=SO[soG].items[soIdx[soG]];
+      var toks=item.en.match(/\S+/g)||[];
+      var ok = soAns.length===toks.length;
+      if(ok){ for(var i=0;i<toks.length;i++){ if(soAns[i].oi!==i){ ok=false; break; } } }
+      soSubmitted=true;
+      soFb.style.display='block';
+      if(ok){ soScore++; soFb.textContent='✅ 正确！这句记住了。'; soFb.style.color='var(--green)'; }
+      else { soFb.textContent='❌ 顺序还不对。正确句子：'+item.en; soFb.style.color='var(--red)'; }
+      soScoreEl.textContent='得分：'+soScore;
+      setTimeout(function(){ speak(item.en,0.9); }, 500);
+    });
+    soSeeHint.addEventListener('click',function(){
+      var item=SO[soG].items[soIdx[soG]];
+      soHintOn=!soHintOn;
+      if(soHintOn){
+        soHintLine.textContent='首字母提示：'+outline(item.en);
+        soHintLine.style.display='block';
+        soSeeHint.textContent='🙈 收起提示';
+      } else {
+        soHintLine.style.display='none';
+        soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      }
+      speak(item.en,0.85);
+    });
+    soReset.addEventListener('click',function(){ load(); });
+    soNext.addEventListener('click',function(){
+      var g=SO[soG];
+      if(soIdx[soG]>=g.items.length-1){ soIdx[soG]=0; }
+      else soIdx[soG]++;
+      load();
+    });
+    renderTabs(); load();
+  })();
+  
   /* ========== 导航 tab 分组切换 ========== */
   window.__SECTABS = true;
   (function(){
-    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
-    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]],["#sentorder",["sentorder"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily","sentorder"];
     var nav = document.querySelector('nav.secnav');
     if(!nav) return;
     var links = nav.querySelectorAll('a[href^="#"]');
@@ -2264,7 +2432,7 @@
     if(!document.querySelector('.tab-hint')){
       var hint = document.createElement('div');
       hint.className = 'tab-hint';
-      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      hint.textContent = '一次只学一组：点上面的 ①-⑪ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
       nav.parentNode.insertBefore(hint, nav.nextSibling);
     }
     function showByHash(hash, doScroll){

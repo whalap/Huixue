@@ -390,6 +390,34 @@
   .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
     border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
+
+  /* ===== ⑪ 连词成句 ===== */
+  .so-wrap{background:var(--card); border:1.5px solid var(--line); border-radius:18px; padding:18px;}
+  .so-stage{margin-top:4px;}
+  .so-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .so-tipbar{margin-top:10px; font-size:13px; color:#7A5200; background:var(--amber-soft);
+    border-radius:10px; padding:8px 12px; line-height:1.7;}
+  .so-label{margin:14px 0 8px; font-size:13px; color:var(--sub); font-weight:600;}
+  .so-ans{min-height:62px; border:2px dashed #B7DED6; border-radius:12px; padding:12px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; background:#FBFEFD;}
+  .so-bank{display:flex; flex-wrap:wrap; gap:8px; padding:12px; border:1.5px solid var(--line);
+    border-radius:12px; background:#FFFCF8; min-height:62px;}
+  .so-tok{border:1.5px solid var(--line); background:#fff; color:var(--ink); border-radius:10px;
+    padding:8px 12px; font-size:16px; cursor:pointer; font-family:inherit; line-height:1.2;
+    transition:background .12s, border-color .12s;}
+  .so-tok:hover{border-color:var(--teal); background:var(--teal-soft);}
+  .so-tok.picked{background:var(--teal); border-color:var(--teal); color:#fff;}
+  .so-tok.picked:hover{background:#0B7369;}
+  .so-tok.many{font-size:14px; padding:6px 9px;}
+  .so-hintline{margin-top:12px; font-size:15px; color:#0B5F55; background:var(--teal-soft);
+    border-radius:10px; padding:10px 12px; letter-spacing:.3px; line-height:1.8;}
+  .so-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  .so-btn{border:none; background:var(--teal); color:#fff; font-size:14px; font-weight:600;
+    border-radius:10px; padding:10px 16px; cursor:pointer; font-family:inherit;}
+  .so-btn:hover{background:#0B7369;}
+  .so-btn.ghost{background:#fff; color:var(--teal); border:1.5px solid var(--teal);}
+  .so-btn.ghost:hover{background:var(--teal-soft);}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -511,6 +539,7 @@
     <a href="#sentcloze">⑧ 句填</a>
     <a href="#wordform">⑨ 词形变换</a>
     <a href="#wordfamily">⑩ 词族扩展</a>
+    <a href="#sentorder">⑪ 连词成句</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -856,6 +885,40 @@
       <div class="fq-opts" id="fqOpts"></div>
       <div class="fq-fb" id="fqFb"></div>
       <div class="fq-done" id="fqDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 连词成句 ================= -->
+  <section class="block" id="sentorder">
+    <div class="sec-head">
+      <div class="no" style="background:var(--coral);">⑪</div>
+      <h2>连词成句 · 点词拼句</h2>
+      <p>点下方打乱的单词，按正确顺序拼成句子；点已选的词可撤回。组句后点「提交」自查。</p>
+      <span class="count-badge" id="soBadge"></span>
+    </div>
+    <div class="so-wrap">
+      <div class="q-tabs" id="soTabs"></div>
+      <div class="so-stage">
+        <div class="so-top">
+          <span class="clz-progress" id="soHint">第 1 题</span>
+          <span class="q-score" id="soScore" style="margin-left:auto;">得分：0</span>
+        </div>
+        <div class="so-tipbar" id="soTip"></div>
+        <div class="so-label">你拼的句子（点词可撤回）：</div>
+        <div class="so-ans" id="soAns"></div>
+        <div class="so-label">词块（点选拼句）：</div>
+        <div class="so-bank" id="soBank"></div>
+        <div class="so-hintline" id="soHintLine" style="display:none;"></div>
+        <div class="q-feedback" id="soFb" style="display:none;"></div>
+        <div class="so-actions">
+          <button class="so-btn" id="soCheck" type="button">提交答案</button>
+          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（听整句+首字母）</button>
+          <button class="so-btn ghost" id="soReset" type="button">↻ 重排本题</button>
+          <button class="q-next" id="soNext" type="button" style="margin-top:0;">下一题 →</button>
+        </div>
+        <div class="q-done" id="soDone"></div>
+      </div>
     </div>
   </section>
 
@@ -2193,11 +2256,116 @@
   fqLoad();
   
 
+
+  /* ========== ⑪ 连词成句 ========== */
+  window.__SENTORDER = true;
+  (function(){
+    var SO = [{"name":"课文原句","tip":"先做：听发音，把打乱的单词拼回课文原句","items":[{"en":"My name is Li Hua. I started junior high school this September.","zh":""},{"en":"I have a lot to say about my time there!","zh":""},{"en":"Classes start at 8:00 a.m. I have seven classes each day, four in the morning and three in the afternoon.","zh":""},{"en":"Geography is a new subject in junior high. The teacher sometimes teaches us by playing games.","zh":""},{"en":"It's a great way to learn.","zh":""},{"en":"Morning break starts at 9:40 a.m., and I run to the sports ground.","zh":""},{"en":"I often do some morning exercise or play a ball game with my friends.","zh":""},{"en":"The break ends at 10:10 a.m. How short it is!","zh":""},{"en":"We have a lunch break from 12:00 p.m. to 2:00 p.m. We go to the canteen for lunch.","zh":""},{"en":"There are different foods I can choose from. I really enjoy eating there!","zh":""},{"en":"After that, I usually go to the book corner in the classroom.","zh":""},{"en":"I can always find something interesting to read.","zh":""},{"en":"Classes end at 4:25 p.m., and many students take part in after-school activities.","zh":""},{"en":"I go to the Ping-pong Club with my friend Chen Ming.","zh":""},{"en":"We plan to take part in the school ping-pong game next month.","zh":""},{"en":"We look forward to it and will practise very hard.","zh":""},{"en":"It's exciting to be a junior high student.","zh":""},{"en":"I have a good time at school, and I enjoy every minute of it.","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句，拼回原句巩固记忆","items":[{"en":"We learn about mountains and rivers in geography class.","zh":"geography 地理（学）"},{"en":"There is a bookshop at the corner of the street.","zh":"corner 角；墙角"},{"en":"Swimming is a popular activity in summer.","zh":"activity 活动"},{"en":"I joined the music club at school.","zh":"club 社团"},{"en":"You must practise the piano every day.","zh":"practise 练习；训练"},{"en":"Can you solve this maths problem?","zh":"solve 解答"},{"en":"Reading helps us develop good habits.","zh":"develop 加强；增强"},{"en":"Listening is an important skill in English.","zh":"skill 技术；技能"},{"en":"This magazine is for teen readers.","zh":"teen 青少年的"},{"en":"This magazine has lots of pictures and comes out every month.","zh":"magazine 杂志"},{"en":"A teenager is a person between 13 and 19.","zh":"teenager （13至19岁之间的）青少年"},{"en":"Hello is a common greeting.","zh":"greeting 问候；招呼"},{"en":"What grade are you in at school?","zh":"grade 年级"},{"en":"Running gives me a lot of energy.","zh":"energy 精力；活力"},{"en":"We will put on a drama at the school show.","zh":"drama 戏；剧"},{"en":"Yours sincerely is a common way to end a letter.","zh":"sincerely 真诚地；诚实地"},{"en":"I write in my diary every evening.","zh":"diary 日记；日记簿"},{"en":"Our science project is about plants.","zh":"project 课题"},{"en":"We made a poster for the school show.","zh":"poster 海报"},{"en":"I did not realize my mistake at first.","zh":"realize 意识到"},{"en":"luckily, we caught the last bus.","zh":"luckily 幸运地；幸好"},{"en":"I just finished my homework.","zh":"just 恰好"},{"en":"She gave a presentation to the class.","zh":"presentation 演示"},{"en":"He is in a good mood today.","zh":"mood 情绪；心情"},{"en":"Do you mind if I open the window?","zh":"mind 介意"},{"en":"Please pack your bag before the trip.","zh":"pack （把……）打包"},{"en":"We will celebrate my birthday with a cake.","zh":"celebrate 庆祝；庆贺"},{"en":"Hard work leads to success.","zh":"success 成功"},{"en":"The road is rocky and hard to walk on.","zh":"rocky 困难的"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句，拼回原句巩固记忆","items":[{"en":"The film will start at seven.","zh":"start 开始"},{"en":"My favourite subject at school is maths.","zh":"subject 科目；学科"},{"en":"We have a ten-minute break between classes.","zh":"break 休息"},{"en":"Morning exercise is good for our health.","zh":"exercise 锻炼；运动"},{"en":"We have lunch in the school canteen.","zh":"canteen 食堂"},{"en":"You can choose one book from the shelf.","zh":"choose 选择"},{"en":"I like to read storybooks at night.","zh":"read 阅读"},{"en":"We plan to visit the museum tomorrow.","zh":"plan 计划"},{"en":"There is a football match after school.","zh":"match 比赛"},{"en":"She is a member of the reading club.","zh":"member 成员"},{"en":"The game was very exciting.","zh":"exciting 令人兴奋的"},{"en":"He studies in a junior high school.","zh":"junior 初级的"},{"en":"Many fish live in the ocean.","zh":"ocean 海洋"},{"en":"I do my homework after dinner.","zh":"homework 家庭作业"},{"en":"Every student should study hard.","zh":"student 学生"},{"en":"We need food and water to live.","zh":"food 食物"},{"en":"This book is very interesting.","zh":"interesting 有趣的"},{"en":"The children play on the ground.","zh":"ground 场地"}]},{"name":"重点短语句","tip":"选做：重点短语的例句，拼回原句巩固记忆","items":[{"en":"I help my mother do the dishes after dinner.","zh":""},{"en":"My sister studies in a junior high school.","zh":""},{"en":"We will take part in the sports meeting.","zh":""},{"en":"I look forward to the summer holiday.","zh":""},{"en":"The phone is part of our daily life.","zh":""},{"en":"I go to bed at ten every night.","zh":""},{"en":"I get up at six every morning.","zh":""},{"en":"She goes to school on foot.","zh":""},{"en":"The children are full of energy.","zh":""},{"en":"We need to get ready for the coming test.","zh":""},{"en":"The school will put on a play.","zh":""},{"en":"Please clean up your room.","zh":""},{"en":"Can you pick up the book for me?","zh":""},{"en":"I go to school on foot every day.","zh":""},{"en":"I do my homework after dinner.","zh":""},{"en":"The boys play a ball game on the playground.","zh":""},{"en":"We do some morning exercise before class.","zh":""},{"en":"We have a good time at the party.","zh":""},{"en":"There are many after-school activities.","zh":""},{"en":"The students run on the sports ground.","zh":""},{"en":"We read books at the book corner.","zh":""},{"en":"We have a lunch break at noon.","zh":""},{"en":"We eat out on Sundays.","zh":""},{"en":"I get to school at seven.","zh":""},{"en":"We arrived in time for the film.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句，拼回原句巩固记忆","items":[{"en":"Who will do the dishes tonight?","zh":""},{"en":"He is a junior high school student.","zh":""},{"en":"Everyone can take part in the game.","zh":""},{"en":"We look forward to the school trip.","zh":""},{"en":"Email is useful in our daily life.","zh":""},{"en":"Do not go to bed too late.","zh":""},{"en":"I get up before the sun rises.","zh":""},{"en":"We went there on foot.","zh":""},{"en":"After a rest, he was full of energy again.","zh":""},{"en":"Please get ready for everything before the guests come.","zh":""},{"en":"The club will put on a show.","zh":""},{"en":"Let's clean up the park.","zh":""},{"en":"He picks up the pen from the floor.","zh":""},{"en":"She goes to school on foot because she lives nearby.","zh":""},{"en":"Ben does his homework in the evening.","zh":""},{"en":"They play a ball game after school.","zh":""},{"en":"We do some morning exercise at seven a.m.","zh":""},{"en":"Did you have a good time in Beijing?","zh":""},{"en":"I join two after-school activities.","zh":""},{"en":"We play football on the sports ground.","zh":""},{"en":"There is a book corner in our classroom.","zh":""},{"en":"We have a lunch break from twelve to one.","zh":""},{"en":"Let's eat out tonight.","zh":""},{"en":"How do you get to school every day?","zh":""},{"en":"The doctor came in time.","zh":""}]}];
+    var soG=0, soIdx=SO.map(function(){return 0;}), soScore=0;
+    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soMany=false;
+    var el = function(id){return document.getElementById(id);};
+    var soTabs=el('soTabs'), soBadge=el('soBadge'), soTip=el('soTip'), soHint=el('soHint'),
+        soScoreEl=el('soScore'), soAnsEl=el('soAns'), soBankEl=el('soBank'),
+        soHintLine=el('soHintLine'), soFb=el('soFb'), soDone=el('soDone'),
+        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soReset=el('soReset'), soNext=el('soNext');
+    if(!soTabs || !SO.length) return;
+
+    function shuf(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+    function renderTabs(){
+      soTabs.innerHTML='';
+      SO.forEach(function(g,i){
+        var b=document.createElement('button'); b.type='button';
+        b.className='q-tab'+(i===soG?' active':'');
+        b.textContent=(i===0?'① ':'')+g.name+' ('+g.items.length+')';
+        b.addEventListener('click',function(){ soG=i; soDone.style.display='none'; renderTabs(); load(); });
+        soTabs.appendChild(b);
+      });
+      soBadge.textContent=SO.reduce(function(a,g){return a+g.items.length;},0)+' 句 · 课文优先，其余选做';
+    }
+    function load(){
+      var g=SO[soG], item=g.items[soIdx[soG]];
+      if(!item){ soDone.style.display='block'; return; }
+      var toks=item.en.match(/\S+/g)||[];
+      soMany = toks.length>20;
+      soBank = shuf(toks.map(function(t,i){return {t:t, oi:i};}));
+      soAns=[]; soSubmitted=false; soHintOn=false;
+      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      soFb.textContent=''; soFb.style.display='none';
+      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，慢慢拼）':'');
+      soTip.textContent = item.zh ? ('关键词提示：'+item.zh) : g.tip;
+      soScoreEl.textContent='得分：'+soScore;
+      soNext.textContent = soIdx[soG]>=g.items.length-1 ? '下一题（本组完成）→' : '下一题 →';
+      soNext.style.display='inline-block';
+      soDone.style.display='none';
+      render();
+    }
+    function render(){
+      soAnsEl.innerHTML=''; soBankEl.innerHTML='';
+      soAns.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok picked'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){ speak(o.t,0.9); soBank.push(o); soAns.splice(k,1); render(); });
+        soAnsEl.appendChild(b);
+      });
+      soBank.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){
+          if(soSubmitted) return;
+          speak(o.t,0.9); soAns.push(o); soBank.splice(k,1); render();
+        });
+        soBankEl.appendChild(b);
+      });
+    }
+    function outline(en){
+      return (en.match(/\S+/g)||[]).map(function(t){
+        var m=t.match(/[A-Za-z]/); if(!m) return t;
+        var first=t.indexOf(m[0]);
+        return t.slice(0,first)+m[0]+('_'.repeat(Math.max(1,Math.min(t.length-first-1,9))));
+      }).join(' ');
+    }
+    soCheck.addEventListener('click',function(){
+      if(soSubmitted) return;
+      if(!soAns.length){ soFb.textContent='请先点选词块拼句'; soFb.style.color='var(--sub)'; soFb.style.display='block'; return; }
+      var item=SO[soG].items[soIdx[soG]];
+      var toks=item.en.match(/\S+/g)||[];
+      var ok = soAns.length===toks.length;
+      if(ok){ for(var i=0;i<toks.length;i++){ if(soAns[i].oi!==i){ ok=false; break; } } }
+      soSubmitted=true;
+      soFb.style.display='block';
+      if(ok){ soScore++; soFb.textContent='✅ 正确！这句记住了。'; soFb.style.color='var(--green)'; }
+      else { soFb.textContent='❌ 顺序还不对。正确句子：'+item.en; soFb.style.color='var(--red)'; }
+      soScoreEl.textContent='得分：'+soScore;
+      setTimeout(function(){ speak(item.en,0.9); }, 500);
+    });
+    soSeeHint.addEventListener('click',function(){
+      var item=SO[soG].items[soIdx[soG]];
+      soHintOn=!soHintOn;
+      if(soHintOn){
+        soHintLine.textContent='首字母提示：'+outline(item.en);
+        soHintLine.style.display='block';
+        soSeeHint.textContent='🙈 收起提示';
+      } else {
+        soHintLine.style.display='none';
+        soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      }
+      speak(item.en,0.85);
+    });
+    soReset.addEventListener('click',function(){ load(); });
+    soNext.addEventListener('click',function(){
+      var g=SO[soG];
+      if(soIdx[soG]>=g.items.length-1){ soIdx[soG]=0; }
+      else soIdx[soG]++;
+      load();
+    });
+    renderTabs(); load();
+  })();
+  
   /* ========== 导航 tab 分组切换 ========== */
   window.__SECTABS = true;
   (function(){
-    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
-    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]],["#sentorder",["sentorder"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily","sentorder"];
     var nav = document.querySelector('nav.secnav');
     if(!nav) return;
     var links = nav.querySelectorAll('a[href^="#"]');
@@ -2211,7 +2379,7 @@
     if(!document.querySelector('.tab-hint')){
       var hint = document.createElement('div');
       hint.className = 'tab-hint';
-      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      hint.textContent = '一次只学一组：点上面的 ①-⑪ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
       nav.parentNode.insertBefore(hint, nav.nextSibling);
     }
     function showByHash(hash, doScroll){

@@ -390,6 +390,34 @@
   .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
     border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
+
+  /* ===== ⑪ 连词成句 ===== */
+  .so-wrap{background:var(--card); border:1.5px solid var(--line); border-radius:18px; padding:18px;}
+  .so-stage{margin-top:4px;}
+  .so-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .so-tipbar{margin-top:10px; font-size:13px; color:#7A5200; background:var(--amber-soft);
+    border-radius:10px; padding:8px 12px; line-height:1.7;}
+  .so-label{margin:14px 0 8px; font-size:13px; color:var(--sub); font-weight:600;}
+  .so-ans{min-height:62px; border:2px dashed #B7DED6; border-radius:12px; padding:12px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; background:#FBFEFD;}
+  .so-bank{display:flex; flex-wrap:wrap; gap:8px; padding:12px; border:1.5px solid var(--line);
+    border-radius:12px; background:#FFFCF8; min-height:62px;}
+  .so-tok{border:1.5px solid var(--line); background:#fff; color:var(--ink); border-radius:10px;
+    padding:8px 12px; font-size:16px; cursor:pointer; font-family:inherit; line-height:1.2;
+    transition:background .12s, border-color .12s;}
+  .so-tok:hover{border-color:var(--teal); background:var(--teal-soft);}
+  .so-tok.picked{background:var(--teal); border-color:var(--teal); color:#fff;}
+  .so-tok.picked:hover{background:#0B7369;}
+  .so-tok.many{font-size:14px; padding:6px 9px;}
+  .so-hintline{margin-top:12px; font-size:15px; color:#0B5F55; background:var(--teal-soft);
+    border-radius:10px; padding:10px 12px; letter-spacing:.3px; line-height:1.8;}
+  .so-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  .so-btn{border:none; background:var(--teal); color:#fff; font-size:14px; font-weight:600;
+    border-radius:10px; padding:10px 16px; cursor:pointer; font-family:inherit;}
+  .so-btn:hover{background:#0B7369;}
+  .so-btn.ghost{background:#fff; color:var(--teal); border:1.5px solid var(--teal);}
+  .so-btn.ghost:hover{background:var(--teal-soft);}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -511,6 +539,7 @@
     <a href="#sentcloze">⑧ 句填</a>
     <a href="#wordform">⑨ 词形变换</a>
     <a href="#wordfamily">⑩ 词族扩展</a>
+    <a href="#sentorder">⑪ 连词成句</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -843,6 +872,40 @@
       <div class="fq-opts" id="fqOpts"></div>
       <div class="fq-fb" id="fqFb"></div>
       <div class="fq-done" id="fqDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 连词成句 ================= -->
+  <section class="block" id="sentorder">
+    <div class="sec-head">
+      <div class="no" style="background:var(--coral);">⑪</div>
+      <h2>连词成句 · 点词拼句</h2>
+      <p>点下方打乱的单词，按正确顺序拼成句子；点已选的词可撤回。组句后点「提交」自查。</p>
+      <span class="count-badge" id="soBadge"></span>
+    </div>
+    <div class="so-wrap">
+      <div class="q-tabs" id="soTabs"></div>
+      <div class="so-stage">
+        <div class="so-top">
+          <span class="clz-progress" id="soHint">第 1 题</span>
+          <span class="q-score" id="soScore" style="margin-left:auto;">得分：0</span>
+        </div>
+        <div class="so-tipbar" id="soTip"></div>
+        <div class="so-label">你拼的句子（点词可撤回）：</div>
+        <div class="so-ans" id="soAns"></div>
+        <div class="so-label">词块（点选拼句）：</div>
+        <div class="so-bank" id="soBank"></div>
+        <div class="so-hintline" id="soHintLine" style="display:none;"></div>
+        <div class="q-feedback" id="soFb" style="display:none;"></div>
+        <div class="so-actions">
+          <button class="so-btn" id="soCheck" type="button">提交答案</button>
+          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（听整句+首字母）</button>
+          <button class="so-btn ghost" id="soReset" type="button">↻ 重排本题</button>
+          <button class="q-next" id="soNext" type="button" style="margin-top:0;">下一题 →</button>
+        </div>
+        <div class="q-done" id="soDone"></div>
+      </div>
     </div>
   </section>
 
@@ -2245,11 +2308,116 @@
   fqLoad();
   
 
+
+  /* ========== ⑪ 连词成句 ========== */
+  window.__SENTORDER = true;
+  (function(){
+    var SO = [{"name":"课文原句","tip":"先做：听发音，把打乱的单词拼回课文原句","items":[{"en":"The Earth is an amazing planet!","zh":""},{"en":"Some places are very hot, like the areas near the equator.","zh":""},{"en":"Some are freezing cold, like the North and South Poles.","zh":""},{"en":"There are fields and mountains, rivers and seas, forests and deserts.","zh":""},{"en":"The highest mountain on Earth is over 8,800 metres above sea level.","zh":""},{"en":"And the deepest part of the sea is more than 10,000 metres down.","zh":""},{"en":"The plants on Earth are wonderful in many different ways.","zh":""},{"en":"The tallest trees in the world can reach over 100 metres in height.","zh":""},{"en":"The smallest plant is as small as a grain of rice.","zh":""},{"en":"The Earth is home to millions of animals.","zh":""},{"en":"Some, like tigers and lions, live on land.","zh":""},{"en":"Other animals, like birds, enjoy the wide open sky.","zh":""},{"en":"Big blue whales call the sea home, along with many amazing fish.","zh":""},{"en":"From bears to birds, from butterflies to seahorses, animals make our planet lovely and interesting.","zh":""},{"en":"And what's more, the Earth provides us with all the things we need, such as food, water, air and energy.","zh":""},{"en":"It is our home and the only planet we know that supports life.","zh":""},{"en":"Let's explore, learn about and take care of our home.","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句，拼回原句巩固记忆","items":[{"en":"The solar system has eight planets.","zh":"system 系统"},{"en":"I put the important information in a file on my computer.","zh":"file 档案"},{"en":"The view of the earth from space is amazing.","zh":"amazing 令人大为惊奇的"},{"en":"The earth is a planet that goes around the sun.","zh":"planet 行星"},{"en":"There are about eight billion people in the world.","zh":"billion 十亿"},{"en":"Oceans cover most of the earth.","zh":"cover 盖；覆盖"},{"en":"The Sahara is a large area of sand in Africa.","zh":"area 地区；地域"},{"en":"It is freezing at the North Pole.","zh":"freezing 极冷的"},{"en":"Canada is in the north of North America.","zh":"north 北；北方"},{"en":"It is very cold at the North pole.","zh":"pole （行星的）极；地极"},{"en":"A desert is a dry place with little rain.","zh":"desert 沙漠；荒漠"},{"en":"One metre is a hundred centimetres.","zh":"metre 米"},{"en":"The tree is so tall that I cannot reach the top.","zh":"reach 足够达到"},{"en":"A grain of sand is very small.","zh":"grain 谷粒"},{"en":"The river is very wide and deep.","zh":"wide 宽的；宽阔的"},{"en":"The whale is the largest animal in the sea.","zh":"whale 鲸"},{"en":"A colorful butterfly flew over the flowers.","zh":"butterfly 蝴蝶"},{"en":"Trees provide us with wood and fresh air.","zh":"provide 提供；供应"},{"en":"Scientists want to explore the bottom of the ocean.","zh":"explore 探索"},{"en":"Some wild animals may disappear forever if we do nothing.","zh":"disappear 消失；不见"},{"en":"plastic does not break down easily and pollutes the sea.","zh":"plastic 塑料"},{"en":"Air pollution is a big problem in many cities.","zh":"pollution 污染"},{"en":"We must protect wild animals and their home.","zh":"protect 保护"},{"en":"This chemical can be harmful to the water.","zh":"chemical 化学制品；化学品"},{"en":"groundwater is the water found under the ground.","zh":"groundwater 地下水"},{"en":"If you burn rubbish, it makes the air dirty.","zh":"burn 燃烧；烧毁"},{"en":"People take oil from under the ground to make fuel.","zh":"oil 石油；原油"},{"en":"Many homes use gas for cooking and heating.","zh":"gas 天然气"},{"en":"Smoking is harmful to your health.","zh":"harmful 有害的"},{"en":"I found the information on a website about the earth.","zh":"website 网站"},{"en":"I want to have my own room.","zh":"own 自己的；本人的"},{"en":"The emperor lived in a big palace and wore a crown.","zh":"emperor 皇帝"},{"en":"People used to hunt wild animals for food.","zh":"hunt 打猎"},{"en":"The two countries fought a long war.","zh":"war 战争"},{"en":"In a sandstorm, strong winds carry a lot of sand.","zh":"sandstorm 沙暴"},{"en":"We need to find a solution to the pollution problem.","zh":"solution 解决办法"},{"en":"Strong winds can blow the sand away.","zh":"blow 刮；吹"},{"en":"This story was passed down from one generation to the next.","zh":"generation （统称）一代人"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句，拼回原句巩固记忆","items":[{"en":"The equator is an imaginary line around the middle of the earth.","zh":"equator 赤道"},{"en":"The cows are eating grass in the field.","zh":"field 田野；田地"},{"en":"Mount Qomolangma is the highest mountain in the world.","zh":"mountain 山；高山"},{"en":"Many birds and animals live in the forest.","zh":"forest 森林"},{"en":"Whales live in the sea.","zh":"sea 海；海洋"},{"en":"The small town is close to sea level.","zh":"level 水平；高度"},{"en":"The ocean is very deep in some places.","zh":"deep 深的"},{"en":"Every plant needs water and sunlight to grow.","zh":"plant 植物"},{"en":"What is the height of this mountain?","zh":"height 高度"},{"en":"A seahorse is a small sea animal that looks like a horse.","zh":"seahorse 海马"},{"en":"The sun gives us light and energy.","zh":"energy 能量；能源"},{"en":"Strong roots support the tall tree.","zh":"support 支撑；供养"},{"en":"The ocean covers most of the earth.","zh":"ocean 海洋"},{"en":"The outer surface of the earth is covered with water.","zh":"surface 表面；表层"},{"en":"Rubbish can pollute the water and the air.","zh":"pollute 污染"},{"en":"Please put the rubbish in the bin.","zh":"rubbish 垃圾"},{"en":"We should recycle paper, glass and plastic.","zh":"recycle 回收利用"},{"en":"We must keep the environment clean.","zh":"environment 环境"},{"en":"We should love and protect nature.","zh":"nature 大自然"},{"en":"The tigers are in danger because people take their land.","zh":"danger 危险"},{"en":"All living things need water to survive.","zh":"living 活着的"},{"en":"There is no life on the moon because it is too hot and dry.","zh":"life 生命"},{"en":"The ship reached land after a long voyage.","zh":"land 陆地；土地"},{"en":"Birds fly in the sky.","zh":"sky 天空"}]},{"name":"重点短语句","tip":"选做：重点短语的例句，拼回原句巩固记忆","items":[{"en":"The earth is part of the solar system.","zh":""},{"en":"Read the fact file and answer the questions.","zh":""},{"en":"The ground is covered by snow.","zh":""},{"en":"as far as we know, he is honest.","zh":""},{"en":"The city is below sea level.","zh":""},{"en":"He is smart; what's more, he is kind.","zh":""},{"en":"Trees provide us with wood.","zh":"provide 提供；供应；给予"},{"en":"plastic pollution is bad for the sea.","zh":""},{"en":"People cut down too many trees.","zh":""},{"en":"There are hundreds of birds in the sky.","zh":""},{"en":"The wind blows away the leaves.","zh":""},{"en":"There are eight planets in the solar system.","zh":""},{"en":"It is very cold at the North Pole.","zh":""},{"en":"Penguins live near the South Pole.","zh":""},{"en":"The river is more than 100 km long.","zh":""},{"en":"The ant is as small as a grain of rice.","zh":""},{"en":"The forest is home to many animals.","zh":""},{"en":"It's cheap; and what's more, it's useful.","zh":""},{"en":"I like fruits such as apples and pears.","zh":""},{"en":"The tigers are in danger.","zh":""},{"en":"We should take care of the earth.","zh":""},{"en":"Birds fly in the air.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句，拼回原句巩固记忆","items":[{"en":"Mars is in the solar system.","zh":""},{"en":"This fact file tells us about the moon.","zh":""},{"en":"The hill is covered by green trees.","zh":""},{"en":"as far as we know, no one was hurt.","zh":""},{"en":"The island is close to sea level.","zh":""},{"en":"The book is fun; what's more, it is short.","zh":""},{"en":"The school provides students with books.","zh":"provides 提供；供应；给予"},{"en":"We should stop plastic pollution.","zh":""},{"en":"Do not cut down the trees.","zh":""},{"en":"hundreds of students joined the club.","zh":""},{"en":"The storm blows away the roof.","zh":""},{"en":"The sun is the center of the solar system.","zh":""},{"en":"Ice covers the North Pole.","zh":""},{"en":"It is colder at the South Pole.","zh":""},{"en":"There are more than 200 books here.","zh":""},{"en":"The baby is as small as a cat.","zh":""},{"en":"The lake is home to many fish.","zh":""},{"en":"He is fast; and what's more, he never tires.","zh":""},{"en":"Sports such as football are popular.","zh":""},{"en":"The whales are in danger.","zh":""},{"en":"Please take care of the plants.","zh":""},{"en":"Smoke is in the air.","zh":""}]}];
+    var soG=0, soIdx=SO.map(function(){return 0;}), soScore=0;
+    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soMany=false;
+    var el = function(id){return document.getElementById(id);};
+    var soTabs=el('soTabs'), soBadge=el('soBadge'), soTip=el('soTip'), soHint=el('soHint'),
+        soScoreEl=el('soScore'), soAnsEl=el('soAns'), soBankEl=el('soBank'),
+        soHintLine=el('soHintLine'), soFb=el('soFb'), soDone=el('soDone'),
+        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soReset=el('soReset'), soNext=el('soNext');
+    if(!soTabs || !SO.length) return;
+
+    function shuf(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+    function renderTabs(){
+      soTabs.innerHTML='';
+      SO.forEach(function(g,i){
+        var b=document.createElement('button'); b.type='button';
+        b.className='q-tab'+(i===soG?' active':'');
+        b.textContent=(i===0?'① ':'')+g.name+' ('+g.items.length+')';
+        b.addEventListener('click',function(){ soG=i; soDone.style.display='none'; renderTabs(); load(); });
+        soTabs.appendChild(b);
+      });
+      soBadge.textContent=SO.reduce(function(a,g){return a+g.items.length;},0)+' 句 · 课文优先，其余选做';
+    }
+    function load(){
+      var g=SO[soG], item=g.items[soIdx[soG]];
+      if(!item){ soDone.style.display='block'; return; }
+      var toks=item.en.match(/\S+/g)||[];
+      soMany = toks.length>20;
+      soBank = shuf(toks.map(function(t,i){return {t:t, oi:i};}));
+      soAns=[]; soSubmitted=false; soHintOn=false;
+      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      soFb.textContent=''; soFb.style.display='none';
+      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，慢慢拼）':'');
+      soTip.textContent = item.zh ? ('关键词提示：'+item.zh) : g.tip;
+      soScoreEl.textContent='得分：'+soScore;
+      soNext.textContent = soIdx[soG]>=g.items.length-1 ? '下一题（本组完成）→' : '下一题 →';
+      soNext.style.display='inline-block';
+      soDone.style.display='none';
+      render();
+    }
+    function render(){
+      soAnsEl.innerHTML=''; soBankEl.innerHTML='';
+      soAns.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok picked'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){ speak(o.t,0.9); soBank.push(o); soAns.splice(k,1); render(); });
+        soAnsEl.appendChild(b);
+      });
+      soBank.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){
+          if(soSubmitted) return;
+          speak(o.t,0.9); soAns.push(o); soBank.splice(k,1); render();
+        });
+        soBankEl.appendChild(b);
+      });
+    }
+    function outline(en){
+      return (en.match(/\S+/g)||[]).map(function(t){
+        var m=t.match(/[A-Za-z]/); if(!m) return t;
+        var first=t.indexOf(m[0]);
+        return t.slice(0,first)+m[0]+('_'.repeat(Math.max(1,Math.min(t.length-first-1,9))));
+      }).join(' ');
+    }
+    soCheck.addEventListener('click',function(){
+      if(soSubmitted) return;
+      if(!soAns.length){ soFb.textContent='请先点选词块拼句'; soFb.style.color='var(--sub)'; soFb.style.display='block'; return; }
+      var item=SO[soG].items[soIdx[soG]];
+      var toks=item.en.match(/\S+/g)||[];
+      var ok = soAns.length===toks.length;
+      if(ok){ for(var i=0;i<toks.length;i++){ if(soAns[i].oi!==i){ ok=false; break; } } }
+      soSubmitted=true;
+      soFb.style.display='block';
+      if(ok){ soScore++; soFb.textContent='✅ 正确！这句记住了。'; soFb.style.color='var(--green)'; }
+      else { soFb.textContent='❌ 顺序还不对。正确句子：'+item.en; soFb.style.color='var(--red)'; }
+      soScoreEl.textContent='得分：'+soScore;
+      setTimeout(function(){ speak(item.en,0.9); }, 500);
+    });
+    soSeeHint.addEventListener('click',function(){
+      var item=SO[soG].items[soIdx[soG]];
+      soHintOn=!soHintOn;
+      if(soHintOn){
+        soHintLine.textContent='首字母提示：'+outline(item.en);
+        soHintLine.style.display='block';
+        soSeeHint.textContent='🙈 收起提示';
+      } else {
+        soHintLine.style.display='none';
+        soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      }
+      speak(item.en,0.85);
+    });
+    soReset.addEventListener('click',function(){ load(); });
+    soNext.addEventListener('click',function(){
+      var g=SO[soG];
+      if(soIdx[soG]>=g.items.length-1){ soIdx[soG]=0; }
+      else soIdx[soG]++;
+      load();
+    });
+    renderTabs(); load();
+  })();
+  
   /* ========== 导航 tab 分组切换 ========== */
   window.__SECTABS = true;
   (function(){
-    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
-    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]],["#sentorder",["sentorder"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily","sentorder"];
     var nav = document.querySelector('nav.secnav');
     if(!nav) return;
     var links = nav.querySelectorAll('a[href^="#"]');
@@ -2263,7 +2431,7 @@
     if(!document.querySelector('.tab-hint')){
       var hint = document.createElement('div');
       hint.className = 'tab-hint';
-      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      hint.textContent = '一次只学一组：点上面的 ①-⑪ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
       nav.parentNode.insertBefore(hint, nav.nextSibling);
     }
     function showByHash(hash, doScroll){

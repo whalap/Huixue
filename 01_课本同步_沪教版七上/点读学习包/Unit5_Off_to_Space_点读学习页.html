@@ -390,6 +390,34 @@
   .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
     border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
+
+  /* ===== ⑪ 连词成句 ===== */
+  .so-wrap{background:var(--card); border:1.5px solid var(--line); border-radius:18px; padding:18px;}
+  .so-stage{margin-top:4px;}
+  .so-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .so-tipbar{margin-top:10px; font-size:13px; color:#7A5200; background:var(--amber-soft);
+    border-radius:10px; padding:8px 12px; line-height:1.7;}
+  .so-label{margin:14px 0 8px; font-size:13px; color:var(--sub); font-weight:600;}
+  .so-ans{min-height:62px; border:2px dashed #B7DED6; border-radius:12px; padding:12px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; background:#FBFEFD;}
+  .so-bank{display:flex; flex-wrap:wrap; gap:8px; padding:12px; border:1.5px solid var(--line);
+    border-radius:12px; background:#FFFCF8; min-height:62px;}
+  .so-tok{border:1.5px solid var(--line); background:#fff; color:var(--ink); border-radius:10px;
+    padding:8px 12px; font-size:16px; cursor:pointer; font-family:inherit; line-height:1.2;
+    transition:background .12s, border-color .12s;}
+  .so-tok:hover{border-color:var(--teal); background:var(--teal-soft);}
+  .so-tok.picked{background:var(--teal); border-color:var(--teal); color:#fff;}
+  .so-tok.picked:hover{background:#0B7369;}
+  .so-tok.many{font-size:14px; padding:6px 9px;}
+  .so-hintline{margin-top:12px; font-size:15px; color:#0B5F55; background:var(--teal-soft);
+    border-radius:10px; padding:10px 12px; letter-spacing:.3px; line-height:1.8;}
+  .so-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  .so-btn{border:none; background:var(--teal); color:#fff; font-size:14px; font-weight:600;
+    border-radius:10px; padding:10px 16px; cursor:pointer; font-family:inherit;}
+  .so-btn:hover{background:#0B7369;}
+  .so-btn.ghost{background:#fff; color:var(--teal); border:1.5px solid var(--teal);}
+  .so-btn.ghost:hover{background:var(--teal-soft);}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -511,6 +539,7 @@
     <a href="#sentcloze">⑧ 句填</a>
     <a href="#wordform">⑨ 词形变换</a>
     <a href="#wordfamily">⑩ 词族扩展</a>
+    <a href="#sentorder">⑪ 连词成句</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -842,6 +871,40 @@
       <div class="fq-opts" id="fqOpts"></div>
       <div class="fq-fb" id="fqFb"></div>
       <div class="fq-done" id="fqDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 连词成句 ================= -->
+  <section class="block" id="sentorder">
+    <div class="sec-head">
+      <div class="no" style="background:var(--coral);">⑪</div>
+      <h2>连词成句 · 点词拼句</h2>
+      <p>点下方打乱的单词，按正确顺序拼成句子；点已选的词可撤回。组句后点「提交」自查。</p>
+      <span class="count-badge" id="soBadge"></span>
+    </div>
+    <div class="so-wrap">
+      <div class="q-tabs" id="soTabs"></div>
+      <div class="so-stage">
+        <div class="so-top">
+          <span class="clz-progress" id="soHint">第 1 题</span>
+          <span class="q-score" id="soScore" style="margin-left:auto;">得分：0</span>
+        </div>
+        <div class="so-tipbar" id="soTip"></div>
+        <div class="so-label">你拼的句子（点词可撤回）：</div>
+        <div class="so-ans" id="soAns"></div>
+        <div class="so-label">词块（点选拼句）：</div>
+        <div class="so-bank" id="soBank"></div>
+        <div class="so-hintline" id="soHintLine" style="display:none;"></div>
+        <div class="q-feedback" id="soFb" style="display:none;"></div>
+        <div class="so-actions">
+          <button class="so-btn" id="soCheck" type="button">提交答案</button>
+          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（听整句+首字母）</button>
+          <button class="so-btn ghost" id="soReset" type="button">↻ 重排本题</button>
+          <button class="q-next" id="soNext" type="button" style="margin-top:0;">下一题 →</button>
+        </div>
+        <div class="q-done" id="soDone"></div>
+      </div>
     </div>
   </section>
 
@@ -2248,11 +2311,116 @@
   fqLoad();
   
 
+
+  /* ========== ⑪ 连词成句 ========== */
+  window.__SENTORDER = true;
+  (function(){
+    var SO = [{"name":"课文原句","tip":"先做：听发音，把打乱的单词拼回课文原句","items":[{"en":"I'm so happy! Tomorrow I'll be one of the first students to travel into space.","zh":""},{"en":"The spaceship will leave the Earth at 9:00 a.m.","zh":""},{"en":"It'll take us to the Moon. I can't wait!","zh":""},{"en":"The Moon is around 380,000 kilometres from the Earth, so it'll take us about three days to get there.","zh":""},{"en":"The gravity in space is very weak, so we'll all be floating around in the spaceship.","zh":""},{"en":"And we won't sleep in beds—we'll sleep in sleeping bags.","zh":""},{"en":"We need to tie the sleeping bag to the wall so that we won't float away in our sleep!","zh":""},{"en":"Because of the low gravity, our bodies may get weak, so we'll have to do exercise every day.","zh":""},{"en":"When we arrive, I'm going to walk on the Moon.","zh":""},{"en":"The Moon has much weaker gravity than the Earth.","zh":""},{"en":"A person weighs much less on the Moon, so we can jump very high.","zh":""},{"en":"I'll have to wear a spacesuit to help me breathe because there's no air on the Moon.","zh":""},{"en":"That also means there is no sound there.","zh":""},{"en":"We can only hear the sounds inside our spacesuits.","zh":""},{"en":"The Moon is a strange and mysterious place.","zh":""},{"en":"I'm going to take as many photos as I can.","zh":""},{"en":"I'm sure that it'll be a wonderful trip!","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句，拼回原句巩固记忆","items":[{"en":"Before leaving the space station, Tom put on his spacesuit.","zh":"spacesuit 航天服；宇航服"},{"en":"Astronauts collect rocks from the moon and bring them home.","zh":"collect 收集；采集"},{"en":"The spaceship will leave the earth at nine tomorrow.","zh":"leave 离开"},{"en":"One kilometre is one thousand metres.","zh":"kilometre 千米；公里"},{"en":"After the long trip, Ben felt weak and needed a rest.","zh":"weak 虚弱的；无力的"},{"en":"In space, you must tie your sleeping bag to the wall.","zh":"tie （用线、绳等）拴"},{"en":"The temperature in outer space is very low.","zh":"low 低于通常（或平均）数量（或水平、价值）的"},{"en":"How much does this moon rock weigh?","zh":"weigh 有……重；重"},{"en":"Astronauts cannot breathe outside the spaceship.","zh":"breathe 呼吸"},{"en":"A gym is an important facility on the space station.","zh":"facility 设施；设备"},{"en":"Travelling to Mars would be a wonderful adventure.","zh":"adventure 冒险经历；奇遇"},{"en":"Our ship will pass slowly through the cloud.","zh":"pass 沿某方向前进；向某方向移动"},{"en":"The scientists did an experiment on the station.","zh":"experiment 实验；试验"},{"en":"We need to prepare for the space trip.","zh":"prepare 使做好准备；把……预备好"},{"en":"Visiting the moon is the dream of many children.","zh":"dream 梦想；理想"},{"en":"This is a good chance to see the earth from above.","zh":"chance 机会；机遇"},{"en":"Tom will send an email to his family from space.","zh":"send 邮寄；发送"},{"en":"Please read the introduction before the first chapter.","zh":"introduction 序言；引言"},{"en":"From the window we enjoyed a beautiful view of the earth.","zh":"view 景色；风景"},{"en":"I hope to walk on the moon someday.","zh":"someday 总有一天；有朝一日"},{"en":"Walking in space was an amazing experience.","zh":"experience 经历；阅历"},{"en":"The lander touched down safely on the planet.","zh":"lander 着陆器"},{"en":"There is a small island in the middle of the sea.","zh":"island 岛"},{"en":"We learned about an ancient city with a long history.","zh":"ancient 古老的；很老的"},{"en":"Lily wrote a short poem about the stars.","zh":"poem 诗"},{"en":"He used the poem to express his feelings.","zh":"express 表示；表达；表露"},{"en":"With great determination, Ada trained hard for the mission.","zh":"determination 决心；坚毅；坚定"},{"en":"The universe is much bigger than we think.","zh":"universe 宇宙"},{"en":"The astronauts have already arrived at the station.","zh":"already 已经；早已"},{"en":"People first flew into space in the twentieth century.","zh":"century 世纪"},{"en":"My neighbour is very interested in rockets.","zh":"neighbour 邻居"},{"en":"The satellite will circle the earth many times.","zh":"circle 环行"},{"en":"The lander moved slowly across the surface of the moon.","zh":"surface 表面；表层；面"},{"en":"Be careful not to release the rope in space.","zh":"release 放开；松开；使自由移动（或飞翔、降落等）"},{"en":"This bag of space food weighs one kilogram.","zh":"kilogram 千克；公斤"},{"en":"The space programme aims to send a robot to Mars.","zh":"programme 计划；方案"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句，拼回原句巩固记忆","items":[{"en":"The spaceship carried the astronauts into space.","zh":"spaceship 宇宙飞船"},{"en":"There is no air in space.","zh":"space 太空"},{"en":"I want to travel into space one day.","zh":"travel 旅行；行进"},{"en":"Without gravity, everything floats in the station.","zh":"gravity 重力；引力"},{"en":"In space, water will float in the air.","zh":"float 漂浮；浮动"},{"en":"Astronauts sleep in special bags on the station.","zh":"sleep 睡觉"},{"en":"The spaceship flew far away from the earth.","zh":"away 离开；不在"},{"en":"Daily exercise keeps the body of an astronaut strong.","zh":"body 身体；astronaut 宇航员"},{"en":"Astronauts do exercise every day to stay strong.","zh":"exercise 锻炼；运动"},{"en":"The spaceship will arrive at the station soon.","zh":"arrive 到达"},{"en":"On the moon you can jump very high.","zh":"jump 跳；跳跃"},{"en":"You must wear a helmet in space.","zh":"wear 穿；戴"},{"en":"There is no sound in space, so it is very quiet.","zh":"sound 声音"},{"en":"The moon rock had a strange shape.","zh":"strange 奇怪的；陌生的"},{"en":"The dark side of the planet looks mysterious.","zh":"mysterious 神秘的"},{"en":"Tom took a photo of the earth from space.","zh":"photo 照片"},{"en":"We had a wonderful view of the blue earth.","zh":"wonderful 精彩的；绝妙的"},{"en":"Maybe in the future we can live on Mars.","zh":"future 未来；将来"},{"en":"Our plan is to visit the moon next year.","zh":"plan 计划"},{"en":"The space trip was exciting from start to end.","zh":"trip 旅行"},{"en":"An astronaut walked on the moon in 1969.","zh":"astronaut 宇航员"},{"en":"The mission to Mars was a great success.","zh":"mission 任务；使命"},{"en":"The spaceship will land on the moon.","zh":"land 着陆；降落"},{"en":"The satellite moves in an orbit around the earth.","zh":"orbit 轨道"},{"en":"A satellite goes around the earth.","zh":"satellite 卫星"},{"en":"The rocket carried the spaceship into the sky.","zh":"rocket 火箭"},{"en":"In space, astronauts are weightless.","zh":"weightless 失重的"},{"en":"We will have a science test next week.","zh":"test 试验；测试"},{"en":"Six astronauts live and work on the space station.","zh":"station 站；台"},{"en":"Astronauts brought back a rock from the moon.","zh":"rock 岩石"},{"en":"The sun is the nearest star to the earth.","zh":"star 恒星；星星"},{"en":"The journey to the moon took three days.","zh":"journey 旅程；旅行"},{"en":"The astronauts will return to earth next week.","zh":"return 返回；回来"}]},{"name":"重点短语句","tip":"选做：重点短语的例句，拼回原句巩固记忆","items":[{"en":"The astronauts live in the space station.","zh":""},{"en":"We do exercise every day.","zh":""},{"en":"I take photos of the beautiful view.","zh":""},{"en":"The satellite will get into orbit.","zh":""},{"en":"thousands of stars are in the sky.","zh":""},{"en":"I want to travel into space one day.","zh":""},{"en":"He was one of the first students to go there.","zh":""},{"en":"I can't wait to see you.","zh":""},{"en":"There is no gravity in space.","zh":""},{"en":"He slept in a sleeping bag.","zh":""},{"en":"The balloon will float away.","zh":""},{"en":"Astronauts walk on the Moon.","zh":""},{"en":"You must wear a spacesuit in space.","zh":""},{"en":"You can take as many as you like.","zh":""},{"en":"We look forward to the trip.","zh":""},{"en":"Cars will fly in the future.","zh":""},{"en":"They will travel back to the earth.","zh":""},{"en":"We had a wonderful trip.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句，拼回原句巩固记忆","items":[{"en":"The ship reached the space station.","zh":""},{"en":"She does exercise in the morning.","zh":""},{"en":"Let's take photos here.","zh":""},{"en":"The rocket will get into orbit soon.","zh":""},{"en":"thousands of people watched the show.","zh":""},{"en":"It is exciting to travel into space.","zh":""},{"en":"She was one of the first students in our class.","zh":""},{"en":"The kids can't wait for the holiday.","zh":""},{"en":"Everything floats in space.","zh":""},{"en":"Take a sleeping bag for the camp.","zh":""},{"en":"The paper will float away in water.","zh":""},{"en":"It is hard to walk on the Moon.","zh":""},{"en":"They wear a spacesuit before the launch.","zh":""},{"en":"There are as many as fifty students.","zh":""},{"en":"I look forward to your reply.","zh":""},{"en":"Robots will help us in the future.","zh":""},{"en":"The spaceship will travel back to earth.","zh":""},{"en":"The space trip was a wonderful trip.","zh":""}]}];
+    var soG=0, soIdx=SO.map(function(){return 0;}), soScore=0;
+    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soMany=false;
+    var el = function(id){return document.getElementById(id);};
+    var soTabs=el('soTabs'), soBadge=el('soBadge'), soTip=el('soTip'), soHint=el('soHint'),
+        soScoreEl=el('soScore'), soAnsEl=el('soAns'), soBankEl=el('soBank'),
+        soHintLine=el('soHintLine'), soFb=el('soFb'), soDone=el('soDone'),
+        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soReset=el('soReset'), soNext=el('soNext');
+    if(!soTabs || !SO.length) return;
+
+    function shuf(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+    function renderTabs(){
+      soTabs.innerHTML='';
+      SO.forEach(function(g,i){
+        var b=document.createElement('button'); b.type='button';
+        b.className='q-tab'+(i===soG?' active':'');
+        b.textContent=(i===0?'① ':'')+g.name+' ('+g.items.length+')';
+        b.addEventListener('click',function(){ soG=i; soDone.style.display='none'; renderTabs(); load(); });
+        soTabs.appendChild(b);
+      });
+      soBadge.textContent=SO.reduce(function(a,g){return a+g.items.length;},0)+' 句 · 课文优先，其余选做';
+    }
+    function load(){
+      var g=SO[soG], item=g.items[soIdx[soG]];
+      if(!item){ soDone.style.display='block'; return; }
+      var toks=item.en.match(/\S+/g)||[];
+      soMany = toks.length>20;
+      soBank = shuf(toks.map(function(t,i){return {t:t, oi:i};}));
+      soAns=[]; soSubmitted=false; soHintOn=false;
+      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      soFb.textContent=''; soFb.style.display='none';
+      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，慢慢拼）':'');
+      soTip.textContent = item.zh ? ('关键词提示：'+item.zh) : g.tip;
+      soScoreEl.textContent='得分：'+soScore;
+      soNext.textContent = soIdx[soG]>=g.items.length-1 ? '下一题（本组完成）→' : '下一题 →';
+      soNext.style.display='inline-block';
+      soDone.style.display='none';
+      render();
+    }
+    function render(){
+      soAnsEl.innerHTML=''; soBankEl.innerHTML='';
+      soAns.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok picked'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){ speak(o.t,0.9); soBank.push(o); soAns.splice(k,1); render(); });
+        soAnsEl.appendChild(b);
+      });
+      soBank.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){
+          if(soSubmitted) return;
+          speak(o.t,0.9); soAns.push(o); soBank.splice(k,1); render();
+        });
+        soBankEl.appendChild(b);
+      });
+    }
+    function outline(en){
+      return (en.match(/\S+/g)||[]).map(function(t){
+        var m=t.match(/[A-Za-z]/); if(!m) return t;
+        var first=t.indexOf(m[0]);
+        return t.slice(0,first)+m[0]+('_'.repeat(Math.max(1,Math.min(t.length-first-1,9))));
+      }).join(' ');
+    }
+    soCheck.addEventListener('click',function(){
+      if(soSubmitted) return;
+      if(!soAns.length){ soFb.textContent='请先点选词块拼句'; soFb.style.color='var(--sub)'; soFb.style.display='block'; return; }
+      var item=SO[soG].items[soIdx[soG]];
+      var toks=item.en.match(/\S+/g)||[];
+      var ok = soAns.length===toks.length;
+      if(ok){ for(var i=0;i<toks.length;i++){ if(soAns[i].oi!==i){ ok=false; break; } } }
+      soSubmitted=true;
+      soFb.style.display='block';
+      if(ok){ soScore++; soFb.textContent='✅ 正确！这句记住了。'; soFb.style.color='var(--green)'; }
+      else { soFb.textContent='❌ 顺序还不对。正确句子：'+item.en; soFb.style.color='var(--red)'; }
+      soScoreEl.textContent='得分：'+soScore;
+      setTimeout(function(){ speak(item.en,0.9); }, 500);
+    });
+    soSeeHint.addEventListener('click',function(){
+      var item=SO[soG].items[soIdx[soG]];
+      soHintOn=!soHintOn;
+      if(soHintOn){
+        soHintLine.textContent='首字母提示：'+outline(item.en);
+        soHintLine.style.display='block';
+        soSeeHint.textContent='🙈 收起提示';
+      } else {
+        soHintLine.style.display='none';
+        soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      }
+      speak(item.en,0.85);
+    });
+    soReset.addEventListener('click',function(){ load(); });
+    soNext.addEventListener('click',function(){
+      var g=SO[soG];
+      if(soIdx[soG]>=g.items.length-1){ soIdx[soG]=0; }
+      else soIdx[soG]++;
+      load();
+    });
+    renderTabs(); load();
+  })();
+  
   /* ========== 导航 tab 分组切换 ========== */
   window.__SECTABS = true;
   (function(){
-    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
-    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]],["#sentorder",["sentorder"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily","sentorder"];
     var nav = document.querySelector('nav.secnav');
     if(!nav) return;
     var links = nav.querySelectorAll('a[href^="#"]');
@@ -2266,7 +2434,7 @@
     if(!document.querySelector('.tab-hint')){
       var hint = document.createElement('div');
       hint.className = 'tab-hint';
-      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      hint.textContent = '一次只学一组：点上面的 ①-⑪ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
       nav.parentNode.insertBefore(hint, nav.nextSibling);
     }
     function showByHash(hash, doScroll){

@@ -390,6 +390,34 @@
   .tab-hint{font-size:12.5px; color:var(--sub); background:var(--teal-soft);
     border-radius:8px; padding:6px 12px; margin:2px 0 14px; line-height:1.7;}
 
+
+  /* ===== ⑪ 连词成句 ===== */
+  .so-wrap{background:var(--card); border:1.5px solid var(--line); border-radius:18px; padding:18px;}
+  .so-stage{margin-top:4px;}
+  .so-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .so-tipbar{margin-top:10px; font-size:13px; color:#7A5200; background:var(--amber-soft);
+    border-radius:10px; padding:8px 12px; line-height:1.7;}
+  .so-label{margin:14px 0 8px; font-size:13px; color:var(--sub); font-weight:600;}
+  .so-ans{min-height:62px; border:2px dashed #B7DED6; border-radius:12px; padding:12px;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; background:#FBFEFD;}
+  .so-bank{display:flex; flex-wrap:wrap; gap:8px; padding:12px; border:1.5px solid var(--line);
+    border-radius:12px; background:#FFFCF8; min-height:62px;}
+  .so-tok{border:1.5px solid var(--line); background:#fff; color:var(--ink); border-radius:10px;
+    padding:8px 12px; font-size:16px; cursor:pointer; font-family:inherit; line-height:1.2;
+    transition:background .12s, border-color .12s;}
+  .so-tok:hover{border-color:var(--teal); background:var(--teal-soft);}
+  .so-tok.picked{background:var(--teal); border-color:var(--teal); color:#fff;}
+  .so-tok.picked:hover{background:#0B7369;}
+  .so-tok.many{font-size:14px; padding:6px 9px;}
+  .so-hintline{margin-top:12px; font-size:15px; color:#0B5F55; background:var(--teal-soft);
+    border-radius:10px; padding:10px 12px; letter-spacing:.3px; line-height:1.8;}
+  .so-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
+  .so-btn{border:none; background:var(--teal); color:#fff; font-size:14px; font-weight:600;
+    border-radius:10px; padding:10px 16px; cursor:pointer; font-family:inherit;}
+  .so-btn:hover{background:#0B7369;}
+  .so-btn.ghost{background:#fff; color:var(--teal); border:1.5px solid var(--teal);}
+  .so-btn.ghost:hover{background:var(--teal-soft);}
+
 </style>
 <script src="../../site-nav.js" defer></script>
 </head>
@@ -511,6 +539,7 @@
     <a href="#sentcloze">⑧ 句填</a>
     <a href="#wordform">⑨ 词形变换</a>
     <a href="#wordfamily">⑩ 词族扩展</a>
+    <a href="#sentorder">⑪ 连词成句</a>
   </nav>
 
   <!-- ================= 单词 ================= -->
@@ -842,6 +871,40 @@
       <div class="fq-opts" id="fqOpts"></div>
       <div class="fq-fb" id="fqFb"></div>
       <div class="fq-done" id="fqDone"></div>
+    </div>
+  </section>
+
+
+  <!-- ================= 连词成句 ================= -->
+  <section class="block" id="sentorder">
+    <div class="sec-head">
+      <div class="no" style="background:var(--coral);">⑪</div>
+      <h2>连词成句 · 点词拼句</h2>
+      <p>点下方打乱的单词，按正确顺序拼成句子；点已选的词可撤回。组句后点「提交」自查。</p>
+      <span class="count-badge" id="soBadge"></span>
+    </div>
+    <div class="so-wrap">
+      <div class="q-tabs" id="soTabs"></div>
+      <div class="so-stage">
+        <div class="so-top">
+          <span class="clz-progress" id="soHint">第 1 题</span>
+          <span class="q-score" id="soScore" style="margin-left:auto;">得分：0</span>
+        </div>
+        <div class="so-tipbar" id="soTip"></div>
+        <div class="so-label">你拼的句子（点词可撤回）：</div>
+        <div class="so-ans" id="soAns"></div>
+        <div class="so-label">词块（点选拼句）：</div>
+        <div class="so-bank" id="soBank"></div>
+        <div class="so-hintline" id="soHintLine" style="display:none;"></div>
+        <div class="q-feedback" id="soFb" style="display:none;"></div>
+        <div class="so-actions">
+          <button class="so-btn" id="soCheck" type="button">提交答案</button>
+          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（听整句+首字母）</button>
+          <button class="so-btn ghost" id="soReset" type="button">↻ 重排本题</button>
+          <button class="q-next" id="soNext" type="button" style="margin-top:0;">下一题 →</button>
+        </div>
+        <div class="q-done" id="soDone"></div>
+      </div>
     </div>
   </section>
 
@@ -2258,11 +2321,116 @@
   fqLoad();
   
 
+
+  /* ========== ⑪ 连词成句 ========== */
+  window.__SENTORDER = true;
+  (function(){
+    var SO = [{"name":"课文原句","tip":"先做：听发音，把打乱的单词拼回课文原句","items":[{"en":"In Shanghai, East meets West, and tradition meets modernity.","zh":""},{"en":"When you visit the city, you can explore famous places and see China's past and present.","zh":""},{"en":"Here are three of Shanghai's best tourist spots.","zh":""},{"en":"Xintiandi is famous for its shikumen buildings from the 19th century.","zh":""},{"en":"These buildings are a mix of traditional Chinese and Western styles.","zh":""},{"en":"Today, the area is a very popular tourist spot, with lots of restaurants and shops.","zh":""},{"en":"You can also visit the Site of the First National Congress of the Communist Party of China (CPC) in Xintiandi, and there is a large museum there.","zh":""},{"en":"You can learn a lot about the history of the CPC if you go inside.","zh":""},{"en":"The Bund is where old meets new.","zh":""},{"en":"Look west, and you will see many old Western-style buildings.","zh":""},{"en":"Look east across the Huangpu River, and you will see skyscrapers.","zh":""},{"en":"At night, these tall buildings light up the sky.","zh":""},{"en":"Yu Garden, or Yuyuan, is in the centre of the old city.","zh":""},{"en":"This garden is over 400 years old.","zh":""},{"en":"If you enjoy history and culture, you will love this place.","zh":""},{"en":"Inside, there are many beautiful traditional buildings.","zh":""},{"en":"You can also buy local food and gifts there.","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句，拼回原句巩固记忆","items":[{"en":"This city guide gives visitors useful information.","zh":"guide 指南；手册"},{"en":"The sun rises in the east.","zh":"east 东；东方"},{"en":"The sun sets in the west.","zh":"west 西；西方"},{"en":"Shanghai is a mix of old and new.","zh":"mix 混合；结合"},{"en":"The Bund has many western buildings.","zh":"western 西方的；西方国家的"},{"en":"The old town has a special style of its own.","zh":"style 风格"},{"en":"Yu Garden is a popular place with tourists.","zh":"popular 大众喜爱的；广受欢迎的"},{"en":"This is the site where the old city began.","zh":"site （建筑物、城镇等的）地点"},{"en":"The Bund lies across the Huangpu River.","zh":"across 在……对面；在……对过"},{"en":"This ticket is for an adult, not a child.","zh":"adult 成年人"},{"en":"My grandmother is a senior and gets a free ticket.","zh":"senior 老年人；长者"},{"en":"The shop assistant helped the customer.","zh":"customer 顾客；主顾；客户"},{"en":"The design of the building is very special.","zh":"design 设计"},{"en":"What else did you see in Shanghai?","zh":"else 其他的；别的"},{"en":"My teacher gave me a useful suggestion for the trip.","zh":"suggestion 建议；提议"},{"en":"Here is a useful tip: book your tickets early.","zh":"tip 指点；实用的提示"},{"en":"The Bund is a historic part of Shanghai.","zh":"historic 历史上著名（或重要）的；可名垂青史的"},{"en":"I made a list of places to visit.","zh":"list 名单；清单"},{"en":"The city landscape looks amazing at night.","zh":"landscape 风景；景色"},{"en":"The trip left a happy memory in my mind.","zh":"memory 回忆；记忆"},{"en":"The general led his army through the old town.","zh":"general 将军"},{"en":"At first sight, Shanghai looks very modern.","zh":"sight 看见"},{"en":"The park is famous for its natural beauty.","zh":"natural 自然的；天然的"},{"en":"I have almost finished reading the book.","zh":"almost 几乎；差不多"},{"en":"Shanghai has become a modern city.","zh":"become 开始变得；变成"},{"en":"Shanghai is a gateway to the whole country.","zh":"gateway （通往其他地区的）门户"},{"en":"Western ideas began to influence the city.","zh":"influence 影响；对……起作用"},{"en":"The old temple is a valuable piece of artwork.","zh":"artwork 艺术作品"},{"en":"A beautiful painting of Yu Garden hangs on the wall.","zh":"painting 绘画"},{"en":"The busy scene at the night market excited everyone.","zh":"scene 场面；情景"},{"en":"The general brought his wife to the garden.","zh":"wife 妻子"},{"en":"The old bridge is made of stone.","zh":"stone 石头；石料"},{"en":"We saw the reflection of the tower in the river.","zh":"reflection 映像；映照出的影像"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句，拼回原句巩固记忆","items":[{"en":"We will meet at the Bund at seven.","zh":"meet 相遇；会合"},{"en":"The Spring Festival is an important Chinese tradition.","zh":"tradition 传统"},{"en":"Shanghai shows a mix of tradition and modernity.","zh":"modernity 现代；现代性"},{"en":"We will visit Yu Garden tomorrow.","zh":"visit 参观；游览"},{"en":"I want to explore the old streets of Shanghai.","zh":"explore 探索；探究"},{"en":"The Bund is famous all over the world.","zh":"famous 著名的"},{"en":"A tourist asked the way to Yu Garden.","zh":"tourist 游客；观光客"},{"en":"This is a good spot to watch the night lights.","zh":"spot 地点；场所"},{"en":"That tall building is a new hotel.","zh":"building 建筑物"},{"en":"The old temple was built in the 19th century.","zh":"century 世纪"},{"en":"We had dinner in a small restaurant near the river.","zh":"restaurant 餐馆；饭店"},{"en":"The city museum has many old things.","zh":"museum 博物馆"},{"en":"Shanghai has a long and interesting history.","zh":"history 历史"},{"en":"The new skyscraper is the tallest in the city.","zh":"skyscraper 摩天大楼"},{"en":"Fireworks light up the sky over the Bund.","zh":"light 点亮；照亮"},{"en":"The sky above the city turned pink.","zh":"sky 天空"},{"en":"Yu Garden is a beautiful garden in Shanghai.","zh":"garden 花园"},{"en":"The Bund is in the centre of Shanghai.","zh":"centre 中心"},{"en":"It is important to learn about local culture.","zh":"culture 文化"},{"en":"The Dragon Boat Festival is a traditional Chinese festival.","zh":"traditional 传统的"},{"en":"You can try local food at the market.","zh":"local 当地的"},{"en":"I bought a small gift for my friend in Shanghai.","zh":"gift 礼物"},{"en":"The view from the top of the tower is amazing.","zh":"view 景色；风景"},{"en":"She read a guidebook to find the best places.","zh":"guidebook 旅游指南"},{"en":"The Oriental Pearl Tower is a famous landmark.","zh":"landmark 地标"},{"en":"We visited an old temple in the city.","zh":"temple 寺庙"},{"en":"The tall tower stands beside the river.","zh":"tower 塔"},{"en":"There is a long bridge over the Huangpu River.","zh":"bridge 桥"},{"en":"The Huangpu river runs through Shanghai.","zh":"river 河；江"},{"en":"Many ships rest in the harbour.","zh":"harbour 港湾；港口"},{"en":"There is a small island in the middle of the lake.","zh":"island 岛"},{"en":"The old town has many ancient buildings.","zh":"ancient 古代的；古老的"},{"en":"The city has many modern tall buildings.","zh":"modern 现代的"},{"en":"The street is crowded during the holiday.","zh":"crowded 拥挤的"},{"en":"The local food is really delicious.","zh":"delicious 美味的"},{"en":"Can you recommend a good restaurant?","zh":"recommend 推荐"},{"en":"The Great Wall is a wonder of the world.","zh":"wonder 奇迹；奇观"},{"en":"My uncle works abroad.","zh":"abroad 在国外"},{"en":"The city will welcome visitors from all over the world.","zh":"welcome 欢迎"}]},{"name":"重点短语句","tip":"选做：重点短语的例句，拼回原句巩固记忆","items":[{"en":"The Great Wall is a famous tourist spot.","zh":""},{"en":"The lights light up the street.","zh":""},{"en":"The park is in the centre of the city.","zh":""},{"en":"I am interested in history.","zh":""},{"en":"The temple is a historic site.","zh":""},{"en":"The statue is in memory of the hero.","zh":""},{"en":"We followed the travel guide.","zh":""},{"en":"Shanghai is where East meets West.","zh":""},{"en":"Guilin is famous for its mountains.","zh":""},{"en":"The food is a mix of sweet and sour.","zh":""},{"en":"look east and you'll see the sea.","zh":""},{"en":"There is a bridge across the river.","zh":""},{"en":"The building was built in the 19th century.","zh":""},{"en":"We visited the Site of the First National Congress of the CPC in Shanghai.","zh":""},{"en":"I want to learn about Chinese culture.","zh":""},{"en":"Tourists buy local food and gifts there.","zh":""},{"en":"We enjoy history and culture in Xi'an.","zh":""},{"en":"the Bund is famous in Shanghai.","zh":""},{"en":"the Huangpu River runs through Shanghai.","zh":""},{"en":"Yu Garden is a beautiful garden.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句，拼回原句巩固记忆","items":[{"en":"This town is a popular tourist spot.","zh":""},{"en":"Fireworks light up the sky.","zh":""},{"en":"Our school is in the centre of the town.","zh":""},{"en":"She is interested in music.","zh":""},{"en":"We visited an old historic site.","zh":""},{"en":"A park was built in memory of the artist.","zh":""},{"en":"The travel guide showed us the way.","zh":""},{"en":"This city is where East meets West.","zh":""},{"en":"Suzhou is famous for its gardens.","zh":""},{"en":"The music is a mix of old and new.","zh":""},{"en":"look east to see the sunrise.","zh":""},{"en":"We walked across the river.","zh":""},{"en":"Many buildings date back in the 19th century.","zh":""},{"en":"the Site of the First National Congress of the CPC is in Shanghai.","zh":""},{"en":"We learn about the history of the city.","zh":""},{"en":"Let's buy local food and gifts at the market.","zh":""},{"en":"Visitors enjoy history and culture in Beijing.","zh":""},{"en":"We took photos at the Bund.","zh":""},{"en":"Boats sail on the Huangpu River.","zh":""},{"en":"Yu Garden has nice views.","zh":""}]}];
+    var soG=0, soIdx=SO.map(function(){return 0;}), soScore=0;
+    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soMany=false;
+    var el = function(id){return document.getElementById(id);};
+    var soTabs=el('soTabs'), soBadge=el('soBadge'), soTip=el('soTip'), soHint=el('soHint'),
+        soScoreEl=el('soScore'), soAnsEl=el('soAns'), soBankEl=el('soBank'),
+        soHintLine=el('soHintLine'), soFb=el('soFb'), soDone=el('soDone'),
+        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soReset=el('soReset'), soNext=el('soNext');
+    if(!soTabs || !SO.length) return;
+
+    function shuf(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+    function renderTabs(){
+      soTabs.innerHTML='';
+      SO.forEach(function(g,i){
+        var b=document.createElement('button'); b.type='button';
+        b.className='q-tab'+(i===soG?' active':'');
+        b.textContent=(i===0?'① ':'')+g.name+' ('+g.items.length+')';
+        b.addEventListener('click',function(){ soG=i; soDone.style.display='none'; renderTabs(); load(); });
+        soTabs.appendChild(b);
+      });
+      soBadge.textContent=SO.reduce(function(a,g){return a+g.items.length;},0)+' 句 · 课文优先，其余选做';
+    }
+    function load(){
+      var g=SO[soG], item=g.items[soIdx[soG]];
+      if(!item){ soDone.style.display='block'; return; }
+      var toks=item.en.match(/\S+/g)||[];
+      soMany = toks.length>20;
+      soBank = shuf(toks.map(function(t,i){return {t:t, oi:i};}));
+      soAns=[]; soSubmitted=false; soHintOn=false;
+      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      soFb.textContent=''; soFb.style.display='none';
+      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，慢慢拼）':'');
+      soTip.textContent = item.zh ? ('关键词提示：'+item.zh) : g.tip;
+      soScoreEl.textContent='得分：'+soScore;
+      soNext.textContent = soIdx[soG]>=g.items.length-1 ? '下一题（本组完成）→' : '下一题 →';
+      soNext.style.display='inline-block';
+      soDone.style.display='none';
+      render();
+    }
+    function render(){
+      soAnsEl.innerHTML=''; soBankEl.innerHTML='';
+      soAns.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok picked'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){ speak(o.t,0.9); soBank.push(o); soAns.splice(k,1); render(); });
+        soAnsEl.appendChild(b);
+      });
+      soBank.forEach(function(o,k){
+        var b=document.createElement('button'); b.type='button';
+        b.className='so-tok'+(soMany?' many':''); b.textContent=o.t; b.setAttribute('data-oi',o.oi);
+        b.addEventListener('click',function(){
+          if(soSubmitted) return;
+          speak(o.t,0.9); soAns.push(o); soBank.splice(k,1); render();
+        });
+        soBankEl.appendChild(b);
+      });
+    }
+    function outline(en){
+      return (en.match(/\S+/g)||[]).map(function(t){
+        var m=t.match(/[A-Za-z]/); if(!m) return t;
+        var first=t.indexOf(m[0]);
+        return t.slice(0,first)+m[0]+('_'.repeat(Math.max(1,Math.min(t.length-first-1,9))));
+      }).join(' ');
+    }
+    soCheck.addEventListener('click',function(){
+      if(soSubmitted) return;
+      if(!soAns.length){ soFb.textContent='请先点选词块拼句'; soFb.style.color='var(--sub)'; soFb.style.display='block'; return; }
+      var item=SO[soG].items[soIdx[soG]];
+      var toks=item.en.match(/\S+/g)||[];
+      var ok = soAns.length===toks.length;
+      if(ok){ for(var i=0;i<toks.length;i++){ if(soAns[i].oi!==i){ ok=false; break; } } }
+      soSubmitted=true;
+      soFb.style.display='block';
+      if(ok){ soScore++; soFb.textContent='✅ 正确！这句记住了。'; soFb.style.color='var(--green)'; }
+      else { soFb.textContent='❌ 顺序还不对。正确句子：'+item.en; soFb.style.color='var(--red)'; }
+      soScoreEl.textContent='得分：'+soScore;
+      setTimeout(function(){ speak(item.en,0.9); }, 500);
+    });
+    soSeeHint.addEventListener('click',function(){
+      var item=SO[soG].items[soIdx[soG]];
+      soHintOn=!soHintOn;
+      if(soHintOn){
+        soHintLine.textContent='首字母提示：'+outline(item.en);
+        soHintLine.style.display='block';
+        soSeeHint.textContent='🙈 收起提示';
+      } else {
+        soHintLine.style.display='none';
+        soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      }
+      speak(item.en,0.85);
+    });
+    soReset.addEventListener('click',function(){ load(); });
+    soNext.addEventListener('click',function(){
+      var g=SO[soG];
+      if(soIdx[soG]>=g.items.length-1){ soIdx[soG]=0; }
+      else soIdx[soG]++;
+      load();
+    });
+    renderTabs(); load();
+  })();
+  
   /* ========== 导航 tab 分组切换 ========== */
   window.__SECTABS = true;
   (function(){
-    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]]];
-    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily"];
+    var MAP = [["#words",["words"]],["#phrases",["phrases"]],["#reading",["reading"]],["#phon",["phon"]],["#grammar",["grammar"]],["#quiz",["quiz"]],["#cloze",["cloze"]],["#sentcloze",["sentcloze"]],["#wordform",["wordbuilding","wordform"]],["#wordfamily",["wordfamily"]],["#sentorder",["sentorder"]]];
+    var ALL = ["words","phrases","reading","phon","grammar","quiz","cloze","sentcloze","wordbuilding","wordform","wordfamily","sentorder"];
     var nav = document.querySelector('nav.secnav');
     if(!nav) return;
     var links = nav.querySelectorAll('a[href^="#"]');
@@ -2276,7 +2444,7 @@
     if(!document.querySelector('.tab-hint')){
       var hint = document.createElement('div');
       hint.className = 'tab-hint';
-      hint.textContent = '一次只学一组：点上面的 ①-⑩ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
+      hint.textContent = '一次只学一组：点上面的 ①-⑪ 切换板块，学完一组再换下一组，不用一次面对全部内容。';
       nav.parentNode.insertBefore(hint, nav.nextSibling);
     }
     function showByHash(hash, doScroll){

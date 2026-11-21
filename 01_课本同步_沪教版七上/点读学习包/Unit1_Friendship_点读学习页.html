@@ -411,6 +411,18 @@
   .so-tok.many{font-size:14px; padding:6px 9px;}
   .so-hintline{margin-top:12px; font-size:15px; color:#0B5F55; background:var(--teal-soft);
     border-radius:10px; padding:10px 12px; letter-spacing:.3px; line-height:1.8;}
+  .so-listenbar{margin-top:10px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;}
+  .so-listen{border:none; background:var(--teal); color:#fff; font-size:15px; font-weight:600;
+    border-radius:999px; padding:10px 20px 10px 15px; cursor:pointer; font-family:inherit;
+    display:inline-flex; align-items:center; gap:8px;}
+  .so-listen:hover{background:#0B7369;}
+  .so-listen.slow{background:var(--amber);}
+  .so-listen.slow:hover{background:#946300;}
+  .so-listen .ico{display:inline-flex; align-items:center; justify-content:center;
+    width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,.22);}
+  .so-listen .ico svg{width:15px; height:15px; fill:#fff;}
+  .so-orig{margin-top:12px; font-size:16px; color:#0B5F55; background:#fff; border:1.5px solid #B7DED6;
+    border-radius:10px; padding:12px 14px; line-height:1.7; display:none;}
   .so-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
   .so-btn{border:none; background:var(--teal); color:#fff; font-size:14px; font-weight:600;
     border-radius:10px; padding:10px 16px; cursor:pointer; font-family:inherit;}
@@ -990,8 +1002,8 @@
   <section class="block" id="sentorder">
     <div class="sec-head">
       <div class="no" style="background:var(--coral);">⑪</div>
-      <h2>连词成句 · 点词拼句</h2>
-      <p>点下方打乱的单词，按正确顺序拼成句子；点已选的词可撤回。组句后点「提交」自查。</p>
+      <h2>连词成句 · 听音拼句</h2>
+      <p>先听整句发音，再按听到的顺序点词块拼句；长句可慢速听。卡住了用「看提示」或「看原句」。</p>
       <span class="count-badge" id="soBadge"></span>
     </div>
     <div class="so-wrap">
@@ -1002,15 +1014,22 @@
           <span class="q-score" id="soScore" style="margin-left:auto;">得分：0</span>
         </div>
         <div class="so-tipbar" id="soTip"></div>
+        <div class="so-listenbar">
+          <button class="so-listen" id="soPlay" type="button"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>▶ 听整句</button>
+          <button class="so-listen slow" id="soPlaySlow" type="button"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>🐢 慢速听</button>
+          <span style="font-size:13px;color:var(--sub);">听发音，按听到的顺序点词块拼句 · 可反复听</span>
+        </div>
         <div class="so-label">你拼的句子（点词可撤回）：</div>
         <div class="so-ans" id="soAns"></div>
         <div class="so-label">词块（点选拼句）：</div>
         <div class="so-bank" id="soBank"></div>
         <div class="so-hintline" id="soHintLine" style="display:none;"></div>
+        <div class="so-orig" id="soOrig" style="display:none;"></div>
         <div class="q-feedback" id="soFb" style="display:none;"></div>
         <div class="so-actions">
           <button class="so-btn" id="soCheck" type="button">提交答案</button>
-          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（听整句+首字母）</button>
+          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（首字母）</button>
+          <button class="so-btn ghost" id="soSeeOrig" type="button">👀 看原句</button>
           <button class="so-btn ghost" id="soReset" type="button">↻ 重排本题</button>
           <button class="q-next" id="soNext" type="button" style="margin-top:0;">下一题 →</button>
         </div>
@@ -2298,14 +2317,15 @@
   /* ========== ⑪ 连词成句 ========== */
   window.__SENTORDER = true;
   (function(){
-    var SO = [{"name":"课文原句","tip":"先做：听发音，把打乱的单词拼回课文原句","items":[{"en":"I love my new school! I have made a lot of new friends there. Li Hua is one of them.","zh":""},{"en":"Li Hua is helpful and patient. He is also good at maths.","zh":""},{"en":"When I meet difficult maths problems, I turn to him for help.","zh":""},{"en":"When something interesting happens to me, I share my happiness with him.","zh":""},{"en":"When one of us feels sad, we tell the other one and this makes us feel better.","zh":""},{"en":"We really like doing things together.","zh":""},{"en":"Li Hua loves playing ping-pong with me after school.","zh":""},{"en":"\"It's fun to play with a good player like you,\" he says.","zh":""},{"en":"With his help, my maths has improved a lot.","zh":""},{"en":"I am also more confident now, and I have the courage to try new things.","zh":""},{"en":"My parents also tell me that I am more open and willing to help than before.","zh":""},{"en":"I think this is all thanks to Li Hua.","zh":""},{"en":"Close friends can really help us in our lives!","zh":""},{"en":"My friendship with Li Hua teaches me that friends count on each other for love, admiration, respect and support.","zh":""},{"en":"Friendships are not only about having fun, but also about love, honesty, understanding and trust.","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句，拼回原句巩固记忆","items":[{"en":"Tom plays the guitar after dinner.","zh":"guitar 吉他"},{"en":"Lily is an honest girl and never tells lies.","zh":"honest 诚实的"},{"en":"A good teacher is patient with slow students.","zh":"patient 有耐心的"},{"en":"I want to improve my English this term.","zh":"improve 改进；改善"},{"en":"Ben feels confident before the big exam.","zh":"confident 自信的"},{"en":"It takes courage to speak in front of the class.","zh":"courage 勇气；胆量"},{"en":"True friendship lasts for many years.","zh":"friendship 友谊；朋友关系"},{"en":"We look at the hero with great admiration.","zh":"admiration 钦佩；赞赏"},{"en":"Students should show respect to their teachers.","zh":"respect 尊敬；尊重"},{"en":"Thank you for your support when I was ill.","zh":"support 支持；鼓励"},{"en":"I have great trust in my best friend.","zh":"trust 信任；信赖"},{"en":"We did a survey about reading habits in our class.","zh":"survey 调查"},{"en":"Please keep this personal information private.","zh":"personal 个人的"},{"en":"Kindness is a good quality in a friend.","zh":"quality 品质；品德"},{"en":"Ada is a caring person who helps others.","zh":"caring 关心他人的；体贴人的"},{"en":"Can you describe the picture to me?","zh":"describe 描述；形容"},{"en":"Do not judge a person by his appearance.","zh":"appearance 外貌"},{"en":"The girl has long straight hair.","zh":"straight 直的"},{"en":"He has dark eyes and short hair.","zh":"dark 褐色的；乌黑的"},{"en":"Tom and I are in the same class.","zh":"same 同一的；相同的"},{"en":"We learn basic English skills at school.","zh":"basic 基本的；基础的"},{"en":"A good thought came to my mind.","zh":"thought 想法"},{"en":"I like the book; however, it is too long.","zh":"however 然而；不过"},{"en":"I am glad to hear the good news.","zh":"glad 高兴的；愉快的"},{"en":"The sun will rise in the east.","zh":"rise 上升"},{"en":"We watched the film from beginning to end.","zh":"end 结局"},{"en":"She has a kind heart and helps everyone.","zh":"heart 心"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句，拼回原句巩固记忆","items":[{"en":"Our new classmate is very friendly.","zh":"friendly 友好的"},{"en":"Jerry is a hard-working student and studies late.","zh":""},{"en":"Eva is helpful and always helps me with maths.","zh":"helpful 乐于助人的"},{"en":"My grandmother is very kind to everyone.","zh":"kind 善良的"},{"en":"It is polite to say thank you.","zh":"polite 有礼貌的"},{"en":"The story is so funny that we all laugh.","zh":"funny 有趣的"},{"en":"My parents are supportive when I feel sad.","zh":"supportive 给予支持的"},{"en":"David is the tall boy in our class.","zh":"tall 高的"},{"en":"Tom is short, but his brother is tall.","zh":"short 矮的；短的"},{"en":"She has curly brown hair.","zh":"curly 卷曲的"},{"en":"My brother is of medium height.","zh":"medium 中等的"},{"en":"My hobby is collecting stamps.","zh":"hobby 爱好"},{"en":"We learn about modern art in class.","zh":"modern 现代的"},{"en":"Lily can dance very well.","zh":"dance 跳舞"},{"en":"We like to swim in the pool.","zh":"swim 游泳"},{"en":"Ada likes to paint pictures in her free time.","zh":"paint 绘画"},{"en":"He is a good football player.","zh":"player 运动员；选手"},{"en":"She wants to be a famous singer one day.","zh":"singer 歌手"}]},{"name":"重点短语句","tip":"选做：重点短语的例句，拼回原句巩固记忆","items":[{"en":"My sister is good at dancing.","zh":""},{"en":"When you are in trouble, you can turn to your teacher for help.","zh":""},{"en":"We often play sports after school.","zh":""},{"en":"Lily is willing to help others.","zh":"willing 愿意做某事"},{"en":"thanks to the teacher, I found the answer.","zh":""},{"en":"You can count on him; he never lies.","zh":""},{"en":"My brother is of medium height.","zh":""},{"en":"She takes a modern dance class.","zh":""},{"en":"Please take care of my cat for me.","zh":""},{"en":"The farmer watches over his sheep.","zh":""},{"en":"The smoke rises into the sky.","zh":""},{"en":"The boy cries out when he saw the snake.","zh":""},{"en":"The tired child cries oneself to sleep last night.","zh":""},{"en":"I wake up early every morning.","zh":""},{"en":"People come and go in the busy street.","zh":""},{"en":"Tom was ill, so Lily took Lily's place.","zh":""},{"en":"A good chance comes along at last.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句，拼回原句巩固记忆","items":[{"en":"He is good at maths and often helps me.","zh":""},{"en":"I turn to my teacher for help when I cannot solve a problem.","zh":""},{"en":"I go to the library after school.","zh":""},{"en":"Are you willing to join us?","zh":"willing 愿意做某事"},{"en":"thanks to your help, we finished on time.","zh":""},{"en":"We can count on our friends for support.","zh":""},{"en":"The new teacher is of medium height.","zh":""},{"en":"She is interested in modern dance.","zh":""},{"en":"Nurses take care of sick people.","zh":""},{"en":"The dog will watch over the house.","zh":""},{"en":"The balloon will rise into the air.","zh":""},{"en":"She cries out with joy.","zh":""},{"en":"The baby cries oneself to sleep after crying for hours.","zh":""},{"en":"The loud noise made me wake up.","zh":""},{"en":"Cars come and go on this road all day.","zh":""},{"en":"Who will take Tom's place in the game?","zh":""},{"en":"Do not worry; a chance will come along.","zh":""}]}];
+    var SO = [{"name":"课文原句","tip":"先做：点「▶ 听整句」听发音，按听到的顺序拼词块；长句点「🐢 慢速听」","items":[{"en":"I love my new school! I have made a lot of new friends there. Li Hua is one of them.","zh":""},{"en":"Li Hua is helpful and patient. He is also good at maths.","zh":""},{"en":"When I meet difficult maths problems, I turn to him for help.","zh":""},{"en":"When something interesting happens to me, I share my happiness with him.","zh":""},{"en":"When one of us feels sad, we tell the other one and this makes us feel better.","zh":""},{"en":"We really like doing things together.","zh":""},{"en":"Li Hua loves playing ping-pong with me after school.","zh":""},{"en":"\"It's fun to play with a good player like you,\" he says.","zh":""},{"en":"With his help, my maths has improved a lot.","zh":""},{"en":"I am also more confident now, and I have the courage to try new things.","zh":""},{"en":"My parents also tell me that I am more open and willing to help than before.","zh":""},{"en":"I think this is all thanks to Li Hua.","zh":""},{"en":"Close friends can really help us in our lives!","zh":""},{"en":"My friendship with Li Hua teaches me that friends count on each other for love, admiration, respect and support.","zh":""},{"en":"Friendships are not only about having fun, but also about love, honesty, understanding and trust.","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句 · 听发音按序拼词块，长句可慢速听","items":[{"en":"Tom plays the guitar after dinner.","zh":"guitar 吉他"},{"en":"Lily is an honest girl and never tells lies.","zh":"honest 诚实的"},{"en":"A good teacher is patient with slow students.","zh":"patient 有耐心的"},{"en":"I want to improve my English this term.","zh":"improve 改进；改善"},{"en":"Ben feels confident before the big exam.","zh":"confident 自信的"},{"en":"It takes courage to speak in front of the class.","zh":"courage 勇气；胆量"},{"en":"True friendship lasts for many years.","zh":"friendship 友谊；朋友关系"},{"en":"We look at the hero with great admiration.","zh":"admiration 钦佩；赞赏"},{"en":"Students should show respect to their teachers.","zh":"respect 尊敬；尊重"},{"en":"Thank you for your support when I was ill.","zh":"support 支持；鼓励"},{"en":"I have great trust in my best friend.","zh":"trust 信任；信赖"},{"en":"We did a survey about reading habits in our class.","zh":"survey 调查"},{"en":"Please keep this personal information private.","zh":"personal 个人的"},{"en":"Kindness is a good quality in a friend.","zh":"quality 品质；品德"},{"en":"Ada is a caring person who helps others.","zh":"caring 关心他人的；体贴人的"},{"en":"Can you describe the picture to me?","zh":"describe 描述；形容"},{"en":"Do not judge a person by his appearance.","zh":"appearance 外貌"},{"en":"The girl has long straight hair.","zh":"straight 直的"},{"en":"He has dark eyes and short hair.","zh":"dark 褐色的；乌黑的"},{"en":"Tom and I are in the same class.","zh":"same 同一的；相同的"},{"en":"We learn basic English skills at school.","zh":"basic 基本的；基础的"},{"en":"A good thought came to my mind.","zh":"thought 想法"},{"en":"I like the book; however, it is too long.","zh":"however 然而；不过"},{"en":"I am glad to hear the good news.","zh":"glad 高兴的；愉快的"},{"en":"The sun will rise in the east.","zh":"rise 上升"},{"en":"We watched the film from beginning to end.","zh":"end 结局"},{"en":"She has a kind heart and helps everyone.","zh":"heart 心"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句 · 听发音按序拼词块，长句可慢速听","items":[{"en":"Our new classmate is very friendly.","zh":"friendly 友好的"},{"en":"Jerry is a hard-working student and studies late.","zh":""},{"en":"Eva is helpful and always helps me with maths.","zh":"helpful 乐于助人的"},{"en":"My grandmother is very kind to everyone.","zh":"kind 善良的"},{"en":"It is polite to say thank you.","zh":"polite 有礼貌的"},{"en":"The story is so funny that we all laugh.","zh":"funny 有趣的"},{"en":"My parents are supportive when I feel sad.","zh":"supportive 给予支持的"},{"en":"David is the tall boy in our class.","zh":"tall 高的"},{"en":"Tom is short, but his brother is tall.","zh":"short 矮的；短的"},{"en":"She has curly brown hair.","zh":"curly 卷曲的"},{"en":"My brother is of medium height.","zh":"medium 中等的"},{"en":"My hobby is collecting stamps.","zh":"hobby 爱好"},{"en":"We learn about modern art in class.","zh":"modern 现代的"},{"en":"Lily can dance very well.","zh":"dance 跳舞"},{"en":"We like to swim in the pool.","zh":"swim 游泳"},{"en":"Ada likes to paint pictures in her free time.","zh":"paint 绘画"},{"en":"He is a good football player.","zh":"player 运动员；选手"},{"en":"She wants to be a famous singer one day.","zh":"singer 歌手"}]},{"name":"重点短语句","tip":"选做：重点短语的例句 · 听发音按序拼词块，长句可慢速听","items":[{"en":"My sister is good at dancing.","zh":""},{"en":"When you are in trouble, you can turn to your teacher for help.","zh":""},{"en":"We often play sports after school.","zh":""},{"en":"Lily is willing to help others.","zh":"willing 愿意做某事"},{"en":"thanks to the teacher, I found the answer.","zh":""},{"en":"You can count on him; he never lies.","zh":""},{"en":"My brother is of medium height.","zh":""},{"en":"She takes a modern dance class.","zh":""},{"en":"Please take care of my cat for me.","zh":""},{"en":"The farmer watches over his sheep.","zh":""},{"en":"The smoke rises into the sky.","zh":""},{"en":"The boy cries out when he saw the snake.","zh":""},{"en":"The tired child cries oneself to sleep last night.","zh":""},{"en":"I wake up early every morning.","zh":""},{"en":"People come and go in the busy street.","zh":""},{"en":"Tom was ill, so Lily took Lily's place.","zh":""},{"en":"A good chance comes along at last.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句 · 听发音按序拼词块，长句可慢速听","items":[{"en":"He is good at maths and often helps me.","zh":""},{"en":"I turn to my teacher for help when I cannot solve a problem.","zh":""},{"en":"I go to the library after school.","zh":""},{"en":"Are you willing to join us?","zh":"willing 愿意做某事"},{"en":"thanks to your help, we finished on time.","zh":""},{"en":"We can count on our friends for support.","zh":""},{"en":"The new teacher is of medium height.","zh":""},{"en":"She is interested in modern dance.","zh":""},{"en":"Nurses take care of sick people.","zh":""},{"en":"The dog will watch over the house.","zh":""},{"en":"The balloon will rise into the air.","zh":""},{"en":"She cries out with joy.","zh":""},{"en":"The baby cries oneself to sleep after crying for hours.","zh":""},{"en":"The loud noise made me wake up.","zh":""},{"en":"Cars come and go on this road all day.","zh":""},{"en":"Who will take Tom's place in the game?","zh":""},{"en":"Do not worry; a chance will come along.","zh":""}]}];
     var soG=0, soIdx=SO.map(function(){return 0;}), soScore=0;
-    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soMany=false;
+    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soOrigOn=false, soMany=false;
     var el = function(id){return document.getElementById(id);};
     var soTabs=el('soTabs'), soBadge=el('soBadge'), soTip=el('soTip'), soHint=el('soHint'),
         soScoreEl=el('soScore'), soAnsEl=el('soAns'), soBankEl=el('soBank'),
-        soHintLine=el('soHintLine'), soFb=el('soFb'), soDone=el('soDone'),
-        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soReset=el('soReset'), soNext=el('soNext');
+        soHintLine=el('soHintLine'), soOrig=el('soOrig'), soFb=el('soFb'), soDone=el('soDone'),
+        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soSeeOrig=el('soSeeOrig'),
+        soPlay=el('soPlay'), soPlaySlow=el('soPlaySlow'), soReset=el('soReset'), soNext=el('soNext');
     if(!soTabs || !SO.length) return;
 
     function shuf(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
@@ -2326,16 +2346,19 @@
       var toks=item.en.match(/\S+/g)||[];
       soMany = toks.length>20;
       soBank = shuf(toks.map(function(t,i){return {t:t, oi:i};}));
-      soAns=[]; soSubmitted=false; soHintOn=false;
-      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      soAns=[]; soSubmitted=false; soHintOn=false; soOrigOn=false;
+      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（首字母）';
+      soOrig.style.display='none'; soOrig.textContent=''; soSeeOrig.textContent='👀 看原句';
       soFb.textContent=''; soFb.style.display='none';
-      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，慢慢拼）':'');
+      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，可慢速听）':'');
       soTip.textContent = item.zh ? ('关键词提示：'+item.zh) : g.tip;
       soScoreEl.textContent='得分：'+soScore;
       soNext.textContent = soIdx[soG]>=g.items.length-1 ? '下一题（本组完成）→' : '下一题 →';
       soNext.style.display='inline-block';
       soDone.style.display='none';
       render();
+      /* 进题自动读一遍整句（听音拼句是主方式），间隔避免与上一句连读串音 */
+      setTimeout(function(){ speak(item.en,0.9); }, 350);
     }
     function render(){
       soAnsEl.innerHTML=''; soBankEl.innerHTML='';
@@ -2385,9 +2408,20 @@
         soSeeHint.textContent='🙈 收起提示';
       } else {
         soHintLine.style.display='none';
-        soSeeHint.textContent='💡 看提示（听整句+首字母）';
+        soSeeHint.textContent='💡 看提示（首字母）';
       }
-      speak(item.en,0.85);
+    });
+    /* 听音拼句：整句反复听 + 慢速听（长句用） */
+    soPlay.addEventListener('click',function(){ speak(SO[soG].items[soIdx[soG]].en,0.9); });
+    soPlaySlow.addEventListener('click',function(){ speak(SO[soG].items[soIdx[soG]].en,0.62); });
+    /* 看原句：最后手段，直接给答案句（句子填空组附中文提示） */
+    soSeeOrig.addEventListener('click',function(){
+      var item=SO[soG].items[soIdx[soG]];
+      soOrigOn=!soOrigOn;
+      if(soOrigOn){
+        soOrig.textContent=item.en+(item.zh?'　（'+item.zh+'）':'');
+        soOrig.style.display='block'; soSeeOrig.textContent='🙈 收起原句';
+      } else { soOrig.style.display='none'; soSeeOrig.textContent='👀 看原句'; }
     });
     soReset.addEventListener('click',function(){ load(); });
     soNext.addEventListener('click',function(){

@@ -411,6 +411,18 @@
   .so-tok.many{font-size:14px; padding:6px 9px;}
   .so-hintline{margin-top:12px; font-size:15px; color:#0B5F55; background:var(--teal-soft);
     border-radius:10px; padding:10px 12px; letter-spacing:.3px; line-height:1.8;}
+  .so-listenbar{margin-top:10px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;}
+  .so-listen{border:none; background:var(--teal); color:#fff; font-size:15px; font-weight:600;
+    border-radius:999px; padding:10px 20px 10px 15px; cursor:pointer; font-family:inherit;
+    display:inline-flex; align-items:center; gap:8px;}
+  .so-listen:hover{background:#0B7369;}
+  .so-listen.slow{background:var(--amber);}
+  .so-listen.slow:hover{background:#946300;}
+  .so-listen .ico{display:inline-flex; align-items:center; justify-content:center;
+    width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,.22);}
+  .so-listen .ico svg{width:15px; height:15px; fill:#fff;}
+  .so-orig{margin-top:12px; font-size:16px; color:#0B5F55; background:#fff; border:1.5px solid #B7DED6;
+    border-radius:10px; padding:12px 14px; line-height:1.7; display:none;}
   .so-actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
   .so-btn{border:none; background:var(--teal); color:#fff; font-size:14px; font-weight:600;
     border-radius:10px; padding:10px 16px; cursor:pointer; font-family:inherit;}
@@ -880,8 +892,8 @@
   <section class="block" id="sentorder">
     <div class="sec-head">
       <div class="no" style="background:var(--coral);">⑪</div>
-      <h2>连词成句 · 点词拼句</h2>
-      <p>点下方打乱的单词，按正确顺序拼成句子；点已选的词可撤回。组句后点「提交」自查。</p>
+      <h2>连词成句 · 听音拼句</h2>
+      <p>先听整句发音，再按听到的顺序点词块拼句；长句可慢速听。卡住了用「看提示」或「看原句」。</p>
       <span class="count-badge" id="soBadge"></span>
     </div>
     <div class="so-wrap">
@@ -892,15 +904,22 @@
           <span class="q-score" id="soScore" style="margin-left:auto;">得分：0</span>
         </div>
         <div class="so-tipbar" id="soTip"></div>
+        <div class="so-listenbar">
+          <button class="so-listen" id="soPlay" type="button"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>▶ 听整句</button>
+          <button class="so-listen slow" id="soPlaySlow" type="button"><span class="ico"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>🐢 慢速听</button>
+          <span style="font-size:13px;color:var(--sub);">听发音，按听到的顺序点词块拼句 · 可反复听</span>
+        </div>
         <div class="so-label">你拼的句子（点词可撤回）：</div>
         <div class="so-ans" id="soAns"></div>
         <div class="so-label">词块（点选拼句）：</div>
         <div class="so-bank" id="soBank"></div>
         <div class="so-hintline" id="soHintLine" style="display:none;"></div>
+        <div class="so-orig" id="soOrig" style="display:none;"></div>
         <div class="q-feedback" id="soFb" style="display:none;"></div>
         <div class="so-actions">
           <button class="so-btn" id="soCheck" type="button">提交答案</button>
-          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（听整句+首字母）</button>
+          <button class="so-btn ghost" id="soSeeHint" type="button">💡 看提示（首字母）</button>
+          <button class="so-btn ghost" id="soSeeOrig" type="button">👀 看原句</button>
           <button class="so-btn ghost" id="soReset" type="button">↻ 重排本题</button>
           <button class="q-next" id="soNext" type="button" style="margin-top:0;">下一题 →</button>
         </div>
@@ -2274,14 +2293,15 @@
   /* ========== ⑪ 连词成句 ========== */
   window.__SENTORDER = true;
   (function(){
-    var SO = [{"name":"课文原句","tip":"先做：听发音，把打乱的单词拼回课文原句","items":[{"en":"There are four seasons in a year, and each season has its special features.","zh":""},{"en":"Life begins again in spring. The snow melts, and nature wakes up after the long winter.","zh":""},{"en":"Warm rain falls on the forests and fields.","zh":""},{"en":"Plants start to grow, and birds come back from the south.","zh":""},{"en":"Farmers begin to work their land.","zh":""},{"en":"It is a time of new life and new hope.","zh":""},{"en":"It is exciting to take a trip in the countryside in springtime.","zh":""},{"en":"Summer is bright and noisy. The weather is hot.","zh":""},{"en":"The sun shines brightly in the clear, blue sky.","zh":""},{"en":"Cicadas sing loudly. There is often thunder and lightning in the afternoon.","zh":""},{"en":"Many people like to go to the beach and swim in the sea.","zh":""},{"en":"It is nice to eat ice cream or fresh fruit in summer.","zh":""},{"en":"Autumn is beautiful and full of colour. The weather is cool and dry.","zh":""},{"en":"In autumn, everything changes. Leaves turn brown, red or yellow and start falling from the trees.","zh":""},{"en":"Squirrels gather food for the cold winter.","zh":""},{"en":"Farmers are busy with the harvest.","zh":""},{"en":"It is great to go on a family outing at this time of year.","zh":""},{"en":"Winter is peaceful and fun. It is cold and snowy in many places.","zh":""},{"en":"Bears and snakes find warm places to sleep through the winter.","zh":""},{"en":"Children love winter because they love to play in the snow.","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句，拼回原句巩固记忆","items":[{"en":"Tom left a single footprint in the wet sand when he ran on the beach.","zh":"footprint 脚印；足迹"},{"en":"The ground was wet after the heavy rain.","zh":"wet 潮湿的"},{"en":"The water in the river is very deep; do not swim here.","zh":"deep 深的"},{"en":"The children played on the sandy beach by the sea.","zh":"sandy 铺满沙子的；含沙的"},{"en":"Tom likes to kick the ball with his foot in the park.","zh":"kick 踢；踹"},{"en":"My grandparents live in a small town near the sea.","zh":"town 镇；市镇"},{"en":"A special feature of this town is its old bridge.","zh":"feature 特色；特征；town 镇；市镇"},{"en":"Hainan is in the south of China.","zh":"south 南；南方"},{"en":"It was a clear day, so we could see the blue sky.","zh":"clear 晴朗的"},{"en":"The noisy children laughed loudly in the classroom.","zh":"loudly 喧闹地；响亮地"},{"en":"We heard loud thunder during the storm.","zh":"thunder 雷"},{"en":"A flash of lightning lit up the dark sky.","zh":"lightning 闪电"},{"en":"The air in the countryside is fresh and clean.","zh":"fresh 新鲜的"},{"en":"Farmers gather the crops in autumn.","zh":"gather 采集（植物、水果等）"},{"en":"The small village is quiet and peaceful.","zh":"peaceful 安静的；平静的"},{"en":"Lily was afraid when she saw a snake in the grass.","zh":"snake 蛇"},{"en":"It rained through the whole day, so we stayed at home.","zh":"through 自始至终；从头到尾"},{"en":"The northern part of the country is very cold.","zh":"part 区域；地区"},{"en":"I read an interesting article about the four seasons in the magazine.","zh":"article 文章"},{"en":"Can you tell me the reason why the leaves turn yellow in autumn?","zh":"reason 原因；理由"},{"en":"The fish is still alive; it is swimming in the water.","zh":"alive 有生气；有活力"},{"en":"The children built a sandcastle on the beach.","zh":"sandcastle 沙堡"},{"en":"The four seasons follow one after another.","zh":"follow 按……方式发展"},{"en":"The teacher will divide the class into four groups.","zh":"divide （使）分开"},{"en":"We need to decide where to go for the school outing.","zh":"decide 对……作出抉择；决定"},{"en":"Rice is an important crop in the south of China.","zh":"crop 庄稼；作物"},{"en":"The Spring Festival is an important part of Chinese culture.","zh":"culture 文化；文明"},{"en":"We bought fresh fruit at the local market.","zh":"local 地方的；当地的"},{"en":"It is a tradition to eat dumplings at the Spring Festival.","zh":"tradition 传统"},{"en":"The rain will continue for another two days.","zh":"continue 持续；继续存在"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句，拼回原句巩固记忆","items":[{"en":"How is the weather today? It is rainy.","zh":"weather 天气"},{"en":"It is a snowy day, so the ground is all white.","zh":"snowy 下雪的"},{"en":"Take an umbrella; it is a rainy day.","zh":"rainy 多雨的"},{"en":"The sky is cloudy; I think it will rain.","zh":"cloudy 多云的"},{"en":"It is windy today, so the kite flies high.","zh":"windy 有风的"},{"en":"The temperature is thirty degrees in summer.","zh":"temperature 温度"},{"en":"We played on the beach and swam in the sea.","zh":"beach 海滩"},{"en":"My grandparents live in the countryside, far from the city.","zh":"countryside 乡村；农村"},{"en":"swimming is a good sport in hot summer.","zh":"swimming 游泳"},{"en":"skiing is popular in the cold north in winter.","zh":"skiing 滑雪"},{"en":"Autumn is the time of harvest for farmers.","zh":"harvest 收获"},{"en":"The leaves turn yellow and fall from the trees in autumn.","zh":"leaves 树叶（leaf 的复数）"},{"en":"The squirrel stores nuts for the cold winter.","zh":"squirrel 松鼠"},{"en":"The cicada makes a loud noise in the hot summer.","zh":"cicada 蝉"},{"en":"A farmer works in the fields and grows crops.","zh":"farmer 农民"},{"en":"We like to play outdoors when the weather is nice.","zh":"outdoors 在户外"},{"en":"Our class had a happy outing in the park last Sunday.","zh":"outing 远足；郊游"},{"en":"I like to eat ice cream in hot weather.","zh":""}]},{"name":"重点短语句","tip":"选做：重点短语的例句，拼回原句巩固记忆","items":[{"en":"We have picnics in the park on Sunday.","zh":""},{"en":"Farmers work their land in spring.","zh":""},{"en":"Our family will take a trip to Beijing.","zh":""},{"en":"Qingming is a solar term.","zh":""},{"en":"in fact, he is very kind.","zh":""},{"en":"The class is divided into four groups.","zh":""},{"en":"The story is based on a true event.","zh":""},{"en":"Education plays an important part in our life.","zh":""},{"en":"I wake up early in winter.","zh":""},{"en":"My father will come back tomorrow.","zh":""},{"en":"We go to the beach in summer.","zh":""},{"en":"Children swim in the sea happily.","zh":""},{"en":"I eat ice cream in hot weather.","zh":""},{"en":"The kids play in the snow in winter.","zh":""},{"en":"We go on a family outing last weekend.","zh":""},{"en":"We enjoy outdoor activities in autumn.","zh":""},{"en":"My grandparents live in the countryside.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句，拼回原句巩固记忆","items":[{"en":"They have picnics near the lake.","zh":""},{"en":"The old man still works his land.","zh":""},{"en":"We take a trip to the seaside.","zh":""},{"en":"There are twenty-four solar terms in China.","zh":""},{"en":"in fact, I do not agree.","zh":""},{"en":"The year is divided into four seasons.","zh":""},{"en":"The film is based on a real story.","zh":""},{"en":"Water plays an important part in our daily life.","zh":""},{"en":"The bird wakes up at dawn.","zh":""},{"en":"Please come back before dark.","zh":""},{"en":"Let's go to the beach this afternoon.","zh":""},{"en":"It is fun to swim in the sea.","zh":""},{"en":"She likes to eat ice cream.","zh":""},{"en":"We play in the snow after the snowfall.","zh":""},{"en":"The Zhang family go on a family outing every spring.","zh":""},{"en":"Hiking is one of the outdoor activities.","zh":""},{"en":"We picked apples in the countryside.","zh":""}]}];
+    var SO = [{"name":"课文原句","tip":"先做：点「▶ 听整句」听发音，按听到的顺序拼词块；长句点「🐢 慢速听」","items":[{"en":"There are four seasons in a year, and each season has its special features.","zh":""},{"en":"Life begins again in spring. The snow melts, and nature wakes up after the long winter.","zh":""},{"en":"Warm rain falls on the forests and fields.","zh":""},{"en":"Plants start to grow, and birds come back from the south.","zh":""},{"en":"Farmers begin to work their land.","zh":""},{"en":"It is a time of new life and new hope.","zh":""},{"en":"It is exciting to take a trip in the countryside in springtime.","zh":""},{"en":"Summer is bright and noisy. The weather is hot.","zh":""},{"en":"The sun shines brightly in the clear, blue sky.","zh":""},{"en":"Cicadas sing loudly. There is often thunder and lightning in the afternoon.","zh":""},{"en":"Many people like to go to the beach and swim in the sea.","zh":""},{"en":"It is nice to eat ice cream or fresh fruit in summer.","zh":""},{"en":"Autumn is beautiful and full of colour. The weather is cool and dry.","zh":""},{"en":"In autumn, everything changes. Leaves turn brown, red or yellow and start falling from the trees.","zh":""},{"en":"Squirrels gather food for the cold winter.","zh":""},{"en":"Farmers are busy with the harvest.","zh":""},{"en":"It is great to go on a family outing at this time of year.","zh":""},{"en":"Winter is peaceful and fun. It is cold and snowy in many places.","zh":""},{"en":"Bears and snakes find warm places to sleep through the winter.","zh":""},{"en":"Children love winter because they love to play in the snow.","zh":""}]},{"name":"核心词例句","tip":"选做：核心单词的例句 · 听发音按序拼词块，长句可慢速听","items":[{"en":"Tom left a single footprint in the wet sand when he ran on the beach.","zh":"footprint 脚印；足迹"},{"en":"The ground was wet after the heavy rain.","zh":"wet 潮湿的"},{"en":"The water in the river is very deep; do not swim here.","zh":"deep 深的"},{"en":"The children played on the sandy beach by the sea.","zh":"sandy 铺满沙子的；含沙的"},{"en":"Tom likes to kick the ball with his foot in the park.","zh":"kick 踢；踹"},{"en":"My grandparents live in a small town near the sea.","zh":"town 镇；市镇"},{"en":"A special feature of this town is its old bridge.","zh":"feature 特色；特征；town 镇；市镇"},{"en":"Hainan is in the south of China.","zh":"south 南；南方"},{"en":"It was a clear day, so we could see the blue sky.","zh":"clear 晴朗的"},{"en":"The noisy children laughed loudly in the classroom.","zh":"loudly 喧闹地；响亮地"},{"en":"We heard loud thunder during the storm.","zh":"thunder 雷"},{"en":"A flash of lightning lit up the dark sky.","zh":"lightning 闪电"},{"en":"The air in the countryside is fresh and clean.","zh":"fresh 新鲜的"},{"en":"Farmers gather the crops in autumn.","zh":"gather 采集（植物、水果等）"},{"en":"The small village is quiet and peaceful.","zh":"peaceful 安静的；平静的"},{"en":"Lily was afraid when she saw a snake in the grass.","zh":"snake 蛇"},{"en":"It rained through the whole day, so we stayed at home.","zh":"through 自始至终；从头到尾"},{"en":"The northern part of the country is very cold.","zh":"part 区域；地区"},{"en":"I read an interesting article about the four seasons in the magazine.","zh":"article 文章"},{"en":"Can you tell me the reason why the leaves turn yellow in autumn?","zh":"reason 原因；理由"},{"en":"The fish is still alive; it is swimming in the water.","zh":"alive 有生气；有活力"},{"en":"The children built a sandcastle on the beach.","zh":"sandcastle 沙堡"},{"en":"The four seasons follow one after another.","zh":"follow 按……方式发展"},{"en":"The teacher will divide the class into four groups.","zh":"divide （使）分开"},{"en":"We need to decide where to go for the school outing.","zh":"decide 对……作出抉择；决定"},{"en":"Rice is an important crop in the south of China.","zh":"crop 庄稼；作物"},{"en":"The Spring Festival is an important part of Chinese culture.","zh":"culture 文化；文明"},{"en":"We bought fresh fruit at the local market.","zh":"local 地方的；当地的"},{"en":"It is a tradition to eat dumplings at the Spring Festival.","zh":"tradition 传统"},{"en":"The rain will continue for another two days.","zh":"continue 持续；继续存在"}]},{"name":"补充词例句","tip":"选做：补充词汇的例句 · 听发音按序拼词块，长句可慢速听","items":[{"en":"How is the weather today? It is rainy.","zh":"weather 天气"},{"en":"It is a snowy day, so the ground is all white.","zh":"snowy 下雪的"},{"en":"Take an umbrella; it is a rainy day.","zh":"rainy 多雨的"},{"en":"The sky is cloudy; I think it will rain.","zh":"cloudy 多云的"},{"en":"It is windy today, so the kite flies high.","zh":"windy 有风的"},{"en":"The temperature is thirty degrees in summer.","zh":"temperature 温度"},{"en":"We played on the beach and swam in the sea.","zh":"beach 海滩"},{"en":"My grandparents live in the countryside, far from the city.","zh":"countryside 乡村；农村"},{"en":"swimming is a good sport in hot summer.","zh":"swimming 游泳"},{"en":"skiing is popular in the cold north in winter.","zh":"skiing 滑雪"},{"en":"Autumn is the time of harvest for farmers.","zh":"harvest 收获"},{"en":"The leaves turn yellow and fall from the trees in autumn.","zh":"leaves 树叶（leaf 的复数）"},{"en":"The squirrel stores nuts for the cold winter.","zh":"squirrel 松鼠"},{"en":"The cicada makes a loud noise in the hot summer.","zh":"cicada 蝉"},{"en":"A farmer works in the fields and grows crops.","zh":"farmer 农民"},{"en":"We like to play outdoors when the weather is nice.","zh":"outdoors 在户外"},{"en":"Our class had a happy outing in the park last Sunday.","zh":"outing 远足；郊游"},{"en":"I like to eat ice cream in hot weather.","zh":""}]},{"name":"重点短语句","tip":"选做：重点短语的例句 · 听发音按序拼词块，长句可慢速听","items":[{"en":"We have picnics in the park on Sunday.","zh":""},{"en":"Farmers work their land in spring.","zh":""},{"en":"Our family will take a trip to Beijing.","zh":""},{"en":"Qingming is a solar term.","zh":""},{"en":"in fact, he is very kind.","zh":""},{"en":"The class is divided into four groups.","zh":""},{"en":"The story is based on a true event.","zh":""},{"en":"Education plays an important part in our life.","zh":""},{"en":"I wake up early in winter.","zh":""},{"en":"My father will come back tomorrow.","zh":""},{"en":"We go to the beach in summer.","zh":""},{"en":"Children swim in the sea happily.","zh":""},{"en":"I eat ice cream in hot weather.","zh":""},{"en":"The kids play in the snow in winter.","zh":""},{"en":"We go on a family outing last weekend.","zh":""},{"en":"We enjoy outdoor activities in autumn.","zh":""},{"en":"My grandparents live in the countryside.","zh":""}]},{"name":"短语语境句","tip":"选做：短语语境拓展的例句 · 听发音按序拼词块，长句可慢速听","items":[{"en":"They have picnics near the lake.","zh":""},{"en":"The old man still works his land.","zh":""},{"en":"We take a trip to the seaside.","zh":""},{"en":"There are twenty-four solar terms in China.","zh":""},{"en":"in fact, I do not agree.","zh":""},{"en":"The year is divided into four seasons.","zh":""},{"en":"The film is based on a real story.","zh":""},{"en":"Water plays an important part in our daily life.","zh":""},{"en":"The bird wakes up at dawn.","zh":""},{"en":"Please come back before dark.","zh":""},{"en":"Let's go to the beach this afternoon.","zh":""},{"en":"It is fun to swim in the sea.","zh":""},{"en":"She likes to eat ice cream.","zh":""},{"en":"We play in the snow after the snowfall.","zh":""},{"en":"The Zhang family go on a family outing every spring.","zh":""},{"en":"Hiking is one of the outdoor activities.","zh":""},{"en":"We picked apples in the countryside.","zh":""}]}];
     var soG=0, soIdx=SO.map(function(){return 0;}), soScore=0;
-    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soMany=false;
+    var soAns=[], soBank=[], soSubmitted=false, soHintOn=false, soOrigOn=false, soMany=false;
     var el = function(id){return document.getElementById(id);};
     var soTabs=el('soTabs'), soBadge=el('soBadge'), soTip=el('soTip'), soHint=el('soHint'),
         soScoreEl=el('soScore'), soAnsEl=el('soAns'), soBankEl=el('soBank'),
-        soHintLine=el('soHintLine'), soFb=el('soFb'), soDone=el('soDone'),
-        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soReset=el('soReset'), soNext=el('soNext');
+        soHintLine=el('soHintLine'), soOrig=el('soOrig'), soFb=el('soFb'), soDone=el('soDone'),
+        soCheck=el('soCheck'), soSeeHint=el('soSeeHint'), soSeeOrig=el('soSeeOrig'),
+        soPlay=el('soPlay'), soPlaySlow=el('soPlaySlow'), soReset=el('soReset'), soNext=el('soNext');
     if(!soTabs || !SO.length) return;
 
     function shuf(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
@@ -2302,16 +2322,19 @@
       var toks=item.en.match(/\S+/g)||[];
       soMany = toks.length>20;
       soBank = shuf(toks.map(function(t,i){return {t:t, oi:i};}));
-      soAns=[]; soSubmitted=false; soHintOn=false;
-      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（听整句+首字母）';
+      soAns=[]; soSubmitted=false; soHintOn=false; soOrigOn=false;
+      soHintLine.style.display='none'; soSeeHint.textContent='💡 看提示（首字母）';
+      soOrig.style.display='none'; soOrig.textContent=''; soSeeOrig.textContent='👀 看原句';
       soFb.textContent=''; soFb.style.display='none';
-      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，慢慢拼）':'');
+      soHint.textContent='第 '+(soIdx[soG]+1)+' / '+g.items.length+' 题 · '+g.name+(soMany?'（长句，可慢速听）':'');
       soTip.textContent = item.zh ? ('关键词提示：'+item.zh) : g.tip;
       soScoreEl.textContent='得分：'+soScore;
       soNext.textContent = soIdx[soG]>=g.items.length-1 ? '下一题（本组完成）→' : '下一题 →';
       soNext.style.display='inline-block';
       soDone.style.display='none';
       render();
+      /* 进题自动读一遍整句（听音拼句是主方式），间隔避免与上一句连读串音 */
+      setTimeout(function(){ speak(item.en,0.9); }, 350);
     }
     function render(){
       soAnsEl.innerHTML=''; soBankEl.innerHTML='';
@@ -2361,9 +2384,20 @@
         soSeeHint.textContent='🙈 收起提示';
       } else {
         soHintLine.style.display='none';
-        soSeeHint.textContent='💡 看提示（听整句+首字母）';
+        soSeeHint.textContent='💡 看提示（首字母）';
       }
-      speak(item.en,0.85);
+    });
+    /* 听音拼句：整句反复听 + 慢速听（长句用） */
+    soPlay.addEventListener('click',function(){ speak(SO[soG].items[soIdx[soG]].en,0.9); });
+    soPlaySlow.addEventListener('click',function(){ speak(SO[soG].items[soIdx[soG]].en,0.62); });
+    /* 看原句：最后手段，直接给答案句（句子填空组附中文提示） */
+    soSeeOrig.addEventListener('click',function(){
+      var item=SO[soG].items[soIdx[soG]];
+      soOrigOn=!soOrigOn;
+      if(soOrigOn){
+        soOrig.textContent=item.en+(item.zh?'　（'+item.zh+'）':'');
+        soOrig.style.display='block'; soSeeOrig.textContent='🙈 收起原句';
+      } else { soOrig.style.display='none'; soSeeOrig.textContent='👀 看原句'; }
     });
     soReset.addEventListener('click',function(){ load(); });
     soNext.addEventListener('click',function(){
